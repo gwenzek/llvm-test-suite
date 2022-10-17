@@ -5,7 +5,10 @@
 #define __testsuite_dot_h
 #include <stddef.h>
 
-#include "../../selector.h"
+// #include "../../selector.h"
+#define ABI_SELECTOR(a,b,c,d,e) a // LP64
+#define ABISELECT(a,b) a // LP64 x86
+
 
 typedef long VTBL_ENTRY;
 
