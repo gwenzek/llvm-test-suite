@@ -1,67 +1,78 @@
 # LLVM "test-suite" Repository for Zig
 
 
-The goal of this fork is to adapt the ABI-Testsuite from LLVM to Zig.
+The idea of this fork was to adapt the ABI-Testsuite from LLVM to Zig.
 Can Zig pass the test suite ?
-Part of the suite is specifically for the C++ ABI, which we aren't intersted.
-I'm focusing on the ABI-Testsuite/test/struct_layout_tests that tests the C ABI.
+Part of the suite is specifically for the C++ ABI, which I wasn't interested in.
+I focused on the ABI-Testsuite/test/struct_layout_tests that tests the C ABI.
 Each test case defines a C struct,
 set some value in a field and look at the bits to check they have been correctly written too.
 
 Strategy:
-* rewrite common/testsuite.h, common/testsuite.c to Zig
+* rewrite common/testsuite.{h,c} to Zig (zig_test/testing.zig)
 * translate on the fly all test cases to Zig
 
-`zig translate-c` doesn't quite work because most of the struct in test cases
-have bitfields which aren't supported by `zig` in general.
-I'll probably have to write a specialized translation.
-Since all the test cases seems to have been machine generated,
-and follow a pattern,
-it shouldn't be too hard to rewrite them.
+`zig translate-c` doesn't quite work because the testing code uses a lot of templates,
+and also I didn't want to depend on libc and I wanted to generate readable tests.
 
-What the translated could look like:
+## Limitations
+
+The main thing I realized while working on this
+is that the tests are not about enforcing the C-standard,
+but making sure that `clang` behaves like `gcc`
+when it comes to compiler specified behavior.
+Typically C has bitfields but the alignement of struct containing bitfields
+isn't fully specified.
+C doesn't allow empty structs, but `gcc` do compile them to 0 byte structs,
+with alignment of 1 (but it compile C++ empty structs to 1 byte structs). 
+Zig is doing differently, an empty struct will get a size of 1 but an align of 0.
+This means that an `empty` field in another structs uses 0 bits in Zig, but 8 in C.
+
+If you remove the tests that uses bitfields (156,954) or empty structs field (1070),
+you aren't left with a lot of test cases (2379).
+
+## Extracted tests
+
+I wrote a specialized translation tool
+[find_relevant.py](ABI-Testsuite/find_relevant.py) for them.
+Since all the test cases seems to have been machine generated,
+and follow a pattern, it's not too hard to rewrite them in Zig.
+For now I'm still leaving some job to `zig translate-c` by putting the struct
+definitions inside a `.h` file.
+
+Sample translated test case. Struct definition in T_Snnn_xbc.h file, test in T_Snnn_xbc.zig file:
+
+```c
+// From T_Snnn_xbc.c:16691:16695
+struct  Vp_F_Ui  {
+  void *v1;
+  float v2;
+  unsigned int v3;
+};
+```
 
 ```zig
-const BFu1s_C_Uc = extern struct { v1: c_ushort, v2: u8, v3: u8 };
-
-test "BFu1s_C_Uc" {
-    var lv: BFu1s_C_Uc = undefined;
-    try utils.expectSizeOf(lv, 4);
-    try utils.expectAlignOf(lv, 2);
-    try utils.set_bf_and_test(&lv, &lv.v1, 0, 0, 1, 1);
-    try utils.expectFieldOffset(&lv, &lv.v2, 1);
-    try utils.expectFieldOffset(&lv, &lv.v3, 2);
+// From T_Snnn_xbc.c:16703:16711
+test "Vp_F_Ui" {
+    var lv: c.Vp_F_Ui = undefined;
+    try testing.expectSize(c.Vp_F_Ui, ABISELECT(16, 12));
+    try testing.expectAlign(c.Vp_F_Ui, ABISELECT(8, 4));
+    try testing.expectFieldOffset(&lv, &lv.v1, 0);
+    try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
+    try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
 }
 ```
 
-To run the manually translated tests:
+You can run all this using `python find_relevant.py` with a python 3.8 install.
 
-```bash
-cd ABI-Testsuite
-zig build test
-```
+The command to run a test file is:  `zig test -I zig_test <test_file>.zig`,
+Ideally you should be able to run all the tests using `zig build test`,
+but I haven't wrote a `build.zig`
 
-Current output:
+## Next steps
 
-```
-s/3 test.empty... expected 1, found 0
-FAIL (TestExpectedEqual)
-~/github/llvm-test-suite/ABI-Testsuite/zig_test/test_BFu1s_C_Uc.zig:8:5: 0x214d39 in test.empty (test)
-    try std.testing.expectEqual(1, @alignOf(Empty));
-    ^
-2/3 test.BFu1s_C_Uc... OK
-3/3 test.Sf_BFu16i_BFu15s... expected 4, found 8
-FAIL (TestExpectedEqual)
-~/github/llvm-test-suite/ABI-Testsuite/zig_test/test_BFu1s_C_Uc.zig:8:5: 0x214d39 in test.empty (test)
-    try std.testing.expectEqual(1, @alignOf(Empty));
-    ^
-~/github/zig-bootstrap/out/zig-x86_64-linux-gnu-native/lib/zig/std/testing.zig:79:17: 0x214f80 in expectEqual__anon_2150 (test)
-                return error.TestExpectedEqual;
-                ^
-~/github/llvm-test-suite/ABI-Testsuite/zig_test/test_BFu1s_C_Uc.zig:26:5: 0x2155f7 in test.Sf_BFu16i_BFu15s (test)
-    try utils.expectSizeOf(lv, 4);
-    ^
-1 passed; 0 skipped; 2 failed.
-```
+I don't know if there is much left to learn from this.
+The test suite is mostly here to help Clang follow `gcc` behavior.
+As explained above Zig does thing differently.
+If that were to change, I could update the repo to run more tests.
 
-Zig thinks that empty struct have an alignment of 0, while the test suite expects 1.
