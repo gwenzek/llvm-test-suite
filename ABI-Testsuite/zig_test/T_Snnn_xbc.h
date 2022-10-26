@@ -3,6 +3,8 @@
 #define __tsu64 unsigned long long
 #define __tsulong unsigned long
 
+#define bool    _Bool
+
 // From T_Snnn_xbc.c:13650:13653
 struct  Vp_C  {
   void *v1;

@@ -1,5 +1,4 @@
 const std = @import("std");
-const testing = std.testing;
 
 pub inline fn expectSize(comptime t: type, size: u32) !void {
     try std.testing.expectEqual(size, @sizeOf(t));
