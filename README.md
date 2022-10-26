@@ -26,8 +26,13 @@ isn't fully specified.
 C doesn't allow empty structs, but `gcc` do compile them to 0 byte structs,
 with alignment of 1 (but it compile C++ empty structs to 1 byte structs). 
 Zig is doing differently, an empty struct will get a size of 1 but an align of 0.
-This means that an `empty` field in another structs uses 0 bits in Zig, but 8 in C.
+~~This means that an `empty` field in another structs uses 0 bits in Zig, but 8 in C.~~
 
+Actually the difference seems that `__alignof__` returns 1 in C++, but that
+the struct actually is laid out as if the alignment was 0 (ie the empty field uses 0 bits)
+
+**TODO** translate empty field tests.
+ 
 If you remove the tests that uses bitfields (156,954) or empty structs field (1070),
 you aren't left with a lot of test cases (2379).
 
