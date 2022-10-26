@@ -8,6 +8,8 @@
 // #include "../../selector.h"
 #define ABI_SELECTOR(a,b,c,d,e) a // LP64
 #define ABISELECT(a,b) a // LP64 x86
+#define __FILE__ "test_sample.c"
+#define __LINE__ 0
 
 
 typedef long VTBL_ENTRY;
@@ -186,8 +188,7 @@ extern "C" {
 #define AMB_check_base_class_offset(var, derivation_seq, ofst, cn) 
 
 #define set_bf_and_test(var, bitfield, byte_ofst, bit_ofst, bit_size, value, classname) \
-    {var.bitfield = value; \
-     test_bitfield_value(&var, byte_ofst, bit_ofst, bit_size, value, sizeof(var),classname "." #bitfield, __FILE__, __LINE__);}
+    var.bitfield = value; test_bitfield_value(&var, byte_ofst, bit_ofst, bit_size, value, sizeof(var),classname "." #bitfield, __FILE__, __LINE__);
 
 typedef void (*voidfunc)(void);
 typedef struct _atcm { // The C struct equivalent to Arrange_To_Call_Me
