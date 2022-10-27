@@ -162,6 +162,8 @@ def extract_file(
         return None, stats
 
     print(f"Found {list(stats.items())} struct in {file}")
+    if allow_empty:
+        stats[Status.STRUCT_OK] += stats[Status.EMPTY_FIELD]
 
     tests = {}
     with file.open("r") as f:
@@ -280,7 +282,7 @@ def main(allow_empty: bool) -> None:
         # if file.name.startswith("PC_"):
         #     # Those are C++ tests only
         #     continue
-        test_file, stats = extract_file(file, zig_tests)
+        test_file, stats = extract_file(file, zig_tests, allow_empty)
         assert (
             stats[Status.TRANSLATION_OK] + stats[Status.TRANSLATION_ERROR]
             == stats[Status.STRUCT_OK]
