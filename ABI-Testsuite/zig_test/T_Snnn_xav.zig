@@ -6,7 +6,11 @@ pub const c = @cImport({
     @cInclude("T_Snnn_xav.h");
 });
 
-// From T_Snnn_xav.c:63402:63408
+// From T_Snnn_xav.c:63393:63409
+// struct  C  {
+//   char v1;
+// };
+
 test "C" {
     var lv: c.C = undefined;
     try testing.expectSize(c.C, 1);

@@ -16,9 +16,44 @@ class Struct(NamedTuple):
     def location(self, file: Path) -> str:
         return f"{file.name}:{self.line_start}:{self.line_end}"
 
+    def has_empty_field(self) -> bool:
+        return any("struct empty " in line for line in self.code)
+
+
+def skip_cpp(lines: Iterable[str]) -> Iterator[Tuple[int, str]]:
+    if_cpp = 0
+    else_cpp = 0
+
+    for line_no, line in enumerate(lines, start=1):
+        if line.startswith("#ifdef __cplusplus"):
+            if if_cpp:
+                raise ValueError(f"Nested '#ifdef __cplusplus' at lines {if_cpp} and {line_no}")
+            if_cpp = line_no
+            continue
+
+        if line.startswith("#else"):
+            if not if_cpp:
+                raise ValueError(f"Unexpected '#else' at line {line_no}: {line}")
+            if else_cpp:
+                raise ValueError(f"Nested '#else' at lines {else_cpp} and {line_no}")
+            else_cpp = line_no
+            continue
+
+        if line.startswith("#endif"):
+            if not else_cpp:
+                raise ValueError(f"Unexpected '#endif' at line {line_no}: {line}")
+            if_cpp, else_cpp = 0, 0
+            continue
+
+        if if_cpp and not else_cpp:
+            continue
+
+        yield line_no, line
+
 
 def parse_structs(lines: Iterable[str]) -> Iterator[Struct]:
-    _lines = enumerate(lines)
+    _lines = skip_cpp(lines)
+    line_no = 0
     try:
         for line_no, line in _lines:
             if not line.startswith("struct "):
@@ -42,7 +77,7 @@ def parse_structs(lines: Iterable[str]) -> Iterator[Struct]:
 
 
 def parse_tests(lines: Iterable[str]) -> Iterator[Struct]:
-    _lines = enumerate(lines)
+    _lines = skip_cpp(lines)
     try:
         for line_no, line in _lines:
             if " init_simple_test(" not in line:
@@ -66,18 +101,20 @@ def parse_tests(lines: Iterable[str]) -> Iterator[Struct]:
 
 
 BITFIELD = re.compile(r"^.*:\d+;\n?$")
-EMPTY_FIELD = re.compile(r"^\s*(struct |::)empty [a-zA-Z_0-9]+;\n?$")
-
-STATS: Dict[str, int] = collections.defaultdict(int)
+CPP_EMPTY_FIELD = re.compile(r"^\s*::empty [a-zA-Z_0-9]+;\n?$")
 
 
 class Status(Enum):
     STRUCT_OK = 0
     EMPTY_STRUCT = 1
-    EMPTY_FIELD = 2
+    CPP_STRUCT = 2
     BITFIELD = 3
-    TRANSLATION_OK = 4
-    TRANSLATION_ERROR = 5
+    EMPTY_FIELD = 4
+    TRANSLATION_OK = 5
+    TRANSLATION_ERROR = 6
+
+
+Progress = Dict[Status, int]
 
 
 def check_struct(struct: Struct) -> Status:
@@ -88,17 +125,20 @@ def check_struct(struct: Struct) -> Status:
     if any(BITFIELD.match(field) for field in fields):
         return Status.BITFIELD
 
-    if any(EMPTY_FIELD.match(field) for field in fields):
-        STATS["empty field"] += 1
+    # Only removing the C++ test with ::empty struct
+    # Normaly I should parse the #ifdef __cplusplus, but this will do for now.
+    if any(CPP_EMPTY_FIELD.match(field) for field in fields):
+        return Status.CPP_STRUCT
+
+    if struct.has_empty_field():
         return Status.EMPTY_FIELD
 
     return Status.STRUCT_OK
 
 
-Progress = Dict[Status, int]
-
-
-def extract_file(file: Path, outdir: Path) -> Tuple[Optional[Path], Progress]:
+def extract_file(
+    file: Path, outdir: Path, allow_empty: bool = False
+) -> Tuple[Optional[Path], Progress]:
     """Reads a .c test file, splits it into a Zig test file and a .h for the struct definitions."""
     stats: Progress = collections.defaultdict(int)
     structs = {}
@@ -108,11 +148,16 @@ def extract_file(file: Path, outdir: Path) -> Tuple[Optional[Path], Progress]:
             stats[res] += 1
             if res == Status.STRUCT_OK:
                 structs[struct.name] = struct
+            if allow_empty and res == Status.EMPTY_FIELD:
+                structs[struct.name] = struct
 
     num_struct = sum(stats.values())
-    assert num_struct > 0
-    if not stats[Status.STRUCT_OK]:
-        print(f"File {file} is trash")
+    if num_struct == 0:
+        print(f"Found only CPP tests in {file}")
+        return None, stats
+
+    if not structs:
+        print(f"Found only irrelevant tests in {file}: {list(stats.items())}")
         # file.unlink()
         return None, stats
 
@@ -132,15 +177,18 @@ def extract_file(file: Path, outdir: Path) -> Tuple[Optional[Path], Progress]:
     with header.open("w") as h:
         print(H_HEADER, file=h)
         for struct in structs.values():
-            print(f"// From {file.name}:{struct.line_start}:{struct.line_end}", file=h)
+            print(f"// From {struct.location(file)}", file=h)
             print("".join(struct.code), file=h)
 
     test_file = outdir / file.with_suffix(".zig").name
     with test_file.open("w") as z:
         print(ZIG_HEADER.replace("HEADER_FILE", header.name), file=z)
-        for test in tests.values():
+        for struct in structs.values():
+            test = tests[struct.name]
+            print(f"// From {file.name}:{struct.line_start}:{test.line_end}", file=z)
+            print("// ", end="", file=z)
+            print("// ".join(struct.code), file=z)
             try:
-                print(f"// From {test.location(file)}", file=z)
                 for line in test.code:
                     print(translate_test_line(test.name, line), file=z)
                 stats[Status.TRANSLATION_OK] += 1
@@ -161,6 +209,7 @@ H_HEADER = """
 #define __tsulong unsigned long
 
 #define bool    _Bool
+struct empty {};
 """
 
 ZIG_HEADER = """const std = @import("std");
@@ -214,7 +263,13 @@ def rm_debug_string(line: str) -> str:
     return debug_string.sub(")", line)
 
 
-def main() -> None:
+def main(allow_empty: bool) -> None:
+    """Parses all test/struct_layout_tests/*.c files for relevant test cases.
+    Translate them to zig files in zig_test/*.zig.
+    Then run `zig test` on them.
+
+    Use --allow_empty to allow tests with empty field structs.
+    """
     struct_layout_tests = Path("test") / "struct_layout_tests"
     zig_tests = Path("zig_test")
     # extract_file(struct_layout_tests / "T_Snnn_xbc.c", zig_tests)
@@ -222,6 +277,9 @@ def main() -> None:
     full_stats: Progress = collections.defaultdict(int)
     test_files = []
     for file in struct_layout_tests.glob("*.c"):
+        # if file.name.startswith("PC_"):
+        #     # Those are C++ tests only
+        #     continue
         test_file, stats = extract_file(file, zig_tests)
         assert (
             stats[Status.TRANSLATION_OK] + stats[Status.TRANSLATION_ERROR]
@@ -260,4 +318,10 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    import sys
+
+    args = sys.argv[1:]
+    if "-h" in args or "--help" in args:
+        print(main.__doc__)
+    else:
+        main(allow_empty="--allow_empty" in args)

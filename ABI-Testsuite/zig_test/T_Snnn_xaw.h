@@ -4,2173 +4,2174 @@
 #define __tsulong unsigned long
 
 #define bool    _Bool
+struct empty {};
 
-// From T_Snnn_xaw.c:12292:12295
+// From T_Snnn_xaw.c:12293:12296
 struct  C_C  {
   char v1;
   char v2;
 };
 
-// From T_Snnn_xaw.c:13039:13043
+// From T_Snnn_xaw.c:13040:13044
 struct  C_C_C  {
   char v1;
   char v2;
   char v3;
 };
 
-// From T_Snnn_xaw.c:13064:13068
+// From T_Snnn_xaw.c:13065:13069
 struct  C_C_D  {
   char v1;
   char v2;
   double v3;
 };
 
-// From T_Snnn_xaw.c:13089:13093
+// From T_Snnn_xaw.c:13090:13094
 struct  C_C_F  {
   char v1;
   char v2;
   float v3;
 };
 
-// From T_Snnn_xaw.c:13114:13118
+// From T_Snnn_xaw.c:13115:13119
 struct  C_C_I  {
   char v1;
   char v2;
   int v3;
 };
 
-// From T_Snnn_xaw.c:13139:13143
+// From T_Snnn_xaw.c:13140:13144
 struct  C_C_Ip  {
   char v1;
   char v2;
   int *v3;
 };
 
-// From T_Snnn_xaw.c:13164:13168
+// From T_Snnn_xaw.c:13165:13169
 struct  C_C_L  {
   char v1;
   char v2;
   __tsi64 v3;
 };
 
-// From T_Snnn_xaw.c:13189:13193
+// From T_Snnn_xaw.c:13190:13194
 struct  C_C_S  {
   char v1;
   char v2;
   short v3;
 };
 
-// From T_Snnn_xaw.c:13214:13218
+// From T_Snnn_xaw.c:13215:13219
 struct  C_C_Uc  {
   char v1;
   char v2;
   unsigned char v3;
 };
 
-// From T_Snnn_xaw.c:13239:13243
+// From T_Snnn_xaw.c:13240:13244
 struct  C_C_Ui  {
   char v1;
   char v2;
   unsigned int v3;
 };
 
-// From T_Snnn_xaw.c:13264:13268
+// From T_Snnn_xaw.c:13265:13269
 struct  C_C_Ul  {
   char v1;
   char v2;
   __tsu64 v3;
 };
 
-// From T_Snnn_xaw.c:13289:13293
+// From T_Snnn_xaw.c:13290:13294
 struct  C_C_Us  {
   char v1;
   char v2;
   unsigned short v3;
 };
 
-// From T_Snnn_xaw.c:13314:13318
+// From T_Snnn_xaw.c:13315:13319
 struct  C_C_Vp  {
   char v1;
   char v2;
   void *v3;
 };
 
-// From T_Snnn_xaw.c:13339:13342
+// From T_Snnn_xaw.c:13340:13343
 struct  C_D  {
   char v1;
   double v2;
 };
 
-// From T_Snnn_xaw.c:14086:14090
+// From T_Snnn_xaw.c:14087:14091
 struct  C_D_C  {
   char v1;
   double v2;
   char v3;
 };
 
-// From T_Snnn_xaw.c:14111:14115
+// From T_Snnn_xaw.c:14112:14116
 struct  C_D_D  {
   char v1;
   double v2;
   double v3;
 };
 
-// From T_Snnn_xaw.c:14136:14140
+// From T_Snnn_xaw.c:14137:14141
 struct  C_D_F  {
   char v1;
   double v2;
   float v3;
 };
 
-// From T_Snnn_xaw.c:14161:14165
+// From T_Snnn_xaw.c:14162:14166
 struct  C_D_I  {
   char v1;
   double v2;
   int v3;
 };
 
-// From T_Snnn_xaw.c:14186:14190
+// From T_Snnn_xaw.c:14187:14191
 struct  C_D_Ip  {
   char v1;
   double v2;
   int *v3;
 };
 
-// From T_Snnn_xaw.c:14211:14215
+// From T_Snnn_xaw.c:14212:14216
 struct  C_D_L  {
   char v1;
   double v2;
   __tsi64 v3;
 };
 
-// From T_Snnn_xaw.c:14236:14240
+// From T_Snnn_xaw.c:14237:14241
 struct  C_D_S  {
   char v1;
   double v2;
   short v3;
 };
 
-// From T_Snnn_xaw.c:14261:14265
+// From T_Snnn_xaw.c:14262:14266
 struct  C_D_Uc  {
   char v1;
   double v2;
   unsigned char v3;
 };
 
-// From T_Snnn_xaw.c:14286:14290
+// From T_Snnn_xaw.c:14287:14291
 struct  C_D_Ui  {
   char v1;
   double v2;
   unsigned int v3;
 };
 
-// From T_Snnn_xaw.c:14311:14315
+// From T_Snnn_xaw.c:14312:14316
 struct  C_D_Ul  {
   char v1;
   double v2;
   __tsu64 v3;
 };
 
-// From T_Snnn_xaw.c:14336:14340
+// From T_Snnn_xaw.c:14337:14341
 struct  C_D_Us  {
   char v1;
   double v2;
   unsigned short v3;
 };
 
-// From T_Snnn_xaw.c:14361:14365
+// From T_Snnn_xaw.c:14362:14366
 struct  C_D_Vp  {
   char v1;
   double v2;
   void *v3;
 };
 
-// From T_Snnn_xaw.c:14386:14389
+// From T_Snnn_xaw.c:14387:14390
 struct  C_F  {
   char v1;
   float v2;
 };
 
-// From T_Snnn_xaw.c:15133:15137
+// From T_Snnn_xaw.c:15134:15138
 struct  C_F_C  {
   char v1;
   float v2;
   char v3;
 };
 
-// From T_Snnn_xaw.c:15158:15162
+// From T_Snnn_xaw.c:15159:15163
 struct  C_F_D  {
   char v1;
   float v2;
   double v3;
 };
 
-// From T_Snnn_xaw.c:15183:15187
+// From T_Snnn_xaw.c:15184:15188
 struct  C_F_F  {
   char v1;
   float v2;
   float v3;
 };
 
-// From T_Snnn_xaw.c:15208:15212
+// From T_Snnn_xaw.c:15209:15213
 struct  C_F_I  {
   char v1;
   float v2;
   int v3;
 };
 
-// From T_Snnn_xaw.c:15233:15237
+// From T_Snnn_xaw.c:15234:15238
 struct  C_F_Ip  {
   char v1;
   float v2;
   int *v3;
 };
 
-// From T_Snnn_xaw.c:15258:15262
+// From T_Snnn_xaw.c:15259:15263
 struct  C_F_L  {
   char v1;
   float v2;
   __tsi64 v3;
 };
 
-// From T_Snnn_xaw.c:15283:15287
+// From T_Snnn_xaw.c:15284:15288
 struct  C_F_S  {
   char v1;
   float v2;
   short v3;
 };
 
-// From T_Snnn_xaw.c:15308:15312
+// From T_Snnn_xaw.c:15309:15313
 struct  C_F_Uc  {
   char v1;
   float v2;
   unsigned char v3;
 };
 
-// From T_Snnn_xaw.c:15333:15337
+// From T_Snnn_xaw.c:15334:15338
 struct  C_F_Ui  {
   char v1;
   float v2;
   unsigned int v3;
 };
 
-// From T_Snnn_xaw.c:15358:15362
+// From T_Snnn_xaw.c:15359:15363
 struct  C_F_Ul  {
   char v1;
   float v2;
   __tsu64 v3;
 };
 
-// From T_Snnn_xaw.c:15383:15387
+// From T_Snnn_xaw.c:15384:15388
 struct  C_F_Us  {
   char v1;
   float v2;
   unsigned short v3;
 };
 
-// From T_Snnn_xaw.c:15408:15412
+// From T_Snnn_xaw.c:15409:15413
 struct  C_F_Vp  {
   char v1;
   float v2;
   void *v3;
 };
 
-// From T_Snnn_xaw.c:15433:15436
+// From T_Snnn_xaw.c:15434:15437
 struct  C_I  {
   char v1;
   int v2;
 };
 
-// From T_Snnn_xaw.c:16180:16184
+// From T_Snnn_xaw.c:16181:16185
 struct  C_I_C  {
   char v1;
   int v2;
   char v3;
 };
 
-// From T_Snnn_xaw.c:16205:16209
+// From T_Snnn_xaw.c:16206:16210
 struct  C_I_D  {
   char v1;
   int v2;
   double v3;
 };
 
-// From T_Snnn_xaw.c:16230:16234
+// From T_Snnn_xaw.c:16231:16235
 struct  C_I_F  {
   char v1;
   int v2;
   float v3;
 };
 
-// From T_Snnn_xaw.c:16255:16259
+// From T_Snnn_xaw.c:16256:16260
 struct  C_I_I  {
   char v1;
   int v2;
   int v3;
 };
 
-// From T_Snnn_xaw.c:16280:16284
+// From T_Snnn_xaw.c:16281:16285
 struct  C_I_Ip  {
   char v1;
   int v2;
   int *v3;
 };
 
-// From T_Snnn_xaw.c:16305:16309
+// From T_Snnn_xaw.c:16306:16310
 struct  C_I_L  {
   char v1;
   int v2;
   __tsi64 v3;
 };
 
-// From T_Snnn_xaw.c:16330:16334
+// From T_Snnn_xaw.c:16331:16335
 struct  C_I_S  {
   char v1;
   int v2;
   short v3;
 };
 
-// From T_Snnn_xaw.c:16355:16359
+// From T_Snnn_xaw.c:16356:16360
 struct  C_I_Uc  {
   char v1;
   int v2;
   unsigned char v3;
 };
 
-// From T_Snnn_xaw.c:16380:16384
+// From T_Snnn_xaw.c:16381:16385
 struct  C_I_Ui  {
   char v1;
   int v2;
   unsigned int v3;
 };
 
-// From T_Snnn_xaw.c:16405:16409
+// From T_Snnn_xaw.c:16406:16410
 struct  C_I_Ul  {
   char v1;
   int v2;
   __tsu64 v3;
 };
 
-// From T_Snnn_xaw.c:16430:16434
+// From T_Snnn_xaw.c:16431:16435
 struct  C_I_Us  {
   char v1;
   int v2;
   unsigned short v3;
 };
 
-// From T_Snnn_xaw.c:16455:16459
+// From T_Snnn_xaw.c:16456:16460
 struct  C_I_Vp  {
   char v1;
   int v2;
   void *v3;
 };
 
-// From T_Snnn_xaw.c:16480:16483
+// From T_Snnn_xaw.c:16481:16484
 struct  C_Ip  {
   char v1;
   int *v2;
 };
 
-// From T_Snnn_xaw.c:17227:17231
+// From T_Snnn_xaw.c:17228:17232
 struct  C_Ip_C  {
   char v1;
   int *v2;
   char v3;
 };
 
-// From T_Snnn_xaw.c:17252:17256
+// From T_Snnn_xaw.c:17253:17257
 struct  C_Ip_D  {
   char v1;
   int *v2;
   double v3;
 };
 
-// From T_Snnn_xaw.c:17277:17281
+// From T_Snnn_xaw.c:17278:17282
 struct  C_Ip_F  {
   char v1;
   int *v2;
   float v3;
 };
 
-// From T_Snnn_xaw.c:17302:17306
+// From T_Snnn_xaw.c:17303:17307
 struct  C_Ip_I  {
   char v1;
   int *v2;
   int v3;
 };
 
-// From T_Snnn_xaw.c:17327:17331
+// From T_Snnn_xaw.c:17328:17332
 struct  C_Ip_Ip  {
   char v1;
   int *v2;
   int *v3;
 };
 
-// From T_Snnn_xaw.c:17352:17356
+// From T_Snnn_xaw.c:17353:17357
 struct  C_Ip_L  {
   char v1;
   int *v2;
   __tsi64 v3;
 };
 
-// From T_Snnn_xaw.c:17377:17381
+// From T_Snnn_xaw.c:17378:17382
 struct  C_Ip_S  {
   char v1;
   int *v2;
   short v3;
 };
 
-// From T_Snnn_xaw.c:17402:17406
+// From T_Snnn_xaw.c:17403:17407
 struct  C_Ip_Uc  {
   char v1;
   int *v2;
   unsigned char v3;
 };
 
-// From T_Snnn_xaw.c:17427:17431
+// From T_Snnn_xaw.c:17428:17432
 struct  C_Ip_Ui  {
   char v1;
   int *v2;
   unsigned int v3;
 };
 
-// From T_Snnn_xaw.c:17452:17456
+// From T_Snnn_xaw.c:17453:17457
 struct  C_Ip_Ul  {
   char v1;
   int *v2;
   __tsu64 v3;
 };
 
-// From T_Snnn_xaw.c:17477:17481
+// From T_Snnn_xaw.c:17478:17482
 struct  C_Ip_Us  {
   char v1;
   int *v2;
   unsigned short v3;
 };
 
-// From T_Snnn_xaw.c:17502:17506
+// From T_Snnn_xaw.c:17503:17507
 struct  C_Ip_Vp  {
   char v1;
   int *v2;
   void *v3;
 };
 
-// From T_Snnn_xaw.c:17527:17530
+// From T_Snnn_xaw.c:17528:17531
 struct  C_L  {
   char v1;
   __tsi64 v2;
 };
 
-// From T_Snnn_xaw.c:18274:18278
+// From T_Snnn_xaw.c:18275:18279
 struct  C_L_C  {
   char v1;
   __tsi64 v2;
   char v3;
 };
 
-// From T_Snnn_xaw.c:18299:18303
+// From T_Snnn_xaw.c:18300:18304
 struct  C_L_D  {
   char v1;
   __tsi64 v2;
   double v3;
 };
 
-// From T_Snnn_xaw.c:18324:18328
+// From T_Snnn_xaw.c:18325:18329
 struct  C_L_F  {
   char v1;
   __tsi64 v2;
   float v3;
 };
 
-// From T_Snnn_xaw.c:18349:18353
+// From T_Snnn_xaw.c:18350:18354
 struct  C_L_I  {
   char v1;
   __tsi64 v2;
   int v3;
 };
 
-// From T_Snnn_xaw.c:18374:18378
+// From T_Snnn_xaw.c:18375:18379
 struct  C_L_Ip  {
   char v1;
   __tsi64 v2;
   int *v3;
 };
 
-// From T_Snnn_xaw.c:18399:18403
+// From T_Snnn_xaw.c:18400:18404
 struct  C_L_L  {
   char v1;
   __tsi64 v2;
   __tsi64 v3;
 };
 
-// From T_Snnn_xaw.c:18424:18428
+// From T_Snnn_xaw.c:18425:18429
 struct  C_L_S  {
   char v1;
   __tsi64 v2;
   short v3;
 };
 
-// From T_Snnn_xaw.c:18449:18453
+// From T_Snnn_xaw.c:18450:18454
 struct  C_L_Uc  {
   char v1;
   __tsi64 v2;
   unsigned char v3;
 };
 
-// From T_Snnn_xaw.c:18474:18478
+// From T_Snnn_xaw.c:18475:18479
 struct  C_L_Ui  {
   char v1;
   __tsi64 v2;
   unsigned int v3;
 };
 
-// From T_Snnn_xaw.c:18499:18503
+// From T_Snnn_xaw.c:18500:18504
 struct  C_L_Ul  {
   char v1;
   __tsi64 v2;
   __tsu64 v3;
 };
 
-// From T_Snnn_xaw.c:18524:18528
+// From T_Snnn_xaw.c:18525:18529
 struct  C_L_Us  {
   char v1;
   __tsi64 v2;
   unsigned short v3;
 };
 
-// From T_Snnn_xaw.c:18549:18553
+// From T_Snnn_xaw.c:18550:18554
 struct  C_L_Vp  {
   char v1;
   __tsi64 v2;
   void *v3;
 };
 
-// From T_Snnn_xaw.c:18574:18577
+// From T_Snnn_xaw.c:18575:18578
 struct  C_S  {
   char v1;
   short v2;
 };
 
-// From T_Snnn_xaw.c:19321:19325
+// From T_Snnn_xaw.c:19322:19326
 struct  C_S_C  {
   char v1;
   short v2;
   char v3;
 };
 
-// From T_Snnn_xaw.c:19346:19350
+// From T_Snnn_xaw.c:19347:19351
 struct  C_S_D  {
   char v1;
   short v2;
   double v3;
 };
 
-// From T_Snnn_xaw.c:19371:19375
+// From T_Snnn_xaw.c:19372:19376
 struct  C_S_F  {
   char v1;
   short v2;
   float v3;
 };
 
-// From T_Snnn_xaw.c:19396:19400
+// From T_Snnn_xaw.c:19397:19401
 struct  C_S_I  {
   char v1;
   short v2;
   int v3;
 };
 
-// From T_Snnn_xaw.c:19421:19425
+// From T_Snnn_xaw.c:19422:19426
 struct  C_S_Ip  {
   char v1;
   short v2;
   int *v3;
 };
 
-// From T_Snnn_xaw.c:19446:19450
+// From T_Snnn_xaw.c:19447:19451
 struct  C_S_L  {
   char v1;
   short v2;
   __tsi64 v3;
 };
 
-// From T_Snnn_xaw.c:19471:19475
+// From T_Snnn_xaw.c:19472:19476
 struct  C_S_S  {
   char v1;
   short v2;
   short v3;
 };
 
-// From T_Snnn_xaw.c:19496:19500
+// From T_Snnn_xaw.c:19497:19501
 struct  C_S_Uc  {
   char v1;
   short v2;
   unsigned char v3;
 };
 
-// From T_Snnn_xaw.c:19521:19525
+// From T_Snnn_xaw.c:19522:19526
 struct  C_S_Ui  {
   char v1;
   short v2;
   unsigned int v3;
 };
 
-// From T_Snnn_xaw.c:19546:19550
+// From T_Snnn_xaw.c:19547:19551
 struct  C_S_Ul  {
   char v1;
   short v2;
   __tsu64 v3;
 };
 
-// From T_Snnn_xaw.c:19571:19575
+// From T_Snnn_xaw.c:19572:19576
 struct  C_S_Us  {
   char v1;
   short v2;
   unsigned short v3;
 };
 
-// From T_Snnn_xaw.c:19596:19600
+// From T_Snnn_xaw.c:19597:19601
 struct  C_S_Vp  {
   char v1;
   short v2;
   void *v3;
 };
 
-// From T_Snnn_xaw.c:19621:19624
+// From T_Snnn_xaw.c:19622:19625
 struct  C_Uc  {
   char v1;
   unsigned char v2;
 };
 
-// From T_Snnn_xaw.c:20368:20372
+// From T_Snnn_xaw.c:20369:20373
 struct  C_Uc_C  {
   char v1;
   unsigned char v2;
   char v3;
 };
 
-// From T_Snnn_xaw.c:20393:20397
+// From T_Snnn_xaw.c:20394:20398
 struct  C_Uc_D  {
   char v1;
   unsigned char v2;
   double v3;
 };
 
-// From T_Snnn_xaw.c:20418:20422
+// From T_Snnn_xaw.c:20419:20423
 struct  C_Uc_F  {
   char v1;
   unsigned char v2;
   float v3;
 };
 
-// From T_Snnn_xaw.c:20443:20447
+// From T_Snnn_xaw.c:20444:20448
 struct  C_Uc_I  {
   char v1;
   unsigned char v2;
   int v3;
 };
 
-// From T_Snnn_xaw.c:20468:20472
+// From T_Snnn_xaw.c:20469:20473
 struct  C_Uc_Ip  {
   char v1;
   unsigned char v2;
   int *v3;
 };
 
-// From T_Snnn_xaw.c:20493:20497
+// From T_Snnn_xaw.c:20494:20498
 struct  C_Uc_L  {
   char v1;
   unsigned char v2;
   __tsi64 v3;
 };
 
-// From T_Snnn_xaw.c:20518:20522
+// From T_Snnn_xaw.c:20519:20523
 struct  C_Uc_S  {
   char v1;
   unsigned char v2;
   short v3;
 };
 
-// From T_Snnn_xaw.c:20543:20547
+// From T_Snnn_xaw.c:20544:20548
 struct  C_Uc_Uc  {
   char v1;
   unsigned char v2;
   unsigned char v3;
 };
 
-// From T_Snnn_xaw.c:20568:20572
+// From T_Snnn_xaw.c:20569:20573
 struct  C_Uc_Ui  {
   char v1;
   unsigned char v2;
   unsigned int v3;
 };
 
-// From T_Snnn_xaw.c:20593:20597
+// From T_Snnn_xaw.c:20594:20598
 struct  C_Uc_Ul  {
   char v1;
   unsigned char v2;
   __tsu64 v3;
 };
 
-// From T_Snnn_xaw.c:20618:20622
+// From T_Snnn_xaw.c:20619:20623
 struct  C_Uc_Us  {
   char v1;
   unsigned char v2;
   unsigned short v3;
 };
 
-// From T_Snnn_xaw.c:20643:20647
+// From T_Snnn_xaw.c:20644:20648
 struct  C_Uc_Vp  {
   char v1;
   unsigned char v2;
   void *v3;
 };
 
-// From T_Snnn_xaw.c:20668:20671
+// From T_Snnn_xaw.c:20669:20672
 struct  C_Ui  {
   char v1;
   unsigned int v2;
 };
 
-// From T_Snnn_xaw.c:21415:21419
+// From T_Snnn_xaw.c:21416:21420
 struct  C_Ui_C  {
   char v1;
   unsigned int v2;
   char v3;
 };
 
-// From T_Snnn_xaw.c:21440:21444
+// From T_Snnn_xaw.c:21441:21445
 struct  C_Ui_D  {
   char v1;
   unsigned int v2;
   double v3;
 };
 
-// From T_Snnn_xaw.c:21465:21469
+// From T_Snnn_xaw.c:21466:21470
 struct  C_Ui_F  {
   char v1;
   unsigned int v2;
   float v3;
 };
 
-// From T_Snnn_xaw.c:21490:21494
+// From T_Snnn_xaw.c:21491:21495
 struct  C_Ui_I  {
   char v1;
   unsigned int v2;
   int v3;
 };
 
-// From T_Snnn_xaw.c:21515:21519
+// From T_Snnn_xaw.c:21516:21520
 struct  C_Ui_Ip  {
   char v1;
   unsigned int v2;
   int *v3;
 };
 
-// From T_Snnn_xaw.c:21540:21544
+// From T_Snnn_xaw.c:21541:21545
 struct  C_Ui_L  {
   char v1;
   unsigned int v2;
   __tsi64 v3;
 };
 
-// From T_Snnn_xaw.c:21565:21569
+// From T_Snnn_xaw.c:21566:21570
 struct  C_Ui_S  {
   char v1;
   unsigned int v2;
   short v3;
 };
 
-// From T_Snnn_xaw.c:21590:21594
+// From T_Snnn_xaw.c:21591:21595
 struct  C_Ui_Uc  {
   char v1;
   unsigned int v2;
   unsigned char v3;
 };
 
-// From T_Snnn_xaw.c:21615:21619
+// From T_Snnn_xaw.c:21616:21620
 struct  C_Ui_Ui  {
   char v1;
   unsigned int v2;
   unsigned int v3;
 };
 
-// From T_Snnn_xaw.c:21640:21644
+// From T_Snnn_xaw.c:21641:21645
 struct  C_Ui_Ul  {
   char v1;
   unsigned int v2;
   __tsu64 v3;
 };
 
-// From T_Snnn_xaw.c:21665:21669
+// From T_Snnn_xaw.c:21666:21670
 struct  C_Ui_Us  {
   char v1;
   unsigned int v2;
   unsigned short v3;
 };
 
-// From T_Snnn_xaw.c:21690:21694
+// From T_Snnn_xaw.c:21691:21695
 struct  C_Ui_Vp  {
   char v1;
   unsigned int v2;
   void *v3;
 };
 
-// From T_Snnn_xaw.c:21715:21718
+// From T_Snnn_xaw.c:21716:21719
 struct  C_Ul  {
   char v1;
   __tsu64 v2;
 };
 
-// From T_Snnn_xaw.c:22462:22466
+// From T_Snnn_xaw.c:22463:22467
 struct  C_Ul_C  {
   char v1;
   __tsu64 v2;
   char v3;
 };
 
-// From T_Snnn_xaw.c:22487:22491
+// From T_Snnn_xaw.c:22488:22492
 struct  C_Ul_D  {
   char v1;
   __tsu64 v2;
   double v3;
 };
 
-// From T_Snnn_xaw.c:22512:22516
+// From T_Snnn_xaw.c:22513:22517
 struct  C_Ul_F  {
   char v1;
   __tsu64 v2;
   float v3;
 };
 
-// From T_Snnn_xaw.c:22537:22541
+// From T_Snnn_xaw.c:22538:22542
 struct  C_Ul_I  {
   char v1;
   __tsu64 v2;
   int v3;
 };
 
-// From T_Snnn_xaw.c:22562:22566
+// From T_Snnn_xaw.c:22563:22567
 struct  C_Ul_Ip  {
   char v1;
   __tsu64 v2;
   int *v3;
 };
 
-// From T_Snnn_xaw.c:22587:22591
+// From T_Snnn_xaw.c:22588:22592
 struct  C_Ul_L  {
   char v1;
   __tsu64 v2;
   __tsi64 v3;
 };
 
-// From T_Snnn_xaw.c:22612:22616
+// From T_Snnn_xaw.c:22613:22617
 struct  C_Ul_S  {
   char v1;
   __tsu64 v2;
   short v3;
 };
 
-// From T_Snnn_xaw.c:22637:22641
+// From T_Snnn_xaw.c:22638:22642
 struct  C_Ul_Uc  {
   char v1;
   __tsu64 v2;
   unsigned char v3;
 };
 
-// From T_Snnn_xaw.c:22662:22666
+// From T_Snnn_xaw.c:22663:22667
 struct  C_Ul_Ui  {
   char v1;
   __tsu64 v2;
   unsigned int v3;
 };
 
-// From T_Snnn_xaw.c:22687:22691
+// From T_Snnn_xaw.c:22688:22692
 struct  C_Ul_Ul  {
   char v1;
   __tsu64 v2;
   __tsu64 v3;
 };
 
-// From T_Snnn_xaw.c:22712:22716
+// From T_Snnn_xaw.c:22713:22717
 struct  C_Ul_Us  {
   char v1;
   __tsu64 v2;
   unsigned short v3;
 };
 
-// From T_Snnn_xaw.c:22737:22741
+// From T_Snnn_xaw.c:22738:22742
 struct  C_Ul_Vp  {
   char v1;
   __tsu64 v2;
   void *v3;
 };
 
-// From T_Snnn_xaw.c:22762:22765
+// From T_Snnn_xaw.c:22763:22766
 struct  C_Us  {
   char v1;
   unsigned short v2;
 };
 
-// From T_Snnn_xaw.c:23509:23513
+// From T_Snnn_xaw.c:23510:23514
 struct  C_Us_C  {
   char v1;
   unsigned short v2;
   char v3;
 };
 
-// From T_Snnn_xaw.c:23534:23538
+// From T_Snnn_xaw.c:23535:23539
 struct  C_Us_D  {
   char v1;
   unsigned short v2;
   double v3;
 };
 
-// From T_Snnn_xaw.c:23559:23563
+// From T_Snnn_xaw.c:23560:23564
 struct  C_Us_F  {
   char v1;
   unsigned short v2;
   float v3;
 };
 
-// From T_Snnn_xaw.c:23584:23588
+// From T_Snnn_xaw.c:23585:23589
 struct  C_Us_I  {
   char v1;
   unsigned short v2;
   int v3;
 };
 
-// From T_Snnn_xaw.c:23609:23613
+// From T_Snnn_xaw.c:23610:23614
 struct  C_Us_Ip  {
   char v1;
   unsigned short v2;
   int *v3;
 };
 
-// From T_Snnn_xaw.c:23634:23638
+// From T_Snnn_xaw.c:23635:23639
 struct  C_Us_L  {
   char v1;
   unsigned short v2;
   __tsi64 v3;
 };
 
-// From T_Snnn_xaw.c:23659:23663
+// From T_Snnn_xaw.c:23660:23664
 struct  C_Us_S  {
   char v1;
   unsigned short v2;
   short v3;
 };
 
-// From T_Snnn_xaw.c:23684:23688
+// From T_Snnn_xaw.c:23685:23689
 struct  C_Us_Uc  {
   char v1;
   unsigned short v2;
   unsigned char v3;
 };
 
-// From T_Snnn_xaw.c:23709:23713
+// From T_Snnn_xaw.c:23710:23714
 struct  C_Us_Ui  {
   char v1;
   unsigned short v2;
   unsigned int v3;
 };
 
-// From T_Snnn_xaw.c:23734:23738
+// From T_Snnn_xaw.c:23735:23739
 struct  C_Us_Ul  {
   char v1;
   unsigned short v2;
   __tsu64 v3;
 };
 
-// From T_Snnn_xaw.c:23759:23763
+// From T_Snnn_xaw.c:23760:23764
 struct  C_Us_Us  {
   char v1;
   unsigned short v2;
   unsigned short v3;
 };
 
-// From T_Snnn_xaw.c:23784:23788
+// From T_Snnn_xaw.c:23785:23789
 struct  C_Us_Vp  {
   char v1;
   unsigned short v2;
   void *v3;
 };
 
-// From T_Snnn_xaw.c:23809:23812
+// From T_Snnn_xaw.c:23810:23813
 struct  C_Vp  {
   char v1;
   void *v2;
 };
 
-// From T_Snnn_xaw.c:24556:24560
+// From T_Snnn_xaw.c:24557:24561
 struct  C_Vp_C  {
   char v1;
   void *v2;
   char v3;
 };
 
-// From T_Snnn_xaw.c:24581:24585
+// From T_Snnn_xaw.c:24582:24586
 struct  C_Vp_D  {
   char v1;
   void *v2;
   double v3;
 };
 
-// From T_Snnn_xaw.c:24606:24610
+// From T_Snnn_xaw.c:24607:24611
 struct  C_Vp_F  {
   char v1;
   void *v2;
   float v3;
 };
 
-// From T_Snnn_xaw.c:24631:24635
+// From T_Snnn_xaw.c:24632:24636
 struct  C_Vp_I  {
   char v1;
   void *v2;
   int v3;
 };
 
-// From T_Snnn_xaw.c:24656:24660
+// From T_Snnn_xaw.c:24657:24661
 struct  C_Vp_Ip  {
   char v1;
   void *v2;
   int *v3;
 };
 
-// From T_Snnn_xaw.c:24681:24685
+// From T_Snnn_xaw.c:24682:24686
 struct  C_Vp_L  {
   char v1;
   void *v2;
   __tsi64 v3;
 };
 
-// From T_Snnn_xaw.c:24706:24710
+// From T_Snnn_xaw.c:24707:24711
 struct  C_Vp_S  {
   char v1;
   void *v2;
   short v3;
 };
 
-// From T_Snnn_xaw.c:24731:24735
+// From T_Snnn_xaw.c:24732:24736
 struct  C_Vp_Uc  {
   char v1;
   void *v2;
   unsigned char v3;
 };
 
-// From T_Snnn_xaw.c:24756:24760
+// From T_Snnn_xaw.c:24757:24761
 struct  C_Vp_Ui  {
   char v1;
   void *v2;
   unsigned int v3;
 };
 
-// From T_Snnn_xaw.c:24781:24785
+// From T_Snnn_xaw.c:24782:24786
 struct  C_Vp_Ul  {
   char v1;
   void *v2;
   __tsu64 v3;
 };
 
-// From T_Snnn_xaw.c:24806:24810
+// From T_Snnn_xaw.c:24807:24811
 struct  C_Vp_Us  {
   char v1;
   void *v2;
   unsigned short v3;
 };
 
-// From T_Snnn_xaw.c:24831:24835
+// From T_Snnn_xaw.c:24832:24836
 struct  C_Vp_Vp  {
   char v1;
   void *v2;
   void *v3;
 };
 
-// From T_Snnn_xaw.c:24856:24858
+// From T_Snnn_xaw.c:24857:24859
 struct  D  {
   double v1;
 };
 
-// From T_Snnn_xaw.c:55177:55180
+// From T_Snnn_xaw.c:55178:55181
 struct  D_C  {
   double v1;
   char v2;
 };
 
-// From T_Snnn_xaw.c:55924:55928
+// From T_Snnn_xaw.c:55925:55929
 struct  D_C_C  {
   double v1;
   char v2;
   char v3;
 };
 
-// From T_Snnn_xaw.c:55949:55953
+// From T_Snnn_xaw.c:55950:55954
 struct  D_C_D  {
   double v1;
   char v2;
   double v3;
 };
 
-// From T_Snnn_xaw.c:55974:55978
+// From T_Snnn_xaw.c:55975:55979
 struct  D_C_F  {
   double v1;
   char v2;
   float v3;
 };
 
-// From T_Snnn_xaw.c:55999:56003
+// From T_Snnn_xaw.c:56000:56004
 struct  D_C_I  {
   double v1;
   char v2;
   int v3;
 };
 
-// From T_Snnn_xaw.c:56024:56028
+// From T_Snnn_xaw.c:56025:56029
 struct  D_C_Ip  {
   double v1;
   char v2;
   int *v3;
 };
 
-// From T_Snnn_xaw.c:56049:56053
+// From T_Snnn_xaw.c:56050:56054
 struct  D_C_L  {
   double v1;
   char v2;
   __tsi64 v3;
 };
 
-// From T_Snnn_xaw.c:56074:56078
+// From T_Snnn_xaw.c:56075:56079
 struct  D_C_S  {
   double v1;
   char v2;
   short v3;
 };
 
-// From T_Snnn_xaw.c:56099:56103
+// From T_Snnn_xaw.c:56100:56104
 struct  D_C_Uc  {
   double v1;
   char v2;
   unsigned char v3;
 };
 
-// From T_Snnn_xaw.c:56124:56128
+// From T_Snnn_xaw.c:56125:56129
 struct  D_C_Ui  {
   double v1;
   char v2;
   unsigned int v3;
 };
 
-// From T_Snnn_xaw.c:56149:56153
+// From T_Snnn_xaw.c:56150:56154
 struct  D_C_Ul  {
   double v1;
   char v2;
   __tsu64 v3;
 };
 
-// From T_Snnn_xaw.c:56174:56178
+// From T_Snnn_xaw.c:56175:56179
 struct  D_C_Us  {
   double v1;
   char v2;
   unsigned short v3;
 };
 
-// From T_Snnn_xaw.c:56199:56203
+// From T_Snnn_xaw.c:56200:56204
 struct  D_C_Vp  {
   double v1;
   char v2;
   void *v3;
 };
 
-// From T_Snnn_xaw.c:56224:56227
+// From T_Snnn_xaw.c:56225:56228
 struct  D_D  {
   double v1;
   double v2;
 };
 
-// From T_Snnn_xaw.c:56971:56975
+// From T_Snnn_xaw.c:56972:56976
 struct  D_D_C  {
   double v1;
   double v2;
   char v3;
 };
 
-// From T_Snnn_xaw.c:56996:57000
+// From T_Snnn_xaw.c:56997:57001
 struct  D_D_D  {
   double v1;
   double v2;
   double v3;
 };
 
-// From T_Snnn_xaw.c:57021:57025
+// From T_Snnn_xaw.c:57022:57026
 struct  D_D_F  {
   double v1;
   double v2;
   float v3;
 };
 
-// From T_Snnn_xaw.c:57046:57050
+// From T_Snnn_xaw.c:57047:57051
 struct  D_D_I  {
   double v1;
   double v2;
   int v3;
 };
 
-// From T_Snnn_xaw.c:57071:57075
+// From T_Snnn_xaw.c:57072:57076
 struct  D_D_Ip  {
   double v1;
   double v2;
   int *v3;
 };
 
-// From T_Snnn_xaw.c:57096:57100
+// From T_Snnn_xaw.c:57097:57101
 struct  D_D_L  {
   double v1;
   double v2;
   __tsi64 v3;
 };
 
-// From T_Snnn_xaw.c:57121:57125
+// From T_Snnn_xaw.c:57122:57126
 struct  D_D_S  {
   double v1;
   double v2;
   short v3;
 };
 
-// From T_Snnn_xaw.c:57146:57150
+// From T_Snnn_xaw.c:57147:57151
 struct  D_D_Uc  {
   double v1;
   double v2;
   unsigned char v3;
 };
 
-// From T_Snnn_xaw.c:57171:57175
+// From T_Snnn_xaw.c:57172:57176
 struct  D_D_Ui  {
   double v1;
   double v2;
   unsigned int v3;
 };
 
-// From T_Snnn_xaw.c:57196:57200
+// From T_Snnn_xaw.c:57197:57201
 struct  D_D_Ul  {
   double v1;
   double v2;
   __tsu64 v3;
 };
 
-// From T_Snnn_xaw.c:57221:57225
+// From T_Snnn_xaw.c:57222:57226
 struct  D_D_Us  {
   double v1;
   double v2;
   unsigned short v3;
 };
 
-// From T_Snnn_xaw.c:57246:57250
+// From T_Snnn_xaw.c:57247:57251
 struct  D_D_Vp  {
   double v1;
   double v2;
   void *v3;
 };
 
-// From T_Snnn_xaw.c:57271:57274
+// From T_Snnn_xaw.c:57272:57275
 struct  D_F  {
   double v1;
   float v2;
 };
 
-// From T_Snnn_xaw.c:58018:58022
+// From T_Snnn_xaw.c:58019:58023
 struct  D_F_C  {
   double v1;
   float v2;
   char v3;
 };
 
-// From T_Snnn_xaw.c:58043:58047
+// From T_Snnn_xaw.c:58044:58048
 struct  D_F_D  {
   double v1;
   float v2;
   double v3;
 };
 
-// From T_Snnn_xaw.c:58068:58072
+// From T_Snnn_xaw.c:58069:58073
 struct  D_F_F  {
   double v1;
   float v2;
   float v3;
 };
 
-// From T_Snnn_xaw.c:58093:58097
+// From T_Snnn_xaw.c:58094:58098
 struct  D_F_I  {
   double v1;
   float v2;
   int v3;
 };
 
-// From T_Snnn_xaw.c:58118:58122
+// From T_Snnn_xaw.c:58119:58123
 struct  D_F_Ip  {
   double v1;
   float v2;
   int *v3;
 };
 
-// From T_Snnn_xaw.c:58143:58147
+// From T_Snnn_xaw.c:58144:58148
 struct  D_F_L  {
   double v1;
   float v2;
   __tsi64 v3;
 };
 
-// From T_Snnn_xaw.c:58168:58172
+// From T_Snnn_xaw.c:58169:58173
 struct  D_F_S  {
   double v1;
   float v2;
   short v3;
 };
 
-// From T_Snnn_xaw.c:58193:58197
+// From T_Snnn_xaw.c:58194:58198
 struct  D_F_Uc  {
   double v1;
   float v2;
   unsigned char v3;
 };
 
-// From T_Snnn_xaw.c:58218:58222
+// From T_Snnn_xaw.c:58219:58223
 struct  D_F_Ui  {
   double v1;
   float v2;
   unsigned int v3;
 };
 
-// From T_Snnn_xaw.c:58243:58247
+// From T_Snnn_xaw.c:58244:58248
 struct  D_F_Ul  {
   double v1;
   float v2;
   __tsu64 v3;
 };
 
-// From T_Snnn_xaw.c:58268:58272
+// From T_Snnn_xaw.c:58269:58273
 struct  D_F_Us  {
   double v1;
   float v2;
   unsigned short v3;
 };
 
-// From T_Snnn_xaw.c:58293:58297
+// From T_Snnn_xaw.c:58294:58298
 struct  D_F_Vp  {
   double v1;
   float v2;
   void *v3;
 };
 
-// From T_Snnn_xaw.c:58318:58321
+// From T_Snnn_xaw.c:58319:58322
 struct  D_I  {
   double v1;
   int v2;
 };
 
-// From T_Snnn_xaw.c:59065:59069
+// From T_Snnn_xaw.c:59066:59070
 struct  D_I_C  {
   double v1;
   int v2;
   char v3;
 };
 
-// From T_Snnn_xaw.c:59090:59094
+// From T_Snnn_xaw.c:59091:59095
 struct  D_I_D  {
   double v1;
   int v2;
   double v3;
 };
 
-// From T_Snnn_xaw.c:59115:59119
+// From T_Snnn_xaw.c:59116:59120
 struct  D_I_F  {
   double v1;
   int v2;
   float v3;
 };
 
-// From T_Snnn_xaw.c:59140:59144
+// From T_Snnn_xaw.c:59141:59145
 struct  D_I_I  {
   double v1;
   int v2;
   int v3;
 };
 
-// From T_Snnn_xaw.c:59165:59169
+// From T_Snnn_xaw.c:59166:59170
 struct  D_I_Ip  {
   double v1;
   int v2;
   int *v3;
 };
 
-// From T_Snnn_xaw.c:59190:59194
+// From T_Snnn_xaw.c:59191:59195
 struct  D_I_L  {
   double v1;
   int v2;
   __tsi64 v3;
 };
 
-// From T_Snnn_xaw.c:59215:59219
+// From T_Snnn_xaw.c:59216:59220
 struct  D_I_S  {
   double v1;
   int v2;
   short v3;
 };
 
-// From T_Snnn_xaw.c:59240:59244
+// From T_Snnn_xaw.c:59241:59245
 struct  D_I_Uc  {
   double v1;
   int v2;
   unsigned char v3;
 };
 
-// From T_Snnn_xaw.c:59265:59269
+// From T_Snnn_xaw.c:59266:59270
 struct  D_I_Ui  {
   double v1;
   int v2;
   unsigned int v3;
 };
 
-// From T_Snnn_xaw.c:59290:59294
+// From T_Snnn_xaw.c:59291:59295
 struct  D_I_Ul  {
   double v1;
   int v2;
   __tsu64 v3;
 };
 
-// From T_Snnn_xaw.c:59315:59319
+// From T_Snnn_xaw.c:59316:59320
 struct  D_I_Us  {
   double v1;
   int v2;
   unsigned short v3;
 };
 
-// From T_Snnn_xaw.c:59340:59344
+// From T_Snnn_xaw.c:59341:59345
 struct  D_I_Vp  {
   double v1;
   int v2;
   void *v3;
 };
 
-// From T_Snnn_xaw.c:59365:59368
+// From T_Snnn_xaw.c:59366:59369
 struct  D_Ip  {
   double v1;
   int *v2;
 };
 
-// From T_Snnn_xaw.c:60112:60116
+// From T_Snnn_xaw.c:60113:60117
 struct  D_Ip_C  {
   double v1;
   int *v2;
   char v3;
 };
 
-// From T_Snnn_xaw.c:60137:60141
+// From T_Snnn_xaw.c:60138:60142
 struct  D_Ip_D  {
   double v1;
   int *v2;
   double v3;
 };
 
-// From T_Snnn_xaw.c:60162:60166
+// From T_Snnn_xaw.c:60163:60167
 struct  D_Ip_F  {
   double v1;
   int *v2;
   float v3;
 };
 
-// From T_Snnn_xaw.c:60187:60191
+// From T_Snnn_xaw.c:60188:60192
 struct  D_Ip_I  {
   double v1;
   int *v2;
   int v3;
 };
 
-// From T_Snnn_xaw.c:60212:60216
+// From T_Snnn_xaw.c:60213:60217
 struct  D_Ip_Ip  {
   double v1;
   int *v2;
   int *v3;
 };
 
-// From T_Snnn_xaw.c:60237:60241
+// From T_Snnn_xaw.c:60238:60242
 struct  D_Ip_L  {
   double v1;
   int *v2;
   __tsi64 v3;
 };
 
-// From T_Snnn_xaw.c:60262:60266
+// From T_Snnn_xaw.c:60263:60267
 struct  D_Ip_S  {
   double v1;
   int *v2;
   short v3;
 };
 
-// From T_Snnn_xaw.c:60287:60291
+// From T_Snnn_xaw.c:60288:60292
 struct  D_Ip_Uc  {
   double v1;
   int *v2;
   unsigned char v3;
 };
 
-// From T_Snnn_xaw.c:60312:60316
+// From T_Snnn_xaw.c:60313:60317
 struct  D_Ip_Ui  {
   double v1;
   int *v2;
   unsigned int v3;
 };
 
-// From T_Snnn_xaw.c:60337:60341
+// From T_Snnn_xaw.c:60338:60342
 struct  D_Ip_Ul  {
   double v1;
   int *v2;
   __tsu64 v3;
 };
 
-// From T_Snnn_xaw.c:60362:60366
+// From T_Snnn_xaw.c:60363:60367
 struct  D_Ip_Us  {
   double v1;
   int *v2;
   unsigned short v3;
 };
 
-// From T_Snnn_xaw.c:60387:60391
+// From T_Snnn_xaw.c:60388:60392
 struct  D_Ip_Vp  {
   double v1;
   int *v2;
   void *v3;
 };
 
-// From T_Snnn_xaw.c:60412:60415
+// From T_Snnn_xaw.c:60413:60416
 struct  D_L  {
   double v1;
   __tsi64 v2;
 };
 
-// From T_Snnn_xaw.c:61159:61163
+// From T_Snnn_xaw.c:61160:61164
 struct  D_L_C  {
   double v1;
   __tsi64 v2;
   char v3;
 };
 
-// From T_Snnn_xaw.c:61184:61188
+// From T_Snnn_xaw.c:61185:61189
 struct  D_L_D  {
   double v1;
   __tsi64 v2;
   double v3;
 };
 
-// From T_Snnn_xaw.c:61209:61213
+// From T_Snnn_xaw.c:61210:61214
 struct  D_L_F  {
   double v1;
   __tsi64 v2;
   float v3;
 };
 
-// From T_Snnn_xaw.c:61234:61238
+// From T_Snnn_xaw.c:61235:61239
 struct  D_L_I  {
   double v1;
   __tsi64 v2;
   int v3;
 };
 
-// From T_Snnn_xaw.c:61259:61263
+// From T_Snnn_xaw.c:61260:61264
 struct  D_L_Ip  {
   double v1;
   __tsi64 v2;
   int *v3;
 };
 
-// From T_Snnn_xaw.c:61284:61288
+// From T_Snnn_xaw.c:61285:61289
 struct  D_L_L  {
   double v1;
   __tsi64 v2;
   __tsi64 v3;
 };
 
-// From T_Snnn_xaw.c:61309:61313
+// From T_Snnn_xaw.c:61310:61314
 struct  D_L_S  {
   double v1;
   __tsi64 v2;
   short v3;
 };
 
-// From T_Snnn_xaw.c:61334:61338
+// From T_Snnn_xaw.c:61335:61339
 struct  D_L_Uc  {
   double v1;
   __tsi64 v2;
   unsigned char v3;
 };
 
-// From T_Snnn_xaw.c:61359:61363
+// From T_Snnn_xaw.c:61360:61364
 struct  D_L_Ui  {
   double v1;
   __tsi64 v2;
   unsigned int v3;
 };
 
-// From T_Snnn_xaw.c:61384:61388
+// From T_Snnn_xaw.c:61385:61389
 struct  D_L_Ul  {
   double v1;
   __tsi64 v2;
   __tsu64 v3;
 };
 
-// From T_Snnn_xaw.c:61409:61413
+// From T_Snnn_xaw.c:61410:61414
 struct  D_L_Us  {
   double v1;
   __tsi64 v2;
   unsigned short v3;
 };
 
-// From T_Snnn_xaw.c:61434:61438
+// From T_Snnn_xaw.c:61435:61439
 struct  D_L_Vp  {
   double v1;
   __tsi64 v2;
   void *v3;
 };
 
-// From T_Snnn_xaw.c:61459:61462
+// From T_Snnn_xaw.c:61460:61463
 struct  D_S  {
   double v1;
   short v2;
 };
 
-// From T_Snnn_xaw.c:62206:62210
+// From T_Snnn_xaw.c:62207:62211
 struct  D_S_C  {
   double v1;
   short v2;
   char v3;
 };
 
-// From T_Snnn_xaw.c:62231:62235
+// From T_Snnn_xaw.c:62232:62236
 struct  D_S_D  {
   double v1;
   short v2;
   double v3;
 };
 
-// From T_Snnn_xaw.c:62256:62260
+// From T_Snnn_xaw.c:62257:62261
 struct  D_S_F  {
   double v1;
   short v2;
   float v3;
 };
 
-// From T_Snnn_xaw.c:62281:62285
+// From T_Snnn_xaw.c:62282:62286
 struct  D_S_I  {
   double v1;
   short v2;
   int v3;
 };
 
-// From T_Snnn_xaw.c:62306:62310
+// From T_Snnn_xaw.c:62307:62311
 struct  D_S_Ip  {
   double v1;
   short v2;
   int *v3;
 };
 
-// From T_Snnn_xaw.c:62331:62335
+// From T_Snnn_xaw.c:62332:62336
 struct  D_S_L  {
   double v1;
   short v2;
   __tsi64 v3;
 };
 
-// From T_Snnn_xaw.c:62356:62360
+// From T_Snnn_xaw.c:62357:62361
 struct  D_S_S  {
   double v1;
   short v2;
   short v3;
 };
 
-// From T_Snnn_xaw.c:62381:62385
+// From T_Snnn_xaw.c:62382:62386
 struct  D_S_Uc  {
   double v1;
   short v2;
   unsigned char v3;
 };
 
-// From T_Snnn_xaw.c:62406:62410
+// From T_Snnn_xaw.c:62407:62411
 struct  D_S_Ui  {
   double v1;
   short v2;
   unsigned int v3;
 };
 
-// From T_Snnn_xaw.c:62431:62435
+// From T_Snnn_xaw.c:62432:62436
 struct  D_S_Ul  {
   double v1;
   short v2;
   __tsu64 v3;
 };
 
-// From T_Snnn_xaw.c:62456:62460
+// From T_Snnn_xaw.c:62457:62461
 struct  D_S_Us  {
   double v1;
   short v2;
   unsigned short v3;
 };
 
-// From T_Snnn_xaw.c:62481:62485
+// From T_Snnn_xaw.c:62482:62486
 struct  D_S_Vp  {
   double v1;
   short v2;
   void *v3;
 };
 
-// From T_Snnn_xaw.c:62506:62509
+// From T_Snnn_xaw.c:62507:62510
 struct  D_Uc  {
   double v1;
   unsigned char v2;
 };
 
-// From T_Snnn_xaw.c:63253:63257
+// From T_Snnn_xaw.c:63254:63258
 struct  D_Uc_C  {
   double v1;
   unsigned char v2;
   char v3;
 };
 
-// From T_Snnn_xaw.c:63278:63282
+// From T_Snnn_xaw.c:63279:63283
 struct  D_Uc_D  {
   double v1;
   unsigned char v2;
   double v3;
 };
 
-// From T_Snnn_xaw.c:63303:63307
+// From T_Snnn_xaw.c:63304:63308
 struct  D_Uc_F  {
   double v1;
   unsigned char v2;
   float v3;
 };
 
-// From T_Snnn_xaw.c:63328:63332
+// From T_Snnn_xaw.c:63329:63333
 struct  D_Uc_I  {
   double v1;
   unsigned char v2;
   int v3;
 };
 
-// From T_Snnn_xaw.c:63353:63357
+// From T_Snnn_xaw.c:63354:63358
 struct  D_Uc_Ip  {
   double v1;
   unsigned char v2;
   int *v3;
 };
 
-// From T_Snnn_xaw.c:63378:63382
+// From T_Snnn_xaw.c:63379:63383
 struct  D_Uc_L  {
   double v1;
   unsigned char v2;
   __tsi64 v3;
 };
 
-// From T_Snnn_xaw.c:63403:63407
+// From T_Snnn_xaw.c:63404:63408
 struct  D_Uc_S  {
   double v1;
   unsigned char v2;
   short v3;
 };
 
-// From T_Snnn_xaw.c:63428:63432
+// From T_Snnn_xaw.c:63429:63433
 struct  D_Uc_Uc  {
   double v1;
   unsigned char v2;
   unsigned char v3;
 };
 
-// From T_Snnn_xaw.c:63453:63457
+// From T_Snnn_xaw.c:63454:63458
 struct  D_Uc_Ui  {
   double v1;
   unsigned char v2;
   unsigned int v3;
 };
 
-// From T_Snnn_xaw.c:63478:63482
+// From T_Snnn_xaw.c:63479:63483
 struct  D_Uc_Ul  {
   double v1;
   unsigned char v2;
   __tsu64 v3;
 };
 
-// From T_Snnn_xaw.c:63503:63507
+// From T_Snnn_xaw.c:63504:63508
 struct  D_Uc_Us  {
   double v1;
   unsigned char v2;
   unsigned short v3;
 };
 
-// From T_Snnn_xaw.c:63528:63532
+// From T_Snnn_xaw.c:63529:63533
 struct  D_Uc_Vp  {
   double v1;
   unsigned char v2;
   void *v3;
 };
 
-// From T_Snnn_xaw.c:63553:63556
+// From T_Snnn_xaw.c:63554:63557
 struct  D_Ui  {
   double v1;
   unsigned int v2;
 };
 
-// From T_Snnn_xaw.c:64300:64304
+// From T_Snnn_xaw.c:64301:64305
 struct  D_Ui_C  {
   double v1;
   unsigned int v2;
   char v3;
 };
 
-// From T_Snnn_xaw.c:64325:64329
+// From T_Snnn_xaw.c:64326:64330
 struct  D_Ui_D  {
   double v1;
   unsigned int v2;
   double v3;
 };
 
-// From T_Snnn_xaw.c:64350:64354
+// From T_Snnn_xaw.c:64351:64355
 struct  D_Ui_F  {
   double v1;
   unsigned int v2;
   float v3;
 };
 
-// From T_Snnn_xaw.c:64375:64379
+// From T_Snnn_xaw.c:64376:64380
 struct  D_Ui_I  {
   double v1;
   unsigned int v2;
   int v3;
 };
 
-// From T_Snnn_xaw.c:64400:64404
+// From T_Snnn_xaw.c:64401:64405
 struct  D_Ui_Ip  {
   double v1;
   unsigned int v2;
   int *v3;
 };
 
-// From T_Snnn_xaw.c:64425:64429
+// From T_Snnn_xaw.c:64426:64430
 struct  D_Ui_L  {
   double v1;
   unsigned int v2;
   __tsi64 v3;
 };
 
-// From T_Snnn_xaw.c:64450:64454
+// From T_Snnn_xaw.c:64451:64455
 struct  D_Ui_S  {
   double v1;
   unsigned int v2;
   short v3;
 };
 
-// From T_Snnn_xaw.c:64475:64479
+// From T_Snnn_xaw.c:64476:64480
 struct  D_Ui_Uc  {
   double v1;
   unsigned int v2;
   unsigned char v3;
 };
 
-// From T_Snnn_xaw.c:64500:64504
+// From T_Snnn_xaw.c:64501:64505
 struct  D_Ui_Ui  {
   double v1;
   unsigned int v2;
   unsigned int v3;
 };
 
-// From T_Snnn_xaw.c:64525:64529
+// From T_Snnn_xaw.c:64526:64530
 struct  D_Ui_Ul  {
   double v1;
   unsigned int v2;
   __tsu64 v3;
 };
 
-// From T_Snnn_xaw.c:64550:64554
+// From T_Snnn_xaw.c:64551:64555
 struct  D_Ui_Us  {
   double v1;
   unsigned int v2;
   unsigned short v3;
 };
 
-// From T_Snnn_xaw.c:64575:64579
+// From T_Snnn_xaw.c:64576:64580
 struct  D_Ui_Vp  {
   double v1;
   unsigned int v2;
   void *v3;
 };
 
-// From T_Snnn_xaw.c:64600:64603
+// From T_Snnn_xaw.c:64601:64604
 struct  D_Ul  {
   double v1;
   __tsu64 v2;
 };
 
-// From T_Snnn_xaw.c:65347:65351
+// From T_Snnn_xaw.c:65348:65352
 struct  D_Ul_C  {
   double v1;
   __tsu64 v2;
   char v3;
 };
 
-// From T_Snnn_xaw.c:65372:65376
+// From T_Snnn_xaw.c:65373:65377
 struct  D_Ul_D  {
   double v1;
   __tsu64 v2;
   double v3;
 };
 
-// From T_Snnn_xaw.c:65397:65401
+// From T_Snnn_xaw.c:65398:65402
 struct  D_Ul_F  {
   double v1;
   __tsu64 v2;
   float v3;
 };
 
-// From T_Snnn_xaw.c:65422:65426
+// From T_Snnn_xaw.c:65423:65427
 struct  D_Ul_I  {
   double v1;
   __tsu64 v2;
   int v3;
 };
 
-// From T_Snnn_xaw.c:65447:65451
+// From T_Snnn_xaw.c:65448:65452
 struct  D_Ul_Ip  {
   double v1;
   __tsu64 v2;
   int *v3;
 };
 
-// From T_Snnn_xaw.c:65472:65476
+// From T_Snnn_xaw.c:65473:65477
 struct  D_Ul_L  {
   double v1;
   __tsu64 v2;
   __tsi64 v3;
 };
 
-// From T_Snnn_xaw.c:65497:65501
+// From T_Snnn_xaw.c:65498:65502
 struct  D_Ul_S  {
   double v1;
   __tsu64 v2;
   short v3;
 };
 
-// From T_Snnn_xaw.c:65522:65526
+// From T_Snnn_xaw.c:65523:65527
 struct  D_Ul_Uc  {
   double v1;
   __tsu64 v2;
   unsigned char v3;
 };
 
-// From T_Snnn_xaw.c:65547:65551
+// From T_Snnn_xaw.c:65548:65552
 struct  D_Ul_Ui  {
   double v1;
   __tsu64 v2;
   unsigned int v3;
 };
 
-// From T_Snnn_xaw.c:65572:65576
+// From T_Snnn_xaw.c:65573:65577
 struct  D_Ul_Ul  {
   double v1;
   __tsu64 v2;
   __tsu64 v3;
 };
 
-// From T_Snnn_xaw.c:65597:65601
+// From T_Snnn_xaw.c:65598:65602
 struct  D_Ul_Us  {
   double v1;
   __tsu64 v2;
   unsigned short v3;
 };
 
-// From T_Snnn_xaw.c:65622:65626
+// From T_Snnn_xaw.c:65623:65627
 struct  D_Ul_Vp  {
   double v1;
   __tsu64 v2;
   void *v3;
 };
 
-// From T_Snnn_xaw.c:65647:65650
+// From T_Snnn_xaw.c:65648:65651
 struct  D_Us  {
   double v1;
   unsigned short v2;
 };
 
-// From T_Snnn_xaw.c:66394:66398
+// From T_Snnn_xaw.c:66395:66399
 struct  D_Us_C  {
   double v1;
   unsigned short v2;
   char v3;
 };
 
-// From T_Snnn_xaw.c:66419:66423
+// From T_Snnn_xaw.c:66420:66424
 struct  D_Us_D  {
   double v1;
   unsigned short v2;
   double v3;
 };
 
-// From T_Snnn_xaw.c:66444:66448
+// From T_Snnn_xaw.c:66445:66449
 struct  D_Us_F  {
   double v1;
   unsigned short v2;
   float v3;
 };
 
-// From T_Snnn_xaw.c:66469:66473
+// From T_Snnn_xaw.c:66470:66474
 struct  D_Us_I  {
   double v1;
   unsigned short v2;
   int v3;
 };
 
-// From T_Snnn_xaw.c:66494:66498
+// From T_Snnn_xaw.c:66495:66499
 struct  D_Us_Ip  {
   double v1;
   unsigned short v2;
   int *v3;
 };
 
-// From T_Snnn_xaw.c:66519:66523
+// From T_Snnn_xaw.c:66520:66524
 struct  D_Us_L  {
   double v1;
   unsigned short v2;
   __tsi64 v3;
 };
 
-// From T_Snnn_xaw.c:66544:66548
+// From T_Snnn_xaw.c:66545:66549
 struct  D_Us_S  {
   double v1;
   unsigned short v2;
   short v3;
 };
 
-// From T_Snnn_xaw.c:66569:66573
+// From T_Snnn_xaw.c:66570:66574
 struct  D_Us_Uc  {
   double v1;
   unsigned short v2;
   unsigned char v3;
 };
 
-// From T_Snnn_xaw.c:66594:66598
+// From T_Snnn_xaw.c:66595:66599
 struct  D_Us_Ui  {
   double v1;
   unsigned short v2;
   unsigned int v3;
 };
 
-// From T_Snnn_xaw.c:66619:66623
+// From T_Snnn_xaw.c:66620:66624
 struct  D_Us_Ul  {
   double v1;
   unsigned short v2;
   __tsu64 v3;
 };
 
-// From T_Snnn_xaw.c:66644:66648
+// From T_Snnn_xaw.c:66645:66649
 struct  D_Us_Us  {
   double v1;
   unsigned short v2;
   unsigned short v3;
 };
 
-// From T_Snnn_xaw.c:66669:66673
+// From T_Snnn_xaw.c:66670:66674
 struct  D_Us_Vp  {
   double v1;
   unsigned short v2;
   void *v3;
 };
 
-// From T_Snnn_xaw.c:66694:66697
+// From T_Snnn_xaw.c:66695:66698
 struct  D_Vp  {
   double v1;
   void *v2;
 };
 
-// From T_Snnn_xaw.c:67441:67445
+// From T_Snnn_xaw.c:67442:67446
 struct  D_Vp_C  {
   double v1;
   void *v2;
   char v3;
 };
 
-// From T_Snnn_xaw.c:67466:67470
+// From T_Snnn_xaw.c:67467:67471
 struct  D_Vp_D  {
   double v1;
   void *v2;
   double v3;
 };
 
-// From T_Snnn_xaw.c:67491:67495
+// From T_Snnn_xaw.c:67492:67496
 struct  D_Vp_F  {
   double v1;
   void *v2;
   float v3;
 };
 
-// From T_Snnn_xaw.c:67516:67520
+// From T_Snnn_xaw.c:67517:67521
 struct  D_Vp_I  {
   double v1;
   void *v2;
   int v3;
 };
 
-// From T_Snnn_xaw.c:67541:67545
+// From T_Snnn_xaw.c:67542:67546
 struct  D_Vp_Ip  {
   double v1;
   void *v2;
   int *v3;
 };
 
-// From T_Snnn_xaw.c:67566:67570
+// From T_Snnn_xaw.c:67567:67571
 struct  D_Vp_L  {
   double v1;
   void *v2;
   __tsi64 v3;
 };
 
-// From T_Snnn_xaw.c:67591:67595
+// From T_Snnn_xaw.c:67592:67596
 struct  D_Vp_S  {
   double v1;
   void *v2;
   short v3;
 };
 
-// From T_Snnn_xaw.c:67616:67620
+// From T_Snnn_xaw.c:67617:67621
 struct  D_Vp_Uc  {
   double v1;
   void *v2;
   unsigned char v3;
 };
 
-// From T_Snnn_xaw.c:67641:67645
+// From T_Snnn_xaw.c:67642:67646
 struct  D_Vp_Ui  {
   double v1;
   void *v2;
   unsigned int v3;
 };
 
-// From T_Snnn_xaw.c:67666:67670
+// From T_Snnn_xaw.c:67667:67671
 struct  D_Vp_Ul  {
   double v1;
   void *v2;
   __tsu64 v3;
 };
 
-// From T_Snnn_xaw.c:67691:67695
+// From T_Snnn_xaw.c:67692:67696
 struct  D_Vp_Us  {
   double v1;
   void *v2;
   unsigned short v3;
 };
 
-// From T_Snnn_xaw.c:67716:67720
+// From T_Snnn_xaw.c:67717:67721
 struct  D_Vp_Vp  {
   double v1;
   void *v2;
   void *v3;
 };
 
-// From T_Snnn_xaw.c:67741:67743
+// From T_Snnn_xaw.c:67742:67744
 struct  F  {
   float v1;
 };

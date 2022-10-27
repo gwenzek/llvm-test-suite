@@ -6,7 +6,12 @@ pub const c = @cImport({
     @cInclude("T_Snnn_xay.h");
 });
 
-// From T_Snnn_xay.c:27111:27118
+// From T_Snnn_xay.c:27101:27119
+// struct  Ip_C  {
+//   int *v1;
+//   char v2;
+// };
+
 test "Ip_C" {
     var lv: c.Ip_C = undefined;
     try testing.expectSize(c.Ip_C, ABISELECT(16, 8));
@@ -15,7 +20,13 @@ test "Ip_C" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
 }
 
-// From T_Snnn_xay.c:27859:27867
+// From T_Snnn_xay.c:27848:27868
+// struct  Ip_C_C  {
+//   int *v1;
+//   char v2;
+//   char v3;
+// };
+
 test "Ip_C_C" {
     var lv: c.Ip_C_C = undefined;
     try testing.expectSize(c.Ip_C_C, ABISELECT(16, 8));
@@ -25,7 +36,13 @@ test "Ip_C_C" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(9, 5));
 }
 
-// From T_Snnn_xay.c:27884:27892
+// From T_Snnn_xay.c:27873:27893
+// struct  Ip_C_D  {
+//   int *v1;
+//   char v2;
+//   double v3;
+// };
+
 test "Ip_C_D" {
     var lv: c.Ip_C_D = undefined;
     try testing.expectSize(c.Ip_C_D, ABISELECT(24, 16));
@@ -35,7 +52,13 @@ test "Ip_C_D" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:27909:27917
+// From T_Snnn_xay.c:27898:27918
+// struct  Ip_C_F  {
+//   int *v1;
+//   char v2;
+//   float v3;
+// };
+
 test "Ip_C_F" {
     var lv: c.Ip_C_F = undefined;
     try testing.expectSize(c.Ip_C_F, ABISELECT(16, 12));
@@ -45,7 +68,13 @@ test "Ip_C_F" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
 }
 
-// From T_Snnn_xay.c:27934:27942
+// From T_Snnn_xay.c:27923:27943
+// struct  Ip_C_I  {
+//   int *v1;
+//   char v2;
+//   int v3;
+// };
+
 test "Ip_C_I" {
     var lv: c.Ip_C_I = undefined;
     try testing.expectSize(c.Ip_C_I, ABISELECT(16, 12));
@@ -55,7 +84,13 @@ test "Ip_C_I" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
 }
 
-// From T_Snnn_xay.c:27959:27967
+// From T_Snnn_xay.c:27948:27968
+// struct  Ip_C_Ip  {
+//   int *v1;
+//   char v2;
+//   int *v3;
+// };
+
 test "Ip_C_Ip" {
     var lv: c.Ip_C_Ip = undefined;
     try testing.expectSize(c.Ip_C_Ip, ABISELECT(24, 12));
@@ -65,7 +100,13 @@ test "Ip_C_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:27984:27992
+// From T_Snnn_xay.c:27973:27993
+// struct  Ip_C_L  {
+//   int *v1;
+//   char v2;
+//   __tsi64 v3;
+// };
+
 test "Ip_C_L" {
     var lv: c.Ip_C_L = undefined;
     try testing.expectSize(c.Ip_C_L, ABISELECT(24, 16));
@@ -75,7 +116,13 @@ test "Ip_C_L" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:28009:28017
+// From T_Snnn_xay.c:27998:28018
+// struct  Ip_C_S  {
+//   int *v1;
+//   char v2;
+//   short v3;
+// };
+
 test "Ip_C_S" {
     var lv: c.Ip_C_S = undefined;
     try testing.expectSize(c.Ip_C_S, ABISELECT(16, 8));
@@ -85,7 +132,13 @@ test "Ip_C_S" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(10, 6));
 }
 
-// From T_Snnn_xay.c:28034:28042
+// From T_Snnn_xay.c:28023:28043
+// struct  Ip_C_Uc  {
+//   int *v1;
+//   char v2;
+//   unsigned char v3;
+// };
+
 test "Ip_C_Uc" {
     var lv: c.Ip_C_Uc = undefined;
     try testing.expectSize(c.Ip_C_Uc, ABISELECT(16, 8));
@@ -95,7 +148,13 @@ test "Ip_C_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(9, 5));
 }
 
-// From T_Snnn_xay.c:28059:28067
+// From T_Snnn_xay.c:28048:28068
+// struct  Ip_C_Ui  {
+//   int *v1;
+//   char v2;
+//   unsigned int v3;
+// };
+
 test "Ip_C_Ui" {
     var lv: c.Ip_C_Ui = undefined;
     try testing.expectSize(c.Ip_C_Ui, ABISELECT(16, 12));
@@ -105,7 +164,13 @@ test "Ip_C_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
 }
 
-// From T_Snnn_xay.c:28084:28092
+// From T_Snnn_xay.c:28073:28093
+// struct  Ip_C_Ul  {
+//   int *v1;
+//   char v2;
+//   __tsu64 v3;
+// };
+
 test "Ip_C_Ul" {
     var lv: c.Ip_C_Ul = undefined;
     try testing.expectSize(c.Ip_C_Ul, ABISELECT(24, 16));
@@ -115,7 +180,13 @@ test "Ip_C_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:28109:28117
+// From T_Snnn_xay.c:28098:28118
+// struct  Ip_C_Us  {
+//   int *v1;
+//   char v2;
+//   unsigned short v3;
+// };
+
 test "Ip_C_Us" {
     var lv: c.Ip_C_Us = undefined;
     try testing.expectSize(c.Ip_C_Us, ABISELECT(16, 8));
@@ -125,7 +196,13 @@ test "Ip_C_Us" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(10, 6));
 }
 
-// From T_Snnn_xay.c:28134:28142
+// From T_Snnn_xay.c:28123:28143
+// struct  Ip_C_Vp  {
+//   int *v1;
+//   char v2;
+//   void *v3;
+// };
+
 test "Ip_C_Vp" {
     var lv: c.Ip_C_Vp = undefined;
     try testing.expectSize(c.Ip_C_Vp, ABISELECT(24, 12));
@@ -135,7 +212,12 @@ test "Ip_C_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:28158:28165
+// From T_Snnn_xay.c:28148:28166
+// struct  Ip_D  {
+//   int *v1;
+//   double v2;
+// };
+
 test "Ip_D" {
     var lv: c.Ip_D = undefined;
     try testing.expectSize(c.Ip_D, ABISELECT(16, 12));
@@ -144,7 +226,13 @@ test "Ip_D" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
 }
 
-// From T_Snnn_xay.c:28906:28914
+// From T_Snnn_xay.c:28895:28915
+// struct  Ip_D_C  {
+//   int *v1;
+//   double v2;
+//   char v3;
+// };
+
 test "Ip_D_C" {
     var lv: c.Ip_D_C = undefined;
     try testing.expectSize(c.Ip_D_C, ABISELECT(24, 16));
@@ -154,7 +242,13 @@ test "Ip_D_C" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:28931:28939
+// From T_Snnn_xay.c:28920:28940
+// struct  Ip_D_D  {
+//   int *v1;
+//   double v2;
+//   double v3;
+// };
+
 test "Ip_D_D" {
     var lv: c.Ip_D_D = undefined;
     try testing.expectSize(c.Ip_D_D, ABISELECT(24, 20));
@@ -164,7 +258,13 @@ test "Ip_D_D" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:28956:28964
+// From T_Snnn_xay.c:28945:28965
+// struct  Ip_D_F  {
+//   int *v1;
+//   double v2;
+//   float v3;
+// };
+
 test "Ip_D_F" {
     var lv: c.Ip_D_F = undefined;
     try testing.expectSize(c.Ip_D_F, ABISELECT(24, 16));
@@ -174,7 +274,13 @@ test "Ip_D_F" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:28981:28989
+// From T_Snnn_xay.c:28970:28990
+// struct  Ip_D_I  {
+//   int *v1;
+//   double v2;
+//   int v3;
+// };
+
 test "Ip_D_I" {
     var lv: c.Ip_D_I = undefined;
     try testing.expectSize(c.Ip_D_I, ABISELECT(24, 16));
@@ -184,7 +290,13 @@ test "Ip_D_I" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:29006:29014
+// From T_Snnn_xay.c:28995:29015
+// struct  Ip_D_Ip  {
+//   int *v1;
+//   double v2;
+//   int *v3;
+// };
+
 test "Ip_D_Ip" {
     var lv: c.Ip_D_Ip = undefined;
     try testing.expectSize(c.Ip_D_Ip, ABISELECT(24, 16));
@@ -194,7 +306,13 @@ test "Ip_D_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:29031:29039
+// From T_Snnn_xay.c:29020:29040
+// struct  Ip_D_L  {
+//   int *v1;
+//   double v2;
+//   __tsi64 v3;
+// };
+
 test "Ip_D_L" {
     var lv: c.Ip_D_L = undefined;
     try testing.expectSize(c.Ip_D_L, ABISELECT(24, 20));
@@ -204,7 +322,13 @@ test "Ip_D_L" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:29056:29064
+// From T_Snnn_xay.c:29045:29065
+// struct  Ip_D_S  {
+//   int *v1;
+//   double v2;
+//   short v3;
+// };
+
 test "Ip_D_S" {
     var lv: c.Ip_D_S = undefined;
     try testing.expectSize(c.Ip_D_S, ABISELECT(24, 16));
@@ -214,7 +338,13 @@ test "Ip_D_S" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:29081:29089
+// From T_Snnn_xay.c:29070:29090
+// struct  Ip_D_Uc  {
+//   int *v1;
+//   double v2;
+//   unsigned char v3;
+// };
+
 test "Ip_D_Uc" {
     var lv: c.Ip_D_Uc = undefined;
     try testing.expectSize(c.Ip_D_Uc, ABISELECT(24, 16));
@@ -224,7 +354,13 @@ test "Ip_D_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:29106:29114
+// From T_Snnn_xay.c:29095:29115
+// struct  Ip_D_Ui  {
+//   int *v1;
+//   double v2;
+//   unsigned int v3;
+// };
+
 test "Ip_D_Ui" {
     var lv: c.Ip_D_Ui = undefined;
     try testing.expectSize(c.Ip_D_Ui, ABISELECT(24, 16));
@@ -234,7 +370,13 @@ test "Ip_D_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:29131:29139
+// From T_Snnn_xay.c:29120:29140
+// struct  Ip_D_Ul  {
+//   int *v1;
+//   double v2;
+//   __tsu64 v3;
+// };
+
 test "Ip_D_Ul" {
     var lv: c.Ip_D_Ul = undefined;
     try testing.expectSize(c.Ip_D_Ul, ABISELECT(24, 20));
@@ -244,7 +386,13 @@ test "Ip_D_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:29156:29164
+// From T_Snnn_xay.c:29145:29165
+// struct  Ip_D_Us  {
+//   int *v1;
+//   double v2;
+//   unsigned short v3;
+// };
+
 test "Ip_D_Us" {
     var lv: c.Ip_D_Us = undefined;
     try testing.expectSize(c.Ip_D_Us, ABISELECT(24, 16));
@@ -254,7 +402,13 @@ test "Ip_D_Us" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:29181:29189
+// From T_Snnn_xay.c:29170:29190
+// struct  Ip_D_Vp  {
+//   int *v1;
+//   double v2;
+//   void *v3;
+// };
+
 test "Ip_D_Vp" {
     var lv: c.Ip_D_Vp = undefined;
     try testing.expectSize(c.Ip_D_Vp, ABISELECT(24, 16));
@@ -264,7 +418,12 @@ test "Ip_D_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:29205:29212
+// From T_Snnn_xay.c:29195:29213
+// struct  Ip_F  {
+//   int *v1;
+//   float v2;
+// };
+
 test "Ip_F" {
     var lv: c.Ip_F = undefined;
     try testing.expectSize(c.Ip_F, ABISELECT(16, 8));
@@ -273,7 +432,13 @@ test "Ip_F" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
 }
 
-// From T_Snnn_xay.c:29953:29961
+// From T_Snnn_xay.c:29942:29962
+// struct  Ip_F_C  {
+//   int *v1;
+//   float v2;
+//   char v3;
+// };
+
 test "Ip_F_C" {
     var lv: c.Ip_F_C = undefined;
     try testing.expectSize(c.Ip_F_C, ABISELECT(16, 12));
@@ -283,7 +448,13 @@ test "Ip_F_C" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
 }
 
-// From T_Snnn_xay.c:29978:29986
+// From T_Snnn_xay.c:29967:29987
+// struct  Ip_F_D  {
+//   int *v1;
+//   float v2;
+//   double v3;
+// };
+
 test "Ip_F_D" {
     var lv: c.Ip_F_D = undefined;
     try testing.expectSize(c.Ip_F_D, ABISELECT(24, 16));
@@ -293,7 +464,13 @@ test "Ip_F_D" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:30003:30011
+// From T_Snnn_xay.c:29992:30012
+// struct  Ip_F_F  {
+//   int *v1;
+//   float v2;
+//   float v3;
+// };
+
 test "Ip_F_F" {
     var lv: c.Ip_F_F = undefined;
     try testing.expectSize(c.Ip_F_F, ABISELECT(16, 12));
@@ -303,7 +480,13 @@ test "Ip_F_F" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
 }
 
-// From T_Snnn_xay.c:30028:30036
+// From T_Snnn_xay.c:30017:30037
+// struct  Ip_F_I  {
+//   int *v1;
+//   float v2;
+//   int v3;
+// };
+
 test "Ip_F_I" {
     var lv: c.Ip_F_I = undefined;
     try testing.expectSize(c.Ip_F_I, ABISELECT(16, 12));
@@ -313,7 +496,13 @@ test "Ip_F_I" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
 }
 
-// From T_Snnn_xay.c:30053:30061
+// From T_Snnn_xay.c:30042:30062
+// struct  Ip_F_Ip  {
+//   int *v1;
+//   float v2;
+//   int *v3;
+// };
+
 test "Ip_F_Ip" {
     var lv: c.Ip_F_Ip = undefined;
     try testing.expectSize(c.Ip_F_Ip, ABISELECT(24, 12));
@@ -323,7 +512,13 @@ test "Ip_F_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:30078:30086
+// From T_Snnn_xay.c:30067:30087
+// struct  Ip_F_L  {
+//   int *v1;
+//   float v2;
+//   __tsi64 v3;
+// };
+
 test "Ip_F_L" {
     var lv: c.Ip_F_L = undefined;
     try testing.expectSize(c.Ip_F_L, ABISELECT(24, 16));
@@ -333,7 +528,13 @@ test "Ip_F_L" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:30103:30111
+// From T_Snnn_xay.c:30092:30112
+// struct  Ip_F_S  {
+//   int *v1;
+//   float v2;
+//   short v3;
+// };
+
 test "Ip_F_S" {
     var lv: c.Ip_F_S = undefined;
     try testing.expectSize(c.Ip_F_S, ABISELECT(16, 12));
@@ -343,7 +544,13 @@ test "Ip_F_S" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
 }
 
-// From T_Snnn_xay.c:30128:30136
+// From T_Snnn_xay.c:30117:30137
+// struct  Ip_F_Uc  {
+//   int *v1;
+//   float v2;
+//   unsigned char v3;
+// };
+
 test "Ip_F_Uc" {
     var lv: c.Ip_F_Uc = undefined;
     try testing.expectSize(c.Ip_F_Uc, ABISELECT(16, 12));
@@ -353,7 +560,13 @@ test "Ip_F_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
 }
 
-// From T_Snnn_xay.c:30153:30161
+// From T_Snnn_xay.c:30142:30162
+// struct  Ip_F_Ui  {
+//   int *v1;
+//   float v2;
+//   unsigned int v3;
+// };
+
 test "Ip_F_Ui" {
     var lv: c.Ip_F_Ui = undefined;
     try testing.expectSize(c.Ip_F_Ui, ABISELECT(16, 12));
@@ -363,7 +576,13 @@ test "Ip_F_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
 }
 
-// From T_Snnn_xay.c:30178:30186
+// From T_Snnn_xay.c:30167:30187
+// struct  Ip_F_Ul  {
+//   int *v1;
+//   float v2;
+//   __tsu64 v3;
+// };
+
 test "Ip_F_Ul" {
     var lv: c.Ip_F_Ul = undefined;
     try testing.expectSize(c.Ip_F_Ul, ABISELECT(24, 16));
@@ -373,7 +592,13 @@ test "Ip_F_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:30203:30211
+// From T_Snnn_xay.c:30192:30212
+// struct  Ip_F_Us  {
+//   int *v1;
+//   float v2;
+//   unsigned short v3;
+// };
+
 test "Ip_F_Us" {
     var lv: c.Ip_F_Us = undefined;
     try testing.expectSize(c.Ip_F_Us, ABISELECT(16, 12));
@@ -383,7 +608,13 @@ test "Ip_F_Us" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
 }
 
-// From T_Snnn_xay.c:30228:30236
+// From T_Snnn_xay.c:30217:30237
+// struct  Ip_F_Vp  {
+//   int *v1;
+//   float v2;
+//   void *v3;
+// };
+
 test "Ip_F_Vp" {
     var lv: c.Ip_F_Vp = undefined;
     try testing.expectSize(c.Ip_F_Vp, ABISELECT(24, 12));
@@ -393,7 +624,12 @@ test "Ip_F_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:30252:30259
+// From T_Snnn_xay.c:30242:30260
+// struct  Ip_I  {
+//   int *v1;
+//   int v2;
+// };
+
 test "Ip_I" {
     var lv: c.Ip_I = undefined;
     try testing.expectSize(c.Ip_I, ABISELECT(16, 8));
@@ -402,7 +638,13 @@ test "Ip_I" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
 }
 
-// From T_Snnn_xay.c:31000:31008
+// From T_Snnn_xay.c:30989:31009
+// struct  Ip_I_C  {
+//   int *v1;
+//   int v2;
+//   char v3;
+// };
+
 test "Ip_I_C" {
     var lv: c.Ip_I_C = undefined;
     try testing.expectSize(c.Ip_I_C, ABISELECT(16, 12));
@@ -412,7 +654,13 @@ test "Ip_I_C" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
 }
 
-// From T_Snnn_xay.c:31025:31033
+// From T_Snnn_xay.c:31014:31034
+// struct  Ip_I_D  {
+//   int *v1;
+//   int v2;
+//   double v3;
+// };
+
 test "Ip_I_D" {
     var lv: c.Ip_I_D = undefined;
     try testing.expectSize(c.Ip_I_D, ABISELECT(24, 16));
@@ -422,7 +670,13 @@ test "Ip_I_D" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:31050:31058
+// From T_Snnn_xay.c:31039:31059
+// struct  Ip_I_F  {
+//   int *v1;
+//   int v2;
+//   float v3;
+// };
+
 test "Ip_I_F" {
     var lv: c.Ip_I_F = undefined;
     try testing.expectSize(c.Ip_I_F, ABISELECT(16, 12));
@@ -432,7 +686,13 @@ test "Ip_I_F" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
 }
 
-// From T_Snnn_xay.c:31075:31083
+// From T_Snnn_xay.c:31064:31084
+// struct  Ip_I_I  {
+//   int *v1;
+//   int v2;
+//   int v3;
+// };
+
 test "Ip_I_I" {
     var lv: c.Ip_I_I = undefined;
     try testing.expectSize(c.Ip_I_I, ABISELECT(16, 12));
@@ -442,7 +702,13 @@ test "Ip_I_I" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
 }
 
-// From T_Snnn_xay.c:31100:31108
+// From T_Snnn_xay.c:31089:31109
+// struct  Ip_I_Ip  {
+//   int *v1;
+//   int v2;
+//   int *v3;
+// };
+
 test "Ip_I_Ip" {
     var lv: c.Ip_I_Ip = undefined;
     try testing.expectSize(c.Ip_I_Ip, ABISELECT(24, 12));
@@ -452,7 +718,13 @@ test "Ip_I_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:31125:31133
+// From T_Snnn_xay.c:31114:31134
+// struct  Ip_I_L  {
+//   int *v1;
+//   int v2;
+//   __tsi64 v3;
+// };
+
 test "Ip_I_L" {
     var lv: c.Ip_I_L = undefined;
     try testing.expectSize(c.Ip_I_L, ABISELECT(24, 16));
@@ -462,7 +734,13 @@ test "Ip_I_L" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:31150:31158
+// From T_Snnn_xay.c:31139:31159
+// struct  Ip_I_S  {
+//   int *v1;
+//   int v2;
+//   short v3;
+// };
+
 test "Ip_I_S" {
     var lv: c.Ip_I_S = undefined;
     try testing.expectSize(c.Ip_I_S, ABISELECT(16, 12));
@@ -472,7 +750,13 @@ test "Ip_I_S" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
 }
 
-// From T_Snnn_xay.c:31175:31183
+// From T_Snnn_xay.c:31164:31184
+// struct  Ip_I_Uc  {
+//   int *v1;
+//   int v2;
+//   unsigned char v3;
+// };
+
 test "Ip_I_Uc" {
     var lv: c.Ip_I_Uc = undefined;
     try testing.expectSize(c.Ip_I_Uc, ABISELECT(16, 12));
@@ -482,7 +766,13 @@ test "Ip_I_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
 }
 
-// From T_Snnn_xay.c:31200:31208
+// From T_Snnn_xay.c:31189:31209
+// struct  Ip_I_Ui  {
+//   int *v1;
+//   int v2;
+//   unsigned int v3;
+// };
+
 test "Ip_I_Ui" {
     var lv: c.Ip_I_Ui = undefined;
     try testing.expectSize(c.Ip_I_Ui, ABISELECT(16, 12));
@@ -492,7 +782,13 @@ test "Ip_I_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
 }
 
-// From T_Snnn_xay.c:31225:31233
+// From T_Snnn_xay.c:31214:31234
+// struct  Ip_I_Ul  {
+//   int *v1;
+//   int v2;
+//   __tsu64 v3;
+// };
+
 test "Ip_I_Ul" {
     var lv: c.Ip_I_Ul = undefined;
     try testing.expectSize(c.Ip_I_Ul, ABISELECT(24, 16));
@@ -502,7 +798,13 @@ test "Ip_I_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:31250:31258
+// From T_Snnn_xay.c:31239:31259
+// struct  Ip_I_Us  {
+//   int *v1;
+//   int v2;
+//   unsigned short v3;
+// };
+
 test "Ip_I_Us" {
     var lv: c.Ip_I_Us = undefined;
     try testing.expectSize(c.Ip_I_Us, ABISELECT(16, 12));
@@ -512,7 +814,13 @@ test "Ip_I_Us" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
 }
 
-// From T_Snnn_xay.c:31275:31283
+// From T_Snnn_xay.c:31264:31284
+// struct  Ip_I_Vp  {
+//   int *v1;
+//   int v2;
+//   void *v3;
+// };
+
 test "Ip_I_Vp" {
     var lv: c.Ip_I_Vp = undefined;
     try testing.expectSize(c.Ip_I_Vp, ABISELECT(24, 12));
@@ -522,7 +830,12 @@ test "Ip_I_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:31299:31306
+// From T_Snnn_xay.c:31289:31307
+// struct  Ip_Ip  {
+//   int *v1;
+//   int *v2;
+// };
+
 test "Ip_Ip" {
     var lv: c.Ip_Ip = undefined;
     try testing.expectSize(c.Ip_Ip, ABISELECT(16, 8));
@@ -531,7 +844,13 @@ test "Ip_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
 }
 
-// From T_Snnn_xay.c:32047:32055
+// From T_Snnn_xay.c:32036:32056
+// struct  Ip_Ip_C  {
+//   int *v1;
+//   int *v2;
+//   char v3;
+// };
+
 test "Ip_Ip_C" {
     var lv: c.Ip_Ip_C = undefined;
     try testing.expectSize(c.Ip_Ip_C, ABISELECT(24, 12));
@@ -541,7 +860,13 @@ test "Ip_Ip_C" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:32072:32080
+// From T_Snnn_xay.c:32061:32081
+// struct  Ip_Ip_D  {
+//   int *v1;
+//   int *v2;
+//   double v3;
+// };
+
 test "Ip_Ip_D" {
     var lv: c.Ip_Ip_D = undefined;
     try testing.expectSize(c.Ip_Ip_D, ABISELECT(24, 16));
@@ -551,7 +876,13 @@ test "Ip_Ip_D" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:32097:32105
+// From T_Snnn_xay.c:32086:32106
+// struct  Ip_Ip_F  {
+//   int *v1;
+//   int *v2;
+//   float v3;
+// };
+
 test "Ip_Ip_F" {
     var lv: c.Ip_Ip_F = undefined;
     try testing.expectSize(c.Ip_Ip_F, ABISELECT(24, 12));
@@ -561,7 +892,13 @@ test "Ip_Ip_F" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:32122:32130
+// From T_Snnn_xay.c:32111:32131
+// struct  Ip_Ip_I  {
+//   int *v1;
+//   int *v2;
+//   int v3;
+// };
+
 test "Ip_Ip_I" {
     var lv: c.Ip_Ip_I = undefined;
     try testing.expectSize(c.Ip_Ip_I, ABISELECT(24, 12));
@@ -571,7 +908,13 @@ test "Ip_Ip_I" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:32147:32155
+// From T_Snnn_xay.c:32136:32156
+// struct  Ip_Ip_Ip  {
+//   int *v1;
+//   int *v2;
+//   int *v3;
+// };
+
 test "Ip_Ip_Ip" {
     var lv: c.Ip_Ip_Ip = undefined;
     try testing.expectSize(c.Ip_Ip_Ip, ABISELECT(24, 12));
@@ -581,7 +924,13 @@ test "Ip_Ip_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:32172:32180
+// From T_Snnn_xay.c:32161:32181
+// struct  Ip_Ip_L  {
+//   int *v1;
+//   int *v2;
+//   __tsi64 v3;
+// };
+
 test "Ip_Ip_L" {
     var lv: c.Ip_Ip_L = undefined;
     try testing.expectSize(c.Ip_Ip_L, ABISELECT(24, 16));
@@ -591,7 +940,13 @@ test "Ip_Ip_L" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:32197:32205
+// From T_Snnn_xay.c:32186:32206
+// struct  Ip_Ip_S  {
+//   int *v1;
+//   int *v2;
+//   short v3;
+// };
+
 test "Ip_Ip_S" {
     var lv: c.Ip_Ip_S = undefined;
     try testing.expectSize(c.Ip_Ip_S, ABISELECT(24, 12));
@@ -601,7 +956,13 @@ test "Ip_Ip_S" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:32222:32230
+// From T_Snnn_xay.c:32211:32231
+// struct  Ip_Ip_Uc  {
+//   int *v1;
+//   int *v2;
+//   unsigned char v3;
+// };
+
 test "Ip_Ip_Uc" {
     var lv: c.Ip_Ip_Uc = undefined;
     try testing.expectSize(c.Ip_Ip_Uc, ABISELECT(24, 12));
@@ -611,7 +972,13 @@ test "Ip_Ip_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:32247:32255
+// From T_Snnn_xay.c:32236:32256
+// struct  Ip_Ip_Ui  {
+//   int *v1;
+//   int *v2;
+//   unsigned int v3;
+// };
+
 test "Ip_Ip_Ui" {
     var lv: c.Ip_Ip_Ui = undefined;
     try testing.expectSize(c.Ip_Ip_Ui, ABISELECT(24, 12));
@@ -621,7 +988,13 @@ test "Ip_Ip_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:32272:32280
+// From T_Snnn_xay.c:32261:32281
+// struct  Ip_Ip_Ul  {
+//   int *v1;
+//   int *v2;
+//   __tsu64 v3;
+// };
+
 test "Ip_Ip_Ul" {
     var lv: c.Ip_Ip_Ul = undefined;
     try testing.expectSize(c.Ip_Ip_Ul, ABISELECT(24, 16));
@@ -631,7 +1004,13 @@ test "Ip_Ip_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:32297:32305
+// From T_Snnn_xay.c:32286:32306
+// struct  Ip_Ip_Us  {
+//   int *v1;
+//   int *v2;
+//   unsigned short v3;
+// };
+
 test "Ip_Ip_Us" {
     var lv: c.Ip_Ip_Us = undefined;
     try testing.expectSize(c.Ip_Ip_Us, ABISELECT(24, 12));
@@ -641,7 +1020,13 @@ test "Ip_Ip_Us" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:32322:32330
+// From T_Snnn_xay.c:32311:32331
+// struct  Ip_Ip_Vp  {
+//   int *v1;
+//   int *v2;
+//   void *v3;
+// };
+
 test "Ip_Ip_Vp" {
     var lv: c.Ip_Ip_Vp = undefined;
     try testing.expectSize(c.Ip_Ip_Vp, ABISELECT(24, 12));
@@ -651,7 +1036,12 @@ test "Ip_Ip_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:32346:32353
+// From T_Snnn_xay.c:32336:32354
+// struct  Ip_L  {
+//   int *v1;
+//   __tsi64 v2;
+// };
+
 test "Ip_L" {
     var lv: c.Ip_L = undefined;
     try testing.expectSize(c.Ip_L, ABISELECT(16, 12));
@@ -660,7 +1050,13 @@ test "Ip_L" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
 }
 
-// From T_Snnn_xay.c:33094:33102
+// From T_Snnn_xay.c:33083:33103
+// struct  Ip_L_C  {
+//   int *v1;
+//   __tsi64 v2;
+//   char v3;
+// };
+
 test "Ip_L_C" {
     var lv: c.Ip_L_C = undefined;
     try testing.expectSize(c.Ip_L_C, ABISELECT(24, 16));
@@ -670,7 +1066,13 @@ test "Ip_L_C" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:33119:33127
+// From T_Snnn_xay.c:33108:33128
+// struct  Ip_L_D  {
+//   int *v1;
+//   __tsi64 v2;
+//   double v3;
+// };
+
 test "Ip_L_D" {
     var lv: c.Ip_L_D = undefined;
     try testing.expectSize(c.Ip_L_D, ABISELECT(24, 20));
@@ -680,7 +1082,13 @@ test "Ip_L_D" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:33144:33152
+// From T_Snnn_xay.c:33133:33153
+// struct  Ip_L_F  {
+//   int *v1;
+//   __tsi64 v2;
+//   float v3;
+// };
+
 test "Ip_L_F" {
     var lv: c.Ip_L_F = undefined;
     try testing.expectSize(c.Ip_L_F, ABISELECT(24, 16));
@@ -690,7 +1098,13 @@ test "Ip_L_F" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:33169:33177
+// From T_Snnn_xay.c:33158:33178
+// struct  Ip_L_I  {
+//   int *v1;
+//   __tsi64 v2;
+//   int v3;
+// };
+
 test "Ip_L_I" {
     var lv: c.Ip_L_I = undefined;
     try testing.expectSize(c.Ip_L_I, ABISELECT(24, 16));
@@ -700,7 +1114,13 @@ test "Ip_L_I" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:33194:33202
+// From T_Snnn_xay.c:33183:33203
+// struct  Ip_L_Ip  {
+//   int *v1;
+//   __tsi64 v2;
+//   int *v3;
+// };
+
 test "Ip_L_Ip" {
     var lv: c.Ip_L_Ip = undefined;
     try testing.expectSize(c.Ip_L_Ip, ABISELECT(24, 16));
@@ -710,7 +1130,13 @@ test "Ip_L_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:33219:33227
+// From T_Snnn_xay.c:33208:33228
+// struct  Ip_L_L  {
+//   int *v1;
+//   __tsi64 v2;
+//   __tsi64 v3;
+// };
+
 test "Ip_L_L" {
     var lv: c.Ip_L_L = undefined;
     try testing.expectSize(c.Ip_L_L, ABISELECT(24, 20));
@@ -720,7 +1146,13 @@ test "Ip_L_L" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:33244:33252
+// From T_Snnn_xay.c:33233:33253
+// struct  Ip_L_S  {
+//   int *v1;
+//   __tsi64 v2;
+//   short v3;
+// };
+
 test "Ip_L_S" {
     var lv: c.Ip_L_S = undefined;
     try testing.expectSize(c.Ip_L_S, ABISELECT(24, 16));
@@ -730,7 +1162,13 @@ test "Ip_L_S" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:33269:33277
+// From T_Snnn_xay.c:33258:33278
+// struct  Ip_L_Uc  {
+//   int *v1;
+//   __tsi64 v2;
+//   unsigned char v3;
+// };
+
 test "Ip_L_Uc" {
     var lv: c.Ip_L_Uc = undefined;
     try testing.expectSize(c.Ip_L_Uc, ABISELECT(24, 16));
@@ -740,7 +1178,13 @@ test "Ip_L_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:33294:33302
+// From T_Snnn_xay.c:33283:33303
+// struct  Ip_L_Ui  {
+//   int *v1;
+//   __tsi64 v2;
+//   unsigned int v3;
+// };
+
 test "Ip_L_Ui" {
     var lv: c.Ip_L_Ui = undefined;
     try testing.expectSize(c.Ip_L_Ui, ABISELECT(24, 16));
@@ -750,7 +1194,13 @@ test "Ip_L_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:33319:33327
+// From T_Snnn_xay.c:33308:33328
+// struct  Ip_L_Ul  {
+//   int *v1;
+//   __tsi64 v2;
+//   __tsu64 v3;
+// };
+
 test "Ip_L_Ul" {
     var lv: c.Ip_L_Ul = undefined;
     try testing.expectSize(c.Ip_L_Ul, ABISELECT(24, 20));
@@ -760,7 +1210,13 @@ test "Ip_L_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:33344:33352
+// From T_Snnn_xay.c:33333:33353
+// struct  Ip_L_Us  {
+//   int *v1;
+//   __tsi64 v2;
+//   unsigned short v3;
+// };
+
 test "Ip_L_Us" {
     var lv: c.Ip_L_Us = undefined;
     try testing.expectSize(c.Ip_L_Us, ABISELECT(24, 16));
@@ -770,7 +1226,13 @@ test "Ip_L_Us" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:33369:33377
+// From T_Snnn_xay.c:33358:33378
+// struct  Ip_L_Vp  {
+//   int *v1;
+//   __tsi64 v2;
+//   void *v3;
+// };
+
 test "Ip_L_Vp" {
     var lv: c.Ip_L_Vp = undefined;
     try testing.expectSize(c.Ip_L_Vp, ABISELECT(24, 16));
@@ -780,7 +1242,12 @@ test "Ip_L_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:33393:33400
+// From T_Snnn_xay.c:33383:33401
+// struct  Ip_S  {
+//   int *v1;
+//   short v2;
+// };
+
 test "Ip_S" {
     var lv: c.Ip_S = undefined;
     try testing.expectSize(c.Ip_S, ABISELECT(16, 8));
@@ -789,7 +1256,13 @@ test "Ip_S" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
 }
 
-// From T_Snnn_xay.c:34141:34149
+// From T_Snnn_xay.c:34130:34150
+// struct  Ip_S_C  {
+//   int *v1;
+//   short v2;
+//   char v3;
+// };
+
 test "Ip_S_C" {
     var lv: c.Ip_S_C = undefined;
     try testing.expectSize(c.Ip_S_C, ABISELECT(16, 8));
@@ -799,7 +1272,13 @@ test "Ip_S_C" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(10, 6));
 }
 
-// From T_Snnn_xay.c:34166:34174
+// From T_Snnn_xay.c:34155:34175
+// struct  Ip_S_D  {
+//   int *v1;
+//   short v2;
+//   double v3;
+// };
+
 test "Ip_S_D" {
     var lv: c.Ip_S_D = undefined;
     try testing.expectSize(c.Ip_S_D, ABISELECT(24, 16));
@@ -809,7 +1288,13 @@ test "Ip_S_D" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:34191:34199
+// From T_Snnn_xay.c:34180:34200
+// struct  Ip_S_F  {
+//   int *v1;
+//   short v2;
+//   float v3;
+// };
+
 test "Ip_S_F" {
     var lv: c.Ip_S_F = undefined;
     try testing.expectSize(c.Ip_S_F, ABISELECT(16, 12));
@@ -819,7 +1304,13 @@ test "Ip_S_F" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
 }
 
-// From T_Snnn_xay.c:34216:34224
+// From T_Snnn_xay.c:34205:34225
+// struct  Ip_S_I  {
+//   int *v1;
+//   short v2;
+//   int v3;
+// };
+
 test "Ip_S_I" {
     var lv: c.Ip_S_I = undefined;
     try testing.expectSize(c.Ip_S_I, ABISELECT(16, 12));
@@ -829,7 +1320,13 @@ test "Ip_S_I" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
 }
 
-// From T_Snnn_xay.c:34241:34249
+// From T_Snnn_xay.c:34230:34250
+// struct  Ip_S_Ip  {
+//   int *v1;
+//   short v2;
+//   int *v3;
+// };
+
 test "Ip_S_Ip" {
     var lv: c.Ip_S_Ip = undefined;
     try testing.expectSize(c.Ip_S_Ip, ABISELECT(24, 12));
@@ -839,7 +1336,13 @@ test "Ip_S_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:34266:34274
+// From T_Snnn_xay.c:34255:34275
+// struct  Ip_S_L  {
+//   int *v1;
+//   short v2;
+//   __tsi64 v3;
+// };
+
 test "Ip_S_L" {
     var lv: c.Ip_S_L = undefined;
     try testing.expectSize(c.Ip_S_L, ABISELECT(24, 16));
@@ -849,7 +1352,13 @@ test "Ip_S_L" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:34291:34299
+// From T_Snnn_xay.c:34280:34300
+// struct  Ip_S_S  {
+//   int *v1;
+//   short v2;
+//   short v3;
+// };
+
 test "Ip_S_S" {
     var lv: c.Ip_S_S = undefined;
     try testing.expectSize(c.Ip_S_S, ABISELECT(16, 8));
@@ -859,7 +1368,13 @@ test "Ip_S_S" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(10, 6));
 }
 
-// From T_Snnn_xay.c:34316:34324
+// From T_Snnn_xay.c:34305:34325
+// struct  Ip_S_Uc  {
+//   int *v1;
+//   short v2;
+//   unsigned char v3;
+// };
+
 test "Ip_S_Uc" {
     var lv: c.Ip_S_Uc = undefined;
     try testing.expectSize(c.Ip_S_Uc, ABISELECT(16, 8));
@@ -869,7 +1384,13 @@ test "Ip_S_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(10, 6));
 }
 
-// From T_Snnn_xay.c:34341:34349
+// From T_Snnn_xay.c:34330:34350
+// struct  Ip_S_Ui  {
+//   int *v1;
+//   short v2;
+//   unsigned int v3;
+// };
+
 test "Ip_S_Ui" {
     var lv: c.Ip_S_Ui = undefined;
     try testing.expectSize(c.Ip_S_Ui, ABISELECT(16, 12));
@@ -879,7 +1400,13 @@ test "Ip_S_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
 }
 
-// From T_Snnn_xay.c:34366:34374
+// From T_Snnn_xay.c:34355:34375
+// struct  Ip_S_Ul  {
+//   int *v1;
+//   short v2;
+//   __tsu64 v3;
+// };
+
 test "Ip_S_Ul" {
     var lv: c.Ip_S_Ul = undefined;
     try testing.expectSize(c.Ip_S_Ul, ABISELECT(24, 16));
@@ -889,7 +1416,13 @@ test "Ip_S_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:34391:34399
+// From T_Snnn_xay.c:34380:34400
+// struct  Ip_S_Us  {
+//   int *v1;
+//   short v2;
+//   unsigned short v3;
+// };
+
 test "Ip_S_Us" {
     var lv: c.Ip_S_Us = undefined;
     try testing.expectSize(c.Ip_S_Us, ABISELECT(16, 8));
@@ -899,7 +1432,13 @@ test "Ip_S_Us" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(10, 6));
 }
 
-// From T_Snnn_xay.c:34416:34424
+// From T_Snnn_xay.c:34405:34425
+// struct  Ip_S_Vp  {
+//   int *v1;
+//   short v2;
+//   void *v3;
+// };
+
 test "Ip_S_Vp" {
     var lv: c.Ip_S_Vp = undefined;
     try testing.expectSize(c.Ip_S_Vp, ABISELECT(24, 12));
@@ -909,7 +1448,12 @@ test "Ip_S_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:34440:34447
+// From T_Snnn_xay.c:34430:34448
+// struct  Ip_Uc  {
+//   int *v1;
+//   unsigned char v2;
+// };
+
 test "Ip_Uc" {
     var lv: c.Ip_Uc = undefined;
     try testing.expectSize(c.Ip_Uc, ABISELECT(16, 8));
@@ -918,7 +1462,13 @@ test "Ip_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
 }
 
-// From T_Snnn_xay.c:35188:35196
+// From T_Snnn_xay.c:35177:35197
+// struct  Ip_Uc_C  {
+//   int *v1;
+//   unsigned char v2;
+//   char v3;
+// };
+
 test "Ip_Uc_C" {
     var lv: c.Ip_Uc_C = undefined;
     try testing.expectSize(c.Ip_Uc_C, ABISELECT(16, 8));
@@ -928,7 +1478,13 @@ test "Ip_Uc_C" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(9, 5));
 }
 
-// From T_Snnn_xay.c:35213:35221
+// From T_Snnn_xay.c:35202:35222
+// struct  Ip_Uc_D  {
+//   int *v1;
+//   unsigned char v2;
+//   double v3;
+// };
+
 test "Ip_Uc_D" {
     var lv: c.Ip_Uc_D = undefined;
     try testing.expectSize(c.Ip_Uc_D, ABISELECT(24, 16));
@@ -938,7 +1494,13 @@ test "Ip_Uc_D" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:35238:35246
+// From T_Snnn_xay.c:35227:35247
+// struct  Ip_Uc_F  {
+//   int *v1;
+//   unsigned char v2;
+//   float v3;
+// };
+
 test "Ip_Uc_F" {
     var lv: c.Ip_Uc_F = undefined;
     try testing.expectSize(c.Ip_Uc_F, ABISELECT(16, 12));
@@ -948,7 +1510,13 @@ test "Ip_Uc_F" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
 }
 
-// From T_Snnn_xay.c:35263:35271
+// From T_Snnn_xay.c:35252:35272
+// struct  Ip_Uc_I  {
+//   int *v1;
+//   unsigned char v2;
+//   int v3;
+// };
+
 test "Ip_Uc_I" {
     var lv: c.Ip_Uc_I = undefined;
     try testing.expectSize(c.Ip_Uc_I, ABISELECT(16, 12));
@@ -958,7 +1526,13 @@ test "Ip_Uc_I" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
 }
 
-// From T_Snnn_xay.c:35288:35296
+// From T_Snnn_xay.c:35277:35297
+// struct  Ip_Uc_Ip  {
+//   int *v1;
+//   unsigned char v2;
+//   int *v3;
+// };
+
 test "Ip_Uc_Ip" {
     var lv: c.Ip_Uc_Ip = undefined;
     try testing.expectSize(c.Ip_Uc_Ip, ABISELECT(24, 12));
@@ -968,7 +1542,13 @@ test "Ip_Uc_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:35313:35321
+// From T_Snnn_xay.c:35302:35322
+// struct  Ip_Uc_L  {
+//   int *v1;
+//   unsigned char v2;
+//   __tsi64 v3;
+// };
+
 test "Ip_Uc_L" {
     var lv: c.Ip_Uc_L = undefined;
     try testing.expectSize(c.Ip_Uc_L, ABISELECT(24, 16));
@@ -978,7 +1558,13 @@ test "Ip_Uc_L" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:35338:35346
+// From T_Snnn_xay.c:35327:35347
+// struct  Ip_Uc_S  {
+//   int *v1;
+//   unsigned char v2;
+//   short v3;
+// };
+
 test "Ip_Uc_S" {
     var lv: c.Ip_Uc_S = undefined;
     try testing.expectSize(c.Ip_Uc_S, ABISELECT(16, 8));
@@ -988,7 +1574,13 @@ test "Ip_Uc_S" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(10, 6));
 }
 
-// From T_Snnn_xay.c:35363:35371
+// From T_Snnn_xay.c:35352:35372
+// struct  Ip_Uc_Uc  {
+//   int *v1;
+//   unsigned char v2;
+//   unsigned char v3;
+// };
+
 test "Ip_Uc_Uc" {
     var lv: c.Ip_Uc_Uc = undefined;
     try testing.expectSize(c.Ip_Uc_Uc, ABISELECT(16, 8));
@@ -998,7 +1590,13 @@ test "Ip_Uc_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(9, 5));
 }
 
-// From T_Snnn_xay.c:35388:35396
+// From T_Snnn_xay.c:35377:35397
+// struct  Ip_Uc_Ui  {
+//   int *v1;
+//   unsigned char v2;
+//   unsigned int v3;
+// };
+
 test "Ip_Uc_Ui" {
     var lv: c.Ip_Uc_Ui = undefined;
     try testing.expectSize(c.Ip_Uc_Ui, ABISELECT(16, 12));
@@ -1008,7 +1606,13 @@ test "Ip_Uc_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
 }
 
-// From T_Snnn_xay.c:35413:35421
+// From T_Snnn_xay.c:35402:35422
+// struct  Ip_Uc_Ul  {
+//   int *v1;
+//   unsigned char v2;
+//   __tsu64 v3;
+// };
+
 test "Ip_Uc_Ul" {
     var lv: c.Ip_Uc_Ul = undefined;
     try testing.expectSize(c.Ip_Uc_Ul, ABISELECT(24, 16));
@@ -1018,7 +1622,13 @@ test "Ip_Uc_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:35438:35446
+// From T_Snnn_xay.c:35427:35447
+// struct  Ip_Uc_Us  {
+//   int *v1;
+//   unsigned char v2;
+//   unsigned short v3;
+// };
+
 test "Ip_Uc_Us" {
     var lv: c.Ip_Uc_Us = undefined;
     try testing.expectSize(c.Ip_Uc_Us, ABISELECT(16, 8));
@@ -1028,7 +1638,13 @@ test "Ip_Uc_Us" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(10, 6));
 }
 
-// From T_Snnn_xay.c:35463:35471
+// From T_Snnn_xay.c:35452:35472
+// struct  Ip_Uc_Vp  {
+//   int *v1;
+//   unsigned char v2;
+//   void *v3;
+// };
+
 test "Ip_Uc_Vp" {
     var lv: c.Ip_Uc_Vp = undefined;
     try testing.expectSize(c.Ip_Uc_Vp, ABISELECT(24, 12));
@@ -1038,7 +1654,12 @@ test "Ip_Uc_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:35487:35494
+// From T_Snnn_xay.c:35477:35495
+// struct  Ip_Ui  {
+//   int *v1;
+//   unsigned int v2;
+// };
+
 test "Ip_Ui" {
     var lv: c.Ip_Ui = undefined;
     try testing.expectSize(c.Ip_Ui, ABISELECT(16, 8));
@@ -1047,7 +1668,13 @@ test "Ip_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
 }
 
-// From T_Snnn_xay.c:36235:36243
+// From T_Snnn_xay.c:36224:36244
+// struct  Ip_Ui_C  {
+//   int *v1;
+//   unsigned int v2;
+//   char v3;
+// };
+
 test "Ip_Ui_C" {
     var lv: c.Ip_Ui_C = undefined;
     try testing.expectSize(c.Ip_Ui_C, ABISELECT(16, 12));
@@ -1057,7 +1684,13 @@ test "Ip_Ui_C" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
 }
 
-// From T_Snnn_xay.c:36260:36268
+// From T_Snnn_xay.c:36249:36269
+// struct  Ip_Ui_D  {
+//   int *v1;
+//   unsigned int v2;
+//   double v3;
+// };
+
 test "Ip_Ui_D" {
     var lv: c.Ip_Ui_D = undefined;
     try testing.expectSize(c.Ip_Ui_D, ABISELECT(24, 16));
@@ -1067,7 +1700,13 @@ test "Ip_Ui_D" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:36285:36293
+// From T_Snnn_xay.c:36274:36294
+// struct  Ip_Ui_F  {
+//   int *v1;
+//   unsigned int v2;
+//   float v3;
+// };
+
 test "Ip_Ui_F" {
     var lv: c.Ip_Ui_F = undefined;
     try testing.expectSize(c.Ip_Ui_F, ABISELECT(16, 12));
@@ -1077,7 +1716,13 @@ test "Ip_Ui_F" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
 }
 
-// From T_Snnn_xay.c:36310:36318
+// From T_Snnn_xay.c:36299:36319
+// struct  Ip_Ui_I  {
+//   int *v1;
+//   unsigned int v2;
+//   int v3;
+// };
+
 test "Ip_Ui_I" {
     var lv: c.Ip_Ui_I = undefined;
     try testing.expectSize(c.Ip_Ui_I, ABISELECT(16, 12));
@@ -1087,7 +1732,13 @@ test "Ip_Ui_I" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
 }
 
-// From T_Snnn_xay.c:36335:36343
+// From T_Snnn_xay.c:36324:36344
+// struct  Ip_Ui_Ip  {
+//   int *v1;
+//   unsigned int v2;
+//   int *v3;
+// };
+
 test "Ip_Ui_Ip" {
     var lv: c.Ip_Ui_Ip = undefined;
     try testing.expectSize(c.Ip_Ui_Ip, ABISELECT(24, 12));
@@ -1097,7 +1748,13 @@ test "Ip_Ui_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:36360:36368
+// From T_Snnn_xay.c:36349:36369
+// struct  Ip_Ui_L  {
+//   int *v1;
+//   unsigned int v2;
+//   __tsi64 v3;
+// };
+
 test "Ip_Ui_L" {
     var lv: c.Ip_Ui_L = undefined;
     try testing.expectSize(c.Ip_Ui_L, ABISELECT(24, 16));
@@ -1107,7 +1764,13 @@ test "Ip_Ui_L" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:36385:36393
+// From T_Snnn_xay.c:36374:36394
+// struct  Ip_Ui_S  {
+//   int *v1;
+//   unsigned int v2;
+//   short v3;
+// };
+
 test "Ip_Ui_S" {
     var lv: c.Ip_Ui_S = undefined;
     try testing.expectSize(c.Ip_Ui_S, ABISELECT(16, 12));
@@ -1117,7 +1780,13 @@ test "Ip_Ui_S" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
 }
 
-// From T_Snnn_xay.c:36410:36418
+// From T_Snnn_xay.c:36399:36419
+// struct  Ip_Ui_Uc  {
+//   int *v1;
+//   unsigned int v2;
+//   unsigned char v3;
+// };
+
 test "Ip_Ui_Uc" {
     var lv: c.Ip_Ui_Uc = undefined;
     try testing.expectSize(c.Ip_Ui_Uc, ABISELECT(16, 12));
@@ -1127,7 +1796,13 @@ test "Ip_Ui_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
 }
 
-// From T_Snnn_xay.c:36435:36443
+// From T_Snnn_xay.c:36424:36444
+// struct  Ip_Ui_Ui  {
+//   int *v1;
+//   unsigned int v2;
+//   unsigned int v3;
+// };
+
 test "Ip_Ui_Ui" {
     var lv: c.Ip_Ui_Ui = undefined;
     try testing.expectSize(c.Ip_Ui_Ui, ABISELECT(16, 12));
@@ -1137,7 +1812,13 @@ test "Ip_Ui_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
 }
 
-// From T_Snnn_xay.c:36460:36468
+// From T_Snnn_xay.c:36449:36469
+// struct  Ip_Ui_Ul  {
+//   int *v1;
+//   unsigned int v2;
+//   __tsu64 v3;
+// };
+
 test "Ip_Ui_Ul" {
     var lv: c.Ip_Ui_Ul = undefined;
     try testing.expectSize(c.Ip_Ui_Ul, ABISELECT(24, 16));
@@ -1147,7 +1828,13 @@ test "Ip_Ui_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:36485:36493
+// From T_Snnn_xay.c:36474:36494
+// struct  Ip_Ui_Us  {
+//   int *v1;
+//   unsigned int v2;
+//   unsigned short v3;
+// };
+
 test "Ip_Ui_Us" {
     var lv: c.Ip_Ui_Us = undefined;
     try testing.expectSize(c.Ip_Ui_Us, ABISELECT(16, 12));
@@ -1157,7 +1844,13 @@ test "Ip_Ui_Us" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
 }
 
-// From T_Snnn_xay.c:36510:36518
+// From T_Snnn_xay.c:36499:36519
+// struct  Ip_Ui_Vp  {
+//   int *v1;
+//   unsigned int v2;
+//   void *v3;
+// };
+
 test "Ip_Ui_Vp" {
     var lv: c.Ip_Ui_Vp = undefined;
     try testing.expectSize(c.Ip_Ui_Vp, ABISELECT(24, 12));
@@ -1167,7 +1860,12 @@ test "Ip_Ui_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:36534:36541
+// From T_Snnn_xay.c:36524:36542
+// struct  Ip_Ul  {
+//   int *v1;
+//   __tsu64 v2;
+// };
+
 test "Ip_Ul" {
     var lv: c.Ip_Ul = undefined;
     try testing.expectSize(c.Ip_Ul, ABISELECT(16, 12));
@@ -1176,7 +1874,13 @@ test "Ip_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
 }
 
-// From T_Snnn_xay.c:37282:37290
+// From T_Snnn_xay.c:37271:37291
+// struct  Ip_Ul_C  {
+//   int *v1;
+//   __tsu64 v2;
+//   char v3;
+// };
+
 test "Ip_Ul_C" {
     var lv: c.Ip_Ul_C = undefined;
     try testing.expectSize(c.Ip_Ul_C, ABISELECT(24, 16));
@@ -1186,7 +1890,13 @@ test "Ip_Ul_C" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:37307:37315
+// From T_Snnn_xay.c:37296:37316
+// struct  Ip_Ul_D  {
+//   int *v1;
+//   __tsu64 v2;
+//   double v3;
+// };
+
 test "Ip_Ul_D" {
     var lv: c.Ip_Ul_D = undefined;
     try testing.expectSize(c.Ip_Ul_D, ABISELECT(24, 20));
@@ -1196,7 +1906,13 @@ test "Ip_Ul_D" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:37332:37340
+// From T_Snnn_xay.c:37321:37341
+// struct  Ip_Ul_F  {
+//   int *v1;
+//   __tsu64 v2;
+//   float v3;
+// };
+
 test "Ip_Ul_F" {
     var lv: c.Ip_Ul_F = undefined;
     try testing.expectSize(c.Ip_Ul_F, ABISELECT(24, 16));
@@ -1206,7 +1922,13 @@ test "Ip_Ul_F" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:37357:37365
+// From T_Snnn_xay.c:37346:37366
+// struct  Ip_Ul_I  {
+//   int *v1;
+//   __tsu64 v2;
+//   int v3;
+// };
+
 test "Ip_Ul_I" {
     var lv: c.Ip_Ul_I = undefined;
     try testing.expectSize(c.Ip_Ul_I, ABISELECT(24, 16));
@@ -1216,7 +1938,13 @@ test "Ip_Ul_I" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:37382:37390
+// From T_Snnn_xay.c:37371:37391
+// struct  Ip_Ul_Ip  {
+//   int *v1;
+//   __tsu64 v2;
+//   int *v3;
+// };
+
 test "Ip_Ul_Ip" {
     var lv: c.Ip_Ul_Ip = undefined;
     try testing.expectSize(c.Ip_Ul_Ip, ABISELECT(24, 16));
@@ -1226,7 +1954,13 @@ test "Ip_Ul_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:37407:37415
+// From T_Snnn_xay.c:37396:37416
+// struct  Ip_Ul_L  {
+//   int *v1;
+//   __tsu64 v2;
+//   __tsi64 v3;
+// };
+
 test "Ip_Ul_L" {
     var lv: c.Ip_Ul_L = undefined;
     try testing.expectSize(c.Ip_Ul_L, ABISELECT(24, 20));
@@ -1236,7 +1970,13 @@ test "Ip_Ul_L" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:37432:37440
+// From T_Snnn_xay.c:37421:37441
+// struct  Ip_Ul_S  {
+//   int *v1;
+//   __tsu64 v2;
+//   short v3;
+// };
+
 test "Ip_Ul_S" {
     var lv: c.Ip_Ul_S = undefined;
     try testing.expectSize(c.Ip_Ul_S, ABISELECT(24, 16));
@@ -1246,7 +1986,13 @@ test "Ip_Ul_S" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:37457:37465
+// From T_Snnn_xay.c:37446:37466
+// struct  Ip_Ul_Uc  {
+//   int *v1;
+//   __tsu64 v2;
+//   unsigned char v3;
+// };
+
 test "Ip_Ul_Uc" {
     var lv: c.Ip_Ul_Uc = undefined;
     try testing.expectSize(c.Ip_Ul_Uc, ABISELECT(24, 16));
@@ -1256,7 +2002,13 @@ test "Ip_Ul_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:37482:37490
+// From T_Snnn_xay.c:37471:37491
+// struct  Ip_Ul_Ui  {
+//   int *v1;
+//   __tsu64 v2;
+//   unsigned int v3;
+// };
+
 test "Ip_Ul_Ui" {
     var lv: c.Ip_Ul_Ui = undefined;
     try testing.expectSize(c.Ip_Ul_Ui, ABISELECT(24, 16));
@@ -1266,7 +2018,13 @@ test "Ip_Ul_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:37507:37515
+// From T_Snnn_xay.c:37496:37516
+// struct  Ip_Ul_Ul  {
+//   int *v1;
+//   __tsu64 v2;
+//   __tsu64 v3;
+// };
+
 test "Ip_Ul_Ul" {
     var lv: c.Ip_Ul_Ul = undefined;
     try testing.expectSize(c.Ip_Ul_Ul, ABISELECT(24, 20));
@@ -1276,7 +2034,13 @@ test "Ip_Ul_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:37532:37540
+// From T_Snnn_xay.c:37521:37541
+// struct  Ip_Ul_Us  {
+//   int *v1;
+//   __tsu64 v2;
+//   unsigned short v3;
+// };
+
 test "Ip_Ul_Us" {
     var lv: c.Ip_Ul_Us = undefined;
     try testing.expectSize(c.Ip_Ul_Us, ABISELECT(24, 16));
@@ -1286,7 +2050,13 @@ test "Ip_Ul_Us" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:37557:37565
+// From T_Snnn_xay.c:37546:37566
+// struct  Ip_Ul_Vp  {
+//   int *v1;
+//   __tsu64 v2;
+//   void *v3;
+// };
+
 test "Ip_Ul_Vp" {
     var lv: c.Ip_Ul_Vp = undefined;
     try testing.expectSize(c.Ip_Ul_Vp, ABISELECT(24, 16));
@@ -1296,7 +2066,12 @@ test "Ip_Ul_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:37581:37588
+// From T_Snnn_xay.c:37571:37589
+// struct  Ip_Us  {
+//   int *v1;
+//   unsigned short v2;
+// };
+
 test "Ip_Us" {
     var lv: c.Ip_Us = undefined;
     try testing.expectSize(c.Ip_Us, ABISELECT(16, 8));
@@ -1305,7 +2080,13 @@ test "Ip_Us" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
 }
 
-// From T_Snnn_xay.c:38329:38337
+// From T_Snnn_xay.c:38318:38338
+// struct  Ip_Us_C  {
+//   int *v1;
+//   unsigned short v2;
+//   char v3;
+// };
+
 test "Ip_Us_C" {
     var lv: c.Ip_Us_C = undefined;
     try testing.expectSize(c.Ip_Us_C, ABISELECT(16, 8));
@@ -1315,7 +2096,13 @@ test "Ip_Us_C" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(10, 6));
 }
 
-// From T_Snnn_xay.c:38354:38362
+// From T_Snnn_xay.c:38343:38363
+// struct  Ip_Us_D  {
+//   int *v1;
+//   unsigned short v2;
+//   double v3;
+// };
+
 test "Ip_Us_D" {
     var lv: c.Ip_Us_D = undefined;
     try testing.expectSize(c.Ip_Us_D, ABISELECT(24, 16));
@@ -1325,7 +2112,13 @@ test "Ip_Us_D" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:38379:38387
+// From T_Snnn_xay.c:38368:38388
+// struct  Ip_Us_F  {
+//   int *v1;
+//   unsigned short v2;
+//   float v3;
+// };
+
 test "Ip_Us_F" {
     var lv: c.Ip_Us_F = undefined;
     try testing.expectSize(c.Ip_Us_F, ABISELECT(16, 12));
@@ -1335,7 +2128,13 @@ test "Ip_Us_F" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
 }
 
-// From T_Snnn_xay.c:38404:38412
+// From T_Snnn_xay.c:38393:38413
+// struct  Ip_Us_I  {
+//   int *v1;
+//   unsigned short v2;
+//   int v3;
+// };
+
 test "Ip_Us_I" {
     var lv: c.Ip_Us_I = undefined;
     try testing.expectSize(c.Ip_Us_I, ABISELECT(16, 12));
@@ -1345,7 +2144,13 @@ test "Ip_Us_I" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
 }
 
-// From T_Snnn_xay.c:38429:38437
+// From T_Snnn_xay.c:38418:38438
+// struct  Ip_Us_Ip  {
+//   int *v1;
+//   unsigned short v2;
+//   int *v3;
+// };
+
 test "Ip_Us_Ip" {
     var lv: c.Ip_Us_Ip = undefined;
     try testing.expectSize(c.Ip_Us_Ip, ABISELECT(24, 12));
@@ -1355,7 +2160,13 @@ test "Ip_Us_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:38454:38462
+// From T_Snnn_xay.c:38443:38463
+// struct  Ip_Us_L  {
+//   int *v1;
+//   unsigned short v2;
+//   __tsi64 v3;
+// };
+
 test "Ip_Us_L" {
     var lv: c.Ip_Us_L = undefined;
     try testing.expectSize(c.Ip_Us_L, ABISELECT(24, 16));
@@ -1365,7 +2176,13 @@ test "Ip_Us_L" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:38479:38487
+// From T_Snnn_xay.c:38468:38488
+// struct  Ip_Us_S  {
+//   int *v1;
+//   unsigned short v2;
+//   short v3;
+// };
+
 test "Ip_Us_S" {
     var lv: c.Ip_Us_S = undefined;
     try testing.expectSize(c.Ip_Us_S, ABISELECT(16, 8));
@@ -1375,7 +2192,13 @@ test "Ip_Us_S" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(10, 6));
 }
 
-// From T_Snnn_xay.c:38504:38512
+// From T_Snnn_xay.c:38493:38513
+// struct  Ip_Us_Uc  {
+//   int *v1;
+//   unsigned short v2;
+//   unsigned char v3;
+// };
+
 test "Ip_Us_Uc" {
     var lv: c.Ip_Us_Uc = undefined;
     try testing.expectSize(c.Ip_Us_Uc, ABISELECT(16, 8));
@@ -1385,7 +2208,13 @@ test "Ip_Us_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(10, 6));
 }
 
-// From T_Snnn_xay.c:38529:38537
+// From T_Snnn_xay.c:38518:38538
+// struct  Ip_Us_Ui  {
+//   int *v1;
+//   unsigned short v2;
+//   unsigned int v3;
+// };
+
 test "Ip_Us_Ui" {
     var lv: c.Ip_Us_Ui = undefined;
     try testing.expectSize(c.Ip_Us_Ui, ABISELECT(16, 12));
@@ -1395,7 +2224,13 @@ test "Ip_Us_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
 }
 
-// From T_Snnn_xay.c:38554:38562
+// From T_Snnn_xay.c:38543:38563
+// struct  Ip_Us_Ul  {
+//   int *v1;
+//   unsigned short v2;
+//   __tsu64 v3;
+// };
+
 test "Ip_Us_Ul" {
     var lv: c.Ip_Us_Ul = undefined;
     try testing.expectSize(c.Ip_Us_Ul, ABISELECT(24, 16));
@@ -1405,7 +2240,13 @@ test "Ip_Us_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:38579:38587
+// From T_Snnn_xay.c:38568:38588
+// struct  Ip_Us_Us  {
+//   int *v1;
+//   unsigned short v2;
+//   unsigned short v3;
+// };
+
 test "Ip_Us_Us" {
     var lv: c.Ip_Us_Us = undefined;
     try testing.expectSize(c.Ip_Us_Us, ABISELECT(16, 8));
@@ -1415,7 +2256,13 @@ test "Ip_Us_Us" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(10, 6));
 }
 
-// From T_Snnn_xay.c:38604:38612
+// From T_Snnn_xay.c:38593:38613
+// struct  Ip_Us_Vp  {
+//   int *v1;
+//   unsigned short v2;
+//   void *v3;
+// };
+
 test "Ip_Us_Vp" {
     var lv: c.Ip_Us_Vp = undefined;
     try testing.expectSize(c.Ip_Us_Vp, ABISELECT(24, 12));
@@ -1425,7 +2272,12 @@ test "Ip_Us_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:38628:38635
+// From T_Snnn_xay.c:38618:38636
+// struct  Ip_Vp  {
+//   int *v1;
+//   void *v2;
+// };
+
 test "Ip_Vp" {
     var lv: c.Ip_Vp = undefined;
     try testing.expectSize(c.Ip_Vp, ABISELECT(16, 8));
@@ -1434,7 +2286,13 @@ test "Ip_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
 }
 
-// From T_Snnn_xay.c:39376:39384
+// From T_Snnn_xay.c:39365:39385
+// struct  Ip_Vp_C  {
+//   int *v1;
+//   void *v2;
+//   char v3;
+// };
+
 test "Ip_Vp_C" {
     var lv: c.Ip_Vp_C = undefined;
     try testing.expectSize(c.Ip_Vp_C, ABISELECT(24, 12));
@@ -1444,7 +2302,13 @@ test "Ip_Vp_C" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:39401:39409
+// From T_Snnn_xay.c:39390:39410
+// struct  Ip_Vp_D  {
+//   int *v1;
+//   void *v2;
+//   double v3;
+// };
+
 test "Ip_Vp_D" {
     var lv: c.Ip_Vp_D = undefined;
     try testing.expectSize(c.Ip_Vp_D, ABISELECT(24, 16));
@@ -1454,7 +2318,13 @@ test "Ip_Vp_D" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:39426:39434
+// From T_Snnn_xay.c:39415:39435
+// struct  Ip_Vp_F  {
+//   int *v1;
+//   void *v2;
+//   float v3;
+// };
+
 test "Ip_Vp_F" {
     var lv: c.Ip_Vp_F = undefined;
     try testing.expectSize(c.Ip_Vp_F, ABISELECT(24, 12));
@@ -1464,7 +2334,13 @@ test "Ip_Vp_F" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:39451:39459
+// From T_Snnn_xay.c:39440:39460
+// struct  Ip_Vp_I  {
+//   int *v1;
+//   void *v2;
+//   int v3;
+// };
+
 test "Ip_Vp_I" {
     var lv: c.Ip_Vp_I = undefined;
     try testing.expectSize(c.Ip_Vp_I, ABISELECT(24, 12));
@@ -1474,7 +2350,13 @@ test "Ip_Vp_I" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:39476:39484
+// From T_Snnn_xay.c:39465:39485
+// struct  Ip_Vp_Ip  {
+//   int *v1;
+//   void *v2;
+//   int *v3;
+// };
+
 test "Ip_Vp_Ip" {
     var lv: c.Ip_Vp_Ip = undefined;
     try testing.expectSize(c.Ip_Vp_Ip, ABISELECT(24, 12));
@@ -1484,7 +2366,13 @@ test "Ip_Vp_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:39501:39509
+// From T_Snnn_xay.c:39490:39510
+// struct  Ip_Vp_L  {
+//   int *v1;
+//   void *v2;
+//   __tsi64 v3;
+// };
+
 test "Ip_Vp_L" {
     var lv: c.Ip_Vp_L = undefined;
     try testing.expectSize(c.Ip_Vp_L, ABISELECT(24, 16));
@@ -1494,7 +2382,13 @@ test "Ip_Vp_L" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:39526:39534
+// From T_Snnn_xay.c:39515:39535
+// struct  Ip_Vp_S  {
+//   int *v1;
+//   void *v2;
+//   short v3;
+// };
+
 test "Ip_Vp_S" {
     var lv: c.Ip_Vp_S = undefined;
     try testing.expectSize(c.Ip_Vp_S, ABISELECT(24, 12));
@@ -1504,7 +2398,13 @@ test "Ip_Vp_S" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:39551:39559
+// From T_Snnn_xay.c:39540:39560
+// struct  Ip_Vp_Uc  {
+//   int *v1;
+//   void *v2;
+//   unsigned char v3;
+// };
+
 test "Ip_Vp_Uc" {
     var lv: c.Ip_Vp_Uc = undefined;
     try testing.expectSize(c.Ip_Vp_Uc, ABISELECT(24, 12));
@@ -1514,7 +2414,13 @@ test "Ip_Vp_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:39576:39584
+// From T_Snnn_xay.c:39565:39585
+// struct  Ip_Vp_Ui  {
+//   int *v1;
+//   void *v2;
+//   unsigned int v3;
+// };
+
 test "Ip_Vp_Ui" {
     var lv: c.Ip_Vp_Ui = undefined;
     try testing.expectSize(c.Ip_Vp_Ui, ABISELECT(24, 12));
@@ -1524,7 +2430,13 @@ test "Ip_Vp_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:39601:39609
+// From T_Snnn_xay.c:39590:39610
+// struct  Ip_Vp_Ul  {
+//   int *v1;
+//   void *v2;
+//   __tsu64 v3;
+// };
+
 test "Ip_Vp_Ul" {
     var lv: c.Ip_Vp_Ul = undefined;
     try testing.expectSize(c.Ip_Vp_Ul, ABISELECT(24, 16));
@@ -1534,7 +2446,13 @@ test "Ip_Vp_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:39626:39634
+// From T_Snnn_xay.c:39615:39635
+// struct  Ip_Vp_Us  {
+//   int *v1;
+//   void *v2;
+//   unsigned short v3;
+// };
+
 test "Ip_Vp_Us" {
     var lv: c.Ip_Vp_Us = undefined;
     try testing.expectSize(c.Ip_Vp_Us, ABISELECT(24, 12));
@@ -1544,7 +2462,13 @@ test "Ip_Vp_Us" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:39651:39659
+// From T_Snnn_xay.c:39640:39660
+// struct  Ip_Vp_Vp  {
+//   int *v1;
+//   void *v2;
+//   void *v3;
+// };
+
 test "Ip_Vp_Vp" {
     var lv: c.Ip_Vp_Vp = undefined;
     try testing.expectSize(c.Ip_Vp_Vp, ABISELECT(24, 12));
@@ -1554,7 +2478,11 @@ test "Ip_Vp_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 
-// From T_Snnn_xay.c:39674:39680
+// From T_Snnn_xay.c:39665:39681
+// struct  L  {
+//   __tsi64 v1;
+// };
+
 test "L" {
     var lv: c.L = undefined;
     try testing.expectSize(c.L, 8);
@@ -1562,7 +2490,12 @@ test "L" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
 }
 
-// From T_Snnn_xay.c:69996:70003
+// From T_Snnn_xay.c:69986:70004
+// struct  L_C  {
+//   __tsi64 v1;
+//   char v2;
+// };
+
 test "L_C" {
     var lv: c.L_C = undefined;
     try testing.expectSize(c.L_C, ABISELECT(16, 12));
@@ -1571,7 +2504,13 @@ test "L_C" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
 }
 
-// From T_Snnn_xay.c:70744:70752
+// From T_Snnn_xay.c:70733:70753
+// struct  L_C_C  {
+//   __tsi64 v1;
+//   char v2;
+//   char v3;
+// };
+
 test "L_C_C" {
     var lv: c.L_C_C = undefined;
     try testing.expectSize(c.L_C_C, ABISELECT(16, 12));
@@ -1581,7 +2520,13 @@ test "L_C_C" {
     try testing.expectFieldOffset(&lv, &lv.v3, 9);
 }
 
-// From T_Snnn_xay.c:70769:70777
+// From T_Snnn_xay.c:70758:70778
+// struct  L_C_D  {
+//   __tsi64 v1;
+//   char v2;
+//   double v3;
+// };
+
 test "L_C_D" {
     var lv: c.L_C_D = undefined;
     try testing.expectSize(c.L_C_D, ABISELECT(24, 20));
@@ -1591,7 +2536,13 @@ test "L_C_D" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:70794:70802
+// From T_Snnn_xay.c:70783:70803
+// struct  L_C_F  {
+//   __tsi64 v1;
+//   char v2;
+//   float v3;
+// };
+
 test "L_C_F" {
     var lv: c.L_C_F = undefined;
     try testing.expectSize(c.L_C_F, 16);
@@ -1601,7 +2552,13 @@ test "L_C_F" {
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
 
-// From T_Snnn_xay.c:70819:70827
+// From T_Snnn_xay.c:70808:70828
+// struct  L_C_I  {
+//   __tsi64 v1;
+//   char v2;
+//   int v3;
+// };
+
 test "L_C_I" {
     var lv: c.L_C_I = undefined;
     try testing.expectSize(c.L_C_I, 16);
@@ -1611,7 +2568,13 @@ test "L_C_I" {
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
 
-// From T_Snnn_xay.c:70844:70852
+// From T_Snnn_xay.c:70833:70853
+// struct  L_C_Ip  {
+//   __tsi64 v1;
+//   char v2;
+//   int *v3;
+// };
+
 test "L_C_Ip" {
     var lv: c.L_C_Ip = undefined;
     try testing.expectSize(c.L_C_Ip, ABISELECT(24, 16));
@@ -1621,7 +2584,13 @@ test "L_C_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:70869:70877
+// From T_Snnn_xay.c:70858:70878
+// struct  L_C_L  {
+//   __tsi64 v1;
+//   char v2;
+//   __tsi64 v3;
+// };
+
 test "L_C_L" {
     var lv: c.L_C_L = undefined;
     try testing.expectSize(c.L_C_L, ABISELECT(24, 20));
@@ -1631,7 +2600,13 @@ test "L_C_L" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:70894:70902
+// From T_Snnn_xay.c:70883:70903
+// struct  L_C_S  {
+//   __tsi64 v1;
+//   char v2;
+//   short v3;
+// };
+
 test "L_C_S" {
     var lv: c.L_C_S = undefined;
     try testing.expectSize(c.L_C_S, ABISELECT(16, 12));
@@ -1641,7 +2616,13 @@ test "L_C_S" {
     try testing.expectFieldOffset(&lv, &lv.v3, 10);
 }
 
-// From T_Snnn_xay.c:70919:70927
+// From T_Snnn_xay.c:70908:70928
+// struct  L_C_Uc  {
+//   __tsi64 v1;
+//   char v2;
+//   unsigned char v3;
+// };
+
 test "L_C_Uc" {
     var lv: c.L_C_Uc = undefined;
     try testing.expectSize(c.L_C_Uc, ABISELECT(16, 12));
@@ -1651,7 +2632,13 @@ test "L_C_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v3, 9);
 }
 
-// From T_Snnn_xay.c:70944:70952
+// From T_Snnn_xay.c:70933:70953
+// struct  L_C_Ui  {
+//   __tsi64 v1;
+//   char v2;
+//   unsigned int v3;
+// };
+
 test "L_C_Ui" {
     var lv: c.L_C_Ui = undefined;
     try testing.expectSize(c.L_C_Ui, 16);
@@ -1661,7 +2648,13 @@ test "L_C_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
 
-// From T_Snnn_xay.c:70969:70977
+// From T_Snnn_xay.c:70958:70978
+// struct  L_C_Ul  {
+//   __tsi64 v1;
+//   char v2;
+//   __tsu64 v3;
+// };
+
 test "L_C_Ul" {
     var lv: c.L_C_Ul = undefined;
     try testing.expectSize(c.L_C_Ul, ABISELECT(24, 20));
@@ -1671,7 +2664,13 @@ test "L_C_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:70994:71002
+// From T_Snnn_xay.c:70983:71003
+// struct  L_C_Us  {
+//   __tsi64 v1;
+//   char v2;
+//   unsigned short v3;
+// };
+
 test "L_C_Us" {
     var lv: c.L_C_Us = undefined;
     try testing.expectSize(c.L_C_Us, ABISELECT(16, 12));
@@ -1681,7 +2680,13 @@ test "L_C_Us" {
     try testing.expectFieldOffset(&lv, &lv.v3, 10);
 }
 
-// From T_Snnn_xay.c:71019:71027
+// From T_Snnn_xay.c:71008:71028
+// struct  L_C_Vp  {
+//   __tsi64 v1;
+//   char v2;
+//   void *v3;
+// };
+
 test "L_C_Vp" {
     var lv: c.L_C_Vp = undefined;
     try testing.expectSize(c.L_C_Vp, ABISELECT(24, 16));
@@ -1691,7 +2696,12 @@ test "L_C_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:71043:71050
+// From T_Snnn_xay.c:71033:71051
+// struct  L_D  {
+//   __tsi64 v1;
+//   double v2;
+// };
+
 test "L_D" {
     var lv: c.L_D = undefined;
     try testing.expectSize(c.L_D, 16);
@@ -1700,7 +2710,13 @@ test "L_D" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
 }
 
-// From T_Snnn_xay.c:71791:71799
+// From T_Snnn_xay.c:71780:71800
+// struct  L_D_C  {
+//   __tsi64 v1;
+//   double v2;
+//   char v3;
+// };
+
 test "L_D_C" {
     var lv: c.L_D_C = undefined;
     try testing.expectSize(c.L_D_C, ABISELECT(24, 20));
@@ -1710,7 +2726,13 @@ test "L_D_C" {
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
 
-// From T_Snnn_xay.c:71816:71824
+// From T_Snnn_xay.c:71805:71825
+// struct  L_D_D  {
+//   __tsi64 v1;
+//   double v2;
+//   double v3;
+// };
+
 test "L_D_D" {
     var lv: c.L_D_D = undefined;
     try testing.expectSize(c.L_D_D, 24);
@@ -1720,7 +2742,13 @@ test "L_D_D" {
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
 
-// From T_Snnn_xay.c:71841:71849
+// From T_Snnn_xay.c:71830:71850
+// struct  L_D_F  {
+//   __tsi64 v1;
+//   double v2;
+//   float v3;
+// };
+
 test "L_D_F" {
     var lv: c.L_D_F = undefined;
     try testing.expectSize(c.L_D_F, ABISELECT(24, 20));
@@ -1730,7 +2758,13 @@ test "L_D_F" {
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
 
-// From T_Snnn_xay.c:71866:71874
+// From T_Snnn_xay.c:71855:71875
+// struct  L_D_I  {
+//   __tsi64 v1;
+//   double v2;
+//   int v3;
+// };
+
 test "L_D_I" {
     var lv: c.L_D_I = undefined;
     try testing.expectSize(c.L_D_I, ABISELECT(24, 20));
@@ -1740,7 +2774,13 @@ test "L_D_I" {
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
 
-// From T_Snnn_xay.c:71891:71899
+// From T_Snnn_xay.c:71880:71900
+// struct  L_D_Ip  {
+//   __tsi64 v1;
+//   double v2;
+//   int *v3;
+// };
+
 test "L_D_Ip" {
     var lv: c.L_D_Ip = undefined;
     try testing.expectSize(c.L_D_Ip, ABISELECT(24, 20));
@@ -1750,7 +2790,13 @@ test "L_D_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
 
-// From T_Snnn_xay.c:71916:71924
+// From T_Snnn_xay.c:71905:71925
+// struct  L_D_L  {
+//   __tsi64 v1;
+//   double v2;
+//   __tsi64 v3;
+// };
+
 test "L_D_L" {
     var lv: c.L_D_L = undefined;
     try testing.expectSize(c.L_D_L, 24);
@@ -1760,7 +2806,13 @@ test "L_D_L" {
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
 
-// From T_Snnn_xay.c:71941:71949
+// From T_Snnn_xay.c:71930:71950
+// struct  L_D_S  {
+//   __tsi64 v1;
+//   double v2;
+//   short v3;
+// };
+
 test "L_D_S" {
     var lv: c.L_D_S = undefined;
     try testing.expectSize(c.L_D_S, ABISELECT(24, 20));
@@ -1770,7 +2822,13 @@ test "L_D_S" {
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
 
-// From T_Snnn_xay.c:71966:71974
+// From T_Snnn_xay.c:71955:71975
+// struct  L_D_Uc  {
+//   __tsi64 v1;
+//   double v2;
+//   unsigned char v3;
+// };
+
 test "L_D_Uc" {
     var lv: c.L_D_Uc = undefined;
     try testing.expectSize(c.L_D_Uc, ABISELECT(24, 20));
@@ -1780,7 +2838,13 @@ test "L_D_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
 
-// From T_Snnn_xay.c:71991:71999
+// From T_Snnn_xay.c:71980:72000
+// struct  L_D_Ui  {
+//   __tsi64 v1;
+//   double v2;
+//   unsigned int v3;
+// };
+
 test "L_D_Ui" {
     var lv: c.L_D_Ui = undefined;
     try testing.expectSize(c.L_D_Ui, ABISELECT(24, 20));
@@ -1790,7 +2854,13 @@ test "L_D_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
 
-// From T_Snnn_xay.c:72016:72024
+// From T_Snnn_xay.c:72005:72025
+// struct  L_D_Ul  {
+//   __tsi64 v1;
+//   double v2;
+//   __tsu64 v3;
+// };
+
 test "L_D_Ul" {
     var lv: c.L_D_Ul = undefined;
     try testing.expectSize(c.L_D_Ul, 24);
@@ -1800,7 +2870,13 @@ test "L_D_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
 
-// From T_Snnn_xay.c:72041:72049
+// From T_Snnn_xay.c:72030:72050
+// struct  L_D_Us  {
+//   __tsi64 v1;
+//   double v2;
+//   unsigned short v3;
+// };
+
 test "L_D_Us" {
     var lv: c.L_D_Us = undefined;
     try testing.expectSize(c.L_D_Us, ABISELECT(24, 20));
@@ -1810,7 +2886,13 @@ test "L_D_Us" {
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
 
-// From T_Snnn_xay.c:72066:72074
+// From T_Snnn_xay.c:72055:72075
+// struct  L_D_Vp  {
+//   __tsi64 v1;
+//   double v2;
+//   void *v3;
+// };
+
 test "L_D_Vp" {
     var lv: c.L_D_Vp = undefined;
     try testing.expectSize(c.L_D_Vp, ABISELECT(24, 20));
@@ -1820,7 +2902,12 @@ test "L_D_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
 
-// From T_Snnn_xay.c:72090:72097
+// From T_Snnn_xay.c:72080:72098
+// struct  L_F  {
+//   __tsi64 v1;
+//   float v2;
+// };
+
 test "L_F" {
     var lv: c.L_F = undefined;
     try testing.expectSize(c.L_F, ABISELECT(16, 12));
@@ -1829,7 +2916,13 @@ test "L_F" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
 }
 
-// From T_Snnn_xay.c:72838:72846
+// From T_Snnn_xay.c:72827:72847
+// struct  L_F_C  {
+//   __tsi64 v1;
+//   float v2;
+//   char v3;
+// };
+
 test "L_F_C" {
     var lv: c.L_F_C = undefined;
     try testing.expectSize(c.L_F_C, 16);
@@ -1839,7 +2932,13 @@ test "L_F_C" {
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
 
-// From T_Snnn_xay.c:72863:72871
+// From T_Snnn_xay.c:72852:72872
+// struct  L_F_D  {
+//   __tsi64 v1;
+//   float v2;
+//   double v3;
+// };
+
 test "L_F_D" {
     var lv: c.L_F_D = undefined;
     try testing.expectSize(c.L_F_D, ABISELECT(24, 20));
@@ -1849,7 +2948,13 @@ test "L_F_D" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:72888:72896
+// From T_Snnn_xay.c:72877:72897
+// struct  L_F_F  {
+//   __tsi64 v1;
+//   float v2;
+//   float v3;
+// };
+
 test "L_F_F" {
     var lv: c.L_F_F = undefined;
     try testing.expectSize(c.L_F_F, 16);
@@ -1859,7 +2964,13 @@ test "L_F_F" {
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
 
-// From T_Snnn_xay.c:72913:72921
+// From T_Snnn_xay.c:72902:72922
+// struct  L_F_I  {
+//   __tsi64 v1;
+//   float v2;
+//   int v3;
+// };
+
 test "L_F_I" {
     var lv: c.L_F_I = undefined;
     try testing.expectSize(c.L_F_I, 16);
@@ -1869,7 +2980,13 @@ test "L_F_I" {
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
 
-// From T_Snnn_xay.c:72938:72946
+// From T_Snnn_xay.c:72927:72947
+// struct  L_F_Ip  {
+//   __tsi64 v1;
+//   float v2;
+//   int *v3;
+// };
+
 test "L_F_Ip" {
     var lv: c.L_F_Ip = undefined;
     try testing.expectSize(c.L_F_Ip, ABISELECT(24, 16));
@@ -1879,7 +2996,13 @@ test "L_F_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:72963:72971
+// From T_Snnn_xay.c:72952:72972
+// struct  L_F_L  {
+//   __tsi64 v1;
+//   float v2;
+//   __tsi64 v3;
+// };
+
 test "L_F_L" {
     var lv: c.L_F_L = undefined;
     try testing.expectSize(c.L_F_L, ABISELECT(24, 20));
@@ -1889,7 +3012,13 @@ test "L_F_L" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:72988:72996
+// From T_Snnn_xay.c:72977:72997
+// struct  L_F_S  {
+//   __tsi64 v1;
+//   float v2;
+//   short v3;
+// };
+
 test "L_F_S" {
     var lv: c.L_F_S = undefined;
     try testing.expectSize(c.L_F_S, 16);
@@ -1899,7 +3028,13 @@ test "L_F_S" {
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
 
-// From T_Snnn_xay.c:73013:73021
+// From T_Snnn_xay.c:73002:73022
+// struct  L_F_Uc  {
+//   __tsi64 v1;
+//   float v2;
+//   unsigned char v3;
+// };
+
 test "L_F_Uc" {
     var lv: c.L_F_Uc = undefined;
     try testing.expectSize(c.L_F_Uc, 16);
@@ -1909,7 +3044,13 @@ test "L_F_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
 
-// From T_Snnn_xay.c:73038:73046
+// From T_Snnn_xay.c:73027:73047
+// struct  L_F_Ui  {
+//   __tsi64 v1;
+//   float v2;
+//   unsigned int v3;
+// };
+
 test "L_F_Ui" {
     var lv: c.L_F_Ui = undefined;
     try testing.expectSize(c.L_F_Ui, 16);
@@ -1919,7 +3060,13 @@ test "L_F_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
 
-// From T_Snnn_xay.c:73063:73071
+// From T_Snnn_xay.c:73052:73072
+// struct  L_F_Ul  {
+//   __tsi64 v1;
+//   float v2;
+//   __tsu64 v3;
+// };
+
 test "L_F_Ul" {
     var lv: c.L_F_Ul = undefined;
     try testing.expectSize(c.L_F_Ul, ABISELECT(24, 20));
@@ -1929,7 +3076,13 @@ test "L_F_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:73088:73096
+// From T_Snnn_xay.c:73077:73097
+// struct  L_F_Us  {
+//   __tsi64 v1;
+//   float v2;
+//   unsigned short v3;
+// };
+
 test "L_F_Us" {
     var lv: c.L_F_Us = undefined;
     try testing.expectSize(c.L_F_Us, 16);
@@ -1939,7 +3092,13 @@ test "L_F_Us" {
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
 
-// From T_Snnn_xay.c:73113:73121
+// From T_Snnn_xay.c:73102:73122
+// struct  L_F_Vp  {
+//   __tsi64 v1;
+//   float v2;
+//   void *v3;
+// };
+
 test "L_F_Vp" {
     var lv: c.L_F_Vp = undefined;
     try testing.expectSize(c.L_F_Vp, ABISELECT(24, 16));
@@ -1949,7 +3108,12 @@ test "L_F_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:73137:73144
+// From T_Snnn_xay.c:73127:73145
+// struct  L_I  {
+//   __tsi64 v1;
+//   int v2;
+// };
+
 test "L_I" {
     var lv: c.L_I = undefined;
     try testing.expectSize(c.L_I, ABISELECT(16, 12));
@@ -1958,7 +3122,13 @@ test "L_I" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
 }
 
-// From T_Snnn_xay.c:73885:73893
+// From T_Snnn_xay.c:73874:73894
+// struct  L_I_C  {
+//   __tsi64 v1;
+//   int v2;
+//   char v3;
+// };
+
 test "L_I_C" {
     var lv: c.L_I_C = undefined;
     try testing.expectSize(c.L_I_C, 16);
@@ -1968,7 +3138,13 @@ test "L_I_C" {
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
 
-// From T_Snnn_xay.c:73910:73918
+// From T_Snnn_xay.c:73899:73919
+// struct  L_I_D  {
+//   __tsi64 v1;
+//   int v2;
+//   double v3;
+// };
+
 test "L_I_D" {
     var lv: c.L_I_D = undefined;
     try testing.expectSize(c.L_I_D, ABISELECT(24, 20));
@@ -1978,7 +3154,13 @@ test "L_I_D" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:73935:73943
+// From T_Snnn_xay.c:73924:73944
+// struct  L_I_F  {
+//   __tsi64 v1;
+//   int v2;
+//   float v3;
+// };
+
 test "L_I_F" {
     var lv: c.L_I_F = undefined;
     try testing.expectSize(c.L_I_F, 16);
@@ -1988,7 +3170,13 @@ test "L_I_F" {
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
 
-// From T_Snnn_xay.c:73960:73968
+// From T_Snnn_xay.c:73949:73969
+// struct  L_I_I  {
+//   __tsi64 v1;
+//   int v2;
+//   int v3;
+// };
+
 test "L_I_I" {
     var lv: c.L_I_I = undefined;
     try testing.expectSize(c.L_I_I, 16);
@@ -1998,7 +3186,13 @@ test "L_I_I" {
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
 
-// From T_Snnn_xay.c:73985:73993
+// From T_Snnn_xay.c:73974:73994
+// struct  L_I_Ip  {
+//   __tsi64 v1;
+//   int v2;
+//   int *v3;
+// };
+
 test "L_I_Ip" {
     var lv: c.L_I_Ip = undefined;
     try testing.expectSize(c.L_I_Ip, ABISELECT(24, 16));
@@ -2008,7 +3202,13 @@ test "L_I_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:74010:74018
+// From T_Snnn_xay.c:73999:74019
+// struct  L_I_L  {
+//   __tsi64 v1;
+//   int v2;
+//   __tsi64 v3;
+// };
+
 test "L_I_L" {
     var lv: c.L_I_L = undefined;
     try testing.expectSize(c.L_I_L, ABISELECT(24, 20));
@@ -2018,7 +3218,13 @@ test "L_I_L" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:74035:74043
+// From T_Snnn_xay.c:74024:74044
+// struct  L_I_S  {
+//   __tsi64 v1;
+//   int v2;
+//   short v3;
+// };
+
 test "L_I_S" {
     var lv: c.L_I_S = undefined;
     try testing.expectSize(c.L_I_S, 16);
@@ -2028,7 +3234,13 @@ test "L_I_S" {
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
 
-// From T_Snnn_xay.c:74060:74068
+// From T_Snnn_xay.c:74049:74069
+// struct  L_I_Uc  {
+//   __tsi64 v1;
+//   int v2;
+//   unsigned char v3;
+// };
+
 test "L_I_Uc" {
     var lv: c.L_I_Uc = undefined;
     try testing.expectSize(c.L_I_Uc, 16);
@@ -2038,7 +3250,13 @@ test "L_I_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
 
-// From T_Snnn_xay.c:74085:74093
+// From T_Snnn_xay.c:74074:74094
+// struct  L_I_Ui  {
+//   __tsi64 v1;
+//   int v2;
+//   unsigned int v3;
+// };
+
 test "L_I_Ui" {
     var lv: c.L_I_Ui = undefined;
     try testing.expectSize(c.L_I_Ui, 16);
@@ -2048,7 +3266,13 @@ test "L_I_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
 
-// From T_Snnn_xay.c:74110:74118
+// From T_Snnn_xay.c:74099:74119
+// struct  L_I_Ul  {
+//   __tsi64 v1;
+//   int v2;
+//   __tsu64 v3;
+// };
+
 test "L_I_Ul" {
     var lv: c.L_I_Ul = undefined;
     try testing.expectSize(c.L_I_Ul, ABISELECT(24, 20));
@@ -2058,7 +3282,13 @@ test "L_I_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:74135:74143
+// From T_Snnn_xay.c:74124:74144
+// struct  L_I_Us  {
+//   __tsi64 v1;
+//   int v2;
+//   unsigned short v3;
+// };
+
 test "L_I_Us" {
     var lv: c.L_I_Us = undefined;
     try testing.expectSize(c.L_I_Us, 16);
@@ -2068,7 +3298,13 @@ test "L_I_Us" {
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
 
-// From T_Snnn_xay.c:74160:74168
+// From T_Snnn_xay.c:74149:74169
+// struct  L_I_Vp  {
+//   __tsi64 v1;
+//   int v2;
+//   void *v3;
+// };
+
 test "L_I_Vp" {
     var lv: c.L_I_Vp = undefined;
     try testing.expectSize(c.L_I_Vp, ABISELECT(24, 16));
@@ -2078,7 +3314,12 @@ test "L_I_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:74184:74191
+// From T_Snnn_xay.c:74174:74192
+// struct  L_Ip  {
+//   __tsi64 v1;
+//   int *v2;
+// };
+
 test "L_Ip" {
     var lv: c.L_Ip = undefined;
     try testing.expectSize(c.L_Ip, ABISELECT(16, 12));
@@ -2087,7 +3328,13 @@ test "L_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
 }
 
-// From T_Snnn_xay.c:74932:74940
+// From T_Snnn_xay.c:74921:74941
+// struct  L_Ip_C  {
+//   __tsi64 v1;
+//   int *v2;
+//   char v3;
+// };
+
 test "L_Ip_C" {
     var lv: c.L_Ip_C = undefined;
     try testing.expectSize(c.L_Ip_C, ABISELECT(24, 16));
@@ -2097,7 +3344,13 @@ test "L_Ip_C" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:74957:74965
+// From T_Snnn_xay.c:74946:74966
+// struct  L_Ip_D  {
+//   __tsi64 v1;
+//   int *v2;
+//   double v3;
+// };
+
 test "L_Ip_D" {
     var lv: c.L_Ip_D = undefined;
     try testing.expectSize(c.L_Ip_D, ABISELECT(24, 20));
@@ -2107,7 +3360,13 @@ test "L_Ip_D" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:74982:74990
+// From T_Snnn_xay.c:74971:74991
+// struct  L_Ip_F  {
+//   __tsi64 v1;
+//   int *v2;
+//   float v3;
+// };
+
 test "L_Ip_F" {
     var lv: c.L_Ip_F = undefined;
     try testing.expectSize(c.L_Ip_F, ABISELECT(24, 16));
@@ -2117,7 +3376,13 @@ test "L_Ip_F" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:75007:75015
+// From T_Snnn_xay.c:74996:75016
+// struct  L_Ip_I  {
+//   __tsi64 v1;
+//   int *v2;
+//   int v3;
+// };
+
 test "L_Ip_I" {
     var lv: c.L_Ip_I = undefined;
     try testing.expectSize(c.L_Ip_I, ABISELECT(24, 16));
@@ -2127,7 +3392,13 @@ test "L_Ip_I" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:75032:75040
+// From T_Snnn_xay.c:75021:75041
+// struct  L_Ip_Ip  {
+//   __tsi64 v1;
+//   int *v2;
+//   int *v3;
+// };
+
 test "L_Ip_Ip" {
     var lv: c.L_Ip_Ip = undefined;
     try testing.expectSize(c.L_Ip_Ip, ABISELECT(24, 16));
@@ -2137,7 +3408,13 @@ test "L_Ip_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:75057:75065
+// From T_Snnn_xay.c:75046:75066
+// struct  L_Ip_L  {
+//   __tsi64 v1;
+//   int *v2;
+//   __tsi64 v3;
+// };
+
 test "L_Ip_L" {
     var lv: c.L_Ip_L = undefined;
     try testing.expectSize(c.L_Ip_L, ABISELECT(24, 20));
@@ -2147,7 +3424,13 @@ test "L_Ip_L" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:75082:75090
+// From T_Snnn_xay.c:75071:75091
+// struct  L_Ip_S  {
+//   __tsi64 v1;
+//   int *v2;
+//   short v3;
+// };
+
 test "L_Ip_S" {
     var lv: c.L_Ip_S = undefined;
     try testing.expectSize(c.L_Ip_S, ABISELECT(24, 16));
@@ -2157,7 +3440,13 @@ test "L_Ip_S" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:75107:75115
+// From T_Snnn_xay.c:75096:75116
+// struct  L_Ip_Uc  {
+//   __tsi64 v1;
+//   int *v2;
+//   unsigned char v3;
+// };
+
 test "L_Ip_Uc" {
     var lv: c.L_Ip_Uc = undefined;
     try testing.expectSize(c.L_Ip_Uc, ABISELECT(24, 16));
@@ -2167,7 +3456,13 @@ test "L_Ip_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:75132:75140
+// From T_Snnn_xay.c:75121:75141
+// struct  L_Ip_Ui  {
+//   __tsi64 v1;
+//   int *v2;
+//   unsigned int v3;
+// };
+
 test "L_Ip_Ui" {
     var lv: c.L_Ip_Ui = undefined;
     try testing.expectSize(c.L_Ip_Ui, ABISELECT(24, 16));
@@ -2177,7 +3472,13 @@ test "L_Ip_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:75157:75165
+// From T_Snnn_xay.c:75146:75166
+// struct  L_Ip_Ul  {
+//   __tsi64 v1;
+//   int *v2;
+//   __tsu64 v3;
+// };
+
 test "L_Ip_Ul" {
     var lv: c.L_Ip_Ul = undefined;
     try testing.expectSize(c.L_Ip_Ul, ABISELECT(24, 20));
@@ -2187,7 +3488,13 @@ test "L_Ip_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:75182:75190
+// From T_Snnn_xay.c:75171:75191
+// struct  L_Ip_Us  {
+//   __tsi64 v1;
+//   int *v2;
+//   unsigned short v3;
+// };
+
 test "L_Ip_Us" {
     var lv: c.L_Ip_Us = undefined;
     try testing.expectSize(c.L_Ip_Us, ABISELECT(24, 16));
@@ -2197,7 +3504,13 @@ test "L_Ip_Us" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:75207:75215
+// From T_Snnn_xay.c:75196:75216
+// struct  L_Ip_Vp  {
+//   __tsi64 v1;
+//   int *v2;
+//   void *v3;
+// };
+
 test "L_Ip_Vp" {
     var lv: c.L_Ip_Vp = undefined;
     try testing.expectSize(c.L_Ip_Vp, ABISELECT(24, 16));
@@ -2207,7 +3520,12 @@ test "L_Ip_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:75231:75238
+// From T_Snnn_xay.c:75221:75239
+// struct  L_L  {
+//   __tsi64 v1;
+//   __tsi64 v2;
+// };
+
 test "L_L" {
     var lv: c.L_L = undefined;
     try testing.expectSize(c.L_L, 16);
@@ -2216,7 +3534,13 @@ test "L_L" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
 }
 
-// From T_Snnn_xay.c:75979:75987
+// From T_Snnn_xay.c:75968:75988
+// struct  L_L_C  {
+//   __tsi64 v1;
+//   __tsi64 v2;
+//   char v3;
+// };
+
 test "L_L_C" {
     var lv: c.L_L_C = undefined;
     try testing.expectSize(c.L_L_C, ABISELECT(24, 20));
@@ -2226,7 +3550,13 @@ test "L_L_C" {
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
 
-// From T_Snnn_xay.c:76004:76012
+// From T_Snnn_xay.c:75993:76013
+// struct  L_L_D  {
+//   __tsi64 v1;
+//   __tsi64 v2;
+//   double v3;
+// };
+
 test "L_L_D" {
     var lv: c.L_L_D = undefined;
     try testing.expectSize(c.L_L_D, 24);
@@ -2236,7 +3566,13 @@ test "L_L_D" {
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
 
-// From T_Snnn_xay.c:76029:76037
+// From T_Snnn_xay.c:76018:76038
+// struct  L_L_F  {
+//   __tsi64 v1;
+//   __tsi64 v2;
+//   float v3;
+// };
+
 test "L_L_F" {
     var lv: c.L_L_F = undefined;
     try testing.expectSize(c.L_L_F, ABISELECT(24, 20));
@@ -2246,7 +3582,13 @@ test "L_L_F" {
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
 
-// From T_Snnn_xay.c:76054:76062
+// From T_Snnn_xay.c:76043:76063
+// struct  L_L_I  {
+//   __tsi64 v1;
+//   __tsi64 v2;
+//   int v3;
+// };
+
 test "L_L_I" {
     var lv: c.L_L_I = undefined;
     try testing.expectSize(c.L_L_I, ABISELECT(24, 20));
@@ -2256,7 +3598,13 @@ test "L_L_I" {
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
 
-// From T_Snnn_xay.c:76079:76087
+// From T_Snnn_xay.c:76068:76088
+// struct  L_L_Ip  {
+//   __tsi64 v1;
+//   __tsi64 v2;
+//   int *v3;
+// };
+
 test "L_L_Ip" {
     var lv: c.L_L_Ip = undefined;
     try testing.expectSize(c.L_L_Ip, ABISELECT(24, 20));
@@ -2266,7 +3614,13 @@ test "L_L_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
 
-// From T_Snnn_xay.c:76104:76112
+// From T_Snnn_xay.c:76093:76113
+// struct  L_L_L  {
+//   __tsi64 v1;
+//   __tsi64 v2;
+//   __tsi64 v3;
+// };
+
 test "L_L_L" {
     var lv: c.L_L_L = undefined;
     try testing.expectSize(c.L_L_L, 24);
@@ -2276,7 +3630,13 @@ test "L_L_L" {
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
 
-// From T_Snnn_xay.c:76129:76137
+// From T_Snnn_xay.c:76118:76138
+// struct  L_L_S  {
+//   __tsi64 v1;
+//   __tsi64 v2;
+//   short v3;
+// };
+
 test "L_L_S" {
     var lv: c.L_L_S = undefined;
     try testing.expectSize(c.L_L_S, ABISELECT(24, 20));
@@ -2286,7 +3646,13 @@ test "L_L_S" {
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
 
-// From T_Snnn_xay.c:76154:76162
+// From T_Snnn_xay.c:76143:76163
+// struct  L_L_Uc  {
+//   __tsi64 v1;
+//   __tsi64 v2;
+//   unsigned char v3;
+// };
+
 test "L_L_Uc" {
     var lv: c.L_L_Uc = undefined;
     try testing.expectSize(c.L_L_Uc, ABISELECT(24, 20));
@@ -2296,7 +3662,13 @@ test "L_L_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
 
-// From T_Snnn_xay.c:76179:76187
+// From T_Snnn_xay.c:76168:76188
+// struct  L_L_Ui  {
+//   __tsi64 v1;
+//   __tsi64 v2;
+//   unsigned int v3;
+// };
+
 test "L_L_Ui" {
     var lv: c.L_L_Ui = undefined;
     try testing.expectSize(c.L_L_Ui, ABISELECT(24, 20));
@@ -2306,7 +3678,13 @@ test "L_L_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
 
-// From T_Snnn_xay.c:76204:76212
+// From T_Snnn_xay.c:76193:76213
+// struct  L_L_Ul  {
+//   __tsi64 v1;
+//   __tsi64 v2;
+//   __tsu64 v3;
+// };
+
 test "L_L_Ul" {
     var lv: c.L_L_Ul = undefined;
     try testing.expectSize(c.L_L_Ul, 24);
@@ -2316,7 +3694,13 @@ test "L_L_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
 
-// From T_Snnn_xay.c:76229:76237
+// From T_Snnn_xay.c:76218:76238
+// struct  L_L_Us  {
+//   __tsi64 v1;
+//   __tsi64 v2;
+//   unsigned short v3;
+// };
+
 test "L_L_Us" {
     var lv: c.L_L_Us = undefined;
     try testing.expectSize(c.L_L_Us, ABISELECT(24, 20));
@@ -2326,7 +3710,13 @@ test "L_L_Us" {
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
 
-// From T_Snnn_xay.c:76254:76262
+// From T_Snnn_xay.c:76243:76263
+// struct  L_L_Vp  {
+//   __tsi64 v1;
+//   __tsi64 v2;
+//   void *v3;
+// };
+
 test "L_L_Vp" {
     var lv: c.L_L_Vp = undefined;
     try testing.expectSize(c.L_L_Vp, ABISELECT(24, 20));
@@ -2336,7 +3726,12 @@ test "L_L_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
 
-// From T_Snnn_xay.c:76278:76285
+// From T_Snnn_xay.c:76268:76286
+// struct  L_S  {
+//   __tsi64 v1;
+//   short v2;
+// };
+
 test "L_S" {
     var lv: c.L_S = undefined;
     try testing.expectSize(c.L_S, ABISELECT(16, 12));
@@ -2345,7 +3740,13 @@ test "L_S" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
 }
 
-// From T_Snnn_xay.c:77026:77034
+// From T_Snnn_xay.c:77015:77035
+// struct  L_S_C  {
+//   __tsi64 v1;
+//   short v2;
+//   char v3;
+// };
+
 test "L_S_C" {
     var lv: c.L_S_C = undefined;
     try testing.expectSize(c.L_S_C, ABISELECT(16, 12));
@@ -2355,7 +3756,13 @@ test "L_S_C" {
     try testing.expectFieldOffset(&lv, &lv.v3, 10);
 }
 
-// From T_Snnn_xay.c:77051:77059
+// From T_Snnn_xay.c:77040:77060
+// struct  L_S_D  {
+//   __tsi64 v1;
+//   short v2;
+//   double v3;
+// };
+
 test "L_S_D" {
     var lv: c.L_S_D = undefined;
     try testing.expectSize(c.L_S_D, ABISELECT(24, 20));
@@ -2365,7 +3772,13 @@ test "L_S_D" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:77076:77084
+// From T_Snnn_xay.c:77065:77085
+// struct  L_S_F  {
+//   __tsi64 v1;
+//   short v2;
+//   float v3;
+// };
+
 test "L_S_F" {
     var lv: c.L_S_F = undefined;
     try testing.expectSize(c.L_S_F, 16);
@@ -2375,7 +3788,13 @@ test "L_S_F" {
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
 
-// From T_Snnn_xay.c:77101:77109
+// From T_Snnn_xay.c:77090:77110
+// struct  L_S_I  {
+//   __tsi64 v1;
+//   short v2;
+//   int v3;
+// };
+
 test "L_S_I" {
     var lv: c.L_S_I = undefined;
     try testing.expectSize(c.L_S_I, 16);
@@ -2385,7 +3804,13 @@ test "L_S_I" {
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
 
-// From T_Snnn_xay.c:77126:77134
+// From T_Snnn_xay.c:77115:77135
+// struct  L_S_Ip  {
+//   __tsi64 v1;
+//   short v2;
+//   int *v3;
+// };
+
 test "L_S_Ip" {
     var lv: c.L_S_Ip = undefined;
     try testing.expectSize(c.L_S_Ip, ABISELECT(24, 16));
@@ -2395,7 +3820,13 @@ test "L_S_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:77151:77159
+// From T_Snnn_xay.c:77140:77160
+// struct  L_S_L  {
+//   __tsi64 v1;
+//   short v2;
+//   __tsi64 v3;
+// };
+
 test "L_S_L" {
     var lv: c.L_S_L = undefined;
     try testing.expectSize(c.L_S_L, ABISELECT(24, 20));
@@ -2405,7 +3836,13 @@ test "L_S_L" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:77176:77184
+// From T_Snnn_xay.c:77165:77185
+// struct  L_S_S  {
+//   __tsi64 v1;
+//   short v2;
+//   short v3;
+// };
+
 test "L_S_S" {
     var lv: c.L_S_S = undefined;
     try testing.expectSize(c.L_S_S, ABISELECT(16, 12));
@@ -2415,7 +3852,13 @@ test "L_S_S" {
     try testing.expectFieldOffset(&lv, &lv.v3, 10);
 }
 
-// From T_Snnn_xay.c:77201:77209
+// From T_Snnn_xay.c:77190:77210
+// struct  L_S_Uc  {
+//   __tsi64 v1;
+//   short v2;
+//   unsigned char v3;
+// };
+
 test "L_S_Uc" {
     var lv: c.L_S_Uc = undefined;
     try testing.expectSize(c.L_S_Uc, ABISELECT(16, 12));
@@ -2425,7 +3868,13 @@ test "L_S_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v3, 10);
 }
 
-// From T_Snnn_xay.c:77226:77234
+// From T_Snnn_xay.c:77215:77235
+// struct  L_S_Ui  {
+//   __tsi64 v1;
+//   short v2;
+//   unsigned int v3;
+// };
+
 test "L_S_Ui" {
     var lv: c.L_S_Ui = undefined;
     try testing.expectSize(c.L_S_Ui, 16);
@@ -2435,7 +3884,13 @@ test "L_S_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
 
-// From T_Snnn_xay.c:77251:77259
+// From T_Snnn_xay.c:77240:77260
+// struct  L_S_Ul  {
+//   __tsi64 v1;
+//   short v2;
+//   __tsu64 v3;
+// };
+
 test "L_S_Ul" {
     var lv: c.L_S_Ul = undefined;
     try testing.expectSize(c.L_S_Ul, ABISELECT(24, 20));
@@ -2445,7 +3900,13 @@ test "L_S_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:77276:77284
+// From T_Snnn_xay.c:77265:77285
+// struct  L_S_Us  {
+//   __tsi64 v1;
+//   short v2;
+//   unsigned short v3;
+// };
+
 test "L_S_Us" {
     var lv: c.L_S_Us = undefined;
     try testing.expectSize(c.L_S_Us, ABISELECT(16, 12));
@@ -2455,7 +3916,13 @@ test "L_S_Us" {
     try testing.expectFieldOffset(&lv, &lv.v3, 10);
 }
 
-// From T_Snnn_xay.c:77301:77309
+// From T_Snnn_xay.c:77290:77310
+// struct  L_S_Vp  {
+//   __tsi64 v1;
+//   short v2;
+//   void *v3;
+// };
+
 test "L_S_Vp" {
     var lv: c.L_S_Vp = undefined;
     try testing.expectSize(c.L_S_Vp, ABISELECT(24, 16));
@@ -2465,7 +3932,12 @@ test "L_S_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:77325:77332
+// From T_Snnn_xay.c:77315:77333
+// struct  L_Uc  {
+//   __tsi64 v1;
+//   unsigned char v2;
+// };
+
 test "L_Uc" {
     var lv: c.L_Uc = undefined;
     try testing.expectSize(c.L_Uc, ABISELECT(16, 12));
@@ -2474,7 +3946,13 @@ test "L_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
 }
 
-// From T_Snnn_xay.c:78073:78081
+// From T_Snnn_xay.c:78062:78082
+// struct  L_Uc_C  {
+//   __tsi64 v1;
+//   unsigned char v2;
+//   char v3;
+// };
+
 test "L_Uc_C" {
     var lv: c.L_Uc_C = undefined;
     try testing.expectSize(c.L_Uc_C, ABISELECT(16, 12));
@@ -2484,7 +3962,13 @@ test "L_Uc_C" {
     try testing.expectFieldOffset(&lv, &lv.v3, 9);
 }
 
-// From T_Snnn_xay.c:78098:78106
+// From T_Snnn_xay.c:78087:78107
+// struct  L_Uc_D  {
+//   __tsi64 v1;
+//   unsigned char v2;
+//   double v3;
+// };
+
 test "L_Uc_D" {
     var lv: c.L_Uc_D = undefined;
     try testing.expectSize(c.L_Uc_D, ABISELECT(24, 20));
@@ -2494,7 +3978,13 @@ test "L_Uc_D" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:78123:78131
+// From T_Snnn_xay.c:78112:78132
+// struct  L_Uc_F  {
+//   __tsi64 v1;
+//   unsigned char v2;
+//   float v3;
+// };
+
 test "L_Uc_F" {
     var lv: c.L_Uc_F = undefined;
     try testing.expectSize(c.L_Uc_F, 16);
@@ -2504,7 +3994,13 @@ test "L_Uc_F" {
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
 
-// From T_Snnn_xay.c:78148:78156
+// From T_Snnn_xay.c:78137:78157
+// struct  L_Uc_I  {
+//   __tsi64 v1;
+//   unsigned char v2;
+//   int v3;
+// };
+
 test "L_Uc_I" {
     var lv: c.L_Uc_I = undefined;
     try testing.expectSize(c.L_Uc_I, 16);
@@ -2514,7 +4010,13 @@ test "L_Uc_I" {
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
 
-// From T_Snnn_xay.c:78173:78181
+// From T_Snnn_xay.c:78162:78182
+// struct  L_Uc_Ip  {
+//   __tsi64 v1;
+//   unsigned char v2;
+//   int *v3;
+// };
+
 test "L_Uc_Ip" {
     var lv: c.L_Uc_Ip = undefined;
     try testing.expectSize(c.L_Uc_Ip, ABISELECT(24, 16));
@@ -2524,7 +4026,13 @@ test "L_Uc_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:78198:78206
+// From T_Snnn_xay.c:78187:78207
+// struct  L_Uc_L  {
+//   __tsi64 v1;
+//   unsigned char v2;
+//   __tsi64 v3;
+// };
+
 test "L_Uc_L" {
     var lv: c.L_Uc_L = undefined;
     try testing.expectSize(c.L_Uc_L, ABISELECT(24, 20));
@@ -2534,7 +4042,13 @@ test "L_Uc_L" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:78223:78231
+// From T_Snnn_xay.c:78212:78232
+// struct  L_Uc_S  {
+//   __tsi64 v1;
+//   unsigned char v2;
+//   short v3;
+// };
+
 test "L_Uc_S" {
     var lv: c.L_Uc_S = undefined;
     try testing.expectSize(c.L_Uc_S, ABISELECT(16, 12));
@@ -2544,7 +4058,13 @@ test "L_Uc_S" {
     try testing.expectFieldOffset(&lv, &lv.v3, 10);
 }
 
-// From T_Snnn_xay.c:78248:78256
+// From T_Snnn_xay.c:78237:78257
+// struct  L_Uc_Uc  {
+//   __tsi64 v1;
+//   unsigned char v2;
+//   unsigned char v3;
+// };
+
 test "L_Uc_Uc" {
     var lv: c.L_Uc_Uc = undefined;
     try testing.expectSize(c.L_Uc_Uc, ABISELECT(16, 12));
@@ -2554,7 +4074,13 @@ test "L_Uc_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v3, 9);
 }
 
-// From T_Snnn_xay.c:78273:78281
+// From T_Snnn_xay.c:78262:78282
+// struct  L_Uc_Ui  {
+//   __tsi64 v1;
+//   unsigned char v2;
+//   unsigned int v3;
+// };
+
 test "L_Uc_Ui" {
     var lv: c.L_Uc_Ui = undefined;
     try testing.expectSize(c.L_Uc_Ui, 16);
@@ -2564,7 +4090,13 @@ test "L_Uc_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
 
-// From T_Snnn_xay.c:78298:78306
+// From T_Snnn_xay.c:78287:78307
+// struct  L_Uc_Ul  {
+//   __tsi64 v1;
+//   unsigned char v2;
+//   __tsu64 v3;
+// };
+
 test "L_Uc_Ul" {
     var lv: c.L_Uc_Ul = undefined;
     try testing.expectSize(c.L_Uc_Ul, ABISELECT(24, 20));
@@ -2574,7 +4106,13 @@ test "L_Uc_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:78323:78331
+// From T_Snnn_xay.c:78312:78332
+// struct  L_Uc_Us  {
+//   __tsi64 v1;
+//   unsigned char v2;
+//   unsigned short v3;
+// };
+
 test "L_Uc_Us" {
     var lv: c.L_Uc_Us = undefined;
     try testing.expectSize(c.L_Uc_Us, ABISELECT(16, 12));
@@ -2584,7 +4122,13 @@ test "L_Uc_Us" {
     try testing.expectFieldOffset(&lv, &lv.v3, 10);
 }
 
-// From T_Snnn_xay.c:78348:78356
+// From T_Snnn_xay.c:78337:78357
+// struct  L_Uc_Vp  {
+//   __tsi64 v1;
+//   unsigned char v2;
+//   void *v3;
+// };
+
 test "L_Uc_Vp" {
     var lv: c.L_Uc_Vp = undefined;
     try testing.expectSize(c.L_Uc_Vp, ABISELECT(24, 16));
@@ -2594,7 +4138,12 @@ test "L_Uc_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 
-// From T_Snnn_xay.c:78372:78379
+// From T_Snnn_xay.c:78362:78380
+// struct  L_Ui  {
+//   __tsi64 v1;
+//   unsigned int v2;
+// };
+
 test "L_Ui" {
     var lv: c.L_Ui = undefined;
     try testing.expectSize(c.L_Ui, ABISELECT(16, 12));

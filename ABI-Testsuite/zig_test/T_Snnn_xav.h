@@ -4,8 +4,9 @@
 #define __tsulong unsigned long
 
 #define bool    _Bool
+struct empty {};
 
-// From T_Snnn_xav.c:63392:63394
+// From T_Snnn_xav.c:63393:63395
 struct  C  {
   char v1;
 };
