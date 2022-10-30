@@ -16,4 +16,5 @@ test "C" {
     try testing.expectSize(c.C, 1);
     try testing.expectAlign(c.C, 1);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
+    try testing.expectOk(c.recv_C(.{ .v1 = 19 }));
 }

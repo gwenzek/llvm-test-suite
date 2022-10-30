@@ -18,8 +18,8 @@ test "Ip_C" {
     try testing.expectAlign(c.Ip_C, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
+    try testing.expectOk(c.recv_Ip_C(.{ .v1 = null, .v2 = 48 }));
 }
-
 // From T_Snnn_xay.c:27848:27868
 // struct  Ip_C_C  {
 //   int *v1;
@@ -34,8 +34,8 @@ test "Ip_C_C" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(9, 5));
+    try testing.expectOk(c.recv_Ip_C_C(.{ .v1 = null, .v2 = 100, .v3 = 54 }));
 }
-
 // From T_Snnn_xay.c:27873:27893
 // struct  Ip_C_D  {
 //   int *v1;
@@ -50,8 +50,8 @@ test "Ip_C_D" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_C_D(.{ .v1 = null, .v2 = 102, .v3 = 32420 }));
 }
-
 // From T_Snnn_xay.c:27898:27918
 // struct  Ip_C_F  {
 //   int *v1;
@@ -66,8 +66,8 @@ test "Ip_C_F" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
+    try testing.expectOk(c.recv_Ip_C_F(.{ .v1 = null, .v2 = 92, .v3 = 0.865673 }));
 }
-
 // From T_Snnn_xay.c:27923:27943
 // struct  Ip_C_I  {
 //   int *v1;
@@ -82,8 +82,8 @@ test "Ip_C_I" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
+    try testing.expectOk(c.recv_Ip_C_I(.{ .v1 = null, .v2 = 31, .v3 = 27354 }));
 }
-
 // From T_Snnn_xay.c:27948:27968
 // struct  Ip_C_Ip  {
 //   int *v1;
@@ -98,8 +98,8 @@ test "Ip_C_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_C_Ip(.{ .v1 = null, .v2 = 71, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:27973:27993
 // struct  Ip_C_L  {
 //   int *v1;
@@ -114,8 +114,8 @@ test "Ip_C_L" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_C_L(.{ .v1 = null, .v2 = 81, .v3 = 25596 }));
 }
-
 // From T_Snnn_xay.c:27998:28018
 // struct  Ip_C_S  {
 //   int *v1;
@@ -130,8 +130,8 @@ test "Ip_C_S" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(10, 6));
+    try testing.expectOk(c.recv_Ip_C_S(.{ .v1 = null, .v2 = 35, .v3 = 26993 }));
 }
-
 // From T_Snnn_xay.c:28023:28043
 // struct  Ip_C_Uc  {
 //   int *v1;
@@ -146,8 +146,8 @@ test "Ip_C_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(9, 5));
+    try testing.expectOk(c.recv_Ip_C_Uc(.{ .v1 = null, .v2 = 62, .v3 = 43 }));
 }
-
 // From T_Snnn_xay.c:28048:28068
 // struct  Ip_C_Ui  {
 //   int *v1;
@@ -162,8 +162,8 @@ test "Ip_C_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
+    try testing.expectOk(c.recv_Ip_C_Ui(.{ .v1 = null, .v2 = 5, .v3 = 17445 }));
 }
-
 // From T_Snnn_xay.c:28073:28093
 // struct  Ip_C_Ul  {
 //   int *v1;
@@ -178,8 +178,8 @@ test "Ip_C_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_C_Ul(.{ .v1 = null, .v2 = 8, .v3 = 19265 }));
 }
-
 // From T_Snnn_xay.c:28098:28118
 // struct  Ip_C_Us  {
 //   int *v1;
@@ -194,8 +194,8 @@ test "Ip_C_Us" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(10, 6));
+    try testing.expectOk(c.recv_Ip_C_Us(.{ .v1 = null, .v2 = 103, .v3 = 22111 }));
 }
-
 // From T_Snnn_xay.c:28123:28143
 // struct  Ip_C_Vp  {
 //   int *v1;
@@ -210,8 +210,8 @@ test "Ip_C_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_C_Vp(.{ .v1 = null, .v2 = 95, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:28148:28166
 // struct  Ip_D  {
 //   int *v1;
@@ -224,8 +224,8 @@ test "Ip_D" {
     try testing.expectAlign(c.Ip_D, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
+    try testing.expectOk(c.recv_Ip_D(.{ .v1 = null, .v2 = 27579 }));
 }
-
 // From T_Snnn_xay.c:28895:28915
 // struct  Ip_D_C  {
 //   int *v1;
@@ -240,8 +240,8 @@ test "Ip_D_C" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_Ip_D_C(.{ .v1 = null, .v2 = 8302, .v3 = 93 }));
 }
-
 // From T_Snnn_xay.c:28920:28940
 // struct  Ip_D_D  {
 //   int *v1;
@@ -256,8 +256,8 @@ test "Ip_D_D" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_Ip_D_D(.{ .v1 = null, .v2 = 14455, .v3 = 17607 }));
 }
-
 // From T_Snnn_xay.c:28945:28965
 // struct  Ip_D_F  {
 //   int *v1;
@@ -272,8 +272,8 @@ test "Ip_D_F" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_Ip_D_F(.{ .v1 = null, .v2 = 13057, .v3 = 0.144960 }));
 }
-
 // From T_Snnn_xay.c:28970:28990
 // struct  Ip_D_I  {
 //   int *v1;
@@ -288,8 +288,8 @@ test "Ip_D_I" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_Ip_D_I(.{ .v1 = null, .v2 = 15113, .v3 = 9609 }));
 }
-
 // From T_Snnn_xay.c:28995:29015
 // struct  Ip_D_Ip  {
 //   int *v1;
@@ -304,8 +304,8 @@ test "Ip_D_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_Ip_D_Ip(.{ .v1 = null, .v2 = 363, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:29020:29040
 // struct  Ip_D_L  {
 //   int *v1;
@@ -320,8 +320,8 @@ test "Ip_D_L" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_Ip_D_L(.{ .v1 = null, .v2 = 31612, .v3 = 31346 }));
 }
-
 // From T_Snnn_xay.c:29045:29065
 // struct  Ip_D_S  {
 //   int *v1;
@@ -336,8 +336,8 @@ test "Ip_D_S" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_Ip_D_S(.{ .v1 = null, .v2 = 17322, .v3 = 29414 }));
 }
-
 // From T_Snnn_xay.c:29070:29090
 // struct  Ip_D_Uc  {
 //   int *v1;
@@ -352,8 +352,8 @@ test "Ip_D_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_Ip_D_Uc(.{ .v1 = null, .v2 = 28617, .v3 = 29 }));
 }
-
 // From T_Snnn_xay.c:29095:29115
 // struct  Ip_D_Ui  {
 //   int *v1;
@@ -368,8 +368,8 @@ test "Ip_D_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_Ip_D_Ui(.{ .v1 = null, .v2 = 12052, .v3 = 29437 }));
 }
-
 // From T_Snnn_xay.c:29120:29140
 // struct  Ip_D_Ul  {
 //   int *v1;
@@ -384,8 +384,8 @@ test "Ip_D_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_Ip_D_Ul(.{ .v1 = null, .v2 = 15829, .v3 = 121 }));
 }
-
 // From T_Snnn_xay.c:29145:29165
 // struct  Ip_D_Us  {
 //   int *v1;
@@ -400,8 +400,8 @@ test "Ip_D_Us" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_Ip_D_Us(.{ .v1 = null, .v2 = 28332, .v3 = 2255 }));
 }
-
 // From T_Snnn_xay.c:29170:29190
 // struct  Ip_D_Vp  {
 //   int *v1;
@@ -416,8 +416,8 @@ test "Ip_D_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_Ip_D_Vp(.{ .v1 = null, .v2 = 32682, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:29195:29213
 // struct  Ip_F  {
 //   int *v1;
@@ -430,8 +430,8 @@ test "Ip_F" {
     try testing.expectAlign(c.Ip_F, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
+    try testing.expectOk(c.recv_Ip_F(.{ .v1 = null, .v2 = 0.465300 }));
 }
-
 // From T_Snnn_xay.c:29942:29962
 // struct  Ip_F_C  {
 //   int *v1;
@@ -446,8 +446,8 @@ test "Ip_F_C" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
+    try testing.expectOk(c.recv_Ip_F_C(.{ .v1 = null, .v2 = 0.351599, .v3 = 113 }));
 }
-
 // From T_Snnn_xay.c:29967:29987
 // struct  Ip_F_D  {
 //   int *v1;
@@ -462,8 +462,8 @@ test "Ip_F_D" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_F_D(.{ .v1 = null, .v2 = 0.286402, .v3 = 30342 }));
 }
-
 // From T_Snnn_xay.c:29992:30012
 // struct  Ip_F_F  {
 //   int *v1;
@@ -478,8 +478,8 @@ test "Ip_F_F" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
+    try testing.expectOk(c.recv_Ip_F_F(.{ .v1 = null, .v2 = 0.891372, .v3 = 0.894372 }));
 }
-
 // From T_Snnn_xay.c:30017:30037
 // struct  Ip_F_I  {
 //   int *v1;
@@ -494,8 +494,8 @@ test "Ip_F_I" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
+    try testing.expectOk(c.recv_Ip_F_I(.{ .v1 = null, .v2 = 0.320617, .v3 = 24592 }));
 }
-
 // From T_Snnn_xay.c:30042:30062
 // struct  Ip_F_Ip  {
 //   int *v1;
@@ -510,8 +510,8 @@ test "Ip_F_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_F_Ip(.{ .v1 = null, .v2 = 0.373312, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:30067:30087
 // struct  Ip_F_L  {
 //   int *v1;
@@ -526,8 +526,8 @@ test "Ip_F_L" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_F_L(.{ .v1 = null, .v2 = 0.678995, .v3 = 29807 }));
 }
-
 // From T_Snnn_xay.c:30092:30112
 // struct  Ip_F_S  {
 //   int *v1;
@@ -542,8 +542,8 @@ test "Ip_F_S" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
+    try testing.expectOk(c.recv_Ip_F_S(.{ .v1 = null, .v2 = 0.625732, .v3 = 23718 }));
 }
-
 // From T_Snnn_xay.c:30117:30137
 // struct  Ip_F_Uc  {
 //   int *v1;
@@ -558,8 +558,8 @@ test "Ip_F_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
+    try testing.expectOk(c.recv_Ip_F_Uc(.{ .v1 = null, .v2 = 0.050991, .v3 = 89 }));
 }
-
 // From T_Snnn_xay.c:30142:30162
 // struct  Ip_F_Ui  {
 //   int *v1;
@@ -574,8 +574,8 @@ test "Ip_F_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
+    try testing.expectOk(c.recv_Ip_F_Ui(.{ .v1 = null, .v2 = 0.184510, .v3 = 9654 }));
 }
-
 // From T_Snnn_xay.c:30167:30187
 // struct  Ip_F_Ul  {
 //   int *v1;
@@ -590,8 +590,8 @@ test "Ip_F_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_F_Ul(.{ .v1 = null, .v2 = 0.658581, .v3 = 19551 }));
 }
-
 // From T_Snnn_xay.c:30192:30212
 // struct  Ip_F_Us  {
 //   int *v1;
@@ -606,8 +606,8 @@ test "Ip_F_Us" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
+    try testing.expectOk(c.recv_Ip_F_Us(.{ .v1 = null, .v2 = 0.896445, .v3 = 4547 }));
 }
-
 // From T_Snnn_xay.c:30217:30237
 // struct  Ip_F_Vp  {
 //   int *v1;
@@ -622,8 +622,8 @@ test "Ip_F_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_F_Vp(.{ .v1 = null, .v2 = 0.862314, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:30242:30260
 // struct  Ip_I  {
 //   int *v1;
@@ -636,8 +636,8 @@ test "Ip_I" {
     try testing.expectAlign(c.Ip_I, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
+    try testing.expectOk(c.recv_Ip_I(.{ .v1 = null, .v2 = 3367 }));
 }
-
 // From T_Snnn_xay.c:30989:31009
 // struct  Ip_I_C  {
 //   int *v1;
@@ -652,8 +652,8 @@ test "Ip_I_C" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
+    try testing.expectOk(c.recv_Ip_I_C(.{ .v1 = null, .v2 = 31149, .v3 = 116 }));
 }
-
 // From T_Snnn_xay.c:31014:31034
 // struct  Ip_I_D  {
 //   int *v1;
@@ -668,8 +668,8 @@ test "Ip_I_D" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_I_D(.{ .v1 = null, .v2 = 7672, .v3 = 28333 }));
 }
-
 // From T_Snnn_xay.c:31039:31059
 // struct  Ip_I_F  {
 //   int *v1;
@@ -684,8 +684,8 @@ test "Ip_I_F" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
+    try testing.expectOk(c.recv_Ip_I_F(.{ .v1 = null, .v2 = 1771, .v3 = 0.016893 }));
 }
-
 // From T_Snnn_xay.c:31064:31084
 // struct  Ip_I_I  {
 //   int *v1;
@@ -700,8 +700,8 @@ test "Ip_I_I" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
+    try testing.expectOk(c.recv_Ip_I_I(.{ .v1 = null, .v2 = 5017, .v3 = 20845 }));
 }
-
 // From T_Snnn_xay.c:31089:31109
 // struct  Ip_I_Ip  {
 //   int *v1;
@@ -716,8 +716,8 @@ test "Ip_I_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_I_Ip(.{ .v1 = null, .v2 = 6958, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:31114:31134
 // struct  Ip_I_L  {
 //   int *v1;
@@ -732,8 +732,8 @@ test "Ip_I_L" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_I_L(.{ .v1 = null, .v2 = 8160, .v3 = 1515 }));
 }
-
 // From T_Snnn_xay.c:31139:31159
 // struct  Ip_I_S  {
 //   int *v1;
@@ -748,8 +748,8 @@ test "Ip_I_S" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
+    try testing.expectOk(c.recv_Ip_I_S(.{ .v1 = null, .v2 = 8057, .v3 = 9459 }));
 }
-
 // From T_Snnn_xay.c:31164:31184
 // struct  Ip_I_Uc  {
 //   int *v1;
@@ -764,8 +764,8 @@ test "Ip_I_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
+    try testing.expectOk(c.recv_Ip_I_Uc(.{ .v1 = null, .v2 = 28491, .v3 = 12 }));
 }
-
 // From T_Snnn_xay.c:31189:31209
 // struct  Ip_I_Ui  {
 //   int *v1;
@@ -780,8 +780,8 @@ test "Ip_I_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
+    try testing.expectOk(c.recv_Ip_I_Ui(.{ .v1 = null, .v2 = 28684, .v3 = 30439 }));
 }
-
 // From T_Snnn_xay.c:31214:31234
 // struct  Ip_I_Ul  {
 //   int *v1;
@@ -796,8 +796,8 @@ test "Ip_I_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_I_Ul(.{ .v1 = null, .v2 = 4941, .v3 = 459 }));
 }
-
 // From T_Snnn_xay.c:31239:31259
 // struct  Ip_I_Us  {
 //   int *v1;
@@ -812,8 +812,8 @@ test "Ip_I_Us" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
+    try testing.expectOk(c.recv_Ip_I_Us(.{ .v1 = null, .v2 = 21937, .v3 = 12140 }));
 }
-
 // From T_Snnn_xay.c:31264:31284
 // struct  Ip_I_Vp  {
 //   int *v1;
@@ -828,8 +828,8 @@ test "Ip_I_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_I_Vp(.{ .v1 = null, .v2 = 10363, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:31289:31307
 // struct  Ip_Ip  {
 //   int *v1;
@@ -842,8 +842,8 @@ test "Ip_Ip" {
     try testing.expectAlign(c.Ip_Ip, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
+    try testing.expectOk(c.recv_Ip_Ip(.{ .v1 = null, .v2 = null }));
 }
-
 // From T_Snnn_xay.c:32036:32056
 // struct  Ip_Ip_C  {
 //   int *v1;
@@ -858,8 +858,8 @@ test "Ip_Ip_C" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Ip_C(.{ .v1 = null, .v2 = null, .v3 = 114 }));
 }
-
 // From T_Snnn_xay.c:32061:32081
 // struct  Ip_Ip_D  {
 //   int *v1;
@@ -874,8 +874,8 @@ test "Ip_Ip_D" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Ip_D(.{ .v1 = null, .v2 = null, .v3 = 10612 }));
 }
-
 // From T_Snnn_xay.c:32086:32106
 // struct  Ip_Ip_F  {
 //   int *v1;
@@ -890,8 +890,8 @@ test "Ip_Ip_F" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Ip_F(.{ .v1 = null, .v2 = null, .v3 = 0.124238 }));
 }
-
 // From T_Snnn_xay.c:32111:32131
 // struct  Ip_Ip_I  {
 //   int *v1;
@@ -906,8 +906,8 @@ test "Ip_Ip_I" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Ip_I(.{ .v1 = null, .v2 = null, .v3 = 280 }));
 }
-
 // From T_Snnn_xay.c:32136:32156
 // struct  Ip_Ip_Ip  {
 //   int *v1;
@@ -922,8 +922,8 @@ test "Ip_Ip_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Ip_Ip(.{ .v1 = null, .v2 = null, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:32161:32181
 // struct  Ip_Ip_L  {
 //   int *v1;
@@ -938,8 +938,8 @@ test "Ip_Ip_L" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Ip_L(.{ .v1 = null, .v2 = null, .v3 = 22120 }));
 }
-
 // From T_Snnn_xay.c:32186:32206
 // struct  Ip_Ip_S  {
 //   int *v1;
@@ -954,8 +954,8 @@ test "Ip_Ip_S" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Ip_S(.{ .v1 = null, .v2 = null, .v3 = 32235 }));
 }
-
 // From T_Snnn_xay.c:32211:32231
 // struct  Ip_Ip_Uc  {
 //   int *v1;
@@ -970,8 +970,8 @@ test "Ip_Ip_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Ip_Uc(.{ .v1 = null, .v2 = null, .v3 = 78 }));
 }
-
 // From T_Snnn_xay.c:32236:32256
 // struct  Ip_Ip_Ui  {
 //   int *v1;
@@ -986,8 +986,8 @@ test "Ip_Ip_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Ip_Ui(.{ .v1 = null, .v2 = null, .v3 = 18551 }));
 }
-
 // From T_Snnn_xay.c:32261:32281
 // struct  Ip_Ip_Ul  {
 //   int *v1;
@@ -1002,8 +1002,8 @@ test "Ip_Ip_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Ip_Ul(.{ .v1 = null, .v2 = null, .v3 = 15251 }));
 }
-
 // From T_Snnn_xay.c:32286:32306
 // struct  Ip_Ip_Us  {
 //   int *v1;
@@ -1018,8 +1018,8 @@ test "Ip_Ip_Us" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Ip_Us(.{ .v1 = null, .v2 = null, .v3 = 5948 }));
 }
-
 // From T_Snnn_xay.c:32311:32331
 // struct  Ip_Ip_Vp  {
 //   int *v1;
@@ -1034,8 +1034,8 @@ test "Ip_Ip_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Ip_Vp(.{ .v1 = null, .v2 = null, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:32336:32354
 // struct  Ip_L  {
 //   int *v1;
@@ -1048,8 +1048,8 @@ test "Ip_L" {
     try testing.expectAlign(c.Ip_L, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
+    try testing.expectOk(c.recv_Ip_L(.{ .v1 = null, .v2 = 21125 }));
 }
-
 // From T_Snnn_xay.c:33083:33103
 // struct  Ip_L_C  {
 //   int *v1;
@@ -1064,8 +1064,8 @@ test "Ip_L_C" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_Ip_L_C(.{ .v1 = null, .v2 = 1312, .v3 = 12 }));
 }
-
 // From T_Snnn_xay.c:33108:33128
 // struct  Ip_L_D  {
 //   int *v1;
@@ -1080,8 +1080,8 @@ test "Ip_L_D" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_Ip_L_D(.{ .v1 = null, .v2 = 27466, .v3 = 27447 }));
 }
-
 // From T_Snnn_xay.c:33133:33153
 // struct  Ip_L_F  {
 //   int *v1;
@@ -1096,8 +1096,8 @@ test "Ip_L_F" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_Ip_L_F(.{ .v1 = null, .v2 = 17855, .v3 = 0.472229 }));
 }
-
 // From T_Snnn_xay.c:33158:33178
 // struct  Ip_L_I  {
 //   int *v1;
@@ -1112,8 +1112,8 @@ test "Ip_L_I" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_Ip_L_I(.{ .v1 = null, .v2 = 7654, .v3 = 10911 }));
 }
-
 // From T_Snnn_xay.c:33183:33203
 // struct  Ip_L_Ip  {
 //   int *v1;
@@ -1128,8 +1128,8 @@ test "Ip_L_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_Ip_L_Ip(.{ .v1 = null, .v2 = 26859, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:33208:33228
 // struct  Ip_L_L  {
 //   int *v1;
@@ -1144,8 +1144,8 @@ test "Ip_L_L" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_Ip_L_L(.{ .v1 = null, .v2 = 18638, .v3 = 12483 }));
 }
-
 // From T_Snnn_xay.c:33233:33253
 // struct  Ip_L_S  {
 //   int *v1;
@@ -1160,8 +1160,8 @@ test "Ip_L_S" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_Ip_L_S(.{ .v1 = null, .v2 = 28984, .v3 = 32672 }));
 }
-
 // From T_Snnn_xay.c:33258:33278
 // struct  Ip_L_Uc  {
 //   int *v1;
@@ -1176,8 +1176,8 @@ test "Ip_L_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_Ip_L_Uc(.{ .v1 = null, .v2 = 9817, .v3 = 64 }));
 }
-
 // From T_Snnn_xay.c:33283:33303
 // struct  Ip_L_Ui  {
 //   int *v1;
@@ -1192,8 +1192,8 @@ test "Ip_L_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_Ip_L_Ui(.{ .v1 = null, .v2 = 28354, .v3 = 7440 }));
 }
-
 // From T_Snnn_xay.c:33308:33328
 // struct  Ip_L_Ul  {
 //   int *v1;
@@ -1208,8 +1208,8 @@ test "Ip_L_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_Ip_L_Ul(.{ .v1 = null, .v2 = 7711, .v3 = 11119 }));
 }
-
 // From T_Snnn_xay.c:33333:33353
 // struct  Ip_L_Us  {
 //   int *v1;
@@ -1224,8 +1224,8 @@ test "Ip_L_Us" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_Ip_L_Us(.{ .v1 = null, .v2 = 11565, .v3 = 21325 }));
 }
-
 // From T_Snnn_xay.c:33358:33378
 // struct  Ip_L_Vp  {
 //   int *v1;
@@ -1240,8 +1240,8 @@ test "Ip_L_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_Ip_L_Vp(.{ .v1 = null, .v2 = 5895, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:33383:33401
 // struct  Ip_S  {
 //   int *v1;
@@ -1254,8 +1254,8 @@ test "Ip_S" {
     try testing.expectAlign(c.Ip_S, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
+    try testing.expectOk(c.recv_Ip_S(.{ .v1 = null, .v2 = 9691 }));
 }
-
 // From T_Snnn_xay.c:34130:34150
 // struct  Ip_S_C  {
 //   int *v1;
@@ -1270,8 +1270,8 @@ test "Ip_S_C" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(10, 6));
+    try testing.expectOk(c.recv_Ip_S_C(.{ .v1 = null, .v2 = 26200, .v3 = 112 }));
 }
-
 // From T_Snnn_xay.c:34155:34175
 // struct  Ip_S_D  {
 //   int *v1;
@@ -1286,8 +1286,8 @@ test "Ip_S_D" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_S_D(.{ .v1 = null, .v2 = 10971, .v3 = 16559 }));
 }
-
 // From T_Snnn_xay.c:34180:34200
 // struct  Ip_S_F  {
 //   int *v1;
@@ -1302,8 +1302,8 @@ test "Ip_S_F" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
+    try testing.expectOk(c.recv_Ip_S_F(.{ .v1 = null, .v2 = 6508, .v3 = 0.221816 }));
 }
-
 // From T_Snnn_xay.c:34205:34225
 // struct  Ip_S_I  {
 //   int *v1;
@@ -1318,8 +1318,8 @@ test "Ip_S_I" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
+    try testing.expectOk(c.recv_Ip_S_I(.{ .v1 = null, .v2 = 10414, .v3 = 28549 }));
 }
-
 // From T_Snnn_xay.c:34230:34250
 // struct  Ip_S_Ip  {
 //   int *v1;
@@ -1334,8 +1334,8 @@ test "Ip_S_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_S_Ip(.{ .v1 = null, .v2 = 15406, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:34255:34275
 // struct  Ip_S_L  {
 //   int *v1;
@@ -1350,8 +1350,8 @@ test "Ip_S_L" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_S_L(.{ .v1 = null, .v2 = 19761, .v3 = 19245 }));
 }
-
 // From T_Snnn_xay.c:34280:34300
 // struct  Ip_S_S  {
 //   int *v1;
@@ -1366,8 +1366,8 @@ test "Ip_S_S" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(10, 6));
+    try testing.expectOk(c.recv_Ip_S_S(.{ .v1 = null, .v2 = 18559, .v3 = 4079 }));
 }
-
 // From T_Snnn_xay.c:34305:34325
 // struct  Ip_S_Uc  {
 //   int *v1;
@@ -1382,8 +1382,8 @@ test "Ip_S_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(10, 6));
+    try testing.expectOk(c.recv_Ip_S_Uc(.{ .v1 = null, .v2 = 25806, .v3 = 10 }));
 }
-
 // From T_Snnn_xay.c:34330:34350
 // struct  Ip_S_Ui  {
 //   int *v1;
@@ -1398,8 +1398,8 @@ test "Ip_S_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
+    try testing.expectOk(c.recv_Ip_S_Ui(.{ .v1 = null, .v2 = 23886, .v3 = 4382 }));
 }
-
 // From T_Snnn_xay.c:34355:34375
 // struct  Ip_S_Ul  {
 //   int *v1;
@@ -1414,8 +1414,8 @@ test "Ip_S_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_S_Ul(.{ .v1 = null, .v2 = 15124, .v3 = 473 }));
 }
-
 // From T_Snnn_xay.c:34380:34400
 // struct  Ip_S_Us  {
 //   int *v1;
@@ -1430,8 +1430,8 @@ test "Ip_S_Us" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(10, 6));
+    try testing.expectOk(c.recv_Ip_S_Us(.{ .v1 = null, .v2 = 152, .v3 = 18830 }));
 }
-
 // From T_Snnn_xay.c:34405:34425
 // struct  Ip_S_Vp  {
 //   int *v1;
@@ -1446,8 +1446,8 @@ test "Ip_S_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_S_Vp(.{ .v1 = null, .v2 = 15723, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:34430:34448
 // struct  Ip_Uc  {
 //   int *v1;
@@ -1460,8 +1460,8 @@ test "Ip_Uc" {
     try testing.expectAlign(c.Ip_Uc, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
+    try testing.expectOk(c.recv_Ip_Uc(.{ .v1 = null, .v2 = 23 }));
 }
-
 // From T_Snnn_xay.c:35177:35197
 // struct  Ip_Uc_C  {
 //   int *v1;
@@ -1476,8 +1476,8 @@ test "Ip_Uc_C" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(9, 5));
+    try testing.expectOk(c.recv_Ip_Uc_C(.{ .v1 = null, .v2 = 60, .v3 = 27 }));
 }
-
 // From T_Snnn_xay.c:35202:35222
 // struct  Ip_Uc_D  {
 //   int *v1;
@@ -1492,8 +1492,8 @@ test "Ip_Uc_D" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Uc_D(.{ .v1 = null, .v2 = 100, .v3 = 32437 }));
 }
-
 // From T_Snnn_xay.c:35227:35247
 // struct  Ip_Uc_F  {
 //   int *v1;
@@ -1508,8 +1508,8 @@ test "Ip_Uc_F" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
+    try testing.expectOk(c.recv_Ip_Uc_F(.{ .v1 = null, .v2 = 30, .v3 = 0.004089 }));
 }
-
 // From T_Snnn_xay.c:35252:35272
 // struct  Ip_Uc_I  {
 //   int *v1;
@@ -1524,8 +1524,8 @@ test "Ip_Uc_I" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
+    try testing.expectOk(c.recv_Ip_Uc_I(.{ .v1 = null, .v2 = 80, .v3 = 21664 }));
 }
-
 // From T_Snnn_xay.c:35277:35297
 // struct  Ip_Uc_Ip  {
 //   int *v1;
@@ -1540,8 +1540,8 @@ test "Ip_Uc_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Uc_Ip(.{ .v1 = null, .v2 = 48, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:35302:35322
 // struct  Ip_Uc_L  {
 //   int *v1;
@@ -1556,8 +1556,8 @@ test "Ip_Uc_L" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Uc_L(.{ .v1 = null, .v2 = 81, .v3 = 23135 }));
 }
-
 // From T_Snnn_xay.c:35327:35347
 // struct  Ip_Uc_S  {
 //   int *v1;
@@ -1572,8 +1572,8 @@ test "Ip_Uc_S" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(10, 6));
+    try testing.expectOk(c.recv_Ip_Uc_S(.{ .v1 = null, .v2 = 79, .v3 = 16891 }));
 }
-
 // From T_Snnn_xay.c:35352:35372
 // struct  Ip_Uc_Uc  {
 //   int *v1;
@@ -1588,8 +1588,8 @@ test "Ip_Uc_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(9, 5));
+    try testing.expectOk(c.recv_Ip_Uc_Uc(.{ .v1 = null, .v2 = 8, .v3 = 27 }));
 }
-
 // From T_Snnn_xay.c:35377:35397
 // struct  Ip_Uc_Ui  {
 //   int *v1;
@@ -1604,8 +1604,8 @@ test "Ip_Uc_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
+    try testing.expectOk(c.recv_Ip_Uc_Ui(.{ .v1 = null, .v2 = 49, .v3 = 23504 }));
 }
-
 // From T_Snnn_xay.c:35402:35422
 // struct  Ip_Uc_Ul  {
 //   int *v1;
@@ -1620,8 +1620,8 @@ test "Ip_Uc_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Uc_Ul(.{ .v1 = null, .v2 = 77, .v3 = 14264 }));
 }
-
 // From T_Snnn_xay.c:35427:35447
 // struct  Ip_Uc_Us  {
 //   int *v1;
@@ -1636,8 +1636,8 @@ test "Ip_Uc_Us" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(10, 6));
+    try testing.expectOk(c.recv_Ip_Uc_Us(.{ .v1 = null, .v2 = 92, .v3 = 21738 }));
 }
-
 // From T_Snnn_xay.c:35452:35472
 // struct  Ip_Uc_Vp  {
 //   int *v1;
@@ -1652,8 +1652,8 @@ test "Ip_Uc_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Uc_Vp(.{ .v1 = null, .v2 = 9, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:35477:35495
 // struct  Ip_Ui  {
 //   int *v1;
@@ -1666,8 +1666,8 @@ test "Ip_Ui" {
     try testing.expectAlign(c.Ip_Ui, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
+    try testing.expectOk(c.recv_Ip_Ui(.{ .v1 = null, .v2 = 13021 }));
 }
-
 // From T_Snnn_xay.c:36224:36244
 // struct  Ip_Ui_C  {
 //   int *v1;
@@ -1682,8 +1682,8 @@ test "Ip_Ui_C" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
+    try testing.expectOk(c.recv_Ip_Ui_C(.{ .v1 = null, .v2 = 19997, .v3 = 43 }));
 }
-
 // From T_Snnn_xay.c:36249:36269
 // struct  Ip_Ui_D  {
 //   int *v1;
@@ -1698,8 +1698,8 @@ test "Ip_Ui_D" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Ui_D(.{ .v1 = null, .v2 = 21799, .v3 = 12886 }));
 }
-
 // From T_Snnn_xay.c:36274:36294
 // struct  Ip_Ui_F  {
 //   int *v1;
@@ -1714,8 +1714,8 @@ test "Ip_Ui_F" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
+    try testing.expectOk(c.recv_Ip_Ui_F(.{ .v1 = null, .v2 = 5378, .v3 = 0.506244 }));
 }
-
 // From T_Snnn_xay.c:36299:36319
 // struct  Ip_Ui_I  {
 //   int *v1;
@@ -1730,8 +1730,8 @@ test "Ip_Ui_I" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
+    try testing.expectOk(c.recv_Ip_Ui_I(.{ .v1 = null, .v2 = 25809, .v3 = 23075 }));
 }
-
 // From T_Snnn_xay.c:36324:36344
 // struct  Ip_Ui_Ip  {
 //   int *v1;
@@ -1746,8 +1746,8 @@ test "Ip_Ui_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Ui_Ip(.{ .v1 = null, .v2 = 6521, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:36349:36369
 // struct  Ip_Ui_L  {
 //   int *v1;
@@ -1762,8 +1762,8 @@ test "Ip_Ui_L" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Ui_L(.{ .v1 = null, .v2 = 14878, .v3 = 1754 }));
 }
-
 // From T_Snnn_xay.c:36374:36394
 // struct  Ip_Ui_S  {
 //   int *v1;
@@ -1778,8 +1778,8 @@ test "Ip_Ui_S" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
+    try testing.expectOk(c.recv_Ip_Ui_S(.{ .v1 = null, .v2 = 16653, .v3 = 15118 }));
 }
-
 // From T_Snnn_xay.c:36399:36419
 // struct  Ip_Ui_Uc  {
 //   int *v1;
@@ -1794,8 +1794,8 @@ test "Ip_Ui_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
+    try testing.expectOk(c.recv_Ip_Ui_Uc(.{ .v1 = null, .v2 = 10246, .v3 = 61 }));
 }
-
 // From T_Snnn_xay.c:36424:36444
 // struct  Ip_Ui_Ui  {
 //   int *v1;
@@ -1810,8 +1810,8 @@ test "Ip_Ui_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
+    try testing.expectOk(c.recv_Ip_Ui_Ui(.{ .v1 = null, .v2 = 18882, .v3 = 5120 }));
 }
-
 // From T_Snnn_xay.c:36449:36469
 // struct  Ip_Ui_Ul  {
 //   int *v1;
@@ -1826,8 +1826,8 @@ test "Ip_Ui_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Ui_Ul(.{ .v1 = null, .v2 = 1490, .v3 = 30616 }));
 }
-
 // From T_Snnn_xay.c:36474:36494
 // struct  Ip_Ui_Us  {
 //   int *v1;
@@ -1842,8 +1842,8 @@ test "Ip_Ui_Us" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
+    try testing.expectOk(c.recv_Ip_Ui_Us(.{ .v1 = null, .v2 = 26123, .v3 = 31152 }));
 }
-
 // From T_Snnn_xay.c:36499:36519
 // struct  Ip_Ui_Vp  {
 //   int *v1;
@@ -1858,8 +1858,8 @@ test "Ip_Ui_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Ui_Vp(.{ .v1 = null, .v2 = 17588, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:36524:36542
 // struct  Ip_Ul  {
 //   int *v1;
@@ -1872,8 +1872,8 @@ test "Ip_Ul" {
     try testing.expectAlign(c.Ip_Ul, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
+    try testing.expectOk(c.recv_Ip_Ul(.{ .v1 = null, .v2 = 12948 }));
 }
-
 // From T_Snnn_xay.c:37271:37291
 // struct  Ip_Ul_C  {
 //   int *v1;
@@ -1888,8 +1888,8 @@ test "Ip_Ul_C" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_Ip_Ul_C(.{ .v1 = null, .v2 = 22886, .v3 = 58 }));
 }
-
 // From T_Snnn_xay.c:37296:37316
 // struct  Ip_Ul_D  {
 //   int *v1;
@@ -1904,8 +1904,8 @@ test "Ip_Ul_D" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_Ip_Ul_D(.{ .v1 = null, .v2 = 16802, .v3 = 14176 }));
 }
-
 // From T_Snnn_xay.c:37321:37341
 // struct  Ip_Ul_F  {
 //   int *v1;
@@ -1920,8 +1920,8 @@ test "Ip_Ul_F" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_Ip_Ul_F(.{ .v1 = null, .v2 = 29674, .v3 = 0.575672 }));
 }
-
 // From T_Snnn_xay.c:37346:37366
 // struct  Ip_Ul_I  {
 //   int *v1;
@@ -1936,8 +1936,8 @@ test "Ip_Ul_I" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_Ip_Ul_I(.{ .v1 = null, .v2 = 17645, .v3 = 19430 }));
 }
-
 // From T_Snnn_xay.c:37371:37391
 // struct  Ip_Ul_Ip  {
 //   int *v1;
@@ -1952,8 +1952,8 @@ test "Ip_Ul_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_Ip_Ul_Ip(.{ .v1 = null, .v2 = 13000, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:37396:37416
 // struct  Ip_Ul_L  {
 //   int *v1;
@@ -1968,8 +1968,8 @@ test "Ip_Ul_L" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_Ip_Ul_L(.{ .v1 = null, .v2 = 25150, .v3 = 28024 }));
 }
-
 // From T_Snnn_xay.c:37421:37441
 // struct  Ip_Ul_S  {
 //   int *v1;
@@ -1984,8 +1984,8 @@ test "Ip_Ul_S" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_Ip_Ul_S(.{ .v1 = null, .v2 = 26141, .v3 = 12065 }));
 }
-
 // From T_Snnn_xay.c:37446:37466
 // struct  Ip_Ul_Uc  {
 //   int *v1;
@@ -2000,8 +2000,8 @@ test "Ip_Ul_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_Ip_Ul_Uc(.{ .v1 = null, .v2 = 18180, .v3 = 51 }));
 }
-
 // From T_Snnn_xay.c:37471:37491
 // struct  Ip_Ul_Ui  {
 //   int *v1;
@@ -2016,8 +2016,8 @@ test "Ip_Ul_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_Ip_Ul_Ui(.{ .v1 = null, .v2 = 12813, .v3 = 25993 }));
 }
-
 // From T_Snnn_xay.c:37496:37516
 // struct  Ip_Ul_Ul  {
 //   int *v1;
@@ -2032,8 +2032,8 @@ test "Ip_Ul_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_Ip_Ul_Ul(.{ .v1 = null, .v2 = 13011, .v3 = 7993 }));
 }
-
 // From T_Snnn_xay.c:37521:37541
 // struct  Ip_Ul_Us  {
 //   int *v1;
@@ -2048,8 +2048,8 @@ test "Ip_Ul_Us" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_Ip_Ul_Us(.{ .v1 = null, .v2 = 20088, .v3 = 31035 }));
 }
-
 // From T_Snnn_xay.c:37546:37566
 // struct  Ip_Ul_Vp  {
 //   int *v1;
@@ -2064,8 +2064,8 @@ test "Ip_Ul_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_Ip_Ul_Vp(.{ .v1 = null, .v2 = 28724, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:37571:37589
 // struct  Ip_Us  {
 //   int *v1;
@@ -2078,8 +2078,8 @@ test "Ip_Us" {
     try testing.expectAlign(c.Ip_Us, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
+    try testing.expectOk(c.recv_Ip_Us(.{ .v1 = null, .v2 = 28990 }));
 }
-
 // From T_Snnn_xay.c:38318:38338
 // struct  Ip_Us_C  {
 //   int *v1;
@@ -2094,8 +2094,8 @@ test "Ip_Us_C" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(10, 6));
+    try testing.expectOk(c.recv_Ip_Us_C(.{ .v1 = null, .v2 = 10209, .v3 = 46 }));
 }
-
 // From T_Snnn_xay.c:38343:38363
 // struct  Ip_Us_D  {
 //   int *v1;
@@ -2110,8 +2110,8 @@ test "Ip_Us_D" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Us_D(.{ .v1 = null, .v2 = 2528, .v3 = 2497 }));
 }
-
 // From T_Snnn_xay.c:38368:38388
 // struct  Ip_Us_F  {
 //   int *v1;
@@ -2126,8 +2126,8 @@ test "Ip_Us_F" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
+    try testing.expectOk(c.recv_Ip_Us_F(.{ .v1 = null, .v2 = 1427, .v3 = 0.073176 }));
 }
-
 // From T_Snnn_xay.c:38393:38413
 // struct  Ip_Us_I  {
 //   int *v1;
@@ -2142,8 +2142,8 @@ test "Ip_Us_I" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
+    try testing.expectOk(c.recv_Ip_Us_I(.{ .v1 = null, .v2 = 28106, .v3 = 11544 }));
 }
-
 // From T_Snnn_xay.c:38418:38438
 // struct  Ip_Us_Ip  {
 //   int *v1;
@@ -2158,8 +2158,8 @@ test "Ip_Us_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Us_Ip(.{ .v1 = null, .v2 = 6349, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:38443:38463
 // struct  Ip_Us_L  {
 //   int *v1;
@@ -2174,8 +2174,8 @@ test "Ip_Us_L" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Us_L(.{ .v1 = null, .v2 = 2930, .v3 = 17268 }));
 }
-
 // From T_Snnn_xay.c:38468:38488
 // struct  Ip_Us_S  {
 //   int *v1;
@@ -2190,8 +2190,8 @@ test "Ip_Us_S" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(10, 6));
+    try testing.expectOk(c.recv_Ip_Us_S(.{ .v1 = null, .v2 = 26284, .v3 = 4156 }));
 }
-
 // From T_Snnn_xay.c:38493:38513
 // struct  Ip_Us_Uc  {
 //   int *v1;
@@ -2206,8 +2206,8 @@ test "Ip_Us_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(10, 6));
+    try testing.expectOk(c.recv_Ip_Us_Uc(.{ .v1 = null, .v2 = 16496, .v3 = 25 }));
 }
-
 // From T_Snnn_xay.c:38518:38538
 // struct  Ip_Us_Ui  {
 //   int *v1;
@@ -2222,8 +2222,8 @@ test "Ip_Us_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
+    try testing.expectOk(c.recv_Ip_Us_Ui(.{ .v1 = null, .v2 = 21265, .v3 = 27246 }));
 }
-
 // From T_Snnn_xay.c:38543:38563
 // struct  Ip_Us_Ul  {
 //   int *v1;
@@ -2238,8 +2238,8 @@ test "Ip_Us_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Us_Ul(.{ .v1 = null, .v2 = 12474, .v3 = 2975 }));
 }
-
 // From T_Snnn_xay.c:38568:38588
 // struct  Ip_Us_Us  {
 //   int *v1;
@@ -2254,8 +2254,8 @@ test "Ip_Us_Us" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(10, 6));
+    try testing.expectOk(c.recv_Ip_Us_Us(.{ .v1 = null, .v2 = 7970, .v3 = 1591 }));
 }
-
 // From T_Snnn_xay.c:38593:38613
 // struct  Ip_Us_Vp  {
 //   int *v1;
@@ -2270,8 +2270,8 @@ test "Ip_Us_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Us_Vp(.{ .v1 = null, .v2 = 15741, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:38618:38636
 // struct  Ip_Vp  {
 //   int *v1;
@@ -2284,8 +2284,8 @@ test "Ip_Vp" {
     try testing.expectAlign(c.Ip_Vp, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
+    try testing.expectOk(c.recv_Ip_Vp(.{ .v1 = null, .v2 = null }));
 }
-
 // From T_Snnn_xay.c:39365:39385
 // struct  Ip_Vp_C  {
 //   int *v1;
@@ -2300,8 +2300,8 @@ test "Ip_Vp_C" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Vp_C(.{ .v1 = null, .v2 = null, .v3 = 90 }));
 }
-
 // From T_Snnn_xay.c:39390:39410
 // struct  Ip_Vp_D  {
 //   int *v1;
@@ -2316,8 +2316,8 @@ test "Ip_Vp_D" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Vp_D(.{ .v1 = null, .v2 = null, .v3 = 16871 }));
 }
-
 // From T_Snnn_xay.c:39415:39435
 // struct  Ip_Vp_F  {
 //   int *v1;
@@ -2332,8 +2332,8 @@ test "Ip_Vp_F" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Vp_F(.{ .v1 = null, .v2 = null, .v3 = 0.895501 }));
 }
-
 // From T_Snnn_xay.c:39440:39460
 // struct  Ip_Vp_I  {
 //   int *v1;
@@ -2348,8 +2348,8 @@ test "Ip_Vp_I" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Vp_I(.{ .v1 = null, .v2 = null, .v3 = 19530 }));
 }
-
 // From T_Snnn_xay.c:39465:39485
 // struct  Ip_Vp_Ip  {
 //   int *v1;
@@ -2364,8 +2364,8 @@ test "Ip_Vp_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Vp_Ip(.{ .v1 = null, .v2 = null, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:39490:39510
 // struct  Ip_Vp_L  {
 //   int *v1;
@@ -2380,8 +2380,8 @@ test "Ip_Vp_L" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Vp_L(.{ .v1 = null, .v2 = null, .v3 = 26980 }));
 }
-
 // From T_Snnn_xay.c:39515:39535
 // struct  Ip_Vp_S  {
 //   int *v1;
@@ -2396,8 +2396,8 @@ test "Ip_Vp_S" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Vp_S(.{ .v1 = null, .v2 = null, .v3 = 8250 }));
 }
-
 // From T_Snnn_xay.c:39540:39560
 // struct  Ip_Vp_Uc  {
 //   int *v1;
@@ -2412,8 +2412,8 @@ test "Ip_Vp_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Vp_Uc(.{ .v1 = null, .v2 = null, .v3 = 57 }));
 }
-
 // From T_Snnn_xay.c:39565:39585
 // struct  Ip_Vp_Ui  {
 //   int *v1;
@@ -2428,8 +2428,8 @@ test "Ip_Vp_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Vp_Ui(.{ .v1 = null, .v2 = null, .v3 = 18658 }));
 }
-
 // From T_Snnn_xay.c:39590:39610
 // struct  Ip_Vp_Ul  {
 //   int *v1;
@@ -2444,8 +2444,8 @@ test "Ip_Vp_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Vp_Ul(.{ .v1 = null, .v2 = null, .v3 = 15371 }));
 }
-
 // From T_Snnn_xay.c:39615:39635
 // struct  Ip_Vp_Us  {
 //   int *v1;
@@ -2460,8 +2460,8 @@ test "Ip_Vp_Us" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Vp_Us(.{ .v1 = null, .v2 = null, .v3 = 820 }));
 }
-
 // From T_Snnn_xay.c:39640:39660
 // struct  Ip_Vp_Vp  {
 //   int *v1;
@@ -2476,8 +2476,8 @@ test "Ip_Vp_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+    try testing.expectOk(c.recv_Ip_Vp_Vp(.{ .v1 = null, .v2 = null, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:39665:39681
 // struct  L  {
 //   __tsi64 v1;
@@ -2488,8 +2488,8 @@ test "L" {
     try testing.expectSize(c.L, 8);
     try testing.expectAlign(c.L, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
+    try testing.expectOk(c.recv_L(.{ .v1 = 6143 }));
 }
-
 // From T_Snnn_xay.c:69986:70004
 // struct  L_C  {
 //   __tsi64 v1;
@@ -2502,8 +2502,8 @@ test "L_C" {
     try testing.expectAlign(c.L_C, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
+    try testing.expectOk(c.recv_L_C(.{ .v1 = 6729, .v2 = 117 }));
 }
-
 // From T_Snnn_xay.c:70733:70753
 // struct  L_C_C  {
 //   __tsi64 v1;
@@ -2518,8 +2518,8 @@ test "L_C_C" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 9);
+    try testing.expectOk(c.recv_L_C_C(.{ .v1 = 10530, .v2 = 63, .v3 = 49 }));
 }
-
 // From T_Snnn_xay.c:70758:70778
 // struct  L_C_D  {
 //   __tsi64 v1;
@@ -2534,8 +2534,8 @@ test "L_C_D" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_L_C_D(.{ .v1 = 11086, .v2 = 52, .v3 = 7080 }));
 }
-
 // From T_Snnn_xay.c:70783:70803
 // struct  L_C_F  {
 //   __tsi64 v1;
@@ -2550,8 +2550,8 @@ test "L_C_F" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
+    try testing.expectOk(c.recv_L_C_F(.{ .v1 = 28822, .v2 = 125, .v3 = 0.482119 }));
 }
-
 // From T_Snnn_xay.c:70808:70828
 // struct  L_C_I  {
 //   __tsi64 v1;
@@ -2566,8 +2566,8 @@ test "L_C_I" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
+    try testing.expectOk(c.recv_L_C_I(.{ .v1 = 18441, .v2 = 37, .v3 = 3289 }));
 }
-
 // From T_Snnn_xay.c:70833:70853
 // struct  L_C_Ip  {
 //   __tsi64 v1;
@@ -2582,8 +2582,8 @@ test "L_C_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_L_C_Ip(.{ .v1 = 31891, .v2 = 45, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:70858:70878
 // struct  L_C_L  {
 //   __tsi64 v1;
@@ -2598,8 +2598,8 @@ test "L_C_L" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_L_C_L(.{ .v1 = 19086, .v2 = 109, .v3 = 14314 }));
 }
-
 // From T_Snnn_xay.c:70883:70903
 // struct  L_C_S  {
 //   __tsi64 v1;
@@ -2614,8 +2614,8 @@ test "L_C_S" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 10);
+    try testing.expectOk(c.recv_L_C_S(.{ .v1 = 288, .v2 = 5, .v3 = 3053 }));
 }
-
 // From T_Snnn_xay.c:70908:70928
 // struct  L_C_Uc  {
 //   __tsi64 v1;
@@ -2630,8 +2630,8 @@ test "L_C_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 9);
+    try testing.expectOk(c.recv_L_C_Uc(.{ .v1 = 27196, .v2 = 83, .v3 = 95 }));
 }
-
 // From T_Snnn_xay.c:70933:70953
 // struct  L_C_Ui  {
 //   __tsi64 v1;
@@ -2646,8 +2646,8 @@ test "L_C_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
+    try testing.expectOk(c.recv_L_C_Ui(.{ .v1 = 19073, .v2 = 15, .v3 = 19612 }));
 }
-
 // From T_Snnn_xay.c:70958:70978
 // struct  L_C_Ul  {
 //   __tsi64 v1;
@@ -2662,8 +2662,8 @@ test "L_C_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_L_C_Ul(.{ .v1 = 17138, .v2 = 22, .v3 = 152 }));
 }
-
 // From T_Snnn_xay.c:70983:71003
 // struct  L_C_Us  {
 //   __tsi64 v1;
@@ -2678,8 +2678,8 @@ test "L_C_Us" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 10);
+    try testing.expectOk(c.recv_L_C_Us(.{ .v1 = 16490, .v2 = 28, .v3 = 21175 }));
 }
-
 // From T_Snnn_xay.c:71008:71028
 // struct  L_C_Vp  {
 //   __tsi64 v1;
@@ -2694,8 +2694,8 @@ test "L_C_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_L_C_Vp(.{ .v1 = 21374, .v2 = 100, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:71033:71051
 // struct  L_D  {
 //   __tsi64 v1;
@@ -2708,8 +2708,8 @@ test "L_D" {
     try testing.expectAlign(c.L_D, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
+    try testing.expectOk(c.recv_L_D(.{ .v1 = 5730, .v2 = 27788 }));
 }
-
 // From T_Snnn_xay.c:71780:71800
 // struct  L_D_C  {
 //   __tsi64 v1;
@@ -2724,8 +2724,8 @@ test "L_D_C" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
+    try testing.expectOk(c.recv_L_D_C(.{ .v1 = 15707, .v2 = 25951, .v3 = 82 }));
 }
-
 // From T_Snnn_xay.c:71805:71825
 // struct  L_D_D  {
 //   __tsi64 v1;
@@ -2740,8 +2740,8 @@ test "L_D_D" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
+    try testing.expectOk(c.recv_L_D_D(.{ .v1 = 24847, .v2 = 11203, .v3 = 19028 }));
 }
-
 // From T_Snnn_xay.c:71830:71850
 // struct  L_D_F  {
 //   __tsi64 v1;
@@ -2756,8 +2756,8 @@ test "L_D_F" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
+    try testing.expectOk(c.recv_L_D_F(.{ .v1 = 2898, .v2 = 1102, .v3 = 0.444032 }));
 }
-
 // From T_Snnn_xay.c:71855:71875
 // struct  L_D_I  {
 //   __tsi64 v1;
@@ -2772,8 +2772,8 @@ test "L_D_I" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
+    try testing.expectOk(c.recv_L_D_I(.{ .v1 = 5749, .v2 = 25874, .v3 = 5688 }));
 }
-
 // From T_Snnn_xay.c:71880:71900
 // struct  L_D_Ip  {
 //   __tsi64 v1;
@@ -2788,8 +2788,8 @@ test "L_D_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
+    try testing.expectOk(c.recv_L_D_Ip(.{ .v1 = 15166, .v2 = 29330, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:71905:71925
 // struct  L_D_L  {
 //   __tsi64 v1;
@@ -2804,8 +2804,8 @@ test "L_D_L" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
+    try testing.expectOk(c.recv_L_D_L(.{ .v1 = 7152, .v2 = 30256, .v3 = 26318 }));
 }
-
 // From T_Snnn_xay.c:71930:71950
 // struct  L_D_S  {
 //   __tsi64 v1;
@@ -2820,8 +2820,8 @@ test "L_D_S" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
+    try testing.expectOk(c.recv_L_D_S(.{ .v1 = 5280, .v2 = 17864, .v3 = 9954 }));
 }
-
 // From T_Snnn_xay.c:71955:71975
 // struct  L_D_Uc  {
 //   __tsi64 v1;
@@ -2836,8 +2836,8 @@ test "L_D_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
+    try testing.expectOk(c.recv_L_D_Uc(.{ .v1 = 12847, .v2 = 3830, .v3 = 90 }));
 }
-
 // From T_Snnn_xay.c:71980:72000
 // struct  L_D_Ui  {
 //   __tsi64 v1;
@@ -2852,8 +2852,8 @@ test "L_D_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
+    try testing.expectOk(c.recv_L_D_Ui(.{ .v1 = 17941, .v2 = 3297, .v3 = 28419 }));
 }
-
 // From T_Snnn_xay.c:72005:72025
 // struct  L_D_Ul  {
 //   __tsi64 v1;
@@ -2868,8 +2868,8 @@ test "L_D_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
+    try testing.expectOk(c.recv_L_D_Ul(.{ .v1 = 19159, .v2 = 7671, .v3 = 5398 }));
 }
-
 // From T_Snnn_xay.c:72030:72050
 // struct  L_D_Us  {
 //   __tsi64 v1;
@@ -2884,8 +2884,8 @@ test "L_D_Us" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
+    try testing.expectOk(c.recv_L_D_Us(.{ .v1 = 4820, .v2 = 5834, .v3 = 14293 }));
 }
-
 // From T_Snnn_xay.c:72055:72075
 // struct  L_D_Vp  {
 //   __tsi64 v1;
@@ -2900,8 +2900,8 @@ test "L_D_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
+    try testing.expectOk(c.recv_L_D_Vp(.{ .v1 = 20760, .v2 = 4964, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:72080:72098
 // struct  L_F  {
 //   __tsi64 v1;
@@ -2914,8 +2914,8 @@ test "L_F" {
     try testing.expectAlign(c.L_F, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
+    try testing.expectOk(c.recv_L_F(.{ .v1 = 17549, .v2 = 0.026847 }));
 }
-
 // From T_Snnn_xay.c:72827:72847
 // struct  L_F_C  {
 //   __tsi64 v1;
@@ -2930,8 +2930,8 @@ test "L_F_C" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
+    try testing.expectOk(c.recv_L_F_C(.{ .v1 = 27713, .v2 = 0.500362, .v3 = 54 }));
 }
-
 // From T_Snnn_xay.c:72852:72872
 // struct  L_F_D  {
 //   __tsi64 v1;
@@ -2946,8 +2946,8 @@ test "L_F_D" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_L_F_D(.{ .v1 = 10395, .v2 = 0.535899, .v3 = 27960 }));
 }
-
 // From T_Snnn_xay.c:72877:72897
 // struct  L_F_F  {
 //   __tsi64 v1;
@@ -2962,8 +2962,8 @@ test "L_F_F" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
+    try testing.expectOk(c.recv_L_F_F(.{ .v1 = 17552, .v2 = 0.661708, .v3 = 0.946479 }));
 }
-
 // From T_Snnn_xay.c:72902:72922
 // struct  L_F_I  {
 //   __tsi64 v1;
@@ -2978,8 +2978,8 @@ test "L_F_I" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
+    try testing.expectOk(c.recv_L_F_I(.{ .v1 = 17060, .v2 = 0.691602, .v3 = 4447 }));
 }
-
 // From T_Snnn_xay.c:72927:72947
 // struct  L_F_Ip  {
 //   __tsi64 v1;
@@ -2994,8 +2994,8 @@ test "L_F_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_L_F_Ip(.{ .v1 = 26616, .v2 = 0.333699, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:72952:72972
 // struct  L_F_L  {
 //   __tsi64 v1;
@@ -3010,8 +3010,8 @@ test "L_F_L" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_L_F_L(.{ .v1 = 24549, .v2 = 0.259595, .v3 = 21763 }));
 }
-
 // From T_Snnn_xay.c:72977:72997
 // struct  L_F_S  {
 //   __tsi64 v1;
@@ -3026,8 +3026,8 @@ test "L_F_S" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
+    try testing.expectOk(c.recv_L_F_S(.{ .v1 = 4641, .v2 = 0.439599, .v3 = 17449 }));
 }
-
 // From T_Snnn_xay.c:73002:73022
 // struct  L_F_Uc  {
 //   __tsi64 v1;
@@ -3042,8 +3042,8 @@ test "L_F_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
+    try testing.expectOk(c.recv_L_F_Uc(.{ .v1 = 28826, .v2 = 0.254781, .v3 = 9 }));
 }
-
 // From T_Snnn_xay.c:73027:73047
 // struct  L_F_Ui  {
 //   __tsi64 v1;
@@ -3058,8 +3058,8 @@ test "L_F_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
+    try testing.expectOk(c.recv_L_F_Ui(.{ .v1 = 3058, .v2 = 0.843306, .v3 = 1615 }));
 }
-
 // From T_Snnn_xay.c:73052:73072
 // struct  L_F_Ul  {
 //   __tsi64 v1;
@@ -3074,8 +3074,8 @@ test "L_F_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_L_F_Ul(.{ .v1 = 22249, .v2 = 0.043293, .v3 = 6416 }));
 }
-
 // From T_Snnn_xay.c:73077:73097
 // struct  L_F_Us  {
 //   __tsi64 v1;
@@ -3090,8 +3090,8 @@ test "L_F_Us" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
+    try testing.expectOk(c.recv_L_F_Us(.{ .v1 = 27116, .v2 = 0.720406, .v3 = 25455 }));
 }
-
 // From T_Snnn_xay.c:73102:73122
 // struct  L_F_Vp  {
 //   __tsi64 v1;
@@ -3106,8 +3106,8 @@ test "L_F_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_L_F_Vp(.{ .v1 = 9926, .v2 = 0.867866, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:73127:73145
 // struct  L_I  {
 //   __tsi64 v1;
@@ -3120,8 +3120,8 @@ test "L_I" {
     try testing.expectAlign(c.L_I, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
+    try testing.expectOk(c.recv_L_I(.{ .v1 = 12936, .v2 = 5669 }));
 }
-
 // From T_Snnn_xay.c:73874:73894
 // struct  L_I_C  {
 //   __tsi64 v1;
@@ -3136,8 +3136,8 @@ test "L_I_C" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
+    try testing.expectOk(c.recv_L_I_C(.{ .v1 = 31205, .v2 = 30676, .v3 = 42 }));
 }
-
 // From T_Snnn_xay.c:73899:73919
 // struct  L_I_D  {
 //   __tsi64 v1;
@@ -3152,8 +3152,8 @@ test "L_I_D" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_L_I_D(.{ .v1 = 5934, .v2 = 3247, .v3 = 13625 }));
 }
-
 // From T_Snnn_xay.c:73924:73944
 // struct  L_I_F  {
 //   __tsi64 v1;
@@ -3168,8 +3168,8 @@ test "L_I_F" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
+    try testing.expectOk(c.recv_L_I_F(.{ .v1 = 28228, .v2 = 20992, .v3 = 0.269583 }));
 }
-
 // From T_Snnn_xay.c:73949:73969
 // struct  L_I_I  {
 //   __tsi64 v1;
@@ -3184,8 +3184,8 @@ test "L_I_I" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
+    try testing.expectOk(c.recv_L_I_I(.{ .v1 = 17949, .v2 = 9355, .v3 = 17358 }));
 }
-
 // From T_Snnn_xay.c:73974:73994
 // struct  L_I_Ip  {
 //   __tsi64 v1;
@@ -3200,8 +3200,8 @@ test "L_I_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_L_I_Ip(.{ .v1 = 7563, .v2 = 12012, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:73999:74019
 // struct  L_I_L  {
 //   __tsi64 v1;
@@ -3216,8 +3216,8 @@ test "L_I_L" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_L_I_L(.{ .v1 = 6588, .v2 = 4063, .v3 = 20680 }));
 }
-
 // From T_Snnn_xay.c:74024:74044
 // struct  L_I_S  {
 //   __tsi64 v1;
@@ -3232,8 +3232,8 @@ test "L_I_S" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
+    try testing.expectOk(c.recv_L_I_S(.{ .v1 = 1798, .v2 = 32046, .v3 = 3082 }));
 }
-
 // From T_Snnn_xay.c:74049:74069
 // struct  L_I_Uc  {
 //   __tsi64 v1;
@@ -3248,8 +3248,8 @@ test "L_I_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
+    try testing.expectOk(c.recv_L_I_Uc(.{ .v1 = 7486, .v2 = 6856, .v3 = 64 }));
 }
-
 // From T_Snnn_xay.c:74074:74094
 // struct  L_I_Ui  {
 //   __tsi64 v1;
@@ -3264,8 +3264,8 @@ test "L_I_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
+    try testing.expectOk(c.recv_L_I_Ui(.{ .v1 = 20262, .v2 = 602, .v3 = 32755 }));
 }
-
 // From T_Snnn_xay.c:74099:74119
 // struct  L_I_Ul  {
 //   __tsi64 v1;
@@ -3280,8 +3280,8 @@ test "L_I_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_L_I_Ul(.{ .v1 = 25833, .v2 = 12307, .v3 = 8335 }));
 }
-
 // From T_Snnn_xay.c:74124:74144
 // struct  L_I_Us  {
 //   __tsi64 v1;
@@ -3296,8 +3296,8 @@ test "L_I_Us" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
+    try testing.expectOk(c.recv_L_I_Us(.{ .v1 = 16887, .v2 = 17516, .v3 = 23467 }));
 }
-
 // From T_Snnn_xay.c:74149:74169
 // struct  L_I_Vp  {
 //   __tsi64 v1;
@@ -3312,8 +3312,8 @@ test "L_I_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_L_I_Vp(.{ .v1 = 31263, .v2 = 25490, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:74174:74192
 // struct  L_Ip  {
 //   __tsi64 v1;
@@ -3326,8 +3326,8 @@ test "L_Ip" {
     try testing.expectAlign(c.L_Ip, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
+    try testing.expectOk(c.recv_L_Ip(.{ .v1 = 20916, .v2 = null }));
 }
-
 // From T_Snnn_xay.c:74921:74941
 // struct  L_Ip_C  {
 //   __tsi64 v1;
@@ -3342,8 +3342,8 @@ test "L_Ip_C" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_L_Ip_C(.{ .v1 = 29257, .v2 = null, .v3 = 0 }));
 }
-
 // From T_Snnn_xay.c:74946:74966
 // struct  L_Ip_D  {
 //   __tsi64 v1;
@@ -3358,8 +3358,8 @@ test "L_Ip_D" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_L_Ip_D(.{ .v1 = 26328, .v2 = null, .v3 = 19382 }));
 }
-
 // From T_Snnn_xay.c:74971:74991
 // struct  L_Ip_F  {
 //   __tsi64 v1;
@@ -3374,8 +3374,8 @@ test "L_Ip_F" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_L_Ip_F(.{ .v1 = 7686, .v2 = null, .v3 = 0.625367 }));
 }
-
 // From T_Snnn_xay.c:74996:75016
 // struct  L_Ip_I  {
 //   __tsi64 v1;
@@ -3390,8 +3390,8 @@ test "L_Ip_I" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_L_Ip_I(.{ .v1 = 10061, .v2 = null, .v3 = 24203 }));
 }
-
 // From T_Snnn_xay.c:75021:75041
 // struct  L_Ip_Ip  {
 //   __tsi64 v1;
@@ -3406,8 +3406,8 @@ test "L_Ip_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_L_Ip_Ip(.{ .v1 = 11192, .v2 = null, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:75046:75066
 // struct  L_Ip_L  {
 //   __tsi64 v1;
@@ -3422,8 +3422,8 @@ test "L_Ip_L" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_L_Ip_L(.{ .v1 = 6093, .v2 = null, .v3 = 25441 }));
 }
-
 // From T_Snnn_xay.c:75071:75091
 // struct  L_Ip_S  {
 //   __tsi64 v1;
@@ -3438,8 +3438,8 @@ test "L_Ip_S" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_L_Ip_S(.{ .v1 = 1928, .v2 = null, .v3 = 1004 }));
 }
-
 // From T_Snnn_xay.c:75096:75116
 // struct  L_Ip_Uc  {
 //   __tsi64 v1;
@@ -3454,8 +3454,8 @@ test "L_Ip_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_L_Ip_Uc(.{ .v1 = 25050, .v2 = null, .v3 = 52 }));
 }
-
 // From T_Snnn_xay.c:75121:75141
 // struct  L_Ip_Ui  {
 //   __tsi64 v1;
@@ -3470,8 +3470,8 @@ test "L_Ip_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_L_Ip_Ui(.{ .v1 = 3954, .v2 = null, .v3 = 30949 }));
 }
-
 // From T_Snnn_xay.c:75146:75166
 // struct  L_Ip_Ul  {
 //   __tsi64 v1;
@@ -3486,8 +3486,8 @@ test "L_Ip_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_L_Ip_Ul(.{ .v1 = 698, .v2 = null, .v3 = 30067 }));
 }
-
 // From T_Snnn_xay.c:75171:75191
 // struct  L_Ip_Us  {
 //   __tsi64 v1;
@@ -3502,8 +3502,8 @@ test "L_Ip_Us" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_L_Ip_Us(.{ .v1 = 28375, .v2 = null, .v3 = 8024 }));
 }
-
 // From T_Snnn_xay.c:75196:75216
 // struct  L_Ip_Vp  {
 //   __tsi64 v1;
@@ -3518,8 +3518,8 @@ test "L_Ip_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_L_Ip_Vp(.{ .v1 = 7723, .v2 = null, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:75221:75239
 // struct  L_L  {
 //   __tsi64 v1;
@@ -3532,8 +3532,8 @@ test "L_L" {
     try testing.expectAlign(c.L_L, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
+    try testing.expectOk(c.recv_L_L(.{ .v1 = 30364, .v2 = 10204 }));
 }
-
 // From T_Snnn_xay.c:75968:75988
 // struct  L_L_C  {
 //   __tsi64 v1;
@@ -3548,8 +3548,8 @@ test "L_L_C" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
+    try testing.expectOk(c.recv_L_L_C(.{ .v1 = 7816, .v2 = 30487, .v3 = 16 }));
 }
-
 // From T_Snnn_xay.c:75993:76013
 // struct  L_L_D  {
 //   __tsi64 v1;
@@ -3564,8 +3564,8 @@ test "L_L_D" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
+    try testing.expectOk(c.recv_L_L_D(.{ .v1 = 32294, .v2 = 28652, .v3 = 8717 }));
 }
-
 // From T_Snnn_xay.c:76018:76038
 // struct  L_L_F  {
 //   __tsi64 v1;
@@ -3580,8 +3580,8 @@ test "L_L_F" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
+    try testing.expectOk(c.recv_L_L_F(.{ .v1 = 20719, .v2 = 23780, .v3 = 0.624608 }));
 }
-
 // From T_Snnn_xay.c:76043:76063
 // struct  L_L_I  {
 //   __tsi64 v1;
@@ -3596,8 +3596,8 @@ test "L_L_I" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
+    try testing.expectOk(c.recv_L_L_I(.{ .v1 = 22923, .v2 = 25843, .v3 = 6349 }));
 }
-
 // From T_Snnn_xay.c:76068:76088
 // struct  L_L_Ip  {
 //   __tsi64 v1;
@@ -3612,8 +3612,8 @@ test "L_L_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
+    try testing.expectOk(c.recv_L_L_Ip(.{ .v1 = 3010, .v2 = 17169, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:76093:76113
 // struct  L_L_L  {
 //   __tsi64 v1;
@@ -3628,8 +3628,8 @@ test "L_L_L" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
+    try testing.expectOk(c.recv_L_L_L(.{ .v1 = 23148, .v2 = 28037, .v3 = 5458 }));
 }
-
 // From T_Snnn_xay.c:76118:76138
 // struct  L_L_S  {
 //   __tsi64 v1;
@@ -3644,8 +3644,8 @@ test "L_L_S" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
+    try testing.expectOk(c.recv_L_L_S(.{ .v1 = 7277, .v2 = 22459, .v3 = 11369 }));
 }
-
 // From T_Snnn_xay.c:76143:76163
 // struct  L_L_Uc  {
 //   __tsi64 v1;
@@ -3660,8 +3660,8 @@ test "L_L_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
+    try testing.expectOk(c.recv_L_L_Uc(.{ .v1 = 18427, .v2 = 15283, .v3 = 64 }));
 }
-
 // From T_Snnn_xay.c:76168:76188
 // struct  L_L_Ui  {
 //   __tsi64 v1;
@@ -3676,8 +3676,8 @@ test "L_L_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
+    try testing.expectOk(c.recv_L_L_Ui(.{ .v1 = 12217, .v2 = 13821, .v3 = 29427 }));
 }
-
 // From T_Snnn_xay.c:76193:76213
 // struct  L_L_Ul  {
 //   __tsi64 v1;
@@ -3692,8 +3692,8 @@ test "L_L_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
+    try testing.expectOk(c.recv_L_L_Ul(.{ .v1 = 7022, .v2 = 4806, .v3 = 28033 }));
 }
-
 // From T_Snnn_xay.c:76218:76238
 // struct  L_L_Us  {
 //   __tsi64 v1;
@@ -3708,8 +3708,8 @@ test "L_L_Us" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
+    try testing.expectOk(c.recv_L_L_Us(.{ .v1 = 27566, .v2 = 17954, .v3 = 16079 }));
 }
-
 // From T_Snnn_xay.c:76243:76263
 // struct  L_L_Vp  {
 //   __tsi64 v1;
@@ -3724,8 +3724,8 @@ test "L_L_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
+    try testing.expectOk(c.recv_L_L_Vp(.{ .v1 = 3512, .v2 = 19931, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:76268:76286
 // struct  L_S  {
 //   __tsi64 v1;
@@ -3738,8 +3738,8 @@ test "L_S" {
     try testing.expectAlign(c.L_S, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
+    try testing.expectOk(c.recv_L_S(.{ .v1 = 11878, .v2 = 14845 }));
 }
-
 // From T_Snnn_xay.c:77015:77035
 // struct  L_S_C  {
 //   __tsi64 v1;
@@ -3754,8 +3754,8 @@ test "L_S_C" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 10);
+    try testing.expectOk(c.recv_L_S_C(.{ .v1 = 27515, .v2 = 23281, .v3 = 73 }));
 }
-
 // From T_Snnn_xay.c:77040:77060
 // struct  L_S_D  {
 //   __tsi64 v1;
@@ -3770,8 +3770,8 @@ test "L_S_D" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_L_S_D(.{ .v1 = 3952, .v2 = 16015, .v3 = 3493 }));
 }
-
 // From T_Snnn_xay.c:77065:77085
 // struct  L_S_F  {
 //   __tsi64 v1;
@@ -3786,8 +3786,8 @@ test "L_S_F" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
+    try testing.expectOk(c.recv_L_S_F(.{ .v1 = 18577, .v2 = 31234, .v3 = 0.220505 }));
 }
-
 // From T_Snnn_xay.c:77090:77110
 // struct  L_S_I  {
 //   __tsi64 v1;
@@ -3802,8 +3802,8 @@ test "L_S_I" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
+    try testing.expectOk(c.recv_L_S_I(.{ .v1 = 32013, .v2 = 18469, .v3 = 26305 }));
 }
-
 // From T_Snnn_xay.c:77115:77135
 // struct  L_S_Ip  {
 //   __tsi64 v1;
@@ -3818,8 +3818,8 @@ test "L_S_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_L_S_Ip(.{ .v1 = 14977, .v2 = 25517, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:77140:77160
 // struct  L_S_L  {
 //   __tsi64 v1;
@@ -3834,8 +3834,8 @@ test "L_S_L" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_L_S_L(.{ .v1 = 17805, .v2 = 29070, .v3 = 10093 }));
 }
-
 // From T_Snnn_xay.c:77165:77185
 // struct  L_S_S  {
 //   __tsi64 v1;
@@ -3850,8 +3850,8 @@ test "L_S_S" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 10);
+    try testing.expectOk(c.recv_L_S_S(.{ .v1 = 23542, .v2 = 27277, .v3 = 28129 }));
 }
-
 // From T_Snnn_xay.c:77190:77210
 // struct  L_S_Uc  {
 //   __tsi64 v1;
@@ -3866,8 +3866,8 @@ test "L_S_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 10);
+    try testing.expectOk(c.recv_L_S_Uc(.{ .v1 = 2260, .v2 = 1295, .v3 = 101 }));
 }
-
 // From T_Snnn_xay.c:77215:77235
 // struct  L_S_Ui  {
 //   __tsi64 v1;
@@ -3882,8 +3882,8 @@ test "L_S_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
+    try testing.expectOk(c.recv_L_S_Ui(.{ .v1 = 22253, .v2 = 9849, .v3 = 19663 }));
 }
-
 // From T_Snnn_xay.c:77240:77260
 // struct  L_S_Ul  {
 //   __tsi64 v1;
@@ -3898,8 +3898,8 @@ test "L_S_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_L_S_Ul(.{ .v1 = 27283, .v2 = 13769, .v3 = 6286 }));
 }
-
 // From T_Snnn_xay.c:77265:77285
 // struct  L_S_Us  {
 //   __tsi64 v1;
@@ -3914,8 +3914,8 @@ test "L_S_Us" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 10);
+    try testing.expectOk(c.recv_L_S_Us(.{ .v1 = 16604, .v2 = 3573, .v3 = 7355 }));
 }
-
 // From T_Snnn_xay.c:77290:77310
 // struct  L_S_Vp  {
 //   __tsi64 v1;
@@ -3930,8 +3930,8 @@ test "L_S_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_L_S_Vp(.{ .v1 = 31769, .v2 = 2171, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:77315:77333
 // struct  L_Uc  {
 //   __tsi64 v1;
@@ -3944,8 +3944,8 @@ test "L_Uc" {
     try testing.expectAlign(c.L_Uc, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
+    try testing.expectOk(c.recv_L_Uc(.{ .v1 = 583, .v2 = 59 }));
 }
-
 // From T_Snnn_xay.c:78062:78082
 // struct  L_Uc_C  {
 //   __tsi64 v1;
@@ -3960,8 +3960,8 @@ test "L_Uc_C" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 9);
+    try testing.expectOk(c.recv_L_Uc_C(.{ .v1 = 8467, .v2 = 64, .v3 = 98 }));
 }
-
 // From T_Snnn_xay.c:78087:78107
 // struct  L_Uc_D  {
 //   __tsi64 v1;
@@ -3976,8 +3976,8 @@ test "L_Uc_D" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_L_Uc_D(.{ .v1 = 1283, .v2 = 30, .v3 = 13550 }));
 }
-
 // From T_Snnn_xay.c:78112:78132
 // struct  L_Uc_F  {
 //   __tsi64 v1;
@@ -3992,8 +3992,8 @@ test "L_Uc_F" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
+    try testing.expectOk(c.recv_L_Uc_F(.{ .v1 = 12781, .v2 = 76, .v3 = 0.299757 }));
 }
-
 // From T_Snnn_xay.c:78137:78157
 // struct  L_Uc_I  {
 //   __tsi64 v1;
@@ -4008,8 +4008,8 @@ test "L_Uc_I" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
+    try testing.expectOk(c.recv_L_Uc_I(.{ .v1 = 16577, .v2 = 110, .v3 = 6154 }));
 }
-
 // From T_Snnn_xay.c:78162:78182
 // struct  L_Uc_Ip  {
 //   __tsi64 v1;
@@ -4024,8 +4024,8 @@ test "L_Uc_Ip" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_L_Uc_Ip(.{ .v1 = 2778, .v2 = 106, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:78187:78207
 // struct  L_Uc_L  {
 //   __tsi64 v1;
@@ -4040,8 +4040,8 @@ test "L_Uc_L" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_L_Uc_L(.{ .v1 = 3301, .v2 = 26, .v3 = 18390 }));
 }
-
 // From T_Snnn_xay.c:78212:78232
 // struct  L_Uc_S  {
 //   __tsi64 v1;
@@ -4056,8 +4056,8 @@ test "L_Uc_S" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 10);
+    try testing.expectOk(c.recv_L_Uc_S(.{ .v1 = 24712, .v2 = 43, .v3 = 12475 }));
 }
-
 // From T_Snnn_xay.c:78237:78257
 // struct  L_Uc_Uc  {
 //   __tsi64 v1;
@@ -4072,8 +4072,8 @@ test "L_Uc_Uc" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 9);
+    try testing.expectOk(c.recv_L_Uc_Uc(.{ .v1 = 10867, .v2 = 53, .v3 = 125 }));
 }
-
 // From T_Snnn_xay.c:78262:78282
 // struct  L_Uc_Ui  {
 //   __tsi64 v1;
@@ -4088,8 +4088,8 @@ test "L_Uc_Ui" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
+    try testing.expectOk(c.recv_L_Uc_Ui(.{ .v1 = 26714, .v2 = 76, .v3 = 11312 }));
 }
-
 // From T_Snnn_xay.c:78287:78307
 // struct  L_Uc_Ul  {
 //   __tsi64 v1;
@@ -4104,8 +4104,8 @@ test "L_Uc_Ul" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_L_Uc_Ul(.{ .v1 = 17680, .v2 = 4, .v3 = 2225 }));
 }
-
 // From T_Snnn_xay.c:78312:78332
 // struct  L_Uc_Us  {
 //   __tsi64 v1;
@@ -4120,8 +4120,8 @@ test "L_Uc_Us" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 10);
+    try testing.expectOk(c.recv_L_Uc_Us(.{ .v1 = 3769, .v2 = 19, .v3 = 4927 }));
 }
-
 // From T_Snnn_xay.c:78337:78357
 // struct  L_Uc_Vp  {
 //   __tsi64 v1;
@@ -4136,8 +4136,8 @@ test "L_Uc_Vp" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+    try testing.expectOk(c.recv_L_Uc_Vp(.{ .v1 = 8827, .v2 = 48, .v3 = null }));
 }
-
 // From T_Snnn_xay.c:78362:78380
 // struct  L_Ui  {
 //   __tsi64 v1;
@@ -4150,4 +4150,5 @@ test "L_Ui" {
     try testing.expectAlign(c.L_Ui, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
+    try testing.expectOk(c.recv_L_Ui(.{ .v1 = 13685, .v2 = 29146 }));
 }

@@ -1,10 +1,25 @@
 import collections
+import random
 import re
 import subprocess
 import sys
+import functools
 from enum import Enum
 from pathlib import Path
 from typing import Dict, Iterable, Iterator, List, NamedTuple, Optional, Tuple
+
+# class CType(Enum):
+#     empty= 0
+#     bool= 1
+#     char= 2
+#     short = 3
+#     int = 4
+#     uint = 5
+#     float = 6
+#     ulong = 7
+#     i64 = 8
+#     u64 = 9
+#     opaque_ptr = 10
 
 
 class Struct(NamedTuple):
@@ -19,6 +34,19 @@ class Struct(NamedTuple):
     def has_empty_field(self) -> bool:
         return any("struct empty " in line for line in self.code)
 
+    def fields(self) -> List[Tuple[str, str]]:
+        res = []
+        for line in self.code:
+            if "{" in line or "}" in line:
+                continue
+            line = line.strip("\n ;")
+            type, name = line.rsplit(" ", 1)
+            if name.startswith("*"):
+                res.append((name[1:], type + "*"))
+                continue
+            res.append((name, type))
+        return res
+
 
 def skip_cpp(lines: Iterable[str]) -> Iterator[Tuple[int, str]]:
     if_cpp = 0
@@ -27,7 +55,9 @@ def skip_cpp(lines: Iterable[str]) -> Iterator[Tuple[int, str]]:
     for line_no, line in enumerate(lines, start=1):
         if line.startswith("#ifdef __cplusplus"):
             if if_cpp:
-                raise ValueError(f"Nested '#ifdef __cplusplus' at lines {if_cpp} and {line_no}")
+                raise ValueError(
+                    f"Nested '#ifdef __cplusplus' at lines {if_cpp} and {line_no}"
+                )
             if_cpp = line_no
             continue
 
@@ -174,16 +204,21 @@ def extract_file(
     missing_tests = structs.keys() - tests.keys()
     assert len(missing_tests) == 0, f"No tests found for {missing_tests}"
 
-    header = outdir / file.with_suffix(".h").name
+    zig_test = outdir / file.with_suffix(".zig").name
+    header = zig_test.with_suffix(".h")
+    c_test =  zig_test.with_suffix(".aux.c")
 
-    with header.open("w") as h:
+    with header.open("w") as h, c_test.open("w") as c:
         print(H_HEADER, file=h)
+        print(f'#include "{header.name}"\n', file=c)
         for struct in structs.values():
             print(f"// From {struct.location(file)}", file=h)
             print("".join(struct.code), file=h)
+            print(f"int recv_{struct.name}(struct {struct.name} lv);", file=h)
+            print(generate_c_recv_asserts(struct), file=c)
+    subprocess.check_call(["zig", "build-obj", c_test.name], cwd=c_test.parent),
 
-    test_file = outdir / file.with_suffix(".zig").name
-    with test_file.open("w") as z:
+    with zig_test.open("w") as z:
         print(ZIG_HEADER.replace("HEADER_FILE", header.name), file=z)
         for struct in structs.values():
             test = tests[struct.name]
@@ -191,18 +226,20 @@ def extract_file(
             print("// ", end="", file=z)
             print("// ".join(struct.code), file=z)
             try:
-                for line in test.code:
+                for line in test.code[:-1]:
                     print(translate_test_line(test.name, line), file=z)
                 stats[Status.TRANSLATION_OK] += 1
             except Exception as e:
+                breakpoint()
                 print(f"Error while translating testcase: {test.location(file)}")
                 print("".join(test.code))
                 print("//", line, file=z)
-                print("}", file=z)
                 stats[Status.TRANSLATION_ERROR] += 1
-                continue
-    subprocess.check_call(["zig", "fmt", test_file])
-    return test_file, stats
+
+            print(generate_c_calls(struct), file=z)
+            print("}", file=z)
+    subprocess.check_call(["zig", "fmt", zig_test]),
+    return zig_test, stats
 
 
 H_HEADER = """
@@ -265,6 +302,43 @@ def rm_debug_string(line: str) -> str:
     return debug_string.sub(")", line)
 
 
+def generate_c_calls(struct: Struct) -> str:
+    values = generate_struct_vals(struct)
+    # TODO: handle pointers, Zig doesn't allow implicit int to ptr casting.
+    struct_lit = ", ".join(f".{field}={val}" for field, val in values.items())
+    return f"try testing.expectOk(c.recv_{struct.name}(.{{{struct_lit}}}));"
+
+
+def generate_c_recv_asserts(struct: Struct) -> str:
+    lines = [f"int recv_{struct.name}(struct {struct.name} lv){{", "  int err = 0;"]
+
+    fields = generate_struct_vals(struct)
+    for i, (field, val) in enumerate(fields.items(), start=1):
+        if val == "null":
+            val = 0
+        asser = f"  if (lv.{field} != {val}) err = {i};"
+        lines.append(asser)
+    lines.extend(["  return err;", "}"])
+    return "\n".join(lines)
+
+
+def generate_struct_vals(struct: Struct) -> dict:
+    random.seed(struct.name)
+    return {name: generate_field_val(ctype) for name, ctype in struct.fields()}
+
+
+def generate_field_val(ctype: str) -> str:
+    if "char" in ctype:
+        return str(random.randint(0, 127))
+    if "float" in ctype:
+        return f"{random.random():.6f}"
+    if "empty" in ctype:
+        return "{}"
+    if "*" in ctype:
+        return "null"
+    return str(random.randint(0, 2**15 - 1))
+
+
 def main(allow_empty: bool) -> None:
     """Parses all test/struct_layout_tests/*.c files for relevant test cases.
     Translate them to zig files in zig_test/*.zig.
@@ -274,14 +348,13 @@ def main(allow_empty: bool) -> None:
     """
     struct_layout_tests = Path("test") / "struct_layout_tests"
     zig_tests = Path("zig_test")
-    # extract_file(struct_layout_tests / "T_Snnn_xbc.c", zig_tests)
 
     full_stats: Progress = collections.defaultdict(int)
     test_files = []
     for file in struct_layout_tests.glob("*.c"):
-        # if file.name.startswith("PC_"):
-        #     # Those are C++ tests only
-        #     continue
+        if file.name.startswith("PC_"):
+            # Those are C++ tests only
+            continue
         test_file, stats = extract_file(file, zig_tests, allow_empty)
         assert (
             stats[Status.TRANSLATION_OK] + stats[Status.TRANSLATION_ERROR]
@@ -291,13 +364,14 @@ def main(allow_empty: bool) -> None:
             full_stats[k] += v
         if test_file is not None:
             test_files.append(test_file)
+            # break
     print(full_stats)
     failed_tests = []
     returncode = 0
     for test_file in test_files:
         print(test_file)
         test = subprocess.run(
-            ["zig", "test", "-I", zig_tests, test_file],
+            ["zig", "test", "-I", zig_tests, test_file, test_file.with_suffix(".aux.o")],
             check=False,
             capture_output=False,
             encoding="ascii",

@@ -11,3 +11,4 @@ struct  C  {
   char v1;
 };
 
+int recv_C(struct C lv);
