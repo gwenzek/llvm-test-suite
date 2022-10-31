@@ -216,7 +216,10 @@ def extract_file(
             print("".join(struct.code), file=h)
             print(f"int recv_{struct.name}(struct {struct.name} lv);", file=h)
             print(generate_c_recv_asserts(struct), file=c)
+    if c_test.with_suffix(".o").exists():
+        c_test.with_suffix(".o").unlink()
     subprocess.check_call(["zig", "build-obj", c_test.name], cwd=c_test.parent),
+    assert c_test.with_suffix(".o").exists()
 
     with zig_test.open("w") as z:
         print(ZIG_HEADER.replace("HEADER_FILE", header.name), file=z)
@@ -316,6 +319,8 @@ def generate_c_recv_asserts(struct: Struct) -> str:
     for i, (field, val) in enumerate(fields.items(), start=1):
         if val == "null":
             val = 0
+        if val == ".{}":
+            continue
         asser = f"  if (lv.{field} != {val}) err = {i};"
         lines.append(asser)
     lines.extend(["  return err;", "}"])
@@ -331,11 +336,16 @@ def generate_field_val(ctype: str) -> str:
     if "char" in ctype:
         return str(random.randint(0, 127))
     if "float" in ctype:
+        return str(random.choice([0.125, -0.25, 0.5, 1.0, -2.125, 4.5]))
+        # TODO: generate more floats that can be exactly represented.
+        # return f"{random.random():.3f}"
+    if "double" in ctype:
         return f"{random.random():.6f}"
     if "empty" in ctype:
-        return "{}"
+        return ".{}"
     if "*" in ctype:
         return "null"
+    # TODO: generate ints that use more bits
     return str(random.randint(0, 2**15 - 1))
 
 
@@ -355,6 +365,7 @@ def main(allow_empty: bool) -> None:
         if file.name.startswith("PC_"):
             # Those are C++ tests only
             continue
+
         test_file, stats = extract_file(file, zig_tests, allow_empty)
         assert (
             stats[Status.TRANSLATION_OK] + stats[Status.TRANSLATION_ERROR]

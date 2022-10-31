@@ -15,13 +15,16 @@ pub fn build(b: *Builder) void {
     addTest(b, test_step, "T_Snnn_xba");
     addTest(b, test_step, "T_Snnn_xbb");
     addTest(b, test_step, "T_Snnn_xbc");
+    // add an --allow-empty
+    // addTest(b, test_step, "CT_Snen_xaa");
+    // addTest(b, test_step, "CT_Snen_xab");
 
     b.default_step.dependOn(test_step);
 }
 
 fn addTest(b: *Builder, test_step: *std.build.Step, comptime name: []const u8) void {
     const c_obj = b.addObject(name ++ ".aux", null);
-    c_obj.addCSourceFile("zig_test/" ++ name ++ ".aux.c", &[_][]const u8{"-std=c99"});
+    c_obj.addCSourceFile("zig_test/" ++ name ++ ".aux.c", &[_][]const u8{ "-std=c99", "-Werror" });
     // c_obj.setBuildMode(rel_opts);
     // c_obj.target = target;
 
