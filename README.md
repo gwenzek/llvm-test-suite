@@ -137,3 +137,41 @@ But Zig doesn't have to do the same thing and reproduce unspecified quirks.
 If that were to change, I could update the repo to run more tests.
 
 Maybe it could be a source of inspiration to test the behavior of `packed` struct ?
+
+I'm going to look into other parts of the Clang/LLVM tests for C compatibility.
+Maybe: https://github.com/llvm/llvm-project/blob/main/clang/test/CodeGen/X86/x86_64-arguments.c
+
+## Passing structs through the C ABI
+
+Failing test:
+
+```
+// .h
+struct  C_C_D  {
+  char v1;
+  char v2;
+  double v3;
+};
+
+int recv_C_C_D(struct C_C_D lv);
+
+// .c
+int recv_C_C_D(struct C_C_D lv){
+  int err = 0;
+  if (lv.v1 != 88) err = 1;
+  if (lv.v2 != 39) err = 2;
+  if (lv.v3 != -2.125) err = 3;
+  return err;
+}
+
+// .zig
+test "C_C_D" {
+    var lv: c.C_C_D = undefined;
+    try testing.expectSize(c.C_C_D, ABISELECT(16, 12));
+    try testing.expectAlign(c.C_C_D, ABISELECT(8, 4));
+    try testing.expectFieldOffset(&lv, &lv.v1, 0);
+    try testing.expectFieldOffset(&lv, &lv.v2, 1);
+    try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
+    try testing.expectOk(c.recv_C_C_D(.{ .v1 = 88, .v2 = 39, .v3 = -2.125 }));
+}
+```
