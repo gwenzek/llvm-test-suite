@@ -243,6 +243,10 @@ def extract_file(
             print(generate_c_calls(struct, field_values), file=z)
             print("}", file=z)
 
+            print("", file=h)
+            print("", file=c)
+            print("", file=z)
+
     if c_test.with_suffix(".o").exists():
         c_test.with_suffix(".o").unlink()
     subprocess.check_call(["zig", "build-obj", c_test.name], cwd=c_test.parent),
@@ -329,7 +333,7 @@ def generate_c_recv(struct: Struct, fields: dict) -> str:
             continue
         asser = f"  if (lv.{field} != {val}) err = {i};"
         lines.append(asser)
-    lines.extend(["  return err;", "}", ""])
+    lines.extend(["  return err;", "}"])
     return "\n".join(lines)
 
 

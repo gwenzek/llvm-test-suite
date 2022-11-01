@@ -13,3 +13,4 @@ struct  C  {
 
 int recv_C(struct C lv);
 struct C ret_C();
+

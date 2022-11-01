@@ -23,6 +23,7 @@ test "Ul_C C calls" {
     try testing.expectEqual(c.ret_Ul_C(), .{ .v1 = 17226, .v2 = 3 });
     try testing.expectOk(c.recv_Ul_C(.{ .v1 = 17226, .v2 = 3 }));
 }
+
 // From T_Snnn_xbb.c:6917:6937
 // struct  Ul_C_C  {
 //   __tsu64 v1;
@@ -42,6 +43,7 @@ test "Ul_C_C C calls" {
     try testing.expectEqual(c.ret_Ul_C_C(), .{ .v1 = 31250, .v2 = 54, .v3 = 2 });
     try testing.expectOk(c.recv_Ul_C_C(.{ .v1 = 31250, .v2 = 54, .v3 = 2 }));
 }
+
 // From T_Snnn_xbb.c:6942:6962
 // struct  Ul_C_D  {
 //   __tsu64 v1;
@@ -61,6 +63,7 @@ test "Ul_C_D C calls" {
     try testing.expectEqual(c.ret_Ul_C_D(), .{ .v1 = 32764, .v2 = 48, .v3 = 7.0 });
     try testing.expectOk(c.recv_Ul_C_D(.{ .v1 = 32764, .v2 = 48, .v3 = 7.0 }));
 }
+
 // From T_Snnn_xbb.c:6967:6987
 // struct  Ul_C_F  {
 //   __tsu64 v1;
@@ -80,6 +83,7 @@ test "Ul_C_F C calls" {
     try testing.expectEqual(c.ret_Ul_C_F(), .{ .v1 = 26431, .v2 = 0, .v3 = 0.5 });
     try testing.expectOk(c.recv_Ul_C_F(.{ .v1 = 26431, .v2 = 0, .v3 = 0.5 }));
 }
+
 // From T_Snnn_xbb.c:6992:7012
 // struct  Ul_C_I  {
 //   __tsu64 v1;
@@ -99,6 +103,7 @@ test "Ul_C_I C calls" {
     try testing.expectEqual(c.ret_Ul_C_I(), .{ .v1 = 28045, .v2 = 93, .v3 = 27716 });
     try testing.expectOk(c.recv_Ul_C_I(.{ .v1 = 28045, .v2 = 93, .v3 = 27716 }));
 }
+
 // From T_Snnn_xbb.c:7017:7037
 // struct  Ul_C_Ip  {
 //   __tsu64 v1;
@@ -118,6 +123,7 @@ test "Ul_C_Ip C calls" {
     try testing.expectEqual(c.ret_Ul_C_Ip(), .{ .v1 = 26155, .v2 = 27, .v3 = null });
     try testing.expectOk(c.recv_Ul_C_Ip(.{ .v1 = 26155, .v2 = 27, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:7042:7062
 // struct  Ul_C_L  {
 //   __tsu64 v1;
@@ -137,6 +143,7 @@ test "Ul_C_L C calls" {
     try testing.expectEqual(c.ret_Ul_C_L(), .{ .v1 = 12487, .v2 = 95, .v3 = 31393 });
     try testing.expectOk(c.recv_Ul_C_L(.{ .v1 = 12487, .v2 = 95, .v3 = 31393 }));
 }
+
 // From T_Snnn_xbb.c:7067:7087
 // struct  Ul_C_S  {
 //   __tsu64 v1;
@@ -156,6 +163,7 @@ test "Ul_C_S C calls" {
     try testing.expectEqual(c.ret_Ul_C_S(), .{ .v1 = 14961, .v2 = 23, .v3 = 31866 });
     try testing.expectOk(c.recv_Ul_C_S(.{ .v1 = 14961, .v2 = 23, .v3 = 31866 }));
 }
+
 // From T_Snnn_xbb.c:7092:7112
 // struct  Ul_C_Uc  {
 //   __tsu64 v1;
@@ -175,6 +183,7 @@ test "Ul_C_Uc C calls" {
     try testing.expectEqual(c.ret_Ul_C_Uc(), .{ .v1 = 20515, .v2 = 44, .v3 = 0 });
     try testing.expectOk(c.recv_Ul_C_Uc(.{ .v1 = 20515, .v2 = 44, .v3 = 0 }));
 }
+
 // From T_Snnn_xbb.c:7117:7137
 // struct  Ul_C_Ui  {
 //   __tsu64 v1;
@@ -194,6 +203,7 @@ test "Ul_C_Ui C calls" {
     try testing.expectEqual(c.ret_Ul_C_Ui(), .{ .v1 = 7205, .v2 = 105, .v3 = 26514 });
     try testing.expectOk(c.recv_Ul_C_Ui(.{ .v1 = 7205, .v2 = 105, .v3 = 26514 }));
 }
+
 // From T_Snnn_xbb.c:7142:7162
 // struct  Ul_C_Ul  {
 //   __tsu64 v1;
@@ -213,6 +223,7 @@ test "Ul_C_Ul C calls" {
     try testing.expectEqual(c.ret_Ul_C_Ul(), .{ .v1 = 2127, .v2 = 88, .v3 = 18212 });
     try testing.expectOk(c.recv_Ul_C_Ul(.{ .v1 = 2127, .v2 = 88, .v3 = 18212 }));
 }
+
 // From T_Snnn_xbb.c:7167:7187
 // struct  Ul_C_Us  {
 //   __tsu64 v1;
@@ -232,6 +243,7 @@ test "Ul_C_Us C calls" {
     try testing.expectEqual(c.ret_Ul_C_Us(), .{ .v1 = 6233, .v2 = 70, .v3 = 1747 });
     try testing.expectOk(c.recv_Ul_C_Us(.{ .v1 = 6233, .v2 = 70, .v3 = 1747 }));
 }
+
 // From T_Snnn_xbb.c:7192:7212
 // struct  Ul_C_Vp  {
 //   __tsu64 v1;
@@ -251,6 +263,7 @@ test "Ul_C_Vp C calls" {
     try testing.expectEqual(c.ret_Ul_C_Vp(), .{ .v1 = 32602, .v2 = 34, .v3 = null });
     try testing.expectOk(c.recv_Ul_C_Vp(.{ .v1 = 32602, .v2 = 34, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:7217:7235
 // struct  Ul_D  {
 //   __tsu64 v1;
@@ -268,6 +281,7 @@ test "Ul_D C calls" {
     try testing.expectEqual(c.ret_Ul_D(), .{ .v1 = 10715, .v2 = 4.5 });
     try testing.expectOk(c.recv_Ul_D(.{ .v1 = 10715, .v2 = 4.5 }));
 }
+
 // From T_Snnn_xbb.c:7964:7984
 // struct  Ul_D_C  {
 //   __tsu64 v1;
@@ -287,6 +301,7 @@ test "Ul_D_C C calls" {
     try testing.expectEqual(c.ret_Ul_D_C(), .{ .v1 = 25643, .v2 = 4.5, .v3 = 22 });
     try testing.expectOk(c.recv_Ul_D_C(.{ .v1 = 25643, .v2 = 4.5, .v3 = 22 }));
 }
+
 // From T_Snnn_xbb.c:7989:8009
 // struct  Ul_D_D  {
 //   __tsu64 v1;
@@ -306,6 +321,7 @@ test "Ul_D_D C calls" {
     try testing.expectEqual(c.ret_Ul_D_D(), .{ .v1 = 621, .v2 = -0.25, .v3 = -0.25 });
     try testing.expectOk(c.recv_Ul_D_D(.{ .v1 = 621, .v2 = -0.25, .v3 = -0.25 }));
 }
+
 // From T_Snnn_xbb.c:8014:8034
 // struct  Ul_D_F  {
 //   __tsu64 v1;
@@ -325,6 +341,7 @@ test "Ul_D_F C calls" {
     try testing.expectEqual(c.ret_Ul_D_F(), .{ .v1 = 11575, .v2 = -2.125, .v3 = -2.125 });
     try testing.expectOk(c.recv_Ul_D_F(.{ .v1 = 11575, .v2 = -2.125, .v3 = -2.125 }));
 }
+
 // From T_Snnn_xbb.c:8039:8059
 // struct  Ul_D_I  {
 //   __tsu64 v1;
@@ -344,6 +361,7 @@ test "Ul_D_I C calls" {
     try testing.expectEqual(c.ret_Ul_D_I(), .{ .v1 = 23336, .v2 = -2.125, .v3 = 8615 });
     try testing.expectOk(c.recv_Ul_D_I(.{ .v1 = 23336, .v2 = -2.125, .v3 = 8615 }));
 }
+
 // From T_Snnn_xbb.c:8064:8084
 // struct  Ul_D_Ip  {
 //   __tsu64 v1;
@@ -363,6 +381,7 @@ test "Ul_D_Ip C calls" {
     try testing.expectEqual(c.ret_Ul_D_Ip(), .{ .v1 = 30759, .v2 = 1.0, .v3 = null });
     try testing.expectOk(c.recv_Ul_D_Ip(.{ .v1 = 30759, .v2 = 1.0, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:8089:8109
 // struct  Ul_D_L  {
 //   __tsu64 v1;
@@ -382,6 +401,7 @@ test "Ul_D_L C calls" {
     try testing.expectEqual(c.ret_Ul_D_L(), .{ .v1 = 16615, .v2 = 7.0, .v3 = 23672 });
     try testing.expectOk(c.recv_Ul_D_L(.{ .v1 = 16615, .v2 = 7.0, .v3 = 23672 }));
 }
+
 // From T_Snnn_xbb.c:8114:8134
 // struct  Ul_D_S  {
 //   __tsu64 v1;
@@ -401,6 +421,7 @@ test "Ul_D_S C calls" {
     try testing.expectEqual(c.ret_Ul_D_S(), .{ .v1 = 6119, .v2 = 1.0, .v3 = 20846 });
     try testing.expectOk(c.recv_Ul_D_S(.{ .v1 = 6119, .v2 = 1.0, .v3 = 20846 }));
 }
+
 // From T_Snnn_xbb.c:8139:8159
 // struct  Ul_D_Uc  {
 //   __tsu64 v1;
@@ -420,6 +441,7 @@ test "Ul_D_Uc C calls" {
     try testing.expectEqual(c.ret_Ul_D_Uc(), .{ .v1 = 8747, .v2 = -2.125, .v3 = 71 });
     try testing.expectOk(c.recv_Ul_D_Uc(.{ .v1 = 8747, .v2 = -2.125, .v3 = 71 }));
 }
+
 // From T_Snnn_xbb.c:8164:8184
 // struct  Ul_D_Ui  {
 //   __tsu64 v1;
@@ -439,6 +461,7 @@ test "Ul_D_Ui C calls" {
     try testing.expectEqual(c.ret_Ul_D_Ui(), .{ .v1 = 12376, .v2 = 1.0, .v3 = 7325 });
     try testing.expectOk(c.recv_Ul_D_Ui(.{ .v1 = 12376, .v2 = 1.0, .v3 = 7325 }));
 }
+
 // From T_Snnn_xbb.c:8189:8209
 // struct  Ul_D_Ul  {
 //   __tsu64 v1;
@@ -458,6 +481,7 @@ test "Ul_D_Ul C calls" {
     try testing.expectEqual(c.ret_Ul_D_Ul(), .{ .v1 = 8264, .v2 = 1.0, .v3 = 2350 });
     try testing.expectOk(c.recv_Ul_D_Ul(.{ .v1 = 8264, .v2 = 1.0, .v3 = 2350 }));
 }
+
 // From T_Snnn_xbb.c:8214:8234
 // struct  Ul_D_Us  {
 //   __tsu64 v1;
@@ -477,6 +501,7 @@ test "Ul_D_Us C calls" {
     try testing.expectEqual(c.ret_Ul_D_Us(), .{ .v1 = 14812, .v2 = 4.5, .v3 = 7431 });
     try testing.expectOk(c.recv_Ul_D_Us(.{ .v1 = 14812, .v2 = 4.5, .v3 = 7431 }));
 }
+
 // From T_Snnn_xbb.c:8239:8259
 // struct  Ul_D_Vp  {
 //   __tsu64 v1;
@@ -496,6 +521,7 @@ test "Ul_D_Vp C calls" {
     try testing.expectEqual(c.ret_Ul_D_Vp(), .{ .v1 = 16222, .v2 = 0.5, .v3 = null });
     try testing.expectOk(c.recv_Ul_D_Vp(.{ .v1 = 16222, .v2 = 0.5, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:8264:8282
 // struct  Ul_F  {
 //   __tsu64 v1;
@@ -513,6 +539,7 @@ test "Ul_F C calls" {
     try testing.expectEqual(c.ret_Ul_F(), .{ .v1 = 20297, .v2 = 0.5 });
     try testing.expectOk(c.recv_Ul_F(.{ .v1 = 20297, .v2 = 0.5 }));
 }
+
 // From T_Snnn_xbb.c:9011:9031
 // struct  Ul_F_C  {
 //   __tsu64 v1;
@@ -532,6 +559,7 @@ test "Ul_F_C C calls" {
     try testing.expectEqual(c.ret_Ul_F_C(), .{ .v1 = 5068, .v2 = -0.25, .v3 = 32 });
     try testing.expectOk(c.recv_Ul_F_C(.{ .v1 = 5068, .v2 = -0.25, .v3 = 32 }));
 }
+
 // From T_Snnn_xbb.c:9036:9056
 // struct  Ul_F_D  {
 //   __tsu64 v1;
@@ -551,6 +579,7 @@ test "Ul_F_D C calls" {
     try testing.expectEqual(c.ret_Ul_F_D(), .{ .v1 = 23787, .v2 = -2.125, .v3 = 0.5 });
     try testing.expectOk(c.recv_Ul_F_D(.{ .v1 = 23787, .v2 = -2.125, .v3 = 0.5 }));
 }
+
 // From T_Snnn_xbb.c:9061:9081
 // struct  Ul_F_F  {
 //   __tsu64 v1;
@@ -570,6 +599,7 @@ test "Ul_F_F C calls" {
     try testing.expectEqual(c.ret_Ul_F_F(), .{ .v1 = 4545, .v2 = 1.0, .v3 = 0.875 });
     try testing.expectOk(c.recv_Ul_F_F(.{ .v1 = 4545, .v2 = 1.0, .v3 = 0.875 }));
 }
+
 // From T_Snnn_xbb.c:9086:9106
 // struct  Ul_F_I  {
 //   __tsu64 v1;
@@ -589,6 +619,7 @@ test "Ul_F_I C calls" {
     try testing.expectEqual(c.ret_Ul_F_I(), .{ .v1 = 11, .v2 = 1.0, .v3 = 28962 });
     try testing.expectOk(c.recv_Ul_F_I(.{ .v1 = 11, .v2 = 1.0, .v3 = 28962 }));
 }
+
 // From T_Snnn_xbb.c:9111:9131
 // struct  Ul_F_Ip  {
 //   __tsu64 v1;
@@ -608,6 +639,7 @@ test "Ul_F_Ip C calls" {
     try testing.expectEqual(c.ret_Ul_F_Ip(), .{ .v1 = 10728, .v2 = 1.0, .v3 = null });
     try testing.expectOk(c.recv_Ul_F_Ip(.{ .v1 = 10728, .v2 = 1.0, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:9136:9156
 // struct  Ul_F_L  {
 //   __tsu64 v1;
@@ -627,6 +659,7 @@ test "Ul_F_L C calls" {
     try testing.expectEqual(c.ret_Ul_F_L(), .{ .v1 = 29862, .v2 = 1.0, .v3 = 30894 });
     try testing.expectOk(c.recv_Ul_F_L(.{ .v1 = 29862, .v2 = 1.0, .v3 = 30894 }));
 }
+
 // From T_Snnn_xbb.c:9161:9181
 // struct  Ul_F_S  {
 //   __tsu64 v1;
@@ -646,6 +679,7 @@ test "Ul_F_S C calls" {
     try testing.expectEqual(c.ret_Ul_F_S(), .{ .v1 = 16621, .v2 = 7.0, .v3 = 19094 });
     try testing.expectOk(c.recv_Ul_F_S(.{ .v1 = 16621, .v2 = 7.0, .v3 = 19094 }));
 }
+
 // From T_Snnn_xbb.c:9186:9206
 // struct  Ul_F_Uc  {
 //   __tsu64 v1;
@@ -665,6 +699,7 @@ test "Ul_F_Uc C calls" {
     try testing.expectEqual(c.ret_Ul_F_Uc(), .{ .v1 = 5394, .v2 = 7.0, .v3 = 26 });
     try testing.expectOk(c.recv_Ul_F_Uc(.{ .v1 = 5394, .v2 = 7.0, .v3 = 26 }));
 }
+
 // From T_Snnn_xbb.c:9211:9231
 // struct  Ul_F_Ui  {
 //   __tsu64 v1;
@@ -684,6 +719,7 @@ test "Ul_F_Ui C calls" {
     try testing.expectEqual(c.ret_Ul_F_Ui(), .{ .v1 = 18558, .v2 = 0.875, .v3 = 23737 });
     try testing.expectOk(c.recv_Ul_F_Ui(.{ .v1 = 18558, .v2 = 0.875, .v3 = 23737 }));
 }
+
 // From T_Snnn_xbb.c:9236:9256
 // struct  Ul_F_Ul  {
 //   __tsu64 v1;
@@ -703,6 +739,7 @@ test "Ul_F_Ul C calls" {
     try testing.expectEqual(c.ret_Ul_F_Ul(), .{ .v1 = 19145, .v2 = 0.875, .v3 = 26272 });
     try testing.expectOk(c.recv_Ul_F_Ul(.{ .v1 = 19145, .v2 = 0.875, .v3 = 26272 }));
 }
+
 // From T_Snnn_xbb.c:9261:9281
 // struct  Ul_F_Us  {
 //   __tsu64 v1;
@@ -722,6 +759,7 @@ test "Ul_F_Us C calls" {
     try testing.expectEqual(c.ret_Ul_F_Us(), .{ .v1 = 12786, .v2 = 4.5, .v3 = 32561 });
     try testing.expectOk(c.recv_Ul_F_Us(.{ .v1 = 12786, .v2 = 4.5, .v3 = 32561 }));
 }
+
 // From T_Snnn_xbb.c:9286:9306
 // struct  Ul_F_Vp  {
 //   __tsu64 v1;
@@ -741,6 +779,7 @@ test "Ul_F_Vp C calls" {
     try testing.expectEqual(c.ret_Ul_F_Vp(), .{ .v1 = 8407, .v2 = 1.0, .v3 = null });
     try testing.expectOk(c.recv_Ul_F_Vp(.{ .v1 = 8407, .v2 = 1.0, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:9311:9329
 // struct  Ul_I  {
 //   __tsu64 v1;
@@ -758,6 +797,7 @@ test "Ul_I C calls" {
     try testing.expectEqual(c.ret_Ul_I(), .{ .v1 = 9001, .v2 = 14566 });
     try testing.expectOk(c.recv_Ul_I(.{ .v1 = 9001, .v2 = 14566 }));
 }
+
 // From T_Snnn_xbb.c:10058:10078
 // struct  Ul_I_C  {
 //   __tsu64 v1;
@@ -777,6 +817,7 @@ test "Ul_I_C C calls" {
     try testing.expectEqual(c.ret_Ul_I_C(), .{ .v1 = 26130, .v2 = 8317, .v3 = 100 });
     try testing.expectOk(c.recv_Ul_I_C(.{ .v1 = 26130, .v2 = 8317, .v3 = 100 }));
 }
+
 // From T_Snnn_xbb.c:10083:10103
 // struct  Ul_I_D  {
 //   __tsu64 v1;
@@ -796,6 +837,7 @@ test "Ul_I_D C calls" {
     try testing.expectEqual(c.ret_Ul_I_D(), .{ .v1 = 16377, .v2 = 29653, .v3 = 0.5 });
     try testing.expectOk(c.recv_Ul_I_D(.{ .v1 = 16377, .v2 = 29653, .v3 = 0.5 }));
 }
+
 // From T_Snnn_xbb.c:10108:10128
 // struct  Ul_I_F  {
 //   __tsu64 v1;
@@ -815,6 +857,7 @@ test "Ul_I_F C calls" {
     try testing.expectEqual(c.ret_Ul_I_F(), .{ .v1 = 6558, .v2 = 14172, .v3 = 0.875 });
     try testing.expectOk(c.recv_Ul_I_F(.{ .v1 = 6558, .v2 = 14172, .v3 = 0.875 }));
 }
+
 // From T_Snnn_xbb.c:10133:10153
 // struct  Ul_I_I  {
 //   __tsu64 v1;
@@ -834,6 +877,7 @@ test "Ul_I_I C calls" {
     try testing.expectEqual(c.ret_Ul_I_I(), .{ .v1 = 21186, .v2 = 27875, .v3 = 12292 });
     try testing.expectOk(c.recv_Ul_I_I(.{ .v1 = 21186, .v2 = 27875, .v3 = 12292 }));
 }
+
 // From T_Snnn_xbb.c:10158:10178
 // struct  Ul_I_Ip  {
 //   __tsu64 v1;
@@ -853,6 +897,7 @@ test "Ul_I_Ip C calls" {
     try testing.expectEqual(c.ret_Ul_I_Ip(), .{ .v1 = 19268, .v2 = 7953, .v3 = null });
     try testing.expectOk(c.recv_Ul_I_Ip(.{ .v1 = 19268, .v2 = 7953, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:10183:10203
 // struct  Ul_I_L  {
 //   __tsu64 v1;
@@ -872,6 +917,7 @@ test "Ul_I_L C calls" {
     try testing.expectEqual(c.ret_Ul_I_L(), .{ .v1 = 1812, .v2 = 15113, .v3 = 12160 });
     try testing.expectOk(c.recv_Ul_I_L(.{ .v1 = 1812, .v2 = 15113, .v3 = 12160 }));
 }
+
 // From T_Snnn_xbb.c:10208:10228
 // struct  Ul_I_S  {
 //   __tsu64 v1;
@@ -891,6 +937,7 @@ test "Ul_I_S C calls" {
     try testing.expectEqual(c.ret_Ul_I_S(), .{ .v1 = 24576, .v2 = 10804, .v3 = 566 });
     try testing.expectOk(c.recv_Ul_I_S(.{ .v1 = 24576, .v2 = 10804, .v3 = 566 }));
 }
+
 // From T_Snnn_xbb.c:10233:10253
 // struct  Ul_I_Uc  {
 //   __tsu64 v1;
@@ -910,6 +957,7 @@ test "Ul_I_Uc C calls" {
     try testing.expectEqual(c.ret_Ul_I_Uc(), .{ .v1 = 4343, .v2 = 4509, .v3 = 97 });
     try testing.expectOk(c.recv_Ul_I_Uc(.{ .v1 = 4343, .v2 = 4509, .v3 = 97 }));
 }
+
 // From T_Snnn_xbb.c:10258:10278
 // struct  Ul_I_Ui  {
 //   __tsu64 v1;
@@ -929,6 +977,7 @@ test "Ul_I_Ui C calls" {
     try testing.expectEqual(c.ret_Ul_I_Ui(), .{ .v1 = 22220, .v2 = 2803, .v3 = 31274 });
     try testing.expectOk(c.recv_Ul_I_Ui(.{ .v1 = 22220, .v2 = 2803, .v3 = 31274 }));
 }
+
 // From T_Snnn_xbb.c:10283:10303
 // struct  Ul_I_Ul  {
 //   __tsu64 v1;
@@ -948,6 +997,7 @@ test "Ul_I_Ul C calls" {
     try testing.expectEqual(c.ret_Ul_I_Ul(), .{ .v1 = 23345, .v2 = 16816, .v3 = 1382 });
     try testing.expectOk(c.recv_Ul_I_Ul(.{ .v1 = 23345, .v2 = 16816, .v3 = 1382 }));
 }
+
 // From T_Snnn_xbb.c:10308:10328
 // struct  Ul_I_Us  {
 //   __tsu64 v1;
@@ -967,6 +1017,7 @@ test "Ul_I_Us C calls" {
     try testing.expectEqual(c.ret_Ul_I_Us(), .{ .v1 = 26785, .v2 = 19005, .v3 = 25704 });
     try testing.expectOk(c.recv_Ul_I_Us(.{ .v1 = 26785, .v2 = 19005, .v3 = 25704 }));
 }
+
 // From T_Snnn_xbb.c:10333:10353
 // struct  Ul_I_Vp  {
 //   __tsu64 v1;
@@ -986,6 +1037,7 @@ test "Ul_I_Vp C calls" {
     try testing.expectEqual(c.ret_Ul_I_Vp(), .{ .v1 = 15755, .v2 = 32345, .v3 = null });
     try testing.expectOk(c.recv_Ul_I_Vp(.{ .v1 = 15755, .v2 = 32345, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:10358:10376
 // struct  Ul_Ip  {
 //   __tsu64 v1;
@@ -1003,6 +1055,7 @@ test "Ul_Ip C calls" {
     try testing.expectEqual(c.ret_Ul_Ip(), .{ .v1 = 26902, .v2 = null });
     try testing.expectOk(c.recv_Ul_Ip(.{ .v1 = 26902, .v2 = null }));
 }
+
 // From T_Snnn_xbb.c:11105:11125
 // struct  Ul_Ip_C  {
 //   __tsu64 v1;
@@ -1022,6 +1075,7 @@ test "Ul_Ip_C C calls" {
     try testing.expectEqual(c.ret_Ul_Ip_C(), .{ .v1 = 11062, .v2 = null, .v3 = 31 });
     try testing.expectOk(c.recv_Ul_Ip_C(.{ .v1 = 11062, .v2 = null, .v3 = 31 }));
 }
+
 // From T_Snnn_xbb.c:11130:11150
 // struct  Ul_Ip_D  {
 //   __tsu64 v1;
@@ -1041,6 +1095,7 @@ test "Ul_Ip_D C calls" {
     try testing.expectEqual(c.ret_Ul_Ip_D(), .{ .v1 = 3475, .v2 = null, .v3 = 0.875 });
     try testing.expectOk(c.recv_Ul_Ip_D(.{ .v1 = 3475, .v2 = null, .v3 = 0.875 }));
 }
+
 // From T_Snnn_xbb.c:11155:11175
 // struct  Ul_Ip_F  {
 //   __tsu64 v1;
@@ -1060,6 +1115,7 @@ test "Ul_Ip_F C calls" {
     try testing.expectEqual(c.ret_Ul_Ip_F(), .{ .v1 = 6436, .v2 = null, .v3 = 4.5 });
     try testing.expectOk(c.recv_Ul_Ip_F(.{ .v1 = 6436, .v2 = null, .v3 = 4.5 }));
 }
+
 // From T_Snnn_xbb.c:11180:11200
 // struct  Ul_Ip_I  {
 //   __tsu64 v1;
@@ -1079,6 +1135,7 @@ test "Ul_Ip_I C calls" {
     try testing.expectEqual(c.ret_Ul_Ip_I(), .{ .v1 = 9802, .v2 = null, .v3 = 30741 });
     try testing.expectOk(c.recv_Ul_Ip_I(.{ .v1 = 9802, .v2 = null, .v3 = 30741 }));
 }
+
 // From T_Snnn_xbb.c:11205:11225
 // struct  Ul_Ip_Ip  {
 //   __tsu64 v1;
@@ -1098,6 +1155,7 @@ test "Ul_Ip_Ip C calls" {
     try testing.expectEqual(c.ret_Ul_Ip_Ip(), .{ .v1 = 1518, .v2 = null, .v3 = null });
     try testing.expectOk(c.recv_Ul_Ip_Ip(.{ .v1 = 1518, .v2 = null, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:11230:11250
 // struct  Ul_Ip_L  {
 //   __tsu64 v1;
@@ -1117,6 +1175,7 @@ test "Ul_Ip_L C calls" {
     try testing.expectEqual(c.ret_Ul_Ip_L(), .{ .v1 = 31264, .v2 = null, .v3 = 30076 });
     try testing.expectOk(c.recv_Ul_Ip_L(.{ .v1 = 31264, .v2 = null, .v3 = 30076 }));
 }
+
 // From T_Snnn_xbb.c:11255:11275
 // struct  Ul_Ip_S  {
 //   __tsu64 v1;
@@ -1136,6 +1195,7 @@ test "Ul_Ip_S C calls" {
     try testing.expectEqual(c.ret_Ul_Ip_S(), .{ .v1 = 22879, .v2 = null, .v3 = 23485 });
     try testing.expectOk(c.recv_Ul_Ip_S(.{ .v1 = 22879, .v2 = null, .v3 = 23485 }));
 }
+
 // From T_Snnn_xbb.c:11280:11300
 // struct  Ul_Ip_Uc  {
 //   __tsu64 v1;
@@ -1155,6 +1215,7 @@ test "Ul_Ip_Uc C calls" {
     try testing.expectEqual(c.ret_Ul_Ip_Uc(), .{ .v1 = 14255, .v2 = null, .v3 = 118 });
     try testing.expectOk(c.recv_Ul_Ip_Uc(.{ .v1 = 14255, .v2 = null, .v3 = 118 }));
 }
+
 // From T_Snnn_xbb.c:11305:11325
 // struct  Ul_Ip_Ui  {
 //   __tsu64 v1;
@@ -1174,6 +1235,7 @@ test "Ul_Ip_Ui C calls" {
     try testing.expectEqual(c.ret_Ul_Ip_Ui(), .{ .v1 = 5959, .v2 = null, .v3 = 12355 });
     try testing.expectOk(c.recv_Ul_Ip_Ui(.{ .v1 = 5959, .v2 = null, .v3 = 12355 }));
 }
+
 // From T_Snnn_xbb.c:11330:11350
 // struct  Ul_Ip_Ul  {
 //   __tsu64 v1;
@@ -1193,6 +1255,7 @@ test "Ul_Ip_Ul C calls" {
     try testing.expectEqual(c.ret_Ul_Ip_Ul(), .{ .v1 = 8777, .v2 = null, .v3 = 760 });
     try testing.expectOk(c.recv_Ul_Ip_Ul(.{ .v1 = 8777, .v2 = null, .v3 = 760 }));
 }
+
 // From T_Snnn_xbb.c:11355:11375
 // struct  Ul_Ip_Us  {
 //   __tsu64 v1;
@@ -1212,6 +1275,7 @@ test "Ul_Ip_Us C calls" {
     try testing.expectEqual(c.ret_Ul_Ip_Us(), .{ .v1 = 16734, .v2 = null, .v3 = 28745 });
     try testing.expectOk(c.recv_Ul_Ip_Us(.{ .v1 = 16734, .v2 = null, .v3 = 28745 }));
 }
+
 // From T_Snnn_xbb.c:11380:11400
 // struct  Ul_Ip_Vp  {
 //   __tsu64 v1;
@@ -1231,6 +1295,7 @@ test "Ul_Ip_Vp C calls" {
     try testing.expectEqual(c.ret_Ul_Ip_Vp(), .{ .v1 = 21721, .v2 = null, .v3 = null });
     try testing.expectOk(c.recv_Ul_Ip_Vp(.{ .v1 = 21721, .v2 = null, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:11405:11423
 // struct  Ul_L  {
 //   __tsu64 v1;
@@ -1248,6 +1313,7 @@ test "Ul_L C calls" {
     try testing.expectEqual(c.ret_Ul_L(), .{ .v1 = 15343, .v2 = 30563 });
     try testing.expectOk(c.recv_Ul_L(.{ .v1 = 15343, .v2 = 30563 }));
 }
+
 // From T_Snnn_xbb.c:12152:12172
 // struct  Ul_L_C  {
 //   __tsu64 v1;
@@ -1267,6 +1333,7 @@ test "Ul_L_C C calls" {
     try testing.expectEqual(c.ret_Ul_L_C(), .{ .v1 = 28130, .v2 = 18916, .v3 = 10 });
     try testing.expectOk(c.recv_Ul_L_C(.{ .v1 = 28130, .v2 = 18916, .v3 = 10 }));
 }
+
 // From T_Snnn_xbb.c:12177:12197
 // struct  Ul_L_D  {
 //   __tsu64 v1;
@@ -1286,6 +1353,7 @@ test "Ul_L_D C calls" {
     try testing.expectEqual(c.ret_Ul_L_D(), .{ .v1 = 13861, .v2 = 9151, .v3 = 0.5 });
     try testing.expectOk(c.recv_Ul_L_D(.{ .v1 = 13861, .v2 = 9151, .v3 = 0.5 }));
 }
+
 // From T_Snnn_xbb.c:12202:12222
 // struct  Ul_L_F  {
 //   __tsu64 v1;
@@ -1305,6 +1373,7 @@ test "Ul_L_F C calls" {
     try testing.expectEqual(c.ret_Ul_L_F(), .{ .v1 = 22003, .v2 = 10595, .v3 = 7.0 });
     try testing.expectOk(c.recv_Ul_L_F(.{ .v1 = 22003, .v2 = 10595, .v3 = 7.0 }));
 }
+
 // From T_Snnn_xbb.c:12227:12247
 // struct  Ul_L_I  {
 //   __tsu64 v1;
@@ -1324,6 +1393,7 @@ test "Ul_L_I C calls" {
     try testing.expectEqual(c.ret_Ul_L_I(), .{ .v1 = 24399, .v2 = 7327, .v3 = 24391 });
     try testing.expectOk(c.recv_Ul_L_I(.{ .v1 = 24399, .v2 = 7327, .v3 = 24391 }));
 }
+
 // From T_Snnn_xbb.c:12252:12272
 // struct  Ul_L_Ip  {
 //   __tsu64 v1;
@@ -1343,6 +1413,7 @@ test "Ul_L_Ip C calls" {
     try testing.expectEqual(c.ret_Ul_L_Ip(), .{ .v1 = 29353, .v2 = 291, .v3 = null });
     try testing.expectOk(c.recv_Ul_L_Ip(.{ .v1 = 29353, .v2 = 291, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:12277:12297
 // struct  Ul_L_L  {
 //   __tsu64 v1;
@@ -1362,6 +1433,7 @@ test "Ul_L_L C calls" {
     try testing.expectEqual(c.ret_Ul_L_L(), .{ .v1 = 31991, .v2 = 20178, .v3 = 30846 });
     try testing.expectOk(c.recv_Ul_L_L(.{ .v1 = 31991, .v2 = 20178, .v3 = 30846 }));
 }
+
 // From T_Snnn_xbb.c:12302:12322
 // struct  Ul_L_S  {
 //   __tsu64 v1;
@@ -1381,6 +1453,7 @@ test "Ul_L_S C calls" {
     try testing.expectEqual(c.ret_Ul_L_S(), .{ .v1 = 538, .v2 = 31083, .v3 = 25880 });
     try testing.expectOk(c.recv_Ul_L_S(.{ .v1 = 538, .v2 = 31083, .v3 = 25880 }));
 }
+
 // From T_Snnn_xbb.c:12327:12347
 // struct  Ul_L_Uc  {
 //   __tsu64 v1;
@@ -1400,6 +1473,7 @@ test "Ul_L_Uc C calls" {
     try testing.expectEqual(c.ret_Ul_L_Uc(), .{ .v1 = 28879, .v2 = 7459, .v3 = 12 });
     try testing.expectOk(c.recv_Ul_L_Uc(.{ .v1 = 28879, .v2 = 7459, .v3 = 12 }));
 }
+
 // From T_Snnn_xbb.c:12352:12372
 // struct  Ul_L_Ui  {
 //   __tsu64 v1;
@@ -1419,6 +1493,7 @@ test "Ul_L_Ui C calls" {
     try testing.expectEqual(c.ret_Ul_L_Ui(), .{ .v1 = 26709, .v2 = 19269, .v3 = 24646 });
     try testing.expectOk(c.recv_Ul_L_Ui(.{ .v1 = 26709, .v2 = 19269, .v3 = 24646 }));
 }
+
 // From T_Snnn_xbb.c:12377:12397
 // struct  Ul_L_Ul  {
 //   __tsu64 v1;
@@ -1438,6 +1513,7 @@ test "Ul_L_Ul C calls" {
     try testing.expectEqual(c.ret_Ul_L_Ul(), .{ .v1 = 20313, .v2 = 27484, .v3 = 30103 });
     try testing.expectOk(c.recv_Ul_L_Ul(.{ .v1 = 20313, .v2 = 27484, .v3 = 30103 }));
 }
+
 // From T_Snnn_xbb.c:12402:12422
 // struct  Ul_L_Us  {
 //   __tsu64 v1;
@@ -1457,6 +1533,7 @@ test "Ul_L_Us C calls" {
     try testing.expectEqual(c.ret_Ul_L_Us(), .{ .v1 = 5364, .v2 = 21504, .v3 = 1770 });
     try testing.expectOk(c.recv_Ul_L_Us(.{ .v1 = 5364, .v2 = 21504, .v3 = 1770 }));
 }
+
 // From T_Snnn_xbb.c:12427:12447
 // struct  Ul_L_Vp  {
 //   __tsu64 v1;
@@ -1476,6 +1553,7 @@ test "Ul_L_Vp C calls" {
     try testing.expectEqual(c.ret_Ul_L_Vp(), .{ .v1 = 4315, .v2 = 13921, .v3 = null });
     try testing.expectOk(c.recv_Ul_L_Vp(.{ .v1 = 4315, .v2 = 13921, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:12452:12470
 // struct  Ul_S  {
 //   __tsu64 v1;
@@ -1493,6 +1571,7 @@ test "Ul_S C calls" {
     try testing.expectEqual(c.ret_Ul_S(), .{ .v1 = 15495, .v2 = 24354 });
     try testing.expectOk(c.recv_Ul_S(.{ .v1 = 15495, .v2 = 24354 }));
 }
+
 // From T_Snnn_xbb.c:13199:13219
 // struct  Ul_S_C  {
 //   __tsu64 v1;
@@ -1512,6 +1591,7 @@ test "Ul_S_C C calls" {
     try testing.expectEqual(c.ret_Ul_S_C(), .{ .v1 = 20311, .v2 = 15701, .v3 = 45 });
     try testing.expectOk(c.recv_Ul_S_C(.{ .v1 = 20311, .v2 = 15701, .v3 = 45 }));
 }
+
 // From T_Snnn_xbb.c:13224:13244
 // struct  Ul_S_D  {
 //   __tsu64 v1;
@@ -1531,6 +1611,7 @@ test "Ul_S_D C calls" {
     try testing.expectEqual(c.ret_Ul_S_D(), .{ .v1 = 2529, .v2 = 28822, .v3 = 0.875 });
     try testing.expectOk(c.recv_Ul_S_D(.{ .v1 = 2529, .v2 = 28822, .v3 = 0.875 }));
 }
+
 // From T_Snnn_xbb.c:13249:13269
 // struct  Ul_S_F  {
 //   __tsu64 v1;
@@ -1550,6 +1631,7 @@ test "Ul_S_F C calls" {
     try testing.expectEqual(c.ret_Ul_S_F(), .{ .v1 = 17877, .v2 = 24298, .v3 = 0.5 });
     try testing.expectOk(c.recv_Ul_S_F(.{ .v1 = 17877, .v2 = 24298, .v3 = 0.5 }));
 }
+
 // From T_Snnn_xbb.c:13274:13294
 // struct  Ul_S_I  {
 //   __tsu64 v1;
@@ -1569,6 +1651,7 @@ test "Ul_S_I C calls" {
     try testing.expectEqual(c.ret_Ul_S_I(), .{ .v1 = 19761, .v2 = 8492, .v3 = 4769 });
     try testing.expectOk(c.recv_Ul_S_I(.{ .v1 = 19761, .v2 = 8492, .v3 = 4769 }));
 }
+
 // From T_Snnn_xbb.c:13299:13319
 // struct  Ul_S_Ip  {
 //   __tsu64 v1;
@@ -1588,6 +1671,7 @@ test "Ul_S_Ip C calls" {
     try testing.expectEqual(c.ret_Ul_S_Ip(), .{ .v1 = 21285, .v2 = 6075, .v3 = null });
     try testing.expectOk(c.recv_Ul_S_Ip(.{ .v1 = 21285, .v2 = 6075, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:13324:13344
 // struct  Ul_S_L  {
 //   __tsu64 v1;
@@ -1607,6 +1691,7 @@ test "Ul_S_L C calls" {
     try testing.expectEqual(c.ret_Ul_S_L(), .{ .v1 = 4325, .v2 = 4313, .v3 = 14475 });
     try testing.expectOk(c.recv_Ul_S_L(.{ .v1 = 4325, .v2 = 4313, .v3 = 14475 }));
 }
+
 // From T_Snnn_xbb.c:13349:13369
 // struct  Ul_S_S  {
 //   __tsu64 v1;
@@ -1626,6 +1711,7 @@ test "Ul_S_S C calls" {
     try testing.expectEqual(c.ret_Ul_S_S(), .{ .v1 = 28758, .v2 = 1479, .v3 = 15299 });
     try testing.expectOk(c.recv_Ul_S_S(.{ .v1 = 28758, .v2 = 1479, .v3 = 15299 }));
 }
+
 // From T_Snnn_xbb.c:13374:13394
 // struct  Ul_S_Uc  {
 //   __tsu64 v1;
@@ -1645,6 +1731,7 @@ test "Ul_S_Uc C calls" {
     try testing.expectEqual(c.ret_Ul_S_Uc(), .{ .v1 = 23482, .v2 = 14404, .v3 = 62 });
     try testing.expectOk(c.recv_Ul_S_Uc(.{ .v1 = 23482, .v2 = 14404, .v3 = 62 }));
 }
+
 // From T_Snnn_xbb.c:13399:13419
 // struct  Ul_S_Ui  {
 //   __tsu64 v1;
@@ -1664,6 +1751,7 @@ test "Ul_S_Ui C calls" {
     try testing.expectEqual(c.ret_Ul_S_Ui(), .{ .v1 = 14460, .v2 = 21505, .v3 = 10097 });
     try testing.expectOk(c.recv_Ul_S_Ui(.{ .v1 = 14460, .v2 = 21505, .v3 = 10097 }));
 }
+
 // From T_Snnn_xbb.c:13424:13444
 // struct  Ul_S_Ul  {
 //   __tsu64 v1;
@@ -1683,6 +1771,7 @@ test "Ul_S_Ul C calls" {
     try testing.expectEqual(c.ret_Ul_S_Ul(), .{ .v1 = 1815, .v2 = 29350, .v3 = 3622 });
     try testing.expectOk(c.recv_Ul_S_Ul(.{ .v1 = 1815, .v2 = 29350, .v3 = 3622 }));
 }
+
 // From T_Snnn_xbb.c:13449:13469
 // struct  Ul_S_Us  {
 //   __tsu64 v1;
@@ -1702,6 +1791,7 @@ test "Ul_S_Us C calls" {
     try testing.expectEqual(c.ret_Ul_S_Us(), .{ .v1 = 25777, .v2 = 20180, .v3 = 7276 });
     try testing.expectOk(c.recv_Ul_S_Us(.{ .v1 = 25777, .v2 = 20180, .v3 = 7276 }));
 }
+
 // From T_Snnn_xbb.c:13474:13494
 // struct  Ul_S_Vp  {
 //   __tsu64 v1;
@@ -1721,6 +1811,7 @@ test "Ul_S_Vp C calls" {
     try testing.expectEqual(c.ret_Ul_S_Vp(), .{ .v1 = 28974, .v2 = 28956, .v3 = null });
     try testing.expectOk(c.recv_Ul_S_Vp(.{ .v1 = 28974, .v2 = 28956, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:13499:13517
 // struct  Ul_Uc  {
 //   __tsu64 v1;
@@ -1738,6 +1829,7 @@ test "Ul_Uc C calls" {
     try testing.expectEqual(c.ret_Ul_Uc(), .{ .v1 = 9532, .v2 = 30 });
     try testing.expectOk(c.recv_Ul_Uc(.{ .v1 = 9532, .v2 = 30 }));
 }
+
 // From T_Snnn_xbb.c:14246:14266
 // struct  Ul_Uc_C  {
 //   __tsu64 v1;
@@ -1757,6 +1849,7 @@ test "Ul_Uc_C C calls" {
     try testing.expectEqual(c.ret_Ul_Uc_C(), .{ .v1 = 28644, .v2 = 23, .v3 = 64 });
     try testing.expectOk(c.recv_Ul_Uc_C(.{ .v1 = 28644, .v2 = 23, .v3 = 64 }));
 }
+
 // From T_Snnn_xbb.c:14271:14291
 // struct  Ul_Uc_D  {
 //   __tsu64 v1;
@@ -1776,6 +1869,7 @@ test "Ul_Uc_D C calls" {
     try testing.expectEqual(c.ret_Ul_Uc_D(), .{ .v1 = 27342, .v2 = 53, .v3 = 7.0 });
     try testing.expectOk(c.recv_Ul_Uc_D(.{ .v1 = 27342, .v2 = 53, .v3 = 7.0 }));
 }
+
 // From T_Snnn_xbb.c:14296:14316
 // struct  Ul_Uc_F  {
 //   __tsu64 v1;
@@ -1795,6 +1889,7 @@ test "Ul_Uc_F C calls" {
     try testing.expectEqual(c.ret_Ul_Uc_F(), .{ .v1 = 357, .v2 = 83, .v3 = 1.0 });
     try testing.expectOk(c.recv_Ul_Uc_F(.{ .v1 = 357, .v2 = 83, .v3 = 1.0 }));
 }
+
 // From T_Snnn_xbb.c:14321:14341
 // struct  Ul_Uc_I  {
 //   __tsu64 v1;
@@ -1814,6 +1909,7 @@ test "Ul_Uc_I C calls" {
     try testing.expectEqual(c.ret_Ul_Uc_I(), .{ .v1 = 9936, .v2 = 95, .v3 = 31107 });
     try testing.expectOk(c.recv_Ul_Uc_I(.{ .v1 = 9936, .v2 = 95, .v3 = 31107 }));
 }
+
 // From T_Snnn_xbb.c:14346:14366
 // struct  Ul_Uc_Ip  {
 //   __tsu64 v1;
@@ -1833,6 +1929,7 @@ test "Ul_Uc_Ip C calls" {
     try testing.expectEqual(c.ret_Ul_Uc_Ip(), .{ .v1 = 28094, .v2 = 9, .v3 = null });
     try testing.expectOk(c.recv_Ul_Uc_Ip(.{ .v1 = 28094, .v2 = 9, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:14371:14391
 // struct  Ul_Uc_L  {
 //   __tsu64 v1;
@@ -1852,6 +1949,7 @@ test "Ul_Uc_L C calls" {
     try testing.expectEqual(c.ret_Ul_Uc_L(), .{ .v1 = 15634, .v2 = 17, .v3 = 1241 });
     try testing.expectOk(c.recv_Ul_Uc_L(.{ .v1 = 15634, .v2 = 17, .v3 = 1241 }));
 }
+
 // From T_Snnn_xbb.c:14396:14416
 // struct  Ul_Uc_S  {
 //   __tsu64 v1;
@@ -1871,6 +1969,7 @@ test "Ul_Uc_S C calls" {
     try testing.expectEqual(c.ret_Ul_Uc_S(), .{ .v1 = 30415, .v2 = 26, .v3 = 12477 });
     try testing.expectOk(c.recv_Ul_Uc_S(.{ .v1 = 30415, .v2 = 26, .v3 = 12477 }));
 }
+
 // From T_Snnn_xbb.c:14421:14441
 // struct  Ul_Uc_Uc  {
 //   __tsu64 v1;
@@ -1890,6 +1989,7 @@ test "Ul_Uc_Uc C calls" {
     try testing.expectEqual(c.ret_Ul_Uc_Uc(), .{ .v1 = 17391, .v2 = 91, .v3 = 22 });
     try testing.expectOk(c.recv_Ul_Uc_Uc(.{ .v1 = 17391, .v2 = 91, .v3 = 22 }));
 }
+
 // From T_Snnn_xbb.c:14446:14466
 // struct  Ul_Uc_Ui  {
 //   __tsu64 v1;
@@ -1909,6 +2009,7 @@ test "Ul_Uc_Ui C calls" {
     try testing.expectEqual(c.ret_Ul_Uc_Ui(), .{ .v1 = 20042, .v2 = 52, .v3 = 19522 });
     try testing.expectOk(c.recv_Ul_Uc_Ui(.{ .v1 = 20042, .v2 = 52, .v3 = 19522 }));
 }
+
 // From T_Snnn_xbb.c:14471:14491
 // struct  Ul_Uc_Ul  {
 //   __tsu64 v1;
@@ -1928,6 +2029,7 @@ test "Ul_Uc_Ul C calls" {
     try testing.expectEqual(c.ret_Ul_Uc_Ul(), .{ .v1 = 18223, .v2 = 65, .v3 = 26245 });
     try testing.expectOk(c.recv_Ul_Uc_Ul(.{ .v1 = 18223, .v2 = 65, .v3 = 26245 }));
 }
+
 // From T_Snnn_xbb.c:14496:14516
 // struct  Ul_Uc_Us  {
 //   __tsu64 v1;
@@ -1947,6 +2049,7 @@ test "Ul_Uc_Us C calls" {
     try testing.expectEqual(c.ret_Ul_Uc_Us(), .{ .v1 = 13507, .v2 = 81, .v3 = 16987 });
     try testing.expectOk(c.recv_Ul_Uc_Us(.{ .v1 = 13507, .v2 = 81, .v3 = 16987 }));
 }
+
 // From T_Snnn_xbb.c:14521:14541
 // struct  Ul_Uc_Vp  {
 //   __tsu64 v1;
@@ -1966,6 +2069,7 @@ test "Ul_Uc_Vp C calls" {
     try testing.expectEqual(c.ret_Ul_Uc_Vp(), .{ .v1 = 4951, .v2 = 65, .v3 = null });
     try testing.expectOk(c.recv_Ul_Uc_Vp(.{ .v1 = 4951, .v2 = 65, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:14546:14564
 // struct  Ul_Ui  {
 //   __tsu64 v1;
@@ -1983,6 +2087,7 @@ test "Ul_Ui C calls" {
     try testing.expectEqual(c.ret_Ul_Ui(), .{ .v1 = 7789, .v2 = 28185 });
     try testing.expectOk(c.recv_Ul_Ui(.{ .v1 = 7789, .v2 = 28185 }));
 }
+
 // From T_Snnn_xbb.c:15293:15313
 // struct  Ul_Ui_C  {
 //   __tsu64 v1;
@@ -2002,6 +2107,7 @@ test "Ul_Ui_C C calls" {
     try testing.expectEqual(c.ret_Ul_Ui_C(), .{ .v1 = 3948, .v2 = 28420, .v3 = 79 });
     try testing.expectOk(c.recv_Ul_Ui_C(.{ .v1 = 3948, .v2 = 28420, .v3 = 79 }));
 }
+
 // From T_Snnn_xbb.c:15318:15338
 // struct  Ul_Ui_D  {
 //   __tsu64 v1;
@@ -2021,6 +2127,7 @@ test "Ul_Ui_D C calls" {
     try testing.expectEqual(c.ret_Ul_Ui_D(), .{ .v1 = 1908, .v2 = 4685, .v3 = 7.0 });
     try testing.expectOk(c.recv_Ul_Ui_D(.{ .v1 = 1908, .v2 = 4685, .v3 = 7.0 }));
 }
+
 // From T_Snnn_xbb.c:15343:15363
 // struct  Ul_Ui_F  {
 //   __tsu64 v1;
@@ -2040,6 +2147,7 @@ test "Ul_Ui_F C calls" {
     try testing.expectEqual(c.ret_Ul_Ui_F(), .{ .v1 = 24351, .v2 = 12662, .v3 = 4.5 });
     try testing.expectOk(c.recv_Ul_Ui_F(.{ .v1 = 24351, .v2 = 12662, .v3 = 4.5 }));
 }
+
 // From T_Snnn_xbb.c:15368:15388
 // struct  Ul_Ui_I  {
 //   __tsu64 v1;
@@ -2059,6 +2167,7 @@ test "Ul_Ui_I C calls" {
     try testing.expectEqual(c.ret_Ul_Ui_I(), .{ .v1 = 2857, .v2 = 5187, .v3 = 24559 });
     try testing.expectOk(c.recv_Ul_Ui_I(.{ .v1 = 2857, .v2 = 5187, .v3 = 24559 }));
 }
+
 // From T_Snnn_xbb.c:15393:15413
 // struct  Ul_Ui_Ip  {
 //   __tsu64 v1;
@@ -2078,6 +2187,7 @@ test "Ul_Ui_Ip C calls" {
     try testing.expectEqual(c.ret_Ul_Ui_Ip(), .{ .v1 = 2720, .v2 = 966, .v3 = null });
     try testing.expectOk(c.recv_Ul_Ui_Ip(.{ .v1 = 2720, .v2 = 966, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:15418:15438
 // struct  Ul_Ui_L  {
 //   __tsu64 v1;
@@ -2097,6 +2207,7 @@ test "Ul_Ui_L C calls" {
     try testing.expectEqual(c.ret_Ul_Ui_L(), .{ .v1 = 6968, .v2 = 31951, .v3 = 7933 });
     try testing.expectOk(c.recv_Ul_Ui_L(.{ .v1 = 6968, .v2 = 31951, .v3 = 7933 }));
 }
+
 // From T_Snnn_xbb.c:15443:15463
 // struct  Ul_Ui_S  {
 //   __tsu64 v1;
@@ -2116,6 +2227,7 @@ test "Ul_Ui_S C calls" {
     try testing.expectEqual(c.ret_Ul_Ui_S(), .{ .v1 = 28303, .v2 = 27593, .v3 = 32181 });
     try testing.expectOk(c.recv_Ul_Ui_S(.{ .v1 = 28303, .v2 = 27593, .v3 = 32181 }));
 }
+
 // From T_Snnn_xbb.c:15468:15488
 // struct  Ul_Ui_Uc  {
 //   __tsu64 v1;
@@ -2135,6 +2247,7 @@ test "Ul_Ui_Uc C calls" {
     try testing.expectEqual(c.ret_Ul_Ui_Uc(), .{ .v1 = 2033, .v2 = 2860, .v3 = 81 });
     try testing.expectOk(c.recv_Ul_Ui_Uc(.{ .v1 = 2033, .v2 = 2860, .v3 = 81 }));
 }
+
 // From T_Snnn_xbb.c:15493:15513
 // struct  Ul_Ui_Ui  {
 //   __tsu64 v1;
@@ -2154,6 +2267,7 @@ test "Ul_Ui_Ui C calls" {
     try testing.expectEqual(c.ret_Ul_Ui_Ui(), .{ .v1 = 3618, .v2 = 21646, .v3 = 30807 });
     try testing.expectOk(c.recv_Ul_Ui_Ui(.{ .v1 = 3618, .v2 = 21646, .v3 = 30807 }));
 }
+
 // From T_Snnn_xbb.c:15518:15538
 // struct  Ul_Ui_Ul  {
 //   __tsu64 v1;
@@ -2173,6 +2287,7 @@ test "Ul_Ui_Ul C calls" {
     try testing.expectEqual(c.ret_Ul_Ui_Ul(), .{ .v1 = 20561, .v2 = 27761, .v3 = 14975 });
     try testing.expectOk(c.recv_Ul_Ui_Ul(.{ .v1 = 20561, .v2 = 27761, .v3 = 14975 }));
 }
+
 // From T_Snnn_xbb.c:15543:15563
 // struct  Ul_Ui_Us  {
 //   __tsu64 v1;
@@ -2192,6 +2307,7 @@ test "Ul_Ui_Us C calls" {
     try testing.expectEqual(c.ret_Ul_Ui_Us(), .{ .v1 = 32483, .v2 = 13395, .v3 = 8916 });
     try testing.expectOk(c.recv_Ul_Ui_Us(.{ .v1 = 32483, .v2 = 13395, .v3 = 8916 }));
 }
+
 // From T_Snnn_xbb.c:15568:15588
 // struct  Ul_Ui_Vp  {
 //   __tsu64 v1;
@@ -2211,6 +2327,7 @@ test "Ul_Ui_Vp C calls" {
     try testing.expectEqual(c.ret_Ul_Ui_Vp(), .{ .v1 = 21478, .v2 = 4637, .v3 = null });
     try testing.expectOk(c.recv_Ul_Ui_Vp(.{ .v1 = 21478, .v2 = 4637, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:15593:15611
 // struct  Ul_Ul  {
 //   __tsu64 v1;
@@ -2228,6 +2345,7 @@ test "Ul_Ul C calls" {
     try testing.expectEqual(c.ret_Ul_Ul(), .{ .v1 = 21329, .v2 = 8885 });
     try testing.expectOk(c.recv_Ul_Ul(.{ .v1 = 21329, .v2 = 8885 }));
 }
+
 // From T_Snnn_xbb.c:16340:16360
 // struct  Ul_Ul_C  {
 //   __tsu64 v1;
@@ -2247,6 +2365,7 @@ test "Ul_Ul_C C calls" {
     try testing.expectEqual(c.ret_Ul_Ul_C(), .{ .v1 = 24860, .v2 = 9133, .v3 = 90 });
     try testing.expectOk(c.recv_Ul_Ul_C(.{ .v1 = 24860, .v2 = 9133, .v3 = 90 }));
 }
+
 // From T_Snnn_xbb.c:16365:16385
 // struct  Ul_Ul_D  {
 //   __tsu64 v1;
@@ -2266,6 +2385,7 @@ test "Ul_Ul_D C calls" {
     try testing.expectEqual(c.ret_Ul_Ul_D(), .{ .v1 = 16601, .v2 = 13026, .v3 = -0.25 });
     try testing.expectOk(c.recv_Ul_Ul_D(.{ .v1 = 16601, .v2 = 13026, .v3 = -0.25 }));
 }
+
 // From T_Snnn_xbb.c:16390:16410
 // struct  Ul_Ul_F  {
 //   __tsu64 v1;
@@ -2285,6 +2405,7 @@ test "Ul_Ul_F C calls" {
     try testing.expectEqual(c.ret_Ul_Ul_F(), .{ .v1 = 30369, .v2 = 8873, .v3 = -0.25 });
     try testing.expectOk(c.recv_Ul_Ul_F(.{ .v1 = 30369, .v2 = 8873, .v3 = -0.25 }));
 }
+
 // From T_Snnn_xbb.c:16415:16435
 // struct  Ul_Ul_I  {
 //   __tsu64 v1;
@@ -2304,6 +2425,7 @@ test "Ul_Ul_I C calls" {
     try testing.expectEqual(c.ret_Ul_Ul_I(), .{ .v1 = 12703, .v2 = 15563, .v3 = 26532 });
     try testing.expectOk(c.recv_Ul_Ul_I(.{ .v1 = 12703, .v2 = 15563, .v3 = 26532 }));
 }
+
 // From T_Snnn_xbb.c:16440:16460
 // struct  Ul_Ul_Ip  {
 //   __tsu64 v1;
@@ -2323,6 +2445,7 @@ test "Ul_Ul_Ip C calls" {
     try testing.expectEqual(c.ret_Ul_Ul_Ip(), .{ .v1 = 18635, .v2 = 1782, .v3 = null });
     try testing.expectOk(c.recv_Ul_Ul_Ip(.{ .v1 = 18635, .v2 = 1782, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:16465:16485
 // struct  Ul_Ul_L  {
 //   __tsu64 v1;
@@ -2342,6 +2465,7 @@ test "Ul_Ul_L C calls" {
     try testing.expectEqual(c.ret_Ul_Ul_L(), .{ .v1 = 4753, .v2 = 14056, .v3 = 2292 });
     try testing.expectOk(c.recv_Ul_Ul_L(.{ .v1 = 4753, .v2 = 14056, .v3 = 2292 }));
 }
+
 // From T_Snnn_xbb.c:16490:16510
 // struct  Ul_Ul_S  {
 //   __tsu64 v1;
@@ -2361,6 +2485,7 @@ test "Ul_Ul_S C calls" {
     try testing.expectEqual(c.ret_Ul_Ul_S(), .{ .v1 = 13277, .v2 = 14126, .v3 = 24506 });
     try testing.expectOk(c.recv_Ul_Ul_S(.{ .v1 = 13277, .v2 = 14126, .v3 = 24506 }));
 }
+
 // From T_Snnn_xbb.c:16515:16535
 // struct  Ul_Ul_Uc  {
 //   __tsu64 v1;
@@ -2380,6 +2505,7 @@ test "Ul_Ul_Uc C calls" {
     try testing.expectEqual(c.ret_Ul_Ul_Uc(), .{ .v1 = 28837, .v2 = 22666, .v3 = 112 });
     try testing.expectOk(c.recv_Ul_Ul_Uc(.{ .v1 = 28837, .v2 = 22666, .v3 = 112 }));
 }
+
 // From T_Snnn_xbb.c:16540:16560
 // struct  Ul_Ul_Ui  {
 //   __tsu64 v1;
@@ -2399,6 +2525,7 @@ test "Ul_Ul_Ui C calls" {
     try testing.expectEqual(c.ret_Ul_Ul_Ui(), .{ .v1 = 1478, .v2 = 21614, .v3 = 19239 });
     try testing.expectOk(c.recv_Ul_Ul_Ui(.{ .v1 = 1478, .v2 = 21614, .v3 = 19239 }));
 }
+
 // From T_Snnn_xbb.c:16565:16585
 // struct  Ul_Ul_Ul  {
 //   __tsu64 v1;
@@ -2418,6 +2545,7 @@ test "Ul_Ul_Ul C calls" {
     try testing.expectEqual(c.ret_Ul_Ul_Ul(), .{ .v1 = 3139, .v2 = 24472, .v3 = 2247 });
     try testing.expectOk(c.recv_Ul_Ul_Ul(.{ .v1 = 3139, .v2 = 24472, .v3 = 2247 }));
 }
+
 // From T_Snnn_xbb.c:16590:16610
 // struct  Ul_Ul_Us  {
 //   __tsu64 v1;
@@ -2437,6 +2565,7 @@ test "Ul_Ul_Us C calls" {
     try testing.expectEqual(c.ret_Ul_Ul_Us(), .{ .v1 = 27076, .v2 = 8474, .v3 = 9430 });
     try testing.expectOk(c.recv_Ul_Ul_Us(.{ .v1 = 27076, .v2 = 8474, .v3 = 9430 }));
 }
+
 // From T_Snnn_xbb.c:16615:16635
 // struct  Ul_Ul_Vp  {
 //   __tsu64 v1;
@@ -2456,6 +2585,7 @@ test "Ul_Ul_Vp C calls" {
     try testing.expectEqual(c.ret_Ul_Ul_Vp(), .{ .v1 = 7942, .v2 = 18058, .v3 = null });
     try testing.expectOk(c.recv_Ul_Ul_Vp(.{ .v1 = 7942, .v2 = 18058, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:16640:16658
 // struct  Ul_Us  {
 //   __tsu64 v1;
@@ -2473,6 +2603,7 @@ test "Ul_Us C calls" {
     try testing.expectEqual(c.ret_Ul_Us(), .{ .v1 = 2643, .v2 = 28366 });
     try testing.expectOk(c.recv_Ul_Us(.{ .v1 = 2643, .v2 = 28366 }));
 }
+
 // From T_Snnn_xbb.c:17387:17407
 // struct  Ul_Us_C  {
 //   __tsu64 v1;
@@ -2492,6 +2623,7 @@ test "Ul_Us_C C calls" {
     try testing.expectEqual(c.ret_Ul_Us_C(), .{ .v1 = 3725, .v2 = 2617, .v3 = 120 });
     try testing.expectOk(c.recv_Ul_Us_C(.{ .v1 = 3725, .v2 = 2617, .v3 = 120 }));
 }
+
 // From T_Snnn_xbb.c:17412:17432
 // struct  Ul_Us_D  {
 //   __tsu64 v1;
@@ -2511,6 +2643,7 @@ test "Ul_Us_D C calls" {
     try testing.expectEqual(c.ret_Ul_Us_D(), .{ .v1 = 18843, .v2 = 22623, .v3 = 0.875 });
     try testing.expectOk(c.recv_Ul_Us_D(.{ .v1 = 18843, .v2 = 22623, .v3 = 0.875 }));
 }
+
 // From T_Snnn_xbb.c:17437:17457
 // struct  Ul_Us_F  {
 //   __tsu64 v1;
@@ -2530,6 +2663,7 @@ test "Ul_Us_F C calls" {
     try testing.expectEqual(c.ret_Ul_Us_F(), .{ .v1 = 28743, .v2 = 16957, .v3 = 1.0 });
     try testing.expectOk(c.recv_Ul_Us_F(.{ .v1 = 28743, .v2 = 16957, .v3 = 1.0 }));
 }
+
 // From T_Snnn_xbb.c:17462:17482
 // struct  Ul_Us_I  {
 //   __tsu64 v1;
@@ -2549,6 +2683,7 @@ test "Ul_Us_I C calls" {
     try testing.expectEqual(c.ret_Ul_Us_I(), .{ .v1 = 740, .v2 = 5377, .v3 = 29762 });
     try testing.expectOk(c.recv_Ul_Us_I(.{ .v1 = 740, .v2 = 5377, .v3 = 29762 }));
 }
+
 // From T_Snnn_xbb.c:17487:17507
 // struct  Ul_Us_Ip  {
 //   __tsu64 v1;
@@ -2568,6 +2703,7 @@ test "Ul_Us_Ip C calls" {
     try testing.expectEqual(c.ret_Ul_Us_Ip(), .{ .v1 = 3105, .v2 = 17049, .v3 = null });
     try testing.expectOk(c.recv_Ul_Us_Ip(.{ .v1 = 3105, .v2 = 17049, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:17512:17532
 // struct  Ul_Us_L  {
 //   __tsu64 v1;
@@ -2587,6 +2723,7 @@ test "Ul_Us_L C calls" {
     try testing.expectEqual(c.ret_Ul_Us_L(), .{ .v1 = 26785, .v2 = 14066, .v3 = 4067 });
     try testing.expectOk(c.recv_Ul_Us_L(.{ .v1 = 26785, .v2 = 14066, .v3 = 4067 }));
 }
+
 // From T_Snnn_xbb.c:17537:17557
 // struct  Ul_Us_S  {
 //   __tsu64 v1;
@@ -2606,6 +2743,7 @@ test "Ul_Us_S C calls" {
     try testing.expectEqual(c.ret_Ul_Us_S(), .{ .v1 = 16835, .v2 = 29577, .v3 = 24424 });
     try testing.expectOk(c.recv_Ul_Us_S(.{ .v1 = 16835, .v2 = 29577, .v3 = 24424 }));
 }
+
 // From T_Snnn_xbb.c:17562:17582
 // struct  Ul_Us_Uc  {
 //   __tsu64 v1;
@@ -2625,6 +2763,7 @@ test "Ul_Us_Uc C calls" {
     try testing.expectEqual(c.ret_Ul_Us_Uc(), .{ .v1 = 11719, .v2 = 12708, .v3 = 67 });
     try testing.expectOk(c.recv_Ul_Us_Uc(.{ .v1 = 11719, .v2 = 12708, .v3 = 67 }));
 }
+
 // From T_Snnn_xbb.c:17587:17607
 // struct  Ul_Us_Ui  {
 //   __tsu64 v1;
@@ -2644,6 +2783,7 @@ test "Ul_Us_Ui C calls" {
     try testing.expectEqual(c.ret_Ul_Us_Ui(), .{ .v1 = 26605, .v2 = 10106, .v3 = 23753 });
     try testing.expectOk(c.recv_Ul_Us_Ui(.{ .v1 = 26605, .v2 = 10106, .v3 = 23753 }));
 }
+
 // From T_Snnn_xbb.c:17612:17632
 // struct  Ul_Us_Ul  {
 //   __tsu64 v1;
@@ -2663,6 +2803,7 @@ test "Ul_Us_Ul C calls" {
     try testing.expectEqual(c.ret_Ul_Us_Ul(), .{ .v1 = 1091, .v2 = 31951, .v3 = 2537 });
     try testing.expectOk(c.recv_Ul_Us_Ul(.{ .v1 = 1091, .v2 = 31951, .v3 = 2537 }));
 }
+
 // From T_Snnn_xbb.c:17637:17657
 // struct  Ul_Us_Us  {
 //   __tsu64 v1;
@@ -2682,6 +2823,7 @@ test "Ul_Us_Us C calls" {
     try testing.expectEqual(c.ret_Ul_Us_Us(), .{ .v1 = 6339, .v2 = 31142, .v3 = 16115 });
     try testing.expectOk(c.recv_Ul_Us_Us(.{ .v1 = 6339, .v2 = 31142, .v3 = 16115 }));
 }
+
 // From T_Snnn_xbb.c:17662:17682
 // struct  Ul_Us_Vp  {
 //   __tsu64 v1;
@@ -2701,6 +2843,7 @@ test "Ul_Us_Vp C calls" {
     try testing.expectEqual(c.ret_Ul_Us_Vp(), .{ .v1 = 18681, .v2 = 2174, .v3 = null });
     try testing.expectOk(c.recv_Ul_Us_Vp(.{ .v1 = 18681, .v2 = 2174, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:17687:17705
 // struct  Ul_Vp  {
 //   __tsu64 v1;
@@ -2718,6 +2861,7 @@ test "Ul_Vp C calls" {
     try testing.expectEqual(c.ret_Ul_Vp(), .{ .v1 = 7138, .v2 = null });
     try testing.expectOk(c.recv_Ul_Vp(.{ .v1 = 7138, .v2 = null }));
 }
+
 // From T_Snnn_xbb.c:18434:18454
 // struct  Ul_Vp_C  {
 //   __tsu64 v1;
@@ -2737,6 +2881,7 @@ test "Ul_Vp_C C calls" {
     try testing.expectEqual(c.ret_Ul_Vp_C(), .{ .v1 = 12084, .v2 = null, .v3 = 77 });
     try testing.expectOk(c.recv_Ul_Vp_C(.{ .v1 = 12084, .v2 = null, .v3 = 77 }));
 }
+
 // From T_Snnn_xbb.c:18459:18479
 // struct  Ul_Vp_D  {
 //   __tsu64 v1;
@@ -2756,6 +2901,7 @@ test "Ul_Vp_D C calls" {
     try testing.expectEqual(c.ret_Ul_Vp_D(), .{ .v1 = 26067, .v2 = null, .v3 = -2.125 });
     try testing.expectOk(c.recv_Ul_Vp_D(.{ .v1 = 26067, .v2 = null, .v3 = -2.125 }));
 }
+
 // From T_Snnn_xbb.c:18484:18504
 // struct  Ul_Vp_F  {
 //   __tsu64 v1;
@@ -2775,6 +2921,7 @@ test "Ul_Vp_F C calls" {
     try testing.expectEqual(c.ret_Ul_Vp_F(), .{ .v1 = 14892, .v2 = null, .v3 = 0.5 });
     try testing.expectOk(c.recv_Ul_Vp_F(.{ .v1 = 14892, .v2 = null, .v3 = 0.5 }));
 }
+
 // From T_Snnn_xbb.c:18509:18529
 // struct  Ul_Vp_I  {
 //   __tsu64 v1;
@@ -2794,6 +2941,7 @@ test "Ul_Vp_I C calls" {
     try testing.expectEqual(c.ret_Ul_Vp_I(), .{ .v1 = 7902, .v2 = null, .v3 = 16411 });
     try testing.expectOk(c.recv_Ul_Vp_I(.{ .v1 = 7902, .v2 = null, .v3 = 16411 }));
 }
+
 // From T_Snnn_xbb.c:18534:18554
 // struct  Ul_Vp_Ip  {
 //   __tsu64 v1;
@@ -2813,6 +2961,7 @@ test "Ul_Vp_Ip C calls" {
     try testing.expectEqual(c.ret_Ul_Vp_Ip(), .{ .v1 = 3098, .v2 = null, .v3 = null });
     try testing.expectOk(c.recv_Ul_Vp_Ip(.{ .v1 = 3098, .v2 = null, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:18559:18579
 // struct  Ul_Vp_L  {
 //   __tsu64 v1;
@@ -2832,6 +2981,7 @@ test "Ul_Vp_L C calls" {
     try testing.expectEqual(c.ret_Ul_Vp_L(), .{ .v1 = 10634, .v2 = null, .v3 = 13712 });
     try testing.expectOk(c.recv_Ul_Vp_L(.{ .v1 = 10634, .v2 = null, .v3 = 13712 }));
 }
+
 // From T_Snnn_xbb.c:18584:18604
 // struct  Ul_Vp_S  {
 //   __tsu64 v1;
@@ -2851,6 +3001,7 @@ test "Ul_Vp_S C calls" {
     try testing.expectEqual(c.ret_Ul_Vp_S(), .{ .v1 = 13103, .v2 = null, .v3 = 26544 });
     try testing.expectOk(c.recv_Ul_Vp_S(.{ .v1 = 13103, .v2 = null, .v3 = 26544 }));
 }
+
 // From T_Snnn_xbb.c:18609:18629
 // struct  Ul_Vp_Uc  {
 //   __tsu64 v1;
@@ -2870,6 +3021,7 @@ test "Ul_Vp_Uc C calls" {
     try testing.expectEqual(c.ret_Ul_Vp_Uc(), .{ .v1 = 7202, .v2 = null, .v3 = 80 });
     try testing.expectOk(c.recv_Ul_Vp_Uc(.{ .v1 = 7202, .v2 = null, .v3 = 80 }));
 }
+
 // From T_Snnn_xbb.c:18634:18654
 // struct  Ul_Vp_Ui  {
 //   __tsu64 v1;
@@ -2889,6 +3041,7 @@ test "Ul_Vp_Ui C calls" {
     try testing.expectEqual(c.ret_Ul_Vp_Ui(), .{ .v1 = 22663, .v2 = null, .v3 = 1363 });
     try testing.expectOk(c.recv_Ul_Vp_Ui(.{ .v1 = 22663, .v2 = null, .v3 = 1363 }));
 }
+
 // From T_Snnn_xbb.c:18659:18679
 // struct  Ul_Vp_Ul  {
 //   __tsu64 v1;
@@ -2908,6 +3061,7 @@ test "Ul_Vp_Ul C calls" {
     try testing.expectEqual(c.ret_Ul_Vp_Ul(), .{ .v1 = 18470, .v2 = null, .v3 = 9482 });
     try testing.expectOk(c.recv_Ul_Vp_Ul(.{ .v1 = 18470, .v2 = null, .v3 = 9482 }));
 }
+
 // From T_Snnn_xbb.c:18684:18704
 // struct  Ul_Vp_Us  {
 //   __tsu64 v1;
@@ -2927,6 +3081,7 @@ test "Ul_Vp_Us C calls" {
     try testing.expectEqual(c.ret_Ul_Vp_Us(), .{ .v1 = 28776, .v2 = null, .v3 = 16723 });
     try testing.expectOk(c.recv_Ul_Vp_Us(.{ .v1 = 28776, .v2 = null, .v3 = 16723 }));
 }
+
 // From T_Snnn_xbb.c:18709:18729
 // struct  Ul_Vp_Vp  {
 //   __tsu64 v1;
@@ -2946,6 +3101,7 @@ test "Ul_Vp_Vp C calls" {
     try testing.expectEqual(c.ret_Ul_Vp_Vp(), .{ .v1 = 25197, .v2 = null, .v3 = null });
     try testing.expectOk(c.recv_Ul_Vp_Vp(.{ .v1 = 25197, .v2 = null, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:18734:18750
 // struct  Us  {
 //   unsigned short v1;
@@ -2961,6 +3117,7 @@ test "Us C calls" {
     try testing.expectEqual(c.ret_Us(), .{ .v1 = 8994 });
     try testing.expectOk(c.recv_Us(.{ .v1 = 8994 }));
 }
+
 // From T_Snnn_xbb.c:49055:49073
 // struct  Us_C  {
 //   unsigned short v1;
@@ -2978,6 +3135,7 @@ test "Us_C C calls" {
     try testing.expectEqual(c.ret_Us_C(), .{ .v1 = 16644, .v2 = 68 });
     try testing.expectOk(c.recv_Us_C(.{ .v1 = 16644, .v2 = 68 }));
 }
+
 // From T_Snnn_xbb.c:49802:49822
 // struct  Us_C_C  {
 //   unsigned short v1;
@@ -2997,6 +3155,7 @@ test "Us_C_C C calls" {
     try testing.expectEqual(c.ret_Us_C_C(), .{ .v1 = 2512, .v2 = 99, .v3 = 60 });
     try testing.expectOk(c.recv_Us_C_C(.{ .v1 = 2512, .v2 = 99, .v3 = 60 }));
 }
+
 // From T_Snnn_xbb.c:49827:49847
 // struct  Us_C_D  {
 //   unsigned short v1;
@@ -3016,6 +3175,7 @@ test "Us_C_D C calls" {
     try testing.expectEqual(c.ret_Us_C_D(), .{ .v1 = 21959, .v2 = 16, .v3 = 4.5 });
     try testing.expectOk(c.recv_Us_C_D(.{ .v1 = 21959, .v2 = 16, .v3 = 4.5 }));
 }
+
 // From T_Snnn_xbb.c:49852:49872
 // struct  Us_C_F  {
 //   unsigned short v1;
@@ -3035,6 +3195,7 @@ test "Us_C_F C calls" {
     try testing.expectEqual(c.ret_Us_C_F(), .{ .v1 = 2567, .v2 = 34, .v3 = 4.5 });
     try testing.expectOk(c.recv_Us_C_F(.{ .v1 = 2567, .v2 = 34, .v3 = 4.5 }));
 }
+
 // From T_Snnn_xbb.c:49877:49897
 // struct  Us_C_I  {
 //   unsigned short v1;
@@ -3054,6 +3215,7 @@ test "Us_C_I C calls" {
     try testing.expectEqual(c.ret_Us_C_I(), .{ .v1 = 15462, .v2 = 25, .v3 = 9740 });
     try testing.expectOk(c.recv_Us_C_I(.{ .v1 = 15462, .v2 = 25, .v3 = 9740 }));
 }
+
 // From T_Snnn_xbb.c:49902:49922
 // struct  Us_C_Ip  {
 //   unsigned short v1;
@@ -3073,6 +3235,7 @@ test "Us_C_Ip C calls" {
     try testing.expectEqual(c.ret_Us_C_Ip(), .{ .v1 = 21044, .v2 = 85, .v3 = null });
     try testing.expectOk(c.recv_Us_C_Ip(.{ .v1 = 21044, .v2 = 85, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:49927:49947
 // struct  Us_C_L  {
 //   unsigned short v1;
@@ -3092,6 +3255,7 @@ test "Us_C_L C calls" {
     try testing.expectEqual(c.ret_Us_C_L(), .{ .v1 = 15192, .v2 = 103, .v3 = 19299 });
     try testing.expectOk(c.recv_Us_C_L(.{ .v1 = 15192, .v2 = 103, .v3 = 19299 }));
 }
+
 // From T_Snnn_xbb.c:49952:49972
 // struct  Us_C_S  {
 //   unsigned short v1;
@@ -3111,6 +3275,7 @@ test "Us_C_S C calls" {
     try testing.expectEqual(c.ret_Us_C_S(), .{ .v1 = 23346, .v2 = 103, .v3 = 22139 });
     try testing.expectOk(c.recv_Us_C_S(.{ .v1 = 23346, .v2 = 103, .v3 = 22139 }));
 }
+
 // From T_Snnn_xbb.c:49977:49997
 // struct  Us_C_Uc  {
 //   unsigned short v1;
@@ -3130,6 +3295,7 @@ test "Us_C_Uc C calls" {
     try testing.expectEqual(c.ret_Us_C_Uc(), .{ .v1 = 3179, .v2 = 4, .v3 = 73 });
     try testing.expectOk(c.recv_Us_C_Uc(.{ .v1 = 3179, .v2 = 4, .v3 = 73 }));
 }
+
 // From T_Snnn_xbb.c:50002:50022
 // struct  Us_C_Ui  {
 //   unsigned short v1;
@@ -3149,6 +3315,7 @@ test "Us_C_Ui C calls" {
     try testing.expectEqual(c.ret_Us_C_Ui(), .{ .v1 = 19277, .v2 = 98, .v3 = 28789 });
     try testing.expectOk(c.recv_Us_C_Ui(.{ .v1 = 19277, .v2 = 98, .v3 = 28789 }));
 }
+
 // From T_Snnn_xbb.c:50027:50047
 // struct  Us_C_Ul  {
 //   unsigned short v1;
@@ -3168,6 +3335,7 @@ test "Us_C_Ul C calls" {
     try testing.expectEqual(c.ret_Us_C_Ul(), .{ .v1 = 24703, .v2 = 76, .v3 = 15589 });
     try testing.expectOk(c.recv_Us_C_Ul(.{ .v1 = 24703, .v2 = 76, .v3 = 15589 }));
 }
+
 // From T_Snnn_xbb.c:50052:50072
 // struct  Us_C_Us  {
 //   unsigned short v1;
@@ -3187,6 +3355,7 @@ test "Us_C_Us C calls" {
     try testing.expectEqual(c.ret_Us_C_Us(), .{ .v1 = 12247, .v2 = 66, .v3 = 10022 });
     try testing.expectOk(c.recv_Us_C_Us(.{ .v1 = 12247, .v2 = 66, .v3 = 10022 }));
 }
+
 // From T_Snnn_xbb.c:50077:50097
 // struct  Us_C_Vp  {
 //   unsigned short v1;
@@ -3206,6 +3375,7 @@ test "Us_C_Vp C calls" {
     try testing.expectEqual(c.ret_Us_C_Vp(), .{ .v1 = 5932, .v2 = 39, .v3 = null });
     try testing.expectOk(c.recv_Us_C_Vp(.{ .v1 = 5932, .v2 = 39, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:50102:50120
 // struct  Us_D  {
 //   unsigned short v1;
@@ -3223,6 +3393,7 @@ test "Us_D C calls" {
     try testing.expectEqual(c.ret_Us_D(), .{ .v1 = 18580, .v2 = -2.125 });
     try testing.expectOk(c.recv_Us_D(.{ .v1 = 18580, .v2 = -2.125 }));
 }
+
 // From T_Snnn_xbb.c:50849:50869
 // struct  Us_D_C  {
 //   unsigned short v1;
@@ -3242,6 +3413,7 @@ test "Us_D_C C calls" {
     try testing.expectEqual(c.ret_Us_D_C(), .{ .v1 = 11240, .v2 = 4.5, .v3 = 72 });
     try testing.expectOk(c.recv_Us_D_C(.{ .v1 = 11240, .v2 = 4.5, .v3 = 72 }));
 }
+
 // From T_Snnn_xbb.c:50874:50894
 // struct  Us_D_D  {
 //   unsigned short v1;
@@ -3261,6 +3433,7 @@ test "Us_D_D C calls" {
     try testing.expectEqual(c.ret_Us_D_D(), .{ .v1 = 11524, .v2 = 1.0, .v3 = 0.875 });
     try testing.expectOk(c.recv_Us_D_D(.{ .v1 = 11524, .v2 = 1.0, .v3 = 0.875 }));
 }
+
 // From T_Snnn_xbb.c:50899:50919
 // struct  Us_D_F  {
 //   unsigned short v1;
@@ -3280,6 +3453,7 @@ test "Us_D_F C calls" {
     try testing.expectEqual(c.ret_Us_D_F(), .{ .v1 = 6365, .v2 = 7.0, .v3 = 7.0 });
     try testing.expectOk(c.recv_Us_D_F(.{ .v1 = 6365, .v2 = 7.0, .v3 = 7.0 }));
 }
+
 // From T_Snnn_xbb.c:50924:50944
 // struct  Us_D_I  {
 //   unsigned short v1;
@@ -3299,6 +3473,7 @@ test "Us_D_I C calls" {
     try testing.expectEqual(c.ret_Us_D_I(), .{ .v1 = 29281, .v2 = -2.125, .v3 = 22252 });
     try testing.expectOk(c.recv_Us_D_I(.{ .v1 = 29281, .v2 = -2.125, .v3 = 22252 }));
 }
+
 // From T_Snnn_xbb.c:50949:50969
 // struct  Us_D_Ip  {
 //   unsigned short v1;
@@ -3318,6 +3493,7 @@ test "Us_D_Ip C calls" {
     try testing.expectEqual(c.ret_Us_D_Ip(), .{ .v1 = 23514, .v2 = 1.0, .v3 = null });
     try testing.expectOk(c.recv_Us_D_Ip(.{ .v1 = 23514, .v2 = 1.0, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:50974:50994
 // struct  Us_D_L  {
 //   unsigned short v1;
@@ -3337,6 +3513,7 @@ test "Us_D_L C calls" {
     try testing.expectEqual(c.ret_Us_D_L(), .{ .v1 = 19759, .v2 = -0.25, .v3 = 511 });
     try testing.expectOk(c.recv_Us_D_L(.{ .v1 = 19759, .v2 = -0.25, .v3 = 511 }));
 }
+
 // From T_Snnn_xbb.c:50999:51019
 // struct  Us_D_S  {
 //   unsigned short v1;
@@ -3356,6 +3533,7 @@ test "Us_D_S C calls" {
     try testing.expectEqual(c.ret_Us_D_S(), .{ .v1 = 9683, .v2 = -0.25, .v3 = 7749 });
     try testing.expectOk(c.recv_Us_D_S(.{ .v1 = 9683, .v2 = -0.25, .v3 = 7749 }));
 }
+
 // From T_Snnn_xbb.c:51024:51044
 // struct  Us_D_Uc  {
 //   unsigned short v1;
@@ -3375,6 +3553,7 @@ test "Us_D_Uc C calls" {
     try testing.expectEqual(c.ret_Us_D_Uc(), .{ .v1 = 29022, .v2 = -2.125, .v3 = 20 });
     try testing.expectOk(c.recv_Us_D_Uc(.{ .v1 = 29022, .v2 = -2.125, .v3 = 20 }));
 }
+
 // From T_Snnn_xbb.c:51049:51069
 // struct  Us_D_Ui  {
 //   unsigned short v1;
@@ -3394,6 +3573,7 @@ test "Us_D_Ui C calls" {
     try testing.expectEqual(c.ret_Us_D_Ui(), .{ .v1 = 32591, .v2 = 0.5, .v3 = 30269 });
     try testing.expectOk(c.recv_Us_D_Ui(.{ .v1 = 32591, .v2 = 0.5, .v3 = 30269 }));
 }
+
 // From T_Snnn_xbb.c:51074:51094
 // struct  Us_D_Ul  {
 //   unsigned short v1;
@@ -3413,6 +3593,7 @@ test "Us_D_Ul C calls" {
     try testing.expectEqual(c.ret_Us_D_Ul(), .{ .v1 = 4318, .v2 = 7.0, .v3 = 28610 });
     try testing.expectOk(c.recv_Us_D_Ul(.{ .v1 = 4318, .v2 = 7.0, .v3 = 28610 }));
 }
+
 // From T_Snnn_xbb.c:51099:51119
 // struct  Us_D_Us  {
 //   unsigned short v1;
@@ -3432,6 +3613,7 @@ test "Us_D_Us C calls" {
     try testing.expectEqual(c.ret_Us_D_Us(), .{ .v1 = 30198, .v2 = 4.5, .v3 = 22443 });
     try testing.expectOk(c.recv_Us_D_Us(.{ .v1 = 30198, .v2 = 4.5, .v3 = 22443 }));
 }
+
 // From T_Snnn_xbb.c:51124:51144
 // struct  Us_D_Vp  {
 //   unsigned short v1;
@@ -3451,6 +3633,7 @@ test "Us_D_Vp C calls" {
     try testing.expectEqual(c.ret_Us_D_Vp(), .{ .v1 = 1904, .v2 = 1.0, .v3 = null });
     try testing.expectOk(c.recv_Us_D_Vp(.{ .v1 = 1904, .v2 = 1.0, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:51149:51167
 // struct  Us_F  {
 //   unsigned short v1;
@@ -3468,6 +3651,7 @@ test "Us_F C calls" {
     try testing.expectEqual(c.ret_Us_F(), .{ .v1 = 26991, .v2 = 0.5 });
     try testing.expectOk(c.recv_Us_F(.{ .v1 = 26991, .v2 = 0.5 }));
 }
+
 // From T_Snnn_xbb.c:51896:51916
 // struct  Us_F_C  {
 //   unsigned short v1;
@@ -3487,6 +3671,7 @@ test "Us_F_C C calls" {
     try testing.expectEqual(c.ret_Us_F_C(), .{ .v1 = 27059, .v2 = 7.0, .v3 = 87 });
     try testing.expectOk(c.recv_Us_F_C(.{ .v1 = 27059, .v2 = 7.0, .v3 = 87 }));
 }
+
 // From T_Snnn_xbb.c:51921:51941
 // struct  Us_F_D  {
 //   unsigned short v1;
@@ -3506,6 +3691,7 @@ test "Us_F_D C calls" {
     try testing.expectEqual(c.ret_Us_F_D(), .{ .v1 = 18964, .v2 = 7.0, .v3 = 1.0 });
     try testing.expectOk(c.recv_Us_F_D(.{ .v1 = 18964, .v2 = 7.0, .v3 = 1.0 }));
 }
+
 // From T_Snnn_xbb.c:51946:51966
 // struct  Us_F_F  {
 //   unsigned short v1;
@@ -3525,6 +3711,7 @@ test "Us_F_F C calls" {
     try testing.expectEqual(c.ret_Us_F_F(), .{ .v1 = 18550, .v2 = 7.0, .v3 = 1.0 });
     try testing.expectOk(c.recv_Us_F_F(.{ .v1 = 18550, .v2 = 7.0, .v3 = 1.0 }));
 }
+
 // From T_Snnn_xbb.c:51971:51991
 // struct  Us_F_I  {
 //   unsigned short v1;
@@ -3544,6 +3731,7 @@ test "Us_F_I C calls" {
     try testing.expectEqual(c.ret_Us_F_I(), .{ .v1 = 22098, .v2 = -2.125, .v3 = 5743 });
     try testing.expectOk(c.recv_Us_F_I(.{ .v1 = 22098, .v2 = -2.125, .v3 = 5743 }));
 }
+
 // From T_Snnn_xbb.c:51996:52016
 // struct  Us_F_Ip  {
 //   unsigned short v1;
@@ -3563,6 +3751,7 @@ test "Us_F_Ip C calls" {
     try testing.expectEqual(c.ret_Us_F_Ip(), .{ .v1 = 5299, .v2 = -0.25, .v3 = null });
     try testing.expectOk(c.recv_Us_F_Ip(.{ .v1 = 5299, .v2 = -0.25, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:52021:52041
 // struct  Us_F_L  {
 //   unsigned short v1;
@@ -3582,6 +3771,7 @@ test "Us_F_L C calls" {
     try testing.expectEqual(c.ret_Us_F_L(), .{ .v1 = 27576, .v2 = 0.875, .v3 = 12334 });
     try testing.expectOk(c.recv_Us_F_L(.{ .v1 = 27576, .v2 = 0.875, .v3 = 12334 }));
 }
+
 // From T_Snnn_xbb.c:52046:52066
 // struct  Us_F_S  {
 //   unsigned short v1;
@@ -3601,6 +3791,7 @@ test "Us_F_S C calls" {
     try testing.expectEqual(c.ret_Us_F_S(), .{ .v1 = 1064, .v2 = -2.125, .v3 = 21363 });
     try testing.expectOk(c.recv_Us_F_S(.{ .v1 = 1064, .v2 = -2.125, .v3 = 21363 }));
 }
+
 // From T_Snnn_xbb.c:52071:52091
 // struct  Us_F_Uc  {
 //   unsigned short v1;
@@ -3620,6 +3811,7 @@ test "Us_F_Uc C calls" {
     try testing.expectEqual(c.ret_Us_F_Uc(), .{ .v1 = 7692, .v2 = 4.5, .v3 = 76 });
     try testing.expectOk(c.recv_Us_F_Uc(.{ .v1 = 7692, .v2 = 4.5, .v3 = 76 }));
 }
+
 // From T_Snnn_xbb.c:52096:52116
 // struct  Us_F_Ui  {
 //   unsigned short v1;
@@ -3639,6 +3831,7 @@ test "Us_F_Ui C calls" {
     try testing.expectEqual(c.ret_Us_F_Ui(), .{ .v1 = 26868, .v2 = -0.25, .v3 = 26494 });
     try testing.expectOk(c.recv_Us_F_Ui(.{ .v1 = 26868, .v2 = -0.25, .v3 = 26494 }));
 }
+
 // From T_Snnn_xbb.c:52121:52141
 // struct  Us_F_Ul  {
 //   unsigned short v1;
@@ -3658,6 +3851,7 @@ test "Us_F_Ul C calls" {
     try testing.expectEqual(c.ret_Us_F_Ul(), .{ .v1 = 19238, .v2 = 7.0, .v3 = 27012 });
     try testing.expectOk(c.recv_Us_F_Ul(.{ .v1 = 19238, .v2 = 7.0, .v3 = 27012 }));
 }
+
 // From T_Snnn_xbb.c:52146:52166
 // struct  Us_F_Us  {
 //   unsigned short v1;
@@ -3677,6 +3871,7 @@ test "Us_F_Us C calls" {
     try testing.expectEqual(c.ret_Us_F_Us(), .{ .v1 = 24992, .v2 = 7.0, .v3 = 6846 });
     try testing.expectOk(c.recv_Us_F_Us(.{ .v1 = 24992, .v2 = 7.0, .v3 = 6846 }));
 }
+
 // From T_Snnn_xbb.c:52171:52191
 // struct  Us_F_Vp  {
 //   unsigned short v1;
@@ -3696,6 +3891,7 @@ test "Us_F_Vp C calls" {
     try testing.expectEqual(c.ret_Us_F_Vp(), .{ .v1 = 17908, .v2 = -0.25, .v3 = null });
     try testing.expectOk(c.recv_Us_F_Vp(.{ .v1 = 17908, .v2 = -0.25, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:52196:52214
 // struct  Us_I  {
 //   unsigned short v1;
@@ -3713,6 +3909,7 @@ test "Us_I C calls" {
     try testing.expectEqual(c.ret_Us_I(), .{ .v1 = 30600, .v2 = 1719 });
     try testing.expectOk(c.recv_Us_I(.{ .v1 = 30600, .v2 = 1719 }));
 }
+
 // From T_Snnn_xbb.c:52943:52963
 // struct  Us_I_C  {
 //   unsigned short v1;
@@ -3732,6 +3929,7 @@ test "Us_I_C C calls" {
     try testing.expectEqual(c.ret_Us_I_C(), .{ .v1 = 13661, .v2 = 5376, .v3 = 111 });
     try testing.expectOk(c.recv_Us_I_C(.{ .v1 = 13661, .v2 = 5376, .v3 = 111 }));
 }
+
 // From T_Snnn_xbb.c:52968:52988
 // struct  Us_I_D  {
 //   unsigned short v1;
@@ -3751,6 +3949,7 @@ test "Us_I_D C calls" {
     try testing.expectEqual(c.ret_Us_I_D(), .{ .v1 = 8903, .v2 = 26042, .v3 = -2.125 });
     try testing.expectOk(c.recv_Us_I_D(.{ .v1 = 8903, .v2 = 26042, .v3 = -2.125 }));
 }
+
 // From T_Snnn_xbb.c:52993:53013
 // struct  Us_I_F  {
 //   unsigned short v1;
@@ -3770,6 +3969,7 @@ test "Us_I_F C calls" {
     try testing.expectEqual(c.ret_Us_I_F(), .{ .v1 = 20027, .v2 = 12274, .v3 = 0.875 });
     try testing.expectOk(c.recv_Us_I_F(.{ .v1 = 20027, .v2 = 12274, .v3 = 0.875 }));
 }
+
 // From T_Snnn_xbb.c:53018:53038
 // struct  Us_I_I  {
 //   unsigned short v1;
@@ -3789,6 +3989,7 @@ test "Us_I_I C calls" {
     try testing.expectEqual(c.ret_Us_I_I(), .{ .v1 = 16614, .v2 = 20431, .v3 = 2793 });
     try testing.expectOk(c.recv_Us_I_I(.{ .v1 = 16614, .v2 = 20431, .v3 = 2793 }));
 }
+
 // From T_Snnn_xbb.c:53043:53063
 // struct  Us_I_Ip  {
 //   unsigned short v1;
@@ -3808,6 +4009,7 @@ test "Us_I_Ip C calls" {
     try testing.expectEqual(c.ret_Us_I_Ip(), .{ .v1 = 28542, .v2 = 11599, .v3 = null });
     try testing.expectOk(c.recv_Us_I_Ip(.{ .v1 = 28542, .v2 = 11599, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:53068:53088
 // struct  Us_I_L  {
 //   unsigned short v1;
@@ -3827,6 +4029,7 @@ test "Us_I_L C calls" {
     try testing.expectEqual(c.ret_Us_I_L(), .{ .v1 = 10367, .v2 = 14385, .v3 = 15994 });
     try testing.expectOk(c.recv_Us_I_L(.{ .v1 = 10367, .v2 = 14385, .v3 = 15994 }));
 }
+
 // From T_Snnn_xbb.c:53093:53113
 // struct  Us_I_S  {
 //   unsigned short v1;
@@ -3846,6 +4049,7 @@ test "Us_I_S C calls" {
     try testing.expectEqual(c.ret_Us_I_S(), .{ .v1 = 11579, .v2 = 6917, .v3 = 7261 });
     try testing.expectOk(c.recv_Us_I_S(.{ .v1 = 11579, .v2 = 6917, .v3 = 7261 }));
 }
+
 // From T_Snnn_xbb.c:53118:53138
 // struct  Us_I_Uc  {
 //   unsigned short v1;
@@ -3865,6 +4069,7 @@ test "Us_I_Uc C calls" {
     try testing.expectEqual(c.ret_Us_I_Uc(), .{ .v1 = 26644, .v2 = 29019, .v3 = 82 });
     try testing.expectOk(c.recv_Us_I_Uc(.{ .v1 = 26644, .v2 = 29019, .v3 = 82 }));
 }
+
 // From T_Snnn_xbb.c:53143:53163
 // struct  Us_I_Ui  {
 //   unsigned short v1;
@@ -3884,6 +4089,7 @@ test "Us_I_Ui C calls" {
     try testing.expectEqual(c.ret_Us_I_Ui(), .{ .v1 = 19361, .v2 = 28469, .v3 = 7208 });
     try testing.expectOk(c.recv_Us_I_Ui(.{ .v1 = 19361, .v2 = 28469, .v3 = 7208 }));
 }
+
 // From T_Snnn_xbb.c:53168:53188
 // struct  Us_I_Ul  {
 //   unsigned short v1;
@@ -3903,6 +4109,7 @@ test "Us_I_Ul C calls" {
     try testing.expectEqual(c.ret_Us_I_Ul(), .{ .v1 = 28076, .v2 = 27483, .v3 = 30933 });
     try testing.expectOk(c.recv_Us_I_Ul(.{ .v1 = 28076, .v2 = 27483, .v3 = 30933 }));
 }
+
 // From T_Snnn_xbb.c:53193:53213
 // struct  Us_I_Us  {
 //   unsigned short v1;
@@ -3922,6 +4129,7 @@ test "Us_I_Us C calls" {
     try testing.expectEqual(c.ret_Us_I_Us(), .{ .v1 = 15877, .v2 = 5090, .v3 = 1580 });
     try testing.expectOk(c.recv_Us_I_Us(.{ .v1 = 15877, .v2 = 5090, .v3 = 1580 }));
 }
+
 // From T_Snnn_xbb.c:53218:53238
 // struct  Us_I_Vp  {
 //   unsigned short v1;
@@ -3941,6 +4149,7 @@ test "Us_I_Vp C calls" {
     try testing.expectEqual(c.ret_Us_I_Vp(), .{ .v1 = 1804, .v2 = 13795, .v3 = null });
     try testing.expectOk(c.recv_Us_I_Vp(.{ .v1 = 1804, .v2 = 13795, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:53243:53261
 // struct  Us_Ip  {
 //   unsigned short v1;
@@ -3958,6 +4167,7 @@ test "Us_Ip C calls" {
     try testing.expectEqual(c.ret_Us_Ip(), .{ .v1 = 28828, .v2 = null });
     try testing.expectOk(c.recv_Us_Ip(.{ .v1 = 28828, .v2 = null }));
 }
+
 // From T_Snnn_xbb.c:53990:54010
 // struct  Us_Ip_C  {
 //   unsigned short v1;
@@ -3977,6 +4187,7 @@ test "Us_Ip_C C calls" {
     try testing.expectEqual(c.ret_Us_Ip_C(), .{ .v1 = 11358, .v2 = null, .v3 = 95 });
     try testing.expectOk(c.recv_Us_Ip_C(.{ .v1 = 11358, .v2 = null, .v3 = 95 }));
 }
+
 // From T_Snnn_xbb.c:54015:54035
 // struct  Us_Ip_D  {
 //   unsigned short v1;
@@ -3996,6 +4207,7 @@ test "Us_Ip_D C calls" {
     try testing.expectEqual(c.ret_Us_Ip_D(), .{ .v1 = 32334, .v2 = null, .v3 = 4.5 });
     try testing.expectOk(c.recv_Us_Ip_D(.{ .v1 = 32334, .v2 = null, .v3 = 4.5 }));
 }
+
 // From T_Snnn_xbb.c:54040:54060
 // struct  Us_Ip_F  {
 //   unsigned short v1;
@@ -4015,6 +4227,7 @@ test "Us_Ip_F C calls" {
     try testing.expectEqual(c.ret_Us_Ip_F(), .{ .v1 = 19476, .v2 = null, .v3 = -2.125 });
     try testing.expectOk(c.recv_Us_Ip_F(.{ .v1 = 19476, .v2 = null, .v3 = -2.125 }));
 }
+
 // From T_Snnn_xbb.c:54065:54085
 // struct  Us_Ip_I  {
 //   unsigned short v1;
@@ -4034,6 +4247,7 @@ test "Us_Ip_I C calls" {
     try testing.expectEqual(c.ret_Us_Ip_I(), .{ .v1 = 14363, .v2 = null, .v3 = 12277 });
     try testing.expectOk(c.recv_Us_Ip_I(.{ .v1 = 14363, .v2 = null, .v3 = 12277 }));
 }
+
 // From T_Snnn_xbb.c:54090:54110
 // struct  Us_Ip_Ip  {
 //   unsigned short v1;
@@ -4053,6 +4267,7 @@ test "Us_Ip_Ip C calls" {
     try testing.expectEqual(c.ret_Us_Ip_Ip(), .{ .v1 = 27094, .v2 = null, .v3 = null });
     try testing.expectOk(c.recv_Us_Ip_Ip(.{ .v1 = 27094, .v2 = null, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:54115:54135
 // struct  Us_Ip_L  {
 //   unsigned short v1;
@@ -4072,6 +4287,7 @@ test "Us_Ip_L C calls" {
     try testing.expectEqual(c.ret_Us_Ip_L(), .{ .v1 = 7648, .v2 = null, .v3 = 28696 });
     try testing.expectOk(c.recv_Us_Ip_L(.{ .v1 = 7648, .v2 = null, .v3 = 28696 }));
 }
+
 // From T_Snnn_xbb.c:54140:54160
 // struct  Us_Ip_S  {
 //   unsigned short v1;
@@ -4091,6 +4307,7 @@ test "Us_Ip_S C calls" {
     try testing.expectEqual(c.ret_Us_Ip_S(), .{ .v1 = 15817, .v2 = null, .v3 = 7907 });
     try testing.expectOk(c.recv_Us_Ip_S(.{ .v1 = 15817, .v2 = null, .v3 = 7907 }));
 }
+
 // From T_Snnn_xbb.c:54165:54185
 // struct  Us_Ip_Uc  {
 //   unsigned short v1;
@@ -4110,6 +4327,7 @@ test "Us_Ip_Uc C calls" {
     try testing.expectEqual(c.ret_Us_Ip_Uc(), .{ .v1 = 3074, .v2 = null, .v3 = 5 });
     try testing.expectOk(c.recv_Us_Ip_Uc(.{ .v1 = 3074, .v2 = null, .v3 = 5 }));
 }
+
 // From T_Snnn_xbb.c:54190:54210
 // struct  Us_Ip_Ui  {
 //   unsigned short v1;
@@ -4129,6 +4347,7 @@ test "Us_Ip_Ui C calls" {
     try testing.expectEqual(c.ret_Us_Ip_Ui(), .{ .v1 = 1622, .v2 = null, .v3 = 7385 });
     try testing.expectOk(c.recv_Us_Ip_Ui(.{ .v1 = 1622, .v2 = null, .v3 = 7385 }));
 }
+
 // From T_Snnn_xbb.c:54215:54235
 // struct  Us_Ip_Ul  {
 //   unsigned short v1;
@@ -4148,6 +4367,7 @@ test "Us_Ip_Ul C calls" {
     try testing.expectEqual(c.ret_Us_Ip_Ul(), .{ .v1 = 4903, .v2 = null, .v3 = 12817 });
     try testing.expectOk(c.recv_Us_Ip_Ul(.{ .v1 = 4903, .v2 = null, .v3 = 12817 }));
 }
+
 // From T_Snnn_xbb.c:54240:54260
 // struct  Us_Ip_Us  {
 //   unsigned short v1;
@@ -4167,6 +4387,7 @@ test "Us_Ip_Us C calls" {
     try testing.expectEqual(c.ret_Us_Ip_Us(), .{ .v1 = 13416, .v2 = null, .v3 = 15710 });
     try testing.expectOk(c.recv_Us_Ip_Us(.{ .v1 = 13416, .v2 = null, .v3 = 15710 }));
 }
+
 // From T_Snnn_xbb.c:54265:54285
 // struct  Us_Ip_Vp  {
 //   unsigned short v1;
@@ -4186,6 +4407,7 @@ test "Us_Ip_Vp C calls" {
     try testing.expectEqual(c.ret_Us_Ip_Vp(), .{ .v1 = 24100, .v2 = null, .v3 = null });
     try testing.expectOk(c.recv_Us_Ip_Vp(.{ .v1 = 24100, .v2 = null, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:54290:54308
 // struct  Us_L  {
 //   unsigned short v1;
@@ -4203,6 +4425,7 @@ test "Us_L C calls" {
     try testing.expectEqual(c.ret_Us_L(), .{ .v1 = 24913, .v2 = 9960 });
     try testing.expectOk(c.recv_Us_L(.{ .v1 = 24913, .v2 = 9960 }));
 }
+
 // From T_Snnn_xbb.c:55037:55057
 // struct  Us_L_C  {
 //   unsigned short v1;
@@ -4222,6 +4445,7 @@ test "Us_L_C C calls" {
     try testing.expectEqual(c.ret_Us_L_C(), .{ .v1 = 10232, .v2 = 9213, .v3 = 44 });
     try testing.expectOk(c.recv_Us_L_C(.{ .v1 = 10232, .v2 = 9213, .v3 = 44 }));
 }
+
 // From T_Snnn_xbb.c:55062:55082
 // struct  Us_L_D  {
 //   unsigned short v1;
@@ -4241,6 +4465,7 @@ test "Us_L_D C calls" {
     try testing.expectEqual(c.ret_Us_L_D(), .{ .v1 = 23248, .v2 = 22734, .v3 = -0.25 });
     try testing.expectOk(c.recv_Us_L_D(.{ .v1 = 23248, .v2 = 22734, .v3 = -0.25 }));
 }
+
 // From T_Snnn_xbb.c:55087:55107
 // struct  Us_L_F  {
 //   unsigned short v1;
@@ -4260,6 +4485,7 @@ test "Us_L_F C calls" {
     try testing.expectEqual(c.ret_Us_L_F(), .{ .v1 = 24117, .v2 = 9201, .v3 = -0.25 });
     try testing.expectOk(c.recv_Us_L_F(.{ .v1 = 24117, .v2 = 9201, .v3 = -0.25 }));
 }
+
 // From T_Snnn_xbb.c:55112:55132
 // struct  Us_L_I  {
 //   unsigned short v1;
@@ -4279,6 +4505,7 @@ test "Us_L_I C calls" {
     try testing.expectEqual(c.ret_Us_L_I(), .{ .v1 = 3504, .v2 = 11336, .v3 = 24471 });
     try testing.expectOk(c.recv_Us_L_I(.{ .v1 = 3504, .v2 = 11336, .v3 = 24471 }));
 }
+
 // From T_Snnn_xbb.c:55137:55157
 // struct  Us_L_Ip  {
 //   unsigned short v1;
@@ -4298,6 +4525,7 @@ test "Us_L_Ip C calls" {
     try testing.expectEqual(c.ret_Us_L_Ip(), .{ .v1 = 21042, .v2 = 20614, .v3 = null });
     try testing.expectOk(c.recv_Us_L_Ip(.{ .v1 = 21042, .v2 = 20614, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:55162:55182
 // struct  Us_L_L  {
 //   unsigned short v1;
@@ -4317,6 +4545,7 @@ test "Us_L_L C calls" {
     try testing.expectEqual(c.ret_Us_L_L(), .{ .v1 = 1123, .v2 = 30030, .v3 = 14538 });
     try testing.expectOk(c.recv_Us_L_L(.{ .v1 = 1123, .v2 = 30030, .v3 = 14538 }));
 }
+
 // From T_Snnn_xbb.c:55187:55207
 // struct  Us_L_S  {
 //   unsigned short v1;
@@ -4336,6 +4565,7 @@ test "Us_L_S C calls" {
     try testing.expectEqual(c.ret_Us_L_S(), .{ .v1 = 22132, .v2 = 25058, .v3 = 25622 });
     try testing.expectOk(c.recv_Us_L_S(.{ .v1 = 22132, .v2 = 25058, .v3 = 25622 }));
 }
+
 // From T_Snnn_xbb.c:55212:55232
 // struct  Us_L_Uc  {
 //   unsigned short v1;
@@ -4355,6 +4585,7 @@ test "Us_L_Uc C calls" {
     try testing.expectEqual(c.ret_Us_L_Uc(), .{ .v1 = 18839, .v2 = 17575, .v3 = 11 });
     try testing.expectOk(c.recv_Us_L_Uc(.{ .v1 = 18839, .v2 = 17575, .v3 = 11 }));
 }
+
 // From T_Snnn_xbb.c:55237:55257
 // struct  Us_L_Ui  {
 //   unsigned short v1;
@@ -4374,6 +4605,7 @@ test "Us_L_Ui C calls" {
     try testing.expectEqual(c.ret_Us_L_Ui(), .{ .v1 = 13426, .v2 = 7778, .v3 = 20282 });
     try testing.expectOk(c.recv_Us_L_Ui(.{ .v1 = 13426, .v2 = 7778, .v3 = 20282 }));
 }
+
 // From T_Snnn_xbb.c:55262:55282
 // struct  Us_L_Ul  {
 //   unsigned short v1;
@@ -4393,6 +4625,7 @@ test "Us_L_Ul C calls" {
     try testing.expectEqual(c.ret_Us_L_Ul(), .{ .v1 = 8840, .v2 = 7536, .v3 = 11028 });
     try testing.expectOk(c.recv_Us_L_Ul(.{ .v1 = 8840, .v2 = 7536, .v3 = 11028 }));
 }
+
 // From T_Snnn_xbb.c:55287:55307
 // struct  Us_L_Us  {
 //   unsigned short v1;
@@ -4412,6 +4645,7 @@ test "Us_L_Us C calls" {
     try testing.expectEqual(c.ret_Us_L_Us(), .{ .v1 = 24633, .v2 = 16410, .v3 = 9161 });
     try testing.expectOk(c.recv_Us_L_Us(.{ .v1 = 24633, .v2 = 16410, .v3 = 9161 }));
 }
+
 // From T_Snnn_xbb.c:55312:55332
 // struct  Us_L_Vp  {
 //   unsigned short v1;
@@ -4431,6 +4665,7 @@ test "Us_L_Vp C calls" {
     try testing.expectEqual(c.ret_Us_L_Vp(), .{ .v1 = 21267, .v2 = 5661, .v3 = null });
     try testing.expectOk(c.recv_Us_L_Vp(.{ .v1 = 21267, .v2 = 5661, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:55337:55355
 // struct  Us_S  {
 //   unsigned short v1;
@@ -4448,6 +4683,7 @@ test "Us_S C calls" {
     try testing.expectEqual(c.ret_Us_S(), .{ .v1 = 24727, .v2 = 29166 });
     try testing.expectOk(c.recv_Us_S(.{ .v1 = 24727, .v2 = 29166 }));
 }
+
 // From T_Snnn_xbb.c:56084:56104
 // struct  Us_S_C  {
 //   unsigned short v1;
@@ -4467,6 +4703,7 @@ test "Us_S_C C calls" {
     try testing.expectEqual(c.ret_Us_S_C(), .{ .v1 = 10311, .v2 = 30465, .v3 = 91 });
     try testing.expectOk(c.recv_Us_S_C(.{ .v1 = 10311, .v2 = 30465, .v3 = 91 }));
 }
+
 // From T_Snnn_xbb.c:56109:56129
 // struct  Us_S_D  {
 //   unsigned short v1;
@@ -4486,6 +4723,7 @@ test "Us_S_D C calls" {
     try testing.expectEqual(c.ret_Us_S_D(), .{ .v1 = 23117, .v2 = 19592, .v3 = 0.875 });
     try testing.expectOk(c.recv_Us_S_D(.{ .v1 = 23117, .v2 = 19592, .v3 = 0.875 }));
 }
+
 // From T_Snnn_xbb.c:56134:56154
 // struct  Us_S_F  {
 //   unsigned short v1;
@@ -4505,6 +4743,7 @@ test "Us_S_F C calls" {
     try testing.expectEqual(c.ret_Us_S_F(), .{ .v1 = 15422, .v2 = 892, .v3 = -0.25 });
     try testing.expectOk(c.recv_Us_S_F(.{ .v1 = 15422, .v2 = 892, .v3 = -0.25 }));
 }
+
 // From T_Snnn_xbb.c:56159:56179
 // struct  Us_S_I  {
 //   unsigned short v1;
@@ -4524,6 +4763,7 @@ test "Us_S_I C calls" {
     try testing.expectEqual(c.ret_Us_S_I(), .{ .v1 = 23242, .v2 = 26561, .v3 = 3363 });
     try testing.expectOk(c.recv_Us_S_I(.{ .v1 = 23242, .v2 = 26561, .v3 = 3363 }));
 }
+
 // From T_Snnn_xbb.c:56184:56204
 // struct  Us_S_Ip  {
 //   unsigned short v1;
@@ -4543,6 +4783,7 @@ test "Us_S_Ip C calls" {
     try testing.expectEqual(c.ret_Us_S_Ip(), .{ .v1 = 20985, .v2 = 3457, .v3 = null });
     try testing.expectOk(c.recv_Us_S_Ip(.{ .v1 = 20985, .v2 = 3457, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:56209:56229
 // struct  Us_S_L  {
 //   unsigned short v1;
@@ -4562,6 +4803,7 @@ test "Us_S_L C calls" {
     try testing.expectEqual(c.ret_Us_S_L(), .{ .v1 = 18517, .v2 = 5247, .v3 = 15555 });
     try testing.expectOk(c.recv_Us_S_L(.{ .v1 = 18517, .v2 = 5247, .v3 = 15555 }));
 }
+
 // From T_Snnn_xbb.c:56234:56254
 // struct  Us_S_S  {
 //   unsigned short v1;
@@ -4581,6 +4823,7 @@ test "Us_S_S C calls" {
     try testing.expectEqual(c.ret_Us_S_S(), .{ .v1 = 11754, .v2 = 6358, .v3 = 12603 });
     try testing.expectOk(c.recv_Us_S_S(.{ .v1 = 11754, .v2 = 6358, .v3 = 12603 }));
 }
+
 // From T_Snnn_xbb.c:56259:56279
 // struct  Us_S_Uc  {
 //   unsigned short v1;
@@ -4600,6 +4843,7 @@ test "Us_S_Uc C calls" {
     try testing.expectEqual(c.ret_Us_S_Uc(), .{ .v1 = 21651, .v2 = 302, .v3 = 58 });
     try testing.expectOk(c.recv_Us_S_Uc(.{ .v1 = 21651, .v2 = 302, .v3 = 58 }));
 }
+
 // From T_Snnn_xbb.c:56284:56304
 // struct  Us_S_Ui  {
 //   unsigned short v1;
@@ -4619,6 +4863,7 @@ test "Us_S_Ui C calls" {
     try testing.expectEqual(c.ret_Us_S_Ui(), .{ .v1 = 7044, .v2 = 24986, .v3 = 27224 });
     try testing.expectOk(c.recv_Us_S_Ui(.{ .v1 = 7044, .v2 = 24986, .v3 = 27224 }));
 }
+
 // From T_Snnn_xbb.c:56309:56329
 // struct  Us_S_Ul  {
 //   unsigned short v1;
@@ -4638,6 +4883,7 @@ test "Us_S_Ul C calls" {
     try testing.expectEqual(c.ret_Us_S_Ul(), .{ .v1 = 26369, .v2 = 29978, .v3 = 8606 });
     try testing.expectOk(c.recv_Us_S_Ul(.{ .v1 = 26369, .v2 = 29978, .v3 = 8606 }));
 }
+
 // From T_Snnn_xbb.c:56334:56354
 // struct  Us_S_Us  {
 //   unsigned short v1;
@@ -4657,6 +4903,7 @@ test "Us_S_Us C calls" {
     try testing.expectEqual(c.ret_Us_S_Us(), .{ .v1 = 3928, .v2 = 25056, .v3 = 13273 });
     try testing.expectOk(c.recv_Us_S_Us(.{ .v1 = 3928, .v2 = 25056, .v3 = 13273 }));
 }
+
 // From T_Snnn_xbb.c:56359:56379
 // struct  Us_S_Vp  {
 //   unsigned short v1;
@@ -4676,6 +4923,7 @@ test "Us_S_Vp C calls" {
     try testing.expectEqual(c.ret_Us_S_Vp(), .{ .v1 = 10313, .v2 = 21627, .v3 = null });
     try testing.expectOk(c.recv_Us_S_Vp(.{ .v1 = 10313, .v2 = 21627, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:56384:56402
 // struct  Us_Uc  {
 //   unsigned short v1;
@@ -4693,6 +4941,7 @@ test "Us_Uc C calls" {
     try testing.expectEqual(c.ret_Us_Uc(), .{ .v1 = 10039, .v2 = 48 });
     try testing.expectOk(c.recv_Us_Uc(.{ .v1 = 10039, .v2 = 48 }));
 }
+
 // From T_Snnn_xbb.c:57131:57151
 // struct  Us_Uc_C  {
 //   unsigned short v1;
@@ -4712,6 +4961,7 @@ test "Us_Uc_C C calls" {
     try testing.expectEqual(c.ret_Us_Uc_C(), .{ .v1 = 1784, .v2 = 122, .v3 = 9 });
     try testing.expectOk(c.recv_Us_Uc_C(.{ .v1 = 1784, .v2 = 122, .v3 = 9 }));
 }
+
 // From T_Snnn_xbb.c:57156:57176
 // struct  Us_Uc_D  {
 //   unsigned short v1;
@@ -4731,6 +4981,7 @@ test "Us_Uc_D C calls" {
     try testing.expectEqual(c.ret_Us_Uc_D(), .{ .v1 = 21665, .v2 = 0, .v3 = -2.125 });
     try testing.expectOk(c.recv_Us_Uc_D(.{ .v1 = 21665, .v2 = 0, .v3 = -2.125 }));
 }
+
 // From T_Snnn_xbb.c:57181:57201
 // struct  Us_Uc_F  {
 //   unsigned short v1;
@@ -4750,6 +5001,7 @@ test "Us_Uc_F C calls" {
     try testing.expectEqual(c.ret_Us_Uc_F(), .{ .v1 = 30089, .v2 = 102, .v3 = 1.0 });
     try testing.expectOk(c.recv_Us_Uc_F(.{ .v1 = 30089, .v2 = 102, .v3 = 1.0 }));
 }
+
 // From T_Snnn_xbb.c:57206:57226
 // struct  Us_Uc_I  {
 //   unsigned short v1;
@@ -4769,6 +5021,7 @@ test "Us_Uc_I C calls" {
     try testing.expectEqual(c.ret_Us_Uc_I(), .{ .v1 = 32018, .v2 = 76, .v3 = 22674 });
     try testing.expectOk(c.recv_Us_Uc_I(.{ .v1 = 32018, .v2 = 76, .v3 = 22674 }));
 }
+
 // From T_Snnn_xbb.c:57231:57251
 // struct  Us_Uc_Ip  {
 //   unsigned short v1;
@@ -4788,6 +5041,7 @@ test "Us_Uc_Ip C calls" {
     try testing.expectEqual(c.ret_Us_Uc_Ip(), .{ .v1 = 5672, .v2 = 26, .v3 = null });
     try testing.expectOk(c.recv_Us_Uc_Ip(.{ .v1 = 5672, .v2 = 26, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:57256:57276
 // struct  Us_Uc_L  {
 //   unsigned short v1;
@@ -4807,6 +5061,7 @@ test "Us_Uc_L C calls" {
     try testing.expectEqual(c.ret_Us_Uc_L(), .{ .v1 = 13171, .v2 = 48, .v3 = 11522 });
     try testing.expectOk(c.recv_Us_Uc_L(.{ .v1 = 13171, .v2 = 48, .v3 = 11522 }));
 }
+
 // From T_Snnn_xbb.c:57281:57301
 // struct  Us_Uc_S  {
 //   unsigned short v1;
@@ -4826,6 +5081,7 @@ test "Us_Uc_S C calls" {
     try testing.expectEqual(c.ret_Us_Uc_S(), .{ .v1 = 13689, .v2 = 78, .v3 = 3457 });
     try testing.expectOk(c.recv_Us_Uc_S(.{ .v1 = 13689, .v2 = 78, .v3 = 3457 }));
 }
+
 // From T_Snnn_xbb.c:57306:57326
 // struct  Us_Uc_Uc  {
 //   unsigned short v1;
@@ -4845,6 +5101,7 @@ test "Us_Uc_Uc C calls" {
     try testing.expectEqual(c.ret_Us_Uc_Uc(), .{ .v1 = 32576, .v2 = 114, .v3 = 6 });
     try testing.expectOk(c.recv_Us_Uc_Uc(.{ .v1 = 32576, .v2 = 114, .v3 = 6 }));
 }
+
 // From T_Snnn_xbb.c:57331:57351
 // struct  Us_Uc_Ui  {
 //   unsigned short v1;
@@ -4864,6 +5121,7 @@ test "Us_Uc_Ui C calls" {
     try testing.expectEqual(c.ret_Us_Uc_Ui(), .{ .v1 = 8544, .v2 = 77, .v3 = 31566 });
     try testing.expectOk(c.recv_Us_Uc_Ui(.{ .v1 = 8544, .v2 = 77, .v3 = 31566 }));
 }
+
 // From T_Snnn_xbb.c:57356:57376
 // struct  Us_Uc_Ul  {
 //   unsigned short v1;
@@ -4883,6 +5141,7 @@ test "Us_Uc_Ul C calls" {
     try testing.expectEqual(c.ret_Us_Uc_Ul(), .{ .v1 = 30788, .v2 = 29, .v3 = 22665 });
     try testing.expectOk(c.recv_Us_Uc_Ul(.{ .v1 = 30788, .v2 = 29, .v3 = 22665 }));
 }
+
 // From T_Snnn_xbb.c:57381:57401
 // struct  Us_Uc_Us  {
 //   unsigned short v1;
@@ -4902,6 +5161,7 @@ test "Us_Uc_Us C calls" {
     try testing.expectEqual(c.ret_Us_Uc_Us(), .{ .v1 = 28438, .v2 = 88, .v3 = 26894 });
     try testing.expectOk(c.recv_Us_Uc_Us(.{ .v1 = 28438, .v2 = 88, .v3 = 26894 }));
 }
+
 // From T_Snnn_xbb.c:57406:57426
 // struct  Us_Uc_Vp  {
 //   unsigned short v1;
@@ -4921,6 +5181,7 @@ test "Us_Uc_Vp C calls" {
     try testing.expectEqual(c.ret_Us_Uc_Vp(), .{ .v1 = 19528, .v2 = 87, .v3 = null });
     try testing.expectOk(c.recv_Us_Uc_Vp(.{ .v1 = 19528, .v2 = 87, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:57431:57449
 // struct  Us_Ui  {
 //   unsigned short v1;
@@ -4938,6 +5199,7 @@ test "Us_Ui C calls" {
     try testing.expectEqual(c.ret_Us_Ui(), .{ .v1 = 22821, .v2 = 31463 });
     try testing.expectOk(c.recv_Us_Ui(.{ .v1 = 22821, .v2 = 31463 }));
 }
+
 // From T_Snnn_xbb.c:58178:58198
 // struct  Us_Ui_C  {
 //   unsigned short v1;
@@ -4957,6 +5219,7 @@ test "Us_Ui_C C calls" {
     try testing.expectEqual(c.ret_Us_Ui_C(), .{ .v1 = 32462, .v2 = 8790, .v3 = 63 });
     try testing.expectOk(c.recv_Us_Ui_C(.{ .v1 = 32462, .v2 = 8790, .v3 = 63 }));
 }
+
 // From T_Snnn_xbb.c:58203:58223
 // struct  Us_Ui_D  {
 //   unsigned short v1;
@@ -4976,6 +5239,7 @@ test "Us_Ui_D C calls" {
     try testing.expectEqual(c.ret_Us_Ui_D(), .{ .v1 = 12024, .v2 = 26928, .v3 = -0.25 });
     try testing.expectOk(c.recv_Us_Ui_D(.{ .v1 = 12024, .v2 = 26928, .v3 = -0.25 }));
 }
+
 // From T_Snnn_xbb.c:58228:58248
 // struct  Us_Ui_F  {
 //   unsigned short v1;
@@ -4995,6 +5259,7 @@ test "Us_Ui_F C calls" {
     try testing.expectEqual(c.ret_Us_Ui_F(), .{ .v1 = 18149, .v2 = 22194, .v3 = -2.125 });
     try testing.expectOk(c.recv_Us_Ui_F(.{ .v1 = 18149, .v2 = 22194, .v3 = -2.125 }));
 }
+
 // From T_Snnn_xbb.c:58253:58273
 // struct  Us_Ui_I  {
 //   unsigned short v1;
@@ -5014,6 +5279,7 @@ test "Us_Ui_I C calls" {
     try testing.expectEqual(c.ret_Us_Ui_I(), .{ .v1 = 20073, .v2 = 9610, .v3 = 6587 });
     try testing.expectOk(c.recv_Us_Ui_I(.{ .v1 = 20073, .v2 = 9610, .v3 = 6587 }));
 }
+
 // From T_Snnn_xbb.c:58278:58298
 // struct  Us_Ui_Ip  {
 //   unsigned short v1;
@@ -5033,6 +5299,7 @@ test "Us_Ui_Ip C calls" {
     try testing.expectEqual(c.ret_Us_Ui_Ip(), .{ .v1 = 5912, .v2 = 5511, .v3 = null });
     try testing.expectOk(c.recv_Us_Ui_Ip(.{ .v1 = 5912, .v2 = 5511, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:58303:58323
 // struct  Us_Ui_L  {
 //   unsigned short v1;
@@ -5052,6 +5319,7 @@ test "Us_Ui_L C calls" {
     try testing.expectEqual(c.ret_Us_Ui_L(), .{ .v1 = 3295, .v2 = 3241, .v3 = 591 });
     try testing.expectOk(c.recv_Us_Ui_L(.{ .v1 = 3295, .v2 = 3241, .v3 = 591 }));
 }
+
 // From T_Snnn_xbb.c:58328:58348
 // struct  Us_Ui_S  {
 //   unsigned short v1;
@@ -5071,6 +5339,7 @@ test "Us_Ui_S C calls" {
     try testing.expectEqual(c.ret_Us_Ui_S(), .{ .v1 = 190, .v2 = 10192, .v3 = 3934 });
     try testing.expectOk(c.recv_Us_Ui_S(.{ .v1 = 190, .v2 = 10192, .v3 = 3934 }));
 }
+
 // From T_Snnn_xbb.c:58353:58373
 // struct  Us_Ui_Uc  {
 //   unsigned short v1;
@@ -5090,6 +5359,7 @@ test "Us_Ui_Uc C calls" {
     try testing.expectEqual(c.ret_Us_Ui_Uc(), .{ .v1 = 27974, .v2 = 12257, .v3 = 100 });
     try testing.expectOk(c.recv_Us_Ui_Uc(.{ .v1 = 27974, .v2 = 12257, .v3 = 100 }));
 }
+
 // From T_Snnn_xbb.c:58378:58398
 // struct  Us_Ui_Ui  {
 //   unsigned short v1;
@@ -5109,6 +5379,7 @@ test "Us_Ui_Ui C calls" {
     try testing.expectEqual(c.ret_Us_Ui_Ui(), .{ .v1 = 3493, .v2 = 11093, .v3 = 28185 });
     try testing.expectOk(c.recv_Us_Ui_Ui(.{ .v1 = 3493, .v2 = 11093, .v3 = 28185 }));
 }
+
 // From T_Snnn_xbb.c:58403:58423
 // struct  Us_Ui_Ul  {
 //   unsigned short v1;
@@ -5128,6 +5399,7 @@ test "Us_Ui_Ul C calls" {
     try testing.expectEqual(c.ret_Us_Ui_Ul(), .{ .v1 = 20393, .v2 = 2406, .v3 = 17503 });
     try testing.expectOk(c.recv_Us_Ui_Ul(.{ .v1 = 20393, .v2 = 2406, .v3 = 17503 }));
 }
+
 // From T_Snnn_xbb.c:58428:58448
 // struct  Us_Ui_Us  {
 //   unsigned short v1;
@@ -5147,6 +5419,7 @@ test "Us_Ui_Us C calls" {
     try testing.expectEqual(c.ret_Us_Ui_Us(), .{ .v1 = 14950, .v2 = 28030, .v3 = 26040 });
     try testing.expectOk(c.recv_Us_Ui_Us(.{ .v1 = 14950, .v2 = 28030, .v3 = 26040 }));
 }
+
 // From T_Snnn_xbb.c:58453:58473
 // struct  Us_Ui_Vp  {
 //   unsigned short v1;
@@ -5166,6 +5439,7 @@ test "Us_Ui_Vp C calls" {
     try testing.expectEqual(c.ret_Us_Ui_Vp(), .{ .v1 = 13015, .v2 = 7991, .v3 = null });
     try testing.expectOk(c.recv_Us_Ui_Vp(.{ .v1 = 13015, .v2 = 7991, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:58478:58496
 // struct  Us_Ul  {
 //   unsigned short v1;
@@ -5183,6 +5457,7 @@ test "Us_Ul C calls" {
     try testing.expectEqual(c.ret_Us_Ul(), .{ .v1 = 16401, .v2 = 4479 });
     try testing.expectOk(c.recv_Us_Ul(.{ .v1 = 16401, .v2 = 4479 }));
 }
+
 // From T_Snnn_xbb.c:59225:59245
 // struct  Us_Ul_C  {
 //   unsigned short v1;
@@ -5202,6 +5477,7 @@ test "Us_Ul_C C calls" {
     try testing.expectEqual(c.ret_Us_Ul_C(), .{ .v1 = 26329, .v2 = 27940, .v3 = 45 });
     try testing.expectOk(c.recv_Us_Ul_C(.{ .v1 = 26329, .v2 = 27940, .v3 = 45 }));
 }
+
 // From T_Snnn_xbb.c:59250:59270
 // struct  Us_Ul_D  {
 //   unsigned short v1;
@@ -5221,6 +5497,7 @@ test "Us_Ul_D C calls" {
     try testing.expectEqual(c.ret_Us_Ul_D(), .{ .v1 = 17927, .v2 = 8476, .v3 = 0.875 });
     try testing.expectOk(c.recv_Us_Ul_D(.{ .v1 = 17927, .v2 = 8476, .v3 = 0.875 }));
 }
+
 // From T_Snnn_xbb.c:59275:59295
 // struct  Us_Ul_F  {
 //   unsigned short v1;
@@ -5240,6 +5517,7 @@ test "Us_Ul_F C calls" {
     try testing.expectEqual(c.ret_Us_Ul_F(), .{ .v1 = 20120, .v2 = 14441, .v3 = -0.25 });
     try testing.expectOk(c.recv_Us_Ul_F(.{ .v1 = 20120, .v2 = 14441, .v3 = -0.25 }));
 }
+
 // From T_Snnn_xbb.c:59300:59320
 // struct  Us_Ul_I  {
 //   unsigned short v1;
@@ -5259,6 +5537,7 @@ test "Us_Ul_I C calls" {
     try testing.expectEqual(c.ret_Us_Ul_I(), .{ .v1 = 8727, .v2 = 14648, .v3 = 27507 });
     try testing.expectOk(c.recv_Us_Ul_I(.{ .v1 = 8727, .v2 = 14648, .v3 = 27507 }));
 }
+
 // From T_Snnn_xbb.c:59325:59345
 // struct  Us_Ul_Ip  {
 //   unsigned short v1;
@@ -5278,6 +5557,7 @@ test "Us_Ul_Ip C calls" {
     try testing.expectEqual(c.ret_Us_Ul_Ip(), .{ .v1 = 24923, .v2 = 3980, .v3 = null });
     try testing.expectOk(c.recv_Us_Ul_Ip(.{ .v1 = 24923, .v2 = 3980, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:59350:59370
 // struct  Us_Ul_L  {
 //   unsigned short v1;
@@ -5297,6 +5577,7 @@ test "Us_Ul_L C calls" {
     try testing.expectEqual(c.ret_Us_Ul_L(), .{ .v1 = 14072, .v2 = 26693, .v3 = 704 });
     try testing.expectOk(c.recv_Us_Ul_L(.{ .v1 = 14072, .v2 = 26693, .v3 = 704 }));
 }
+
 // From T_Snnn_xbb.c:59375:59395
 // struct  Us_Ul_S  {
 //   unsigned short v1;
@@ -5316,6 +5597,7 @@ test "Us_Ul_S C calls" {
     try testing.expectEqual(c.ret_Us_Ul_S(), .{ .v1 = 29540, .v2 = 2724, .v3 = 23630 });
     try testing.expectOk(c.recv_Us_Ul_S(.{ .v1 = 29540, .v2 = 2724, .v3 = 23630 }));
 }
+
 // From T_Snnn_xbb.c:59400:59420
 // struct  Us_Ul_Uc  {
 //   unsigned short v1;
@@ -5335,6 +5617,7 @@ test "Us_Ul_Uc C calls" {
     try testing.expectEqual(c.ret_Us_Ul_Uc(), .{ .v1 = 2843, .v2 = 9302, .v3 = 9 });
     try testing.expectOk(c.recv_Us_Ul_Uc(.{ .v1 = 2843, .v2 = 9302, .v3 = 9 }));
 }
+
 // From T_Snnn_xbb.c:59425:59445
 // struct  Us_Ul_Ui  {
 //   unsigned short v1;
@@ -5354,6 +5637,7 @@ test "Us_Ul_Ui C calls" {
     try testing.expectEqual(c.ret_Us_Ul_Ui(), .{ .v1 = 1936, .v2 = 23128, .v3 = 25427 });
     try testing.expectOk(c.recv_Us_Ul_Ui(.{ .v1 = 1936, .v2 = 23128, .v3 = 25427 }));
 }
+
 // From T_Snnn_xbb.c:59450:59470
 // struct  Us_Ul_Ul  {
 //   unsigned short v1;
@@ -5373,6 +5657,7 @@ test "Us_Ul_Ul C calls" {
     try testing.expectEqual(c.ret_Us_Ul_Ul(), .{ .v1 = 21746, .v2 = 21824, .v3 = 14878 });
     try testing.expectOk(c.recv_Us_Ul_Ul(.{ .v1 = 21746, .v2 = 21824, .v3 = 14878 }));
 }
+
 // From T_Snnn_xbb.c:59475:59495
 // struct  Us_Ul_Us  {
 //   unsigned short v1;
@@ -5392,6 +5677,7 @@ test "Us_Ul_Us C calls" {
     try testing.expectEqual(c.ret_Us_Ul_Us(), .{ .v1 = 26984, .v2 = 13299, .v3 = 17140 });
     try testing.expectOk(c.recv_Us_Ul_Us(.{ .v1 = 26984, .v2 = 13299, .v3 = 17140 }));
 }
+
 // From T_Snnn_xbb.c:59500:59520
 // struct  Us_Ul_Vp  {
 //   unsigned short v1;
@@ -5411,6 +5697,7 @@ test "Us_Ul_Vp C calls" {
     try testing.expectEqual(c.ret_Us_Ul_Vp(), .{ .v1 = 30518, .v2 = 21741, .v3 = null });
     try testing.expectOk(c.recv_Us_Ul_Vp(.{ .v1 = 30518, .v2 = 21741, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:59525:59543
 // struct  Us_Us  {
 //   unsigned short v1;
@@ -5428,6 +5715,7 @@ test "Us_Us C calls" {
     try testing.expectEqual(c.ret_Us_Us(), .{ .v1 = 22395, .v2 = 24860 });
     try testing.expectOk(c.recv_Us_Us(.{ .v1 = 22395, .v2 = 24860 }));
 }
+
 // From T_Snnn_xbb.c:60272:60292
 // struct  Us_Us_C  {
 //   unsigned short v1;
@@ -5447,6 +5735,7 @@ test "Us_Us_C C calls" {
     try testing.expectEqual(c.ret_Us_Us_C(), .{ .v1 = 29095, .v2 = 16896, .v3 = 12 });
     try testing.expectOk(c.recv_Us_Us_C(.{ .v1 = 29095, .v2 = 16896, .v3 = 12 }));
 }
+
 // From T_Snnn_xbb.c:60297:60317
 // struct  Us_Us_D  {
 //   unsigned short v1;
@@ -5466,6 +5755,7 @@ test "Us_Us_D C calls" {
     try testing.expectEqual(c.ret_Us_Us_D(), .{ .v1 = 32400, .v2 = 24920, .v3 = 7.0 });
     try testing.expectOk(c.recv_Us_Us_D(.{ .v1 = 32400, .v2 = 24920, .v3 = 7.0 }));
 }
+
 // From T_Snnn_xbb.c:60322:60342
 // struct  Us_Us_F  {
 //   unsigned short v1;
@@ -5485,6 +5775,7 @@ test "Us_Us_F C calls" {
     try testing.expectEqual(c.ret_Us_Us_F(), .{ .v1 = 27252, .v2 = 23171, .v3 = 7.0 });
     try testing.expectOk(c.recv_Us_Us_F(.{ .v1 = 27252, .v2 = 23171, .v3 = 7.0 }));
 }
+
 // From T_Snnn_xbb.c:60347:60367
 // struct  Us_Us_I  {
 //   unsigned short v1;
@@ -5504,6 +5795,7 @@ test "Us_Us_I C calls" {
     try testing.expectEqual(c.ret_Us_Us_I(), .{ .v1 = 30675, .v2 = 20018, .v3 = 11813 });
     try testing.expectOk(c.recv_Us_Us_I(.{ .v1 = 30675, .v2 = 20018, .v3 = 11813 }));
 }
+
 // From T_Snnn_xbb.c:60372:60392
 // struct  Us_Us_Ip  {
 //   unsigned short v1;
@@ -5523,6 +5815,7 @@ test "Us_Us_Ip C calls" {
     try testing.expectEqual(c.ret_Us_Us_Ip(), .{ .v1 = 12267, .v2 = 8588, .v3 = null });
     try testing.expectOk(c.recv_Us_Us_Ip(.{ .v1 = 12267, .v2 = 8588, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:60397:60417
 // struct  Us_Us_L  {
 //   unsigned short v1;
@@ -5542,6 +5835,7 @@ test "Us_Us_L C calls" {
     try testing.expectEqual(c.ret_Us_Us_L(), .{ .v1 = 27707, .v2 = 22062, .v3 = 7550 });
     try testing.expectOk(c.recv_Us_Us_L(.{ .v1 = 27707, .v2 = 22062, .v3 = 7550 }));
 }
+
 // From T_Snnn_xbb.c:60422:60442
 // struct  Us_Us_S  {
 //   unsigned short v1;
@@ -5561,6 +5855,7 @@ test "Us_Us_S C calls" {
     try testing.expectEqual(c.ret_Us_Us_S(), .{ .v1 = 26438, .v2 = 9267, .v3 = 12429 });
     try testing.expectOk(c.recv_Us_Us_S(.{ .v1 = 26438, .v2 = 9267, .v3 = 12429 }));
 }
+
 // From T_Snnn_xbb.c:60447:60467
 // struct  Us_Us_Uc  {
 //   unsigned short v1;
@@ -5580,6 +5875,7 @@ test "Us_Us_Uc C calls" {
     try testing.expectEqual(c.ret_Us_Us_Uc(), .{ .v1 = 16024, .v2 = 16604, .v3 = 8 });
     try testing.expectOk(c.recv_Us_Us_Uc(.{ .v1 = 16024, .v2 = 16604, .v3 = 8 }));
 }
+
 // From T_Snnn_xbb.c:60472:60492
 // struct  Us_Us_Ui  {
 //   unsigned short v1;
@@ -5599,6 +5895,7 @@ test "Us_Us_Ui C calls" {
     try testing.expectEqual(c.ret_Us_Us_Ui(), .{ .v1 = 31707, .v2 = 32474, .v3 = 20286 });
     try testing.expectOk(c.recv_Us_Us_Ui(.{ .v1 = 31707, .v2 = 32474, .v3 = 20286 }));
 }
+
 // From T_Snnn_xbb.c:60497:60517
 // struct  Us_Us_Ul  {
 //   unsigned short v1;
@@ -5618,6 +5915,7 @@ test "Us_Us_Ul C calls" {
     try testing.expectEqual(c.ret_Us_Us_Ul(), .{ .v1 = 23168, .v2 = 25230, .v3 = 32395 });
     try testing.expectOk(c.recv_Us_Us_Ul(.{ .v1 = 23168, .v2 = 25230, .v3 = 32395 }));
 }
+
 // From T_Snnn_xbb.c:60522:60542
 // struct  Us_Us_Us  {
 //   unsigned short v1;
@@ -5637,6 +5935,7 @@ test "Us_Us_Us C calls" {
     try testing.expectEqual(c.ret_Us_Us_Us(), .{ .v1 = 22020, .v2 = 15748, .v3 = 19041 });
     try testing.expectOk(c.recv_Us_Us_Us(.{ .v1 = 22020, .v2 = 15748, .v3 = 19041 }));
 }
+
 // From T_Snnn_xbb.c:60547:60567
 // struct  Us_Us_Vp  {
 //   unsigned short v1;
@@ -5656,6 +5955,7 @@ test "Us_Us_Vp C calls" {
     try testing.expectEqual(c.ret_Us_Us_Vp(), .{ .v1 = 2680, .v2 = 25163, .v3 = null });
     try testing.expectOk(c.recv_Us_Us_Vp(.{ .v1 = 2680, .v2 = 25163, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:60572:60590
 // struct  Us_Vp  {
 //   unsigned short v1;
@@ -5673,6 +5973,7 @@ test "Us_Vp C calls" {
     try testing.expectEqual(c.ret_Us_Vp(), .{ .v1 = 27963, .v2 = null });
     try testing.expectOk(c.recv_Us_Vp(.{ .v1 = 27963, .v2 = null }));
 }
+
 // From T_Snnn_xbb.c:61319:61339
 // struct  Us_Vp_C  {
 //   unsigned short v1;
@@ -5692,6 +5993,7 @@ test "Us_Vp_C C calls" {
     try testing.expectEqual(c.ret_Us_Vp_C(), .{ .v1 = 13429, .v2 = null, .v3 = 114 });
     try testing.expectOk(c.recv_Us_Vp_C(.{ .v1 = 13429, .v2 = null, .v3 = 114 }));
 }
+
 // From T_Snnn_xbb.c:61344:61364
 // struct  Us_Vp_D  {
 //   unsigned short v1;
@@ -5711,6 +6013,7 @@ test "Us_Vp_D C calls" {
     try testing.expectEqual(c.ret_Us_Vp_D(), .{ .v1 = 14615, .v2 = null, .v3 = 7.0 });
     try testing.expectOk(c.recv_Us_Vp_D(.{ .v1 = 14615, .v2 = null, .v3 = 7.0 }));
 }
+
 // From T_Snnn_xbb.c:61369:61389
 // struct  Us_Vp_F  {
 //   unsigned short v1;
@@ -5730,6 +6033,7 @@ test "Us_Vp_F C calls" {
     try testing.expectEqual(c.ret_Us_Vp_F(), .{ .v1 = 25809, .v2 = null, .v3 = -0.25 });
     try testing.expectOk(c.recv_Us_Vp_F(.{ .v1 = 25809, .v2 = null, .v3 = -0.25 }));
 }
+
 // From T_Snnn_xbb.c:61394:61414
 // struct  Us_Vp_I  {
 //   unsigned short v1;
@@ -5749,6 +6053,7 @@ test "Us_Vp_I C calls" {
     try testing.expectEqual(c.ret_Us_Vp_I(), .{ .v1 = 21154, .v2 = null, .v3 = 12034 });
     try testing.expectOk(c.recv_Us_Vp_I(.{ .v1 = 21154, .v2 = null, .v3 = 12034 }));
 }
+
 // From T_Snnn_xbb.c:61419:61439
 // struct  Us_Vp_Ip  {
 //   unsigned short v1;
@@ -5768,6 +6073,7 @@ test "Us_Vp_Ip C calls" {
     try testing.expectEqual(c.ret_Us_Vp_Ip(), .{ .v1 = 1558, .v2 = null, .v3 = null });
     try testing.expectOk(c.recv_Us_Vp_Ip(.{ .v1 = 1558, .v2 = null, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:61444:61464
 // struct  Us_Vp_L  {
 //   unsigned short v1;
@@ -5787,6 +6093,7 @@ test "Us_Vp_L C calls" {
     try testing.expectEqual(c.ret_Us_Vp_L(), .{ .v1 = 3956, .v2 = null, .v3 = 28044 });
     try testing.expectOk(c.recv_Us_Vp_L(.{ .v1 = 3956, .v2 = null, .v3 = 28044 }));
 }
+
 // From T_Snnn_xbb.c:61469:61489
 // struct  Us_Vp_S  {
 //   unsigned short v1;
@@ -5806,6 +6113,7 @@ test "Us_Vp_S C calls" {
     try testing.expectEqual(c.ret_Us_Vp_S(), .{ .v1 = 19785, .v2 = null, .v3 = 32420 });
     try testing.expectOk(c.recv_Us_Vp_S(.{ .v1 = 19785, .v2 = null, .v3 = 32420 }));
 }
+
 // From T_Snnn_xbb.c:61494:61514
 // struct  Us_Vp_Uc  {
 //   unsigned short v1;
@@ -5825,6 +6133,7 @@ test "Us_Vp_Uc C calls" {
     try testing.expectEqual(c.ret_Us_Vp_Uc(), .{ .v1 = 12798, .v2 = null, .v3 = 106 });
     try testing.expectOk(c.recv_Us_Vp_Uc(.{ .v1 = 12798, .v2 = null, .v3 = 106 }));
 }
+
 // From T_Snnn_xbb.c:61519:61539
 // struct  Us_Vp_Ui  {
 //   unsigned short v1;
@@ -5844,6 +6153,7 @@ test "Us_Vp_Ui C calls" {
     try testing.expectEqual(c.ret_Us_Vp_Ui(), .{ .v1 = 18555, .v2 = null, .v3 = 25756 });
     try testing.expectOk(c.recv_Us_Vp_Ui(.{ .v1 = 18555, .v2 = null, .v3 = 25756 }));
 }
+
 // From T_Snnn_xbb.c:61544:61564
 // struct  Us_Vp_Ul  {
 //   unsigned short v1;
@@ -5863,6 +6173,7 @@ test "Us_Vp_Ul C calls" {
     try testing.expectEqual(c.ret_Us_Vp_Ul(), .{ .v1 = 25009, .v2 = null, .v3 = 2138 });
     try testing.expectOk(c.recv_Us_Vp_Ul(.{ .v1 = 25009, .v2 = null, .v3 = 2138 }));
 }
+
 // From T_Snnn_xbb.c:61569:61589
 // struct  Us_Vp_Us  {
 //   unsigned short v1;
@@ -5882,6 +6193,7 @@ test "Us_Vp_Us C calls" {
     try testing.expectEqual(c.ret_Us_Vp_Us(), .{ .v1 = 32123, .v2 = null, .v3 = 5039 });
     try testing.expectOk(c.recv_Us_Vp_Us(.{ .v1 = 32123, .v2 = null, .v3 = 5039 }));
 }
+
 // From T_Snnn_xbb.c:61594:61614
 // struct  Us_Vp_Vp  {
 //   unsigned short v1;
@@ -5901,6 +6213,7 @@ test "Us_Vp_Vp C calls" {
     try testing.expectEqual(c.ret_Us_Vp_Vp(), .{ .v1 = 29460, .v2 = null, .v3 = null });
     try testing.expectOk(c.recv_Us_Vp_Vp(.{ .v1 = 29460, .v2 = null, .v3 = null }));
 }
+
 // From T_Snnn_xbb.c:61619:61635
 // struct  Vp  {
 //   void *v1;
