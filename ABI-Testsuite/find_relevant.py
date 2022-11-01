@@ -335,12 +335,10 @@ def generate_struct_vals(struct: Struct) -> dict:
 def generate_field_val(ctype: str) -> str:
     if "char" in ctype:
         return str(random.randint(0, 127))
-    if "float" in ctype:
-        return str(random.choice([0.125, -0.25, 0.5, 1.0, -2.125, 4.5]))
+    if "float" in ctype or "double" in ctype:
         # TODO: generate more floats that can be exactly represented.
-        # return f"{random.random():.3f}"
-    if "double" in ctype:
-        return f"{random.random():.6f}"
+        # https://float.exposed/0x40e00000
+        return str(random.choice([0.875, -0.25, 0.5, 1.0, -2.125, 4.5, 7.0]))
     if "empty" in ctype:
         return ".{}"
     if "*" in ctype:
