@@ -18,6 +18,14 @@ int send_Vp_C(){
   lv.v2 = 24;
   return zig_recv_Vp_C(lv);
 }
+struct Vp_C zig_ret_Vp_C();
+int assert_ret_Vp_C(){
+  struct Vp_C lv = zig_ret_Vp_C();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 24) return 2;
+  return 0;
+}
+
 
 int recv_Vp_C_C(struct Vp_C_C lv){
   if (lv.v1 != 0) return 1;
@@ -40,6 +48,15 @@ int send_Vp_C_C(){
   lv.v3 = 11;
   return zig_recv_Vp_C_C(lv);
 }
+struct Vp_C_C zig_ret_Vp_C_C();
+int assert_ret_Vp_C_C(){
+  struct Vp_C_C lv = zig_ret_Vp_C_C();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 39) return 2;
+  if (lv.v3 != 11) return 3;
+  return 0;
+}
+
 
 int recv_Vp_C_D(struct Vp_C_D lv){
   if (lv.v1 != 0) return 1;
@@ -62,6 +79,15 @@ int send_Vp_C_D(){
   lv.v3 = -0.25;
   return zig_recv_Vp_C_D(lv);
 }
+struct Vp_C_D zig_ret_Vp_C_D();
+int assert_ret_Vp_C_D(){
+  struct Vp_C_D lv = zig_ret_Vp_C_D();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 106) return 2;
+  if (lv.v3 != -0.25) return 3;
+  return 0;
+}
+
 
 int recv_Vp_C_F(struct Vp_C_F lv){
   if (lv.v1 != 0) return 1;
@@ -84,6 +110,15 @@ int send_Vp_C_F(){
   lv.v3 = 7.0;
   return zig_recv_Vp_C_F(lv);
 }
+struct Vp_C_F zig_ret_Vp_C_F();
+int assert_ret_Vp_C_F(){
+  struct Vp_C_F lv = zig_ret_Vp_C_F();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 57) return 2;
+  if (lv.v3 != 7.0) return 3;
+  return 0;
+}
+
 
 int recv_Vp_C_I(struct Vp_C_I lv){
   if (lv.v1 != 0) return 1;
@@ -106,6 +141,15 @@ int send_Vp_C_I(){
   lv.v3 = 22912;
   return zig_recv_Vp_C_I(lv);
 }
+struct Vp_C_I zig_ret_Vp_C_I();
+int assert_ret_Vp_C_I(){
+  struct Vp_C_I lv = zig_ret_Vp_C_I();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 62) return 2;
+  if (lv.v3 != 22912) return 3;
+  return 0;
+}
+
 
 int recv_Vp_C_Ip(struct Vp_C_Ip lv){
   if (lv.v1 != 0) return 1;
@@ -128,6 +172,15 @@ int send_Vp_C_Ip(){
   lv.v3 = 0;
   return zig_recv_Vp_C_Ip(lv);
 }
+struct Vp_C_Ip zig_ret_Vp_C_Ip();
+int assert_ret_Vp_C_Ip(){
+  struct Vp_C_Ip lv = zig_ret_Vp_C_Ip();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 0) return 2;
+  if (lv.v3 != 0) return 3;
+  return 0;
+}
+
 
 int recv_Vp_C_L(struct Vp_C_L lv){
   if (lv.v1 != 0) return 1;
@@ -150,6 +203,15 @@ int send_Vp_C_L(){
   lv.v3 = 18116;
   return zig_recv_Vp_C_L(lv);
 }
+struct Vp_C_L zig_ret_Vp_C_L();
+int assert_ret_Vp_C_L(){
+  struct Vp_C_L lv = zig_ret_Vp_C_L();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 16) return 2;
+  if (lv.v3 != 18116) return 3;
+  return 0;
+}
+
 
 int recv_Vp_C_S(struct Vp_C_S lv){
   if (lv.v1 != 0) return 1;
@@ -172,6 +234,15 @@ int send_Vp_C_S(){
   lv.v3 = 27635;
   return zig_recv_Vp_C_S(lv);
 }
+struct Vp_C_S zig_ret_Vp_C_S();
+int assert_ret_Vp_C_S(){
+  struct Vp_C_S lv = zig_ret_Vp_C_S();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 81) return 2;
+  if (lv.v3 != 27635) return 3;
+  return 0;
+}
+
 
 int recv_Vp_C_Uc(struct Vp_C_Uc lv){
   if (lv.v1 != 0) return 1;
@@ -194,6 +265,15 @@ int send_Vp_C_Uc(){
   lv.v3 = 98;
   return zig_recv_Vp_C_Uc(lv);
 }
+struct Vp_C_Uc zig_ret_Vp_C_Uc();
+int assert_ret_Vp_C_Uc(){
+  struct Vp_C_Uc lv = zig_ret_Vp_C_Uc();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 20) return 2;
+  if (lv.v3 != 98) return 3;
+  return 0;
+}
+
 
 int recv_Vp_C_Ui(struct Vp_C_Ui lv){
   if (lv.v1 != 0) return 1;
@@ -216,6 +296,15 @@ int send_Vp_C_Ui(){
   lv.v3 = 13797;
   return zig_recv_Vp_C_Ui(lv);
 }
+struct Vp_C_Ui zig_ret_Vp_C_Ui();
+int assert_ret_Vp_C_Ui(){
+  struct Vp_C_Ui lv = zig_ret_Vp_C_Ui();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 65) return 2;
+  if (lv.v3 != 13797) return 3;
+  return 0;
+}
+
 
 int recv_Vp_C_Ul(struct Vp_C_Ul lv){
   if (lv.v1 != 0) return 1;
@@ -238,6 +327,15 @@ int send_Vp_C_Ul(){
   lv.v3 = 18622;
   return zig_recv_Vp_C_Ul(lv);
 }
+struct Vp_C_Ul zig_ret_Vp_C_Ul();
+int assert_ret_Vp_C_Ul(){
+  struct Vp_C_Ul lv = zig_ret_Vp_C_Ul();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 96) return 2;
+  if (lv.v3 != 18622) return 3;
+  return 0;
+}
+
 
 int recv_Vp_C_Us(struct Vp_C_Us lv){
   if (lv.v1 != 0) return 1;
@@ -260,6 +358,15 @@ int send_Vp_C_Us(){
   lv.v3 = 24720;
   return zig_recv_Vp_C_Us(lv);
 }
+struct Vp_C_Us zig_ret_Vp_C_Us();
+int assert_ret_Vp_C_Us(){
+  struct Vp_C_Us lv = zig_ret_Vp_C_Us();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 109) return 2;
+  if (lv.v3 != 24720) return 3;
+  return 0;
+}
+
 
 int recv_Vp_C_Vp(struct Vp_C_Vp lv){
   if (lv.v1 != 0) return 1;
@@ -282,6 +389,15 @@ int send_Vp_C_Vp(){
   lv.v3 = 0;
   return zig_recv_Vp_C_Vp(lv);
 }
+struct Vp_C_Vp zig_ret_Vp_C_Vp();
+int assert_ret_Vp_C_Vp(){
+  struct Vp_C_Vp lv = zig_ret_Vp_C_Vp();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 16) return 2;
+  if (lv.v3 != 0) return 3;
+  return 0;
+}
+
 
 int recv_Vp_D(struct Vp_D lv){
   if (lv.v1 != 0) return 1;
@@ -301,6 +417,14 @@ int send_Vp_D(){
   lv.v2 = 0.5;
   return zig_recv_Vp_D(lv);
 }
+struct Vp_D zig_ret_Vp_D();
+int assert_ret_Vp_D(){
+  struct Vp_D lv = zig_ret_Vp_D();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 0.5) return 2;
+  return 0;
+}
+
 
 int recv_Vp_D_C(struct Vp_D_C lv){
   if (lv.v1 != 0) return 1;
@@ -323,6 +447,15 @@ int send_Vp_D_C(){
   lv.v3 = 3;
   return zig_recv_Vp_D_C(lv);
 }
+struct Vp_D_C zig_ret_Vp_D_C();
+int assert_ret_Vp_D_C(){
+  struct Vp_D_C lv = zig_ret_Vp_D_C();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != -0.25) return 2;
+  if (lv.v3 != 3) return 3;
+  return 0;
+}
+
 
 int recv_Vp_D_D(struct Vp_D_D lv){
   if (lv.v1 != 0) return 1;
@@ -345,6 +478,15 @@ int send_Vp_D_D(){
   lv.v3 = -2.125;
   return zig_recv_Vp_D_D(lv);
 }
+struct Vp_D_D zig_ret_Vp_D_D();
+int assert_ret_Vp_D_D(){
+  struct Vp_D_D lv = zig_ret_Vp_D_D();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != -2.125) return 2;
+  if (lv.v3 != -2.125) return 3;
+  return 0;
+}
+
 
 int recv_Vp_D_F(struct Vp_D_F lv){
   if (lv.v1 != 0) return 1;
@@ -367,6 +509,15 @@ int send_Vp_D_F(){
   lv.v3 = -0.25;
   return zig_recv_Vp_D_F(lv);
 }
+struct Vp_D_F zig_ret_Vp_D_F();
+int assert_ret_Vp_D_F(){
+  struct Vp_D_F lv = zig_ret_Vp_D_F();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != -2.125) return 2;
+  if (lv.v3 != -0.25) return 3;
+  return 0;
+}
+
 
 int recv_Vp_D_I(struct Vp_D_I lv){
   if (lv.v1 != 0) return 1;
@@ -389,6 +540,15 @@ int send_Vp_D_I(){
   lv.v3 = 9961;
   return zig_recv_Vp_D_I(lv);
 }
+struct Vp_D_I zig_ret_Vp_D_I();
+int assert_ret_Vp_D_I(){
+  struct Vp_D_I lv = zig_ret_Vp_D_I();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 0.875) return 2;
+  if (lv.v3 != 9961) return 3;
+  return 0;
+}
+
 
 int recv_Vp_D_Ip(struct Vp_D_Ip lv){
   if (lv.v1 != 0) return 1;
@@ -411,6 +571,15 @@ int send_Vp_D_Ip(){
   lv.v3 = 0;
   return zig_recv_Vp_D_Ip(lv);
 }
+struct Vp_D_Ip zig_ret_Vp_D_Ip();
+int assert_ret_Vp_D_Ip(){
+  struct Vp_D_Ip lv = zig_ret_Vp_D_Ip();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != -0.25) return 2;
+  if (lv.v3 != 0) return 3;
+  return 0;
+}
+
 
 int recv_Vp_D_L(struct Vp_D_L lv){
   if (lv.v1 != 0) return 1;
@@ -433,6 +602,15 @@ int send_Vp_D_L(){
   lv.v3 = 17787;
   return zig_recv_Vp_D_L(lv);
 }
+struct Vp_D_L zig_ret_Vp_D_L();
+int assert_ret_Vp_D_L(){
+  struct Vp_D_L lv = zig_ret_Vp_D_L();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 0.875) return 2;
+  if (lv.v3 != 17787) return 3;
+  return 0;
+}
+
 
 int recv_Vp_D_S(struct Vp_D_S lv){
   if (lv.v1 != 0) return 1;
@@ -455,6 +633,15 @@ int send_Vp_D_S(){
   lv.v3 = 29276;
   return zig_recv_Vp_D_S(lv);
 }
+struct Vp_D_S zig_ret_Vp_D_S();
+int assert_ret_Vp_D_S(){
+  struct Vp_D_S lv = zig_ret_Vp_D_S();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != -0.25) return 2;
+  if (lv.v3 != 29276) return 3;
+  return 0;
+}
+
 
 int recv_Vp_D_Uc(struct Vp_D_Uc lv){
   if (lv.v1 != 0) return 1;
@@ -477,6 +664,15 @@ int send_Vp_D_Uc(){
   lv.v3 = 26;
   return zig_recv_Vp_D_Uc(lv);
 }
+struct Vp_D_Uc zig_ret_Vp_D_Uc();
+int assert_ret_Vp_D_Uc(){
+  struct Vp_D_Uc lv = zig_ret_Vp_D_Uc();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 0.875) return 2;
+  if (lv.v3 != 26) return 3;
+  return 0;
+}
+
 
 int recv_Vp_D_Ui(struct Vp_D_Ui lv){
   if (lv.v1 != 0) return 1;
@@ -499,6 +695,15 @@ int send_Vp_D_Ui(){
   lv.v3 = 1017;
   return zig_recv_Vp_D_Ui(lv);
 }
+struct Vp_D_Ui zig_ret_Vp_D_Ui();
+int assert_ret_Vp_D_Ui(){
+  struct Vp_D_Ui lv = zig_ret_Vp_D_Ui();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 7.0) return 2;
+  if (lv.v3 != 1017) return 3;
+  return 0;
+}
+
 
 int recv_Vp_D_Ul(struct Vp_D_Ul lv){
   if (lv.v1 != 0) return 1;
@@ -521,6 +726,15 @@ int send_Vp_D_Ul(){
   lv.v3 = 18055;
   return zig_recv_Vp_D_Ul(lv);
 }
+struct Vp_D_Ul zig_ret_Vp_D_Ul();
+int assert_ret_Vp_D_Ul(){
+  struct Vp_D_Ul lv = zig_ret_Vp_D_Ul();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != -2.125) return 2;
+  if (lv.v3 != 18055) return 3;
+  return 0;
+}
+
 
 int recv_Vp_D_Us(struct Vp_D_Us lv){
   if (lv.v1 != 0) return 1;
@@ -543,6 +757,15 @@ int send_Vp_D_Us(){
   lv.v3 = 13068;
   return zig_recv_Vp_D_Us(lv);
 }
+struct Vp_D_Us zig_ret_Vp_D_Us();
+int assert_ret_Vp_D_Us(){
+  struct Vp_D_Us lv = zig_ret_Vp_D_Us();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 1.0) return 2;
+  if (lv.v3 != 13068) return 3;
+  return 0;
+}
+
 
 int recv_Vp_D_Vp(struct Vp_D_Vp lv){
   if (lv.v1 != 0) return 1;
@@ -565,6 +788,15 @@ int send_Vp_D_Vp(){
   lv.v3 = 0;
   return zig_recv_Vp_D_Vp(lv);
 }
+struct Vp_D_Vp zig_ret_Vp_D_Vp();
+int assert_ret_Vp_D_Vp(){
+  struct Vp_D_Vp lv = zig_ret_Vp_D_Vp();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != -0.25) return 2;
+  if (lv.v3 != 0) return 3;
+  return 0;
+}
+
 
 int recv_Vp_F(struct Vp_F lv){
   if (lv.v1 != 0) return 1;
@@ -584,6 +816,14 @@ int send_Vp_F(){
   lv.v2 = -2.125;
   return zig_recv_Vp_F(lv);
 }
+struct Vp_F zig_ret_Vp_F();
+int assert_ret_Vp_F(){
+  struct Vp_F lv = zig_ret_Vp_F();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != -2.125) return 2;
+  return 0;
+}
+
 
 int recv_Vp_F_C(struct Vp_F_C lv){
   if (lv.v1 != 0) return 1;
@@ -606,6 +846,15 @@ int send_Vp_F_C(){
   lv.v3 = 23;
   return zig_recv_Vp_F_C(lv);
 }
+struct Vp_F_C zig_ret_Vp_F_C();
+int assert_ret_Vp_F_C(){
+  struct Vp_F_C lv = zig_ret_Vp_F_C();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 0.875) return 2;
+  if (lv.v3 != 23) return 3;
+  return 0;
+}
+
 
 int recv_Vp_F_D(struct Vp_F_D lv){
   if (lv.v1 != 0) return 1;
@@ -628,6 +877,15 @@ int send_Vp_F_D(){
   lv.v3 = -0.25;
   return zig_recv_Vp_F_D(lv);
 }
+struct Vp_F_D zig_ret_Vp_F_D();
+int assert_ret_Vp_F_D(){
+  struct Vp_F_D lv = zig_ret_Vp_F_D();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != -2.125) return 2;
+  if (lv.v3 != -0.25) return 3;
+  return 0;
+}
+
 
 int recv_Vp_F_F(struct Vp_F_F lv){
   if (lv.v1 != 0) return 1;
@@ -650,6 +908,15 @@ int send_Vp_F_F(){
   lv.v3 = 4.5;
   return zig_recv_Vp_F_F(lv);
 }
+struct Vp_F_F zig_ret_Vp_F_F();
+int assert_ret_Vp_F_F(){
+  struct Vp_F_F lv = zig_ret_Vp_F_F();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 7.0) return 2;
+  if (lv.v3 != 4.5) return 3;
+  return 0;
+}
+
 
 int recv_Vp_F_I(struct Vp_F_I lv){
   if (lv.v1 != 0) return 1;
@@ -672,6 +939,15 @@ int send_Vp_F_I(){
   lv.v3 = 23844;
   return zig_recv_Vp_F_I(lv);
 }
+struct Vp_F_I zig_ret_Vp_F_I();
+int assert_ret_Vp_F_I(){
+  struct Vp_F_I lv = zig_ret_Vp_F_I();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 1.0) return 2;
+  if (lv.v3 != 23844) return 3;
+  return 0;
+}
+
 
 int recv_Vp_F_Ip(struct Vp_F_Ip lv){
   if (lv.v1 != 0) return 1;
@@ -694,6 +970,15 @@ int send_Vp_F_Ip(){
   lv.v3 = 0;
   return zig_recv_Vp_F_Ip(lv);
 }
+struct Vp_F_Ip zig_ret_Vp_F_Ip();
+int assert_ret_Vp_F_Ip(){
+  struct Vp_F_Ip lv = zig_ret_Vp_F_Ip();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 4.5) return 2;
+  if (lv.v3 != 0) return 3;
+  return 0;
+}
+
 
 int recv_Vp_F_L(struct Vp_F_L lv){
   if (lv.v1 != 0) return 1;
@@ -716,6 +1001,15 @@ int send_Vp_F_L(){
   lv.v3 = 4038;
   return zig_recv_Vp_F_L(lv);
 }
+struct Vp_F_L zig_ret_Vp_F_L();
+int assert_ret_Vp_F_L(){
+  struct Vp_F_L lv = zig_ret_Vp_F_L();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 0.875) return 2;
+  if (lv.v3 != 4038) return 3;
+  return 0;
+}
+
 
 int recv_Vp_F_S(struct Vp_F_S lv){
   if (lv.v1 != 0) return 1;
@@ -738,6 +1032,15 @@ int send_Vp_F_S(){
   lv.v3 = 23153;
   return zig_recv_Vp_F_S(lv);
 }
+struct Vp_F_S zig_ret_Vp_F_S();
+int assert_ret_Vp_F_S(){
+  struct Vp_F_S lv = zig_ret_Vp_F_S();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 4.5) return 2;
+  if (lv.v3 != 23153) return 3;
+  return 0;
+}
+
 
 int recv_Vp_F_Uc(struct Vp_F_Uc lv){
   if (lv.v1 != 0) return 1;
@@ -760,6 +1063,15 @@ int send_Vp_F_Uc(){
   lv.v3 = 33;
   return zig_recv_Vp_F_Uc(lv);
 }
+struct Vp_F_Uc zig_ret_Vp_F_Uc();
+int assert_ret_Vp_F_Uc(){
+  struct Vp_F_Uc lv = zig_ret_Vp_F_Uc();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 7.0) return 2;
+  if (lv.v3 != 33) return 3;
+  return 0;
+}
+
 
 int recv_Vp_F_Ui(struct Vp_F_Ui lv){
   if (lv.v1 != 0) return 1;
@@ -782,6 +1094,15 @@ int send_Vp_F_Ui(){
   lv.v3 = 30633;
   return zig_recv_Vp_F_Ui(lv);
 }
+struct Vp_F_Ui zig_ret_Vp_F_Ui();
+int assert_ret_Vp_F_Ui(){
+  struct Vp_F_Ui lv = zig_ret_Vp_F_Ui();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != -0.25) return 2;
+  if (lv.v3 != 30633) return 3;
+  return 0;
+}
+
 
 int recv_Vp_F_Ul(struct Vp_F_Ul lv){
   if (lv.v1 != 0) return 1;
@@ -804,6 +1125,15 @@ int send_Vp_F_Ul(){
   lv.v3 = 8866;
   return zig_recv_Vp_F_Ul(lv);
 }
+struct Vp_F_Ul zig_ret_Vp_F_Ul();
+int assert_ret_Vp_F_Ul(){
+  struct Vp_F_Ul lv = zig_ret_Vp_F_Ul();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != -0.25) return 2;
+  if (lv.v3 != 8866) return 3;
+  return 0;
+}
+
 
 int recv_Vp_F_Us(struct Vp_F_Us lv){
   if (lv.v1 != 0) return 1;
@@ -826,6 +1156,15 @@ int send_Vp_F_Us(){
   lv.v3 = 6210;
   return zig_recv_Vp_F_Us(lv);
 }
+struct Vp_F_Us zig_ret_Vp_F_Us();
+int assert_ret_Vp_F_Us(){
+  struct Vp_F_Us lv = zig_ret_Vp_F_Us();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 0.875) return 2;
+  if (lv.v3 != 6210) return 3;
+  return 0;
+}
+
 
 int recv_Vp_F_Vp(struct Vp_F_Vp lv){
   if (lv.v1 != 0) return 1;
@@ -848,6 +1187,15 @@ int send_Vp_F_Vp(){
   lv.v3 = 0;
   return zig_recv_Vp_F_Vp(lv);
 }
+struct Vp_F_Vp zig_ret_Vp_F_Vp();
+int assert_ret_Vp_F_Vp(){
+  struct Vp_F_Vp lv = zig_ret_Vp_F_Vp();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 0.875) return 2;
+  if (lv.v3 != 0) return 3;
+  return 0;
+}
+
 
 int recv_Vp_I(struct Vp_I lv){
   if (lv.v1 != 0) return 1;
@@ -867,6 +1215,14 @@ int send_Vp_I(){
   lv.v2 = 23393;
   return zig_recv_Vp_I(lv);
 }
+struct Vp_I zig_ret_Vp_I();
+int assert_ret_Vp_I(){
+  struct Vp_I lv = zig_ret_Vp_I();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 23393) return 2;
+  return 0;
+}
+
 
 int recv_Vp_I_C(struct Vp_I_C lv){
   if (lv.v1 != 0) return 1;
@@ -889,6 +1245,15 @@ int send_Vp_I_C(){
   lv.v3 = 114;
   return zig_recv_Vp_I_C(lv);
 }
+struct Vp_I_C zig_ret_Vp_I_C();
+int assert_ret_Vp_I_C(){
+  struct Vp_I_C lv = zig_ret_Vp_I_C();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 1637) return 2;
+  if (lv.v3 != 114) return 3;
+  return 0;
+}
+
 
 int recv_Vp_I_D(struct Vp_I_D lv){
   if (lv.v1 != 0) return 1;
@@ -911,6 +1276,15 @@ int send_Vp_I_D(){
   lv.v3 = -2.125;
   return zig_recv_Vp_I_D(lv);
 }
+struct Vp_I_D zig_ret_Vp_I_D();
+int assert_ret_Vp_I_D(){
+  struct Vp_I_D lv = zig_ret_Vp_I_D();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 1972) return 2;
+  if (lv.v3 != -2.125) return 3;
+  return 0;
+}
+
 
 int recv_Vp_I_F(struct Vp_I_F lv){
   if (lv.v1 != 0) return 1;
@@ -933,6 +1307,15 @@ int send_Vp_I_F(){
   lv.v3 = -2.125;
   return zig_recv_Vp_I_F(lv);
 }
+struct Vp_I_F zig_ret_Vp_I_F();
+int assert_ret_Vp_I_F(){
+  struct Vp_I_F lv = zig_ret_Vp_I_F();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 27881) return 2;
+  if (lv.v3 != -2.125) return 3;
+  return 0;
+}
+
 
 int recv_Vp_I_I(struct Vp_I_I lv){
   if (lv.v1 != 0) return 1;
@@ -955,6 +1338,15 @@ int send_Vp_I_I(){
   lv.v3 = 24474;
   return zig_recv_Vp_I_I(lv);
 }
+struct Vp_I_I zig_ret_Vp_I_I();
+int assert_ret_Vp_I_I(){
+  struct Vp_I_I lv = zig_ret_Vp_I_I();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 10924) return 2;
+  if (lv.v3 != 24474) return 3;
+  return 0;
+}
+
 
 int recv_Vp_I_Ip(struct Vp_I_Ip lv){
   if (lv.v1 != 0) return 1;
@@ -977,6 +1369,15 @@ int send_Vp_I_Ip(){
   lv.v3 = 0;
   return zig_recv_Vp_I_Ip(lv);
 }
+struct Vp_I_Ip zig_ret_Vp_I_Ip();
+int assert_ret_Vp_I_Ip(){
+  struct Vp_I_Ip lv = zig_ret_Vp_I_Ip();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 16922) return 2;
+  if (lv.v3 != 0) return 3;
+  return 0;
+}
+
 
 int recv_Vp_I_L(struct Vp_I_L lv){
   if (lv.v1 != 0) return 1;
@@ -999,6 +1400,15 @@ int send_Vp_I_L(){
   lv.v3 = 21965;
   return zig_recv_Vp_I_L(lv);
 }
+struct Vp_I_L zig_ret_Vp_I_L();
+int assert_ret_Vp_I_L(){
+  struct Vp_I_L lv = zig_ret_Vp_I_L();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 6583) return 2;
+  if (lv.v3 != 21965) return 3;
+  return 0;
+}
+
 
 int recv_Vp_I_S(struct Vp_I_S lv){
   if (lv.v1 != 0) return 1;
@@ -1021,6 +1431,15 @@ int send_Vp_I_S(){
   lv.v3 = 25061;
   return zig_recv_Vp_I_S(lv);
 }
+struct Vp_I_S zig_ret_Vp_I_S();
+int assert_ret_Vp_I_S(){
+  struct Vp_I_S lv = zig_ret_Vp_I_S();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 21480) return 2;
+  if (lv.v3 != 25061) return 3;
+  return 0;
+}
+
 
 int recv_Vp_I_Uc(struct Vp_I_Uc lv){
   if (lv.v1 != 0) return 1;
@@ -1043,6 +1462,15 @@ int send_Vp_I_Uc(){
   lv.v3 = 97;
   return zig_recv_Vp_I_Uc(lv);
 }
+struct Vp_I_Uc zig_ret_Vp_I_Uc();
+int assert_ret_Vp_I_Uc(){
+  struct Vp_I_Uc lv = zig_ret_Vp_I_Uc();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 16553) return 2;
+  if (lv.v3 != 97) return 3;
+  return 0;
+}
+
 
 int recv_Vp_I_Ui(struct Vp_I_Ui lv){
   if (lv.v1 != 0) return 1;
@@ -1065,6 +1493,15 @@ int send_Vp_I_Ui(){
   lv.v3 = 1267;
   return zig_recv_Vp_I_Ui(lv);
 }
+struct Vp_I_Ui zig_ret_Vp_I_Ui();
+int assert_ret_Vp_I_Ui(){
+  struct Vp_I_Ui lv = zig_ret_Vp_I_Ui();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 19921) return 2;
+  if (lv.v3 != 1267) return 3;
+  return 0;
+}
+
 
 int recv_Vp_I_Ul(struct Vp_I_Ul lv){
   if (lv.v1 != 0) return 1;
@@ -1087,6 +1524,15 @@ int send_Vp_I_Ul(){
   lv.v3 = 6949;
   return zig_recv_Vp_I_Ul(lv);
 }
+struct Vp_I_Ul zig_ret_Vp_I_Ul();
+int assert_ret_Vp_I_Ul(){
+  struct Vp_I_Ul lv = zig_ret_Vp_I_Ul();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 20058) return 2;
+  if (lv.v3 != 6949) return 3;
+  return 0;
+}
+
 
 int recv_Vp_I_Us(struct Vp_I_Us lv){
   if (lv.v1 != 0) return 1;
@@ -1109,6 +1555,15 @@ int send_Vp_I_Us(){
   lv.v3 = 2529;
   return zig_recv_Vp_I_Us(lv);
 }
+struct Vp_I_Us zig_ret_Vp_I_Us();
+int assert_ret_Vp_I_Us(){
+  struct Vp_I_Us lv = zig_ret_Vp_I_Us();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 11156) return 2;
+  if (lv.v3 != 2529) return 3;
+  return 0;
+}
+
 
 int recv_Vp_I_Vp(struct Vp_I_Vp lv){
   if (lv.v1 != 0) return 1;
@@ -1131,6 +1586,15 @@ int send_Vp_I_Vp(){
   lv.v3 = 0;
   return zig_recv_Vp_I_Vp(lv);
 }
+struct Vp_I_Vp zig_ret_Vp_I_Vp();
+int assert_ret_Vp_I_Vp(){
+  struct Vp_I_Vp lv = zig_ret_Vp_I_Vp();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 15788) return 2;
+  if (lv.v3 != 0) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Ip(struct Vp_Ip lv){
   if (lv.v1 != 0) return 1;
@@ -1150,6 +1614,14 @@ int send_Vp_Ip(){
   lv.v2 = 0;
   return zig_recv_Vp_Ip(lv);
 }
+struct Vp_Ip zig_ret_Vp_Ip();
+int assert_ret_Vp_Ip(){
+  struct Vp_Ip lv = zig_ret_Vp_Ip();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 0) return 2;
+  return 0;
+}
+
 
 int recv_Vp_Ip_C(struct Vp_Ip_C lv){
   if (lv.v1 != 0) return 1;
@@ -1172,6 +1644,15 @@ int send_Vp_Ip_C(){
   lv.v3 = 53;
   return zig_recv_Vp_Ip_C(lv);
 }
+struct Vp_Ip_C zig_ret_Vp_Ip_C();
+int assert_ret_Vp_Ip_C(){
+  struct Vp_Ip_C lv = zig_ret_Vp_Ip_C();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 0) return 2;
+  if (lv.v3 != 53) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Ip_D(struct Vp_Ip_D lv){
   if (lv.v1 != 0) return 1;
@@ -1194,6 +1675,15 @@ int send_Vp_Ip_D(){
   lv.v3 = -0.25;
   return zig_recv_Vp_Ip_D(lv);
 }
+struct Vp_Ip_D zig_ret_Vp_Ip_D();
+int assert_ret_Vp_Ip_D(){
+  struct Vp_Ip_D lv = zig_ret_Vp_Ip_D();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 0) return 2;
+  if (lv.v3 != -0.25) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Ip_F(struct Vp_Ip_F lv){
   if (lv.v1 != 0) return 1;
@@ -1216,6 +1706,15 @@ int send_Vp_Ip_F(){
   lv.v3 = 1.0;
   return zig_recv_Vp_Ip_F(lv);
 }
+struct Vp_Ip_F zig_ret_Vp_Ip_F();
+int assert_ret_Vp_Ip_F(){
+  struct Vp_Ip_F lv = zig_ret_Vp_Ip_F();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 0) return 2;
+  if (lv.v3 != 1.0) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Ip_I(struct Vp_Ip_I lv){
   if (lv.v1 != 0) return 1;
@@ -1238,6 +1737,15 @@ int send_Vp_Ip_I(){
   lv.v3 = 21941;
   return zig_recv_Vp_Ip_I(lv);
 }
+struct Vp_Ip_I zig_ret_Vp_Ip_I();
+int assert_ret_Vp_Ip_I(){
+  struct Vp_Ip_I lv = zig_ret_Vp_Ip_I();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 0) return 2;
+  if (lv.v3 != 21941) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Ip_Ip(struct Vp_Ip_Ip lv){
   if (lv.v1 != 0) return 1;
@@ -1260,6 +1768,15 @@ int send_Vp_Ip_Ip(){
   lv.v3 = 0;
   return zig_recv_Vp_Ip_Ip(lv);
 }
+struct Vp_Ip_Ip zig_ret_Vp_Ip_Ip();
+int assert_ret_Vp_Ip_Ip(){
+  struct Vp_Ip_Ip lv = zig_ret_Vp_Ip_Ip();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 0) return 2;
+  if (lv.v3 != 0) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Ip_L(struct Vp_Ip_L lv){
   if (lv.v1 != 0) return 1;
@@ -1282,6 +1799,15 @@ int send_Vp_Ip_L(){
   lv.v3 = 18116;
   return zig_recv_Vp_Ip_L(lv);
 }
+struct Vp_Ip_L zig_ret_Vp_Ip_L();
+int assert_ret_Vp_Ip_L(){
+  struct Vp_Ip_L lv = zig_ret_Vp_Ip_L();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 0) return 2;
+  if (lv.v3 != 18116) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Ip_S(struct Vp_Ip_S lv){
   if (lv.v1 != 0) return 1;
@@ -1304,6 +1830,15 @@ int send_Vp_Ip_S(){
   lv.v3 = 31632;
   return zig_recv_Vp_Ip_S(lv);
 }
+struct Vp_Ip_S zig_ret_Vp_Ip_S();
+int assert_ret_Vp_Ip_S(){
+  struct Vp_Ip_S lv = zig_ret_Vp_Ip_S();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 0) return 2;
+  if (lv.v3 != 31632) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Ip_Uc(struct Vp_Ip_Uc lv){
   if (lv.v1 != 0) return 1;
@@ -1326,6 +1861,15 @@ int send_Vp_Ip_Uc(){
   lv.v3 = 107;
   return zig_recv_Vp_Ip_Uc(lv);
 }
+struct Vp_Ip_Uc zig_ret_Vp_Ip_Uc();
+int assert_ret_Vp_Ip_Uc(){
+  struct Vp_Ip_Uc lv = zig_ret_Vp_Ip_Uc();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 0) return 2;
+  if (lv.v3 != 107) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Ip_Ui(struct Vp_Ip_Ui lv){
   if (lv.v1 != 0) return 1;
@@ -1348,6 +1892,15 @@ int send_Vp_Ip_Ui(){
   lv.v3 = 30947;
   return zig_recv_Vp_Ip_Ui(lv);
 }
+struct Vp_Ip_Ui zig_ret_Vp_Ip_Ui();
+int assert_ret_Vp_Ip_Ui(){
+  struct Vp_Ip_Ui lv = zig_ret_Vp_Ip_Ui();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 0) return 2;
+  if (lv.v3 != 30947) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Ip_Ul(struct Vp_Ip_Ul lv){
   if (lv.v1 != 0) return 1;
@@ -1370,6 +1923,15 @@ int send_Vp_Ip_Ul(){
   lv.v3 = 10704;
   return zig_recv_Vp_Ip_Ul(lv);
 }
+struct Vp_Ip_Ul zig_ret_Vp_Ip_Ul();
+int assert_ret_Vp_Ip_Ul(){
+  struct Vp_Ip_Ul lv = zig_ret_Vp_Ip_Ul();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 0) return 2;
+  if (lv.v3 != 10704) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Ip_Us(struct Vp_Ip_Us lv){
   if (lv.v1 != 0) return 1;
@@ -1392,6 +1954,15 @@ int send_Vp_Ip_Us(){
   lv.v3 = 8391;
   return zig_recv_Vp_Ip_Us(lv);
 }
+struct Vp_Ip_Us zig_ret_Vp_Ip_Us();
+int assert_ret_Vp_Ip_Us(){
+  struct Vp_Ip_Us lv = zig_ret_Vp_Ip_Us();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 0) return 2;
+  if (lv.v3 != 8391) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Ip_Vp(struct Vp_Ip_Vp lv){
   if (lv.v1 != 0) return 1;
@@ -1414,6 +1985,15 @@ int send_Vp_Ip_Vp(){
   lv.v3 = 0;
   return zig_recv_Vp_Ip_Vp(lv);
 }
+struct Vp_Ip_Vp zig_ret_Vp_Ip_Vp();
+int assert_ret_Vp_Ip_Vp(){
+  struct Vp_Ip_Vp lv = zig_ret_Vp_Ip_Vp();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 0) return 2;
+  if (lv.v3 != 0) return 3;
+  return 0;
+}
+
 
 int recv_Vp_L(struct Vp_L lv){
   if (lv.v1 != 0) return 1;
@@ -1433,6 +2013,14 @@ int send_Vp_L(){
   lv.v2 = 15055;
   return zig_recv_Vp_L(lv);
 }
+struct Vp_L zig_ret_Vp_L();
+int assert_ret_Vp_L(){
+  struct Vp_L lv = zig_ret_Vp_L();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 15055) return 2;
+  return 0;
+}
+
 
 int recv_Vp_L_C(struct Vp_L_C lv){
   if (lv.v1 != 0) return 1;
@@ -1455,6 +2043,15 @@ int send_Vp_L_C(){
   lv.v3 = 25;
   return zig_recv_Vp_L_C(lv);
 }
+struct Vp_L_C zig_ret_Vp_L_C();
+int assert_ret_Vp_L_C(){
+  struct Vp_L_C lv = zig_ret_Vp_L_C();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 28354) return 2;
+  if (lv.v3 != 25) return 3;
+  return 0;
+}
+
 
 int recv_Vp_L_D(struct Vp_L_D lv){
   if (lv.v1 != 0) return 1;
@@ -1477,6 +2074,15 @@ int send_Vp_L_D(){
   lv.v3 = 0.875;
   return zig_recv_Vp_L_D(lv);
 }
+struct Vp_L_D zig_ret_Vp_L_D();
+int assert_ret_Vp_L_D(){
+  struct Vp_L_D lv = zig_ret_Vp_L_D();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 32669) return 2;
+  if (lv.v3 != 0.875) return 3;
+  return 0;
+}
+
 
 int recv_Vp_L_F(struct Vp_L_F lv){
   if (lv.v1 != 0) return 1;
@@ -1499,6 +2105,15 @@ int send_Vp_L_F(){
   lv.v3 = 0.875;
   return zig_recv_Vp_L_F(lv);
 }
+struct Vp_L_F zig_ret_Vp_L_F();
+int assert_ret_Vp_L_F(){
+  struct Vp_L_F lv = zig_ret_Vp_L_F();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 19722) return 2;
+  if (lv.v3 != 0.875) return 3;
+  return 0;
+}
+
 
 int recv_Vp_L_I(struct Vp_L_I lv){
   if (lv.v1 != 0) return 1;
@@ -1521,6 +2136,15 @@ int send_Vp_L_I(){
   lv.v3 = 20916;
   return zig_recv_Vp_L_I(lv);
 }
+struct Vp_L_I zig_ret_Vp_L_I();
+int assert_ret_Vp_L_I(){
+  struct Vp_L_I lv = zig_ret_Vp_L_I();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 22785) return 2;
+  if (lv.v3 != 20916) return 3;
+  return 0;
+}
+
 
 int recv_Vp_L_Ip(struct Vp_L_Ip lv){
   if (lv.v1 != 0) return 1;
@@ -1543,6 +2167,15 @@ int send_Vp_L_Ip(){
   lv.v3 = 0;
   return zig_recv_Vp_L_Ip(lv);
 }
+struct Vp_L_Ip zig_ret_Vp_L_Ip();
+int assert_ret_Vp_L_Ip(){
+  struct Vp_L_Ip lv = zig_ret_Vp_L_Ip();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 28290) return 2;
+  if (lv.v3 != 0) return 3;
+  return 0;
+}
+
 
 int recv_Vp_L_L(struct Vp_L_L lv){
   if (lv.v1 != 0) return 1;
@@ -1565,6 +2198,15 @@ int send_Vp_L_L(){
   lv.v3 = 6050;
   return zig_recv_Vp_L_L(lv);
 }
+struct Vp_L_L zig_ret_Vp_L_L();
+int assert_ret_Vp_L_L(){
+  struct Vp_L_L lv = zig_ret_Vp_L_L();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 28192) return 2;
+  if (lv.v3 != 6050) return 3;
+  return 0;
+}
+
 
 int recv_Vp_L_S(struct Vp_L_S lv){
   if (lv.v1 != 0) return 1;
@@ -1587,6 +2229,15 @@ int send_Vp_L_S(){
   lv.v3 = 14166;
   return zig_recv_Vp_L_S(lv);
 }
+struct Vp_L_S zig_ret_Vp_L_S();
+int assert_ret_Vp_L_S(){
+  struct Vp_L_S lv = zig_ret_Vp_L_S();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 56) return 2;
+  if (lv.v3 != 14166) return 3;
+  return 0;
+}
+
 
 int recv_Vp_L_Uc(struct Vp_L_Uc lv){
   if (lv.v1 != 0) return 1;
@@ -1609,6 +2260,15 @@ int send_Vp_L_Uc(){
   lv.v3 = 65;
   return zig_recv_Vp_L_Uc(lv);
 }
+struct Vp_L_Uc zig_ret_Vp_L_Uc();
+int assert_ret_Vp_L_Uc(){
+  struct Vp_L_Uc lv = zig_ret_Vp_L_Uc();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 26724) return 2;
+  if (lv.v3 != 65) return 3;
+  return 0;
+}
+
 
 int recv_Vp_L_Ui(struct Vp_L_Ui lv){
   if (lv.v1 != 0) return 1;
@@ -1631,6 +2291,15 @@ int send_Vp_L_Ui(){
   lv.v3 = 25100;
   return zig_recv_Vp_L_Ui(lv);
 }
+struct Vp_L_Ui zig_ret_Vp_L_Ui();
+int assert_ret_Vp_L_Ui(){
+  struct Vp_L_Ui lv = zig_ret_Vp_L_Ui();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 17745) return 2;
+  if (lv.v3 != 25100) return 3;
+  return 0;
+}
+
 
 int recv_Vp_L_Ul(struct Vp_L_Ul lv){
   if (lv.v1 != 0) return 1;
@@ -1653,6 +2322,15 @@ int send_Vp_L_Ul(){
   lv.v3 = 28707;
   return zig_recv_Vp_L_Ul(lv);
 }
+struct Vp_L_Ul zig_ret_Vp_L_Ul();
+int assert_ret_Vp_L_Ul(){
+  struct Vp_L_Ul lv = zig_ret_Vp_L_Ul();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 28818) return 2;
+  if (lv.v3 != 28707) return 3;
+  return 0;
+}
+
 
 int recv_Vp_L_Us(struct Vp_L_Us lv){
   if (lv.v1 != 0) return 1;
@@ -1675,6 +2353,15 @@ int send_Vp_L_Us(){
   lv.v3 = 1547;
   return zig_recv_Vp_L_Us(lv);
 }
+struct Vp_L_Us zig_ret_Vp_L_Us();
+int assert_ret_Vp_L_Us(){
+  struct Vp_L_Us lv = zig_ret_Vp_L_Us();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 23192) return 2;
+  if (lv.v3 != 1547) return 3;
+  return 0;
+}
+
 
 int recv_Vp_L_Vp(struct Vp_L_Vp lv){
   if (lv.v1 != 0) return 1;
@@ -1697,6 +2384,15 @@ int send_Vp_L_Vp(){
   lv.v3 = 0;
   return zig_recv_Vp_L_Vp(lv);
 }
+struct Vp_L_Vp zig_ret_Vp_L_Vp();
+int assert_ret_Vp_L_Vp(){
+  struct Vp_L_Vp lv = zig_ret_Vp_L_Vp();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 2020) return 2;
+  if (lv.v3 != 0) return 3;
+  return 0;
+}
+
 
 int recv_Vp_S(struct Vp_S lv){
   if (lv.v1 != 0) return 1;
@@ -1716,6 +2412,14 @@ int send_Vp_S(){
   lv.v2 = 3165;
   return zig_recv_Vp_S(lv);
 }
+struct Vp_S zig_ret_Vp_S();
+int assert_ret_Vp_S(){
+  struct Vp_S lv = zig_ret_Vp_S();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 3165) return 2;
+  return 0;
+}
+
 
 int recv_Vp_S_C(struct Vp_S_C lv){
   if (lv.v1 != 0) return 1;
@@ -1738,6 +2442,15 @@ int send_Vp_S_C(){
   lv.v3 = 47;
   return zig_recv_Vp_S_C(lv);
 }
+struct Vp_S_C zig_ret_Vp_S_C();
+int assert_ret_Vp_S_C(){
+  struct Vp_S_C lv = zig_ret_Vp_S_C();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 20726) return 2;
+  if (lv.v3 != 47) return 3;
+  return 0;
+}
+
 
 int recv_Vp_S_D(struct Vp_S_D lv){
   if (lv.v1 != 0) return 1;
@@ -1760,6 +2473,15 @@ int send_Vp_S_D(){
   lv.v3 = -0.25;
   return zig_recv_Vp_S_D(lv);
 }
+struct Vp_S_D zig_ret_Vp_S_D();
+int assert_ret_Vp_S_D(){
+  struct Vp_S_D lv = zig_ret_Vp_S_D();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 11541) return 2;
+  if (lv.v3 != -0.25) return 3;
+  return 0;
+}
+
 
 int recv_Vp_S_F(struct Vp_S_F lv){
   if (lv.v1 != 0) return 1;
@@ -1782,6 +2504,15 @@ int send_Vp_S_F(){
   lv.v3 = 0.5;
   return zig_recv_Vp_S_F(lv);
 }
+struct Vp_S_F zig_ret_Vp_S_F();
+int assert_ret_Vp_S_F(){
+  struct Vp_S_F lv = zig_ret_Vp_S_F();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 29716) return 2;
+  if (lv.v3 != 0.5) return 3;
+  return 0;
+}
+
 
 int recv_Vp_S_I(struct Vp_S_I lv){
   if (lv.v1 != 0) return 1;
@@ -1804,6 +2535,15 @@ int send_Vp_S_I(){
   lv.v3 = 937;
   return zig_recv_Vp_S_I(lv);
 }
+struct Vp_S_I zig_ret_Vp_S_I();
+int assert_ret_Vp_S_I(){
+  struct Vp_S_I lv = zig_ret_Vp_S_I();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 11380) return 2;
+  if (lv.v3 != 937) return 3;
+  return 0;
+}
+
 
 int recv_Vp_S_Ip(struct Vp_S_Ip lv){
   if (lv.v1 != 0) return 1;
@@ -1826,6 +2566,15 @@ int send_Vp_S_Ip(){
   lv.v3 = 0;
   return zig_recv_Vp_S_Ip(lv);
 }
+struct Vp_S_Ip zig_ret_Vp_S_Ip();
+int assert_ret_Vp_S_Ip(){
+  struct Vp_S_Ip lv = zig_ret_Vp_S_Ip();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 7055) return 2;
+  if (lv.v3 != 0) return 3;
+  return 0;
+}
+
 
 int recv_Vp_S_L(struct Vp_S_L lv){
   if (lv.v1 != 0) return 1;
@@ -1848,6 +2597,15 @@ int send_Vp_S_L(){
   lv.v3 = 30928;
   return zig_recv_Vp_S_L(lv);
 }
+struct Vp_S_L zig_ret_Vp_S_L();
+int assert_ret_Vp_S_L(){
+  struct Vp_S_L lv = zig_ret_Vp_S_L();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 22604) return 2;
+  if (lv.v3 != 30928) return 3;
+  return 0;
+}
+
 
 int recv_Vp_S_S(struct Vp_S_S lv){
   if (lv.v1 != 0) return 1;
@@ -1870,6 +2628,15 @@ int send_Vp_S_S(){
   lv.v3 = 12301;
   return zig_recv_Vp_S_S(lv);
 }
+struct Vp_S_S zig_ret_Vp_S_S();
+int assert_ret_Vp_S_S(){
+  struct Vp_S_S lv = zig_ret_Vp_S_S();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 7792) return 2;
+  if (lv.v3 != 12301) return 3;
+  return 0;
+}
+
 
 int recv_Vp_S_Uc(struct Vp_S_Uc lv){
   if (lv.v1 != 0) return 1;
@@ -1892,6 +2659,15 @@ int send_Vp_S_Uc(){
   lv.v3 = 41;
   return zig_recv_Vp_S_Uc(lv);
 }
+struct Vp_S_Uc zig_ret_Vp_S_Uc();
+int assert_ret_Vp_S_Uc(){
+  struct Vp_S_Uc lv = zig_ret_Vp_S_Uc();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 20598) return 2;
+  if (lv.v3 != 41) return 3;
+  return 0;
+}
+
 
 int recv_Vp_S_Ui(struct Vp_S_Ui lv){
   if (lv.v1 != 0) return 1;
@@ -1914,6 +2690,15 @@ int send_Vp_S_Ui(){
   lv.v3 = 28050;
   return zig_recv_Vp_S_Ui(lv);
 }
+struct Vp_S_Ui zig_ret_Vp_S_Ui();
+int assert_ret_Vp_S_Ui(){
+  struct Vp_S_Ui lv = zig_ret_Vp_S_Ui();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 10315) return 2;
+  if (lv.v3 != 28050) return 3;
+  return 0;
+}
+
 
 int recv_Vp_S_Ul(struct Vp_S_Ul lv){
   if (lv.v1 != 0) return 1;
@@ -1936,6 +2721,15 @@ int send_Vp_S_Ul(){
   lv.v3 = 25487;
   return zig_recv_Vp_S_Ul(lv);
 }
+struct Vp_S_Ul zig_ret_Vp_S_Ul();
+int assert_ret_Vp_S_Ul(){
+  struct Vp_S_Ul lv = zig_ret_Vp_S_Ul();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 27563) return 2;
+  if (lv.v3 != 25487) return 3;
+  return 0;
+}
+
 
 int recv_Vp_S_Us(struct Vp_S_Us lv){
   if (lv.v1 != 0) return 1;
@@ -1958,6 +2752,15 @@ int send_Vp_S_Us(){
   lv.v3 = 3161;
   return zig_recv_Vp_S_Us(lv);
 }
+struct Vp_S_Us zig_ret_Vp_S_Us();
+int assert_ret_Vp_S_Us(){
+  struct Vp_S_Us lv = zig_ret_Vp_S_Us();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 25333) return 2;
+  if (lv.v3 != 3161) return 3;
+  return 0;
+}
+
 
 int recv_Vp_S_Vp(struct Vp_S_Vp lv){
   if (lv.v1 != 0) return 1;
@@ -1980,6 +2783,15 @@ int send_Vp_S_Vp(){
   lv.v3 = 0;
   return zig_recv_Vp_S_Vp(lv);
 }
+struct Vp_S_Vp zig_ret_Vp_S_Vp();
+int assert_ret_Vp_S_Vp(){
+  struct Vp_S_Vp lv = zig_ret_Vp_S_Vp();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 19397) return 2;
+  if (lv.v3 != 0) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Uc(struct Vp_Uc lv){
   if (lv.v1 != 0) return 1;
@@ -1999,6 +2811,14 @@ int send_Vp_Uc(){
   lv.v2 = 45;
   return zig_recv_Vp_Uc(lv);
 }
+struct Vp_Uc zig_ret_Vp_Uc();
+int assert_ret_Vp_Uc(){
+  struct Vp_Uc lv = zig_ret_Vp_Uc();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 45) return 2;
+  return 0;
+}
+
 
 int recv_Vp_Uc_C(struct Vp_Uc_C lv){
   if (lv.v1 != 0) return 1;
@@ -2021,6 +2841,15 @@ int send_Vp_Uc_C(){
   lv.v3 = 19;
   return zig_recv_Vp_Uc_C(lv);
 }
+struct Vp_Uc_C zig_ret_Vp_Uc_C();
+int assert_ret_Vp_Uc_C(){
+  struct Vp_Uc_C lv = zig_ret_Vp_Uc_C();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 20) return 2;
+  if (lv.v3 != 19) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Uc_D(struct Vp_Uc_D lv){
   if (lv.v1 != 0) return 1;
@@ -2043,6 +2872,15 @@ int send_Vp_Uc_D(){
   lv.v3 = 0.5;
   return zig_recv_Vp_Uc_D(lv);
 }
+struct Vp_Uc_D zig_ret_Vp_Uc_D();
+int assert_ret_Vp_Uc_D(){
+  struct Vp_Uc_D lv = zig_ret_Vp_Uc_D();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 50) return 2;
+  if (lv.v3 != 0.5) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Uc_F(struct Vp_Uc_F lv){
   if (lv.v1 != 0) return 1;
@@ -2065,6 +2903,15 @@ int send_Vp_Uc_F(){
   lv.v3 = 0.5;
   return zig_recv_Vp_Uc_F(lv);
 }
+struct Vp_Uc_F zig_ret_Vp_Uc_F();
+int assert_ret_Vp_Uc_F(){
+  struct Vp_Uc_F lv = zig_ret_Vp_Uc_F();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 123) return 2;
+  if (lv.v3 != 0.5) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Uc_I(struct Vp_Uc_I lv){
   if (lv.v1 != 0) return 1;
@@ -2087,6 +2934,15 @@ int send_Vp_Uc_I(){
   lv.v3 = 26429;
   return zig_recv_Vp_Uc_I(lv);
 }
+struct Vp_Uc_I zig_ret_Vp_Uc_I();
+int assert_ret_Vp_Uc_I(){
+  struct Vp_Uc_I lv = zig_ret_Vp_Uc_I();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 114) return 2;
+  if (lv.v3 != 26429) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Uc_Ip(struct Vp_Uc_Ip lv){
   if (lv.v1 != 0) return 1;
@@ -2109,6 +2965,15 @@ int send_Vp_Uc_Ip(){
   lv.v3 = 0;
   return zig_recv_Vp_Uc_Ip(lv);
 }
+struct Vp_Uc_Ip zig_ret_Vp_Uc_Ip();
+int assert_ret_Vp_Uc_Ip(){
+  struct Vp_Uc_Ip lv = zig_ret_Vp_Uc_Ip();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 27) return 2;
+  if (lv.v3 != 0) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Uc_L(struct Vp_Uc_L lv){
   if (lv.v1 != 0) return 1;
@@ -2131,6 +2996,15 @@ int send_Vp_Uc_L(){
   lv.v3 = 7583;
   return zig_recv_Vp_Uc_L(lv);
 }
+struct Vp_Uc_L zig_ret_Vp_Uc_L();
+int assert_ret_Vp_Uc_L(){
+  struct Vp_Uc_L lv = zig_ret_Vp_Uc_L();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 122) return 2;
+  if (lv.v3 != 7583) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Uc_S(struct Vp_Uc_S lv){
   if (lv.v1 != 0) return 1;
@@ -2153,6 +3027,15 @@ int send_Vp_Uc_S(){
   lv.v3 = 22906;
   return zig_recv_Vp_Uc_S(lv);
 }
+struct Vp_Uc_S zig_ret_Vp_Uc_S();
+int assert_ret_Vp_Uc_S(){
+  struct Vp_Uc_S lv = zig_ret_Vp_Uc_S();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 14) return 2;
+  if (lv.v3 != 22906) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Uc_Uc(struct Vp_Uc_Uc lv){
   if (lv.v1 != 0) return 1;
@@ -2175,6 +3058,15 @@ int send_Vp_Uc_Uc(){
   lv.v3 = 71;
   return zig_recv_Vp_Uc_Uc(lv);
 }
+struct Vp_Uc_Uc zig_ret_Vp_Uc_Uc();
+int assert_ret_Vp_Uc_Uc(){
+  struct Vp_Uc_Uc lv = zig_ret_Vp_Uc_Uc();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 61) return 2;
+  if (lv.v3 != 71) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Uc_Ui(struct Vp_Uc_Ui lv){
   if (lv.v1 != 0) return 1;
@@ -2197,6 +3089,15 @@ int send_Vp_Uc_Ui(){
   lv.v3 = 31148;
   return zig_recv_Vp_Uc_Ui(lv);
 }
+struct Vp_Uc_Ui zig_ret_Vp_Uc_Ui();
+int assert_ret_Vp_Uc_Ui(){
+  struct Vp_Uc_Ui lv = zig_ret_Vp_Uc_Ui();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 68) return 2;
+  if (lv.v3 != 31148) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Uc_Ul(struct Vp_Uc_Ul lv){
   if (lv.v1 != 0) return 1;
@@ -2219,6 +3120,15 @@ int send_Vp_Uc_Ul(){
   lv.v3 = 6117;
   return zig_recv_Vp_Uc_Ul(lv);
 }
+struct Vp_Uc_Ul zig_ret_Vp_Uc_Ul();
+int assert_ret_Vp_Uc_Ul(){
+  struct Vp_Uc_Ul lv = zig_ret_Vp_Uc_Ul();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 13) return 2;
+  if (lv.v3 != 6117) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Uc_Us(struct Vp_Uc_Us lv){
   if (lv.v1 != 0) return 1;
@@ -2241,6 +3151,15 @@ int send_Vp_Uc_Us(){
   lv.v3 = 12337;
   return zig_recv_Vp_Uc_Us(lv);
 }
+struct Vp_Uc_Us zig_ret_Vp_Uc_Us();
+int assert_ret_Vp_Uc_Us(){
+  struct Vp_Uc_Us lv = zig_ret_Vp_Uc_Us();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 38) return 2;
+  if (lv.v3 != 12337) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Uc_Vp(struct Vp_Uc_Vp lv){
   if (lv.v1 != 0) return 1;
@@ -2263,6 +3182,15 @@ int send_Vp_Uc_Vp(){
   lv.v3 = 0;
   return zig_recv_Vp_Uc_Vp(lv);
 }
+struct Vp_Uc_Vp zig_ret_Vp_Uc_Vp();
+int assert_ret_Vp_Uc_Vp(){
+  struct Vp_Uc_Vp lv = zig_ret_Vp_Uc_Vp();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 39) return 2;
+  if (lv.v3 != 0) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Ui(struct Vp_Ui lv){
   if (lv.v1 != 0) return 1;
@@ -2282,6 +3210,14 @@ int send_Vp_Ui(){
   lv.v2 = 819;
   return zig_recv_Vp_Ui(lv);
 }
+struct Vp_Ui zig_ret_Vp_Ui();
+int assert_ret_Vp_Ui(){
+  struct Vp_Ui lv = zig_ret_Vp_Ui();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 819) return 2;
+  return 0;
+}
+
 
 int recv_Vp_Ui_C(struct Vp_Ui_C lv){
   if (lv.v1 != 0) return 1;
@@ -2304,6 +3240,15 @@ int send_Vp_Ui_C(){
   lv.v3 = 98;
   return zig_recv_Vp_Ui_C(lv);
 }
+struct Vp_Ui_C zig_ret_Vp_Ui_C();
+int assert_ret_Vp_Ui_C(){
+  struct Vp_Ui_C lv = zig_ret_Vp_Ui_C();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 14926) return 2;
+  if (lv.v3 != 98) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Ui_D(struct Vp_Ui_D lv){
   if (lv.v1 != 0) return 1;
@@ -2326,6 +3271,15 @@ int send_Vp_Ui_D(){
   lv.v3 = -2.125;
   return zig_recv_Vp_Ui_D(lv);
 }
+struct Vp_Ui_D zig_ret_Vp_Ui_D();
+int assert_ret_Vp_Ui_D(){
+  struct Vp_Ui_D lv = zig_ret_Vp_Ui_D();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 13042) return 2;
+  if (lv.v3 != -2.125) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Ui_F(struct Vp_Ui_F lv){
   if (lv.v1 != 0) return 1;
@@ -2348,6 +3302,15 @@ int send_Vp_Ui_F(){
   lv.v3 = 0.5;
   return zig_recv_Vp_Ui_F(lv);
 }
+struct Vp_Ui_F zig_ret_Vp_Ui_F();
+int assert_ret_Vp_Ui_F(){
+  struct Vp_Ui_F lv = zig_ret_Vp_Ui_F();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 6209) return 2;
+  if (lv.v3 != 0.5) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Ui_I(struct Vp_Ui_I lv){
   if (lv.v1 != 0) return 1;
@@ -2370,6 +3333,15 @@ int send_Vp_Ui_I(){
   lv.v3 = 15360;
   return zig_recv_Vp_Ui_I(lv);
 }
+struct Vp_Ui_I zig_ret_Vp_Ui_I();
+int assert_ret_Vp_Ui_I(){
+  struct Vp_Ui_I lv = zig_ret_Vp_Ui_I();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 15474) return 2;
+  if (lv.v3 != 15360) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Ui_Ip(struct Vp_Ui_Ip lv){
   if (lv.v1 != 0) return 1;
@@ -2392,6 +3364,15 @@ int send_Vp_Ui_Ip(){
   lv.v3 = 0;
   return zig_recv_Vp_Ui_Ip(lv);
 }
+struct Vp_Ui_Ip zig_ret_Vp_Ui_Ip();
+int assert_ret_Vp_Ui_Ip(){
+  struct Vp_Ui_Ip lv = zig_ret_Vp_Ui_Ip();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 14297) return 2;
+  if (lv.v3 != 0) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Ui_L(struct Vp_Ui_L lv){
   if (lv.v1 != 0) return 1;
@@ -2414,6 +3395,15 @@ int send_Vp_Ui_L(){
   lv.v3 = 14978;
   return zig_recv_Vp_Ui_L(lv);
 }
+struct Vp_Ui_L zig_ret_Vp_Ui_L();
+int assert_ret_Vp_Ui_L(){
+  struct Vp_Ui_L lv = zig_ret_Vp_Ui_L();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 31410) return 2;
+  if (lv.v3 != 14978) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Ui_S(struct Vp_Ui_S lv){
   if (lv.v1 != 0) return 1;
@@ -2436,6 +3426,15 @@ int send_Vp_Ui_S(){
   lv.v3 = 14170;
   return zig_recv_Vp_Ui_S(lv);
 }
+struct Vp_Ui_S zig_ret_Vp_Ui_S();
+int assert_ret_Vp_Ui_S(){
+  struct Vp_Ui_S lv = zig_ret_Vp_Ui_S();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 1025) return 2;
+  if (lv.v3 != 14170) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Ui_Uc(struct Vp_Ui_Uc lv){
   if (lv.v1 != 0) return 1;
@@ -2458,6 +3457,15 @@ int send_Vp_Ui_Uc(){
   lv.v3 = 88;
   return zig_recv_Vp_Ui_Uc(lv);
 }
+struct Vp_Ui_Uc zig_ret_Vp_Ui_Uc();
+int assert_ret_Vp_Ui_Uc(){
+  struct Vp_Ui_Uc lv = zig_ret_Vp_Ui_Uc();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 23983) return 2;
+  if (lv.v3 != 88) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Ui_Ui(struct Vp_Ui_Ui lv){
   if (lv.v1 != 0) return 1;
@@ -2480,6 +3488,15 @@ int send_Vp_Ui_Ui(){
   lv.v3 = 30755;
   return zig_recv_Vp_Ui_Ui(lv);
 }
+struct Vp_Ui_Ui zig_ret_Vp_Ui_Ui();
+int assert_ret_Vp_Ui_Ui(){
+  struct Vp_Ui_Ui lv = zig_ret_Vp_Ui_Ui();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 99) return 2;
+  if (lv.v3 != 30755) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Ui_Ul(struct Vp_Ui_Ul lv){
   if (lv.v1 != 0) return 1;
@@ -2502,6 +3519,15 @@ int send_Vp_Ui_Ul(){
   lv.v3 = 7728;
   return zig_recv_Vp_Ui_Ul(lv);
 }
+struct Vp_Ui_Ul zig_ret_Vp_Ui_Ul();
+int assert_ret_Vp_Ui_Ul(){
+  struct Vp_Ui_Ul lv = zig_ret_Vp_Ui_Ul();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 27055) return 2;
+  if (lv.v3 != 7728) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Ui_Us(struct Vp_Ui_Us lv){
   if (lv.v1 != 0) return 1;
@@ -2524,6 +3550,15 @@ int send_Vp_Ui_Us(){
   lv.v3 = 9331;
   return zig_recv_Vp_Ui_Us(lv);
 }
+struct Vp_Ui_Us zig_ret_Vp_Ui_Us();
+int assert_ret_Vp_Ui_Us(){
+  struct Vp_Ui_Us lv = zig_ret_Vp_Ui_Us();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 21796) return 2;
+  if (lv.v3 != 9331) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Ui_Vp(struct Vp_Ui_Vp lv){
   if (lv.v1 != 0) return 1;
@@ -2546,6 +3581,15 @@ int send_Vp_Ui_Vp(){
   lv.v3 = 0;
   return zig_recv_Vp_Ui_Vp(lv);
 }
+struct Vp_Ui_Vp zig_ret_Vp_Ui_Vp();
+int assert_ret_Vp_Ui_Vp(){
+  struct Vp_Ui_Vp lv = zig_ret_Vp_Ui_Vp();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 4692) return 2;
+  if (lv.v3 != 0) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Ul(struct Vp_Ul lv){
   if (lv.v1 != 0) return 1;
@@ -2565,6 +3609,14 @@ int send_Vp_Ul(){
   lv.v2 = 5486;
   return zig_recv_Vp_Ul(lv);
 }
+struct Vp_Ul zig_ret_Vp_Ul();
+int assert_ret_Vp_Ul(){
+  struct Vp_Ul lv = zig_ret_Vp_Ul();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 5486) return 2;
+  return 0;
+}
+
 
 int recv_Vp_Ul_C(struct Vp_Ul_C lv){
   if (lv.v1 != 0) return 1;
@@ -2587,6 +3639,15 @@ int send_Vp_Ul_C(){
   lv.v3 = 118;
   return zig_recv_Vp_Ul_C(lv);
 }
+struct Vp_Ul_C zig_ret_Vp_Ul_C();
+int assert_ret_Vp_Ul_C(){
+  struct Vp_Ul_C lv = zig_ret_Vp_Ul_C();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 20933) return 2;
+  if (lv.v3 != 118) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Ul_D(struct Vp_Ul_D lv){
   if (lv.v1 != 0) return 1;
@@ -2609,6 +3670,15 @@ int send_Vp_Ul_D(){
   lv.v3 = 4.5;
   return zig_recv_Vp_Ul_D(lv);
 }
+struct Vp_Ul_D zig_ret_Vp_Ul_D();
+int assert_ret_Vp_Ul_D(){
+  struct Vp_Ul_D lv = zig_ret_Vp_Ul_D();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 27275) return 2;
+  if (lv.v3 != 4.5) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Ul_F(struct Vp_Ul_F lv){
   if (lv.v1 != 0) return 1;
@@ -2631,6 +3701,15 @@ int send_Vp_Ul_F(){
   lv.v3 = 4.5;
   return zig_recv_Vp_Ul_F(lv);
 }
+struct Vp_Ul_F zig_ret_Vp_Ul_F();
+int assert_ret_Vp_Ul_F(){
+  struct Vp_Ul_F lv = zig_ret_Vp_Ul_F();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 19348) return 2;
+  if (lv.v3 != 4.5) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Ul_I(struct Vp_Ul_I lv){
   if (lv.v1 != 0) return 1;
@@ -2653,6 +3732,15 @@ int send_Vp_Ul_I(){
   lv.v3 = 1397;
   return zig_recv_Vp_Ul_I(lv);
 }
+struct Vp_Ul_I zig_ret_Vp_Ul_I();
+int assert_ret_Vp_Ul_I(){
+  struct Vp_Ul_I lv = zig_ret_Vp_Ul_I();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 6586) return 2;
+  if (lv.v3 != 1397) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Ul_Ip(struct Vp_Ul_Ip lv){
   if (lv.v1 != 0) return 1;
@@ -2675,6 +3763,15 @@ int send_Vp_Ul_Ip(){
   lv.v3 = 0;
   return zig_recv_Vp_Ul_Ip(lv);
 }
+struct Vp_Ul_Ip zig_ret_Vp_Ul_Ip();
+int assert_ret_Vp_Ul_Ip(){
+  struct Vp_Ul_Ip lv = zig_ret_Vp_Ul_Ip();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 3915) return 2;
+  if (lv.v3 != 0) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Ul_L(struct Vp_Ul_L lv){
   if (lv.v1 != 0) return 1;
@@ -2697,6 +3794,15 @@ int send_Vp_Ul_L(){
   lv.v3 = 2907;
   return zig_recv_Vp_Ul_L(lv);
 }
+struct Vp_Ul_L zig_ret_Vp_Ul_L();
+int assert_ret_Vp_Ul_L(){
+  struct Vp_Ul_L lv = zig_ret_Vp_Ul_L();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 2122) return 2;
+  if (lv.v3 != 2907) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Ul_S(struct Vp_Ul_S lv){
   if (lv.v1 != 0) return 1;
@@ -2719,6 +3825,15 @@ int send_Vp_Ul_S(){
   lv.v3 = 9797;
   return zig_recv_Vp_Ul_S(lv);
 }
+struct Vp_Ul_S zig_ret_Vp_Ul_S();
+int assert_ret_Vp_Ul_S(){
+  struct Vp_Ul_S lv = zig_ret_Vp_Ul_S();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 26049) return 2;
+  if (lv.v3 != 9797) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Ul_Uc(struct Vp_Ul_Uc lv){
   if (lv.v1 != 0) return 1;
@@ -2741,6 +3856,15 @@ int send_Vp_Ul_Uc(){
   lv.v3 = 11;
   return zig_recv_Vp_Ul_Uc(lv);
 }
+struct Vp_Ul_Uc zig_ret_Vp_Ul_Uc();
+int assert_ret_Vp_Ul_Uc(){
+  struct Vp_Ul_Uc lv = zig_ret_Vp_Ul_Uc();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 20602) return 2;
+  if (lv.v3 != 11) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Ul_Ui(struct Vp_Ul_Ui lv){
   if (lv.v1 != 0) return 1;
@@ -2763,6 +3887,15 @@ int send_Vp_Ul_Ui(){
   lv.v3 = 23948;
   return zig_recv_Vp_Ul_Ui(lv);
 }
+struct Vp_Ul_Ui zig_ret_Vp_Ul_Ui();
+int assert_ret_Vp_Ul_Ui(){
+  struct Vp_Ul_Ui lv = zig_ret_Vp_Ul_Ui();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 4547) return 2;
+  if (lv.v3 != 23948) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Ul_Ul(struct Vp_Ul_Ul lv){
   if (lv.v1 != 0) return 1;
@@ -2785,6 +3918,15 @@ int send_Vp_Ul_Ul(){
   lv.v3 = 2118;
   return zig_recv_Vp_Ul_Ul(lv);
 }
+struct Vp_Ul_Ul zig_ret_Vp_Ul_Ul();
+int assert_ret_Vp_Ul_Ul(){
+  struct Vp_Ul_Ul lv = zig_ret_Vp_Ul_Ul();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 17343) return 2;
+  if (lv.v3 != 2118) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Ul_Us(struct Vp_Ul_Us lv){
   if (lv.v1 != 0) return 1;
@@ -2807,6 +3949,15 @@ int send_Vp_Ul_Us(){
   lv.v3 = 3748;
   return zig_recv_Vp_Ul_Us(lv);
 }
+struct Vp_Ul_Us zig_ret_Vp_Ul_Us();
+int assert_ret_Vp_Ul_Us(){
+  struct Vp_Ul_Us lv = zig_ret_Vp_Ul_Us();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 20439) return 2;
+  if (lv.v3 != 3748) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Ul_Vp(struct Vp_Ul_Vp lv){
   if (lv.v1 != 0) return 1;
@@ -2829,6 +3980,15 @@ int send_Vp_Ul_Vp(){
   lv.v3 = 0;
   return zig_recv_Vp_Ul_Vp(lv);
 }
+struct Vp_Ul_Vp zig_ret_Vp_Ul_Vp();
+int assert_ret_Vp_Ul_Vp(){
+  struct Vp_Ul_Vp lv = zig_ret_Vp_Ul_Vp();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 29974) return 2;
+  if (lv.v3 != 0) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Us(struct Vp_Us lv){
   if (lv.v1 != 0) return 1;
@@ -2848,6 +4008,14 @@ int send_Vp_Us(){
   lv.v2 = 4604;
   return zig_recv_Vp_Us(lv);
 }
+struct Vp_Us zig_ret_Vp_Us();
+int assert_ret_Vp_Us(){
+  struct Vp_Us lv = zig_ret_Vp_Us();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 4604) return 2;
+  return 0;
+}
+
 
 int recv_Vp_Us_C(struct Vp_Us_C lv){
   if (lv.v1 != 0) return 1;
@@ -2870,6 +4038,15 @@ int send_Vp_Us_C(){
   lv.v3 = 69;
   return zig_recv_Vp_Us_C(lv);
 }
+struct Vp_Us_C zig_ret_Vp_Us_C();
+int assert_ret_Vp_Us_C(){
+  struct Vp_Us_C lv = zig_ret_Vp_Us_C();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 27414) return 2;
+  if (lv.v3 != 69) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Us_D(struct Vp_Us_D lv){
   if (lv.v1 != 0) return 1;
@@ -2892,6 +4069,15 @@ int send_Vp_Us_D(){
   lv.v3 = 1.0;
   return zig_recv_Vp_Us_D(lv);
 }
+struct Vp_Us_D zig_ret_Vp_Us_D();
+int assert_ret_Vp_Us_D(){
+  struct Vp_Us_D lv = zig_ret_Vp_Us_D();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 1973) return 2;
+  if (lv.v3 != 1.0) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Us_F(struct Vp_Us_F lv){
   if (lv.v1 != 0) return 1;
@@ -2914,6 +4100,15 @@ int send_Vp_Us_F(){
   lv.v3 = 4.5;
   return zig_recv_Vp_Us_F(lv);
 }
+struct Vp_Us_F zig_ret_Vp_Us_F();
+int assert_ret_Vp_Us_F(){
+  struct Vp_Us_F lv = zig_ret_Vp_Us_F();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 13536) return 2;
+  if (lv.v3 != 4.5) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Us_I(struct Vp_Us_I lv){
   if (lv.v1 != 0) return 1;
@@ -2936,6 +4131,15 @@ int send_Vp_Us_I(){
   lv.v3 = 20835;
   return zig_recv_Vp_Us_I(lv);
 }
+struct Vp_Us_I zig_ret_Vp_Us_I();
+int assert_ret_Vp_Us_I(){
+  struct Vp_Us_I lv = zig_ret_Vp_Us_I();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 19941) return 2;
+  if (lv.v3 != 20835) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Us_Ip(struct Vp_Us_Ip lv){
   if (lv.v1 != 0) return 1;
@@ -2958,6 +4162,15 @@ int send_Vp_Us_Ip(){
   lv.v3 = 0;
   return zig_recv_Vp_Us_Ip(lv);
 }
+struct Vp_Us_Ip zig_ret_Vp_Us_Ip();
+int assert_ret_Vp_Us_Ip(){
+  struct Vp_Us_Ip lv = zig_ret_Vp_Us_Ip();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 21849) return 2;
+  if (lv.v3 != 0) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Us_L(struct Vp_Us_L lv){
   if (lv.v1 != 0) return 1;
@@ -2980,6 +4193,15 @@ int send_Vp_Us_L(){
   lv.v3 = 3231;
   return zig_recv_Vp_Us_L(lv);
 }
+struct Vp_Us_L zig_ret_Vp_Us_L();
+int assert_ret_Vp_Us_L(){
+  struct Vp_Us_L lv = zig_ret_Vp_Us_L();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 1972) return 2;
+  if (lv.v3 != 3231) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Us_S(struct Vp_Us_S lv){
   if (lv.v1 != 0) return 1;
@@ -3002,6 +4224,15 @@ int send_Vp_Us_S(){
   lv.v3 = 31896;
   return zig_recv_Vp_Us_S(lv);
 }
+struct Vp_Us_S zig_ret_Vp_Us_S();
+int assert_ret_Vp_Us_S(){
+  struct Vp_Us_S lv = zig_ret_Vp_Us_S();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 686) return 2;
+  if (lv.v3 != 31896) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Us_Uc(struct Vp_Us_Uc lv){
   if (lv.v1 != 0) return 1;
@@ -3024,6 +4255,15 @@ int send_Vp_Us_Uc(){
   lv.v3 = 101;
   return zig_recv_Vp_Us_Uc(lv);
 }
+struct Vp_Us_Uc zig_ret_Vp_Us_Uc();
+int assert_ret_Vp_Us_Uc(){
+  struct Vp_Us_Uc lv = zig_ret_Vp_Us_Uc();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 22668) return 2;
+  if (lv.v3 != 101) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Us_Ui(struct Vp_Us_Ui lv){
   if (lv.v1 != 0) return 1;
@@ -3046,6 +4286,15 @@ int send_Vp_Us_Ui(){
   lv.v3 = 7824;
   return zig_recv_Vp_Us_Ui(lv);
 }
+struct Vp_Us_Ui zig_ret_Vp_Us_Ui();
+int assert_ret_Vp_Us_Ui(){
+  struct Vp_Us_Ui lv = zig_ret_Vp_Us_Ui();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 15892) return 2;
+  if (lv.v3 != 7824) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Us_Ul(struct Vp_Us_Ul lv){
   if (lv.v1 != 0) return 1;
@@ -3068,6 +4317,15 @@ int send_Vp_Us_Ul(){
   lv.v3 = 32184;
   return zig_recv_Vp_Us_Ul(lv);
 }
+struct Vp_Us_Ul zig_ret_Vp_Us_Ul();
+int assert_ret_Vp_Us_Ul(){
+  struct Vp_Us_Ul lv = zig_ret_Vp_Us_Ul();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 31019) return 2;
+  if (lv.v3 != 32184) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Us_Us(struct Vp_Us_Us lv){
   if (lv.v1 != 0) return 1;
@@ -3090,6 +4348,15 @@ int send_Vp_Us_Us(){
   lv.v3 = 26681;
   return zig_recv_Vp_Us_Us(lv);
 }
+struct Vp_Us_Us zig_ret_Vp_Us_Us();
+int assert_ret_Vp_Us_Us(){
+  struct Vp_Us_Us lv = zig_ret_Vp_Us_Us();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 21460) return 2;
+  if (lv.v3 != 26681) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Us_Vp(struct Vp_Us_Vp lv){
   if (lv.v1 != 0) return 1;
@@ -3112,6 +4379,15 @@ int send_Vp_Us_Vp(){
   lv.v3 = 0;
   return zig_recv_Vp_Us_Vp(lv);
 }
+struct Vp_Us_Vp zig_ret_Vp_Us_Vp();
+int assert_ret_Vp_Us_Vp(){
+  struct Vp_Us_Vp lv = zig_ret_Vp_Us_Vp();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 30188) return 2;
+  if (lv.v3 != 0) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Vp(struct Vp_Vp lv){
   if (lv.v1 != 0) return 1;
@@ -3131,6 +4407,14 @@ int send_Vp_Vp(){
   lv.v2 = 0;
   return zig_recv_Vp_Vp(lv);
 }
+struct Vp_Vp zig_ret_Vp_Vp();
+int assert_ret_Vp_Vp(){
+  struct Vp_Vp lv = zig_ret_Vp_Vp();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 0) return 2;
+  return 0;
+}
+
 
 int recv_Vp_Vp_C(struct Vp_Vp_C lv){
   if (lv.v1 != 0) return 1;
@@ -3153,6 +4437,15 @@ int send_Vp_Vp_C(){
   lv.v3 = 106;
   return zig_recv_Vp_Vp_C(lv);
 }
+struct Vp_Vp_C zig_ret_Vp_Vp_C();
+int assert_ret_Vp_Vp_C(){
+  struct Vp_Vp_C lv = zig_ret_Vp_Vp_C();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 0) return 2;
+  if (lv.v3 != 106) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Vp_D(struct Vp_Vp_D lv){
   if (lv.v1 != 0) return 1;
@@ -3175,6 +4468,15 @@ int send_Vp_Vp_D(){
   lv.v3 = -0.25;
   return zig_recv_Vp_Vp_D(lv);
 }
+struct Vp_Vp_D zig_ret_Vp_Vp_D();
+int assert_ret_Vp_Vp_D(){
+  struct Vp_Vp_D lv = zig_ret_Vp_Vp_D();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 0) return 2;
+  if (lv.v3 != -0.25) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Vp_F(struct Vp_Vp_F lv){
   if (lv.v1 != 0) return 1;
@@ -3197,6 +4499,15 @@ int send_Vp_Vp_F(){
   lv.v3 = 0.5;
   return zig_recv_Vp_Vp_F(lv);
 }
+struct Vp_Vp_F zig_ret_Vp_Vp_F();
+int assert_ret_Vp_Vp_F(){
+  struct Vp_Vp_F lv = zig_ret_Vp_Vp_F();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 0) return 2;
+  if (lv.v3 != 0.5) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Vp_I(struct Vp_Vp_I lv){
   if (lv.v1 != 0) return 1;
@@ -3219,6 +4530,15 @@ int send_Vp_Vp_I(){
   lv.v3 = 18595;
   return zig_recv_Vp_Vp_I(lv);
 }
+struct Vp_Vp_I zig_ret_Vp_Vp_I();
+int assert_ret_Vp_Vp_I(){
+  struct Vp_Vp_I lv = zig_ret_Vp_Vp_I();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 0) return 2;
+  if (lv.v3 != 18595) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Vp_Ip(struct Vp_Vp_Ip lv){
   if (lv.v1 != 0) return 1;
@@ -3241,6 +4561,15 @@ int send_Vp_Vp_Ip(){
   lv.v3 = 0;
   return zig_recv_Vp_Vp_Ip(lv);
 }
+struct Vp_Vp_Ip zig_ret_Vp_Vp_Ip();
+int assert_ret_Vp_Vp_Ip(){
+  struct Vp_Vp_Ip lv = zig_ret_Vp_Vp_Ip();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 0) return 2;
+  if (lv.v3 != 0) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Vp_L(struct Vp_Vp_L lv){
   if (lv.v1 != 0) return 1;
@@ -3263,6 +4592,15 @@ int send_Vp_Vp_L(){
   lv.v3 = 7966;
   return zig_recv_Vp_Vp_L(lv);
 }
+struct Vp_Vp_L zig_ret_Vp_Vp_L();
+int assert_ret_Vp_Vp_L(){
+  struct Vp_Vp_L lv = zig_ret_Vp_Vp_L();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 0) return 2;
+  if (lv.v3 != 7966) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Vp_S(struct Vp_Vp_S lv){
   if (lv.v1 != 0) return 1;
@@ -3285,6 +4623,15 @@ int send_Vp_Vp_S(){
   lv.v3 = 15595;
   return zig_recv_Vp_Vp_S(lv);
 }
+struct Vp_Vp_S zig_ret_Vp_Vp_S();
+int assert_ret_Vp_Vp_S(){
+  struct Vp_Vp_S lv = zig_ret_Vp_Vp_S();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 0) return 2;
+  if (lv.v3 != 15595) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Vp_Uc(struct Vp_Vp_Uc lv){
   if (lv.v1 != 0) return 1;
@@ -3307,6 +4654,15 @@ int send_Vp_Vp_Uc(){
   lv.v3 = 17;
   return zig_recv_Vp_Vp_Uc(lv);
 }
+struct Vp_Vp_Uc zig_ret_Vp_Vp_Uc();
+int assert_ret_Vp_Vp_Uc(){
+  struct Vp_Vp_Uc lv = zig_ret_Vp_Vp_Uc();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 0) return 2;
+  if (lv.v3 != 17) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Vp_Ui(struct Vp_Vp_Ui lv){
   if (lv.v1 != 0) return 1;
@@ -3329,6 +4685,15 @@ int send_Vp_Vp_Ui(){
   lv.v3 = 12780;
   return zig_recv_Vp_Vp_Ui(lv);
 }
+struct Vp_Vp_Ui zig_ret_Vp_Vp_Ui();
+int assert_ret_Vp_Vp_Ui(){
+  struct Vp_Vp_Ui lv = zig_ret_Vp_Vp_Ui();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 0) return 2;
+  if (lv.v3 != 12780) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Vp_Ul(struct Vp_Vp_Ul lv){
   if (lv.v1 != 0) return 1;
@@ -3351,6 +4716,15 @@ int send_Vp_Vp_Ul(){
   lv.v3 = 12179;
   return zig_recv_Vp_Vp_Ul(lv);
 }
+struct Vp_Vp_Ul zig_ret_Vp_Vp_Ul();
+int assert_ret_Vp_Vp_Ul(){
+  struct Vp_Vp_Ul lv = zig_ret_Vp_Vp_Ul();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 0) return 2;
+  if (lv.v3 != 12179) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Vp_Us(struct Vp_Vp_Us lv){
   if (lv.v1 != 0) return 1;
@@ -3373,6 +4747,15 @@ int send_Vp_Vp_Us(){
   lv.v3 = 11303;
   return zig_recv_Vp_Vp_Us(lv);
 }
+struct Vp_Vp_Us zig_ret_Vp_Vp_Us();
+int assert_ret_Vp_Vp_Us(){
+  struct Vp_Vp_Us lv = zig_ret_Vp_Vp_Us();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 0) return 2;
+  if (lv.v3 != 11303) return 3;
+  return 0;
+}
+
 
 int recv_Vp_Vp_Vp(struct Vp_Vp_Vp lv){
   if (lv.v1 != 0) return 1;
@@ -3395,4 +4778,13 @@ int send_Vp_Vp_Vp(){
   lv.v3 = 0;
   return zig_recv_Vp_Vp_Vp(lv);
 }
+struct Vp_Vp_Vp zig_ret_Vp_Vp_Vp();
+int assert_ret_Vp_Vp_Vp(){
+  struct Vp_Vp_Vp lv = zig_ret_Vp_Vp_Vp();
+  if (lv.v1 != 0) return 1;
+  if (lv.v2 != 0) return 2;
+  if (lv.v3 != 0) return 3;
+  return 0;
+}
+
 

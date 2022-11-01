@@ -216,7 +216,6 @@ def extract_file(
         for struct in structs.values():
             print(f"// From {struct.location(file)}", file=h)
             print("".join(struct.code), file=h)
-            field_values = generate_struct_vals(struct)
 
             test = tests[struct.name]
             print(f"// From {file.name}:{struct.line_start}:{test.line_end}", file=z)
@@ -235,6 +234,7 @@ def extract_file(
             finally:
                 print("}", file=z)
 
+            field_values = generate_struct_vals(struct)
             print(f'test "{struct.name} C calls" {{', file=z)
             print(generate_c_calls(struct, field_values), file=z)
             print("}", file=z)
@@ -245,6 +245,9 @@ def extract_file(
             print(f"int send_{struct.name}();", file=h)
             print(generate_c_send(struct, field_values), file=c)
             print(generate_zig_recv(struct, field_values), file=z)
+            print(f"int assert_ret_{struct.name}();", file=h)
+            print(generate_c_assert_ret(struct, field_values), file=c)
+            print(generate_zig_ret(struct, field_values), file=z)
 
             print("", file=h)
             print("", file=c)
@@ -322,9 +325,10 @@ def generate_c_calls(struct: Struct, field_values: dict) -> str:
     # TODO: handle pointers, Zig doesn't allow implicit int to ptr casting.
     struct_lit = ", ".join(f".{field}={val}" for field, val in field_values.items())
     return f"""
-    try testing.expectOk(c.recv_{struct.name}(.{{{struct_lit}}}));
     try testing.expectEqual(c.ret_{struct.name}(), .{{{struct_lit}}});
+    try testing.expectOk(c.assert_ret_{struct.name}());
     try testing.expectOk(c.send_{struct.name}());
+    try testing.expectOk(c.recv_{struct.name}(.{{{struct_lit}}}));
 """.strip()
 
 
@@ -368,7 +372,7 @@ def generate_c_assert_ret(struct: Struct, fields: dict) -> str:
         f"struct {struct.name} zig_ret_{struct.name}();",
         f"int assert_ret_{struct.name}(){{",
     ]
-    lines.extend([f"  struct {struct.name} zig_ret_{struct.name}();"])
+    lines.extend([f"  struct {struct.name} lv = zig_ret_{struct.name}();"])
     for i, (field, val) in enumerate(fields.items(), start=1):
         if val == "null":
             val = 0
@@ -376,7 +380,7 @@ def generate_c_assert_ret(struct: Struct, fields: dict) -> str:
             continue
         asser = f"  if (lv.{field} != {val}) return {i};"
         lines.append(asser)
-    lines.extend(["}", ""])
+    lines.extend(["  return 0;", "}", ""])
     return "\n".join(lines)
 
 
@@ -392,18 +396,14 @@ def _make_c_struct(struct: Struct, fields: dict) -> List[str]:
     return lines
 
 
-# def generate_zig_ret(struct: Struct, fields: dict) -> str:
-#     """Zig function that returns a comptime struct."""
-#     lines.extend([f"  struct {struct.name} = zig_ret_{struct.name}();"])
-#     for i, (field, val) in enumerate(fields.items(), start=1):
-#         if val == "null":
-#             val = 0
-#         if val == ".{}":
-#             continue
-#         asser = f"  if (lv.{field} != {val}) err = {i};"
-#         lines.append(asser)
-
-#     return "\n".join(lines)
+def generate_zig_ret(struct: Struct, fields: dict) -> str:
+    """Zig function that returns a comptime struct."""
+    struct_lit = ", ".join(f".{field}={val}" for field, val in fields.items())
+    return f"""
+    pub export fn zig_ret_{struct.name}() c.{struct.name} {{
+        return .{{{struct_lit}}};
+    }}
+""".strip()
 
 
 def generate_zig_recv(struct: Struct, fields: dict) -> str:

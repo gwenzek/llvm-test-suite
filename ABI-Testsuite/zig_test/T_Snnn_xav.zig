@@ -18,11 +18,15 @@ test "C layout" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
 }
 test "C C calls" {
-    try testing.expectOk(c.recv_C(.{ .v1 = 19 }));
     try testing.expectEqual(c.ret_C(), .{ .v1 = 19 });
+    try testing.expectOk(c.assert_ret_C());
     try testing.expectOk(c.send_C());
+    try testing.expectOk(c.recv_C(.{ .v1 = 19 }));
 }
 pub export fn zig_recv_C(lv: c.C) c_int {
     if (lv.v1 != 19) return 1;
     return 0;
+}
+pub export fn zig_ret_C() c.C {
+    return .{ .v1 = 19 };
 }

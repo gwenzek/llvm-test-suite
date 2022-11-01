@@ -15,4 +15,11 @@ int send_C(){
   lv.v1 = 19;
   return zig_recv_C(lv);
 }
+struct C zig_ret_C();
+int assert_ret_C(){
+  struct C lv = zig_ret_C();
+  if (lv.v1 != 19) return 1;
+  return 0;
+}
+
 
