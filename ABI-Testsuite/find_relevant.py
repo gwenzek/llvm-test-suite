@@ -206,24 +206,22 @@ def extract_file(
 
     zig_test = outdir / file.with_suffix(".zig").name
     header = zig_test.with_suffix(".h")
-    c_test =  zig_test.with_suffix(".aux.c")
+    c_test = zig_test.with_suffix(".aux.c")
 
-    with header.open("w") as h, c_test.open("w") as c:
+    with header.open("w") as h, c_test.open("w") as c, zig_test.open("w") as z:
+        print(ZIG_HEADER.replace("HEADER_FILE", header.name), file=z)
         print(H_HEADER, file=h)
         print(f'#include "{header.name}"\n', file=c)
+
         for struct in structs.values():
             print(f"// From {struct.location(file)}", file=h)
             print("".join(struct.code), file=h)
+            field_values = generate_struct_vals(struct)
             print(f"int recv_{struct.name}(struct {struct.name} lv);", file=h)
-            print(generate_c_recv_asserts(struct), file=c)
-    if c_test.with_suffix(".o").exists():
-        c_test.with_suffix(".o").unlink()
-    subprocess.check_call(["zig", "build-obj", c_test.name], cwd=c_test.parent),
-    assert c_test.with_suffix(".o").exists()
+            print(generate_c_recv(struct, field_values), file=c)
+            print(f"struct {struct.name} ret_{struct.name}();", file=h)
+            print(generate_c_ret(struct, field_values), file=c)
 
-    with zig_test.open("w") as z:
-        print(ZIG_HEADER.replace("HEADER_FILE", header.name), file=z)
-        for struct in structs.values():
             test = tests[struct.name]
             print(f"// From {file.name}:{struct.line_start}:{test.line_end}", file=z)
             print("// ", end="", file=z)
@@ -238,9 +236,17 @@ def extract_file(
                 print("".join(test.code))
                 print("//", line, file=z)
                 stats[Status.TRANSLATION_ERROR] += 1
+            finally:
+                print("}", file=z)
 
-            print(generate_c_calls(struct), file=z)
+            print(f'test "{struct.name} C calls" {{', file=z)
+            print(generate_c_calls(struct, field_values), file=z)
             print("}", file=z)
+
+    if c_test.with_suffix(".o").exists():
+        c_test.with_suffix(".o").unlink()
+    subprocess.check_call(["zig", "build-obj", c_test.name], cwd=c_test.parent),
+    assert c_test.with_suffix(".o").exists()
     subprocess.check_call(["zig", "fmt", zig_test]),
     return zig_test, stats
 
@@ -268,7 +274,7 @@ def translate_test_line(struct_name: str, line: str) -> str:
     line_ = line
     line = line.strip()
     if line.startswith("init_simple_test"):
-        return f'test "{struct_name}" {{'
+        return f'test "{struct_name} layout" {{'
 
     if line.startswith("STRUCT_IF_C"):
         struct_if_c, type_, name = line.strip(";").split()
@@ -305,17 +311,17 @@ def rm_debug_string(line: str) -> str:
     return debug_string.sub(")", line)
 
 
-def generate_c_calls(struct: Struct) -> str:
-    values = generate_struct_vals(struct)
+def generate_c_calls(struct: Struct, field_values: dict) -> str:
     # TODO: handle pointers, Zig doesn't allow implicit int to ptr casting.
-    struct_lit = ", ".join(f".{field}={val}" for field, val in values.items())
-    return f"try testing.expectOk(c.recv_{struct.name}(.{{{struct_lit}}}));"
+    struct_lit = ", ".join(f".{field}={val}" for field, val in field_values.items())
+    recv = f"try testing.expectOk(c.recv_{struct.name}(.{{{struct_lit}}}));"
+    ret = f"try testing.expectEqual(c.ret_{struct.name}(), .{{{struct_lit}}});"
+    return "\n".join([ret, recv])
 
 
-def generate_c_recv_asserts(struct: Struct) -> str:
+def generate_c_recv(struct: Struct, fields: dict) -> str:
     lines = [f"int recv_{struct.name}(struct {struct.name} lv){{", "  int err = 0;"]
 
-    fields = generate_struct_vals(struct)
     for i, (field, val) in enumerate(fields.items(), start=1):
         if val == "null":
             val = 0
@@ -323,7 +329,21 @@ def generate_c_recv_asserts(struct: Struct) -> str:
             continue
         asser = f"  if (lv.{field} != {val}) err = {i};"
         lines.append(asser)
-    lines.extend(["  return err;", "}"])
+    lines.extend(["  return err;", "}", ""])
+    return "\n".join(lines)
+
+
+def generate_c_ret(struct: Struct, fields: dict) -> str:
+    lines = [f"struct {struct.name} ret_{struct.name}(){{", f"  struct {struct.name} lv;"]
+
+    for i, (field, val) in enumerate(fields.items(), start=1):
+        if val == "null":
+            val = 0
+        if val == ".{}":
+            continue
+        asser = f"  lv.{field} = {val};"
+        lines.append(asser)
+    lines.extend(["  return lv;", "}", ""])
     return "\n".join(lines)
 
 
@@ -380,7 +400,14 @@ def main(allow_empty: bool) -> None:
     for test_file in test_files:
         print(test_file)
         test = subprocess.run(
-            ["zig", "test", "-I", zig_tests, test_file, test_file.with_suffix(".aux.o")],
+            [
+                "zig",
+                "test",
+                "-I",
+                zig_tests,
+                test_file,
+                test_file.with_suffix(".aux.o"),
+            ],
             check=False,
             capture_output=False,
             encoding="ascii",

@@ -13,13 +13,16 @@ pub const c = @cImport({
 //   char v3;
 // };
 
-test "Uc_D_C" {
+test "Uc_D_C layout" {
     var lv: c.Uc_D_C = undefined;
     try testing.expectSize(c.Uc_D_C, ABISELECT(24, 16));
     try testing.expectAlign(c.Uc_D_C, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Uc_D_C C calls" {
+    try testing.expectEqual(c.ret_Uc_D_C(), .{ .v1 = 3, .v2 = -0.25, .v3 = 89 });
     try testing.expectOk(c.recv_Uc_D_C(.{ .v1 = 3, .v2 = -0.25, .v3 = 89 }));
 }
 // From T_Snnn_xba.c:554:574
@@ -29,13 +32,16 @@ test "Uc_D_C" {
 //   double v3;
 // };
 
-test "Uc_D_D" {
+test "Uc_D_D layout" {
     var lv: c.Uc_D_D = undefined;
     try testing.expectSize(c.Uc_D_D, ABISELECT(24, 20));
     try testing.expectAlign(c.Uc_D_D, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Uc_D_D C calls" {
+    try testing.expectEqual(c.ret_Uc_D_D(), .{ .v1 = 9, .v2 = 7.0, .v3 = 1.0 });
     try testing.expectOk(c.recv_Uc_D_D(.{ .v1 = 9, .v2 = 7.0, .v3 = 1.0 }));
 }
 // From T_Snnn_xba.c:579:599
@@ -45,13 +51,16 @@ test "Uc_D_D" {
 //   float v3;
 // };
 
-test "Uc_D_F" {
+test "Uc_D_F layout" {
     var lv: c.Uc_D_F = undefined;
     try testing.expectSize(c.Uc_D_F, ABISELECT(24, 16));
     try testing.expectAlign(c.Uc_D_F, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Uc_D_F C calls" {
+    try testing.expectEqual(c.ret_Uc_D_F(), .{ .v1 = 95, .v2 = 4.5, .v3 = 0.5 });
     try testing.expectOk(c.recv_Uc_D_F(.{ .v1 = 95, .v2 = 4.5, .v3 = 0.5 }));
 }
 // From T_Snnn_xba.c:604:624
@@ -61,13 +70,16 @@ test "Uc_D_F" {
 //   int v3;
 // };
 
-test "Uc_D_I" {
+test "Uc_D_I layout" {
     var lv: c.Uc_D_I = undefined;
     try testing.expectSize(c.Uc_D_I, ABISELECT(24, 16));
     try testing.expectAlign(c.Uc_D_I, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Uc_D_I C calls" {
+    try testing.expectEqual(c.ret_Uc_D_I(), .{ .v1 = 26, .v2 = -2.125, .v3 = 22319 });
     try testing.expectOk(c.recv_Uc_D_I(.{ .v1 = 26, .v2 = -2.125, .v3 = 22319 }));
 }
 // From T_Snnn_xba.c:629:649
@@ -77,13 +89,16 @@ test "Uc_D_I" {
 //   int *v3;
 // };
 
-test "Uc_D_Ip" {
+test "Uc_D_Ip layout" {
     var lv: c.Uc_D_Ip = undefined;
     try testing.expectSize(c.Uc_D_Ip, ABISELECT(24, 16));
     try testing.expectAlign(c.Uc_D_Ip, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Uc_D_Ip C calls" {
+    try testing.expectEqual(c.ret_Uc_D_Ip(), .{ .v1 = 101, .v2 = 1.0, .v3 = null });
     try testing.expectOk(c.recv_Uc_D_Ip(.{ .v1 = 101, .v2 = 1.0, .v3 = null }));
 }
 // From T_Snnn_xba.c:654:674
@@ -93,13 +108,16 @@ test "Uc_D_Ip" {
 //   __tsi64 v3;
 // };
 
-test "Uc_D_L" {
+test "Uc_D_L layout" {
     var lv: c.Uc_D_L = undefined;
     try testing.expectSize(c.Uc_D_L, ABISELECT(24, 20));
     try testing.expectAlign(c.Uc_D_L, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Uc_D_L C calls" {
+    try testing.expectEqual(c.ret_Uc_D_L(), .{ .v1 = 0, .v2 = -2.125, .v3 = 4136 });
     try testing.expectOk(c.recv_Uc_D_L(.{ .v1 = 0, .v2 = -2.125, .v3 = 4136 }));
 }
 // From T_Snnn_xba.c:679:699
@@ -109,13 +127,16 @@ test "Uc_D_L" {
 //   short v3;
 // };
 
-test "Uc_D_S" {
+test "Uc_D_S layout" {
     var lv: c.Uc_D_S = undefined;
     try testing.expectSize(c.Uc_D_S, ABISELECT(24, 16));
     try testing.expectAlign(c.Uc_D_S, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Uc_D_S C calls" {
+    try testing.expectEqual(c.ret_Uc_D_S(), .{ .v1 = 1, .v2 = 0.875, .v3 = 29141 });
     try testing.expectOk(c.recv_Uc_D_S(.{ .v1 = 1, .v2 = 0.875, .v3 = 29141 }));
 }
 // From T_Snnn_xba.c:704:724
@@ -125,13 +146,16 @@ test "Uc_D_S" {
 //   unsigned char v3;
 // };
 
-test "Uc_D_Uc" {
+test "Uc_D_Uc layout" {
     var lv: c.Uc_D_Uc = undefined;
     try testing.expectSize(c.Uc_D_Uc, ABISELECT(24, 16));
     try testing.expectAlign(c.Uc_D_Uc, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Uc_D_Uc C calls" {
+    try testing.expectEqual(c.ret_Uc_D_Uc(), .{ .v1 = 9, .v2 = 1.0, .v3 = 63 });
     try testing.expectOk(c.recv_Uc_D_Uc(.{ .v1 = 9, .v2 = 1.0, .v3 = 63 }));
 }
 // From T_Snnn_xba.c:729:749
@@ -141,13 +165,16 @@ test "Uc_D_Uc" {
 //   unsigned int v3;
 // };
 
-test "Uc_D_Ui" {
+test "Uc_D_Ui layout" {
     var lv: c.Uc_D_Ui = undefined;
     try testing.expectSize(c.Uc_D_Ui, ABISELECT(24, 16));
     try testing.expectAlign(c.Uc_D_Ui, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Uc_D_Ui C calls" {
+    try testing.expectEqual(c.ret_Uc_D_Ui(), .{ .v1 = 10, .v2 = 1.0, .v3 = 27979 });
     try testing.expectOk(c.recv_Uc_D_Ui(.{ .v1 = 10, .v2 = 1.0, .v3 = 27979 }));
 }
 // From T_Snnn_xba.c:754:774
@@ -157,13 +184,16 @@ test "Uc_D_Ui" {
 //   __tsu64 v3;
 // };
 
-test "Uc_D_Ul" {
+test "Uc_D_Ul layout" {
     var lv: c.Uc_D_Ul = undefined;
     try testing.expectSize(c.Uc_D_Ul, ABISELECT(24, 20));
     try testing.expectAlign(c.Uc_D_Ul, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Uc_D_Ul C calls" {
+    try testing.expectEqual(c.ret_Uc_D_Ul(), .{ .v1 = 9, .v2 = 4.5, .v3 = 7107 });
     try testing.expectOk(c.recv_Uc_D_Ul(.{ .v1 = 9, .v2 = 4.5, .v3 = 7107 }));
 }
 // From T_Snnn_xba.c:779:799
@@ -173,13 +203,16 @@ test "Uc_D_Ul" {
 //   unsigned short v3;
 // };
 
-test "Uc_D_Us" {
+test "Uc_D_Us layout" {
     var lv: c.Uc_D_Us = undefined;
     try testing.expectSize(c.Uc_D_Us, ABISELECT(24, 16));
     try testing.expectAlign(c.Uc_D_Us, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Uc_D_Us C calls" {
+    try testing.expectEqual(c.ret_Uc_D_Us(), .{ .v1 = 61, .v2 = 7.0, .v3 = 24060 });
     try testing.expectOk(c.recv_Uc_D_Us(.{ .v1 = 61, .v2 = 7.0, .v3 = 24060 }));
 }
 // From T_Snnn_xba.c:804:824
@@ -189,13 +222,16 @@ test "Uc_D_Us" {
 //   void *v3;
 // };
 
-test "Uc_D_Vp" {
+test "Uc_D_Vp layout" {
     var lv: c.Uc_D_Vp = undefined;
     try testing.expectSize(c.Uc_D_Vp, ABISELECT(24, 16));
     try testing.expectAlign(c.Uc_D_Vp, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Uc_D_Vp C calls" {
+    try testing.expectEqual(c.ret_Uc_D_Vp(), .{ .v1 = 28, .v2 = -0.25, .v3 = null });
     try testing.expectOk(c.recv_Uc_D_Vp(.{ .v1 = 28, .v2 = -0.25, .v3 = null }));
 }
 // From T_Snnn_xba.c:829:847
@@ -204,12 +240,15 @@ test "Uc_D_Vp" {
 //   float v2;
 // };
 
-test "Uc_F" {
+test "Uc_F layout" {
     var lv: c.Uc_F = undefined;
     try testing.expectSize(c.Uc_F, 8);
     try testing.expectAlign(c.Uc_F, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
+}
+test "Uc_F C calls" {
+    try testing.expectEqual(c.ret_Uc_F(), .{ .v1 = 95, .v2 = 0.875 });
     try testing.expectOk(c.recv_Uc_F(.{ .v1 = 95, .v2 = 0.875 }));
 }
 // From T_Snnn_xba.c:1576:1596
@@ -219,13 +258,16 @@ test "Uc_F" {
 //   char v3;
 // };
 
-test "Uc_F_C" {
+test "Uc_F_C layout" {
     var lv: c.Uc_F_C = undefined;
     try testing.expectSize(c.Uc_F_C, 12);
     try testing.expectAlign(c.Uc_F_C, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Uc_F_C C calls" {
+    try testing.expectEqual(c.ret_Uc_F_C(), .{ .v1 = 97, .v2 = 0.5, .v3 = 83 });
     try testing.expectOk(c.recv_Uc_F_C(.{ .v1 = 97, .v2 = 0.5, .v3 = 83 }));
 }
 // From T_Snnn_xba.c:1601:1621
@@ -235,13 +277,16 @@ test "Uc_F_C" {
 //   double v3;
 // };
 
-test "Uc_F_D" {
+test "Uc_F_D layout" {
     var lv: c.Uc_F_D = undefined;
     try testing.expectSize(c.Uc_F_D, 16);
     try testing.expectAlign(c.Uc_F_D, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Uc_F_D C calls" {
+    try testing.expectEqual(c.ret_Uc_F_D(), .{ .v1 = 82, .v2 = 0.5, .v3 = 7.0 });
     try testing.expectOk(c.recv_Uc_F_D(.{ .v1 = 82, .v2 = 0.5, .v3 = 7.0 }));
 }
 // From T_Snnn_xba.c:1626:1646
@@ -251,13 +296,16 @@ test "Uc_F_D" {
 //   float v3;
 // };
 
-test "Uc_F_F" {
+test "Uc_F_F layout" {
     var lv: c.Uc_F_F = undefined;
     try testing.expectSize(c.Uc_F_F, 12);
     try testing.expectAlign(c.Uc_F_F, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Uc_F_F C calls" {
+    try testing.expectEqual(c.ret_Uc_F_F(), .{ .v1 = 41, .v2 = 0.5, .v3 = -2.125 });
     try testing.expectOk(c.recv_Uc_F_F(.{ .v1 = 41, .v2 = 0.5, .v3 = -2.125 }));
 }
 // From T_Snnn_xba.c:1651:1671
@@ -267,13 +315,16 @@ test "Uc_F_F" {
 //   int v3;
 // };
 
-test "Uc_F_I" {
+test "Uc_F_I layout" {
     var lv: c.Uc_F_I = undefined;
     try testing.expectSize(c.Uc_F_I, 12);
     try testing.expectAlign(c.Uc_F_I, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Uc_F_I C calls" {
+    try testing.expectEqual(c.ret_Uc_F_I(), .{ .v1 = 91, .v2 = 1.0, .v3 = 10292 });
     try testing.expectOk(c.recv_Uc_F_I(.{ .v1 = 91, .v2 = 1.0, .v3 = 10292 }));
 }
 // From T_Snnn_xba.c:1676:1696
@@ -283,13 +334,16 @@ test "Uc_F_I" {
 //   int *v3;
 // };
 
-test "Uc_F_Ip" {
+test "Uc_F_Ip layout" {
     var lv: c.Uc_F_Ip = undefined;
     try testing.expectSize(c.Uc_F_Ip, ABISELECT(16, 12));
     try testing.expectAlign(c.Uc_F_Ip, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Uc_F_Ip C calls" {
+    try testing.expectEqual(c.ret_Uc_F_Ip(), .{ .v1 = 3, .v2 = -0.25, .v3 = null });
     try testing.expectOk(c.recv_Uc_F_Ip(.{ .v1 = 3, .v2 = -0.25, .v3 = null }));
 }
 // From T_Snnn_xba.c:1701:1721
@@ -299,13 +353,16 @@ test "Uc_F_Ip" {
 //   __tsi64 v3;
 // };
 
-test "Uc_F_L" {
+test "Uc_F_L layout" {
     var lv: c.Uc_F_L = undefined;
     try testing.expectSize(c.Uc_F_L, 16);
     try testing.expectAlign(c.Uc_F_L, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Uc_F_L C calls" {
+    try testing.expectEqual(c.ret_Uc_F_L(), .{ .v1 = 0, .v2 = 0.5, .v3 = 30255 });
     try testing.expectOk(c.recv_Uc_F_L(.{ .v1 = 0, .v2 = 0.5, .v3 = 30255 }));
 }
 // From T_Snnn_xba.c:1726:1746
@@ -315,13 +372,16 @@ test "Uc_F_L" {
 //   short v3;
 // };
 
-test "Uc_F_S" {
+test "Uc_F_S layout" {
     var lv: c.Uc_F_S = undefined;
     try testing.expectSize(c.Uc_F_S, 12);
     try testing.expectAlign(c.Uc_F_S, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Uc_F_S C calls" {
+    try testing.expectEqual(c.ret_Uc_F_S(), .{ .v1 = 103, .v2 = 1.0, .v3 = 15970 });
     try testing.expectOk(c.recv_Uc_F_S(.{ .v1 = 103, .v2 = 1.0, .v3 = 15970 }));
 }
 // From T_Snnn_xba.c:1751:1771
@@ -331,13 +391,16 @@ test "Uc_F_S" {
 //   unsigned char v3;
 // };
 
-test "Uc_F_Uc" {
+test "Uc_F_Uc layout" {
     var lv: c.Uc_F_Uc = undefined;
     try testing.expectSize(c.Uc_F_Uc, 12);
     try testing.expectAlign(c.Uc_F_Uc, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Uc_F_Uc C calls" {
+    try testing.expectEqual(c.ret_Uc_F_Uc(), .{ .v1 = 53, .v2 = 7.0, .v3 = 94 });
     try testing.expectOk(c.recv_Uc_F_Uc(.{ .v1 = 53, .v2 = 7.0, .v3 = 94 }));
 }
 // From T_Snnn_xba.c:1776:1796
@@ -347,13 +410,16 @@ test "Uc_F_Uc" {
 //   unsigned int v3;
 // };
 
-test "Uc_F_Ui" {
+test "Uc_F_Ui layout" {
     var lv: c.Uc_F_Ui = undefined;
     try testing.expectSize(c.Uc_F_Ui, 12);
     try testing.expectAlign(c.Uc_F_Ui, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Uc_F_Ui C calls" {
+    try testing.expectEqual(c.ret_Uc_F_Ui(), .{ .v1 = 88, .v2 = 0.5, .v3 = 1854 });
     try testing.expectOk(c.recv_Uc_F_Ui(.{ .v1 = 88, .v2 = 0.5, .v3 = 1854 }));
 }
 // From T_Snnn_xba.c:1801:1821
@@ -363,13 +429,16 @@ test "Uc_F_Ui" {
 //   __tsu64 v3;
 // };
 
-test "Uc_F_Ul" {
+test "Uc_F_Ul layout" {
     var lv: c.Uc_F_Ul = undefined;
     try testing.expectSize(c.Uc_F_Ul, 16);
     try testing.expectAlign(c.Uc_F_Ul, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Uc_F_Ul C calls" {
+    try testing.expectEqual(c.ret_Uc_F_Ul(), .{ .v1 = 96, .v2 = -2.125, .v3 = 10992 });
     try testing.expectOk(c.recv_Uc_F_Ul(.{ .v1 = 96, .v2 = -2.125, .v3 = 10992 }));
 }
 // From T_Snnn_xba.c:1826:1846
@@ -379,13 +448,16 @@ test "Uc_F_Ul" {
 //   unsigned short v3;
 // };
 
-test "Uc_F_Us" {
+test "Uc_F_Us layout" {
     var lv: c.Uc_F_Us = undefined;
     try testing.expectSize(c.Uc_F_Us, 12);
     try testing.expectAlign(c.Uc_F_Us, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Uc_F_Us C calls" {
+    try testing.expectEqual(c.ret_Uc_F_Us(), .{ .v1 = 59, .v2 = 0.875, .v3 = 6216 });
     try testing.expectOk(c.recv_Uc_F_Us(.{ .v1 = 59, .v2 = 0.875, .v3 = 6216 }));
 }
 // From T_Snnn_xba.c:1851:1871
@@ -395,13 +467,16 @@ test "Uc_F_Us" {
 //   void *v3;
 // };
 
-test "Uc_F_Vp" {
+test "Uc_F_Vp layout" {
     var lv: c.Uc_F_Vp = undefined;
     try testing.expectSize(c.Uc_F_Vp, ABISELECT(16, 12));
     try testing.expectAlign(c.Uc_F_Vp, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Uc_F_Vp C calls" {
+    try testing.expectEqual(c.ret_Uc_F_Vp(), .{ .v1 = 5, .v2 = 4.5, .v3 = null });
     try testing.expectOk(c.recv_Uc_F_Vp(.{ .v1 = 5, .v2 = 4.5, .v3 = null }));
 }
 // From T_Snnn_xba.c:1876:1894
@@ -410,12 +485,15 @@ test "Uc_F_Vp" {
 //   int v2;
 // };
 
-test "Uc_I" {
+test "Uc_I layout" {
     var lv: c.Uc_I = undefined;
     try testing.expectSize(c.Uc_I, 8);
     try testing.expectAlign(c.Uc_I, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
+}
+test "Uc_I C calls" {
+    try testing.expectEqual(c.ret_Uc_I(), .{ .v1 = 114, .v2 = 16216 });
     try testing.expectOk(c.recv_Uc_I(.{ .v1 = 114, .v2 = 16216 }));
 }
 // From T_Snnn_xba.c:2623:2643
@@ -425,13 +503,16 @@ test "Uc_I" {
 //   char v3;
 // };
 
-test "Uc_I_C" {
+test "Uc_I_C layout" {
     var lv: c.Uc_I_C = undefined;
     try testing.expectSize(c.Uc_I_C, 12);
     try testing.expectAlign(c.Uc_I_C, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Uc_I_C C calls" {
+    try testing.expectEqual(c.ret_Uc_I_C(), .{ .v1 = 124, .v2 = 25853, .v3 = 104 });
     try testing.expectOk(c.recv_Uc_I_C(.{ .v1 = 124, .v2 = 25853, .v3 = 104 }));
 }
 // From T_Snnn_xba.c:2648:2668
@@ -441,13 +522,16 @@ test "Uc_I_C" {
 //   double v3;
 // };
 
-test "Uc_I_D" {
+test "Uc_I_D layout" {
     var lv: c.Uc_I_D = undefined;
     try testing.expectSize(c.Uc_I_D, 16);
     try testing.expectAlign(c.Uc_I_D, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Uc_I_D C calls" {
+    try testing.expectEqual(c.ret_Uc_I_D(), .{ .v1 = 108, .v2 = 16942, .v3 = 0.875 });
     try testing.expectOk(c.recv_Uc_I_D(.{ .v1 = 108, .v2 = 16942, .v3 = 0.875 }));
 }
 // From T_Snnn_xba.c:2673:2693
@@ -457,13 +541,16 @@ test "Uc_I_D" {
 //   float v3;
 // };
 
-test "Uc_I_F" {
+test "Uc_I_F layout" {
     var lv: c.Uc_I_F = undefined;
     try testing.expectSize(c.Uc_I_F, 12);
     try testing.expectAlign(c.Uc_I_F, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Uc_I_F C calls" {
+    try testing.expectEqual(c.ret_Uc_I_F(), .{ .v1 = 29, .v2 = 12247, .v3 = 7.0 });
     try testing.expectOk(c.recv_Uc_I_F(.{ .v1 = 29, .v2 = 12247, .v3 = 7.0 }));
 }
 // From T_Snnn_xba.c:2698:2718
@@ -473,13 +560,16 @@ test "Uc_I_F" {
 //   int v3;
 // };
 
-test "Uc_I_I" {
+test "Uc_I_I layout" {
     var lv: c.Uc_I_I = undefined;
     try testing.expectSize(c.Uc_I_I, 12);
     try testing.expectAlign(c.Uc_I_I, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Uc_I_I C calls" {
+    try testing.expectEqual(c.ret_Uc_I_I(), .{ .v1 = 60, .v2 = 7544, .v3 = 6612 });
     try testing.expectOk(c.recv_Uc_I_I(.{ .v1 = 60, .v2 = 7544, .v3 = 6612 }));
 }
 // From T_Snnn_xba.c:2723:2743
@@ -489,13 +579,16 @@ test "Uc_I_I" {
 //   int *v3;
 // };
 
-test "Uc_I_Ip" {
+test "Uc_I_Ip layout" {
     var lv: c.Uc_I_Ip = undefined;
     try testing.expectSize(c.Uc_I_Ip, ABISELECT(16, 12));
     try testing.expectAlign(c.Uc_I_Ip, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Uc_I_Ip C calls" {
+    try testing.expectEqual(c.ret_Uc_I_Ip(), .{ .v1 = 18, .v2 = 32746, .v3 = null });
     try testing.expectOk(c.recv_Uc_I_Ip(.{ .v1 = 18, .v2 = 32746, .v3 = null }));
 }
 // From T_Snnn_xba.c:2748:2768
@@ -505,13 +598,16 @@ test "Uc_I_Ip" {
 //   __tsi64 v3;
 // };
 
-test "Uc_I_L" {
+test "Uc_I_L layout" {
     var lv: c.Uc_I_L = undefined;
     try testing.expectSize(c.Uc_I_L, 16);
     try testing.expectAlign(c.Uc_I_L, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Uc_I_L C calls" {
+    try testing.expectEqual(c.ret_Uc_I_L(), .{ .v1 = 113, .v2 = 36, .v3 = 32506 });
     try testing.expectOk(c.recv_Uc_I_L(.{ .v1 = 113, .v2 = 36, .v3 = 32506 }));
 }
 // From T_Snnn_xba.c:2773:2793
@@ -521,13 +617,16 @@ test "Uc_I_L" {
 //   short v3;
 // };
 
-test "Uc_I_S" {
+test "Uc_I_S layout" {
     var lv: c.Uc_I_S = undefined;
     try testing.expectSize(c.Uc_I_S, 12);
     try testing.expectAlign(c.Uc_I_S, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Uc_I_S C calls" {
+    try testing.expectEqual(c.ret_Uc_I_S(), .{ .v1 = 58, .v2 = 28832, .v3 = 32618 });
     try testing.expectOk(c.recv_Uc_I_S(.{ .v1 = 58, .v2 = 28832, .v3 = 32618 }));
 }
 // From T_Snnn_xba.c:2798:2818
@@ -537,13 +636,16 @@ test "Uc_I_S" {
 //   unsigned char v3;
 // };
 
-test "Uc_I_Uc" {
+test "Uc_I_Uc layout" {
     var lv: c.Uc_I_Uc = undefined;
     try testing.expectSize(c.Uc_I_Uc, 12);
     try testing.expectAlign(c.Uc_I_Uc, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Uc_I_Uc C calls" {
+    try testing.expectEqual(c.ret_Uc_I_Uc(), .{ .v1 = 113, .v2 = 28710, .v3 = 106 });
     try testing.expectOk(c.recv_Uc_I_Uc(.{ .v1 = 113, .v2 = 28710, .v3 = 106 }));
 }
 // From T_Snnn_xba.c:2823:2843
@@ -553,13 +655,16 @@ test "Uc_I_Uc" {
 //   unsigned int v3;
 // };
 
-test "Uc_I_Ui" {
+test "Uc_I_Ui layout" {
     var lv: c.Uc_I_Ui = undefined;
     try testing.expectSize(c.Uc_I_Ui, 12);
     try testing.expectAlign(c.Uc_I_Ui, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Uc_I_Ui C calls" {
+    try testing.expectEqual(c.ret_Uc_I_Ui(), .{ .v1 = 15, .v2 = 11634, .v3 = 8763 });
     try testing.expectOk(c.recv_Uc_I_Ui(.{ .v1 = 15, .v2 = 11634, .v3 = 8763 }));
 }
 // From T_Snnn_xba.c:2848:2868
@@ -569,13 +674,16 @@ test "Uc_I_Ui" {
 //   __tsu64 v3;
 // };
 
-test "Uc_I_Ul" {
+test "Uc_I_Ul layout" {
     var lv: c.Uc_I_Ul = undefined;
     try testing.expectSize(c.Uc_I_Ul, 16);
     try testing.expectAlign(c.Uc_I_Ul, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Uc_I_Ul C calls" {
+    try testing.expectEqual(c.ret_Uc_I_Ul(), .{ .v1 = 105, .v2 = 18283, .v3 = 21389 });
     try testing.expectOk(c.recv_Uc_I_Ul(.{ .v1 = 105, .v2 = 18283, .v3 = 21389 }));
 }
 // From T_Snnn_xba.c:2873:2893
@@ -585,13 +693,16 @@ test "Uc_I_Ul" {
 //   unsigned short v3;
 // };
 
-test "Uc_I_Us" {
+test "Uc_I_Us layout" {
     var lv: c.Uc_I_Us = undefined;
     try testing.expectSize(c.Uc_I_Us, 12);
     try testing.expectAlign(c.Uc_I_Us, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Uc_I_Us C calls" {
+    try testing.expectEqual(c.ret_Uc_I_Us(), .{ .v1 = 75, .v2 = 2635, .v3 = 14892 });
     try testing.expectOk(c.recv_Uc_I_Us(.{ .v1 = 75, .v2 = 2635, .v3 = 14892 }));
 }
 // From T_Snnn_xba.c:2898:2918
@@ -601,13 +712,16 @@ test "Uc_I_Us" {
 //   void *v3;
 // };
 
-test "Uc_I_Vp" {
+test "Uc_I_Vp layout" {
     var lv: c.Uc_I_Vp = undefined;
     try testing.expectSize(c.Uc_I_Vp, ABISELECT(16, 12));
     try testing.expectAlign(c.Uc_I_Vp, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Uc_I_Vp C calls" {
+    try testing.expectEqual(c.ret_Uc_I_Vp(), .{ .v1 = 96, .v2 = 16481, .v3 = null });
     try testing.expectOk(c.recv_Uc_I_Vp(.{ .v1 = 96, .v2 = 16481, .v3 = null }));
 }
 // From T_Snnn_xba.c:2923:2941
@@ -616,12 +730,15 @@ test "Uc_I_Vp" {
 //   int *v2;
 // };
 
-test "Uc_Ip" {
+test "Uc_Ip layout" {
     var lv: c.Uc_Ip = undefined;
     try testing.expectSize(c.Uc_Ip, ABISELECT(16, 8));
     try testing.expectAlign(c.Uc_Ip, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
+}
+test "Uc_Ip C calls" {
+    try testing.expectEqual(c.ret_Uc_Ip(), .{ .v1 = 12, .v2 = null });
     try testing.expectOk(c.recv_Uc_Ip(.{ .v1 = 12, .v2 = null }));
 }
 // From T_Snnn_xba.c:3670:3690
@@ -631,13 +748,16 @@ test "Uc_Ip" {
 //   char v3;
 // };
 
-test "Uc_Ip_C" {
+test "Uc_Ip_C layout" {
     var lv: c.Uc_Ip_C = undefined;
     try testing.expectSize(c.Uc_Ip_C, ABISELECT(24, 12));
     try testing.expectAlign(c.Uc_Ip_C, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Uc_Ip_C C calls" {
+    try testing.expectEqual(c.ret_Uc_Ip_C(), .{ .v1 = 58, .v2 = null, .v3 = 120 });
     try testing.expectOk(c.recv_Uc_Ip_C(.{ .v1 = 58, .v2 = null, .v3 = 120 }));
 }
 // From T_Snnn_xba.c:3695:3715
@@ -647,13 +767,16 @@ test "Uc_Ip_C" {
 //   double v3;
 // };
 
-test "Uc_Ip_D" {
+test "Uc_Ip_D layout" {
     var lv: c.Uc_Ip_D = undefined;
     try testing.expectSize(c.Uc_Ip_D, ABISELECT(24, 16));
     try testing.expectAlign(c.Uc_Ip_D, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Uc_Ip_D C calls" {
+    try testing.expectEqual(c.ret_Uc_Ip_D(), .{ .v1 = 66, .v2 = null, .v3 = 7.0 });
     try testing.expectOk(c.recv_Uc_Ip_D(.{ .v1 = 66, .v2 = null, .v3 = 7.0 }));
 }
 // From T_Snnn_xba.c:3720:3740
@@ -663,13 +786,16 @@ test "Uc_Ip_D" {
 //   float v3;
 // };
 
-test "Uc_Ip_F" {
+test "Uc_Ip_F layout" {
     var lv: c.Uc_Ip_F = undefined;
     try testing.expectSize(c.Uc_Ip_F, ABISELECT(24, 12));
     try testing.expectAlign(c.Uc_Ip_F, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Uc_Ip_F C calls" {
+    try testing.expectEqual(c.ret_Uc_Ip_F(), .{ .v1 = 103, .v2 = null, .v3 = 1.0 });
     try testing.expectOk(c.recv_Uc_Ip_F(.{ .v1 = 103, .v2 = null, .v3 = 1.0 }));
 }
 // From T_Snnn_xba.c:3745:3765
@@ -679,13 +805,16 @@ test "Uc_Ip_F" {
 //   int v3;
 // };
 
-test "Uc_Ip_I" {
+test "Uc_Ip_I layout" {
     var lv: c.Uc_Ip_I = undefined;
     try testing.expectSize(c.Uc_Ip_I, ABISELECT(24, 12));
     try testing.expectAlign(c.Uc_Ip_I, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Uc_Ip_I C calls" {
+    try testing.expectEqual(c.ret_Uc_Ip_I(), .{ .v1 = 20, .v2 = null, .v3 = 13416 });
     try testing.expectOk(c.recv_Uc_Ip_I(.{ .v1 = 20, .v2 = null, .v3 = 13416 }));
 }
 // From T_Snnn_xba.c:3770:3790
@@ -695,13 +824,16 @@ test "Uc_Ip_I" {
 //   int *v3;
 // };
 
-test "Uc_Ip_Ip" {
+test "Uc_Ip_Ip layout" {
     var lv: c.Uc_Ip_Ip = undefined;
     try testing.expectSize(c.Uc_Ip_Ip, ABISELECT(24, 12));
     try testing.expectAlign(c.Uc_Ip_Ip, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Uc_Ip_Ip C calls" {
+    try testing.expectEqual(c.ret_Uc_Ip_Ip(), .{ .v1 = 117, .v2 = null, .v3 = null });
     try testing.expectOk(c.recv_Uc_Ip_Ip(.{ .v1 = 117, .v2 = null, .v3 = null }));
 }
 // From T_Snnn_xba.c:3795:3815
@@ -711,13 +843,16 @@ test "Uc_Ip_Ip" {
 //   __tsi64 v3;
 // };
 
-test "Uc_Ip_L" {
+test "Uc_Ip_L layout" {
     var lv: c.Uc_Ip_L = undefined;
     try testing.expectSize(c.Uc_Ip_L, ABISELECT(24, 16));
     try testing.expectAlign(c.Uc_Ip_L, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Uc_Ip_L C calls" {
+    try testing.expectEqual(c.ret_Uc_Ip_L(), .{ .v1 = 31, .v2 = null, .v3 = 30388 });
     try testing.expectOk(c.recv_Uc_Ip_L(.{ .v1 = 31, .v2 = null, .v3 = 30388 }));
 }
 // From T_Snnn_xba.c:3820:3840
@@ -727,13 +862,16 @@ test "Uc_Ip_L" {
 //   short v3;
 // };
 
-test "Uc_Ip_S" {
+test "Uc_Ip_S layout" {
     var lv: c.Uc_Ip_S = undefined;
     try testing.expectSize(c.Uc_Ip_S, ABISELECT(24, 12));
     try testing.expectAlign(c.Uc_Ip_S, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Uc_Ip_S C calls" {
+    try testing.expectEqual(c.ret_Uc_Ip_S(), .{ .v1 = 104, .v2 = null, .v3 = 28603 });
     try testing.expectOk(c.recv_Uc_Ip_S(.{ .v1 = 104, .v2 = null, .v3 = 28603 }));
 }
 // From T_Snnn_xba.c:3845:3865
@@ -743,13 +881,16 @@ test "Uc_Ip_S" {
 //   unsigned char v3;
 // };
 
-test "Uc_Ip_Uc" {
+test "Uc_Ip_Uc layout" {
     var lv: c.Uc_Ip_Uc = undefined;
     try testing.expectSize(c.Uc_Ip_Uc, ABISELECT(24, 12));
     try testing.expectAlign(c.Uc_Ip_Uc, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Uc_Ip_Uc C calls" {
+    try testing.expectEqual(c.ret_Uc_Ip_Uc(), .{ .v1 = 35, .v2 = null, .v3 = 13 });
     try testing.expectOk(c.recv_Uc_Ip_Uc(.{ .v1 = 35, .v2 = null, .v3 = 13 }));
 }
 // From T_Snnn_xba.c:3870:3890
@@ -759,13 +900,16 @@ test "Uc_Ip_Uc" {
 //   unsigned int v3;
 // };
 
-test "Uc_Ip_Ui" {
+test "Uc_Ip_Ui layout" {
     var lv: c.Uc_Ip_Ui = undefined;
     try testing.expectSize(c.Uc_Ip_Ui, ABISELECT(24, 12));
     try testing.expectAlign(c.Uc_Ip_Ui, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Uc_Ip_Ui C calls" {
+    try testing.expectEqual(c.ret_Uc_Ip_Ui(), .{ .v1 = 20, .v2 = null, .v3 = 16954 });
     try testing.expectOk(c.recv_Uc_Ip_Ui(.{ .v1 = 20, .v2 = null, .v3 = 16954 }));
 }
 // From T_Snnn_xba.c:3895:3915
@@ -775,13 +919,16 @@ test "Uc_Ip_Ui" {
 //   __tsu64 v3;
 // };
 
-test "Uc_Ip_Ul" {
+test "Uc_Ip_Ul layout" {
     var lv: c.Uc_Ip_Ul = undefined;
     try testing.expectSize(c.Uc_Ip_Ul, ABISELECT(24, 16));
     try testing.expectAlign(c.Uc_Ip_Ul, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Uc_Ip_Ul C calls" {
+    try testing.expectEqual(c.ret_Uc_Ip_Ul(), .{ .v1 = 89, .v2 = null, .v3 = 18772 });
     try testing.expectOk(c.recv_Uc_Ip_Ul(.{ .v1 = 89, .v2 = null, .v3 = 18772 }));
 }
 // From T_Snnn_xba.c:3920:3940
@@ -791,13 +938,16 @@ test "Uc_Ip_Ul" {
 //   unsigned short v3;
 // };
 
-test "Uc_Ip_Us" {
+test "Uc_Ip_Us layout" {
     var lv: c.Uc_Ip_Us = undefined;
     try testing.expectSize(c.Uc_Ip_Us, ABISELECT(24, 12));
     try testing.expectAlign(c.Uc_Ip_Us, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Uc_Ip_Us C calls" {
+    try testing.expectEqual(c.ret_Uc_Ip_Us(), .{ .v1 = 48, .v2 = null, .v3 = 8281 });
     try testing.expectOk(c.recv_Uc_Ip_Us(.{ .v1 = 48, .v2 = null, .v3 = 8281 }));
 }
 // From T_Snnn_xba.c:3945:3965
@@ -807,13 +957,16 @@ test "Uc_Ip_Us" {
 //   void *v3;
 // };
 
-test "Uc_Ip_Vp" {
+test "Uc_Ip_Vp layout" {
     var lv: c.Uc_Ip_Vp = undefined;
     try testing.expectSize(c.Uc_Ip_Vp, ABISELECT(24, 12));
     try testing.expectAlign(c.Uc_Ip_Vp, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Uc_Ip_Vp C calls" {
+    try testing.expectEqual(c.ret_Uc_Ip_Vp(), .{ .v1 = 33, .v2 = null, .v3 = null });
     try testing.expectOk(c.recv_Uc_Ip_Vp(.{ .v1 = 33, .v2 = null, .v3 = null }));
 }
 // From T_Snnn_xba.c:3970:3988
@@ -822,12 +975,15 @@ test "Uc_Ip_Vp" {
 //   __tsi64 v2;
 // };
 
-test "Uc_L" {
+test "Uc_L layout" {
     var lv: c.Uc_L = undefined;
     try testing.expectSize(c.Uc_L, ABISELECT(16, 12));
     try testing.expectAlign(c.Uc_L, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
+}
+test "Uc_L C calls" {
+    try testing.expectEqual(c.ret_Uc_L(), .{ .v1 = 119, .v2 = 15974 });
     try testing.expectOk(c.recv_Uc_L(.{ .v1 = 119, .v2 = 15974 }));
 }
 // From T_Snnn_xba.c:4717:4737
@@ -837,13 +993,16 @@ test "Uc_L" {
 //   char v3;
 // };
 
-test "Uc_L_C" {
+test "Uc_L_C layout" {
     var lv: c.Uc_L_C = undefined;
     try testing.expectSize(c.Uc_L_C, ABISELECT(24, 16));
     try testing.expectAlign(c.Uc_L_C, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Uc_L_C C calls" {
+    try testing.expectEqual(c.ret_Uc_L_C(), .{ .v1 = 50, .v2 = 21453, .v3 = 112 });
     try testing.expectOk(c.recv_Uc_L_C(.{ .v1 = 50, .v2 = 21453, .v3 = 112 }));
 }
 // From T_Snnn_xba.c:4742:4762
@@ -853,13 +1012,16 @@ test "Uc_L_C" {
 //   double v3;
 // };
 
-test "Uc_L_D" {
+test "Uc_L_D layout" {
     var lv: c.Uc_L_D = undefined;
     try testing.expectSize(c.Uc_L_D, ABISELECT(24, 20));
     try testing.expectAlign(c.Uc_L_D, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Uc_L_D C calls" {
+    try testing.expectEqual(c.ret_Uc_L_D(), .{ .v1 = 42, .v2 = 12771, .v3 = 7.0 });
     try testing.expectOk(c.recv_Uc_L_D(.{ .v1 = 42, .v2 = 12771, .v3 = 7.0 }));
 }
 // From T_Snnn_xba.c:4767:4787
@@ -869,13 +1031,16 @@ test "Uc_L_D" {
 //   float v3;
 // };
 
-test "Uc_L_F" {
+test "Uc_L_F layout" {
     var lv: c.Uc_L_F = undefined;
     try testing.expectSize(c.Uc_L_F, ABISELECT(24, 16));
     try testing.expectAlign(c.Uc_L_F, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Uc_L_F C calls" {
+    try testing.expectEqual(c.ret_Uc_L_F(), .{ .v1 = 39, .v2 = 19443, .v3 = 7.0 });
     try testing.expectOk(c.recv_Uc_L_F(.{ .v1 = 39, .v2 = 19443, .v3 = 7.0 }));
 }
 // From T_Snnn_xba.c:4792:4812
@@ -885,13 +1050,16 @@ test "Uc_L_F" {
 //   int v3;
 // };
 
-test "Uc_L_I" {
+test "Uc_L_I layout" {
     var lv: c.Uc_L_I = undefined;
     try testing.expectSize(c.Uc_L_I, ABISELECT(24, 16));
     try testing.expectAlign(c.Uc_L_I, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Uc_L_I C calls" {
+    try testing.expectEqual(c.ret_Uc_L_I(), .{ .v1 = 93, .v2 = 28305, .v3 = 18385 });
     try testing.expectOk(c.recv_Uc_L_I(.{ .v1 = 93, .v2 = 28305, .v3 = 18385 }));
 }
 // From T_Snnn_xba.c:4817:4837
@@ -901,13 +1069,16 @@ test "Uc_L_I" {
 //   int *v3;
 // };
 
-test "Uc_L_Ip" {
+test "Uc_L_Ip layout" {
     var lv: c.Uc_L_Ip = undefined;
     try testing.expectSize(c.Uc_L_Ip, ABISELECT(24, 16));
     try testing.expectAlign(c.Uc_L_Ip, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Uc_L_Ip C calls" {
+    try testing.expectEqual(c.ret_Uc_L_Ip(), .{ .v1 = 10, .v2 = 8726, .v3 = null });
     try testing.expectOk(c.recv_Uc_L_Ip(.{ .v1 = 10, .v2 = 8726, .v3 = null }));
 }
 // From T_Snnn_xba.c:4842:4862
@@ -917,13 +1088,16 @@ test "Uc_L_Ip" {
 //   __tsi64 v3;
 // };
 
-test "Uc_L_L" {
+test "Uc_L_L layout" {
     var lv: c.Uc_L_L = undefined;
     try testing.expectSize(c.Uc_L_L, ABISELECT(24, 20));
     try testing.expectAlign(c.Uc_L_L, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Uc_L_L C calls" {
+    try testing.expectEqual(c.ret_Uc_L_L(), .{ .v1 = 112, .v2 = 7512, .v3 = 12279 });
     try testing.expectOk(c.recv_Uc_L_L(.{ .v1 = 112, .v2 = 7512, .v3 = 12279 }));
 }
 // From T_Snnn_xba.c:4867:4887
@@ -933,13 +1107,16 @@ test "Uc_L_L" {
 //   short v3;
 // };
 
-test "Uc_L_S" {
+test "Uc_L_S layout" {
     var lv: c.Uc_L_S = undefined;
     try testing.expectSize(c.Uc_L_S, ABISELECT(24, 16));
     try testing.expectAlign(c.Uc_L_S, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Uc_L_S C calls" {
+    try testing.expectEqual(c.ret_Uc_L_S(), .{ .v1 = 5, .v2 = 19826, .v3 = 20687 });
     try testing.expectOk(c.recv_Uc_L_S(.{ .v1 = 5, .v2 = 19826, .v3 = 20687 }));
 }
 // From T_Snnn_xba.c:4892:4912
@@ -949,13 +1126,16 @@ test "Uc_L_S" {
 //   unsigned char v3;
 // };
 
-test "Uc_L_Uc" {
+test "Uc_L_Uc layout" {
     var lv: c.Uc_L_Uc = undefined;
     try testing.expectSize(c.Uc_L_Uc, ABISELECT(24, 16));
     try testing.expectAlign(c.Uc_L_Uc, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Uc_L_Uc C calls" {
+    try testing.expectEqual(c.ret_Uc_L_Uc(), .{ .v1 = 14, .v2 = 18144, .v3 = 34 });
     try testing.expectOk(c.recv_Uc_L_Uc(.{ .v1 = 14, .v2 = 18144, .v3 = 34 }));
 }
 // From T_Snnn_xba.c:4917:4937
@@ -965,13 +1145,16 @@ test "Uc_L_Uc" {
 //   unsigned int v3;
 // };
 
-test "Uc_L_Ui" {
+test "Uc_L_Ui layout" {
     var lv: c.Uc_L_Ui = undefined;
     try testing.expectSize(c.Uc_L_Ui, ABISELECT(24, 16));
     try testing.expectAlign(c.Uc_L_Ui, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Uc_L_Ui C calls" {
+    try testing.expectEqual(c.ret_Uc_L_Ui(), .{ .v1 = 42, .v2 = 2689, .v3 = 3812 });
     try testing.expectOk(c.recv_Uc_L_Ui(.{ .v1 = 42, .v2 = 2689, .v3 = 3812 }));
 }
 // From T_Snnn_xba.c:4942:4962
@@ -981,13 +1164,16 @@ test "Uc_L_Ui" {
 //   __tsu64 v3;
 // };
 
-test "Uc_L_Ul" {
+test "Uc_L_Ul layout" {
     var lv: c.Uc_L_Ul = undefined;
     try testing.expectSize(c.Uc_L_Ul, ABISELECT(24, 20));
     try testing.expectAlign(c.Uc_L_Ul, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Uc_L_Ul C calls" {
+    try testing.expectEqual(c.ret_Uc_L_Ul(), .{ .v1 = 125, .v2 = 19855, .v3 = 32534 });
     try testing.expectOk(c.recv_Uc_L_Ul(.{ .v1 = 125, .v2 = 19855, .v3 = 32534 }));
 }
 // From T_Snnn_xba.c:4967:4987
@@ -997,13 +1183,16 @@ test "Uc_L_Ul" {
 //   unsigned short v3;
 // };
 
-test "Uc_L_Us" {
+test "Uc_L_Us layout" {
     var lv: c.Uc_L_Us = undefined;
     try testing.expectSize(c.Uc_L_Us, ABISELECT(24, 16));
     try testing.expectAlign(c.Uc_L_Us, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Uc_L_Us C calls" {
+    try testing.expectEqual(c.ret_Uc_L_Us(), .{ .v1 = 120, .v2 = 9826, .v3 = 1663 });
     try testing.expectOk(c.recv_Uc_L_Us(.{ .v1 = 120, .v2 = 9826, .v3 = 1663 }));
 }
 // From T_Snnn_xba.c:4992:5012
@@ -1013,13 +1202,16 @@ test "Uc_L_Us" {
 //   void *v3;
 // };
 
-test "Uc_L_Vp" {
+test "Uc_L_Vp layout" {
     var lv: c.Uc_L_Vp = undefined;
     try testing.expectSize(c.Uc_L_Vp, ABISELECT(24, 16));
     try testing.expectAlign(c.Uc_L_Vp, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Uc_L_Vp C calls" {
+    try testing.expectEqual(c.ret_Uc_L_Vp(), .{ .v1 = 112, .v2 = 14009, .v3 = null });
     try testing.expectOk(c.recv_Uc_L_Vp(.{ .v1 = 112, .v2 = 14009, .v3 = null }));
 }
 // From T_Snnn_xba.c:5017:5035
@@ -1028,12 +1220,15 @@ test "Uc_L_Vp" {
 //   short v2;
 // };
 
-test "Uc_S" {
+test "Uc_S layout" {
     var lv: c.Uc_S = undefined;
     try testing.expectSize(c.Uc_S, 4);
     try testing.expectAlign(c.Uc_S, 2);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
+}
+test "Uc_S C calls" {
+    try testing.expectEqual(c.ret_Uc_S(), .{ .v1 = 34, .v2 = 19847 });
     try testing.expectOk(c.recv_Uc_S(.{ .v1 = 34, .v2 = 19847 }));
 }
 // From T_Snnn_xba.c:5764:5784
@@ -1043,13 +1238,16 @@ test "Uc_S" {
 //   char v3;
 // };
 
-test "Uc_S_C" {
+test "Uc_S_C layout" {
     var lv: c.Uc_S_C = undefined;
     try testing.expectSize(c.Uc_S_C, 6);
     try testing.expectAlign(c.Uc_S_C, 2);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
+}
+test "Uc_S_C C calls" {
+    try testing.expectEqual(c.ret_Uc_S_C(), .{ .v1 = 74, .v2 = 21816, .v3 = 88 });
     try testing.expectOk(c.recv_Uc_S_C(.{ .v1 = 74, .v2 = 21816, .v3 = 88 }));
 }
 // From T_Snnn_xba.c:5789:5809
@@ -1059,13 +1257,16 @@ test "Uc_S_C" {
 //   double v3;
 // };
 
-test "Uc_S_D" {
+test "Uc_S_D layout" {
     var lv: c.Uc_S_D = undefined;
     try testing.expectSize(c.Uc_S_D, ABISELECT(16, 12));
     try testing.expectAlign(c.Uc_S_D, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
+}
+test "Uc_S_D C calls" {
+    try testing.expectEqual(c.ret_Uc_S_D(), .{ .v1 = 87, .v2 = 14939, .v3 = -2.125 });
     try testing.expectOk(c.recv_Uc_S_D(.{ .v1 = 87, .v2 = 14939, .v3 = -2.125 }));
 }
 // From T_Snnn_xba.c:5814:5834
@@ -1075,13 +1276,16 @@ test "Uc_S_D" {
 //   float v3;
 // };
 
-test "Uc_S_F" {
+test "Uc_S_F layout" {
     var lv: c.Uc_S_F = undefined;
     try testing.expectSize(c.Uc_S_F, 8);
     try testing.expectAlign(c.Uc_S_F, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
+}
+test "Uc_S_F C calls" {
+    try testing.expectEqual(c.ret_Uc_S_F(), .{ .v1 = 9, .v2 = 29623, .v3 = 0.5 });
     try testing.expectOk(c.recv_Uc_S_F(.{ .v1 = 9, .v2 = 29623, .v3 = 0.5 }));
 }
 // From T_Snnn_xba.c:5839:5859
@@ -1091,13 +1295,16 @@ test "Uc_S_F" {
 //   int v3;
 // };
 
-test "Uc_S_I" {
+test "Uc_S_I layout" {
     var lv: c.Uc_S_I = undefined;
     try testing.expectSize(c.Uc_S_I, 8);
     try testing.expectAlign(c.Uc_S_I, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
+}
+test "Uc_S_I C calls" {
+    try testing.expectEqual(c.ret_Uc_S_I(), .{ .v1 = 9, .v2 = 6063, .v3 = 7793 });
     try testing.expectOk(c.recv_Uc_S_I(.{ .v1 = 9, .v2 = 6063, .v3 = 7793 }));
 }
 // From T_Snnn_xba.c:5864:5884
@@ -1107,13 +1314,16 @@ test "Uc_S_I" {
 //   int *v3;
 // };
 
-test "Uc_S_Ip" {
+test "Uc_S_Ip layout" {
     var lv: c.Uc_S_Ip = undefined;
     try testing.expectSize(c.Uc_S_Ip, ABISELECT(16, 8));
     try testing.expectAlign(c.Uc_S_Ip, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
+}
+test "Uc_S_Ip C calls" {
+    try testing.expectEqual(c.ret_Uc_S_Ip(), .{ .v1 = 26, .v2 = 11164, .v3 = null });
     try testing.expectOk(c.recv_Uc_S_Ip(.{ .v1 = 26, .v2 = 11164, .v3 = null }));
 }
 // From T_Snnn_xba.c:5889:5909
@@ -1123,13 +1333,16 @@ test "Uc_S_Ip" {
 //   __tsi64 v3;
 // };
 
-test "Uc_S_L" {
+test "Uc_S_L layout" {
     var lv: c.Uc_S_L = undefined;
     try testing.expectSize(c.Uc_S_L, ABISELECT(16, 12));
     try testing.expectAlign(c.Uc_S_L, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
+}
+test "Uc_S_L C calls" {
+    try testing.expectEqual(c.ret_Uc_S_L(), .{ .v1 = 51, .v2 = 885, .v3 = 13093 });
     try testing.expectOk(c.recv_Uc_S_L(.{ .v1 = 51, .v2 = 885, .v3 = 13093 }));
 }
 // From T_Snnn_xba.c:5914:5934
@@ -1139,13 +1352,16 @@ test "Uc_S_L" {
 //   short v3;
 // };
 
-test "Uc_S_S" {
+test "Uc_S_S layout" {
     var lv: c.Uc_S_S = undefined;
     try testing.expectSize(c.Uc_S_S, 6);
     try testing.expectAlign(c.Uc_S_S, 2);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
+}
+test "Uc_S_S C calls" {
+    try testing.expectEqual(c.ret_Uc_S_S(), .{ .v1 = 21, .v2 = 14367, .v3 = 8854 });
     try testing.expectOk(c.recv_Uc_S_S(.{ .v1 = 21, .v2 = 14367, .v3 = 8854 }));
 }
 // From T_Snnn_xba.c:5939:5959
@@ -1155,13 +1371,16 @@ test "Uc_S_S" {
 //   unsigned char v3;
 // };
 
-test "Uc_S_Uc" {
+test "Uc_S_Uc layout" {
     var lv: c.Uc_S_Uc = undefined;
     try testing.expectSize(c.Uc_S_Uc, 6);
     try testing.expectAlign(c.Uc_S_Uc, 2);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
+}
+test "Uc_S_Uc C calls" {
+    try testing.expectEqual(c.ret_Uc_S_Uc(), .{ .v1 = 121, .v2 = 32357, .v3 = 7 });
     try testing.expectOk(c.recv_Uc_S_Uc(.{ .v1 = 121, .v2 = 32357, .v3 = 7 }));
 }
 // From T_Snnn_xba.c:5964:5984
@@ -1171,13 +1390,16 @@ test "Uc_S_Uc" {
 //   unsigned int v3;
 // };
 
-test "Uc_S_Ui" {
+test "Uc_S_Ui layout" {
     var lv: c.Uc_S_Ui = undefined;
     try testing.expectSize(c.Uc_S_Ui, 8);
     try testing.expectAlign(c.Uc_S_Ui, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
+}
+test "Uc_S_Ui C calls" {
+    try testing.expectEqual(c.ret_Uc_S_Ui(), .{ .v1 = 114, .v2 = 18126, .v3 = 22022 });
     try testing.expectOk(c.recv_Uc_S_Ui(.{ .v1 = 114, .v2 = 18126, .v3 = 22022 }));
 }
 // From T_Snnn_xba.c:5989:6009
@@ -1187,13 +1409,16 @@ test "Uc_S_Ui" {
 //   __tsu64 v3;
 // };
 
-test "Uc_S_Ul" {
+test "Uc_S_Ul layout" {
     var lv: c.Uc_S_Ul = undefined;
     try testing.expectSize(c.Uc_S_Ul, ABISELECT(16, 12));
     try testing.expectAlign(c.Uc_S_Ul, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
+}
+test "Uc_S_Ul C calls" {
+    try testing.expectEqual(c.ret_Uc_S_Ul(), .{ .v1 = 47, .v2 = 8185, .v3 = 28912 });
     try testing.expectOk(c.recv_Uc_S_Ul(.{ .v1 = 47, .v2 = 8185, .v3 = 28912 }));
 }
 // From T_Snnn_xba.c:6014:6034
@@ -1203,13 +1428,16 @@ test "Uc_S_Ul" {
 //   unsigned short v3;
 // };
 
-test "Uc_S_Us" {
+test "Uc_S_Us layout" {
     var lv: c.Uc_S_Us = undefined;
     try testing.expectSize(c.Uc_S_Us, 6);
     try testing.expectAlign(c.Uc_S_Us, 2);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
+}
+test "Uc_S_Us C calls" {
+    try testing.expectEqual(c.ret_Uc_S_Us(), .{ .v1 = 40, .v2 = 4200, .v3 = 29084 });
     try testing.expectOk(c.recv_Uc_S_Us(.{ .v1 = 40, .v2 = 4200, .v3 = 29084 }));
 }
 // From T_Snnn_xba.c:6039:6059
@@ -1219,13 +1447,16 @@ test "Uc_S_Us" {
 //   void *v3;
 // };
 
-test "Uc_S_Vp" {
+test "Uc_S_Vp layout" {
     var lv: c.Uc_S_Vp = undefined;
     try testing.expectSize(c.Uc_S_Vp, ABISELECT(16, 8));
     try testing.expectAlign(c.Uc_S_Vp, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
+}
+test "Uc_S_Vp C calls" {
+    try testing.expectEqual(c.ret_Uc_S_Vp(), .{ .v1 = 43, .v2 = 4074, .v3 = null });
     try testing.expectOk(c.recv_Uc_S_Vp(.{ .v1 = 43, .v2 = 4074, .v3 = null }));
 }
 // From T_Snnn_xba.c:6064:6082
@@ -1234,12 +1465,15 @@ test "Uc_S_Vp" {
 //   unsigned char v2;
 // };
 
-test "Uc_Uc" {
+test "Uc_Uc layout" {
     var lv: c.Uc_Uc = undefined;
     try testing.expectSize(c.Uc_Uc, 2);
     try testing.expectAlign(c.Uc_Uc, 1);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 1);
+}
+test "Uc_Uc C calls" {
+    try testing.expectEqual(c.ret_Uc_Uc(), .{ .v1 = 36, .v2 = 41 });
     try testing.expectOk(c.recv_Uc_Uc(.{ .v1 = 36, .v2 = 41 }));
 }
 // From T_Snnn_xba.c:6811:6831
@@ -1249,13 +1483,16 @@ test "Uc_Uc" {
 //   char v3;
 // };
 
-test "Uc_Uc_C" {
+test "Uc_Uc_C layout" {
     var lv: c.Uc_Uc_C = undefined;
     try testing.expectSize(c.Uc_Uc_C, 3);
     try testing.expectAlign(c.Uc_Uc_C, 1);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 1);
     try testing.expectFieldOffset(&lv, &lv.v3, 2);
+}
+test "Uc_Uc_C C calls" {
+    try testing.expectEqual(c.ret_Uc_Uc_C(), .{ .v1 = 61, .v2 = 123, .v3 = 32 });
     try testing.expectOk(c.recv_Uc_Uc_C(.{ .v1 = 61, .v2 = 123, .v3 = 32 }));
 }
 // From T_Snnn_xba.c:6836:6856
@@ -1265,13 +1502,16 @@ test "Uc_Uc_C" {
 //   double v3;
 // };
 
-test "Uc_Uc_D" {
+test "Uc_Uc_D layout" {
     var lv: c.Uc_Uc_D = undefined;
     try testing.expectSize(c.Uc_Uc_D, ABISELECT(16, 12));
     try testing.expectAlign(c.Uc_Uc_D, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 1);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
+}
+test "Uc_Uc_D C calls" {
+    try testing.expectEqual(c.ret_Uc_Uc_D(), .{ .v1 = 69, .v2 = 59, .v3 = 1.0 });
     try testing.expectOk(c.recv_Uc_Uc_D(.{ .v1 = 69, .v2 = 59, .v3 = 1.0 }));
 }
 // From T_Snnn_xba.c:6861:6881
@@ -1281,13 +1521,16 @@ test "Uc_Uc_D" {
 //   float v3;
 // };
 
-test "Uc_Uc_F" {
+test "Uc_Uc_F layout" {
     var lv: c.Uc_Uc_F = undefined;
     try testing.expectSize(c.Uc_Uc_F, 8);
     try testing.expectAlign(c.Uc_Uc_F, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 1);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
+}
+test "Uc_Uc_F C calls" {
+    try testing.expectEqual(c.ret_Uc_Uc_F(), .{ .v1 = 64, .v2 = 79, .v3 = 4.5 });
     try testing.expectOk(c.recv_Uc_Uc_F(.{ .v1 = 64, .v2 = 79, .v3 = 4.5 }));
 }
 // From T_Snnn_xba.c:6886:6906
@@ -1297,13 +1540,16 @@ test "Uc_Uc_F" {
 //   int v3;
 // };
 
-test "Uc_Uc_I" {
+test "Uc_Uc_I layout" {
     var lv: c.Uc_Uc_I = undefined;
     try testing.expectSize(c.Uc_Uc_I, 8);
     try testing.expectAlign(c.Uc_Uc_I, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 1);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
+}
+test "Uc_Uc_I C calls" {
+    try testing.expectEqual(c.ret_Uc_Uc_I(), .{ .v1 = 10, .v2 = 31, .v3 = 24178 });
     try testing.expectOk(c.recv_Uc_Uc_I(.{ .v1 = 10, .v2 = 31, .v3 = 24178 }));
 }
 // From T_Snnn_xba.c:6911:6931
@@ -1313,13 +1559,16 @@ test "Uc_Uc_I" {
 //   int *v3;
 // };
 
-test "Uc_Uc_Ip" {
+test "Uc_Uc_Ip layout" {
     var lv: c.Uc_Uc_Ip = undefined;
     try testing.expectSize(c.Uc_Uc_Ip, ABISELECT(16, 8));
     try testing.expectAlign(c.Uc_Uc_Ip, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 1);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
+}
+test "Uc_Uc_Ip C calls" {
+    try testing.expectEqual(c.ret_Uc_Uc_Ip(), .{ .v1 = 34, .v2 = 19, .v3 = null });
     try testing.expectOk(c.recv_Uc_Uc_Ip(.{ .v1 = 34, .v2 = 19, .v3 = null }));
 }
 // From T_Snnn_xba.c:6936:6956
@@ -1329,13 +1578,16 @@ test "Uc_Uc_Ip" {
 //   __tsi64 v3;
 // };
 
-test "Uc_Uc_L" {
+test "Uc_Uc_L layout" {
     var lv: c.Uc_Uc_L = undefined;
     try testing.expectSize(c.Uc_Uc_L, ABISELECT(16, 12));
     try testing.expectAlign(c.Uc_Uc_L, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 1);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
+}
+test "Uc_Uc_L C calls" {
+    try testing.expectEqual(c.ret_Uc_Uc_L(), .{ .v1 = 113, .v2 = 16, .v3 = 9440 });
     try testing.expectOk(c.recv_Uc_Uc_L(.{ .v1 = 113, .v2 = 16, .v3 = 9440 }));
 }
 // From T_Snnn_xba.c:6961:6981
@@ -1345,13 +1597,16 @@ test "Uc_Uc_L" {
 //   short v3;
 // };
 
-test "Uc_Uc_S" {
+test "Uc_Uc_S layout" {
     var lv: c.Uc_Uc_S = undefined;
     try testing.expectSize(c.Uc_Uc_S, 4);
     try testing.expectAlign(c.Uc_Uc_S, 2);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 1);
     try testing.expectFieldOffset(&lv, &lv.v3, 2);
+}
+test "Uc_Uc_S C calls" {
+    try testing.expectEqual(c.ret_Uc_Uc_S(), .{ .v1 = 110, .v2 = 68, .v3 = 32149 });
     try testing.expectOk(c.recv_Uc_Uc_S(.{ .v1 = 110, .v2 = 68, .v3 = 32149 }));
 }
 // From T_Snnn_xba.c:6986:7006
@@ -1361,13 +1616,16 @@ test "Uc_Uc_S" {
 //   unsigned char v3;
 // };
 
-test "Uc_Uc_Uc" {
+test "Uc_Uc_Uc layout" {
     var lv: c.Uc_Uc_Uc = undefined;
     try testing.expectSize(c.Uc_Uc_Uc, 3);
     try testing.expectAlign(c.Uc_Uc_Uc, 1);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 1);
     try testing.expectFieldOffset(&lv, &lv.v3, 2);
+}
+test "Uc_Uc_Uc C calls" {
+    try testing.expectEqual(c.ret_Uc_Uc_Uc(), .{ .v1 = 25, .v2 = 112, .v3 = 107 });
     try testing.expectOk(c.recv_Uc_Uc_Uc(.{ .v1 = 25, .v2 = 112, .v3 = 107 }));
 }
 // From T_Snnn_xba.c:7011:7031
@@ -1377,13 +1635,16 @@ test "Uc_Uc_Uc" {
 //   unsigned int v3;
 // };
 
-test "Uc_Uc_Ui" {
+test "Uc_Uc_Ui layout" {
     var lv: c.Uc_Uc_Ui = undefined;
     try testing.expectSize(c.Uc_Uc_Ui, 8);
     try testing.expectAlign(c.Uc_Uc_Ui, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 1);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
+}
+test "Uc_Uc_Ui C calls" {
+    try testing.expectEqual(c.ret_Uc_Uc_Ui(), .{ .v1 = 79, .v2 = 65, .v3 = 18992 });
     try testing.expectOk(c.recv_Uc_Uc_Ui(.{ .v1 = 79, .v2 = 65, .v3 = 18992 }));
 }
 // From T_Snnn_xba.c:7036:7056
@@ -1393,13 +1654,16 @@ test "Uc_Uc_Ui" {
 //   __tsu64 v3;
 // };
 
-test "Uc_Uc_Ul" {
+test "Uc_Uc_Ul layout" {
     var lv: c.Uc_Uc_Ul = undefined;
     try testing.expectSize(c.Uc_Uc_Ul, ABISELECT(16, 12));
     try testing.expectAlign(c.Uc_Uc_Ul, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 1);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
+}
+test "Uc_Uc_Ul C calls" {
+    try testing.expectEqual(c.ret_Uc_Uc_Ul(), .{ .v1 = 119, .v2 = 105, .v3 = 14684 });
     try testing.expectOk(c.recv_Uc_Uc_Ul(.{ .v1 = 119, .v2 = 105, .v3 = 14684 }));
 }
 // From T_Snnn_xba.c:7061:7081
@@ -1409,13 +1673,16 @@ test "Uc_Uc_Ul" {
 //   unsigned short v3;
 // };
 
-test "Uc_Uc_Us" {
+test "Uc_Uc_Us layout" {
     var lv: c.Uc_Uc_Us = undefined;
     try testing.expectSize(c.Uc_Uc_Us, 4);
     try testing.expectAlign(c.Uc_Uc_Us, 2);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 1);
     try testing.expectFieldOffset(&lv, &lv.v3, 2);
+}
+test "Uc_Uc_Us C calls" {
+    try testing.expectEqual(c.ret_Uc_Uc_Us(), .{ .v1 = 35, .v2 = 94, .v3 = 17513 });
     try testing.expectOk(c.recv_Uc_Uc_Us(.{ .v1 = 35, .v2 = 94, .v3 = 17513 }));
 }
 // From T_Snnn_xba.c:7086:7106
@@ -1425,13 +1692,16 @@ test "Uc_Uc_Us" {
 //   void *v3;
 // };
 
-test "Uc_Uc_Vp" {
+test "Uc_Uc_Vp layout" {
     var lv: c.Uc_Uc_Vp = undefined;
     try testing.expectSize(c.Uc_Uc_Vp, ABISELECT(16, 8));
     try testing.expectAlign(c.Uc_Uc_Vp, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 1);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
+}
+test "Uc_Uc_Vp C calls" {
+    try testing.expectEqual(c.ret_Uc_Uc_Vp(), .{ .v1 = 16, .v2 = 101, .v3 = null });
     try testing.expectOk(c.recv_Uc_Uc_Vp(.{ .v1 = 16, .v2 = 101, .v3 = null }));
 }
 // From T_Snnn_xba.c:7111:7129
@@ -1440,12 +1710,15 @@ test "Uc_Uc_Vp" {
 //   unsigned int v2;
 // };
 
-test "Uc_Ui" {
+test "Uc_Ui layout" {
     var lv: c.Uc_Ui = undefined;
     try testing.expectSize(c.Uc_Ui, 8);
     try testing.expectAlign(c.Uc_Ui, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
+}
+test "Uc_Ui C calls" {
+    try testing.expectEqual(c.ret_Uc_Ui(), .{ .v1 = 53, .v2 = 22835 });
     try testing.expectOk(c.recv_Uc_Ui(.{ .v1 = 53, .v2 = 22835 }));
 }
 // From T_Snnn_xba.c:7858:7878
@@ -1455,13 +1728,16 @@ test "Uc_Ui" {
 //   char v3;
 // };
 
-test "Uc_Ui_C" {
+test "Uc_Ui_C layout" {
     var lv: c.Uc_Ui_C = undefined;
     try testing.expectSize(c.Uc_Ui_C, 12);
     try testing.expectAlign(c.Uc_Ui_C, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Uc_Ui_C C calls" {
+    try testing.expectEqual(c.ret_Uc_Ui_C(), .{ .v1 = 98, .v2 = 13999, .v3 = 1 });
     try testing.expectOk(c.recv_Uc_Ui_C(.{ .v1 = 98, .v2 = 13999, .v3 = 1 }));
 }
 // From T_Snnn_xba.c:7883:7903
@@ -1471,13 +1747,16 @@ test "Uc_Ui_C" {
 //   double v3;
 // };
 
-test "Uc_Ui_D" {
+test "Uc_Ui_D layout" {
     var lv: c.Uc_Ui_D = undefined;
     try testing.expectSize(c.Uc_Ui_D, 16);
     try testing.expectAlign(c.Uc_Ui_D, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Uc_Ui_D C calls" {
+    try testing.expectEqual(c.ret_Uc_Ui_D(), .{ .v1 = 19, .v2 = 212, .v3 = 4.5 });
     try testing.expectOk(c.recv_Uc_Ui_D(.{ .v1 = 19, .v2 = 212, .v3 = 4.5 }));
 }
 // From T_Snnn_xba.c:7908:7928
@@ -1487,13 +1766,16 @@ test "Uc_Ui_D" {
 //   float v3;
 // };
 
-test "Uc_Ui_F" {
+test "Uc_Ui_F layout" {
     var lv: c.Uc_Ui_F = undefined;
     try testing.expectSize(c.Uc_Ui_F, 12);
     try testing.expectAlign(c.Uc_Ui_F, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Uc_Ui_F C calls" {
+    try testing.expectEqual(c.ret_Uc_Ui_F(), .{ .v1 = 109, .v2 = 22586, .v3 = 0.875 });
     try testing.expectOk(c.recv_Uc_Ui_F(.{ .v1 = 109, .v2 = 22586, .v3 = 0.875 }));
 }
 // From T_Snnn_xba.c:7933:7953
@@ -1503,13 +1785,16 @@ test "Uc_Ui_F" {
 //   int v3;
 // };
 
-test "Uc_Ui_I" {
+test "Uc_Ui_I layout" {
     var lv: c.Uc_Ui_I = undefined;
     try testing.expectSize(c.Uc_Ui_I, 12);
     try testing.expectAlign(c.Uc_Ui_I, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Uc_Ui_I C calls" {
+    try testing.expectEqual(c.ret_Uc_Ui_I(), .{ .v1 = 69, .v2 = 96, .v3 = 11656 });
     try testing.expectOk(c.recv_Uc_Ui_I(.{ .v1 = 69, .v2 = 96, .v3 = 11656 }));
 }
 // From T_Snnn_xba.c:7958:7978
@@ -1519,13 +1804,16 @@ test "Uc_Ui_I" {
 //   int *v3;
 // };
 
-test "Uc_Ui_Ip" {
+test "Uc_Ui_Ip layout" {
     var lv: c.Uc_Ui_Ip = undefined;
     try testing.expectSize(c.Uc_Ui_Ip, ABISELECT(16, 12));
     try testing.expectAlign(c.Uc_Ui_Ip, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Uc_Ui_Ip C calls" {
+    try testing.expectEqual(c.ret_Uc_Ui_Ip(), .{ .v1 = 100, .v2 = 23903, .v3 = null });
     try testing.expectOk(c.recv_Uc_Ui_Ip(.{ .v1 = 100, .v2 = 23903, .v3 = null }));
 }
 // From T_Snnn_xba.c:7983:8003
@@ -1535,13 +1823,16 @@ test "Uc_Ui_Ip" {
 //   __tsi64 v3;
 // };
 
-test "Uc_Ui_L" {
+test "Uc_Ui_L layout" {
     var lv: c.Uc_Ui_L = undefined;
     try testing.expectSize(c.Uc_Ui_L, 16);
     try testing.expectAlign(c.Uc_Ui_L, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Uc_Ui_L C calls" {
+    try testing.expectEqual(c.ret_Uc_Ui_L(), .{ .v1 = 13, .v2 = 17433, .v3 = 23126 });
     try testing.expectOk(c.recv_Uc_Ui_L(.{ .v1 = 13, .v2 = 17433, .v3 = 23126 }));
 }
 // From T_Snnn_xba.c:8008:8028
@@ -1551,13 +1842,16 @@ test "Uc_Ui_L" {
 //   short v3;
 // };
 
-test "Uc_Ui_S" {
+test "Uc_Ui_S layout" {
     var lv: c.Uc_Ui_S = undefined;
     try testing.expectSize(c.Uc_Ui_S, 12);
     try testing.expectAlign(c.Uc_Ui_S, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Uc_Ui_S C calls" {
+    try testing.expectEqual(c.ret_Uc_Ui_S(), .{ .v1 = 64, .v2 = 8972, .v3 = 23697 });
     try testing.expectOk(c.recv_Uc_Ui_S(.{ .v1 = 64, .v2 = 8972, .v3 = 23697 }));
 }
 // From T_Snnn_xba.c:8033:8053
@@ -1567,13 +1861,16 @@ test "Uc_Ui_S" {
 //   unsigned char v3;
 // };
 
-test "Uc_Ui_Uc" {
+test "Uc_Ui_Uc layout" {
     var lv: c.Uc_Ui_Uc = undefined;
     try testing.expectSize(c.Uc_Ui_Uc, 12);
     try testing.expectAlign(c.Uc_Ui_Uc, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Uc_Ui_Uc C calls" {
+    try testing.expectEqual(c.ret_Uc_Ui_Uc(), .{ .v1 = 64, .v2 = 20781, .v3 = 46 });
     try testing.expectOk(c.recv_Uc_Ui_Uc(.{ .v1 = 64, .v2 = 20781, .v3 = 46 }));
 }
 // From T_Snnn_xba.c:8058:8078
@@ -1583,13 +1880,16 @@ test "Uc_Ui_Uc" {
 //   unsigned int v3;
 // };
 
-test "Uc_Ui_Ui" {
+test "Uc_Ui_Ui layout" {
     var lv: c.Uc_Ui_Ui = undefined;
     try testing.expectSize(c.Uc_Ui_Ui, 12);
     try testing.expectAlign(c.Uc_Ui_Ui, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Uc_Ui_Ui C calls" {
+    try testing.expectEqual(c.ret_Uc_Ui_Ui(), .{ .v1 = 12, .v2 = 30965, .v3 = 7658 });
     try testing.expectOk(c.recv_Uc_Ui_Ui(.{ .v1 = 12, .v2 = 30965, .v3 = 7658 }));
 }
 // From T_Snnn_xba.c:8083:8103
@@ -1599,13 +1899,16 @@ test "Uc_Ui_Ui" {
 //   __tsu64 v3;
 // };
 
-test "Uc_Ui_Ul" {
+test "Uc_Ui_Ul layout" {
     var lv: c.Uc_Ui_Ul = undefined;
     try testing.expectSize(c.Uc_Ui_Ul, 16);
     try testing.expectAlign(c.Uc_Ui_Ul, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Uc_Ui_Ul C calls" {
+    try testing.expectEqual(c.ret_Uc_Ui_Ul(), .{ .v1 = 102, .v2 = 15727, .v3 = 6033 });
     try testing.expectOk(c.recv_Uc_Ui_Ul(.{ .v1 = 102, .v2 = 15727, .v3 = 6033 }));
 }
 // From T_Snnn_xba.c:8108:8128
@@ -1615,13 +1918,16 @@ test "Uc_Ui_Ul" {
 //   unsigned short v3;
 // };
 
-test "Uc_Ui_Us" {
+test "Uc_Ui_Us layout" {
     var lv: c.Uc_Ui_Us = undefined;
     try testing.expectSize(c.Uc_Ui_Us, 12);
     try testing.expectAlign(c.Uc_Ui_Us, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Uc_Ui_Us C calls" {
+    try testing.expectEqual(c.ret_Uc_Ui_Us(), .{ .v1 = 69, .v2 = 2117, .v3 = 24973 });
     try testing.expectOk(c.recv_Uc_Ui_Us(.{ .v1 = 69, .v2 = 2117, .v3 = 24973 }));
 }
 // From T_Snnn_xba.c:8133:8153
@@ -1631,13 +1937,16 @@ test "Uc_Ui_Us" {
 //   void *v3;
 // };
 
-test "Uc_Ui_Vp" {
+test "Uc_Ui_Vp layout" {
     var lv: c.Uc_Ui_Vp = undefined;
     try testing.expectSize(c.Uc_Ui_Vp, ABISELECT(16, 12));
     try testing.expectAlign(c.Uc_Ui_Vp, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Uc_Ui_Vp C calls" {
+    try testing.expectEqual(c.ret_Uc_Ui_Vp(), .{ .v1 = 79, .v2 = 1180, .v3 = null });
     try testing.expectOk(c.recv_Uc_Ui_Vp(.{ .v1 = 79, .v2 = 1180, .v3 = null }));
 }
 // From T_Snnn_xba.c:8158:8176
@@ -1646,12 +1955,15 @@ test "Uc_Ui_Vp" {
 //   __tsu64 v2;
 // };
 
-test "Uc_Ul" {
+test "Uc_Ul layout" {
     var lv: c.Uc_Ul = undefined;
     try testing.expectSize(c.Uc_Ul, ABISELECT(16, 12));
     try testing.expectAlign(c.Uc_Ul, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
+}
+test "Uc_Ul C calls" {
+    try testing.expectEqual(c.ret_Uc_Ul(), .{ .v1 = 60, .v2 = 26383 });
     try testing.expectOk(c.recv_Uc_Ul(.{ .v1 = 60, .v2 = 26383 }));
 }
 // From T_Snnn_xba.c:8905:8925
@@ -1661,13 +1973,16 @@ test "Uc_Ul" {
 //   char v3;
 // };
 
-test "Uc_Ul_C" {
+test "Uc_Ul_C layout" {
     var lv: c.Uc_Ul_C = undefined;
     try testing.expectSize(c.Uc_Ul_C, ABISELECT(24, 16));
     try testing.expectAlign(c.Uc_Ul_C, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Uc_Ul_C C calls" {
+    try testing.expectEqual(c.ret_Uc_Ul_C(), .{ .v1 = 87, .v2 = 5320, .v3 = 119 });
     try testing.expectOk(c.recv_Uc_Ul_C(.{ .v1 = 87, .v2 = 5320, .v3 = 119 }));
 }
 // From T_Snnn_xba.c:8930:8950
@@ -1677,13 +1992,16 @@ test "Uc_Ul_C" {
 //   double v3;
 // };
 
-test "Uc_Ul_D" {
+test "Uc_Ul_D layout" {
     var lv: c.Uc_Ul_D = undefined;
     try testing.expectSize(c.Uc_Ul_D, ABISELECT(24, 20));
     try testing.expectAlign(c.Uc_Ul_D, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Uc_Ul_D C calls" {
+    try testing.expectEqual(c.ret_Uc_Ul_D(), .{ .v1 = 109, .v2 = 24058, .v3 = -0.25 });
     try testing.expectOk(c.recv_Uc_Ul_D(.{ .v1 = 109, .v2 = 24058, .v3 = -0.25 }));
 }
 // From T_Snnn_xba.c:8955:8975
@@ -1693,13 +2011,16 @@ test "Uc_Ul_D" {
 //   float v3;
 // };
 
-test "Uc_Ul_F" {
+test "Uc_Ul_F layout" {
     var lv: c.Uc_Ul_F = undefined;
     try testing.expectSize(c.Uc_Ul_F, ABISELECT(24, 16));
     try testing.expectAlign(c.Uc_Ul_F, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Uc_Ul_F C calls" {
+    try testing.expectEqual(c.ret_Uc_Ul_F(), .{ .v1 = 89, .v2 = 570, .v3 = -0.25 });
     try testing.expectOk(c.recv_Uc_Ul_F(.{ .v1 = 89, .v2 = 570, .v3 = -0.25 }));
 }
 // From T_Snnn_xba.c:8980:9000
@@ -1709,13 +2030,16 @@ test "Uc_Ul_F" {
 //   int v3;
 // };
 
-test "Uc_Ul_I" {
+test "Uc_Ul_I layout" {
     var lv: c.Uc_Ul_I = undefined;
     try testing.expectSize(c.Uc_Ul_I, ABISELECT(24, 16));
     try testing.expectAlign(c.Uc_Ul_I, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Uc_Ul_I C calls" {
+    try testing.expectEqual(c.ret_Uc_Ul_I(), .{ .v1 = 20, .v2 = 18844, .v3 = 22972 });
     try testing.expectOk(c.recv_Uc_Ul_I(.{ .v1 = 20, .v2 = 18844, .v3 = 22972 }));
 }
 // From T_Snnn_xba.c:9005:9025
@@ -1725,13 +2049,16 @@ test "Uc_Ul_I" {
 //   int *v3;
 // };
 
-test "Uc_Ul_Ip" {
+test "Uc_Ul_Ip layout" {
     var lv: c.Uc_Ul_Ip = undefined;
     try testing.expectSize(c.Uc_Ul_Ip, ABISELECT(24, 16));
     try testing.expectAlign(c.Uc_Ul_Ip, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Uc_Ul_Ip C calls" {
+    try testing.expectEqual(c.ret_Uc_Ul_Ip(), .{ .v1 = 87, .v2 = 14218, .v3 = null });
     try testing.expectOk(c.recv_Uc_Ul_Ip(.{ .v1 = 87, .v2 = 14218, .v3 = null }));
 }
 // From T_Snnn_xba.c:9030:9050
@@ -1741,13 +2068,16 @@ test "Uc_Ul_Ip" {
 //   __tsi64 v3;
 // };
 
-test "Uc_Ul_L" {
+test "Uc_Ul_L layout" {
     var lv: c.Uc_Ul_L = undefined;
     try testing.expectSize(c.Uc_Ul_L, ABISELECT(24, 20));
     try testing.expectAlign(c.Uc_Ul_L, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Uc_Ul_L C calls" {
+    try testing.expectEqual(c.ret_Uc_Ul_L(), .{ .v1 = 99, .v2 = 23984, .v3 = 30703 });
     try testing.expectOk(c.recv_Uc_Ul_L(.{ .v1 = 99, .v2 = 23984, .v3 = 30703 }));
 }
 // From T_Snnn_xba.c:9055:9075
@@ -1757,13 +2087,16 @@ test "Uc_Ul_L" {
 //   short v3;
 // };
 
-test "Uc_Ul_S" {
+test "Uc_Ul_S layout" {
     var lv: c.Uc_Ul_S = undefined;
     try testing.expectSize(c.Uc_Ul_S, ABISELECT(24, 16));
     try testing.expectAlign(c.Uc_Ul_S, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Uc_Ul_S C calls" {
+    try testing.expectEqual(c.ret_Uc_Ul_S(), .{ .v1 = 29, .v2 = 13746, .v3 = 28959 });
     try testing.expectOk(c.recv_Uc_Ul_S(.{ .v1 = 29, .v2 = 13746, .v3 = 28959 }));
 }
 // From T_Snnn_xba.c:9080:9100
@@ -1773,13 +2106,16 @@ test "Uc_Ul_S" {
 //   unsigned char v3;
 // };
 
-test "Uc_Ul_Uc" {
+test "Uc_Ul_Uc layout" {
     var lv: c.Uc_Ul_Uc = undefined;
     try testing.expectSize(c.Uc_Ul_Uc, ABISELECT(24, 16));
     try testing.expectAlign(c.Uc_Ul_Uc, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Uc_Ul_Uc C calls" {
+    try testing.expectEqual(c.ret_Uc_Ul_Uc(), .{ .v1 = 2, .v2 = 27155, .v3 = 64 });
     try testing.expectOk(c.recv_Uc_Ul_Uc(.{ .v1 = 2, .v2 = 27155, .v3 = 64 }));
 }
 // From T_Snnn_xba.c:9105:9125
@@ -1789,13 +2125,16 @@ test "Uc_Ul_Uc" {
 //   unsigned int v3;
 // };
 
-test "Uc_Ul_Ui" {
+test "Uc_Ul_Ui layout" {
     var lv: c.Uc_Ul_Ui = undefined;
     try testing.expectSize(c.Uc_Ul_Ui, ABISELECT(24, 16));
     try testing.expectAlign(c.Uc_Ul_Ui, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Uc_Ul_Ui C calls" {
+    try testing.expectEqual(c.ret_Uc_Ul_Ui(), .{ .v1 = 44, .v2 = 8089, .v3 = 20884 });
     try testing.expectOk(c.recv_Uc_Ul_Ui(.{ .v1 = 44, .v2 = 8089, .v3 = 20884 }));
 }
 // From T_Snnn_xba.c:9130:9150
@@ -1805,13 +2144,16 @@ test "Uc_Ul_Ui" {
 //   __tsu64 v3;
 // };
 
-test "Uc_Ul_Ul" {
+test "Uc_Ul_Ul layout" {
     var lv: c.Uc_Ul_Ul = undefined;
     try testing.expectSize(c.Uc_Ul_Ul, ABISELECT(24, 20));
     try testing.expectAlign(c.Uc_Ul_Ul, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Uc_Ul_Ul C calls" {
+    try testing.expectEqual(c.ret_Uc_Ul_Ul(), .{ .v1 = 111, .v2 = 25364, .v3 = 414 });
     try testing.expectOk(c.recv_Uc_Ul_Ul(.{ .v1 = 111, .v2 = 25364, .v3 = 414 }));
 }
 // From T_Snnn_xba.c:9155:9175
@@ -1821,13 +2163,16 @@ test "Uc_Ul_Ul" {
 //   unsigned short v3;
 // };
 
-test "Uc_Ul_Us" {
+test "Uc_Ul_Us layout" {
     var lv: c.Uc_Ul_Us = undefined;
     try testing.expectSize(c.Uc_Ul_Us, ABISELECT(24, 16));
     try testing.expectAlign(c.Uc_Ul_Us, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Uc_Ul_Us C calls" {
+    try testing.expectEqual(c.ret_Uc_Ul_Us(), .{ .v1 = 45, .v2 = 30720, .v3 = 19132 });
     try testing.expectOk(c.recv_Uc_Ul_Us(.{ .v1 = 45, .v2 = 30720, .v3 = 19132 }));
 }
 // From T_Snnn_xba.c:9180:9200
@@ -1837,13 +2182,16 @@ test "Uc_Ul_Us" {
 //   void *v3;
 // };
 
-test "Uc_Ul_Vp" {
+test "Uc_Ul_Vp layout" {
     var lv: c.Uc_Ul_Vp = undefined;
     try testing.expectSize(c.Uc_Ul_Vp, ABISELECT(24, 16));
     try testing.expectAlign(c.Uc_Ul_Vp, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Uc_Ul_Vp C calls" {
+    try testing.expectEqual(c.ret_Uc_Ul_Vp(), .{ .v1 = 31, .v2 = 15881, .v3 = null });
     try testing.expectOk(c.recv_Uc_Ul_Vp(.{ .v1 = 31, .v2 = 15881, .v3 = null }));
 }
 // From T_Snnn_xba.c:9205:9223
@@ -1852,12 +2200,15 @@ test "Uc_Ul_Vp" {
 //   unsigned short v2;
 // };
 
-test "Uc_Us" {
+test "Uc_Us layout" {
     var lv: c.Uc_Us = undefined;
     try testing.expectSize(c.Uc_Us, 4);
     try testing.expectAlign(c.Uc_Us, 2);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
+}
+test "Uc_Us C calls" {
+    try testing.expectEqual(c.ret_Uc_Us(), .{ .v1 = 11, .v2 = 20664 });
     try testing.expectOk(c.recv_Uc_Us(.{ .v1 = 11, .v2 = 20664 }));
 }
 // From T_Snnn_xba.c:9952:9972
@@ -1867,13 +2218,16 @@ test "Uc_Us" {
 //   char v3;
 // };
 
-test "Uc_Us_C" {
+test "Uc_Us_C layout" {
     var lv: c.Uc_Us_C = undefined;
     try testing.expectSize(c.Uc_Us_C, 6);
     try testing.expectAlign(c.Uc_Us_C, 2);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
+}
+test "Uc_Us_C C calls" {
+    try testing.expectEqual(c.ret_Uc_Us_C(), .{ .v1 = 66, .v2 = 16863, .v3 = 105 });
     try testing.expectOk(c.recv_Uc_Us_C(.{ .v1 = 66, .v2 = 16863, .v3 = 105 }));
 }
 // From T_Snnn_xba.c:9977:9997
@@ -1883,13 +2237,16 @@ test "Uc_Us_C" {
 //   double v3;
 // };
 
-test "Uc_Us_D" {
+test "Uc_Us_D layout" {
     var lv: c.Uc_Us_D = undefined;
     try testing.expectSize(c.Uc_Us_D, ABISELECT(16, 12));
     try testing.expectAlign(c.Uc_Us_D, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
+}
+test "Uc_Us_D C calls" {
+    try testing.expectEqual(c.ret_Uc_Us_D(), .{ .v1 = 109, .v2 = 4777, .v3 = 0.875 });
     try testing.expectOk(c.recv_Uc_Us_D(.{ .v1 = 109, .v2 = 4777, .v3 = 0.875 }));
 }
 // From T_Snnn_xba.c:10002:10022
@@ -1899,13 +2256,16 @@ test "Uc_Us_D" {
 //   float v3;
 // };
 
-test "Uc_Us_F" {
+test "Uc_Us_F layout" {
     var lv: c.Uc_Us_F = undefined;
     try testing.expectSize(c.Uc_Us_F, 8);
     try testing.expectAlign(c.Uc_Us_F, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
+}
+test "Uc_Us_F C calls" {
+    try testing.expectEqual(c.ret_Uc_Us_F(), .{ .v1 = 56, .v2 = 24913, .v3 = 0.875 });
     try testing.expectOk(c.recv_Uc_Us_F(.{ .v1 = 56, .v2 = 24913, .v3 = 0.875 }));
 }
 // From T_Snnn_xba.c:10027:10047
@@ -1915,13 +2275,16 @@ test "Uc_Us_F" {
 //   int v3;
 // };
 
-test "Uc_Us_I" {
+test "Uc_Us_I layout" {
     var lv: c.Uc_Us_I = undefined;
     try testing.expectSize(c.Uc_Us_I, 8);
     try testing.expectAlign(c.Uc_Us_I, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
+}
+test "Uc_Us_I C calls" {
+    try testing.expectEqual(c.ret_Uc_Us_I(), .{ .v1 = 68, .v2 = 16847, .v3 = 29863 });
     try testing.expectOk(c.recv_Uc_Us_I(.{ .v1 = 68, .v2 = 16847, .v3 = 29863 }));
 }
 // From T_Snnn_xba.c:10052:10072
@@ -1931,13 +2294,16 @@ test "Uc_Us_I" {
 //   int *v3;
 // };
 
-test "Uc_Us_Ip" {
+test "Uc_Us_Ip layout" {
     var lv: c.Uc_Us_Ip = undefined;
     try testing.expectSize(c.Uc_Us_Ip, ABISELECT(16, 8));
     try testing.expectAlign(c.Uc_Us_Ip, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
+}
+test "Uc_Us_Ip C calls" {
+    try testing.expectEqual(c.ret_Uc_Us_Ip(), .{ .v1 = 104, .v2 = 19355, .v3 = null });
     try testing.expectOk(c.recv_Uc_Us_Ip(.{ .v1 = 104, .v2 = 19355, .v3 = null }));
 }
 // From T_Snnn_xba.c:10077:10097
@@ -1947,13 +2313,16 @@ test "Uc_Us_Ip" {
 //   __tsi64 v3;
 // };
 
-test "Uc_Us_L" {
+test "Uc_Us_L layout" {
     var lv: c.Uc_Us_L = undefined;
     try testing.expectSize(c.Uc_Us_L, ABISELECT(16, 12));
     try testing.expectAlign(c.Uc_Us_L, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
+}
+test "Uc_Us_L C calls" {
+    try testing.expectEqual(c.ret_Uc_Us_L(), .{ .v1 = 118, .v2 = 31733, .v3 = 29196 });
     try testing.expectOk(c.recv_Uc_Us_L(.{ .v1 = 118, .v2 = 31733, .v3 = 29196 }));
 }
 // From T_Snnn_xba.c:10102:10122
@@ -1963,13 +2332,16 @@ test "Uc_Us_L" {
 //   short v3;
 // };
 
-test "Uc_Us_S" {
+test "Uc_Us_S layout" {
     var lv: c.Uc_Us_S = undefined;
     try testing.expectSize(c.Uc_Us_S, 6);
     try testing.expectAlign(c.Uc_Us_S, 2);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
+}
+test "Uc_Us_S C calls" {
+    try testing.expectEqual(c.ret_Uc_Us_S(), .{ .v1 = 58, .v2 = 1589, .v3 = 9859 });
     try testing.expectOk(c.recv_Uc_Us_S(.{ .v1 = 58, .v2 = 1589, .v3 = 9859 }));
 }
 // From T_Snnn_xba.c:10127:10147
@@ -1979,13 +2351,16 @@ test "Uc_Us_S" {
 //   unsigned char v3;
 // };
 
-test "Uc_Us_Uc" {
+test "Uc_Us_Uc layout" {
     var lv: c.Uc_Us_Uc = undefined;
     try testing.expectSize(c.Uc_Us_Uc, 6);
     try testing.expectAlign(c.Uc_Us_Uc, 2);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
+}
+test "Uc_Us_Uc C calls" {
+    try testing.expectEqual(c.ret_Uc_Us_Uc(), .{ .v1 = 25, .v2 = 20741, .v3 = 20 });
     try testing.expectOk(c.recv_Uc_Us_Uc(.{ .v1 = 25, .v2 = 20741, .v3 = 20 }));
 }
 // From T_Snnn_xba.c:10152:10172
@@ -1995,13 +2370,16 @@ test "Uc_Us_Uc" {
 //   unsigned int v3;
 // };
 
-test "Uc_Us_Ui" {
+test "Uc_Us_Ui layout" {
     var lv: c.Uc_Us_Ui = undefined;
     try testing.expectSize(c.Uc_Us_Ui, 8);
     try testing.expectAlign(c.Uc_Us_Ui, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
+}
+test "Uc_Us_Ui C calls" {
+    try testing.expectEqual(c.ret_Uc_Us_Ui(), .{ .v1 = 15, .v2 = 22487, .v3 = 26117 });
     try testing.expectOk(c.recv_Uc_Us_Ui(.{ .v1 = 15, .v2 = 22487, .v3 = 26117 }));
 }
 // From T_Snnn_xba.c:10177:10197
@@ -2011,13 +2389,16 @@ test "Uc_Us_Ui" {
 //   __tsu64 v3;
 // };
 
-test "Uc_Us_Ul" {
+test "Uc_Us_Ul layout" {
     var lv: c.Uc_Us_Ul = undefined;
     try testing.expectSize(c.Uc_Us_Ul, ABISELECT(16, 12));
     try testing.expectAlign(c.Uc_Us_Ul, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
+}
+test "Uc_Us_Ul C calls" {
+    try testing.expectEqual(c.ret_Uc_Us_Ul(), .{ .v1 = 23, .v2 = 17738, .v3 = 19845 });
     try testing.expectOk(c.recv_Uc_Us_Ul(.{ .v1 = 23, .v2 = 17738, .v3 = 19845 }));
 }
 // From T_Snnn_xba.c:10202:10222
@@ -2027,13 +2408,16 @@ test "Uc_Us_Ul" {
 //   unsigned short v3;
 // };
 
-test "Uc_Us_Us" {
+test "Uc_Us_Us layout" {
     var lv: c.Uc_Us_Us = undefined;
     try testing.expectSize(c.Uc_Us_Us, 6);
     try testing.expectAlign(c.Uc_Us_Us, 2);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
+}
+test "Uc_Us_Us C calls" {
+    try testing.expectEqual(c.ret_Uc_Us_Us(), .{ .v1 = 100, .v2 = 4864, .v3 = 3212 });
     try testing.expectOk(c.recv_Uc_Us_Us(.{ .v1 = 100, .v2 = 4864, .v3 = 3212 }));
 }
 // From T_Snnn_xba.c:10227:10247
@@ -2043,13 +2427,16 @@ test "Uc_Us_Us" {
 //   void *v3;
 // };
 
-test "Uc_Us_Vp" {
+test "Uc_Us_Vp layout" {
     var lv: c.Uc_Us_Vp = undefined;
     try testing.expectSize(c.Uc_Us_Vp, ABISELECT(16, 8));
     try testing.expectAlign(c.Uc_Us_Vp, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
+}
+test "Uc_Us_Vp C calls" {
+    try testing.expectEqual(c.ret_Uc_Us_Vp(), .{ .v1 = 63, .v2 = 3507, .v3 = null });
     try testing.expectOk(c.recv_Uc_Us_Vp(.{ .v1 = 63, .v2 = 3507, .v3 = null }));
 }
 // From T_Snnn_xba.c:10252:10270
@@ -2058,12 +2445,15 @@ test "Uc_Us_Vp" {
 //   void *v2;
 // };
 
-test "Uc_Vp" {
+test "Uc_Vp layout" {
     var lv: c.Uc_Vp = undefined;
     try testing.expectSize(c.Uc_Vp, ABISELECT(16, 8));
     try testing.expectAlign(c.Uc_Vp, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
+}
+test "Uc_Vp C calls" {
+    try testing.expectEqual(c.ret_Uc_Vp(), .{ .v1 = 56, .v2 = null });
     try testing.expectOk(c.recv_Uc_Vp(.{ .v1 = 56, .v2 = null }));
 }
 // From T_Snnn_xba.c:10999:11019
@@ -2073,13 +2463,16 @@ test "Uc_Vp" {
 //   char v3;
 // };
 
-test "Uc_Vp_C" {
+test "Uc_Vp_C layout" {
     var lv: c.Uc_Vp_C = undefined;
     try testing.expectSize(c.Uc_Vp_C, ABISELECT(24, 12));
     try testing.expectAlign(c.Uc_Vp_C, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Uc_Vp_C C calls" {
+    try testing.expectEqual(c.ret_Uc_Vp_C(), .{ .v1 = 76, .v2 = null, .v3 = 63 });
     try testing.expectOk(c.recv_Uc_Vp_C(.{ .v1 = 76, .v2 = null, .v3 = 63 }));
 }
 // From T_Snnn_xba.c:11024:11044
@@ -2089,13 +2482,16 @@ test "Uc_Vp_C" {
 //   double v3;
 // };
 
-test "Uc_Vp_D" {
+test "Uc_Vp_D layout" {
     var lv: c.Uc_Vp_D = undefined;
     try testing.expectSize(c.Uc_Vp_D, ABISELECT(24, 16));
     try testing.expectAlign(c.Uc_Vp_D, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Uc_Vp_D C calls" {
+    try testing.expectEqual(c.ret_Uc_Vp_D(), .{ .v1 = 111, .v2 = null, .v3 = 0.875 });
     try testing.expectOk(c.recv_Uc_Vp_D(.{ .v1 = 111, .v2 = null, .v3 = 0.875 }));
 }
 // From T_Snnn_xba.c:11049:11069
@@ -2105,13 +2501,16 @@ test "Uc_Vp_D" {
 //   float v3;
 // };
 
-test "Uc_Vp_F" {
+test "Uc_Vp_F layout" {
     var lv: c.Uc_Vp_F = undefined;
     try testing.expectSize(c.Uc_Vp_F, ABISELECT(24, 12));
     try testing.expectAlign(c.Uc_Vp_F, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Uc_Vp_F C calls" {
+    try testing.expectEqual(c.ret_Uc_Vp_F(), .{ .v1 = 26, .v2 = null, .v3 = -2.125 });
     try testing.expectOk(c.recv_Uc_Vp_F(.{ .v1 = 26, .v2 = null, .v3 = -2.125 }));
 }
 // From T_Snnn_xba.c:11074:11094
@@ -2121,13 +2520,16 @@ test "Uc_Vp_F" {
 //   int v3;
 // };
 
-test "Uc_Vp_I" {
+test "Uc_Vp_I layout" {
     var lv: c.Uc_Vp_I = undefined;
     try testing.expectSize(c.Uc_Vp_I, ABISELECT(24, 12));
     try testing.expectAlign(c.Uc_Vp_I, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Uc_Vp_I C calls" {
+    try testing.expectEqual(c.ret_Uc_Vp_I(), .{ .v1 = 69, .v2 = null, .v3 = 31332 });
     try testing.expectOk(c.recv_Uc_Vp_I(.{ .v1 = 69, .v2 = null, .v3 = 31332 }));
 }
 // From T_Snnn_xba.c:11099:11119
@@ -2137,13 +2539,16 @@ test "Uc_Vp_I" {
 //   int *v3;
 // };
 
-test "Uc_Vp_Ip" {
+test "Uc_Vp_Ip layout" {
     var lv: c.Uc_Vp_Ip = undefined;
     try testing.expectSize(c.Uc_Vp_Ip, ABISELECT(24, 12));
     try testing.expectAlign(c.Uc_Vp_Ip, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Uc_Vp_Ip C calls" {
+    try testing.expectEqual(c.ret_Uc_Vp_Ip(), .{ .v1 = 125, .v2 = null, .v3 = null });
     try testing.expectOk(c.recv_Uc_Vp_Ip(.{ .v1 = 125, .v2 = null, .v3 = null }));
 }
 // From T_Snnn_xba.c:11124:11144
@@ -2153,13 +2558,16 @@ test "Uc_Vp_Ip" {
 //   __tsi64 v3;
 // };
 
-test "Uc_Vp_L" {
+test "Uc_Vp_L layout" {
     var lv: c.Uc_Vp_L = undefined;
     try testing.expectSize(c.Uc_Vp_L, ABISELECT(24, 16));
     try testing.expectAlign(c.Uc_Vp_L, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Uc_Vp_L C calls" {
+    try testing.expectEqual(c.ret_Uc_Vp_L(), .{ .v1 = 64, .v2 = null, .v3 = 243 });
     try testing.expectOk(c.recv_Uc_Vp_L(.{ .v1 = 64, .v2 = null, .v3 = 243 }));
 }
 // From T_Snnn_xba.c:11149:11169
@@ -2169,13 +2577,16 @@ test "Uc_Vp_L" {
 //   short v3;
 // };
 
-test "Uc_Vp_S" {
+test "Uc_Vp_S layout" {
     var lv: c.Uc_Vp_S = undefined;
     try testing.expectSize(c.Uc_Vp_S, ABISELECT(24, 12));
     try testing.expectAlign(c.Uc_Vp_S, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Uc_Vp_S C calls" {
+    try testing.expectEqual(c.ret_Uc_Vp_S(), .{ .v1 = 2, .v2 = null, .v3 = 25419 });
     try testing.expectOk(c.recv_Uc_Vp_S(.{ .v1 = 2, .v2 = null, .v3 = 25419 }));
 }
 // From T_Snnn_xba.c:11174:11194
@@ -2185,13 +2596,16 @@ test "Uc_Vp_S" {
 //   unsigned char v3;
 // };
 
-test "Uc_Vp_Uc" {
+test "Uc_Vp_Uc layout" {
     var lv: c.Uc_Vp_Uc = undefined;
     try testing.expectSize(c.Uc_Vp_Uc, ABISELECT(24, 12));
     try testing.expectAlign(c.Uc_Vp_Uc, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Uc_Vp_Uc C calls" {
+    try testing.expectEqual(c.ret_Uc_Vp_Uc(), .{ .v1 = 113, .v2 = null, .v3 = 51 });
     try testing.expectOk(c.recv_Uc_Vp_Uc(.{ .v1 = 113, .v2 = null, .v3 = 51 }));
 }
 // From T_Snnn_xba.c:11199:11219
@@ -2201,13 +2615,16 @@ test "Uc_Vp_Uc" {
 //   unsigned int v3;
 // };
 
-test "Uc_Vp_Ui" {
+test "Uc_Vp_Ui layout" {
     var lv: c.Uc_Vp_Ui = undefined;
     try testing.expectSize(c.Uc_Vp_Ui, ABISELECT(24, 12));
     try testing.expectAlign(c.Uc_Vp_Ui, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Uc_Vp_Ui C calls" {
+    try testing.expectEqual(c.ret_Uc_Vp_Ui(), .{ .v1 = 126, .v2 = null, .v3 = 438 });
     try testing.expectOk(c.recv_Uc_Vp_Ui(.{ .v1 = 126, .v2 = null, .v3 = 438 }));
 }
 // From T_Snnn_xba.c:11224:11244
@@ -2217,13 +2634,16 @@ test "Uc_Vp_Ui" {
 //   __tsu64 v3;
 // };
 
-test "Uc_Vp_Ul" {
+test "Uc_Vp_Ul layout" {
     var lv: c.Uc_Vp_Ul = undefined;
     try testing.expectSize(c.Uc_Vp_Ul, ABISELECT(24, 16));
     try testing.expectAlign(c.Uc_Vp_Ul, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Uc_Vp_Ul C calls" {
+    try testing.expectEqual(c.ret_Uc_Vp_Ul(), .{ .v1 = 42, .v2 = null, .v3 = 8304 });
     try testing.expectOk(c.recv_Uc_Vp_Ul(.{ .v1 = 42, .v2 = null, .v3 = 8304 }));
 }
 // From T_Snnn_xba.c:11249:11269
@@ -2233,13 +2653,16 @@ test "Uc_Vp_Ul" {
 //   unsigned short v3;
 // };
 
-test "Uc_Vp_Us" {
+test "Uc_Vp_Us layout" {
     var lv: c.Uc_Vp_Us = undefined;
     try testing.expectSize(c.Uc_Vp_Us, ABISELECT(24, 12));
     try testing.expectAlign(c.Uc_Vp_Us, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Uc_Vp_Us C calls" {
+    try testing.expectEqual(c.ret_Uc_Vp_Us(), .{ .v1 = 67, .v2 = null, .v3 = 32011 });
     try testing.expectOk(c.recv_Uc_Vp_Us(.{ .v1 = 67, .v2 = null, .v3 = 32011 }));
 }
 // From T_Snnn_xba.c:11274:11294
@@ -2249,13 +2672,16 @@ test "Uc_Vp_Us" {
 //   void *v3;
 // };
 
-test "Uc_Vp_Vp" {
+test "Uc_Vp_Vp layout" {
     var lv: c.Uc_Vp_Vp = undefined;
     try testing.expectSize(c.Uc_Vp_Vp, ABISELECT(24, 12));
     try testing.expectAlign(c.Uc_Vp_Vp, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Uc_Vp_Vp C calls" {
+    try testing.expectEqual(c.ret_Uc_Vp_Vp(), .{ .v1 = 63, .v2 = null, .v3 = null });
     try testing.expectOk(c.recv_Uc_Vp_Vp(.{ .v1 = 63, .v2 = null, .v3 = null }));
 }
 // From T_Snnn_xba.c:11299:11315
@@ -2263,11 +2689,14 @@ test "Uc_Vp_Vp" {
 //   unsigned int v1;
 // };
 
-test "Ui" {
+test "Ui layout" {
     var lv: c.Ui = undefined;
     try testing.expectSize(c.Ui, 4);
     try testing.expectAlign(c.Ui, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
+}
+test "Ui C calls" {
+    try testing.expectEqual(c.ret_Ui(), .{ .v1 = 21566 });
     try testing.expectOk(c.recv_Ui(.{ .v1 = 21566 }));
 }
 // From T_Snnn_xba.c:41620:41638
@@ -2276,12 +2705,15 @@ test "Ui" {
 //   char v2;
 // };
 
-test "Ui_C" {
+test "Ui_C layout" {
     var lv: c.Ui_C = undefined;
     try testing.expectSize(c.Ui_C, 8);
     try testing.expectAlign(c.Ui_C, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
+}
+test "Ui_C C calls" {
+    try testing.expectEqual(c.ret_Ui_C(), .{ .v1 = 5325, .v2 = 119 });
     try testing.expectOk(c.recv_Ui_C(.{ .v1 = 5325, .v2 = 119 }));
 }
 // From T_Snnn_xba.c:42367:42387
@@ -2291,13 +2723,16 @@ test "Ui_C" {
 //   char v3;
 // };
 
-test "Ui_C_C" {
+test "Ui_C_C layout" {
     var lv: c.Ui_C_C = undefined;
     try testing.expectSize(c.Ui_C_C, 8);
     try testing.expectAlign(c.Ui_C_C, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 5);
+}
+test "Ui_C_C C calls" {
+    try testing.expectEqual(c.ret_Ui_C_C(), .{ .v1 = 2074, .v2 = 30, .v3 = 98 });
     try testing.expectOk(c.recv_Ui_C_C(.{ .v1 = 2074, .v2 = 30, .v3 = 98 }));
 }
 // From T_Snnn_xba.c:42392:42412
@@ -2307,13 +2742,16 @@ test "Ui_C_C" {
 //   double v3;
 // };
 
-test "Ui_C_D" {
+test "Ui_C_D layout" {
     var lv: c.Ui_C_D = undefined;
     try testing.expectSize(c.Ui_C_D, 16);
     try testing.expectAlign(c.Ui_C_D, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_C_D C calls" {
+    try testing.expectEqual(c.ret_Ui_C_D(), .{ .v1 = 20111, .v2 = 51, .v3 = -2.125 });
     try testing.expectOk(c.recv_Ui_C_D(.{ .v1 = 20111, .v2 = 51, .v3 = -2.125 }));
 }
 // From T_Snnn_xba.c:42417:42437
@@ -2323,13 +2761,16 @@ test "Ui_C_D" {
 //   float v3;
 // };
 
-test "Ui_C_F" {
+test "Ui_C_F layout" {
     var lv: c.Ui_C_F = undefined;
     try testing.expectSize(c.Ui_C_F, 12);
     try testing.expectAlign(c.Ui_C_F, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_C_F C calls" {
+    try testing.expectEqual(c.ret_Ui_C_F(), .{ .v1 = 4499, .v2 = 63, .v3 = 0.5 });
     try testing.expectOk(c.recv_Ui_C_F(.{ .v1 = 4499, .v2 = 63, .v3 = 0.5 }));
 }
 // From T_Snnn_xba.c:42442:42462
@@ -2339,13 +2780,16 @@ test "Ui_C_F" {
 //   int v3;
 // };
 
-test "Ui_C_I" {
+test "Ui_C_I layout" {
     var lv: c.Ui_C_I = undefined;
     try testing.expectSize(c.Ui_C_I, 12);
     try testing.expectAlign(c.Ui_C_I, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_C_I C calls" {
+    try testing.expectEqual(c.ret_Ui_C_I(), .{ .v1 = 4844, .v2 = 10, .v3 = 26553 });
     try testing.expectOk(c.recv_Ui_C_I(.{ .v1 = 4844, .v2 = 10, .v3 = 26553 }));
 }
 // From T_Snnn_xba.c:42467:42487
@@ -2355,13 +2799,16 @@ test "Ui_C_I" {
 //   int *v3;
 // };
 
-test "Ui_C_Ip" {
+test "Ui_C_Ip layout" {
     var lv: c.Ui_C_Ip = undefined;
     try testing.expectSize(c.Ui_C_Ip, ABISELECT(16, 12));
     try testing.expectAlign(c.Ui_C_Ip, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_C_Ip C calls" {
+    try testing.expectEqual(c.ret_Ui_C_Ip(), .{ .v1 = 26337, .v2 = 121, .v3 = null });
     try testing.expectOk(c.recv_Ui_C_Ip(.{ .v1 = 26337, .v2 = 121, .v3 = null }));
 }
 // From T_Snnn_xba.c:42492:42512
@@ -2371,13 +2818,16 @@ test "Ui_C_Ip" {
 //   __tsi64 v3;
 // };
 
-test "Ui_C_L" {
+test "Ui_C_L layout" {
     var lv: c.Ui_C_L = undefined;
     try testing.expectSize(c.Ui_C_L, 16);
     try testing.expectAlign(c.Ui_C_L, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_C_L C calls" {
+    try testing.expectEqual(c.ret_Ui_C_L(), .{ .v1 = 2961, .v2 = 67, .v3 = 151 });
     try testing.expectOk(c.recv_Ui_C_L(.{ .v1 = 2961, .v2 = 67, .v3 = 151 }));
 }
 // From T_Snnn_xba.c:42517:42537
@@ -2387,13 +2837,16 @@ test "Ui_C_L" {
 //   short v3;
 // };
 
-test "Ui_C_S" {
+test "Ui_C_S layout" {
     var lv: c.Ui_C_S = undefined;
     try testing.expectSize(c.Ui_C_S, 8);
     try testing.expectAlign(c.Ui_C_S, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 6);
+}
+test "Ui_C_S C calls" {
+    try testing.expectEqual(c.ret_Ui_C_S(), .{ .v1 = 10462, .v2 = 51, .v3 = 15361 });
     try testing.expectOk(c.recv_Ui_C_S(.{ .v1 = 10462, .v2 = 51, .v3 = 15361 }));
 }
 // From T_Snnn_xba.c:42542:42562
@@ -2403,13 +2856,16 @@ test "Ui_C_S" {
 //   unsigned char v3;
 // };
 
-test "Ui_C_Uc" {
+test "Ui_C_Uc layout" {
     var lv: c.Ui_C_Uc = undefined;
     try testing.expectSize(c.Ui_C_Uc, 8);
     try testing.expectAlign(c.Ui_C_Uc, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 5);
+}
+test "Ui_C_Uc C calls" {
+    try testing.expectEqual(c.ret_Ui_C_Uc(), .{ .v1 = 2638, .v2 = 20, .v3 = 80 });
     try testing.expectOk(c.recv_Ui_C_Uc(.{ .v1 = 2638, .v2 = 20, .v3 = 80 }));
 }
 // From T_Snnn_xba.c:42567:42587
@@ -2419,13 +2875,16 @@ test "Ui_C_Uc" {
 //   unsigned int v3;
 // };
 
-test "Ui_C_Ui" {
+test "Ui_C_Ui layout" {
     var lv: c.Ui_C_Ui = undefined;
     try testing.expectSize(c.Ui_C_Ui, 12);
     try testing.expectAlign(c.Ui_C_Ui, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_C_Ui C calls" {
+    try testing.expectEqual(c.ret_Ui_C_Ui(), .{ .v1 = 29478, .v2 = 57, .v3 = 22998 });
     try testing.expectOk(c.recv_Ui_C_Ui(.{ .v1 = 29478, .v2 = 57, .v3 = 22998 }));
 }
 // From T_Snnn_xba.c:42592:42612
@@ -2435,13 +2894,16 @@ test "Ui_C_Ui" {
 //   __tsu64 v3;
 // };
 
-test "Ui_C_Ul" {
+test "Ui_C_Ul layout" {
     var lv: c.Ui_C_Ul = undefined;
     try testing.expectSize(c.Ui_C_Ul, 16);
     try testing.expectAlign(c.Ui_C_Ul, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_C_Ul C calls" {
+    try testing.expectEqual(c.ret_Ui_C_Ul(), .{ .v1 = 19449, .v2 = 47, .v3 = 7381 });
     try testing.expectOk(c.recv_Ui_C_Ul(.{ .v1 = 19449, .v2 = 47, .v3 = 7381 }));
 }
 // From T_Snnn_xba.c:42617:42637
@@ -2451,13 +2913,16 @@ test "Ui_C_Ul" {
 //   unsigned short v3;
 // };
 
-test "Ui_C_Us" {
+test "Ui_C_Us layout" {
     var lv: c.Ui_C_Us = undefined;
     try testing.expectSize(c.Ui_C_Us, 8);
     try testing.expectAlign(c.Ui_C_Us, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 6);
+}
+test "Ui_C_Us C calls" {
+    try testing.expectEqual(c.ret_Ui_C_Us(), .{ .v1 = 31946, .v2 = 14, .v3 = 8587 });
     try testing.expectOk(c.recv_Ui_C_Us(.{ .v1 = 31946, .v2 = 14, .v3 = 8587 }));
 }
 // From T_Snnn_xba.c:42642:42662
@@ -2467,13 +2932,16 @@ test "Ui_C_Us" {
 //   void *v3;
 // };
 
-test "Ui_C_Vp" {
+test "Ui_C_Vp layout" {
     var lv: c.Ui_C_Vp = undefined;
     try testing.expectSize(c.Ui_C_Vp, ABISELECT(16, 12));
     try testing.expectAlign(c.Ui_C_Vp, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_C_Vp C calls" {
+    try testing.expectEqual(c.ret_Ui_C_Vp(), .{ .v1 = 29098, .v2 = 38, .v3 = null });
     try testing.expectOk(c.recv_Ui_C_Vp(.{ .v1 = 29098, .v2 = 38, .v3 = null }));
 }
 // From T_Snnn_xba.c:42667:42685
@@ -2482,12 +2950,15 @@ test "Ui_C_Vp" {
 //   double v2;
 // };
 
-test "Ui_D" {
+test "Ui_D layout" {
     var lv: c.Ui_D = undefined;
     try testing.expectSize(c.Ui_D, ABISELECT(16, 12));
     try testing.expectAlign(c.Ui_D, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
+}
+test "Ui_D C calls" {
+    try testing.expectEqual(c.ret_Ui_D(), .{ .v1 = 315, .v2 = 4.5 });
     try testing.expectOk(c.recv_Ui_D(.{ .v1 = 315, .v2 = 4.5 }));
 }
 // From T_Snnn_xba.c:43414:43434
@@ -2497,13 +2968,16 @@ test "Ui_D" {
 //   char v3;
 // };
 
-test "Ui_D_C" {
+test "Ui_D_C layout" {
     var lv: c.Ui_D_C = undefined;
     try testing.expectSize(c.Ui_D_C, ABISELECT(24, 16));
     try testing.expectAlign(c.Ui_D_C, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Ui_D_C C calls" {
+    try testing.expectEqual(c.ret_Ui_D_C(), .{ .v1 = 16474, .v2 = 0.5, .v3 = 96 });
     try testing.expectOk(c.recv_Ui_D_C(.{ .v1 = 16474, .v2 = 0.5, .v3 = 96 }));
 }
 // From T_Snnn_xba.c:43439:43459
@@ -2513,13 +2987,16 @@ test "Ui_D_C" {
 //   double v3;
 // };
 
-test "Ui_D_D" {
+test "Ui_D_D layout" {
     var lv: c.Ui_D_D = undefined;
     try testing.expectSize(c.Ui_D_D, ABISELECT(24, 20));
     try testing.expectAlign(c.Ui_D_D, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Ui_D_D C calls" {
+    try testing.expectEqual(c.ret_Ui_D_D(), .{ .v1 = 25546, .v2 = 1.0, .v3 = -2.125 });
     try testing.expectOk(c.recv_Ui_D_D(.{ .v1 = 25546, .v2 = 1.0, .v3 = -2.125 }));
 }
 // From T_Snnn_xba.c:43464:43484
@@ -2529,13 +3006,16 @@ test "Ui_D_D" {
 //   float v3;
 // };
 
-test "Ui_D_F" {
+test "Ui_D_F layout" {
     var lv: c.Ui_D_F = undefined;
     try testing.expectSize(c.Ui_D_F, ABISELECT(24, 16));
     try testing.expectAlign(c.Ui_D_F, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Ui_D_F C calls" {
+    try testing.expectEqual(c.ret_Ui_D_F(), .{ .v1 = 29141, .v2 = -2.125, .v3 = 0.5 });
     try testing.expectOk(c.recv_Ui_D_F(.{ .v1 = 29141, .v2 = -2.125, .v3 = 0.5 }));
 }
 // From T_Snnn_xba.c:43489:43509
@@ -2545,13 +3025,16 @@ test "Ui_D_F" {
 //   int v3;
 // };
 
-test "Ui_D_I" {
+test "Ui_D_I layout" {
     var lv: c.Ui_D_I = undefined;
     try testing.expectSize(c.Ui_D_I, ABISELECT(24, 16));
     try testing.expectAlign(c.Ui_D_I, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Ui_D_I C calls" {
+    try testing.expectEqual(c.ret_Ui_D_I(), .{ .v1 = 1975, .v2 = -2.125, .v3 = 5749 });
     try testing.expectOk(c.recv_Ui_D_I(.{ .v1 = 1975, .v2 = -2.125, .v3 = 5749 }));
 }
 // From T_Snnn_xba.c:43514:43534
@@ -2561,13 +3044,16 @@ test "Ui_D_I" {
 //   int *v3;
 // };
 
-test "Ui_D_Ip" {
+test "Ui_D_Ip layout" {
     var lv: c.Ui_D_Ip = undefined;
     try testing.expectSize(c.Ui_D_Ip, ABISELECT(24, 16));
     try testing.expectAlign(c.Ui_D_Ip, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Ui_D_Ip C calls" {
+    try testing.expectEqual(c.ret_Ui_D_Ip(), .{ .v1 = 16414, .v2 = -2.125, .v3 = null });
     try testing.expectOk(c.recv_Ui_D_Ip(.{ .v1 = 16414, .v2 = -2.125, .v3 = null }));
 }
 // From T_Snnn_xba.c:43539:43559
@@ -2577,13 +3063,16 @@ test "Ui_D_Ip" {
 //   __tsi64 v3;
 // };
 
-test "Ui_D_L" {
+test "Ui_D_L layout" {
     var lv: c.Ui_D_L = undefined;
     try testing.expectSize(c.Ui_D_L, ABISELECT(24, 20));
     try testing.expectAlign(c.Ui_D_L, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Ui_D_L C calls" {
+    try testing.expectEqual(c.ret_Ui_D_L(), .{ .v1 = 4261, .v2 = 0.5, .v3 = 28898 });
     try testing.expectOk(c.recv_Ui_D_L(.{ .v1 = 4261, .v2 = 0.5, .v3 = 28898 }));
 }
 // From T_Snnn_xba.c:43564:43584
@@ -2593,13 +3082,16 @@ test "Ui_D_L" {
 //   short v3;
 // };
 
-test "Ui_D_S" {
+test "Ui_D_S layout" {
     var lv: c.Ui_D_S = undefined;
     try testing.expectSize(c.Ui_D_S, ABISELECT(24, 16));
     try testing.expectAlign(c.Ui_D_S, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Ui_D_S C calls" {
+    try testing.expectEqual(c.ret_Ui_D_S(), .{ .v1 = 15608, .v2 = 1.0, .v3 = 13134 });
     try testing.expectOk(c.recv_Ui_D_S(.{ .v1 = 15608, .v2 = 1.0, .v3 = 13134 }));
 }
 // From T_Snnn_xba.c:43589:43609
@@ -2609,13 +3101,16 @@ test "Ui_D_S" {
 //   unsigned char v3;
 // };
 
-test "Ui_D_Uc" {
+test "Ui_D_Uc layout" {
     var lv: c.Ui_D_Uc = undefined;
     try testing.expectSize(c.Ui_D_Uc, ABISELECT(24, 16));
     try testing.expectAlign(c.Ui_D_Uc, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Ui_D_Uc C calls" {
+    try testing.expectEqual(c.ret_Ui_D_Uc(), .{ .v1 = 24011, .v2 = 0.5, .v3 = 44 });
     try testing.expectOk(c.recv_Ui_D_Uc(.{ .v1 = 24011, .v2 = 0.5, .v3 = 44 }));
 }
 // From T_Snnn_xba.c:43614:43634
@@ -2625,13 +3120,16 @@ test "Ui_D_Uc" {
 //   unsigned int v3;
 // };
 
-test "Ui_D_Ui" {
+test "Ui_D_Ui layout" {
     var lv: c.Ui_D_Ui = undefined;
     try testing.expectSize(c.Ui_D_Ui, ABISELECT(24, 16));
     try testing.expectAlign(c.Ui_D_Ui, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Ui_D_Ui C calls" {
+    try testing.expectEqual(c.ret_Ui_D_Ui(), .{ .v1 = 14071, .v2 = -0.25, .v3 = 27266 });
     try testing.expectOk(c.recv_Ui_D_Ui(.{ .v1 = 14071, .v2 = -0.25, .v3 = 27266 }));
 }
 // From T_Snnn_xba.c:43639:43659
@@ -2641,13 +3139,16 @@ test "Ui_D_Ui" {
 //   __tsu64 v3;
 // };
 
-test "Ui_D_Ul" {
+test "Ui_D_Ul layout" {
     var lv: c.Ui_D_Ul = undefined;
     try testing.expectSize(c.Ui_D_Ul, ABISELECT(24, 20));
     try testing.expectAlign(c.Ui_D_Ul, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Ui_D_Ul C calls" {
+    try testing.expectEqual(c.ret_Ui_D_Ul(), .{ .v1 = 30134, .v2 = -0.25, .v3 = 721 });
     try testing.expectOk(c.recv_Ui_D_Ul(.{ .v1 = 30134, .v2 = -0.25, .v3 = 721 }));
 }
 // From T_Snnn_xba.c:43664:43684
@@ -2657,13 +3158,16 @@ test "Ui_D_Ul" {
 //   unsigned short v3;
 // };
 
-test "Ui_D_Us" {
+test "Ui_D_Us layout" {
     var lv: c.Ui_D_Us = undefined;
     try testing.expectSize(c.Ui_D_Us, ABISELECT(24, 16));
     try testing.expectAlign(c.Ui_D_Us, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Ui_D_Us C calls" {
+    try testing.expectEqual(c.ret_Ui_D_Us(), .{ .v1 = 5768, .v2 = -0.25, .v3 = 27856 });
     try testing.expectOk(c.recv_Ui_D_Us(.{ .v1 = 5768, .v2 = -0.25, .v3 = 27856 }));
 }
 // From T_Snnn_xba.c:43689:43709
@@ -2673,13 +3177,16 @@ test "Ui_D_Us" {
 //   void *v3;
 // };
 
-test "Ui_D_Vp" {
+test "Ui_D_Vp layout" {
     var lv: c.Ui_D_Vp = undefined;
     try testing.expectSize(c.Ui_D_Vp, ABISELECT(24, 16));
     try testing.expectAlign(c.Ui_D_Vp, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Ui_D_Vp C calls" {
+    try testing.expectEqual(c.ret_Ui_D_Vp(), .{ .v1 = 31578, .v2 = 0.5, .v3 = null });
     try testing.expectOk(c.recv_Ui_D_Vp(.{ .v1 = 31578, .v2 = 0.5, .v3 = null }));
 }
 // From T_Snnn_xba.c:43714:43732
@@ -2688,12 +3195,15 @@ test "Ui_D_Vp" {
 //   float v2;
 // };
 
-test "Ui_F" {
+test "Ui_F layout" {
     var lv: c.Ui_F = undefined;
     try testing.expectSize(c.Ui_F, 8);
     try testing.expectAlign(c.Ui_F, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
+}
+test "Ui_F C calls" {
+    try testing.expectEqual(c.ret_Ui_F(), .{ .v1 = 14418, .v2 = 1.0 });
     try testing.expectOk(c.recv_Ui_F(.{ .v1 = 14418, .v2 = 1.0 }));
 }
 // From T_Snnn_xba.c:44461:44481
@@ -2703,13 +3213,16 @@ test "Ui_F" {
 //   char v3;
 // };
 
-test "Ui_F_C" {
+test "Ui_F_C layout" {
     var lv: c.Ui_F_C = undefined;
     try testing.expectSize(c.Ui_F_C, 12);
     try testing.expectAlign(c.Ui_F_C, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_F_C C calls" {
+    try testing.expectEqual(c.ret_Ui_F_C(), .{ .v1 = 32003, .v2 = 0.875, .v3 = 101 });
     try testing.expectOk(c.recv_Ui_F_C(.{ .v1 = 32003, .v2 = 0.875, .v3 = 101 }));
 }
 // From T_Snnn_xba.c:44486:44506
@@ -2719,13 +3232,16 @@ test "Ui_F_C" {
 //   double v3;
 // };
 
-test "Ui_F_D" {
+test "Ui_F_D layout" {
     var lv: c.Ui_F_D = undefined;
     try testing.expectSize(c.Ui_F_D, 16);
     try testing.expectAlign(c.Ui_F_D, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_F_D C calls" {
+    try testing.expectEqual(c.ret_Ui_F_D(), .{ .v1 = 26497, .v2 = 0.5, .v3 = 0.5 });
     try testing.expectOk(c.recv_Ui_F_D(.{ .v1 = 26497, .v2 = 0.5, .v3 = 0.5 }));
 }
 // From T_Snnn_xba.c:44511:44531
@@ -2735,13 +3251,16 @@ test "Ui_F_D" {
 //   float v3;
 // };
 
-test "Ui_F_F" {
+test "Ui_F_F layout" {
     var lv: c.Ui_F_F = undefined;
     try testing.expectSize(c.Ui_F_F, 12);
     try testing.expectAlign(c.Ui_F_F, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_F_F C calls" {
+    try testing.expectEqual(c.ret_Ui_F_F(), .{ .v1 = 11461, .v2 = 4.5, .v3 = -2.125 });
     try testing.expectOk(c.recv_Ui_F_F(.{ .v1 = 11461, .v2 = 4.5, .v3 = -2.125 }));
 }
 // From T_Snnn_xba.c:44536:44556
@@ -2751,13 +3270,16 @@ test "Ui_F_F" {
 //   int v3;
 // };
 
-test "Ui_F_I" {
+test "Ui_F_I layout" {
     var lv: c.Ui_F_I = undefined;
     try testing.expectSize(c.Ui_F_I, 12);
     try testing.expectAlign(c.Ui_F_I, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_F_I C calls" {
+    try testing.expectEqual(c.ret_Ui_F_I(), .{ .v1 = 6626, .v2 = -0.25, .v3 = 6737 });
     try testing.expectOk(c.recv_Ui_F_I(.{ .v1 = 6626, .v2 = -0.25, .v3 = 6737 }));
 }
 // From T_Snnn_xba.c:44561:44581
@@ -2767,13 +3289,16 @@ test "Ui_F_I" {
 //   int *v3;
 // };
 
-test "Ui_F_Ip" {
+test "Ui_F_Ip layout" {
     var lv: c.Ui_F_Ip = undefined;
     try testing.expectSize(c.Ui_F_Ip, ABISELECT(16, 12));
     try testing.expectAlign(c.Ui_F_Ip, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_F_Ip C calls" {
+    try testing.expectEqual(c.ret_Ui_F_Ip(), .{ .v1 = 23822, .v2 = 1.0, .v3 = null });
     try testing.expectOk(c.recv_Ui_F_Ip(.{ .v1 = 23822, .v2 = 1.0, .v3 = null }));
 }
 // From T_Snnn_xba.c:44586:44606
@@ -2783,13 +3308,16 @@ test "Ui_F_Ip" {
 //   __tsi64 v3;
 // };
 
-test "Ui_F_L" {
+test "Ui_F_L layout" {
     var lv: c.Ui_F_L = undefined;
     try testing.expectSize(c.Ui_F_L, 16);
     try testing.expectAlign(c.Ui_F_L, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_F_L C calls" {
+    try testing.expectEqual(c.ret_Ui_F_L(), .{ .v1 = 5702, .v2 = 1.0, .v3 = 4668 });
     try testing.expectOk(c.recv_Ui_F_L(.{ .v1 = 5702, .v2 = 1.0, .v3 = 4668 }));
 }
 // From T_Snnn_xba.c:44611:44631
@@ -2799,13 +3327,16 @@ test "Ui_F_L" {
 //   short v3;
 // };
 
-test "Ui_F_S" {
+test "Ui_F_S layout" {
     var lv: c.Ui_F_S = undefined;
     try testing.expectSize(c.Ui_F_S, 12);
     try testing.expectAlign(c.Ui_F_S, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_F_S C calls" {
+    try testing.expectEqual(c.ret_Ui_F_S(), .{ .v1 = 18801, .v2 = -2.125, .v3 = 16 });
     try testing.expectOk(c.recv_Ui_F_S(.{ .v1 = 18801, .v2 = -2.125, .v3 = 16 }));
 }
 // From T_Snnn_xba.c:44636:44656
@@ -2815,13 +3346,16 @@ test "Ui_F_S" {
 //   unsigned char v3;
 // };
 
-test "Ui_F_Uc" {
+test "Ui_F_Uc layout" {
     var lv: c.Ui_F_Uc = undefined;
     try testing.expectSize(c.Ui_F_Uc, 12);
     try testing.expectAlign(c.Ui_F_Uc, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_F_Uc C calls" {
+    try testing.expectEqual(c.ret_Ui_F_Uc(), .{ .v1 = 6275, .v2 = 7.0, .v3 = 13 });
     try testing.expectOk(c.recv_Ui_F_Uc(.{ .v1 = 6275, .v2 = 7.0, .v3 = 13 }));
 }
 // From T_Snnn_xba.c:44661:44681
@@ -2831,13 +3365,16 @@ test "Ui_F_Uc" {
 //   unsigned int v3;
 // };
 
-test "Ui_F_Ui" {
+test "Ui_F_Ui layout" {
     var lv: c.Ui_F_Ui = undefined;
     try testing.expectSize(c.Ui_F_Ui, 12);
     try testing.expectAlign(c.Ui_F_Ui, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_F_Ui C calls" {
+    try testing.expectEqual(c.ret_Ui_F_Ui(), .{ .v1 = 19572, .v2 = 1.0, .v3 = 15260 });
     try testing.expectOk(c.recv_Ui_F_Ui(.{ .v1 = 19572, .v2 = 1.0, .v3 = 15260 }));
 }
 // From T_Snnn_xba.c:44686:44706
@@ -2847,13 +3384,16 @@ test "Ui_F_Ui" {
 //   __tsu64 v3;
 // };
 
-test "Ui_F_Ul" {
+test "Ui_F_Ul layout" {
     var lv: c.Ui_F_Ul = undefined;
     try testing.expectSize(c.Ui_F_Ul, 16);
     try testing.expectAlign(c.Ui_F_Ul, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_F_Ul C calls" {
+    try testing.expectEqual(c.ret_Ui_F_Ul(), .{ .v1 = 14594, .v2 = 0.875, .v3 = 12629 });
     try testing.expectOk(c.recv_Ui_F_Ul(.{ .v1 = 14594, .v2 = 0.875, .v3 = 12629 }));
 }
 // From T_Snnn_xba.c:44711:44731
@@ -2863,13 +3403,16 @@ test "Ui_F_Ul" {
 //   unsigned short v3;
 // };
 
-test "Ui_F_Us" {
+test "Ui_F_Us layout" {
     var lv: c.Ui_F_Us = undefined;
     try testing.expectSize(c.Ui_F_Us, 12);
     try testing.expectAlign(c.Ui_F_Us, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_F_Us C calls" {
+    try testing.expectEqual(c.ret_Ui_F_Us(), .{ .v1 = 5740, .v2 = 4.5, .v3 = 28004 });
     try testing.expectOk(c.recv_Ui_F_Us(.{ .v1 = 5740, .v2 = 4.5, .v3 = 28004 }));
 }
 // From T_Snnn_xba.c:44736:44756
@@ -2879,13 +3422,16 @@ test "Ui_F_Us" {
 //   void *v3;
 // };
 
-test "Ui_F_Vp" {
+test "Ui_F_Vp layout" {
     var lv: c.Ui_F_Vp = undefined;
     try testing.expectSize(c.Ui_F_Vp, ABISELECT(16, 12));
     try testing.expectAlign(c.Ui_F_Vp, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_F_Vp C calls" {
+    try testing.expectEqual(c.ret_Ui_F_Vp(), .{ .v1 = 7191, .v2 = -0.25, .v3 = null });
     try testing.expectOk(c.recv_Ui_F_Vp(.{ .v1 = 7191, .v2 = -0.25, .v3 = null }));
 }
 // From T_Snnn_xba.c:44761:44779
@@ -2894,12 +3440,15 @@ test "Ui_F_Vp" {
 //   int v2;
 // };
 
-test "Ui_I" {
+test "Ui_I layout" {
     var lv: c.Ui_I = undefined;
     try testing.expectSize(c.Ui_I, 8);
     try testing.expectAlign(c.Ui_I, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
+}
+test "Ui_I C calls" {
+    try testing.expectEqual(c.ret_Ui_I(), .{ .v1 = 16186, .v2 = 17720 });
     try testing.expectOk(c.recv_Ui_I(.{ .v1 = 16186, .v2 = 17720 }));
 }
 // From T_Snnn_xba.c:45508:45528
@@ -2909,13 +3458,16 @@ test "Ui_I" {
 //   char v3;
 // };
 
-test "Ui_I_C" {
+test "Ui_I_C layout" {
     var lv: c.Ui_I_C = undefined;
     try testing.expectSize(c.Ui_I_C, 12);
     try testing.expectAlign(c.Ui_I_C, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_I_C C calls" {
+    try testing.expectEqual(c.ret_Ui_I_C(), .{ .v1 = 12173, .v2 = 24063, .v3 = 17 });
     try testing.expectOk(c.recv_Ui_I_C(.{ .v1 = 12173, .v2 = 24063, .v3 = 17 }));
 }
 // From T_Snnn_xba.c:45533:45553
@@ -2925,13 +3477,16 @@ test "Ui_I_C" {
 //   double v3;
 // };
 
-test "Ui_I_D" {
+test "Ui_I_D layout" {
     var lv: c.Ui_I_D = undefined;
     try testing.expectSize(c.Ui_I_D, 16);
     try testing.expectAlign(c.Ui_I_D, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_I_D C calls" {
+    try testing.expectEqual(c.ret_Ui_I_D(), .{ .v1 = 23097, .v2 = 29966, .v3 = 4.5 });
     try testing.expectOk(c.recv_Ui_I_D(.{ .v1 = 23097, .v2 = 29966, .v3 = 4.5 }));
 }
 // From T_Snnn_xba.c:45558:45578
@@ -2941,13 +3496,16 @@ test "Ui_I_D" {
 //   float v3;
 // };
 
-test "Ui_I_F" {
+test "Ui_I_F layout" {
     var lv: c.Ui_I_F = undefined;
     try testing.expectSize(c.Ui_I_F, 12);
     try testing.expectAlign(c.Ui_I_F, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_I_F C calls" {
+    try testing.expectEqual(c.ret_Ui_I_F(), .{ .v1 = 25881, .v2 = 8125, .v3 = 4.5 });
     try testing.expectOk(c.recv_Ui_I_F(.{ .v1 = 25881, .v2 = 8125, .v3 = 4.5 }));
 }
 // From T_Snnn_xba.c:45583:45603
@@ -2957,13 +3515,16 @@ test "Ui_I_F" {
 //   int v3;
 // };
 
-test "Ui_I_I" {
+test "Ui_I_I layout" {
     var lv: c.Ui_I_I = undefined;
     try testing.expectSize(c.Ui_I_I, 12);
     try testing.expectAlign(c.Ui_I_I, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_I_I C calls" {
+    try testing.expectEqual(c.ret_Ui_I_I(), .{ .v1 = 17320, .v2 = 21220, .v3 = 31002 });
     try testing.expectOk(c.recv_Ui_I_I(.{ .v1 = 17320, .v2 = 21220, .v3 = 31002 }));
 }
 // From T_Snnn_xba.c:45608:45628
@@ -2973,13 +3534,16 @@ test "Ui_I_I" {
 //   int *v3;
 // };
 
-test "Ui_I_Ip" {
+test "Ui_I_Ip layout" {
     var lv: c.Ui_I_Ip = undefined;
     try testing.expectSize(c.Ui_I_Ip, ABISELECT(16, 12));
     try testing.expectAlign(c.Ui_I_Ip, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_I_Ip C calls" {
+    try testing.expectEqual(c.ret_Ui_I_Ip(), .{ .v1 = 22775, .v2 = 11882, .v3 = null });
     try testing.expectOk(c.recv_Ui_I_Ip(.{ .v1 = 22775, .v2 = 11882, .v3 = null }));
 }
 // From T_Snnn_xba.c:45633:45653
@@ -2989,13 +3553,16 @@ test "Ui_I_Ip" {
 //   __tsi64 v3;
 // };
 
-test "Ui_I_L" {
+test "Ui_I_L layout" {
     var lv: c.Ui_I_L = undefined;
     try testing.expectSize(c.Ui_I_L, 16);
     try testing.expectAlign(c.Ui_I_L, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_I_L C calls" {
+    try testing.expectEqual(c.ret_Ui_I_L(), .{ .v1 = 27000, .v2 = 29131, .v3 = 17961 });
     try testing.expectOk(c.recv_Ui_I_L(.{ .v1 = 27000, .v2 = 29131, .v3 = 17961 }));
 }
 // From T_Snnn_xba.c:45658:45678
@@ -3005,13 +3572,16 @@ test "Ui_I_L" {
 //   short v3;
 // };
 
-test "Ui_I_S" {
+test "Ui_I_S layout" {
     var lv: c.Ui_I_S = undefined;
     try testing.expectSize(c.Ui_I_S, 12);
     try testing.expectAlign(c.Ui_I_S, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_I_S C calls" {
+    try testing.expectEqual(c.ret_Ui_I_S(), .{ .v1 = 5591, .v2 = 6137, .v3 = 15626 });
     try testing.expectOk(c.recv_Ui_I_S(.{ .v1 = 5591, .v2 = 6137, .v3 = 15626 }));
 }
 // From T_Snnn_xba.c:45683:45703
@@ -3021,13 +3591,16 @@ test "Ui_I_S" {
 //   unsigned char v3;
 // };
 
-test "Ui_I_Uc" {
+test "Ui_I_Uc layout" {
     var lv: c.Ui_I_Uc = undefined;
     try testing.expectSize(c.Ui_I_Uc, 12);
     try testing.expectAlign(c.Ui_I_Uc, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_I_Uc C calls" {
+    try testing.expectEqual(c.ret_Ui_I_Uc(), .{ .v1 = 22976, .v2 = 9458, .v3 = 15 });
     try testing.expectOk(c.recv_Ui_I_Uc(.{ .v1 = 22976, .v2 = 9458, .v3 = 15 }));
 }
 // From T_Snnn_xba.c:45708:45728
@@ -3037,13 +3610,16 @@ test "Ui_I_Uc" {
 //   unsigned int v3;
 // };
 
-test "Ui_I_Ui" {
+test "Ui_I_Ui layout" {
     var lv: c.Ui_I_Ui = undefined;
     try testing.expectSize(c.Ui_I_Ui, 12);
     try testing.expectAlign(c.Ui_I_Ui, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_I_Ui C calls" {
+    try testing.expectEqual(c.ret_Ui_I_Ui(), .{ .v1 = 18558, .v2 = 4834, .v3 = 26727 });
     try testing.expectOk(c.recv_Ui_I_Ui(.{ .v1 = 18558, .v2 = 4834, .v3 = 26727 }));
 }
 // From T_Snnn_xba.c:45733:45753
@@ -3053,13 +3629,16 @@ test "Ui_I_Ui" {
 //   __tsu64 v3;
 // };
 
-test "Ui_I_Ul" {
+test "Ui_I_Ul layout" {
     var lv: c.Ui_I_Ul = undefined;
     try testing.expectSize(c.Ui_I_Ul, 16);
     try testing.expectAlign(c.Ui_I_Ul, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_I_Ul C calls" {
+    try testing.expectEqual(c.ret_Ui_I_Ul(), .{ .v1 = 10972, .v2 = 16539, .v3 = 15979 });
     try testing.expectOk(c.recv_Ui_I_Ul(.{ .v1 = 10972, .v2 = 16539, .v3 = 15979 }));
 }
 // From T_Snnn_xba.c:45758:45778
@@ -3069,13 +3648,16 @@ test "Ui_I_Ul" {
 //   unsigned short v3;
 // };
 
-test "Ui_I_Us" {
+test "Ui_I_Us layout" {
     var lv: c.Ui_I_Us = undefined;
     try testing.expectSize(c.Ui_I_Us, 12);
     try testing.expectAlign(c.Ui_I_Us, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_I_Us C calls" {
+    try testing.expectEqual(c.ret_Ui_I_Us(), .{ .v1 = 2253, .v2 = 31488, .v3 = 9728 });
     try testing.expectOk(c.recv_Ui_I_Us(.{ .v1 = 2253, .v2 = 31488, .v3 = 9728 }));
 }
 // From T_Snnn_xba.c:45783:45803
@@ -3085,13 +3667,16 @@ test "Ui_I_Us" {
 //   void *v3;
 // };
 
-test "Ui_I_Vp" {
+test "Ui_I_Vp layout" {
     var lv: c.Ui_I_Vp = undefined;
     try testing.expectSize(c.Ui_I_Vp, ABISELECT(16, 12));
     try testing.expectAlign(c.Ui_I_Vp, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_I_Vp C calls" {
+    try testing.expectEqual(c.ret_Ui_I_Vp(), .{ .v1 = 29046, .v2 = 1341, .v3 = null });
     try testing.expectOk(c.recv_Ui_I_Vp(.{ .v1 = 29046, .v2 = 1341, .v3 = null }));
 }
 // From T_Snnn_xba.c:45808:45826
@@ -3100,12 +3685,15 @@ test "Ui_I_Vp" {
 //   int *v2;
 // };
 
-test "Ui_Ip" {
+test "Ui_Ip layout" {
     var lv: c.Ui_Ip = undefined;
     try testing.expectSize(c.Ui_Ip, ABISELECT(16, 8));
     try testing.expectAlign(c.Ui_Ip, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
+}
+test "Ui_Ip C calls" {
+    try testing.expectEqual(c.ret_Ui_Ip(), .{ .v1 = 15626, .v2 = null });
     try testing.expectOk(c.recv_Ui_Ip(.{ .v1 = 15626, .v2 = null }));
 }
 // From T_Snnn_xba.c:46555:46575
@@ -3115,13 +3703,16 @@ test "Ui_Ip" {
 //   char v3;
 // };
 
-test "Ui_Ip_C" {
+test "Ui_Ip_C layout" {
     var lv: c.Ui_Ip_C = undefined;
     try testing.expectSize(c.Ui_Ip_C, ABISELECT(24, 12));
     try testing.expectAlign(c.Ui_Ip_C, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Ui_Ip_C C calls" {
+    try testing.expectEqual(c.ret_Ui_Ip_C(), .{ .v1 = 27402, .v2 = null, .v3 = 92 });
     try testing.expectOk(c.recv_Ui_Ip_C(.{ .v1 = 27402, .v2 = null, .v3 = 92 }));
 }
 // From T_Snnn_xba.c:46580:46600
@@ -3131,13 +3722,16 @@ test "Ui_Ip_C" {
 //   double v3;
 // };
 
-test "Ui_Ip_D" {
+test "Ui_Ip_D layout" {
     var lv: c.Ui_Ip_D = undefined;
     try testing.expectSize(c.Ui_Ip_D, ABISELECT(24, 16));
     try testing.expectAlign(c.Ui_Ip_D, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Ui_Ip_D C calls" {
+    try testing.expectEqual(c.ret_Ui_Ip_D(), .{ .v1 = 10612, .v2 = null, .v3 = 0.875 });
     try testing.expectOk(c.recv_Ui_Ip_D(.{ .v1 = 10612, .v2 = null, .v3 = 0.875 }));
 }
 // From T_Snnn_xba.c:46605:46625
@@ -3147,13 +3741,16 @@ test "Ui_Ip_D" {
 //   float v3;
 // };
 
-test "Ui_Ip_F" {
+test "Ui_Ip_F layout" {
     var lv: c.Ui_Ip_F = undefined;
     try testing.expectSize(c.Ui_Ip_F, ABISELECT(24, 12));
     try testing.expectAlign(c.Ui_Ip_F, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Ui_Ip_F C calls" {
+    try testing.expectEqual(c.ret_Ui_Ip_F(), .{ .v1 = 27180, .v2 = null, .v3 = -2.125 });
     try testing.expectOk(c.recv_Ui_Ip_F(.{ .v1 = 27180, .v2 = null, .v3 = -2.125 }));
 }
 // From T_Snnn_xba.c:46630:46650
@@ -3163,13 +3760,16 @@ test "Ui_Ip_F" {
 //   int v3;
 // };
 
-test "Ui_Ip_I" {
+test "Ui_Ip_I layout" {
     var lv: c.Ui_Ip_I = undefined;
     try testing.expectSize(c.Ui_Ip_I, ABISELECT(24, 12));
     try testing.expectAlign(c.Ui_Ip_I, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Ui_Ip_I C calls" {
+    try testing.expectEqual(c.ret_Ui_Ip_I(), .{ .v1 = 28768, .v2 = null, .v3 = 7763 });
     try testing.expectOk(c.recv_Ui_Ip_I(.{ .v1 = 28768, .v2 = null, .v3 = 7763 }));
 }
 // From T_Snnn_xba.c:46655:46675
@@ -3179,13 +3779,16 @@ test "Ui_Ip_I" {
 //   int *v3;
 // };
 
-test "Ui_Ip_Ip" {
+test "Ui_Ip_Ip layout" {
     var lv: c.Ui_Ip_Ip = undefined;
     try testing.expectSize(c.Ui_Ip_Ip, ABISELECT(24, 12));
     try testing.expectAlign(c.Ui_Ip_Ip, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Ui_Ip_Ip C calls" {
+    try testing.expectEqual(c.ret_Ui_Ip_Ip(), .{ .v1 = 29433, .v2 = null, .v3 = null });
     try testing.expectOk(c.recv_Ui_Ip_Ip(.{ .v1 = 29433, .v2 = null, .v3 = null }));
 }
 // From T_Snnn_xba.c:46680:46700
@@ -3195,13 +3798,16 @@ test "Ui_Ip_Ip" {
 //   __tsi64 v3;
 // };
 
-test "Ui_Ip_L" {
+test "Ui_Ip_L layout" {
     var lv: c.Ui_Ip_L = undefined;
     try testing.expectSize(c.Ui_Ip_L, ABISELECT(24, 16));
     try testing.expectAlign(c.Ui_Ip_L, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Ui_Ip_L C calls" {
+    try testing.expectEqual(c.ret_Ui_Ip_L(), .{ .v1 = 4514, .v2 = null, .v3 = 11287 });
     try testing.expectOk(c.recv_Ui_Ip_L(.{ .v1 = 4514, .v2 = null, .v3 = 11287 }));
 }
 // From T_Snnn_xba.c:46705:46725
@@ -3211,13 +3817,16 @@ test "Ui_Ip_L" {
 //   short v3;
 // };
 
-test "Ui_Ip_S" {
+test "Ui_Ip_S layout" {
     var lv: c.Ui_Ip_S = undefined;
     try testing.expectSize(c.Ui_Ip_S, ABISELECT(24, 12));
     try testing.expectAlign(c.Ui_Ip_S, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Ui_Ip_S C calls" {
+    try testing.expectEqual(c.ret_Ui_Ip_S(), .{ .v1 = 26737, .v2 = null, .v3 = 23696 });
     try testing.expectOk(c.recv_Ui_Ip_S(.{ .v1 = 26737, .v2 = null, .v3 = 23696 }));
 }
 // From T_Snnn_xba.c:46730:46750
@@ -3227,13 +3836,16 @@ test "Ui_Ip_S" {
 //   unsigned char v3;
 // };
 
-test "Ui_Ip_Uc" {
+test "Ui_Ip_Uc layout" {
     var lv: c.Ui_Ip_Uc = undefined;
     try testing.expectSize(c.Ui_Ip_Uc, ABISELECT(24, 12));
     try testing.expectAlign(c.Ui_Ip_Uc, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Ui_Ip_Uc C calls" {
+    try testing.expectEqual(c.ret_Ui_Ip_Uc(), .{ .v1 = 3439, .v2 = null, .v3 = 66 });
     try testing.expectOk(c.recv_Ui_Ip_Uc(.{ .v1 = 3439, .v2 = null, .v3 = 66 }));
 }
 // From T_Snnn_xba.c:46755:46775
@@ -3243,13 +3855,16 @@ test "Ui_Ip_Uc" {
 //   unsigned int v3;
 // };
 
-test "Ui_Ip_Ui" {
+test "Ui_Ip_Ui layout" {
     var lv: c.Ui_Ip_Ui = undefined;
     try testing.expectSize(c.Ui_Ip_Ui, ABISELECT(24, 12));
     try testing.expectAlign(c.Ui_Ip_Ui, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Ui_Ip_Ui C calls" {
+    try testing.expectEqual(c.ret_Ui_Ip_Ui(), .{ .v1 = 12941, .v2 = null, .v3 = 4092 });
     try testing.expectOk(c.recv_Ui_Ip_Ui(.{ .v1 = 12941, .v2 = null, .v3 = 4092 }));
 }
 // From T_Snnn_xba.c:46780:46800
@@ -3259,13 +3874,16 @@ test "Ui_Ip_Ui" {
 //   __tsu64 v3;
 // };
 
-test "Ui_Ip_Ul" {
+test "Ui_Ip_Ul layout" {
     var lv: c.Ui_Ip_Ul = undefined;
     try testing.expectSize(c.Ui_Ip_Ul, ABISELECT(24, 16));
     try testing.expectAlign(c.Ui_Ip_Ul, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Ui_Ip_Ul C calls" {
+    try testing.expectEqual(c.ret_Ui_Ip_Ul(), .{ .v1 = 23885, .v2 = null, .v3 = 27882 });
     try testing.expectOk(c.recv_Ui_Ip_Ul(.{ .v1 = 23885, .v2 = null, .v3 = 27882 }));
 }
 // From T_Snnn_xba.c:46805:46825
@@ -3275,13 +3893,16 @@ test "Ui_Ip_Ul" {
 //   unsigned short v3;
 // };
 
-test "Ui_Ip_Us" {
+test "Ui_Ip_Us layout" {
     var lv: c.Ui_Ip_Us = undefined;
     try testing.expectSize(c.Ui_Ip_Us, ABISELECT(24, 12));
     try testing.expectAlign(c.Ui_Ip_Us, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Ui_Ip_Us C calls" {
+    try testing.expectEqual(c.ret_Ui_Ip_Us(), .{ .v1 = 18464, .v2 = null, .v3 = 114 });
     try testing.expectOk(c.recv_Ui_Ip_Us(.{ .v1 = 18464, .v2 = null, .v3 = 114 }));
 }
 // From T_Snnn_xba.c:46830:46850
@@ -3291,13 +3912,16 @@ test "Ui_Ip_Us" {
 //   void *v3;
 // };
 
-test "Ui_Ip_Vp" {
+test "Ui_Ip_Vp layout" {
     var lv: c.Ui_Ip_Vp = undefined;
     try testing.expectSize(c.Ui_Ip_Vp, ABISELECT(24, 12));
     try testing.expectAlign(c.Ui_Ip_Vp, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Ui_Ip_Vp C calls" {
+    try testing.expectEqual(c.ret_Ui_Ip_Vp(), .{ .v1 = 18904, .v2 = null, .v3 = null });
     try testing.expectOk(c.recv_Ui_Ip_Vp(.{ .v1 = 18904, .v2 = null, .v3 = null }));
 }
 // From T_Snnn_xba.c:46855:46873
@@ -3306,12 +3930,15 @@ test "Ui_Ip_Vp" {
 //   __tsi64 v2;
 // };
 
-test "Ui_L" {
+test "Ui_L layout" {
     var lv: c.Ui_L = undefined;
     try testing.expectSize(c.Ui_L, ABISELECT(16, 12));
     try testing.expectAlign(c.Ui_L, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
+}
+test "Ui_L C calls" {
+    try testing.expectEqual(c.ret_Ui_L(), .{ .v1 = 13252, .v2 = 1507 });
     try testing.expectOk(c.recv_Ui_L(.{ .v1 = 13252, .v2 = 1507 }));
 }
 // From T_Snnn_xba.c:47602:47622
@@ -3321,13 +3948,16 @@ test "Ui_L" {
 //   char v3;
 // };
 
-test "Ui_L_C" {
+test "Ui_L_C layout" {
     var lv: c.Ui_L_C = undefined;
     try testing.expectSize(c.Ui_L_C, ABISELECT(24, 16));
     try testing.expectAlign(c.Ui_L_C, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Ui_L_C C calls" {
+    try testing.expectEqual(c.ret_Ui_L_C(), .{ .v1 = 26935, .v2 = 26745, .v3 = 98 });
     try testing.expectOk(c.recv_Ui_L_C(.{ .v1 = 26935, .v2 = 26745, .v3 = 98 }));
 }
 // From T_Snnn_xba.c:47627:47647
@@ -3337,13 +3967,16 @@ test "Ui_L_C" {
 //   double v3;
 // };
 
-test "Ui_L_D" {
+test "Ui_L_D layout" {
     var lv: c.Ui_L_D = undefined;
     try testing.expectSize(c.Ui_L_D, ABISELECT(24, 20));
     try testing.expectAlign(c.Ui_L_D, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Ui_L_D C calls" {
+    try testing.expectEqual(c.ret_Ui_L_D(), .{ .v1 = 25341, .v2 = 30357, .v3 = -2.125 });
     try testing.expectOk(c.recv_Ui_L_D(.{ .v1 = 25341, .v2 = 30357, .v3 = -2.125 }));
 }
 // From T_Snnn_xba.c:47652:47672
@@ -3353,13 +3986,16 @@ test "Ui_L_D" {
 //   float v3;
 // };
 
-test "Ui_L_F" {
+test "Ui_L_F layout" {
     var lv: c.Ui_L_F = undefined;
     try testing.expectSize(c.Ui_L_F, ABISELECT(24, 16));
     try testing.expectAlign(c.Ui_L_F, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Ui_L_F C calls" {
+    try testing.expectEqual(c.ret_Ui_L_F(), .{ .v1 = 29079, .v2 = 3601, .v3 = 0.5 });
     try testing.expectOk(c.recv_Ui_L_F(.{ .v1 = 29079, .v2 = 3601, .v3 = 0.5 }));
 }
 // From T_Snnn_xba.c:47677:47697
@@ -3369,13 +4005,16 @@ test "Ui_L_F" {
 //   int v3;
 // };
 
-test "Ui_L_I" {
+test "Ui_L_I layout" {
     var lv: c.Ui_L_I = undefined;
     try testing.expectSize(c.Ui_L_I, ABISELECT(24, 16));
     try testing.expectAlign(c.Ui_L_I, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Ui_L_I C calls" {
+    try testing.expectEqual(c.ret_Ui_L_I(), .{ .v1 = 10351, .v2 = 18559, .v3 = 6276 });
     try testing.expectOk(c.recv_Ui_L_I(.{ .v1 = 10351, .v2 = 18559, .v3 = 6276 }));
 }
 // From T_Snnn_xba.c:47702:47722
@@ -3385,13 +4024,16 @@ test "Ui_L_I" {
 //   int *v3;
 // };
 
-test "Ui_L_Ip" {
+test "Ui_L_Ip layout" {
     var lv: c.Ui_L_Ip = undefined;
     try testing.expectSize(c.Ui_L_Ip, ABISELECT(24, 16));
     try testing.expectAlign(c.Ui_L_Ip, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Ui_L_Ip C calls" {
+    try testing.expectEqual(c.ret_Ui_L_Ip(), .{ .v1 = 25585, .v2 = 20929, .v3 = null });
     try testing.expectOk(c.recv_Ui_L_Ip(.{ .v1 = 25585, .v2 = 20929, .v3 = null }));
 }
 // From T_Snnn_xba.c:47727:47747
@@ -3401,13 +4043,16 @@ test "Ui_L_Ip" {
 //   __tsi64 v3;
 // };
 
-test "Ui_L_L" {
+test "Ui_L_L layout" {
     var lv: c.Ui_L_L = undefined;
     try testing.expectSize(c.Ui_L_L, ABISELECT(24, 20));
     try testing.expectAlign(c.Ui_L_L, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Ui_L_L C calls" {
+    try testing.expectEqual(c.ret_Ui_L_L(), .{ .v1 = 24212, .v2 = 19798, .v3 = 593 });
     try testing.expectOk(c.recv_Ui_L_L(.{ .v1 = 24212, .v2 = 19798, .v3 = 593 }));
 }
 // From T_Snnn_xba.c:47752:47772
@@ -3417,13 +4062,16 @@ test "Ui_L_L" {
 //   short v3;
 // };
 
-test "Ui_L_S" {
+test "Ui_L_S layout" {
     var lv: c.Ui_L_S = undefined;
     try testing.expectSize(c.Ui_L_S, ABISELECT(24, 16));
     try testing.expectAlign(c.Ui_L_S, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Ui_L_S C calls" {
+    try testing.expectEqual(c.ret_Ui_L_S(), .{ .v1 = 21162, .v2 = 4452, .v3 = 9615 });
     try testing.expectOk(c.recv_Ui_L_S(.{ .v1 = 21162, .v2 = 4452, .v3 = 9615 }));
 }
 // From T_Snnn_xba.c:47777:47797
@@ -3433,13 +4081,16 @@ test "Ui_L_S" {
 //   unsigned char v3;
 // };
 
-test "Ui_L_Uc" {
+test "Ui_L_Uc layout" {
     var lv: c.Ui_L_Uc = undefined;
     try testing.expectSize(c.Ui_L_Uc, ABISELECT(24, 16));
     try testing.expectAlign(c.Ui_L_Uc, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Ui_L_Uc C calls" {
+    try testing.expectEqual(c.ret_Ui_L_Uc(), .{ .v1 = 31091, .v2 = 18993, .v3 = 70 });
     try testing.expectOk(c.recv_Ui_L_Uc(.{ .v1 = 31091, .v2 = 18993, .v3 = 70 }));
 }
 // From T_Snnn_xba.c:47802:47822
@@ -3449,13 +4100,16 @@ test "Ui_L_Uc" {
 //   unsigned int v3;
 // };
 
-test "Ui_L_Ui" {
+test "Ui_L_Ui layout" {
     var lv: c.Ui_L_Ui = undefined;
     try testing.expectSize(c.Ui_L_Ui, ABISELECT(24, 16));
     try testing.expectAlign(c.Ui_L_Ui, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Ui_L_Ui C calls" {
+    try testing.expectEqual(c.ret_Ui_L_Ui(), .{ .v1 = 13988, .v2 = 30930, .v3 = 19528 });
     try testing.expectOk(c.recv_Ui_L_Ui(.{ .v1 = 13988, .v2 = 30930, .v3 = 19528 }));
 }
 // From T_Snnn_xba.c:47827:47847
@@ -3465,13 +4119,16 @@ test "Ui_L_Ui" {
 //   __tsu64 v3;
 // };
 
-test "Ui_L_Ul" {
+test "Ui_L_Ul layout" {
     var lv: c.Ui_L_Ul = undefined;
     try testing.expectSize(c.Ui_L_Ul, ABISELECT(24, 20));
     try testing.expectAlign(c.Ui_L_Ul, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Ui_L_Ul C calls" {
+    try testing.expectEqual(c.ret_Ui_L_Ul(), .{ .v1 = 20440, .v2 = 26384, .v3 = 9987 });
     try testing.expectOk(c.recv_Ui_L_Ul(.{ .v1 = 20440, .v2 = 26384, .v3 = 9987 }));
 }
 // From T_Snnn_xba.c:47852:47872
@@ -3481,13 +4138,16 @@ test "Ui_L_Ul" {
 //   unsigned short v3;
 // };
 
-test "Ui_L_Us" {
+test "Ui_L_Us layout" {
     var lv: c.Ui_L_Us = undefined;
     try testing.expectSize(c.Ui_L_Us, ABISELECT(24, 16));
     try testing.expectAlign(c.Ui_L_Us, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Ui_L_Us C calls" {
+    try testing.expectEqual(c.ret_Ui_L_Us(), .{ .v1 = 31980, .v2 = 25750, .v3 = 1055 });
     try testing.expectOk(c.recv_Ui_L_Us(.{ .v1 = 31980, .v2 = 25750, .v3 = 1055 }));
 }
 // From T_Snnn_xba.c:47877:47897
@@ -3497,13 +4157,16 @@ test "Ui_L_Us" {
 //   void *v3;
 // };
 
-test "Ui_L_Vp" {
+test "Ui_L_Vp layout" {
     var lv: c.Ui_L_Vp = undefined;
     try testing.expectSize(c.Ui_L_Vp, ABISELECT(24, 16));
     try testing.expectAlign(c.Ui_L_Vp, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Ui_L_Vp C calls" {
+    try testing.expectEqual(c.ret_Ui_L_Vp(), .{ .v1 = 8968, .v2 = 24841, .v3 = null });
     try testing.expectOk(c.recv_Ui_L_Vp(.{ .v1 = 8968, .v2 = 24841, .v3 = null }));
 }
 // From T_Snnn_xba.c:47902:47920
@@ -3512,12 +4175,15 @@ test "Ui_L_Vp" {
 //   short v2;
 // };
 
-test "Ui_S" {
+test "Ui_S layout" {
     var lv: c.Ui_S = undefined;
     try testing.expectSize(c.Ui_S, 8);
     try testing.expectAlign(c.Ui_S, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
+}
+test "Ui_S C calls" {
+    try testing.expectEqual(c.ret_Ui_S(), .{ .v1 = 28346, .v2 = 28443 });
     try testing.expectOk(c.recv_Ui_S(.{ .v1 = 28346, .v2 = 28443 }));
 }
 // From T_Snnn_xba.c:48649:48669
@@ -3527,13 +4193,16 @@ test "Ui_S" {
 //   char v3;
 // };
 
-test "Ui_S_C" {
+test "Ui_S_C layout" {
     var lv: c.Ui_S_C = undefined;
     try testing.expectSize(c.Ui_S_C, 8);
     try testing.expectAlign(c.Ui_S_C, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 6);
+}
+test "Ui_S_C C calls" {
+    try testing.expectEqual(c.ret_Ui_S_C(), .{ .v1 = 15538, .v2 = 21394, .v3 = 21 });
     try testing.expectOk(c.recv_Ui_S_C(.{ .v1 = 15538, .v2 = 21394, .v3 = 21 }));
 }
 // From T_Snnn_xba.c:48674:48694
@@ -3543,13 +4212,16 @@ test "Ui_S_C" {
 //   double v3;
 // };
 
-test "Ui_S_D" {
+test "Ui_S_D layout" {
     var lv: c.Ui_S_D = undefined;
     try testing.expectSize(c.Ui_S_D, 16);
     try testing.expectAlign(c.Ui_S_D, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_S_D C calls" {
+    try testing.expectEqual(c.ret_Ui_S_D(), .{ .v1 = 4910, .v2 = 10310, .v3 = 4.5 });
     try testing.expectOk(c.recv_Ui_S_D(.{ .v1 = 4910, .v2 = 10310, .v3 = 4.5 }));
 }
 // From T_Snnn_xba.c:48699:48719
@@ -3559,13 +4231,16 @@ test "Ui_S_D" {
 //   float v3;
 // };
 
-test "Ui_S_F" {
+test "Ui_S_F layout" {
     var lv: c.Ui_S_F = undefined;
     try testing.expectSize(c.Ui_S_F, 12);
     try testing.expectAlign(c.Ui_S_F, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_S_F C calls" {
+    try testing.expectEqual(c.ret_Ui_S_F(), .{ .v1 = 27139, .v2 = 32026, .v3 = 1.0 });
     try testing.expectOk(c.recv_Ui_S_F(.{ .v1 = 27139, .v2 = 32026, .v3 = 1.0 }));
 }
 // From T_Snnn_xba.c:48724:48744
@@ -3575,13 +4250,16 @@ test "Ui_S_F" {
 //   int v3;
 // };
 
-test "Ui_S_I" {
+test "Ui_S_I layout" {
     var lv: c.Ui_S_I = undefined;
     try testing.expectSize(c.Ui_S_I, 12);
     try testing.expectAlign(c.Ui_S_I, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_S_I C calls" {
+    try testing.expectEqual(c.ret_Ui_S_I(), .{ .v1 = 21625, .v2 = 11212, .v3 = 4579 });
     try testing.expectOk(c.recv_Ui_S_I(.{ .v1 = 21625, .v2 = 11212, .v3 = 4579 }));
 }
 // From T_Snnn_xba.c:48749:48769
@@ -3591,13 +4269,16 @@ test "Ui_S_I" {
 //   int *v3;
 // };
 
-test "Ui_S_Ip" {
+test "Ui_S_Ip layout" {
     var lv: c.Ui_S_Ip = undefined;
     try testing.expectSize(c.Ui_S_Ip, ABISELECT(16, 12));
     try testing.expectAlign(c.Ui_S_Ip, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_S_Ip C calls" {
+    try testing.expectEqual(c.ret_Ui_S_Ip(), .{ .v1 = 6672, .v2 = 23197, .v3 = null });
     try testing.expectOk(c.recv_Ui_S_Ip(.{ .v1 = 6672, .v2 = 23197, .v3 = null }));
 }
 // From T_Snnn_xba.c:48774:48794
@@ -3607,13 +4288,16 @@ test "Ui_S_Ip" {
 //   __tsi64 v3;
 // };
 
-test "Ui_S_L" {
+test "Ui_S_L layout" {
     var lv: c.Ui_S_L = undefined;
     try testing.expectSize(c.Ui_S_L, 16);
     try testing.expectAlign(c.Ui_S_L, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_S_L C calls" {
+    try testing.expectEqual(c.ret_Ui_S_L(), .{ .v1 = 5970, .v2 = 9549, .v3 = 25094 });
     try testing.expectOk(c.recv_Ui_S_L(.{ .v1 = 5970, .v2 = 9549, .v3 = 25094 }));
 }
 // From T_Snnn_xba.c:48799:48819
@@ -3623,13 +4307,16 @@ test "Ui_S_L" {
 //   short v3;
 // };
 
-test "Ui_S_S" {
+test "Ui_S_S layout" {
     var lv: c.Ui_S_S = undefined;
     try testing.expectSize(c.Ui_S_S, 8);
     try testing.expectAlign(c.Ui_S_S, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 6);
+}
+test "Ui_S_S C calls" {
+    try testing.expectEqual(c.ret_Ui_S_S(), .{ .v1 = 17865, .v2 = 18599, .v3 = 23696 });
     try testing.expectOk(c.recv_Ui_S_S(.{ .v1 = 17865, .v2 = 18599, .v3 = 23696 }));
 }
 // From T_Snnn_xba.c:48824:48844
@@ -3639,13 +4326,16 @@ test "Ui_S_S" {
 //   unsigned char v3;
 // };
 
-test "Ui_S_Uc" {
+test "Ui_S_Uc layout" {
     var lv: c.Ui_S_Uc = undefined;
     try testing.expectSize(c.Ui_S_Uc, 8);
     try testing.expectAlign(c.Ui_S_Uc, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 6);
+}
+test "Ui_S_Uc C calls" {
+    try testing.expectEqual(c.ret_Ui_S_Uc(), .{ .v1 = 28993, .v2 = 21813, .v3 = 77 });
     try testing.expectOk(c.recv_Ui_S_Uc(.{ .v1 = 28993, .v2 = 21813, .v3 = 77 }));
 }
 // From T_Snnn_xba.c:48849:48869
@@ -3655,13 +4345,16 @@ test "Ui_S_Uc" {
 //   unsigned int v3;
 // };
 
-test "Ui_S_Ui" {
+test "Ui_S_Ui layout" {
     var lv: c.Ui_S_Ui = undefined;
     try testing.expectSize(c.Ui_S_Ui, 12);
     try testing.expectAlign(c.Ui_S_Ui, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_S_Ui C calls" {
+    try testing.expectEqual(c.ret_Ui_S_Ui(), .{ .v1 = 5185, .v2 = 30102, .v3 = 21541 });
     try testing.expectOk(c.recv_Ui_S_Ui(.{ .v1 = 5185, .v2 = 30102, .v3 = 21541 }));
 }
 // From T_Snnn_xba.c:48874:48894
@@ -3671,13 +4364,16 @@ test "Ui_S_Ui" {
 //   __tsu64 v3;
 // };
 
-test "Ui_S_Ul" {
+test "Ui_S_Ul layout" {
     var lv: c.Ui_S_Ul = undefined;
     try testing.expectSize(c.Ui_S_Ul, 16);
     try testing.expectAlign(c.Ui_S_Ul, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_S_Ul C calls" {
+    try testing.expectEqual(c.ret_Ui_S_Ul(), .{ .v1 = 18781, .v2 = 20050, .v3 = 23141 });
     try testing.expectOk(c.recv_Ui_S_Ul(.{ .v1 = 18781, .v2 = 20050, .v3 = 23141 }));
 }
 // From T_Snnn_xba.c:48899:48919
@@ -3687,13 +4383,16 @@ test "Ui_S_Ul" {
 //   unsigned short v3;
 // };
 
-test "Ui_S_Us" {
+test "Ui_S_Us layout" {
     var lv: c.Ui_S_Us = undefined;
     try testing.expectSize(c.Ui_S_Us, 8);
     try testing.expectAlign(c.Ui_S_Us, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 6);
+}
+test "Ui_S_Us C calls" {
+    try testing.expectEqual(c.ret_Ui_S_Us(), .{ .v1 = 5545, .v2 = 1579, .v3 = 32452 });
     try testing.expectOk(c.recv_Ui_S_Us(.{ .v1 = 5545, .v2 = 1579, .v3 = 32452 }));
 }
 // From T_Snnn_xba.c:48924:48944
@@ -3703,13 +4402,16 @@ test "Ui_S_Us" {
 //   void *v3;
 // };
 
-test "Ui_S_Vp" {
+test "Ui_S_Vp layout" {
     var lv: c.Ui_S_Vp = undefined;
     try testing.expectSize(c.Ui_S_Vp, ABISELECT(16, 12));
     try testing.expectAlign(c.Ui_S_Vp, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_S_Vp C calls" {
+    try testing.expectEqual(c.ret_Ui_S_Vp(), .{ .v1 = 24208, .v2 = 28727, .v3 = null });
     try testing.expectOk(c.recv_Ui_S_Vp(.{ .v1 = 24208, .v2 = 28727, .v3 = null }));
 }
 // From T_Snnn_xba.c:48949:48967
@@ -3718,12 +4420,15 @@ test "Ui_S_Vp" {
 //   unsigned char v2;
 // };
 
-test "Ui_Uc" {
+test "Ui_Uc layout" {
     var lv: c.Ui_Uc = undefined;
     try testing.expectSize(c.Ui_Uc, 8);
     try testing.expectAlign(c.Ui_Uc, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
+}
+test "Ui_Uc C calls" {
+    try testing.expectEqual(c.ret_Ui_Uc(), .{ .v1 = 157, .v2 = 12 });
     try testing.expectOk(c.recv_Ui_Uc(.{ .v1 = 157, .v2 = 12 }));
 }
 // From T_Snnn_xba.c:49696:49716
@@ -3733,13 +4438,16 @@ test "Ui_Uc" {
 //   char v3;
 // };
 
-test "Ui_Uc_C" {
+test "Ui_Uc_C layout" {
     var lv: c.Ui_Uc_C = undefined;
     try testing.expectSize(c.Ui_Uc_C, 8);
     try testing.expectAlign(c.Ui_Uc_C, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 5);
+}
+test "Ui_Uc_C C calls" {
+    try testing.expectEqual(c.ret_Ui_Uc_C(), .{ .v1 = 16841, .v2 = 67, .v3 = 116 });
     try testing.expectOk(c.recv_Ui_Uc_C(.{ .v1 = 16841, .v2 = 67, .v3 = 116 }));
 }
 // From T_Snnn_xba.c:49721:49741
@@ -3749,13 +4457,16 @@ test "Ui_Uc_C" {
 //   double v3;
 // };
 
-test "Ui_Uc_D" {
+test "Ui_Uc_D layout" {
     var lv: c.Ui_Uc_D = undefined;
     try testing.expectSize(c.Ui_Uc_D, 16);
     try testing.expectAlign(c.Ui_Uc_D, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_Uc_D C calls" {
+    try testing.expectEqual(c.ret_Ui_Uc_D(), .{ .v1 = 3973, .v2 = 85, .v3 = 0.875 });
     try testing.expectOk(c.recv_Ui_Uc_D(.{ .v1 = 3973, .v2 = 85, .v3 = 0.875 }));
 }
 // From T_Snnn_xba.c:49746:49766
@@ -3765,13 +4476,16 @@ test "Ui_Uc_D" {
 //   float v3;
 // };
 
-test "Ui_Uc_F" {
+test "Ui_Uc_F layout" {
     var lv: c.Ui_Uc_F = undefined;
     try testing.expectSize(c.Ui_Uc_F, 12);
     try testing.expectAlign(c.Ui_Uc_F, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_Uc_F C calls" {
+    try testing.expectEqual(c.ret_Ui_Uc_F(), .{ .v1 = 28410, .v2 = 75, .v3 = -0.25 });
     try testing.expectOk(c.recv_Ui_Uc_F(.{ .v1 = 28410, .v2 = 75, .v3 = -0.25 }));
 }
 // From T_Snnn_xba.c:49771:49791
@@ -3781,13 +4495,16 @@ test "Ui_Uc_F" {
 //   int v3;
 // };
 
-test "Ui_Uc_I" {
+test "Ui_Uc_I layout" {
     var lv: c.Ui_Uc_I = undefined;
     try testing.expectSize(c.Ui_Uc_I, 12);
     try testing.expectAlign(c.Ui_Uc_I, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_Uc_I C calls" {
+    try testing.expectEqual(c.ret_Ui_Uc_I(), .{ .v1 = 1867, .v2 = 123, .v3 = 10643 });
     try testing.expectOk(c.recv_Ui_Uc_I(.{ .v1 = 1867, .v2 = 123, .v3 = 10643 }));
 }
 // From T_Snnn_xba.c:49796:49816
@@ -3797,13 +4514,16 @@ test "Ui_Uc_I" {
 //   int *v3;
 // };
 
-test "Ui_Uc_Ip" {
+test "Ui_Uc_Ip layout" {
     var lv: c.Ui_Uc_Ip = undefined;
     try testing.expectSize(c.Ui_Uc_Ip, ABISELECT(16, 12));
     try testing.expectAlign(c.Ui_Uc_Ip, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_Uc_Ip C calls" {
+    try testing.expectEqual(c.ret_Ui_Uc_Ip(), .{ .v1 = 5794, .v2 = 57, .v3 = null });
     try testing.expectOk(c.recv_Ui_Uc_Ip(.{ .v1 = 5794, .v2 = 57, .v3 = null }));
 }
 // From T_Snnn_xba.c:49821:49841
@@ -3813,13 +4533,16 @@ test "Ui_Uc_Ip" {
 //   __tsi64 v3;
 // };
 
-test "Ui_Uc_L" {
+test "Ui_Uc_L layout" {
     var lv: c.Ui_Uc_L = undefined;
     try testing.expectSize(c.Ui_Uc_L, 16);
     try testing.expectAlign(c.Ui_Uc_L, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_Uc_L C calls" {
+    try testing.expectEqual(c.ret_Ui_Uc_L(), .{ .v1 = 19180, .v2 = 58, .v3 = 11114 });
     try testing.expectOk(c.recv_Ui_Uc_L(.{ .v1 = 19180, .v2 = 58, .v3 = 11114 }));
 }
 // From T_Snnn_xba.c:49846:49866
@@ -3829,13 +4552,16 @@ test "Ui_Uc_L" {
 //   short v3;
 // };
 
-test "Ui_Uc_S" {
+test "Ui_Uc_S layout" {
     var lv: c.Ui_Uc_S = undefined;
     try testing.expectSize(c.Ui_Uc_S, 8);
     try testing.expectAlign(c.Ui_Uc_S, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 6);
+}
+test "Ui_Uc_S C calls" {
+    try testing.expectEqual(c.ret_Ui_Uc_S(), .{ .v1 = 22163, .v2 = 120, .v3 = 2678 });
     try testing.expectOk(c.recv_Ui_Uc_S(.{ .v1 = 22163, .v2 = 120, .v3 = 2678 }));
 }
 // From T_Snnn_xba.c:49871:49891
@@ -3845,13 +4571,16 @@ test "Ui_Uc_S" {
 //   unsigned char v3;
 // };
 
-test "Ui_Uc_Uc" {
+test "Ui_Uc_Uc layout" {
     var lv: c.Ui_Uc_Uc = undefined;
     try testing.expectSize(c.Ui_Uc_Uc, 8);
     try testing.expectAlign(c.Ui_Uc_Uc, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 5);
+}
+test "Ui_Uc_Uc C calls" {
+    try testing.expectEqual(c.ret_Ui_Uc_Uc(), .{ .v1 = 3867, .v2 = 87, .v3 = 16 });
     try testing.expectOk(c.recv_Ui_Uc_Uc(.{ .v1 = 3867, .v2 = 87, .v3 = 16 }));
 }
 // From T_Snnn_xba.c:49896:49916
@@ -3861,13 +4590,16 @@ test "Ui_Uc_Uc" {
 //   unsigned int v3;
 // };
 
-test "Ui_Uc_Ui" {
+test "Ui_Uc_Ui layout" {
     var lv: c.Ui_Uc_Ui = undefined;
     try testing.expectSize(c.Ui_Uc_Ui, 12);
     try testing.expectAlign(c.Ui_Uc_Ui, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_Uc_Ui C calls" {
+    try testing.expectEqual(c.ret_Ui_Uc_Ui(), .{ .v1 = 14918, .v2 = 101, .v3 = 9285 });
     try testing.expectOk(c.recv_Ui_Uc_Ui(.{ .v1 = 14918, .v2 = 101, .v3 = 9285 }));
 }
 // From T_Snnn_xba.c:49921:49941
@@ -3877,13 +4609,16 @@ test "Ui_Uc_Ui" {
 //   __tsu64 v3;
 // };
 
-test "Ui_Uc_Ul" {
+test "Ui_Uc_Ul layout" {
     var lv: c.Ui_Uc_Ul = undefined;
     try testing.expectSize(c.Ui_Uc_Ul, 16);
     try testing.expectAlign(c.Ui_Uc_Ul, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_Uc_Ul C calls" {
+    try testing.expectEqual(c.ret_Ui_Uc_Ul(), .{ .v1 = 7446, .v2 = 38, .v3 = 18825 });
     try testing.expectOk(c.recv_Ui_Uc_Ul(.{ .v1 = 7446, .v2 = 38, .v3 = 18825 }));
 }
 // From T_Snnn_xba.c:49946:49966
@@ -3893,13 +4628,16 @@ test "Ui_Uc_Ul" {
 //   unsigned short v3;
 // };
 
-test "Ui_Uc_Us" {
+test "Ui_Uc_Us layout" {
     var lv: c.Ui_Uc_Us = undefined;
     try testing.expectSize(c.Ui_Uc_Us, 8);
     try testing.expectAlign(c.Ui_Uc_Us, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 6);
+}
+test "Ui_Uc_Us C calls" {
+    try testing.expectEqual(c.ret_Ui_Uc_Us(), .{ .v1 = 1744, .v2 = 6, .v3 = 26082 });
     try testing.expectOk(c.recv_Ui_Uc_Us(.{ .v1 = 1744, .v2 = 6, .v3 = 26082 }));
 }
 // From T_Snnn_xba.c:49971:49991
@@ -3909,13 +4647,16 @@ test "Ui_Uc_Us" {
 //   void *v3;
 // };
 
-test "Ui_Uc_Vp" {
+test "Ui_Uc_Vp layout" {
     var lv: c.Ui_Uc_Vp = undefined;
     try testing.expectSize(c.Ui_Uc_Vp, ABISELECT(16, 12));
     try testing.expectAlign(c.Ui_Uc_Vp, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_Uc_Vp C calls" {
+    try testing.expectEqual(c.ret_Ui_Uc_Vp(), .{ .v1 = 3316, .v2 = 48, .v3 = null });
     try testing.expectOk(c.recv_Ui_Uc_Vp(.{ .v1 = 3316, .v2 = 48, .v3 = null }));
 }
 // From T_Snnn_xba.c:49996:50014
@@ -3924,12 +4665,15 @@ test "Ui_Uc_Vp" {
 //   unsigned int v2;
 // };
 
-test "Ui_Ui" {
+test "Ui_Ui layout" {
     var lv: c.Ui_Ui = undefined;
     try testing.expectSize(c.Ui_Ui, 8);
     try testing.expectAlign(c.Ui_Ui, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
+}
+test "Ui_Ui C calls" {
+    try testing.expectEqual(c.ret_Ui_Ui(), .{ .v1 = 8454, .v2 = 21904 });
     try testing.expectOk(c.recv_Ui_Ui(.{ .v1 = 8454, .v2 = 21904 }));
 }
 // From T_Snnn_xba.c:50743:50763
@@ -3939,13 +4683,16 @@ test "Ui_Ui" {
 //   char v3;
 // };
 
-test "Ui_Ui_C" {
+test "Ui_Ui_C layout" {
     var lv: c.Ui_Ui_C = undefined;
     try testing.expectSize(c.Ui_Ui_C, 12);
     try testing.expectAlign(c.Ui_Ui_C, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_Ui_C C calls" {
+    try testing.expectEqual(c.ret_Ui_Ui_C(), .{ .v1 = 24893, .v2 = 7554, .v3 = 125 });
     try testing.expectOk(c.recv_Ui_Ui_C(.{ .v1 = 24893, .v2 = 7554, .v3 = 125 }));
 }
 // From T_Snnn_xba.c:50768:50788
@@ -3955,13 +4702,16 @@ test "Ui_Ui_C" {
 //   double v3;
 // };
 
-test "Ui_Ui_D" {
+test "Ui_Ui_D layout" {
     var lv: c.Ui_Ui_D = undefined;
     try testing.expectSize(c.Ui_Ui_D, 16);
     try testing.expectAlign(c.Ui_Ui_D, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_Ui_D C calls" {
+    try testing.expectEqual(c.ret_Ui_Ui_D(), .{ .v1 = 11653, .v2 = 12325, .v3 = -2.125 });
     try testing.expectOk(c.recv_Ui_Ui_D(.{ .v1 = 11653, .v2 = 12325, .v3 = -2.125 }));
 }
 // From T_Snnn_xba.c:50793:50813
@@ -3971,13 +4721,16 @@ test "Ui_Ui_D" {
 //   float v3;
 // };
 
-test "Ui_Ui_F" {
+test "Ui_Ui_F layout" {
     var lv: c.Ui_Ui_F = undefined;
     try testing.expectSize(c.Ui_Ui_F, 12);
     try testing.expectAlign(c.Ui_Ui_F, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_Ui_F C calls" {
+    try testing.expectEqual(c.ret_Ui_Ui_F(), .{ .v1 = 11056, .v2 = 12323, .v3 = 0.875 });
     try testing.expectOk(c.recv_Ui_Ui_F(.{ .v1 = 11056, .v2 = 12323, .v3 = 0.875 }));
 }
 // From T_Snnn_xba.c:50818:50838
@@ -3987,13 +4740,16 @@ test "Ui_Ui_F" {
 //   int v3;
 // };
 
-test "Ui_Ui_I" {
+test "Ui_Ui_I layout" {
     var lv: c.Ui_Ui_I = undefined;
     try testing.expectSize(c.Ui_Ui_I, 12);
     try testing.expectAlign(c.Ui_Ui_I, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_Ui_I C calls" {
+    try testing.expectEqual(c.ret_Ui_Ui_I(), .{ .v1 = 24003, .v2 = 31766, .v3 = 9259 });
     try testing.expectOk(c.recv_Ui_Ui_I(.{ .v1 = 24003, .v2 = 31766, .v3 = 9259 }));
 }
 // From T_Snnn_xba.c:50843:50863
@@ -4003,13 +4759,16 @@ test "Ui_Ui_I" {
 //   int *v3;
 // };
 
-test "Ui_Ui_Ip" {
+test "Ui_Ui_Ip layout" {
     var lv: c.Ui_Ui_Ip = undefined;
     try testing.expectSize(c.Ui_Ui_Ip, ABISELECT(16, 12));
     try testing.expectAlign(c.Ui_Ui_Ip, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_Ui_Ip C calls" {
+    try testing.expectEqual(c.ret_Ui_Ui_Ip(), .{ .v1 = 4717, .v2 = 9398, .v3 = null });
     try testing.expectOk(c.recv_Ui_Ui_Ip(.{ .v1 = 4717, .v2 = 9398, .v3 = null }));
 }
 // From T_Snnn_xba.c:50868:50888
@@ -4019,13 +4778,16 @@ test "Ui_Ui_Ip" {
 //   __tsi64 v3;
 // };
 
-test "Ui_Ui_L" {
+test "Ui_Ui_L layout" {
     var lv: c.Ui_Ui_L = undefined;
     try testing.expectSize(c.Ui_Ui_L, 16);
     try testing.expectAlign(c.Ui_Ui_L, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_Ui_L C calls" {
+    try testing.expectEqual(c.ret_Ui_Ui_L(), .{ .v1 = 5211, .v2 = 14887, .v3 = 10731 });
     try testing.expectOk(c.recv_Ui_Ui_L(.{ .v1 = 5211, .v2 = 14887, .v3 = 10731 }));
 }
 // From T_Snnn_xba.c:50893:50913
@@ -4035,13 +4797,16 @@ test "Ui_Ui_L" {
 //   short v3;
 // };
 
-test "Ui_Ui_S" {
+test "Ui_Ui_S layout" {
     var lv: c.Ui_Ui_S = undefined;
     try testing.expectSize(c.Ui_Ui_S, 12);
     try testing.expectAlign(c.Ui_Ui_S, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_Ui_S C calls" {
+    try testing.expectEqual(c.ret_Ui_Ui_S(), .{ .v1 = 8211, .v2 = 27366, .v3 = 700 });
     try testing.expectOk(c.recv_Ui_Ui_S(.{ .v1 = 8211, .v2 = 27366, .v3 = 700 }));
 }
 // From T_Snnn_xba.c:50918:50938
@@ -4051,13 +4816,16 @@ test "Ui_Ui_S" {
 //   unsigned char v3;
 // };
 
-test "Ui_Ui_Uc" {
+test "Ui_Ui_Uc layout" {
     var lv: c.Ui_Ui_Uc = undefined;
     try testing.expectSize(c.Ui_Ui_Uc, 12);
     try testing.expectAlign(c.Ui_Ui_Uc, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_Ui_Uc C calls" {
+    try testing.expectEqual(c.ret_Ui_Ui_Uc(), .{ .v1 = 2757, .v2 = 21695, .v3 = 93 });
     try testing.expectOk(c.recv_Ui_Ui_Uc(.{ .v1 = 2757, .v2 = 21695, .v3 = 93 }));
 }
 // From T_Snnn_xba.c:50943:50963
@@ -4067,13 +4835,16 @@ test "Ui_Ui_Uc" {
 //   unsigned int v3;
 // };
 
-test "Ui_Ui_Ui" {
+test "Ui_Ui_Ui layout" {
     var lv: c.Ui_Ui_Ui = undefined;
     try testing.expectSize(c.Ui_Ui_Ui, 12);
     try testing.expectAlign(c.Ui_Ui_Ui, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_Ui_Ui C calls" {
+    try testing.expectEqual(c.ret_Ui_Ui_Ui(), .{ .v1 = 9522, .v2 = 22368, .v3 = 18383 });
     try testing.expectOk(c.recv_Ui_Ui_Ui(.{ .v1 = 9522, .v2 = 22368, .v3 = 18383 }));
 }
 // From T_Snnn_xba.c:50968:50988
@@ -4083,13 +4854,16 @@ test "Ui_Ui_Ui" {
 //   __tsu64 v3;
 // };
 
-test "Ui_Ui_Ul" {
+test "Ui_Ui_Ul layout" {
     var lv: c.Ui_Ui_Ul = undefined;
     try testing.expectSize(c.Ui_Ui_Ul, 16);
     try testing.expectAlign(c.Ui_Ui_Ul, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_Ui_Ul C calls" {
+    try testing.expectEqual(c.ret_Ui_Ui_Ul(), .{ .v1 = 17560, .v2 = 16595, .v3 = 621 });
     try testing.expectOk(c.recv_Ui_Ui_Ul(.{ .v1 = 17560, .v2 = 16595, .v3 = 621 }));
 }
 // From T_Snnn_xba.c:50993:51013
@@ -4099,13 +4873,16 @@ test "Ui_Ui_Ul" {
 //   unsigned short v3;
 // };
 
-test "Ui_Ui_Us" {
+test "Ui_Ui_Us layout" {
     var lv: c.Ui_Ui_Us = undefined;
     try testing.expectSize(c.Ui_Ui_Us, 12);
     try testing.expectAlign(c.Ui_Ui_Us, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_Ui_Us C calls" {
+    try testing.expectEqual(c.ret_Ui_Ui_Us(), .{ .v1 = 11564, .v2 = 11476, .v3 = 1119 });
     try testing.expectOk(c.recv_Ui_Ui_Us(.{ .v1 = 11564, .v2 = 11476, .v3 = 1119 }));
 }
 // From T_Snnn_xba.c:51018:51038
@@ -4115,13 +4892,16 @@ test "Ui_Ui_Us" {
 //   void *v3;
 // };
 
-test "Ui_Ui_Vp" {
+test "Ui_Ui_Vp layout" {
     var lv: c.Ui_Ui_Vp = undefined;
     try testing.expectSize(c.Ui_Ui_Vp, ABISELECT(16, 12));
     try testing.expectAlign(c.Ui_Ui_Vp, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_Ui_Vp C calls" {
+    try testing.expectEqual(c.ret_Ui_Ui_Vp(), .{ .v1 = 6197, .v2 = 30374, .v3 = null });
     try testing.expectOk(c.recv_Ui_Ui_Vp(.{ .v1 = 6197, .v2 = 30374, .v3 = null }));
 }
 // From T_Snnn_xba.c:51043:51061
@@ -4130,12 +4910,15 @@ test "Ui_Ui_Vp" {
 //   __tsu64 v2;
 // };
 
-test "Ui_Ul" {
+test "Ui_Ul layout" {
     var lv: c.Ui_Ul = undefined;
     try testing.expectSize(c.Ui_Ul, ABISELECT(16, 12));
     try testing.expectAlign(c.Ui_Ul, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
+}
+test "Ui_Ul C calls" {
+    try testing.expectEqual(c.ret_Ui_Ul(), .{ .v1 = 6015, .v2 = 14187 });
     try testing.expectOk(c.recv_Ui_Ul(.{ .v1 = 6015, .v2 = 14187 }));
 }
 // From T_Snnn_xba.c:51790:51810
@@ -4145,13 +4928,16 @@ test "Ui_Ul" {
 //   char v3;
 // };
 
-test "Ui_Ul_C" {
+test "Ui_Ul_C layout" {
     var lv: c.Ui_Ul_C = undefined;
     try testing.expectSize(c.Ui_Ul_C, ABISELECT(24, 16));
     try testing.expectAlign(c.Ui_Ul_C, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Ui_Ul_C C calls" {
+    try testing.expectEqual(c.ret_Ui_Ul_C(), .{ .v1 = 4633, .v2 = 28170, .v3 = 118 });
     try testing.expectOk(c.recv_Ui_Ul_C(.{ .v1 = 4633, .v2 = 28170, .v3 = 118 }));
 }
 // From T_Snnn_xba.c:51815:51835
@@ -4161,13 +4947,16 @@ test "Ui_Ul_C" {
 //   double v3;
 // };
 
-test "Ui_Ul_D" {
+test "Ui_Ul_D layout" {
     var lv: c.Ui_Ul_D = undefined;
     try testing.expectSize(c.Ui_Ul_D, ABISELECT(24, 20));
     try testing.expectAlign(c.Ui_Ul_D, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Ui_Ul_D C calls" {
+    try testing.expectEqual(c.ret_Ui_Ul_D(), .{ .v1 = 26735, .v2 = 3946, .v3 = 7.0 });
     try testing.expectOk(c.recv_Ui_Ul_D(.{ .v1 = 26735, .v2 = 3946, .v3 = 7.0 }));
 }
 // From T_Snnn_xba.c:51840:51860
@@ -4177,13 +4966,16 @@ test "Ui_Ul_D" {
 //   float v3;
 // };
 
-test "Ui_Ul_F" {
+test "Ui_Ul_F layout" {
     var lv: c.Ui_Ul_F = undefined;
     try testing.expectSize(c.Ui_Ul_F, ABISELECT(24, 16));
     try testing.expectAlign(c.Ui_Ul_F, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Ui_Ul_F C calls" {
+    try testing.expectEqual(c.ret_Ui_Ul_F(), .{ .v1 = 28323, .v2 = 4257, .v3 = 7.0 });
     try testing.expectOk(c.recv_Ui_Ul_F(.{ .v1 = 28323, .v2 = 4257, .v3 = 7.0 }));
 }
 // From T_Snnn_xba.c:51865:51885
@@ -4193,13 +4985,16 @@ test "Ui_Ul_F" {
 //   int v3;
 // };
 
-test "Ui_Ul_I" {
+test "Ui_Ul_I layout" {
     var lv: c.Ui_Ul_I = undefined;
     try testing.expectSize(c.Ui_Ul_I, ABISELECT(24, 16));
     try testing.expectAlign(c.Ui_Ul_I, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Ui_Ul_I C calls" {
+    try testing.expectEqual(c.ret_Ui_Ul_I(), .{ .v1 = 25993, .v2 = 21218, .v3 = 10780 });
     try testing.expectOk(c.recv_Ui_Ul_I(.{ .v1 = 25993, .v2 = 21218, .v3 = 10780 }));
 }
 // From T_Snnn_xba.c:51890:51910
@@ -4209,13 +5004,16 @@ test "Ui_Ul_I" {
 //   int *v3;
 // };
 
-test "Ui_Ul_Ip" {
+test "Ui_Ul_Ip layout" {
     var lv: c.Ui_Ul_Ip = undefined;
     try testing.expectSize(c.Ui_Ul_Ip, ABISELECT(24, 16));
     try testing.expectAlign(c.Ui_Ul_Ip, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Ui_Ul_Ip C calls" {
+    try testing.expectEqual(c.ret_Ui_Ul_Ip(), .{ .v1 = 4013, .v2 = 9159, .v3 = null });
     try testing.expectOk(c.recv_Ui_Ul_Ip(.{ .v1 = 4013, .v2 = 9159, .v3 = null }));
 }
 // From T_Snnn_xba.c:51915:51935
@@ -4225,13 +5023,16 @@ test "Ui_Ul_Ip" {
 //   __tsi64 v3;
 // };
 
-test "Ui_Ul_L" {
+test "Ui_Ul_L layout" {
     var lv: c.Ui_Ul_L = undefined;
     try testing.expectSize(c.Ui_Ul_L, ABISELECT(24, 20));
     try testing.expectAlign(c.Ui_Ul_L, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Ui_Ul_L C calls" {
+    try testing.expectEqual(c.ret_Ui_Ul_L(), .{ .v1 = 612, .v2 = 2563, .v3 = 3634 });
     try testing.expectOk(c.recv_Ui_Ul_L(.{ .v1 = 612, .v2 = 2563, .v3 = 3634 }));
 }
 // From T_Snnn_xba.c:51940:51960
@@ -4241,13 +5042,16 @@ test "Ui_Ul_L" {
 //   short v3;
 // };
 
-test "Ui_Ul_S" {
+test "Ui_Ul_S layout" {
     var lv: c.Ui_Ul_S = undefined;
     try testing.expectSize(c.Ui_Ul_S, ABISELECT(24, 16));
     try testing.expectAlign(c.Ui_Ul_S, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Ui_Ul_S C calls" {
+    try testing.expectEqual(c.ret_Ui_Ul_S(), .{ .v1 = 29897, .v2 = 28586, .v3 = 32630 });
     try testing.expectOk(c.recv_Ui_Ul_S(.{ .v1 = 29897, .v2 = 28586, .v3 = 32630 }));
 }
 // From T_Snnn_xba.c:51965:51985
@@ -4257,13 +5061,16 @@ test "Ui_Ul_S" {
 //   unsigned char v3;
 // };
 
-test "Ui_Ul_Uc" {
+test "Ui_Ul_Uc layout" {
     var lv: c.Ui_Ul_Uc = undefined;
     try testing.expectSize(c.Ui_Ul_Uc, ABISELECT(24, 16));
     try testing.expectAlign(c.Ui_Ul_Uc, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Ui_Ul_Uc C calls" {
+    try testing.expectEqual(c.ret_Ui_Ul_Uc(), .{ .v1 = 25723, .v2 = 5638, .v3 = 72 });
     try testing.expectOk(c.recv_Ui_Ul_Uc(.{ .v1 = 25723, .v2 = 5638, .v3 = 72 }));
 }
 // From T_Snnn_xba.c:51990:52010
@@ -4273,13 +5080,16 @@ test "Ui_Ul_Uc" {
 //   unsigned int v3;
 // };
 
-test "Ui_Ul_Ui" {
+test "Ui_Ul_Ui layout" {
     var lv: c.Ui_Ul_Ui = undefined;
     try testing.expectSize(c.Ui_Ul_Ui, ABISELECT(24, 16));
     try testing.expectAlign(c.Ui_Ul_Ui, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Ui_Ul_Ui C calls" {
+    try testing.expectEqual(c.ret_Ui_Ul_Ui(), .{ .v1 = 21999, .v2 = 1833, .v3 = 27956 });
     try testing.expectOk(c.recv_Ui_Ul_Ui(.{ .v1 = 21999, .v2 = 1833, .v3 = 27956 }));
 }
 // From T_Snnn_xba.c:52015:52035
@@ -4289,13 +5099,16 @@ test "Ui_Ul_Ui" {
 //   __tsu64 v3;
 // };
 
-test "Ui_Ul_Ul" {
+test "Ui_Ul_Ul layout" {
     var lv: c.Ui_Ul_Ul = undefined;
     try testing.expectSize(c.Ui_Ul_Ul, ABISELECT(24, 20));
     try testing.expectAlign(c.Ui_Ul_Ul, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Ui_Ul_Ul C calls" {
+    try testing.expectEqual(c.ret_Ui_Ul_Ul(), .{ .v1 = 21577, .v2 = 25353, .v3 = 519 });
     try testing.expectOk(c.recv_Ui_Ul_Ul(.{ .v1 = 21577, .v2 = 25353, .v3 = 519 }));
 }
 // From T_Snnn_xba.c:52040:52060
@@ -4305,13 +5118,16 @@ test "Ui_Ul_Ul" {
 //   unsigned short v3;
 // };
 
-test "Ui_Ul_Us" {
+test "Ui_Ul_Us layout" {
     var lv: c.Ui_Ul_Us = undefined;
     try testing.expectSize(c.Ui_Ul_Us, ABISELECT(24, 16));
     try testing.expectAlign(c.Ui_Ul_Us, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Ui_Ul_Us C calls" {
+    try testing.expectEqual(c.ret_Ui_Ul_Us(), .{ .v1 = 2982, .v2 = 26174, .v3 = 30401 });
     try testing.expectOk(c.recv_Ui_Ul_Us(.{ .v1 = 2982, .v2 = 26174, .v3 = 30401 }));
 }
 // From T_Snnn_xba.c:52065:52085
@@ -4321,13 +5137,16 @@ test "Ui_Ul_Us" {
 //   void *v3;
 // };
 
-test "Ui_Ul_Vp" {
+test "Ui_Ul_Vp layout" {
     var lv: c.Ui_Ul_Vp = undefined;
     try testing.expectSize(c.Ui_Ul_Vp, ABISELECT(24, 16));
     try testing.expectAlign(c.Ui_Ul_Vp, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
+}
+test "Ui_Ul_Vp C calls" {
+    try testing.expectEqual(c.ret_Ui_Ul_Vp(), .{ .v1 = 80, .v2 = 21067, .v3 = null });
     try testing.expectOk(c.recv_Ui_Ul_Vp(.{ .v1 = 80, .v2 = 21067, .v3 = null }));
 }
 // From T_Snnn_xba.c:52090:52108
@@ -4336,12 +5155,15 @@ test "Ui_Ul_Vp" {
 //   unsigned short v2;
 // };
 
-test "Ui_Us" {
+test "Ui_Us layout" {
     var lv: c.Ui_Us = undefined;
     try testing.expectSize(c.Ui_Us, 8);
     try testing.expectAlign(c.Ui_Us, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
+}
+test "Ui_Us C calls" {
+    try testing.expectEqual(c.ret_Ui_Us(), .{ .v1 = 30354, .v2 = 26657 });
     try testing.expectOk(c.recv_Ui_Us(.{ .v1 = 30354, .v2 = 26657 }));
 }
 // From T_Snnn_xba.c:52837:52857
@@ -4351,13 +5173,16 @@ test "Ui_Us" {
 //   char v3;
 // };
 
-test "Ui_Us_C" {
+test "Ui_Us_C layout" {
     var lv: c.Ui_Us_C = undefined;
     try testing.expectSize(c.Ui_Us_C, 8);
     try testing.expectAlign(c.Ui_Us_C, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 6);
+}
+test "Ui_Us_C C calls" {
+    try testing.expectEqual(c.ret_Ui_Us_C(), .{ .v1 = 21789, .v2 = 26918, .v3 = 102 });
     try testing.expectOk(c.recv_Ui_Us_C(.{ .v1 = 21789, .v2 = 26918, .v3 = 102 }));
 }
 // From T_Snnn_xba.c:52862:52882
@@ -4367,13 +5192,16 @@ test "Ui_Us_C" {
 //   double v3;
 // };
 
-test "Ui_Us_D" {
+test "Ui_Us_D layout" {
     var lv: c.Ui_Us_D = undefined;
     try testing.expectSize(c.Ui_Us_D, 16);
     try testing.expectAlign(c.Ui_Us_D, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_Us_D C calls" {
+    try testing.expectEqual(c.ret_Ui_Us_D(), .{ .v1 = 25060, .v2 = 30168, .v3 = 0.875 });
     try testing.expectOk(c.recv_Ui_Us_D(.{ .v1 = 25060, .v2 = 30168, .v3 = 0.875 }));
 }
 // From T_Snnn_xba.c:52887:52907
@@ -4383,13 +5211,16 @@ test "Ui_Us_D" {
 //   float v3;
 // };
 
-test "Ui_Us_F" {
+test "Ui_Us_F layout" {
     var lv: c.Ui_Us_F = undefined;
     try testing.expectSize(c.Ui_Us_F, 12);
     try testing.expectAlign(c.Ui_Us_F, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_Us_F C calls" {
+    try testing.expectEqual(c.ret_Ui_Us_F(), .{ .v1 = 26931, .v2 = 19984, .v3 = 0.5 });
     try testing.expectOk(c.recv_Ui_Us_F(.{ .v1 = 26931, .v2 = 19984, .v3 = 0.5 }));
 }
 // From T_Snnn_xba.c:52912:52932
@@ -4399,13 +5230,16 @@ test "Ui_Us_F" {
 //   int v3;
 // };
 
-test "Ui_Us_I" {
+test "Ui_Us_I layout" {
     var lv: c.Ui_Us_I = undefined;
     try testing.expectSize(c.Ui_Us_I, 12);
     try testing.expectAlign(c.Ui_Us_I, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_Us_I C calls" {
+    try testing.expectEqual(c.ret_Ui_Us_I(), .{ .v1 = 27580, .v2 = 4813, .v3 = 13953 });
     try testing.expectOk(c.recv_Ui_Us_I(.{ .v1 = 27580, .v2 = 4813, .v3 = 13953 }));
 }
 // From T_Snnn_xba.c:52937:52957
@@ -4415,13 +5249,16 @@ test "Ui_Us_I" {
 //   int *v3;
 // };
 
-test "Ui_Us_Ip" {
+test "Ui_Us_Ip layout" {
     var lv: c.Ui_Us_Ip = undefined;
     try testing.expectSize(c.Ui_Us_Ip, ABISELECT(16, 12));
     try testing.expectAlign(c.Ui_Us_Ip, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_Us_Ip C calls" {
+    try testing.expectEqual(c.ret_Ui_Us_Ip(), .{ .v1 = 3212, .v2 = 7801, .v3 = null });
     try testing.expectOk(c.recv_Ui_Us_Ip(.{ .v1 = 3212, .v2 = 7801, .v3 = null }));
 }
 // From T_Snnn_xba.c:52962:52982
@@ -4431,13 +5268,16 @@ test "Ui_Us_Ip" {
 //   __tsi64 v3;
 // };
 
-test "Ui_Us_L" {
+test "Ui_Us_L layout" {
     var lv: c.Ui_Us_L = undefined;
     try testing.expectSize(c.Ui_Us_L, 16);
     try testing.expectAlign(c.Ui_Us_L, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_Us_L C calls" {
+    try testing.expectEqual(c.ret_Ui_Us_L(), .{ .v1 = 5564, .v2 = 2635, .v3 = 10175 });
     try testing.expectOk(c.recv_Ui_Us_L(.{ .v1 = 5564, .v2 = 2635, .v3 = 10175 }));
 }
 // From T_Snnn_xba.c:52987:53007
@@ -4447,13 +5287,16 @@ test "Ui_Us_L" {
 //   short v3;
 // };
 
-test "Ui_Us_S" {
+test "Ui_Us_S layout" {
     var lv: c.Ui_Us_S = undefined;
     try testing.expectSize(c.Ui_Us_S, 8);
     try testing.expectAlign(c.Ui_Us_S, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 6);
+}
+test "Ui_Us_S C calls" {
+    try testing.expectEqual(c.ret_Ui_Us_S(), .{ .v1 = 26848, .v2 = 23938, .v3 = 12891 });
     try testing.expectOk(c.recv_Ui_Us_S(.{ .v1 = 26848, .v2 = 23938, .v3 = 12891 }));
 }
 // From T_Snnn_xba.c:53012:53032
@@ -4463,13 +5306,16 @@ test "Ui_Us_S" {
 //   unsigned char v3;
 // };
 
-test "Ui_Us_Uc" {
+test "Ui_Us_Uc layout" {
     var lv: c.Ui_Us_Uc = undefined;
     try testing.expectSize(c.Ui_Us_Uc, 8);
     try testing.expectAlign(c.Ui_Us_Uc, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 6);
+}
+test "Ui_Us_Uc C calls" {
+    try testing.expectEqual(c.ret_Ui_Us_Uc(), .{ .v1 = 21533, .v2 = 13458, .v3 = 32 });
     try testing.expectOk(c.recv_Ui_Us_Uc(.{ .v1 = 21533, .v2 = 13458, .v3 = 32 }));
 }
 // From T_Snnn_xba.c:53037:53057
@@ -4479,13 +5325,16 @@ test "Ui_Us_Uc" {
 //   unsigned int v3;
 // };
 
-test "Ui_Us_Ui" {
+test "Ui_Us_Ui layout" {
     var lv: c.Ui_Us_Ui = undefined;
     try testing.expectSize(c.Ui_Us_Ui, 12);
     try testing.expectAlign(c.Ui_Us_Ui, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_Us_Ui C calls" {
+    try testing.expectEqual(c.ret_Ui_Us_Ui(), .{ .v1 = 4359, .v2 = 7290, .v3 = 2824 });
     try testing.expectOk(c.recv_Ui_Us_Ui(.{ .v1 = 4359, .v2 = 7290, .v3 = 2824 }));
 }
 // From T_Snnn_xba.c:53062:53082
@@ -4495,13 +5344,16 @@ test "Ui_Us_Ui" {
 //   __tsu64 v3;
 // };
 
-test "Ui_Us_Ul" {
+test "Ui_Us_Ul layout" {
     var lv: c.Ui_Us_Ul = undefined;
     try testing.expectSize(c.Ui_Us_Ul, 16);
     try testing.expectAlign(c.Ui_Us_Ul, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_Us_Ul C calls" {
+    try testing.expectEqual(c.ret_Ui_Us_Ul(), .{ .v1 = 10815, .v2 = 2476, .v3 = 15183 });
     try testing.expectOk(c.recv_Ui_Us_Ul(.{ .v1 = 10815, .v2 = 2476, .v3 = 15183 }));
 }
 // From T_Snnn_xba.c:53087:53107
@@ -4511,13 +5363,16 @@ test "Ui_Us_Ul" {
 //   unsigned short v3;
 // };
 
-test "Ui_Us_Us" {
+test "Ui_Us_Us layout" {
     var lv: c.Ui_Us_Us = undefined;
     try testing.expectSize(c.Ui_Us_Us, 8);
     try testing.expectAlign(c.Ui_Us_Us, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 6);
+}
+test "Ui_Us_Us C calls" {
+    try testing.expectEqual(c.ret_Ui_Us_Us(), .{ .v1 = 28170, .v2 = 20814, .v3 = 14005 });
     try testing.expectOk(c.recv_Ui_Us_Us(.{ .v1 = 28170, .v2 = 20814, .v3 = 14005 }));
 }
 // From T_Snnn_xba.c:53112:53132
@@ -4527,13 +5382,16 @@ test "Ui_Us_Us" {
 //   void *v3;
 // };
 
-test "Ui_Us_Vp" {
+test "Ui_Us_Vp layout" {
     var lv: c.Ui_Us_Vp = undefined;
     try testing.expectSize(c.Ui_Us_Vp, ABISELECT(16, 12));
     try testing.expectAlign(c.Ui_Us_Vp, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
+}
+test "Ui_Us_Vp C calls" {
+    try testing.expectEqual(c.ret_Ui_Us_Vp(), .{ .v1 = 13993, .v2 = 22706, .v3 = null });
     try testing.expectOk(c.recv_Ui_Us_Vp(.{ .v1 = 13993, .v2 = 22706, .v3 = null }));
 }
 // From T_Snnn_xba.c:53137:53155
@@ -4542,12 +5400,15 @@ test "Ui_Us_Vp" {
 //   void *v2;
 // };
 
-test "Ui_Vp" {
+test "Ui_Vp layout" {
     var lv: c.Ui_Vp = undefined;
     try testing.expectSize(c.Ui_Vp, ABISELECT(16, 8));
     try testing.expectAlign(c.Ui_Vp, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
+}
+test "Ui_Vp C calls" {
+    try testing.expectEqual(c.ret_Ui_Vp(), .{ .v1 = 876, .v2 = null });
     try testing.expectOk(c.recv_Ui_Vp(.{ .v1 = 876, .v2 = null }));
 }
 // From T_Snnn_xba.c:53884:53904
@@ -4557,13 +5418,16 @@ test "Ui_Vp" {
 //   char v3;
 // };
 
-test "Ui_Vp_C" {
+test "Ui_Vp_C layout" {
     var lv: c.Ui_Vp_C = undefined;
     try testing.expectSize(c.Ui_Vp_C, ABISELECT(24, 12));
     try testing.expectAlign(c.Ui_Vp_C, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Ui_Vp_C C calls" {
+    try testing.expectEqual(c.ret_Ui_Vp_C(), .{ .v1 = 15686, .v2 = null, .v3 = 90 });
     try testing.expectOk(c.recv_Ui_Vp_C(.{ .v1 = 15686, .v2 = null, .v3 = 90 }));
 }
 // From T_Snnn_xba.c:53909:53929
@@ -4573,13 +5437,16 @@ test "Ui_Vp_C" {
 //   double v3;
 // };
 
-test "Ui_Vp_D" {
+test "Ui_Vp_D layout" {
     var lv: c.Ui_Vp_D = undefined;
     try testing.expectSize(c.Ui_Vp_D, ABISELECT(24, 16));
     try testing.expectAlign(c.Ui_Vp_D, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Ui_Vp_D C calls" {
+    try testing.expectEqual(c.ret_Ui_Vp_D(), .{ .v1 = 7177, .v2 = null, .v3 = 0.5 });
     try testing.expectOk(c.recv_Ui_Vp_D(.{ .v1 = 7177, .v2 = null, .v3 = 0.5 }));
 }
 // From T_Snnn_xba.c:53934:53954
@@ -4589,13 +5456,16 @@ test "Ui_Vp_D" {
 //   float v3;
 // };
 
-test "Ui_Vp_F" {
+test "Ui_Vp_F layout" {
     var lv: c.Ui_Vp_F = undefined;
     try testing.expectSize(c.Ui_Vp_F, ABISELECT(24, 12));
     try testing.expectAlign(c.Ui_Vp_F, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Ui_Vp_F C calls" {
+    try testing.expectEqual(c.ret_Ui_Vp_F(), .{ .v1 = 28047, .v2 = null, .v3 = -2.125 });
     try testing.expectOk(c.recv_Ui_Vp_F(.{ .v1 = 28047, .v2 = null, .v3 = -2.125 }));
 }
 // From T_Snnn_xba.c:53959:53979
@@ -4605,13 +5475,16 @@ test "Ui_Vp_F" {
 //   int v3;
 // };
 
-test "Ui_Vp_I" {
+test "Ui_Vp_I layout" {
     var lv: c.Ui_Vp_I = undefined;
     try testing.expectSize(c.Ui_Vp_I, ABISELECT(24, 12));
     try testing.expectAlign(c.Ui_Vp_I, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Ui_Vp_I C calls" {
+    try testing.expectEqual(c.ret_Ui_Vp_I(), .{ .v1 = 25781, .v2 = null, .v3 = 27067 });
     try testing.expectOk(c.recv_Ui_Vp_I(.{ .v1 = 25781, .v2 = null, .v3 = 27067 }));
 }
 // From T_Snnn_xba.c:53984:54004
@@ -4621,13 +5494,16 @@ test "Ui_Vp_I" {
 //   int *v3;
 // };
 
-test "Ui_Vp_Ip" {
+test "Ui_Vp_Ip layout" {
     var lv: c.Ui_Vp_Ip = undefined;
     try testing.expectSize(c.Ui_Vp_Ip, ABISELECT(24, 12));
     try testing.expectAlign(c.Ui_Vp_Ip, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Ui_Vp_Ip C calls" {
+    try testing.expectEqual(c.ret_Ui_Vp_Ip(), .{ .v1 = 20737, .v2 = null, .v3 = null });
     try testing.expectOk(c.recv_Ui_Vp_Ip(.{ .v1 = 20737, .v2 = null, .v3 = null }));
 }
 // From T_Snnn_xba.c:54009:54029
@@ -4637,13 +5513,16 @@ test "Ui_Vp_Ip" {
 //   __tsi64 v3;
 // };
 
-test "Ui_Vp_L" {
+test "Ui_Vp_L layout" {
     var lv: c.Ui_Vp_L = undefined;
     try testing.expectSize(c.Ui_Vp_L, ABISELECT(24, 16));
     try testing.expectAlign(c.Ui_Vp_L, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Ui_Vp_L C calls" {
+    try testing.expectEqual(c.ret_Ui_Vp_L(), .{ .v1 = 19695, .v2 = null, .v3 = 2089 });
     try testing.expectOk(c.recv_Ui_Vp_L(.{ .v1 = 19695, .v2 = null, .v3 = 2089 }));
 }
 // From T_Snnn_xba.c:54034:54054
@@ -4653,13 +5532,16 @@ test "Ui_Vp_L" {
 //   short v3;
 // };
 
-test "Ui_Vp_S" {
+test "Ui_Vp_S layout" {
     var lv: c.Ui_Vp_S = undefined;
     try testing.expectSize(c.Ui_Vp_S, ABISELECT(24, 12));
     try testing.expectAlign(c.Ui_Vp_S, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Ui_Vp_S C calls" {
+    try testing.expectEqual(c.ret_Ui_Vp_S(), .{ .v1 = 22643, .v2 = null, .v3 = 3854 });
     try testing.expectOk(c.recv_Ui_Vp_S(.{ .v1 = 22643, .v2 = null, .v3 = 3854 }));
 }
 // From T_Snnn_xba.c:54059:54079
@@ -4669,13 +5551,16 @@ test "Ui_Vp_S" {
 //   unsigned char v3;
 // };
 
-test "Ui_Vp_Uc" {
+test "Ui_Vp_Uc layout" {
     var lv: c.Ui_Vp_Uc = undefined;
     try testing.expectSize(c.Ui_Vp_Uc, ABISELECT(24, 12));
     try testing.expectAlign(c.Ui_Vp_Uc, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Ui_Vp_Uc C calls" {
+    try testing.expectEqual(c.ret_Ui_Vp_Uc(), .{ .v1 = 2525, .v2 = null, .v3 = 89 });
     try testing.expectOk(c.recv_Ui_Vp_Uc(.{ .v1 = 2525, .v2 = null, .v3 = 89 }));
 }
 // From T_Snnn_xba.c:54084:54104
@@ -4685,13 +5570,16 @@ test "Ui_Vp_Uc" {
 //   unsigned int v3;
 // };
 
-test "Ui_Vp_Ui" {
+test "Ui_Vp_Ui layout" {
     var lv: c.Ui_Vp_Ui = undefined;
     try testing.expectSize(c.Ui_Vp_Ui, ABISELECT(24, 12));
     try testing.expectAlign(c.Ui_Vp_Ui, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Ui_Vp_Ui C calls" {
+    try testing.expectEqual(c.ret_Ui_Vp_Ui(), .{ .v1 = 25903, .v2 = null, .v3 = 7407 });
     try testing.expectOk(c.recv_Ui_Vp_Ui(.{ .v1 = 25903, .v2 = null, .v3 = 7407 }));
 }
 // From T_Snnn_xba.c:54109:54129
@@ -4701,13 +5589,16 @@ test "Ui_Vp_Ui" {
 //   __tsu64 v3;
 // };
 
-test "Ui_Vp_Ul" {
+test "Ui_Vp_Ul layout" {
     var lv: c.Ui_Vp_Ul = undefined;
     try testing.expectSize(c.Ui_Vp_Ul, ABISELECT(24, 16));
     try testing.expectAlign(c.Ui_Vp_Ul, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Ui_Vp_Ul C calls" {
+    try testing.expectEqual(c.ret_Ui_Vp_Ul(), .{ .v1 = 4962, .v2 = null, .v3 = 72 });
     try testing.expectOk(c.recv_Ui_Vp_Ul(.{ .v1 = 4962, .v2 = null, .v3 = 72 }));
 }
 // From T_Snnn_xba.c:54134:54154
@@ -4717,13 +5608,16 @@ test "Ui_Vp_Ul" {
 //   unsigned short v3;
 // };
 
-test "Ui_Vp_Us" {
+test "Ui_Vp_Us layout" {
     var lv: c.Ui_Vp_Us = undefined;
     try testing.expectSize(c.Ui_Vp_Us, ABISELECT(24, 12));
     try testing.expectAlign(c.Ui_Vp_Us, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Ui_Vp_Us C calls" {
+    try testing.expectEqual(c.ret_Ui_Vp_Us(), .{ .v1 = 14228, .v2 = null, .v3 = 25551 });
     try testing.expectOk(c.recv_Ui_Vp_Us(.{ .v1 = 14228, .v2 = null, .v3 = 25551 }));
 }
 // From T_Snnn_xba.c:54159:54179
@@ -4733,13 +5627,16 @@ test "Ui_Vp_Us" {
 //   void *v3;
 // };
 
-test "Ui_Vp_Vp" {
+test "Ui_Vp_Vp layout" {
     var lv: c.Ui_Vp_Vp = undefined;
     try testing.expectSize(c.Ui_Vp_Vp, ABISELECT(24, 12));
     try testing.expectAlign(c.Ui_Vp_Vp, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
+}
+test "Ui_Vp_Vp C calls" {
+    try testing.expectEqual(c.ret_Ui_Vp_Vp(), .{ .v1 = 950, .v2 = null, .v3 = null });
     try testing.expectOk(c.recv_Ui_Vp_Vp(.{ .v1 = 950, .v2 = null, .v3 = null }));
 }
 // From T_Snnn_xba.c:54184:54200
@@ -4747,10 +5644,13 @@ test "Ui_Vp_Vp" {
 //   __tsu64 v1;
 // };
 
-test "Ul" {
+test "Ul layout" {
     var lv: c.Ul = undefined;
     try testing.expectSize(c.Ul, 8);
     try testing.expectAlign(c.Ul, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
+}
+test "Ul C calls" {
+    try testing.expectEqual(c.ret_Ul(), .{ .v1 = 14013 });
     try testing.expectOk(c.recv_Ul(.{ .v1 = 14013 }));
 }

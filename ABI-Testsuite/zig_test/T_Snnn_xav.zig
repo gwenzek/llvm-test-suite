@@ -11,10 +11,13 @@ pub const c = @cImport({
 //   char v1;
 // };
 
-test "C" {
+test "C layout" {
     var lv: c.C = undefined;
     try testing.expectSize(c.C, 1);
     try testing.expectAlign(c.C, 1);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
+}
+test "C C calls" {
+    try testing.expectEqual(c.ret_C(), .{ .v1 = 19 });
     try testing.expectOk(c.recv_C(.{ .v1 = 19 }));
 }

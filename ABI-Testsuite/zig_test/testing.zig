@@ -1,5 +1,7 @@
 const std = @import("std");
 
+pub const expectEqual = std.testing.expectEqual;
+
 pub inline fn expectSize(comptime t: type, size: u32) !void {
     try std.testing.expectEqual(size, @sizeOf(t));
 }
@@ -17,6 +19,9 @@ pub inline fn ABISELECT(a: u8, b: u8) u8 {
     return if (@sizeOf(c_ulong) == 8) a else b;
 }
 
-pub inline fn expectOk(c_res: c_int) !void {
-    try std.testing.expectEqual(@as(c_int, 0), c_res);
+pub inline fn expectOk(c_err: c_int) !void {
+    if (c_err != 0) {
+        std.debug.print("ABI mismatch on field v{d}.\n", .{c_err});
+        return error.TestExpectedEqual;
+    }
 }
