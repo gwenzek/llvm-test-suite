@@ -154,24 +154,63 @@ struct  C_C_D  {
 };
 
 int recv_C_C_D(struct C_C_D lv);
+struct C_C_D ret_C_C_D();
+
 
 // .c
 int recv_C_C_D(struct C_C_D lv){
-  int err = 0;
-  if (lv.v1 != 88) err = 1;
-  if (lv.v2 != 39) err = 2;
-  if (lv.v3 != -2.125) err = 3;
-  return err;
+  if (lv.v1 != 88) return 1;
+  if (lv.v2 != 39) return 2;
+  if (lv.v3 != -2.125) return 3;
+  return 0;
+}
+struct C_C_D ret_C_C_D(){
+  struct C_C_D lv;
+  lv.v1 = 88;
+  lv.v2 = 39;
+  lv.v3 = -2.125;
+  return lv;
+}
+int zig_recv_C_C_D(struct C_C_D);
+int send_C_C_D(){
+  struct C_C_D lv;
+  lv.v1 = 88;
+  lv.v2 = 39;
+  lv.v3 = -2.125;
+  return zig_recv_C_C_D(lv);
+}
+struct C_C_D zig_ret_C_C_D();
+int assert_ret_C_C_D(){
+  struct C_C_D lv = zig_ret_C_C_D();
+  if (lv.v1 != 88) return 1;
+  if (lv.v2 != 39) return 2;
+  if (lv.v3 != -2.125) return 3;
+  return 0;
 }
 
 // .zig
-test "C_C_D" {
+test "C_C_D layout" {
     var lv: c.C_C_D = undefined;
     try testing.expectSize(c.C_C_D, ABISELECT(16, 12));
     try testing.expectAlign(c.C_C_D, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 1);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
+}
+test "C_C_D C calls" {
+    try testing.expectEqual(c.ret_C_C_D(), .{ .v1 = 88, .v2 = 39, .v3 = -2.125 });
+    try testing.expectOk(c.assert_ret_C_C_D());
+    try testing.expectOk(c.send_C_C_D());
     try testing.expectOk(c.recv_C_C_D(.{ .v1 = 88, .v2 = 39, .v3 = -2.125 }));
 }
+pub export fn zig_recv_C_C_D(lv: c.C_C_D) c_int {
+    if (lv.v1 != 88) return 1;
+    if (lv.v2 != 39) return 2;
+    if (lv.v3 != -2.125) return 3;
+    return 0;
+}
+pub export fn zig_ret_C_C_D() c.C_C_D {
+    return .{ .v1 = 88, .v2 = 39, .v3 = -2.125 };
+}
+
 ```
