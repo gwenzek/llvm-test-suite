@@ -217,10 +217,6 @@ def extract_file(
             print(f"// From {struct.location(file)}", file=h)
             print("".join(struct.code), file=h)
             field_values = generate_struct_vals(struct)
-            print(f"int recv_{struct.name}(struct {struct.name} lv);", file=h)
-            print(generate_c_recv(struct, field_values), file=c)
-            print(f"struct {struct.name} ret_{struct.name}();", file=h)
-            print(generate_c_ret(struct, field_values), file=c)
 
             test = tests[struct.name]
             print(f"// From {file.name}:{struct.line_start}:{test.line_end}", file=z)
@@ -242,6 +238,13 @@ def extract_file(
             print(f'test "{struct.name} C calls" {{', file=z)
             print(generate_c_calls(struct, field_values), file=z)
             print("}", file=z)
+            print(f"int recv_{struct.name}(struct {struct.name} lv);", file=h)
+            print(generate_c_recv(struct, field_values), file=c)
+            print(f"struct {struct.name} ret_{struct.name}();", file=h)
+            print(generate_c_ret(struct, field_values), file=c)
+            print(f"int send_{struct.name}();", file=h)
+            print(generate_c_send(struct, field_values), file=c)
+            print(generate_zig_recv(struct, field_values), file=z)
 
             print("", file=h)
             print("", file=c)
@@ -318,36 +321,99 @@ def rm_debug_string(line: str) -> str:
 def generate_c_calls(struct: Struct, field_values: dict) -> str:
     # TODO: handle pointers, Zig doesn't allow implicit int to ptr casting.
     struct_lit = ", ".join(f".{field}={val}" for field, val in field_values.items())
-    recv = f"try testing.expectOk(c.recv_{struct.name}(.{{{struct_lit}}}));"
-    ret = f"try testing.expectEqual(c.ret_{struct.name}(), .{{{struct_lit}}});"
-    return "\n".join([ret, recv])
+    return f"""
+    try testing.expectOk(c.recv_{struct.name}(.{{{struct_lit}}}));
+    try testing.expectEqual(c.ret_{struct.name}(), .{{{struct_lit}}});
+    try testing.expectOk(c.send_{struct.name}());
+""".strip()
 
 
 def generate_c_recv(struct: Struct, fields: dict) -> str:
-    lines = [f"int recv_{struct.name}(struct {struct.name} lv){{", "  int err = 0;"]
+    """C function that receives a struct from Zig, and match it against comptime values."""
+    lines = [f"int recv_{struct.name}(struct {struct.name} lv){{"]
 
     for i, (field, val) in enumerate(fields.items(), start=1):
         if val == "null":
             val = 0
         if val == ".{}":
             continue
-        asser = f"  if (lv.{field} != {val}) err = {i};"
+        asser = f"  if (lv.{field} != {val}) return {i};"
         lines.append(asser)
-    lines.extend(["  return err;", "}"])
+    lines.extend(["  return 0;", "}"])
     return "\n".join(lines)
 
 
 def generate_c_ret(struct: Struct, fields: dict) -> str:
-    lines = [f"struct {struct.name} ret_{struct.name}(){{", f"  struct {struct.name} lv;"]
+    # TODO we could probably generate a one liner here.
+    lines = [f"struct {struct.name} ret_{struct.name}(){{"]
+    lines.extend(_make_c_struct(struct, fields))
+    lines.extend(["  return lv;", "}"])
+    return "\n".join(lines)
 
+
+def generate_c_send(struct: Struct, fields: dict) -> str:
+    """C function that sends a struct to Zig. Returns the errcode."""
+    lines = [
+        f"int zig_recv_{struct.name}(struct {struct.name});",
+        f"int send_{struct.name}(){{",
+    ]
+    lines.extend(_make_c_struct(struct, fields))
+    lines.extend([f"  return zig_recv_{struct.name}(lv);", "}"])
+    return "\n".join(lines)
+
+
+def generate_c_assert_ret(struct: Struct, fields: dict) -> str:
+    """C function that call Zig which returns a struct."""
+    lines = [
+        f"struct {struct.name} zig_ret_{struct.name}();",
+        f"int assert_ret_{struct.name}(){{",
+    ]
+    lines.extend([f"  struct {struct.name} zig_ret_{struct.name}();"])
     for i, (field, val) in enumerate(fields.items(), start=1):
         if val == "null":
             val = 0
         if val == ".{}":
             continue
-        asser = f"  lv.{field} = {val};"
+        asser = f"  if (lv.{field} != {val}) return {i};"
         lines.append(asser)
-    lines.extend(["  return lv;", "}", ""])
+    lines.extend(["}", ""])
+    return "\n".join(lines)
+
+
+def _make_c_struct(struct: Struct, fields: dict) -> List[str]:
+    lines = [f"  struct {struct.name} lv;"]
+    for i, (field, val) in enumerate(fields.items(), start=1):
+        if val == "null":
+            val = 0
+        if val == ".{}":
+            continue
+        set_field = f"  lv.{field} = {val};"
+        lines.append(set_field)
+    return lines
+
+
+# def generate_zig_ret(struct: Struct, fields: dict) -> str:
+#     """Zig function that returns a comptime struct."""
+#     lines.extend([f"  struct {struct.name} = zig_ret_{struct.name}();"])
+#     for i, (field, val) in enumerate(fields.items(), start=1):
+#         if val == "null":
+#             val = 0
+#         if val == ".{}":
+#             continue
+#         asser = f"  if (lv.{field} != {val}) err = {i};"
+#         lines.append(asser)
+
+#     return "\n".join(lines)
+
+
+def generate_zig_recv(struct: Struct, fields: dict) -> str:
+    lines = [f"pub export fn zig_recv_{struct.name}(lv: c.{struct.name}) c_int {{"]
+    for i, (field, val) in enumerate(fields.items(), start=1):
+        if val == ".{}":
+            continue
+        asser = f"  if (lv.{field} != {val}) return {i};"
+        lines.append(asser)
+    lines.extend(["return 0;", "}"])
     return "\n".join(lines)
 
 
