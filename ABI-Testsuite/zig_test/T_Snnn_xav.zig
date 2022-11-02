@@ -11,17 +11,23 @@ pub const c = @cImport({
 //   char v1;
 // };
 
-test "C layout" {
+test "C: layout" {
     var lv: c.C = undefined;
     try testing.expectSize(c.C, 1);
     try testing.expectAlign(c.C, 1);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
 }
-test "C C calls" {
-    try testing.expectEqual(c.ret_C(), .{ .v1 = 19 });
-    try testing.expectOk(c.assert_ret_C());
-    try testing.expectOk(c.send_C());
+test "C: Zig passes to C" {
     try testing.expectOk(c.assert_C(.{ .v1 = 19 }));
+}
+test "C: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_C());
+}
+test "C: C passes to Zig" {
+    try testing.expectOk(c.send_C());
+}
+test "C: C returns to Zig" {
+    try testing.expectEqual(c.ret_C(), .{ .v1 = 19 });
 }
 pub export fn zig_assert_C(lv: c.C) c_int {
     var err: c_int = 0;

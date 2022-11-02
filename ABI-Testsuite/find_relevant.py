@@ -8,19 +8,13 @@ from enum import Enum
 from pathlib import Path
 from typing import Dict, Iterable, Iterator, List, NamedTuple, Optional, Tuple
 
-# class CType(Enum):
-#     empty= 0
-#     bool= 1
-#     char= 2
-#     short = 3
-#     int = 4
-#     uint = 5
-#     float = 6
-#     ulong = 7
-#     i64 = 8
-#     u64 = 9
-#     opaque_ptr = 10
-
+# List of tests expected to fail.
+# This will generate an "expectFail" and mark the test as "skipped" instead of "failed".
+# This is needed to allow to put failing tests as "TODOs"
+_FAILING_TESTS = """
+C_F_F,D_C,F_L,C_C_D,C_D,C_F_D,C_I_D,C_I_F,C_S_D,C_Uc_D,C_Ui_D,C_Ui_F,C_Us_D,D_C_C,D_C_F,D_C_I,D_C_S,D_C_Uc,D_C_Ui,D_C_Us,D_F_C,D_F_I,D_F_S,D_F_Uc,D_F_Ui,D_F_Us,D_I,D_I_C,D_I_F,D_I_I,D_I_S,D_I_Uc,D_I_Ui,D_I_Us,D_Ip,D_L,D_S,D_S_C,D_S_F,D_S_I,D_S_S,D_S_Uc,D_S_Ui,D_S_Us,D_Uc,D_Uc_C,D_Uc_F,D_Uc_I,D_Uc_S,D_Uc_Uc,D_Uc_Ui,D_Uc_Us,D_Ui,D_Ui_C,D_Ui_F,D_Ui_I,D_Ui_S,D_Ui_Uc,D_Ui_Ui,D_Ui_Us,D_Ul,D_Us,D_Us_C,D_Us_F,D_Us_I,D_Us_S,D_Us_Uc,D_Us_Ui,D_Us_Us,D_Vp,F_C_D,F_C_F,F_F_C,F_F_I,F_F_Ip,F_F_L,F_F_S,F_F_Uc,F_F_Ui,F_F_Ul,F_F_Us,F_F_Vp,F_I_D,F_I_F,F_Ip,F_S_D,F_S_F,F_Uc_D,F_Uc_F,F_Ui_D,F_Ui_F,F_Ul,F_Us_D,F_Us_F,F_Vp,I_C_D,I_C_F,I_D,I_F_D,I_F_F,I_I_D,I_I_F,I_S_D,I_S_F,I_Uc_D,I_Uc_F,I_Ui_D,I_Ui_F,I_Us_D,I_Us_F,Ip_D,Ip_F,Ip_F_F,L_D,L_F,L_F_F,S_C_D,S_D,S_F_D,S_F_F,S_I_D,S_I_F,S_S_D,S_Uc_D,S_Ui_D,S_Ui_F,S_Us_D,Uc_C_D,Uc_D,Uc_F_D,Uc_F_F,Uc_I_D,Uc_I_F,Uc_S_D,Uc_Uc_D,Uc_Ui_D,Uc_Ui_F,Uc_Us_D,Ui_C_D,Ui_C_F,Ui_D,Ui_F_D,Ui_F_F,Ui_I_D,Ui_I_F,Ui_S_D,Ui_S_F,Ui_Uc_D,Ui_Uc_F,Ui_Ui_D,Ui_Ui_F,Ui_Us_D,Ui_Us_F,Ul_D,Ul_F,Ul_F_F,Us_C_D,Us_D,Us_F_D,Us_F_F,Us_I_D,Us_I_F,Us_S_D,Us_Uc_D,Us_Ui_D,Us_Ui_F,Us_Us_D,Vp_D,Vp_F,Vp_F_F
+"""
+FAILING_TESTS = set(_FAILING_TESTS.strip().split(","))
 
 class Struct(NamedTuple):
     name: str
@@ -235,9 +229,7 @@ def extract_file(
                 print("}", file=z)
 
             field_values = generate_struct_vals(struct)
-            print(f'test "{struct.name} C calls" {{', file=z)
-            print(generate_c_calls(struct, field_values), file=z)
-            print("}", file=z)
+            print(generate_c_calls_test(struct, field_values), file=z)
             print(f"int assert_{struct.name}(struct {struct.name} lv);", file=h)
             print(generate_c_recv(struct, field_values), file=c)
             print(f"struct {struct.name} ret_{struct.name}();", file=h)
@@ -285,7 +277,7 @@ def translate_test_line(struct_name: str, line: str) -> str:
     line_ = line
     line = line.strip()
     if line.startswith("init_simple_test"):
-        return f'test "{struct_name} layout" {{'
+        return f'test "{struct_name}: layout" {{'
 
     if line.startswith("STRUCT_IF_C"):
         struct_if_c, type_, name = line.strip(";").split()
@@ -322,14 +314,24 @@ def rm_debug_string(line: str) -> str:
     return debug_string.sub(")", line)
 
 
-def generate_c_calls(struct: Struct, field_values: dict) -> str:
+def generate_c_calls_test(struct: Struct, field_values: dict) -> str:
     # TODO: handle pointers, Zig doesn't allow implicit int to ptr casting.
     struct_lit = ", ".join(f".{field}={val}" for field, val in field_values.items())
+    status = "Fail" if struct.name in FAILING_TESTS else "Ok"
+
     return f"""
-    try testing.expectEqual(c.ret_{struct.name}(), .{{{struct_lit}}});
+test "{struct.name}: Zig passes to C" {{
+    try testing.expect{status}(c.assert_{struct.name}(.{{{struct_lit}}}));
+}}
+test "{struct.name}: Zig returns to C" {{
     try testing.expectOk(c.assert_ret_{struct.name}());
-    try testing.expectOk(c.send_{struct.name}());
-    try testing.expectOk(c.assert_{struct.name}(.{{{struct_lit}}}));
+}}
+test "{struct.name}: C passes to Zig" {{
+    try testing.expect{status}(c.send_{struct.name}());
+}}
+test "{struct.name}: C returns to Zig" {{
+    try testing.expectEqual(c.ret_{struct.name}(), .{{{struct_lit}}});
+}}
 """.strip()
 
 

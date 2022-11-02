@@ -12,18 +12,24 @@ pub const c = @cImport({
 //   char v2;
 // };
 
-test "Ul_C layout" {
+test "Ul_C: layout" {
     var lv: c.Ul_C = undefined;
     try testing.expectSize(c.Ul_C, ABISELECT(16, 12));
     try testing.expectAlign(c.Ul_C, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
 }
-test "Ul_C C calls" {
-    try testing.expectEqual(c.ret_Ul_C(), .{ .v1 = 17226, .v2 = 3 });
-    try testing.expectOk(c.assert_ret_Ul_C());
-    try testing.expectOk(c.send_Ul_C());
+test "Ul_C: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_C(.{ .v1 = 17226, .v2 = 3 }));
+}
+test "Ul_C: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_C());
+}
+test "Ul_C: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_C());
+}
+test "Ul_C: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_C(), .{ .v1 = 17226, .v2 = 3 });
 }
 pub export fn zig_assert_Ul_C(lv: c.Ul_C) c_int {
     var err: c_int = 0;
@@ -43,7 +49,7 @@ pub export fn zig_ret_Ul_C() c.Ul_C {
 //   char v3;
 // };
 
-test "Ul_C_C layout" {
+test "Ul_C_C: layout" {
     var lv: c.Ul_C_C = undefined;
     try testing.expectSize(c.Ul_C_C, ABISELECT(16, 12));
     try testing.expectAlign(c.Ul_C_C, ABISELECT(8, 4));
@@ -51,11 +57,17 @@ test "Ul_C_C layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 9);
 }
-test "Ul_C_C C calls" {
-    try testing.expectEqual(c.ret_Ul_C_C(), .{ .v1 = 31250, .v2 = 54, .v3 = 2 });
-    try testing.expectOk(c.assert_ret_Ul_C_C());
-    try testing.expectOk(c.send_Ul_C_C());
+test "Ul_C_C: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_C_C(.{ .v1 = 31250, .v2 = 54, .v3 = 2 }));
+}
+test "Ul_C_C: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_C_C());
+}
+test "Ul_C_C: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_C_C());
+}
+test "Ul_C_C: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_C_C(), .{ .v1 = 31250, .v2 = 54, .v3 = 2 });
 }
 pub export fn zig_assert_Ul_C_C(lv: c.Ul_C_C) c_int {
     var err: c_int = 0;
@@ -76,7 +88,7 @@ pub export fn zig_ret_Ul_C_C() c.Ul_C_C {
 //   double v3;
 // };
 
-test "Ul_C_D layout" {
+test "Ul_C_D: layout" {
     var lv: c.Ul_C_D = undefined;
     try testing.expectSize(c.Ul_C_D, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_C_D, ABISELECT(8, 4));
@@ -84,11 +96,17 @@ test "Ul_C_D layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_C_D C calls" {
-    try testing.expectEqual(c.ret_Ul_C_D(), .{ .v1 = 32764, .v2 = 48, .v3 = 7.0 });
-    try testing.expectOk(c.assert_ret_Ul_C_D());
-    try testing.expectOk(c.send_Ul_C_D());
+test "Ul_C_D: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_C_D(.{ .v1 = 32764, .v2 = 48, .v3 = 7.0 }));
+}
+test "Ul_C_D: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_C_D());
+}
+test "Ul_C_D: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_C_D());
+}
+test "Ul_C_D: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_C_D(), .{ .v1 = 32764, .v2 = 48, .v3 = 7.0 });
 }
 pub export fn zig_assert_Ul_C_D(lv: c.Ul_C_D) c_int {
     var err: c_int = 0;
@@ -109,7 +127,7 @@ pub export fn zig_ret_Ul_C_D() c.Ul_C_D {
 //   float v3;
 // };
 
-test "Ul_C_F layout" {
+test "Ul_C_F: layout" {
     var lv: c.Ul_C_F = undefined;
     try testing.expectSize(c.Ul_C_F, 16);
     try testing.expectAlign(c.Ul_C_F, ABISELECT(8, 4));
@@ -117,11 +135,17 @@ test "Ul_C_F layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
-test "Ul_C_F C calls" {
-    try testing.expectEqual(c.ret_Ul_C_F(), .{ .v1 = 26431, .v2 = 0, .v3 = 0.5 });
-    try testing.expectOk(c.assert_ret_Ul_C_F());
-    try testing.expectOk(c.send_Ul_C_F());
+test "Ul_C_F: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_C_F(.{ .v1 = 26431, .v2 = 0, .v3 = 0.5 }));
+}
+test "Ul_C_F: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_C_F());
+}
+test "Ul_C_F: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_C_F());
+}
+test "Ul_C_F: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_C_F(), .{ .v1 = 26431, .v2 = 0, .v3 = 0.5 });
 }
 pub export fn zig_assert_Ul_C_F(lv: c.Ul_C_F) c_int {
     var err: c_int = 0;
@@ -142,7 +166,7 @@ pub export fn zig_ret_Ul_C_F() c.Ul_C_F {
 //   int v3;
 // };
 
-test "Ul_C_I layout" {
+test "Ul_C_I: layout" {
     var lv: c.Ul_C_I = undefined;
     try testing.expectSize(c.Ul_C_I, 16);
     try testing.expectAlign(c.Ul_C_I, ABISELECT(8, 4));
@@ -150,11 +174,17 @@ test "Ul_C_I layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
-test "Ul_C_I C calls" {
-    try testing.expectEqual(c.ret_Ul_C_I(), .{ .v1 = 28045, .v2 = 93, .v3 = 27716 });
-    try testing.expectOk(c.assert_ret_Ul_C_I());
-    try testing.expectOk(c.send_Ul_C_I());
+test "Ul_C_I: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_C_I(.{ .v1 = 28045, .v2 = 93, .v3 = 27716 }));
+}
+test "Ul_C_I: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_C_I());
+}
+test "Ul_C_I: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_C_I());
+}
+test "Ul_C_I: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_C_I(), .{ .v1 = 28045, .v2 = 93, .v3 = 27716 });
 }
 pub export fn zig_assert_Ul_C_I(lv: c.Ul_C_I) c_int {
     var err: c_int = 0;
@@ -175,7 +205,7 @@ pub export fn zig_ret_Ul_C_I() c.Ul_C_I {
 //   int *v3;
 // };
 
-test "Ul_C_Ip layout" {
+test "Ul_C_Ip: layout" {
     var lv: c.Ul_C_Ip = undefined;
     try testing.expectSize(c.Ul_C_Ip, ABISELECT(24, 16));
     try testing.expectAlign(c.Ul_C_Ip, ABISELECT(8, 4));
@@ -183,11 +213,17 @@ test "Ul_C_Ip layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_C_Ip C calls" {
-    try testing.expectEqual(c.ret_Ul_C_Ip(), .{ .v1 = 26155, .v2 = 27, .v3 = null });
-    try testing.expectOk(c.assert_ret_Ul_C_Ip());
-    try testing.expectOk(c.send_Ul_C_Ip());
+test "Ul_C_Ip: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_C_Ip(.{ .v1 = 26155, .v2 = 27, .v3 = null }));
+}
+test "Ul_C_Ip: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_C_Ip());
+}
+test "Ul_C_Ip: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_C_Ip());
+}
+test "Ul_C_Ip: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_C_Ip(), .{ .v1 = 26155, .v2 = 27, .v3 = null });
 }
 pub export fn zig_assert_Ul_C_Ip(lv: c.Ul_C_Ip) c_int {
     var err: c_int = 0;
@@ -208,7 +244,7 @@ pub export fn zig_ret_Ul_C_Ip() c.Ul_C_Ip {
 //   __tsi64 v3;
 // };
 
-test "Ul_C_L layout" {
+test "Ul_C_L: layout" {
     var lv: c.Ul_C_L = undefined;
     try testing.expectSize(c.Ul_C_L, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_C_L, ABISELECT(8, 4));
@@ -216,11 +252,17 @@ test "Ul_C_L layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_C_L C calls" {
-    try testing.expectEqual(c.ret_Ul_C_L(), .{ .v1 = 12487, .v2 = 95, .v3 = 31393 });
-    try testing.expectOk(c.assert_ret_Ul_C_L());
-    try testing.expectOk(c.send_Ul_C_L());
+test "Ul_C_L: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_C_L(.{ .v1 = 12487, .v2 = 95, .v3 = 31393 }));
+}
+test "Ul_C_L: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_C_L());
+}
+test "Ul_C_L: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_C_L());
+}
+test "Ul_C_L: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_C_L(), .{ .v1 = 12487, .v2 = 95, .v3 = 31393 });
 }
 pub export fn zig_assert_Ul_C_L(lv: c.Ul_C_L) c_int {
     var err: c_int = 0;
@@ -241,7 +283,7 @@ pub export fn zig_ret_Ul_C_L() c.Ul_C_L {
 //   short v3;
 // };
 
-test "Ul_C_S layout" {
+test "Ul_C_S: layout" {
     var lv: c.Ul_C_S = undefined;
     try testing.expectSize(c.Ul_C_S, ABISELECT(16, 12));
     try testing.expectAlign(c.Ul_C_S, ABISELECT(8, 4));
@@ -249,11 +291,17 @@ test "Ul_C_S layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 10);
 }
-test "Ul_C_S C calls" {
-    try testing.expectEqual(c.ret_Ul_C_S(), .{ .v1 = 14961, .v2 = 23, .v3 = 31866 });
-    try testing.expectOk(c.assert_ret_Ul_C_S());
-    try testing.expectOk(c.send_Ul_C_S());
+test "Ul_C_S: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_C_S(.{ .v1 = 14961, .v2 = 23, .v3 = 31866 }));
+}
+test "Ul_C_S: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_C_S());
+}
+test "Ul_C_S: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_C_S());
+}
+test "Ul_C_S: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_C_S(), .{ .v1 = 14961, .v2 = 23, .v3 = 31866 });
 }
 pub export fn zig_assert_Ul_C_S(lv: c.Ul_C_S) c_int {
     var err: c_int = 0;
@@ -274,7 +322,7 @@ pub export fn zig_ret_Ul_C_S() c.Ul_C_S {
 //   unsigned char v3;
 // };
 
-test "Ul_C_Uc layout" {
+test "Ul_C_Uc: layout" {
     var lv: c.Ul_C_Uc = undefined;
     try testing.expectSize(c.Ul_C_Uc, ABISELECT(16, 12));
     try testing.expectAlign(c.Ul_C_Uc, ABISELECT(8, 4));
@@ -282,11 +330,17 @@ test "Ul_C_Uc layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 9);
 }
-test "Ul_C_Uc C calls" {
-    try testing.expectEqual(c.ret_Ul_C_Uc(), .{ .v1 = 20515, .v2 = 44, .v3 = 0 });
-    try testing.expectOk(c.assert_ret_Ul_C_Uc());
-    try testing.expectOk(c.send_Ul_C_Uc());
+test "Ul_C_Uc: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_C_Uc(.{ .v1 = 20515, .v2 = 44, .v3 = 0 }));
+}
+test "Ul_C_Uc: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_C_Uc());
+}
+test "Ul_C_Uc: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_C_Uc());
+}
+test "Ul_C_Uc: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_C_Uc(), .{ .v1 = 20515, .v2 = 44, .v3 = 0 });
 }
 pub export fn zig_assert_Ul_C_Uc(lv: c.Ul_C_Uc) c_int {
     var err: c_int = 0;
@@ -307,7 +361,7 @@ pub export fn zig_ret_Ul_C_Uc() c.Ul_C_Uc {
 //   unsigned int v3;
 // };
 
-test "Ul_C_Ui layout" {
+test "Ul_C_Ui: layout" {
     var lv: c.Ul_C_Ui = undefined;
     try testing.expectSize(c.Ul_C_Ui, 16);
     try testing.expectAlign(c.Ul_C_Ui, ABISELECT(8, 4));
@@ -315,11 +369,17 @@ test "Ul_C_Ui layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
-test "Ul_C_Ui C calls" {
-    try testing.expectEqual(c.ret_Ul_C_Ui(), .{ .v1 = 7205, .v2 = 105, .v3 = 26514 });
-    try testing.expectOk(c.assert_ret_Ul_C_Ui());
-    try testing.expectOk(c.send_Ul_C_Ui());
+test "Ul_C_Ui: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_C_Ui(.{ .v1 = 7205, .v2 = 105, .v3 = 26514 }));
+}
+test "Ul_C_Ui: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_C_Ui());
+}
+test "Ul_C_Ui: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_C_Ui());
+}
+test "Ul_C_Ui: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_C_Ui(), .{ .v1 = 7205, .v2 = 105, .v3 = 26514 });
 }
 pub export fn zig_assert_Ul_C_Ui(lv: c.Ul_C_Ui) c_int {
     var err: c_int = 0;
@@ -340,7 +400,7 @@ pub export fn zig_ret_Ul_C_Ui() c.Ul_C_Ui {
 //   __tsu64 v3;
 // };
 
-test "Ul_C_Ul layout" {
+test "Ul_C_Ul: layout" {
     var lv: c.Ul_C_Ul = undefined;
     try testing.expectSize(c.Ul_C_Ul, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_C_Ul, ABISELECT(8, 4));
@@ -348,11 +408,17 @@ test "Ul_C_Ul layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_C_Ul C calls" {
-    try testing.expectEqual(c.ret_Ul_C_Ul(), .{ .v1 = 2127, .v2 = 88, .v3 = 18212 });
-    try testing.expectOk(c.assert_ret_Ul_C_Ul());
-    try testing.expectOk(c.send_Ul_C_Ul());
+test "Ul_C_Ul: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_C_Ul(.{ .v1 = 2127, .v2 = 88, .v3 = 18212 }));
+}
+test "Ul_C_Ul: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_C_Ul());
+}
+test "Ul_C_Ul: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_C_Ul());
+}
+test "Ul_C_Ul: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_C_Ul(), .{ .v1 = 2127, .v2 = 88, .v3 = 18212 });
 }
 pub export fn zig_assert_Ul_C_Ul(lv: c.Ul_C_Ul) c_int {
     var err: c_int = 0;
@@ -373,7 +439,7 @@ pub export fn zig_ret_Ul_C_Ul() c.Ul_C_Ul {
 //   unsigned short v3;
 // };
 
-test "Ul_C_Us layout" {
+test "Ul_C_Us: layout" {
     var lv: c.Ul_C_Us = undefined;
     try testing.expectSize(c.Ul_C_Us, ABISELECT(16, 12));
     try testing.expectAlign(c.Ul_C_Us, ABISELECT(8, 4));
@@ -381,11 +447,17 @@ test "Ul_C_Us layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 10);
 }
-test "Ul_C_Us C calls" {
-    try testing.expectEqual(c.ret_Ul_C_Us(), .{ .v1 = 6233, .v2 = 70, .v3 = 1747 });
-    try testing.expectOk(c.assert_ret_Ul_C_Us());
-    try testing.expectOk(c.send_Ul_C_Us());
+test "Ul_C_Us: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_C_Us(.{ .v1 = 6233, .v2 = 70, .v3 = 1747 }));
+}
+test "Ul_C_Us: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_C_Us());
+}
+test "Ul_C_Us: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_C_Us());
+}
+test "Ul_C_Us: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_C_Us(), .{ .v1 = 6233, .v2 = 70, .v3 = 1747 });
 }
 pub export fn zig_assert_Ul_C_Us(lv: c.Ul_C_Us) c_int {
     var err: c_int = 0;
@@ -406,7 +478,7 @@ pub export fn zig_ret_Ul_C_Us() c.Ul_C_Us {
 //   void *v3;
 // };
 
-test "Ul_C_Vp layout" {
+test "Ul_C_Vp: layout" {
     var lv: c.Ul_C_Vp = undefined;
     try testing.expectSize(c.Ul_C_Vp, ABISELECT(24, 16));
     try testing.expectAlign(c.Ul_C_Vp, ABISELECT(8, 4));
@@ -414,11 +486,17 @@ test "Ul_C_Vp layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_C_Vp C calls" {
-    try testing.expectEqual(c.ret_Ul_C_Vp(), .{ .v1 = 32602, .v2 = 34, .v3 = null });
-    try testing.expectOk(c.assert_ret_Ul_C_Vp());
-    try testing.expectOk(c.send_Ul_C_Vp());
+test "Ul_C_Vp: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_C_Vp(.{ .v1 = 32602, .v2 = 34, .v3 = null }));
+}
+test "Ul_C_Vp: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_C_Vp());
+}
+test "Ul_C_Vp: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_C_Vp());
+}
+test "Ul_C_Vp: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_C_Vp(), .{ .v1 = 32602, .v2 = 34, .v3 = null });
 }
 pub export fn zig_assert_Ul_C_Vp(lv: c.Ul_C_Vp) c_int {
     var err: c_int = 0;
@@ -438,18 +516,24 @@ pub export fn zig_ret_Ul_C_Vp() c.Ul_C_Vp {
 //   double v2;
 // };
 
-test "Ul_D layout" {
+test "Ul_D: layout" {
     var lv: c.Ul_D = undefined;
     try testing.expectSize(c.Ul_D, 16);
     try testing.expectAlign(c.Ul_D, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
 }
-test "Ul_D C calls" {
-    try testing.expectEqual(c.ret_Ul_D(), .{ .v1 = 10715, .v2 = 4.5 });
+test "Ul_D: Zig passes to C" {
+    try testing.expectFail(c.assert_Ul_D(.{ .v1 = 10715, .v2 = 4.5 }));
+}
+test "Ul_D: Zig returns to C" {
     try testing.expectOk(c.assert_ret_Ul_D());
-    try testing.expectOk(c.send_Ul_D());
-    try testing.expectOk(c.assert_Ul_D(.{ .v1 = 10715, .v2 = 4.5 }));
+}
+test "Ul_D: C passes to Zig" {
+    try testing.expectFail(c.send_Ul_D());
+}
+test "Ul_D: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_D(), .{ .v1 = 10715, .v2 = 4.5 });
 }
 pub export fn zig_assert_Ul_D(lv: c.Ul_D) c_int {
     var err: c_int = 0;
@@ -469,7 +553,7 @@ pub export fn zig_ret_Ul_D() c.Ul_D {
 //   char v3;
 // };
 
-test "Ul_D_C layout" {
+test "Ul_D_C: layout" {
     var lv: c.Ul_D_C = undefined;
     try testing.expectSize(c.Ul_D_C, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_D_C, ABISELECT(8, 4));
@@ -477,11 +561,17 @@ test "Ul_D_C layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
-test "Ul_D_C C calls" {
-    try testing.expectEqual(c.ret_Ul_D_C(), .{ .v1 = 25643, .v2 = 4.5, .v3 = 22 });
-    try testing.expectOk(c.assert_ret_Ul_D_C());
-    try testing.expectOk(c.send_Ul_D_C());
+test "Ul_D_C: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_D_C(.{ .v1 = 25643, .v2 = 4.5, .v3 = 22 }));
+}
+test "Ul_D_C: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_D_C());
+}
+test "Ul_D_C: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_D_C());
+}
+test "Ul_D_C: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_D_C(), .{ .v1 = 25643, .v2 = 4.5, .v3 = 22 });
 }
 pub export fn zig_assert_Ul_D_C(lv: c.Ul_D_C) c_int {
     var err: c_int = 0;
@@ -502,7 +592,7 @@ pub export fn zig_ret_Ul_D_C() c.Ul_D_C {
 //   double v3;
 // };
 
-test "Ul_D_D layout" {
+test "Ul_D_D: layout" {
     var lv: c.Ul_D_D = undefined;
     try testing.expectSize(c.Ul_D_D, 24);
     try testing.expectAlign(c.Ul_D_D, ABISELECT(8, 4));
@@ -510,11 +600,17 @@ test "Ul_D_D layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
-test "Ul_D_D C calls" {
-    try testing.expectEqual(c.ret_Ul_D_D(), .{ .v1 = 621, .v2 = -0.25, .v3 = -0.25 });
-    try testing.expectOk(c.assert_ret_Ul_D_D());
-    try testing.expectOk(c.send_Ul_D_D());
+test "Ul_D_D: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_D_D(.{ .v1 = 621, .v2 = -0.25, .v3 = -0.25 }));
+}
+test "Ul_D_D: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_D_D());
+}
+test "Ul_D_D: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_D_D());
+}
+test "Ul_D_D: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_D_D(), .{ .v1 = 621, .v2 = -0.25, .v3 = -0.25 });
 }
 pub export fn zig_assert_Ul_D_D(lv: c.Ul_D_D) c_int {
     var err: c_int = 0;
@@ -535,7 +631,7 @@ pub export fn zig_ret_Ul_D_D() c.Ul_D_D {
 //   float v3;
 // };
 
-test "Ul_D_F layout" {
+test "Ul_D_F: layout" {
     var lv: c.Ul_D_F = undefined;
     try testing.expectSize(c.Ul_D_F, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_D_F, ABISELECT(8, 4));
@@ -543,11 +639,17 @@ test "Ul_D_F layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
-test "Ul_D_F C calls" {
-    try testing.expectEqual(c.ret_Ul_D_F(), .{ .v1 = 11575, .v2 = -2.125, .v3 = -2.125 });
-    try testing.expectOk(c.assert_ret_Ul_D_F());
-    try testing.expectOk(c.send_Ul_D_F());
+test "Ul_D_F: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_D_F(.{ .v1 = 11575, .v2 = -2.125, .v3 = -2.125 }));
+}
+test "Ul_D_F: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_D_F());
+}
+test "Ul_D_F: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_D_F());
+}
+test "Ul_D_F: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_D_F(), .{ .v1 = 11575, .v2 = -2.125, .v3 = -2.125 });
 }
 pub export fn zig_assert_Ul_D_F(lv: c.Ul_D_F) c_int {
     var err: c_int = 0;
@@ -568,7 +670,7 @@ pub export fn zig_ret_Ul_D_F() c.Ul_D_F {
 //   int v3;
 // };
 
-test "Ul_D_I layout" {
+test "Ul_D_I: layout" {
     var lv: c.Ul_D_I = undefined;
     try testing.expectSize(c.Ul_D_I, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_D_I, ABISELECT(8, 4));
@@ -576,11 +678,17 @@ test "Ul_D_I layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
-test "Ul_D_I C calls" {
-    try testing.expectEqual(c.ret_Ul_D_I(), .{ .v1 = 23336, .v2 = -2.125, .v3 = 8615 });
-    try testing.expectOk(c.assert_ret_Ul_D_I());
-    try testing.expectOk(c.send_Ul_D_I());
+test "Ul_D_I: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_D_I(.{ .v1 = 23336, .v2 = -2.125, .v3 = 8615 }));
+}
+test "Ul_D_I: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_D_I());
+}
+test "Ul_D_I: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_D_I());
+}
+test "Ul_D_I: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_D_I(), .{ .v1 = 23336, .v2 = -2.125, .v3 = 8615 });
 }
 pub export fn zig_assert_Ul_D_I(lv: c.Ul_D_I) c_int {
     var err: c_int = 0;
@@ -601,7 +709,7 @@ pub export fn zig_ret_Ul_D_I() c.Ul_D_I {
 //   int *v3;
 // };
 
-test "Ul_D_Ip layout" {
+test "Ul_D_Ip: layout" {
     var lv: c.Ul_D_Ip = undefined;
     try testing.expectSize(c.Ul_D_Ip, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_D_Ip, ABISELECT(8, 4));
@@ -609,11 +717,17 @@ test "Ul_D_Ip layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
-test "Ul_D_Ip C calls" {
-    try testing.expectEqual(c.ret_Ul_D_Ip(), .{ .v1 = 30759, .v2 = 1.0, .v3 = null });
-    try testing.expectOk(c.assert_ret_Ul_D_Ip());
-    try testing.expectOk(c.send_Ul_D_Ip());
+test "Ul_D_Ip: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_D_Ip(.{ .v1 = 30759, .v2 = 1.0, .v3 = null }));
+}
+test "Ul_D_Ip: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_D_Ip());
+}
+test "Ul_D_Ip: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_D_Ip());
+}
+test "Ul_D_Ip: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_D_Ip(), .{ .v1 = 30759, .v2 = 1.0, .v3 = null });
 }
 pub export fn zig_assert_Ul_D_Ip(lv: c.Ul_D_Ip) c_int {
     var err: c_int = 0;
@@ -634,7 +748,7 @@ pub export fn zig_ret_Ul_D_Ip() c.Ul_D_Ip {
 //   __tsi64 v3;
 // };
 
-test "Ul_D_L layout" {
+test "Ul_D_L: layout" {
     var lv: c.Ul_D_L = undefined;
     try testing.expectSize(c.Ul_D_L, 24);
     try testing.expectAlign(c.Ul_D_L, ABISELECT(8, 4));
@@ -642,11 +756,17 @@ test "Ul_D_L layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
-test "Ul_D_L C calls" {
-    try testing.expectEqual(c.ret_Ul_D_L(), .{ .v1 = 16615, .v2 = 7.0, .v3 = 23672 });
-    try testing.expectOk(c.assert_ret_Ul_D_L());
-    try testing.expectOk(c.send_Ul_D_L());
+test "Ul_D_L: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_D_L(.{ .v1 = 16615, .v2 = 7.0, .v3 = 23672 }));
+}
+test "Ul_D_L: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_D_L());
+}
+test "Ul_D_L: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_D_L());
+}
+test "Ul_D_L: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_D_L(), .{ .v1 = 16615, .v2 = 7.0, .v3 = 23672 });
 }
 pub export fn zig_assert_Ul_D_L(lv: c.Ul_D_L) c_int {
     var err: c_int = 0;
@@ -667,7 +787,7 @@ pub export fn zig_ret_Ul_D_L() c.Ul_D_L {
 //   short v3;
 // };
 
-test "Ul_D_S layout" {
+test "Ul_D_S: layout" {
     var lv: c.Ul_D_S = undefined;
     try testing.expectSize(c.Ul_D_S, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_D_S, ABISELECT(8, 4));
@@ -675,11 +795,17 @@ test "Ul_D_S layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
-test "Ul_D_S C calls" {
-    try testing.expectEqual(c.ret_Ul_D_S(), .{ .v1 = 6119, .v2 = 1.0, .v3 = 20846 });
-    try testing.expectOk(c.assert_ret_Ul_D_S());
-    try testing.expectOk(c.send_Ul_D_S());
+test "Ul_D_S: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_D_S(.{ .v1 = 6119, .v2 = 1.0, .v3 = 20846 }));
+}
+test "Ul_D_S: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_D_S());
+}
+test "Ul_D_S: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_D_S());
+}
+test "Ul_D_S: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_D_S(), .{ .v1 = 6119, .v2 = 1.0, .v3 = 20846 });
 }
 pub export fn zig_assert_Ul_D_S(lv: c.Ul_D_S) c_int {
     var err: c_int = 0;
@@ -700,7 +826,7 @@ pub export fn zig_ret_Ul_D_S() c.Ul_D_S {
 //   unsigned char v3;
 // };
 
-test "Ul_D_Uc layout" {
+test "Ul_D_Uc: layout" {
     var lv: c.Ul_D_Uc = undefined;
     try testing.expectSize(c.Ul_D_Uc, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_D_Uc, ABISELECT(8, 4));
@@ -708,11 +834,17 @@ test "Ul_D_Uc layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
-test "Ul_D_Uc C calls" {
-    try testing.expectEqual(c.ret_Ul_D_Uc(), .{ .v1 = 8747, .v2 = -2.125, .v3 = 71 });
-    try testing.expectOk(c.assert_ret_Ul_D_Uc());
-    try testing.expectOk(c.send_Ul_D_Uc());
+test "Ul_D_Uc: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_D_Uc(.{ .v1 = 8747, .v2 = -2.125, .v3 = 71 }));
+}
+test "Ul_D_Uc: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_D_Uc());
+}
+test "Ul_D_Uc: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_D_Uc());
+}
+test "Ul_D_Uc: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_D_Uc(), .{ .v1 = 8747, .v2 = -2.125, .v3 = 71 });
 }
 pub export fn zig_assert_Ul_D_Uc(lv: c.Ul_D_Uc) c_int {
     var err: c_int = 0;
@@ -733,7 +865,7 @@ pub export fn zig_ret_Ul_D_Uc() c.Ul_D_Uc {
 //   unsigned int v3;
 // };
 
-test "Ul_D_Ui layout" {
+test "Ul_D_Ui: layout" {
     var lv: c.Ul_D_Ui = undefined;
     try testing.expectSize(c.Ul_D_Ui, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_D_Ui, ABISELECT(8, 4));
@@ -741,11 +873,17 @@ test "Ul_D_Ui layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
-test "Ul_D_Ui C calls" {
-    try testing.expectEqual(c.ret_Ul_D_Ui(), .{ .v1 = 12376, .v2 = 1.0, .v3 = 7325 });
-    try testing.expectOk(c.assert_ret_Ul_D_Ui());
-    try testing.expectOk(c.send_Ul_D_Ui());
+test "Ul_D_Ui: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_D_Ui(.{ .v1 = 12376, .v2 = 1.0, .v3 = 7325 }));
+}
+test "Ul_D_Ui: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_D_Ui());
+}
+test "Ul_D_Ui: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_D_Ui());
+}
+test "Ul_D_Ui: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_D_Ui(), .{ .v1 = 12376, .v2 = 1.0, .v3 = 7325 });
 }
 pub export fn zig_assert_Ul_D_Ui(lv: c.Ul_D_Ui) c_int {
     var err: c_int = 0;
@@ -766,7 +904,7 @@ pub export fn zig_ret_Ul_D_Ui() c.Ul_D_Ui {
 //   __tsu64 v3;
 // };
 
-test "Ul_D_Ul layout" {
+test "Ul_D_Ul: layout" {
     var lv: c.Ul_D_Ul = undefined;
     try testing.expectSize(c.Ul_D_Ul, 24);
     try testing.expectAlign(c.Ul_D_Ul, ABISELECT(8, 4));
@@ -774,11 +912,17 @@ test "Ul_D_Ul layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
-test "Ul_D_Ul C calls" {
-    try testing.expectEqual(c.ret_Ul_D_Ul(), .{ .v1 = 8264, .v2 = 1.0, .v3 = 2350 });
-    try testing.expectOk(c.assert_ret_Ul_D_Ul());
-    try testing.expectOk(c.send_Ul_D_Ul());
+test "Ul_D_Ul: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_D_Ul(.{ .v1 = 8264, .v2 = 1.0, .v3 = 2350 }));
+}
+test "Ul_D_Ul: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_D_Ul());
+}
+test "Ul_D_Ul: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_D_Ul());
+}
+test "Ul_D_Ul: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_D_Ul(), .{ .v1 = 8264, .v2 = 1.0, .v3 = 2350 });
 }
 pub export fn zig_assert_Ul_D_Ul(lv: c.Ul_D_Ul) c_int {
     var err: c_int = 0;
@@ -799,7 +943,7 @@ pub export fn zig_ret_Ul_D_Ul() c.Ul_D_Ul {
 //   unsigned short v3;
 // };
 
-test "Ul_D_Us layout" {
+test "Ul_D_Us: layout" {
     var lv: c.Ul_D_Us = undefined;
     try testing.expectSize(c.Ul_D_Us, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_D_Us, ABISELECT(8, 4));
@@ -807,11 +951,17 @@ test "Ul_D_Us layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
-test "Ul_D_Us C calls" {
-    try testing.expectEqual(c.ret_Ul_D_Us(), .{ .v1 = 14812, .v2 = 4.5, .v3 = 7431 });
-    try testing.expectOk(c.assert_ret_Ul_D_Us());
-    try testing.expectOk(c.send_Ul_D_Us());
+test "Ul_D_Us: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_D_Us(.{ .v1 = 14812, .v2 = 4.5, .v3 = 7431 }));
+}
+test "Ul_D_Us: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_D_Us());
+}
+test "Ul_D_Us: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_D_Us());
+}
+test "Ul_D_Us: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_D_Us(), .{ .v1 = 14812, .v2 = 4.5, .v3 = 7431 });
 }
 pub export fn zig_assert_Ul_D_Us(lv: c.Ul_D_Us) c_int {
     var err: c_int = 0;
@@ -832,7 +982,7 @@ pub export fn zig_ret_Ul_D_Us() c.Ul_D_Us {
 //   void *v3;
 // };
 
-test "Ul_D_Vp layout" {
+test "Ul_D_Vp: layout" {
     var lv: c.Ul_D_Vp = undefined;
     try testing.expectSize(c.Ul_D_Vp, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_D_Vp, ABISELECT(8, 4));
@@ -840,11 +990,17 @@ test "Ul_D_Vp layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
-test "Ul_D_Vp C calls" {
-    try testing.expectEqual(c.ret_Ul_D_Vp(), .{ .v1 = 16222, .v2 = 0.5, .v3 = null });
-    try testing.expectOk(c.assert_ret_Ul_D_Vp());
-    try testing.expectOk(c.send_Ul_D_Vp());
+test "Ul_D_Vp: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_D_Vp(.{ .v1 = 16222, .v2 = 0.5, .v3 = null }));
+}
+test "Ul_D_Vp: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_D_Vp());
+}
+test "Ul_D_Vp: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_D_Vp());
+}
+test "Ul_D_Vp: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_D_Vp(), .{ .v1 = 16222, .v2 = 0.5, .v3 = null });
 }
 pub export fn zig_assert_Ul_D_Vp(lv: c.Ul_D_Vp) c_int {
     var err: c_int = 0;
@@ -864,18 +1020,24 @@ pub export fn zig_ret_Ul_D_Vp() c.Ul_D_Vp {
 //   float v2;
 // };
 
-test "Ul_F layout" {
+test "Ul_F: layout" {
     var lv: c.Ul_F = undefined;
     try testing.expectSize(c.Ul_F, ABISELECT(16, 12));
     try testing.expectAlign(c.Ul_F, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
 }
-test "Ul_F C calls" {
-    try testing.expectEqual(c.ret_Ul_F(), .{ .v1 = 20297, .v2 = 0.5 });
+test "Ul_F: Zig passes to C" {
+    try testing.expectFail(c.assert_Ul_F(.{ .v1 = 20297, .v2 = 0.5 }));
+}
+test "Ul_F: Zig returns to C" {
     try testing.expectOk(c.assert_ret_Ul_F());
-    try testing.expectOk(c.send_Ul_F());
-    try testing.expectOk(c.assert_Ul_F(.{ .v1 = 20297, .v2 = 0.5 }));
+}
+test "Ul_F: C passes to Zig" {
+    try testing.expectFail(c.send_Ul_F());
+}
+test "Ul_F: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_F(), .{ .v1 = 20297, .v2 = 0.5 });
 }
 pub export fn zig_assert_Ul_F(lv: c.Ul_F) c_int {
     var err: c_int = 0;
@@ -895,7 +1057,7 @@ pub export fn zig_ret_Ul_F() c.Ul_F {
 //   char v3;
 // };
 
-test "Ul_F_C layout" {
+test "Ul_F_C: layout" {
     var lv: c.Ul_F_C = undefined;
     try testing.expectSize(c.Ul_F_C, 16);
     try testing.expectAlign(c.Ul_F_C, ABISELECT(8, 4));
@@ -903,11 +1065,17 @@ test "Ul_F_C layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
-test "Ul_F_C C calls" {
-    try testing.expectEqual(c.ret_Ul_F_C(), .{ .v1 = 5068, .v2 = -0.25, .v3 = 32 });
-    try testing.expectOk(c.assert_ret_Ul_F_C());
-    try testing.expectOk(c.send_Ul_F_C());
+test "Ul_F_C: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_F_C(.{ .v1 = 5068, .v2 = -0.25, .v3 = 32 }));
+}
+test "Ul_F_C: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_F_C());
+}
+test "Ul_F_C: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_F_C());
+}
+test "Ul_F_C: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_F_C(), .{ .v1 = 5068, .v2 = -0.25, .v3 = 32 });
 }
 pub export fn zig_assert_Ul_F_C(lv: c.Ul_F_C) c_int {
     var err: c_int = 0;
@@ -928,7 +1096,7 @@ pub export fn zig_ret_Ul_F_C() c.Ul_F_C {
 //   double v3;
 // };
 
-test "Ul_F_D layout" {
+test "Ul_F_D: layout" {
     var lv: c.Ul_F_D = undefined;
     try testing.expectSize(c.Ul_F_D, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_F_D, ABISELECT(8, 4));
@@ -936,11 +1104,17 @@ test "Ul_F_D layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_F_D C calls" {
-    try testing.expectEqual(c.ret_Ul_F_D(), .{ .v1 = 23787, .v2 = -2.125, .v3 = 0.5 });
-    try testing.expectOk(c.assert_ret_Ul_F_D());
-    try testing.expectOk(c.send_Ul_F_D());
+test "Ul_F_D: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_F_D(.{ .v1 = 23787, .v2 = -2.125, .v3 = 0.5 }));
+}
+test "Ul_F_D: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_F_D());
+}
+test "Ul_F_D: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_F_D());
+}
+test "Ul_F_D: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_F_D(), .{ .v1 = 23787, .v2 = -2.125, .v3 = 0.5 });
 }
 pub export fn zig_assert_Ul_F_D(lv: c.Ul_F_D) c_int {
     var err: c_int = 0;
@@ -961,7 +1135,7 @@ pub export fn zig_ret_Ul_F_D() c.Ul_F_D {
 //   float v3;
 // };
 
-test "Ul_F_F layout" {
+test "Ul_F_F: layout" {
     var lv: c.Ul_F_F = undefined;
     try testing.expectSize(c.Ul_F_F, 16);
     try testing.expectAlign(c.Ul_F_F, ABISELECT(8, 4));
@@ -969,11 +1143,17 @@ test "Ul_F_F layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
-test "Ul_F_F C calls" {
-    try testing.expectEqual(c.ret_Ul_F_F(), .{ .v1 = 4545, .v2 = 1.0, .v3 = 0.875 });
+test "Ul_F_F: Zig passes to C" {
+    try testing.expectFail(c.assert_Ul_F_F(.{ .v1 = 4545, .v2 = 1.0, .v3 = 0.875 }));
+}
+test "Ul_F_F: Zig returns to C" {
     try testing.expectOk(c.assert_ret_Ul_F_F());
-    try testing.expectOk(c.send_Ul_F_F());
-    try testing.expectOk(c.assert_Ul_F_F(.{ .v1 = 4545, .v2 = 1.0, .v3 = 0.875 }));
+}
+test "Ul_F_F: C passes to Zig" {
+    try testing.expectFail(c.send_Ul_F_F());
+}
+test "Ul_F_F: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_F_F(), .{ .v1 = 4545, .v2 = 1.0, .v3 = 0.875 });
 }
 pub export fn zig_assert_Ul_F_F(lv: c.Ul_F_F) c_int {
     var err: c_int = 0;
@@ -994,7 +1174,7 @@ pub export fn zig_ret_Ul_F_F() c.Ul_F_F {
 //   int v3;
 // };
 
-test "Ul_F_I layout" {
+test "Ul_F_I: layout" {
     var lv: c.Ul_F_I = undefined;
     try testing.expectSize(c.Ul_F_I, 16);
     try testing.expectAlign(c.Ul_F_I, ABISELECT(8, 4));
@@ -1002,11 +1182,17 @@ test "Ul_F_I layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
-test "Ul_F_I C calls" {
-    try testing.expectEqual(c.ret_Ul_F_I(), .{ .v1 = 11, .v2 = 1.0, .v3 = 28962 });
-    try testing.expectOk(c.assert_ret_Ul_F_I());
-    try testing.expectOk(c.send_Ul_F_I());
+test "Ul_F_I: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_F_I(.{ .v1 = 11, .v2 = 1.0, .v3 = 28962 }));
+}
+test "Ul_F_I: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_F_I());
+}
+test "Ul_F_I: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_F_I());
+}
+test "Ul_F_I: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_F_I(), .{ .v1 = 11, .v2 = 1.0, .v3 = 28962 });
 }
 pub export fn zig_assert_Ul_F_I(lv: c.Ul_F_I) c_int {
     var err: c_int = 0;
@@ -1027,7 +1213,7 @@ pub export fn zig_ret_Ul_F_I() c.Ul_F_I {
 //   int *v3;
 // };
 
-test "Ul_F_Ip layout" {
+test "Ul_F_Ip: layout" {
     var lv: c.Ul_F_Ip = undefined;
     try testing.expectSize(c.Ul_F_Ip, ABISELECT(24, 16));
     try testing.expectAlign(c.Ul_F_Ip, ABISELECT(8, 4));
@@ -1035,11 +1221,17 @@ test "Ul_F_Ip layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_F_Ip C calls" {
-    try testing.expectEqual(c.ret_Ul_F_Ip(), .{ .v1 = 10728, .v2 = 1.0, .v3 = null });
-    try testing.expectOk(c.assert_ret_Ul_F_Ip());
-    try testing.expectOk(c.send_Ul_F_Ip());
+test "Ul_F_Ip: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_F_Ip(.{ .v1 = 10728, .v2 = 1.0, .v3 = null }));
+}
+test "Ul_F_Ip: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_F_Ip());
+}
+test "Ul_F_Ip: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_F_Ip());
+}
+test "Ul_F_Ip: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_F_Ip(), .{ .v1 = 10728, .v2 = 1.0, .v3 = null });
 }
 pub export fn zig_assert_Ul_F_Ip(lv: c.Ul_F_Ip) c_int {
     var err: c_int = 0;
@@ -1060,7 +1252,7 @@ pub export fn zig_ret_Ul_F_Ip() c.Ul_F_Ip {
 //   __tsi64 v3;
 // };
 
-test "Ul_F_L layout" {
+test "Ul_F_L: layout" {
     var lv: c.Ul_F_L = undefined;
     try testing.expectSize(c.Ul_F_L, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_F_L, ABISELECT(8, 4));
@@ -1068,11 +1260,17 @@ test "Ul_F_L layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_F_L C calls" {
-    try testing.expectEqual(c.ret_Ul_F_L(), .{ .v1 = 29862, .v2 = 1.0, .v3 = 30894 });
-    try testing.expectOk(c.assert_ret_Ul_F_L());
-    try testing.expectOk(c.send_Ul_F_L());
+test "Ul_F_L: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_F_L(.{ .v1 = 29862, .v2 = 1.0, .v3 = 30894 }));
+}
+test "Ul_F_L: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_F_L());
+}
+test "Ul_F_L: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_F_L());
+}
+test "Ul_F_L: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_F_L(), .{ .v1 = 29862, .v2 = 1.0, .v3 = 30894 });
 }
 pub export fn zig_assert_Ul_F_L(lv: c.Ul_F_L) c_int {
     var err: c_int = 0;
@@ -1093,7 +1291,7 @@ pub export fn zig_ret_Ul_F_L() c.Ul_F_L {
 //   short v3;
 // };
 
-test "Ul_F_S layout" {
+test "Ul_F_S: layout" {
     var lv: c.Ul_F_S = undefined;
     try testing.expectSize(c.Ul_F_S, 16);
     try testing.expectAlign(c.Ul_F_S, ABISELECT(8, 4));
@@ -1101,11 +1299,17 @@ test "Ul_F_S layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
-test "Ul_F_S C calls" {
-    try testing.expectEqual(c.ret_Ul_F_S(), .{ .v1 = 16621, .v2 = 7.0, .v3 = 19094 });
-    try testing.expectOk(c.assert_ret_Ul_F_S());
-    try testing.expectOk(c.send_Ul_F_S());
+test "Ul_F_S: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_F_S(.{ .v1 = 16621, .v2 = 7.0, .v3 = 19094 }));
+}
+test "Ul_F_S: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_F_S());
+}
+test "Ul_F_S: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_F_S());
+}
+test "Ul_F_S: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_F_S(), .{ .v1 = 16621, .v2 = 7.0, .v3 = 19094 });
 }
 pub export fn zig_assert_Ul_F_S(lv: c.Ul_F_S) c_int {
     var err: c_int = 0;
@@ -1126,7 +1330,7 @@ pub export fn zig_ret_Ul_F_S() c.Ul_F_S {
 //   unsigned char v3;
 // };
 
-test "Ul_F_Uc layout" {
+test "Ul_F_Uc: layout" {
     var lv: c.Ul_F_Uc = undefined;
     try testing.expectSize(c.Ul_F_Uc, 16);
     try testing.expectAlign(c.Ul_F_Uc, ABISELECT(8, 4));
@@ -1134,11 +1338,17 @@ test "Ul_F_Uc layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
-test "Ul_F_Uc C calls" {
-    try testing.expectEqual(c.ret_Ul_F_Uc(), .{ .v1 = 5394, .v2 = 7.0, .v3 = 26 });
-    try testing.expectOk(c.assert_ret_Ul_F_Uc());
-    try testing.expectOk(c.send_Ul_F_Uc());
+test "Ul_F_Uc: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_F_Uc(.{ .v1 = 5394, .v2 = 7.0, .v3 = 26 }));
+}
+test "Ul_F_Uc: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_F_Uc());
+}
+test "Ul_F_Uc: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_F_Uc());
+}
+test "Ul_F_Uc: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_F_Uc(), .{ .v1 = 5394, .v2 = 7.0, .v3 = 26 });
 }
 pub export fn zig_assert_Ul_F_Uc(lv: c.Ul_F_Uc) c_int {
     var err: c_int = 0;
@@ -1159,7 +1369,7 @@ pub export fn zig_ret_Ul_F_Uc() c.Ul_F_Uc {
 //   unsigned int v3;
 // };
 
-test "Ul_F_Ui layout" {
+test "Ul_F_Ui: layout" {
     var lv: c.Ul_F_Ui = undefined;
     try testing.expectSize(c.Ul_F_Ui, 16);
     try testing.expectAlign(c.Ul_F_Ui, ABISELECT(8, 4));
@@ -1167,11 +1377,17 @@ test "Ul_F_Ui layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
-test "Ul_F_Ui C calls" {
-    try testing.expectEqual(c.ret_Ul_F_Ui(), .{ .v1 = 18558, .v2 = 0.875, .v3 = 23737 });
-    try testing.expectOk(c.assert_ret_Ul_F_Ui());
-    try testing.expectOk(c.send_Ul_F_Ui());
+test "Ul_F_Ui: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_F_Ui(.{ .v1 = 18558, .v2 = 0.875, .v3 = 23737 }));
+}
+test "Ul_F_Ui: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_F_Ui());
+}
+test "Ul_F_Ui: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_F_Ui());
+}
+test "Ul_F_Ui: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_F_Ui(), .{ .v1 = 18558, .v2 = 0.875, .v3 = 23737 });
 }
 pub export fn zig_assert_Ul_F_Ui(lv: c.Ul_F_Ui) c_int {
     var err: c_int = 0;
@@ -1192,7 +1408,7 @@ pub export fn zig_ret_Ul_F_Ui() c.Ul_F_Ui {
 //   __tsu64 v3;
 // };
 
-test "Ul_F_Ul layout" {
+test "Ul_F_Ul: layout" {
     var lv: c.Ul_F_Ul = undefined;
     try testing.expectSize(c.Ul_F_Ul, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_F_Ul, ABISELECT(8, 4));
@@ -1200,11 +1416,17 @@ test "Ul_F_Ul layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_F_Ul C calls" {
-    try testing.expectEqual(c.ret_Ul_F_Ul(), .{ .v1 = 19145, .v2 = 0.875, .v3 = 26272 });
-    try testing.expectOk(c.assert_ret_Ul_F_Ul());
-    try testing.expectOk(c.send_Ul_F_Ul());
+test "Ul_F_Ul: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_F_Ul(.{ .v1 = 19145, .v2 = 0.875, .v3 = 26272 }));
+}
+test "Ul_F_Ul: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_F_Ul());
+}
+test "Ul_F_Ul: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_F_Ul());
+}
+test "Ul_F_Ul: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_F_Ul(), .{ .v1 = 19145, .v2 = 0.875, .v3 = 26272 });
 }
 pub export fn zig_assert_Ul_F_Ul(lv: c.Ul_F_Ul) c_int {
     var err: c_int = 0;
@@ -1225,7 +1447,7 @@ pub export fn zig_ret_Ul_F_Ul() c.Ul_F_Ul {
 //   unsigned short v3;
 // };
 
-test "Ul_F_Us layout" {
+test "Ul_F_Us: layout" {
     var lv: c.Ul_F_Us = undefined;
     try testing.expectSize(c.Ul_F_Us, 16);
     try testing.expectAlign(c.Ul_F_Us, ABISELECT(8, 4));
@@ -1233,11 +1455,17 @@ test "Ul_F_Us layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
-test "Ul_F_Us C calls" {
-    try testing.expectEqual(c.ret_Ul_F_Us(), .{ .v1 = 12786, .v2 = 4.5, .v3 = 32561 });
-    try testing.expectOk(c.assert_ret_Ul_F_Us());
-    try testing.expectOk(c.send_Ul_F_Us());
+test "Ul_F_Us: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_F_Us(.{ .v1 = 12786, .v2 = 4.5, .v3 = 32561 }));
+}
+test "Ul_F_Us: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_F_Us());
+}
+test "Ul_F_Us: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_F_Us());
+}
+test "Ul_F_Us: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_F_Us(), .{ .v1 = 12786, .v2 = 4.5, .v3 = 32561 });
 }
 pub export fn zig_assert_Ul_F_Us(lv: c.Ul_F_Us) c_int {
     var err: c_int = 0;
@@ -1258,7 +1486,7 @@ pub export fn zig_ret_Ul_F_Us() c.Ul_F_Us {
 //   void *v3;
 // };
 
-test "Ul_F_Vp layout" {
+test "Ul_F_Vp: layout" {
     var lv: c.Ul_F_Vp = undefined;
     try testing.expectSize(c.Ul_F_Vp, ABISELECT(24, 16));
     try testing.expectAlign(c.Ul_F_Vp, ABISELECT(8, 4));
@@ -1266,11 +1494,17 @@ test "Ul_F_Vp layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_F_Vp C calls" {
-    try testing.expectEqual(c.ret_Ul_F_Vp(), .{ .v1 = 8407, .v2 = 1.0, .v3 = null });
-    try testing.expectOk(c.assert_ret_Ul_F_Vp());
-    try testing.expectOk(c.send_Ul_F_Vp());
+test "Ul_F_Vp: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_F_Vp(.{ .v1 = 8407, .v2 = 1.0, .v3 = null }));
+}
+test "Ul_F_Vp: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_F_Vp());
+}
+test "Ul_F_Vp: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_F_Vp());
+}
+test "Ul_F_Vp: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_F_Vp(), .{ .v1 = 8407, .v2 = 1.0, .v3 = null });
 }
 pub export fn zig_assert_Ul_F_Vp(lv: c.Ul_F_Vp) c_int {
     var err: c_int = 0;
@@ -1290,18 +1524,24 @@ pub export fn zig_ret_Ul_F_Vp() c.Ul_F_Vp {
 //   int v2;
 // };
 
-test "Ul_I layout" {
+test "Ul_I: layout" {
     var lv: c.Ul_I = undefined;
     try testing.expectSize(c.Ul_I, ABISELECT(16, 12));
     try testing.expectAlign(c.Ul_I, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
 }
-test "Ul_I C calls" {
-    try testing.expectEqual(c.ret_Ul_I(), .{ .v1 = 9001, .v2 = 14566 });
-    try testing.expectOk(c.assert_ret_Ul_I());
-    try testing.expectOk(c.send_Ul_I());
+test "Ul_I: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_I(.{ .v1 = 9001, .v2 = 14566 }));
+}
+test "Ul_I: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_I());
+}
+test "Ul_I: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_I());
+}
+test "Ul_I: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_I(), .{ .v1 = 9001, .v2 = 14566 });
 }
 pub export fn zig_assert_Ul_I(lv: c.Ul_I) c_int {
     var err: c_int = 0;
@@ -1321,7 +1561,7 @@ pub export fn zig_ret_Ul_I() c.Ul_I {
 //   char v3;
 // };
 
-test "Ul_I_C layout" {
+test "Ul_I_C: layout" {
     var lv: c.Ul_I_C = undefined;
     try testing.expectSize(c.Ul_I_C, 16);
     try testing.expectAlign(c.Ul_I_C, ABISELECT(8, 4));
@@ -1329,11 +1569,17 @@ test "Ul_I_C layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
-test "Ul_I_C C calls" {
-    try testing.expectEqual(c.ret_Ul_I_C(), .{ .v1 = 26130, .v2 = 8317, .v3 = 100 });
-    try testing.expectOk(c.assert_ret_Ul_I_C());
-    try testing.expectOk(c.send_Ul_I_C());
+test "Ul_I_C: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_I_C(.{ .v1 = 26130, .v2 = 8317, .v3 = 100 }));
+}
+test "Ul_I_C: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_I_C());
+}
+test "Ul_I_C: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_I_C());
+}
+test "Ul_I_C: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_I_C(), .{ .v1 = 26130, .v2 = 8317, .v3 = 100 });
 }
 pub export fn zig_assert_Ul_I_C(lv: c.Ul_I_C) c_int {
     var err: c_int = 0;
@@ -1354,7 +1600,7 @@ pub export fn zig_ret_Ul_I_C() c.Ul_I_C {
 //   double v3;
 // };
 
-test "Ul_I_D layout" {
+test "Ul_I_D: layout" {
     var lv: c.Ul_I_D = undefined;
     try testing.expectSize(c.Ul_I_D, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_I_D, ABISELECT(8, 4));
@@ -1362,11 +1608,17 @@ test "Ul_I_D layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_I_D C calls" {
-    try testing.expectEqual(c.ret_Ul_I_D(), .{ .v1 = 16377, .v2 = 29653, .v3 = 0.5 });
-    try testing.expectOk(c.assert_ret_Ul_I_D());
-    try testing.expectOk(c.send_Ul_I_D());
+test "Ul_I_D: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_I_D(.{ .v1 = 16377, .v2 = 29653, .v3 = 0.5 }));
+}
+test "Ul_I_D: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_I_D());
+}
+test "Ul_I_D: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_I_D());
+}
+test "Ul_I_D: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_I_D(), .{ .v1 = 16377, .v2 = 29653, .v3 = 0.5 });
 }
 pub export fn zig_assert_Ul_I_D(lv: c.Ul_I_D) c_int {
     var err: c_int = 0;
@@ -1387,7 +1639,7 @@ pub export fn zig_ret_Ul_I_D() c.Ul_I_D {
 //   float v3;
 // };
 
-test "Ul_I_F layout" {
+test "Ul_I_F: layout" {
     var lv: c.Ul_I_F = undefined;
     try testing.expectSize(c.Ul_I_F, 16);
     try testing.expectAlign(c.Ul_I_F, ABISELECT(8, 4));
@@ -1395,11 +1647,17 @@ test "Ul_I_F layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
-test "Ul_I_F C calls" {
-    try testing.expectEqual(c.ret_Ul_I_F(), .{ .v1 = 6558, .v2 = 14172, .v3 = 0.875 });
-    try testing.expectOk(c.assert_ret_Ul_I_F());
-    try testing.expectOk(c.send_Ul_I_F());
+test "Ul_I_F: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_I_F(.{ .v1 = 6558, .v2 = 14172, .v3 = 0.875 }));
+}
+test "Ul_I_F: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_I_F());
+}
+test "Ul_I_F: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_I_F());
+}
+test "Ul_I_F: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_I_F(), .{ .v1 = 6558, .v2 = 14172, .v3 = 0.875 });
 }
 pub export fn zig_assert_Ul_I_F(lv: c.Ul_I_F) c_int {
     var err: c_int = 0;
@@ -1420,7 +1678,7 @@ pub export fn zig_ret_Ul_I_F() c.Ul_I_F {
 //   int v3;
 // };
 
-test "Ul_I_I layout" {
+test "Ul_I_I: layout" {
     var lv: c.Ul_I_I = undefined;
     try testing.expectSize(c.Ul_I_I, 16);
     try testing.expectAlign(c.Ul_I_I, ABISELECT(8, 4));
@@ -1428,11 +1686,17 @@ test "Ul_I_I layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
-test "Ul_I_I C calls" {
-    try testing.expectEqual(c.ret_Ul_I_I(), .{ .v1 = 21186, .v2 = 27875, .v3 = 12292 });
-    try testing.expectOk(c.assert_ret_Ul_I_I());
-    try testing.expectOk(c.send_Ul_I_I());
+test "Ul_I_I: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_I_I(.{ .v1 = 21186, .v2 = 27875, .v3 = 12292 }));
+}
+test "Ul_I_I: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_I_I());
+}
+test "Ul_I_I: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_I_I());
+}
+test "Ul_I_I: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_I_I(), .{ .v1 = 21186, .v2 = 27875, .v3 = 12292 });
 }
 pub export fn zig_assert_Ul_I_I(lv: c.Ul_I_I) c_int {
     var err: c_int = 0;
@@ -1453,7 +1717,7 @@ pub export fn zig_ret_Ul_I_I() c.Ul_I_I {
 //   int *v3;
 // };
 
-test "Ul_I_Ip layout" {
+test "Ul_I_Ip: layout" {
     var lv: c.Ul_I_Ip = undefined;
     try testing.expectSize(c.Ul_I_Ip, ABISELECT(24, 16));
     try testing.expectAlign(c.Ul_I_Ip, ABISELECT(8, 4));
@@ -1461,11 +1725,17 @@ test "Ul_I_Ip layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_I_Ip C calls" {
-    try testing.expectEqual(c.ret_Ul_I_Ip(), .{ .v1 = 19268, .v2 = 7953, .v3 = null });
-    try testing.expectOk(c.assert_ret_Ul_I_Ip());
-    try testing.expectOk(c.send_Ul_I_Ip());
+test "Ul_I_Ip: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_I_Ip(.{ .v1 = 19268, .v2 = 7953, .v3 = null }));
+}
+test "Ul_I_Ip: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_I_Ip());
+}
+test "Ul_I_Ip: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_I_Ip());
+}
+test "Ul_I_Ip: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_I_Ip(), .{ .v1 = 19268, .v2 = 7953, .v3 = null });
 }
 pub export fn zig_assert_Ul_I_Ip(lv: c.Ul_I_Ip) c_int {
     var err: c_int = 0;
@@ -1486,7 +1756,7 @@ pub export fn zig_ret_Ul_I_Ip() c.Ul_I_Ip {
 //   __tsi64 v3;
 // };
 
-test "Ul_I_L layout" {
+test "Ul_I_L: layout" {
     var lv: c.Ul_I_L = undefined;
     try testing.expectSize(c.Ul_I_L, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_I_L, ABISELECT(8, 4));
@@ -1494,11 +1764,17 @@ test "Ul_I_L layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_I_L C calls" {
-    try testing.expectEqual(c.ret_Ul_I_L(), .{ .v1 = 1812, .v2 = 15113, .v3 = 12160 });
-    try testing.expectOk(c.assert_ret_Ul_I_L());
-    try testing.expectOk(c.send_Ul_I_L());
+test "Ul_I_L: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_I_L(.{ .v1 = 1812, .v2 = 15113, .v3 = 12160 }));
+}
+test "Ul_I_L: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_I_L());
+}
+test "Ul_I_L: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_I_L());
+}
+test "Ul_I_L: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_I_L(), .{ .v1 = 1812, .v2 = 15113, .v3 = 12160 });
 }
 pub export fn zig_assert_Ul_I_L(lv: c.Ul_I_L) c_int {
     var err: c_int = 0;
@@ -1519,7 +1795,7 @@ pub export fn zig_ret_Ul_I_L() c.Ul_I_L {
 //   short v3;
 // };
 
-test "Ul_I_S layout" {
+test "Ul_I_S: layout" {
     var lv: c.Ul_I_S = undefined;
     try testing.expectSize(c.Ul_I_S, 16);
     try testing.expectAlign(c.Ul_I_S, ABISELECT(8, 4));
@@ -1527,11 +1803,17 @@ test "Ul_I_S layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
-test "Ul_I_S C calls" {
-    try testing.expectEqual(c.ret_Ul_I_S(), .{ .v1 = 24576, .v2 = 10804, .v3 = 566 });
-    try testing.expectOk(c.assert_ret_Ul_I_S());
-    try testing.expectOk(c.send_Ul_I_S());
+test "Ul_I_S: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_I_S(.{ .v1 = 24576, .v2 = 10804, .v3 = 566 }));
+}
+test "Ul_I_S: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_I_S());
+}
+test "Ul_I_S: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_I_S());
+}
+test "Ul_I_S: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_I_S(), .{ .v1 = 24576, .v2 = 10804, .v3 = 566 });
 }
 pub export fn zig_assert_Ul_I_S(lv: c.Ul_I_S) c_int {
     var err: c_int = 0;
@@ -1552,7 +1834,7 @@ pub export fn zig_ret_Ul_I_S() c.Ul_I_S {
 //   unsigned char v3;
 // };
 
-test "Ul_I_Uc layout" {
+test "Ul_I_Uc: layout" {
     var lv: c.Ul_I_Uc = undefined;
     try testing.expectSize(c.Ul_I_Uc, 16);
     try testing.expectAlign(c.Ul_I_Uc, ABISELECT(8, 4));
@@ -1560,11 +1842,17 @@ test "Ul_I_Uc layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
-test "Ul_I_Uc C calls" {
-    try testing.expectEqual(c.ret_Ul_I_Uc(), .{ .v1 = 4343, .v2 = 4509, .v3 = 97 });
-    try testing.expectOk(c.assert_ret_Ul_I_Uc());
-    try testing.expectOk(c.send_Ul_I_Uc());
+test "Ul_I_Uc: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_I_Uc(.{ .v1 = 4343, .v2 = 4509, .v3 = 97 }));
+}
+test "Ul_I_Uc: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_I_Uc());
+}
+test "Ul_I_Uc: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_I_Uc());
+}
+test "Ul_I_Uc: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_I_Uc(), .{ .v1 = 4343, .v2 = 4509, .v3 = 97 });
 }
 pub export fn zig_assert_Ul_I_Uc(lv: c.Ul_I_Uc) c_int {
     var err: c_int = 0;
@@ -1585,7 +1873,7 @@ pub export fn zig_ret_Ul_I_Uc() c.Ul_I_Uc {
 //   unsigned int v3;
 // };
 
-test "Ul_I_Ui layout" {
+test "Ul_I_Ui: layout" {
     var lv: c.Ul_I_Ui = undefined;
     try testing.expectSize(c.Ul_I_Ui, 16);
     try testing.expectAlign(c.Ul_I_Ui, ABISELECT(8, 4));
@@ -1593,11 +1881,17 @@ test "Ul_I_Ui layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
-test "Ul_I_Ui C calls" {
-    try testing.expectEqual(c.ret_Ul_I_Ui(), .{ .v1 = 22220, .v2 = 2803, .v3 = 31274 });
-    try testing.expectOk(c.assert_ret_Ul_I_Ui());
-    try testing.expectOk(c.send_Ul_I_Ui());
+test "Ul_I_Ui: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_I_Ui(.{ .v1 = 22220, .v2 = 2803, .v3 = 31274 }));
+}
+test "Ul_I_Ui: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_I_Ui());
+}
+test "Ul_I_Ui: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_I_Ui());
+}
+test "Ul_I_Ui: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_I_Ui(), .{ .v1 = 22220, .v2 = 2803, .v3 = 31274 });
 }
 pub export fn zig_assert_Ul_I_Ui(lv: c.Ul_I_Ui) c_int {
     var err: c_int = 0;
@@ -1618,7 +1912,7 @@ pub export fn zig_ret_Ul_I_Ui() c.Ul_I_Ui {
 //   __tsu64 v3;
 // };
 
-test "Ul_I_Ul layout" {
+test "Ul_I_Ul: layout" {
     var lv: c.Ul_I_Ul = undefined;
     try testing.expectSize(c.Ul_I_Ul, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_I_Ul, ABISELECT(8, 4));
@@ -1626,11 +1920,17 @@ test "Ul_I_Ul layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_I_Ul C calls" {
-    try testing.expectEqual(c.ret_Ul_I_Ul(), .{ .v1 = 23345, .v2 = 16816, .v3 = 1382 });
-    try testing.expectOk(c.assert_ret_Ul_I_Ul());
-    try testing.expectOk(c.send_Ul_I_Ul());
+test "Ul_I_Ul: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_I_Ul(.{ .v1 = 23345, .v2 = 16816, .v3 = 1382 }));
+}
+test "Ul_I_Ul: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_I_Ul());
+}
+test "Ul_I_Ul: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_I_Ul());
+}
+test "Ul_I_Ul: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_I_Ul(), .{ .v1 = 23345, .v2 = 16816, .v3 = 1382 });
 }
 pub export fn zig_assert_Ul_I_Ul(lv: c.Ul_I_Ul) c_int {
     var err: c_int = 0;
@@ -1651,7 +1951,7 @@ pub export fn zig_ret_Ul_I_Ul() c.Ul_I_Ul {
 //   unsigned short v3;
 // };
 
-test "Ul_I_Us layout" {
+test "Ul_I_Us: layout" {
     var lv: c.Ul_I_Us = undefined;
     try testing.expectSize(c.Ul_I_Us, 16);
     try testing.expectAlign(c.Ul_I_Us, ABISELECT(8, 4));
@@ -1659,11 +1959,17 @@ test "Ul_I_Us layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
-test "Ul_I_Us C calls" {
-    try testing.expectEqual(c.ret_Ul_I_Us(), .{ .v1 = 26785, .v2 = 19005, .v3 = 25704 });
-    try testing.expectOk(c.assert_ret_Ul_I_Us());
-    try testing.expectOk(c.send_Ul_I_Us());
+test "Ul_I_Us: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_I_Us(.{ .v1 = 26785, .v2 = 19005, .v3 = 25704 }));
+}
+test "Ul_I_Us: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_I_Us());
+}
+test "Ul_I_Us: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_I_Us());
+}
+test "Ul_I_Us: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_I_Us(), .{ .v1 = 26785, .v2 = 19005, .v3 = 25704 });
 }
 pub export fn zig_assert_Ul_I_Us(lv: c.Ul_I_Us) c_int {
     var err: c_int = 0;
@@ -1684,7 +1990,7 @@ pub export fn zig_ret_Ul_I_Us() c.Ul_I_Us {
 //   void *v3;
 // };
 
-test "Ul_I_Vp layout" {
+test "Ul_I_Vp: layout" {
     var lv: c.Ul_I_Vp = undefined;
     try testing.expectSize(c.Ul_I_Vp, ABISELECT(24, 16));
     try testing.expectAlign(c.Ul_I_Vp, ABISELECT(8, 4));
@@ -1692,11 +1998,17 @@ test "Ul_I_Vp layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_I_Vp C calls" {
-    try testing.expectEqual(c.ret_Ul_I_Vp(), .{ .v1 = 15755, .v2 = 32345, .v3 = null });
-    try testing.expectOk(c.assert_ret_Ul_I_Vp());
-    try testing.expectOk(c.send_Ul_I_Vp());
+test "Ul_I_Vp: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_I_Vp(.{ .v1 = 15755, .v2 = 32345, .v3 = null }));
+}
+test "Ul_I_Vp: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_I_Vp());
+}
+test "Ul_I_Vp: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_I_Vp());
+}
+test "Ul_I_Vp: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_I_Vp(), .{ .v1 = 15755, .v2 = 32345, .v3 = null });
 }
 pub export fn zig_assert_Ul_I_Vp(lv: c.Ul_I_Vp) c_int {
     var err: c_int = 0;
@@ -1716,18 +2028,24 @@ pub export fn zig_ret_Ul_I_Vp() c.Ul_I_Vp {
 //   int *v2;
 // };
 
-test "Ul_Ip layout" {
+test "Ul_Ip: layout" {
     var lv: c.Ul_Ip = undefined;
     try testing.expectSize(c.Ul_Ip, ABISELECT(16, 12));
     try testing.expectAlign(c.Ul_Ip, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
 }
-test "Ul_Ip C calls" {
-    try testing.expectEqual(c.ret_Ul_Ip(), .{ .v1 = 26902, .v2 = null });
-    try testing.expectOk(c.assert_ret_Ul_Ip());
-    try testing.expectOk(c.send_Ul_Ip());
+test "Ul_Ip: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ip(.{ .v1 = 26902, .v2 = null }));
+}
+test "Ul_Ip: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ip());
+}
+test "Ul_Ip: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ip());
+}
+test "Ul_Ip: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ip(), .{ .v1 = 26902, .v2 = null });
 }
 pub export fn zig_assert_Ul_Ip(lv: c.Ul_Ip) c_int {
     var err: c_int = 0;
@@ -1747,7 +2065,7 @@ pub export fn zig_ret_Ul_Ip() c.Ul_Ip {
 //   char v3;
 // };
 
-test "Ul_Ip_C layout" {
+test "Ul_Ip_C: layout" {
     var lv: c.Ul_Ip_C = undefined;
     try testing.expectSize(c.Ul_Ip_C, ABISELECT(24, 16));
     try testing.expectAlign(c.Ul_Ip_C, ABISELECT(8, 4));
@@ -1755,11 +2073,17 @@ test "Ul_Ip_C layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Ip_C C calls" {
-    try testing.expectEqual(c.ret_Ul_Ip_C(), .{ .v1 = 11062, .v2 = null, .v3 = 31 });
-    try testing.expectOk(c.assert_ret_Ul_Ip_C());
-    try testing.expectOk(c.send_Ul_Ip_C());
+test "Ul_Ip_C: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ip_C(.{ .v1 = 11062, .v2 = null, .v3 = 31 }));
+}
+test "Ul_Ip_C: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ip_C());
+}
+test "Ul_Ip_C: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ip_C());
+}
+test "Ul_Ip_C: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ip_C(), .{ .v1 = 11062, .v2 = null, .v3 = 31 });
 }
 pub export fn zig_assert_Ul_Ip_C(lv: c.Ul_Ip_C) c_int {
     var err: c_int = 0;
@@ -1780,7 +2104,7 @@ pub export fn zig_ret_Ul_Ip_C() c.Ul_Ip_C {
 //   double v3;
 // };
 
-test "Ul_Ip_D layout" {
+test "Ul_Ip_D: layout" {
     var lv: c.Ul_Ip_D = undefined;
     try testing.expectSize(c.Ul_Ip_D, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_Ip_D, ABISELECT(8, 4));
@@ -1788,11 +2112,17 @@ test "Ul_Ip_D layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Ip_D C calls" {
-    try testing.expectEqual(c.ret_Ul_Ip_D(), .{ .v1 = 3475, .v2 = null, .v3 = 0.875 });
-    try testing.expectOk(c.assert_ret_Ul_Ip_D());
-    try testing.expectOk(c.send_Ul_Ip_D());
+test "Ul_Ip_D: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ip_D(.{ .v1 = 3475, .v2 = null, .v3 = 0.875 }));
+}
+test "Ul_Ip_D: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ip_D());
+}
+test "Ul_Ip_D: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ip_D());
+}
+test "Ul_Ip_D: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ip_D(), .{ .v1 = 3475, .v2 = null, .v3 = 0.875 });
 }
 pub export fn zig_assert_Ul_Ip_D(lv: c.Ul_Ip_D) c_int {
     var err: c_int = 0;
@@ -1813,7 +2143,7 @@ pub export fn zig_ret_Ul_Ip_D() c.Ul_Ip_D {
 //   float v3;
 // };
 
-test "Ul_Ip_F layout" {
+test "Ul_Ip_F: layout" {
     var lv: c.Ul_Ip_F = undefined;
     try testing.expectSize(c.Ul_Ip_F, ABISELECT(24, 16));
     try testing.expectAlign(c.Ul_Ip_F, ABISELECT(8, 4));
@@ -1821,11 +2151,17 @@ test "Ul_Ip_F layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Ip_F C calls" {
-    try testing.expectEqual(c.ret_Ul_Ip_F(), .{ .v1 = 6436, .v2 = null, .v3 = 4.5 });
-    try testing.expectOk(c.assert_ret_Ul_Ip_F());
-    try testing.expectOk(c.send_Ul_Ip_F());
+test "Ul_Ip_F: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ip_F(.{ .v1 = 6436, .v2 = null, .v3 = 4.5 }));
+}
+test "Ul_Ip_F: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ip_F());
+}
+test "Ul_Ip_F: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ip_F());
+}
+test "Ul_Ip_F: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ip_F(), .{ .v1 = 6436, .v2 = null, .v3 = 4.5 });
 }
 pub export fn zig_assert_Ul_Ip_F(lv: c.Ul_Ip_F) c_int {
     var err: c_int = 0;
@@ -1846,7 +2182,7 @@ pub export fn zig_ret_Ul_Ip_F() c.Ul_Ip_F {
 //   int v3;
 // };
 
-test "Ul_Ip_I layout" {
+test "Ul_Ip_I: layout" {
     var lv: c.Ul_Ip_I = undefined;
     try testing.expectSize(c.Ul_Ip_I, ABISELECT(24, 16));
     try testing.expectAlign(c.Ul_Ip_I, ABISELECT(8, 4));
@@ -1854,11 +2190,17 @@ test "Ul_Ip_I layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Ip_I C calls" {
-    try testing.expectEqual(c.ret_Ul_Ip_I(), .{ .v1 = 9802, .v2 = null, .v3 = 30741 });
-    try testing.expectOk(c.assert_ret_Ul_Ip_I());
-    try testing.expectOk(c.send_Ul_Ip_I());
+test "Ul_Ip_I: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ip_I(.{ .v1 = 9802, .v2 = null, .v3 = 30741 }));
+}
+test "Ul_Ip_I: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ip_I());
+}
+test "Ul_Ip_I: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ip_I());
+}
+test "Ul_Ip_I: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ip_I(), .{ .v1 = 9802, .v2 = null, .v3 = 30741 });
 }
 pub export fn zig_assert_Ul_Ip_I(lv: c.Ul_Ip_I) c_int {
     var err: c_int = 0;
@@ -1879,7 +2221,7 @@ pub export fn zig_ret_Ul_Ip_I() c.Ul_Ip_I {
 //   int *v3;
 // };
 
-test "Ul_Ip_Ip layout" {
+test "Ul_Ip_Ip: layout" {
     var lv: c.Ul_Ip_Ip = undefined;
     try testing.expectSize(c.Ul_Ip_Ip, ABISELECT(24, 16));
     try testing.expectAlign(c.Ul_Ip_Ip, ABISELECT(8, 4));
@@ -1887,11 +2229,17 @@ test "Ul_Ip_Ip layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Ip_Ip C calls" {
-    try testing.expectEqual(c.ret_Ul_Ip_Ip(), .{ .v1 = 1518, .v2 = null, .v3 = null });
-    try testing.expectOk(c.assert_ret_Ul_Ip_Ip());
-    try testing.expectOk(c.send_Ul_Ip_Ip());
+test "Ul_Ip_Ip: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ip_Ip(.{ .v1 = 1518, .v2 = null, .v3 = null }));
+}
+test "Ul_Ip_Ip: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ip_Ip());
+}
+test "Ul_Ip_Ip: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ip_Ip());
+}
+test "Ul_Ip_Ip: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ip_Ip(), .{ .v1 = 1518, .v2 = null, .v3 = null });
 }
 pub export fn zig_assert_Ul_Ip_Ip(lv: c.Ul_Ip_Ip) c_int {
     var err: c_int = 0;
@@ -1912,7 +2260,7 @@ pub export fn zig_ret_Ul_Ip_Ip() c.Ul_Ip_Ip {
 //   __tsi64 v3;
 // };
 
-test "Ul_Ip_L layout" {
+test "Ul_Ip_L: layout" {
     var lv: c.Ul_Ip_L = undefined;
     try testing.expectSize(c.Ul_Ip_L, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_Ip_L, ABISELECT(8, 4));
@@ -1920,11 +2268,17 @@ test "Ul_Ip_L layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Ip_L C calls" {
-    try testing.expectEqual(c.ret_Ul_Ip_L(), .{ .v1 = 31264, .v2 = null, .v3 = 30076 });
-    try testing.expectOk(c.assert_ret_Ul_Ip_L());
-    try testing.expectOk(c.send_Ul_Ip_L());
+test "Ul_Ip_L: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ip_L(.{ .v1 = 31264, .v2 = null, .v3 = 30076 }));
+}
+test "Ul_Ip_L: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ip_L());
+}
+test "Ul_Ip_L: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ip_L());
+}
+test "Ul_Ip_L: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ip_L(), .{ .v1 = 31264, .v2 = null, .v3 = 30076 });
 }
 pub export fn zig_assert_Ul_Ip_L(lv: c.Ul_Ip_L) c_int {
     var err: c_int = 0;
@@ -1945,7 +2299,7 @@ pub export fn zig_ret_Ul_Ip_L() c.Ul_Ip_L {
 //   short v3;
 // };
 
-test "Ul_Ip_S layout" {
+test "Ul_Ip_S: layout" {
     var lv: c.Ul_Ip_S = undefined;
     try testing.expectSize(c.Ul_Ip_S, ABISELECT(24, 16));
     try testing.expectAlign(c.Ul_Ip_S, ABISELECT(8, 4));
@@ -1953,11 +2307,17 @@ test "Ul_Ip_S layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Ip_S C calls" {
-    try testing.expectEqual(c.ret_Ul_Ip_S(), .{ .v1 = 22879, .v2 = null, .v3 = 23485 });
-    try testing.expectOk(c.assert_ret_Ul_Ip_S());
-    try testing.expectOk(c.send_Ul_Ip_S());
+test "Ul_Ip_S: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ip_S(.{ .v1 = 22879, .v2 = null, .v3 = 23485 }));
+}
+test "Ul_Ip_S: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ip_S());
+}
+test "Ul_Ip_S: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ip_S());
+}
+test "Ul_Ip_S: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ip_S(), .{ .v1 = 22879, .v2 = null, .v3 = 23485 });
 }
 pub export fn zig_assert_Ul_Ip_S(lv: c.Ul_Ip_S) c_int {
     var err: c_int = 0;
@@ -1978,7 +2338,7 @@ pub export fn zig_ret_Ul_Ip_S() c.Ul_Ip_S {
 //   unsigned char v3;
 // };
 
-test "Ul_Ip_Uc layout" {
+test "Ul_Ip_Uc: layout" {
     var lv: c.Ul_Ip_Uc = undefined;
     try testing.expectSize(c.Ul_Ip_Uc, ABISELECT(24, 16));
     try testing.expectAlign(c.Ul_Ip_Uc, ABISELECT(8, 4));
@@ -1986,11 +2346,17 @@ test "Ul_Ip_Uc layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Ip_Uc C calls" {
-    try testing.expectEqual(c.ret_Ul_Ip_Uc(), .{ .v1 = 14255, .v2 = null, .v3 = 118 });
-    try testing.expectOk(c.assert_ret_Ul_Ip_Uc());
-    try testing.expectOk(c.send_Ul_Ip_Uc());
+test "Ul_Ip_Uc: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ip_Uc(.{ .v1 = 14255, .v2 = null, .v3 = 118 }));
+}
+test "Ul_Ip_Uc: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ip_Uc());
+}
+test "Ul_Ip_Uc: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ip_Uc());
+}
+test "Ul_Ip_Uc: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ip_Uc(), .{ .v1 = 14255, .v2 = null, .v3 = 118 });
 }
 pub export fn zig_assert_Ul_Ip_Uc(lv: c.Ul_Ip_Uc) c_int {
     var err: c_int = 0;
@@ -2011,7 +2377,7 @@ pub export fn zig_ret_Ul_Ip_Uc() c.Ul_Ip_Uc {
 //   unsigned int v3;
 // };
 
-test "Ul_Ip_Ui layout" {
+test "Ul_Ip_Ui: layout" {
     var lv: c.Ul_Ip_Ui = undefined;
     try testing.expectSize(c.Ul_Ip_Ui, ABISELECT(24, 16));
     try testing.expectAlign(c.Ul_Ip_Ui, ABISELECT(8, 4));
@@ -2019,11 +2385,17 @@ test "Ul_Ip_Ui layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Ip_Ui C calls" {
-    try testing.expectEqual(c.ret_Ul_Ip_Ui(), .{ .v1 = 5959, .v2 = null, .v3 = 12355 });
-    try testing.expectOk(c.assert_ret_Ul_Ip_Ui());
-    try testing.expectOk(c.send_Ul_Ip_Ui());
+test "Ul_Ip_Ui: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ip_Ui(.{ .v1 = 5959, .v2 = null, .v3 = 12355 }));
+}
+test "Ul_Ip_Ui: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ip_Ui());
+}
+test "Ul_Ip_Ui: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ip_Ui());
+}
+test "Ul_Ip_Ui: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ip_Ui(), .{ .v1 = 5959, .v2 = null, .v3 = 12355 });
 }
 pub export fn zig_assert_Ul_Ip_Ui(lv: c.Ul_Ip_Ui) c_int {
     var err: c_int = 0;
@@ -2044,7 +2416,7 @@ pub export fn zig_ret_Ul_Ip_Ui() c.Ul_Ip_Ui {
 //   __tsu64 v3;
 // };
 
-test "Ul_Ip_Ul layout" {
+test "Ul_Ip_Ul: layout" {
     var lv: c.Ul_Ip_Ul = undefined;
     try testing.expectSize(c.Ul_Ip_Ul, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_Ip_Ul, ABISELECT(8, 4));
@@ -2052,11 +2424,17 @@ test "Ul_Ip_Ul layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Ip_Ul C calls" {
-    try testing.expectEqual(c.ret_Ul_Ip_Ul(), .{ .v1 = 8777, .v2 = null, .v3 = 760 });
-    try testing.expectOk(c.assert_ret_Ul_Ip_Ul());
-    try testing.expectOk(c.send_Ul_Ip_Ul());
+test "Ul_Ip_Ul: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ip_Ul(.{ .v1 = 8777, .v2 = null, .v3 = 760 }));
+}
+test "Ul_Ip_Ul: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ip_Ul());
+}
+test "Ul_Ip_Ul: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ip_Ul());
+}
+test "Ul_Ip_Ul: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ip_Ul(), .{ .v1 = 8777, .v2 = null, .v3 = 760 });
 }
 pub export fn zig_assert_Ul_Ip_Ul(lv: c.Ul_Ip_Ul) c_int {
     var err: c_int = 0;
@@ -2077,7 +2455,7 @@ pub export fn zig_ret_Ul_Ip_Ul() c.Ul_Ip_Ul {
 //   unsigned short v3;
 // };
 
-test "Ul_Ip_Us layout" {
+test "Ul_Ip_Us: layout" {
     var lv: c.Ul_Ip_Us = undefined;
     try testing.expectSize(c.Ul_Ip_Us, ABISELECT(24, 16));
     try testing.expectAlign(c.Ul_Ip_Us, ABISELECT(8, 4));
@@ -2085,11 +2463,17 @@ test "Ul_Ip_Us layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Ip_Us C calls" {
-    try testing.expectEqual(c.ret_Ul_Ip_Us(), .{ .v1 = 16734, .v2 = null, .v3 = 28745 });
-    try testing.expectOk(c.assert_ret_Ul_Ip_Us());
-    try testing.expectOk(c.send_Ul_Ip_Us());
+test "Ul_Ip_Us: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ip_Us(.{ .v1 = 16734, .v2 = null, .v3 = 28745 }));
+}
+test "Ul_Ip_Us: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ip_Us());
+}
+test "Ul_Ip_Us: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ip_Us());
+}
+test "Ul_Ip_Us: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ip_Us(), .{ .v1 = 16734, .v2 = null, .v3 = 28745 });
 }
 pub export fn zig_assert_Ul_Ip_Us(lv: c.Ul_Ip_Us) c_int {
     var err: c_int = 0;
@@ -2110,7 +2494,7 @@ pub export fn zig_ret_Ul_Ip_Us() c.Ul_Ip_Us {
 //   void *v3;
 // };
 
-test "Ul_Ip_Vp layout" {
+test "Ul_Ip_Vp: layout" {
     var lv: c.Ul_Ip_Vp = undefined;
     try testing.expectSize(c.Ul_Ip_Vp, ABISELECT(24, 16));
     try testing.expectAlign(c.Ul_Ip_Vp, ABISELECT(8, 4));
@@ -2118,11 +2502,17 @@ test "Ul_Ip_Vp layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Ip_Vp C calls" {
-    try testing.expectEqual(c.ret_Ul_Ip_Vp(), .{ .v1 = 21721, .v2 = null, .v3 = null });
-    try testing.expectOk(c.assert_ret_Ul_Ip_Vp());
-    try testing.expectOk(c.send_Ul_Ip_Vp());
+test "Ul_Ip_Vp: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ip_Vp(.{ .v1 = 21721, .v2 = null, .v3 = null }));
+}
+test "Ul_Ip_Vp: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ip_Vp());
+}
+test "Ul_Ip_Vp: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ip_Vp());
+}
+test "Ul_Ip_Vp: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ip_Vp(), .{ .v1 = 21721, .v2 = null, .v3 = null });
 }
 pub export fn zig_assert_Ul_Ip_Vp(lv: c.Ul_Ip_Vp) c_int {
     var err: c_int = 0;
@@ -2142,18 +2532,24 @@ pub export fn zig_ret_Ul_Ip_Vp() c.Ul_Ip_Vp {
 //   __tsi64 v2;
 // };
 
-test "Ul_L layout" {
+test "Ul_L: layout" {
     var lv: c.Ul_L = undefined;
     try testing.expectSize(c.Ul_L, 16);
     try testing.expectAlign(c.Ul_L, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
 }
-test "Ul_L C calls" {
-    try testing.expectEqual(c.ret_Ul_L(), .{ .v1 = 15343, .v2 = 30563 });
-    try testing.expectOk(c.assert_ret_Ul_L());
-    try testing.expectOk(c.send_Ul_L());
+test "Ul_L: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_L(.{ .v1 = 15343, .v2 = 30563 }));
+}
+test "Ul_L: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_L());
+}
+test "Ul_L: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_L());
+}
+test "Ul_L: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_L(), .{ .v1 = 15343, .v2 = 30563 });
 }
 pub export fn zig_assert_Ul_L(lv: c.Ul_L) c_int {
     var err: c_int = 0;
@@ -2173,7 +2569,7 @@ pub export fn zig_ret_Ul_L() c.Ul_L {
 //   char v3;
 // };
 
-test "Ul_L_C layout" {
+test "Ul_L_C: layout" {
     var lv: c.Ul_L_C = undefined;
     try testing.expectSize(c.Ul_L_C, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_L_C, ABISELECT(8, 4));
@@ -2181,11 +2577,17 @@ test "Ul_L_C layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
-test "Ul_L_C C calls" {
-    try testing.expectEqual(c.ret_Ul_L_C(), .{ .v1 = 28130, .v2 = 18916, .v3 = 10 });
-    try testing.expectOk(c.assert_ret_Ul_L_C());
-    try testing.expectOk(c.send_Ul_L_C());
+test "Ul_L_C: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_L_C(.{ .v1 = 28130, .v2 = 18916, .v3 = 10 }));
+}
+test "Ul_L_C: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_L_C());
+}
+test "Ul_L_C: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_L_C());
+}
+test "Ul_L_C: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_L_C(), .{ .v1 = 28130, .v2 = 18916, .v3 = 10 });
 }
 pub export fn zig_assert_Ul_L_C(lv: c.Ul_L_C) c_int {
     var err: c_int = 0;
@@ -2206,7 +2608,7 @@ pub export fn zig_ret_Ul_L_C() c.Ul_L_C {
 //   double v3;
 // };
 
-test "Ul_L_D layout" {
+test "Ul_L_D: layout" {
     var lv: c.Ul_L_D = undefined;
     try testing.expectSize(c.Ul_L_D, 24);
     try testing.expectAlign(c.Ul_L_D, ABISELECT(8, 4));
@@ -2214,11 +2616,17 @@ test "Ul_L_D layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
-test "Ul_L_D C calls" {
-    try testing.expectEqual(c.ret_Ul_L_D(), .{ .v1 = 13861, .v2 = 9151, .v3 = 0.5 });
-    try testing.expectOk(c.assert_ret_Ul_L_D());
-    try testing.expectOk(c.send_Ul_L_D());
+test "Ul_L_D: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_L_D(.{ .v1 = 13861, .v2 = 9151, .v3 = 0.5 }));
+}
+test "Ul_L_D: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_L_D());
+}
+test "Ul_L_D: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_L_D());
+}
+test "Ul_L_D: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_L_D(), .{ .v1 = 13861, .v2 = 9151, .v3 = 0.5 });
 }
 pub export fn zig_assert_Ul_L_D(lv: c.Ul_L_D) c_int {
     var err: c_int = 0;
@@ -2239,7 +2647,7 @@ pub export fn zig_ret_Ul_L_D() c.Ul_L_D {
 //   float v3;
 // };
 
-test "Ul_L_F layout" {
+test "Ul_L_F: layout" {
     var lv: c.Ul_L_F = undefined;
     try testing.expectSize(c.Ul_L_F, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_L_F, ABISELECT(8, 4));
@@ -2247,11 +2655,17 @@ test "Ul_L_F layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
-test "Ul_L_F C calls" {
-    try testing.expectEqual(c.ret_Ul_L_F(), .{ .v1 = 22003, .v2 = 10595, .v3 = 7.0 });
-    try testing.expectOk(c.assert_ret_Ul_L_F());
-    try testing.expectOk(c.send_Ul_L_F());
+test "Ul_L_F: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_L_F(.{ .v1 = 22003, .v2 = 10595, .v3 = 7.0 }));
+}
+test "Ul_L_F: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_L_F());
+}
+test "Ul_L_F: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_L_F());
+}
+test "Ul_L_F: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_L_F(), .{ .v1 = 22003, .v2 = 10595, .v3 = 7.0 });
 }
 pub export fn zig_assert_Ul_L_F(lv: c.Ul_L_F) c_int {
     var err: c_int = 0;
@@ -2272,7 +2686,7 @@ pub export fn zig_ret_Ul_L_F() c.Ul_L_F {
 //   int v3;
 // };
 
-test "Ul_L_I layout" {
+test "Ul_L_I: layout" {
     var lv: c.Ul_L_I = undefined;
     try testing.expectSize(c.Ul_L_I, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_L_I, ABISELECT(8, 4));
@@ -2280,11 +2694,17 @@ test "Ul_L_I layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
-test "Ul_L_I C calls" {
-    try testing.expectEqual(c.ret_Ul_L_I(), .{ .v1 = 24399, .v2 = 7327, .v3 = 24391 });
-    try testing.expectOk(c.assert_ret_Ul_L_I());
-    try testing.expectOk(c.send_Ul_L_I());
+test "Ul_L_I: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_L_I(.{ .v1 = 24399, .v2 = 7327, .v3 = 24391 }));
+}
+test "Ul_L_I: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_L_I());
+}
+test "Ul_L_I: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_L_I());
+}
+test "Ul_L_I: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_L_I(), .{ .v1 = 24399, .v2 = 7327, .v3 = 24391 });
 }
 pub export fn zig_assert_Ul_L_I(lv: c.Ul_L_I) c_int {
     var err: c_int = 0;
@@ -2305,7 +2725,7 @@ pub export fn zig_ret_Ul_L_I() c.Ul_L_I {
 //   int *v3;
 // };
 
-test "Ul_L_Ip layout" {
+test "Ul_L_Ip: layout" {
     var lv: c.Ul_L_Ip = undefined;
     try testing.expectSize(c.Ul_L_Ip, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_L_Ip, ABISELECT(8, 4));
@@ -2313,11 +2733,17 @@ test "Ul_L_Ip layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
-test "Ul_L_Ip C calls" {
-    try testing.expectEqual(c.ret_Ul_L_Ip(), .{ .v1 = 29353, .v2 = 291, .v3 = null });
-    try testing.expectOk(c.assert_ret_Ul_L_Ip());
-    try testing.expectOk(c.send_Ul_L_Ip());
+test "Ul_L_Ip: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_L_Ip(.{ .v1 = 29353, .v2 = 291, .v3 = null }));
+}
+test "Ul_L_Ip: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_L_Ip());
+}
+test "Ul_L_Ip: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_L_Ip());
+}
+test "Ul_L_Ip: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_L_Ip(), .{ .v1 = 29353, .v2 = 291, .v3 = null });
 }
 pub export fn zig_assert_Ul_L_Ip(lv: c.Ul_L_Ip) c_int {
     var err: c_int = 0;
@@ -2338,7 +2764,7 @@ pub export fn zig_ret_Ul_L_Ip() c.Ul_L_Ip {
 //   __tsi64 v3;
 // };
 
-test "Ul_L_L layout" {
+test "Ul_L_L: layout" {
     var lv: c.Ul_L_L = undefined;
     try testing.expectSize(c.Ul_L_L, 24);
     try testing.expectAlign(c.Ul_L_L, ABISELECT(8, 4));
@@ -2346,11 +2772,17 @@ test "Ul_L_L layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
-test "Ul_L_L C calls" {
-    try testing.expectEqual(c.ret_Ul_L_L(), .{ .v1 = 31991, .v2 = 20178, .v3 = 30846 });
-    try testing.expectOk(c.assert_ret_Ul_L_L());
-    try testing.expectOk(c.send_Ul_L_L());
+test "Ul_L_L: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_L_L(.{ .v1 = 31991, .v2 = 20178, .v3 = 30846 }));
+}
+test "Ul_L_L: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_L_L());
+}
+test "Ul_L_L: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_L_L());
+}
+test "Ul_L_L: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_L_L(), .{ .v1 = 31991, .v2 = 20178, .v3 = 30846 });
 }
 pub export fn zig_assert_Ul_L_L(lv: c.Ul_L_L) c_int {
     var err: c_int = 0;
@@ -2371,7 +2803,7 @@ pub export fn zig_ret_Ul_L_L() c.Ul_L_L {
 //   short v3;
 // };
 
-test "Ul_L_S layout" {
+test "Ul_L_S: layout" {
     var lv: c.Ul_L_S = undefined;
     try testing.expectSize(c.Ul_L_S, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_L_S, ABISELECT(8, 4));
@@ -2379,11 +2811,17 @@ test "Ul_L_S layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
-test "Ul_L_S C calls" {
-    try testing.expectEqual(c.ret_Ul_L_S(), .{ .v1 = 538, .v2 = 31083, .v3 = 25880 });
-    try testing.expectOk(c.assert_ret_Ul_L_S());
-    try testing.expectOk(c.send_Ul_L_S());
+test "Ul_L_S: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_L_S(.{ .v1 = 538, .v2 = 31083, .v3 = 25880 }));
+}
+test "Ul_L_S: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_L_S());
+}
+test "Ul_L_S: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_L_S());
+}
+test "Ul_L_S: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_L_S(), .{ .v1 = 538, .v2 = 31083, .v3 = 25880 });
 }
 pub export fn zig_assert_Ul_L_S(lv: c.Ul_L_S) c_int {
     var err: c_int = 0;
@@ -2404,7 +2842,7 @@ pub export fn zig_ret_Ul_L_S() c.Ul_L_S {
 //   unsigned char v3;
 // };
 
-test "Ul_L_Uc layout" {
+test "Ul_L_Uc: layout" {
     var lv: c.Ul_L_Uc = undefined;
     try testing.expectSize(c.Ul_L_Uc, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_L_Uc, ABISELECT(8, 4));
@@ -2412,11 +2850,17 @@ test "Ul_L_Uc layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
-test "Ul_L_Uc C calls" {
-    try testing.expectEqual(c.ret_Ul_L_Uc(), .{ .v1 = 28879, .v2 = 7459, .v3 = 12 });
-    try testing.expectOk(c.assert_ret_Ul_L_Uc());
-    try testing.expectOk(c.send_Ul_L_Uc());
+test "Ul_L_Uc: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_L_Uc(.{ .v1 = 28879, .v2 = 7459, .v3 = 12 }));
+}
+test "Ul_L_Uc: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_L_Uc());
+}
+test "Ul_L_Uc: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_L_Uc());
+}
+test "Ul_L_Uc: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_L_Uc(), .{ .v1 = 28879, .v2 = 7459, .v3 = 12 });
 }
 pub export fn zig_assert_Ul_L_Uc(lv: c.Ul_L_Uc) c_int {
     var err: c_int = 0;
@@ -2437,7 +2881,7 @@ pub export fn zig_ret_Ul_L_Uc() c.Ul_L_Uc {
 //   unsigned int v3;
 // };
 
-test "Ul_L_Ui layout" {
+test "Ul_L_Ui: layout" {
     var lv: c.Ul_L_Ui = undefined;
     try testing.expectSize(c.Ul_L_Ui, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_L_Ui, ABISELECT(8, 4));
@@ -2445,11 +2889,17 @@ test "Ul_L_Ui layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
-test "Ul_L_Ui C calls" {
-    try testing.expectEqual(c.ret_Ul_L_Ui(), .{ .v1 = 26709, .v2 = 19269, .v3 = 24646 });
-    try testing.expectOk(c.assert_ret_Ul_L_Ui());
-    try testing.expectOk(c.send_Ul_L_Ui());
+test "Ul_L_Ui: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_L_Ui(.{ .v1 = 26709, .v2 = 19269, .v3 = 24646 }));
+}
+test "Ul_L_Ui: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_L_Ui());
+}
+test "Ul_L_Ui: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_L_Ui());
+}
+test "Ul_L_Ui: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_L_Ui(), .{ .v1 = 26709, .v2 = 19269, .v3 = 24646 });
 }
 pub export fn zig_assert_Ul_L_Ui(lv: c.Ul_L_Ui) c_int {
     var err: c_int = 0;
@@ -2470,7 +2920,7 @@ pub export fn zig_ret_Ul_L_Ui() c.Ul_L_Ui {
 //   __tsu64 v3;
 // };
 
-test "Ul_L_Ul layout" {
+test "Ul_L_Ul: layout" {
     var lv: c.Ul_L_Ul = undefined;
     try testing.expectSize(c.Ul_L_Ul, 24);
     try testing.expectAlign(c.Ul_L_Ul, ABISELECT(8, 4));
@@ -2478,11 +2928,17 @@ test "Ul_L_Ul layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
-test "Ul_L_Ul C calls" {
-    try testing.expectEqual(c.ret_Ul_L_Ul(), .{ .v1 = 20313, .v2 = 27484, .v3 = 30103 });
-    try testing.expectOk(c.assert_ret_Ul_L_Ul());
-    try testing.expectOk(c.send_Ul_L_Ul());
+test "Ul_L_Ul: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_L_Ul(.{ .v1 = 20313, .v2 = 27484, .v3 = 30103 }));
+}
+test "Ul_L_Ul: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_L_Ul());
+}
+test "Ul_L_Ul: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_L_Ul());
+}
+test "Ul_L_Ul: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_L_Ul(), .{ .v1 = 20313, .v2 = 27484, .v3 = 30103 });
 }
 pub export fn zig_assert_Ul_L_Ul(lv: c.Ul_L_Ul) c_int {
     var err: c_int = 0;
@@ -2503,7 +2959,7 @@ pub export fn zig_ret_Ul_L_Ul() c.Ul_L_Ul {
 //   unsigned short v3;
 // };
 
-test "Ul_L_Us layout" {
+test "Ul_L_Us: layout" {
     var lv: c.Ul_L_Us = undefined;
     try testing.expectSize(c.Ul_L_Us, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_L_Us, ABISELECT(8, 4));
@@ -2511,11 +2967,17 @@ test "Ul_L_Us layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
-test "Ul_L_Us C calls" {
-    try testing.expectEqual(c.ret_Ul_L_Us(), .{ .v1 = 5364, .v2 = 21504, .v3 = 1770 });
-    try testing.expectOk(c.assert_ret_Ul_L_Us());
-    try testing.expectOk(c.send_Ul_L_Us());
+test "Ul_L_Us: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_L_Us(.{ .v1 = 5364, .v2 = 21504, .v3 = 1770 }));
+}
+test "Ul_L_Us: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_L_Us());
+}
+test "Ul_L_Us: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_L_Us());
+}
+test "Ul_L_Us: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_L_Us(), .{ .v1 = 5364, .v2 = 21504, .v3 = 1770 });
 }
 pub export fn zig_assert_Ul_L_Us(lv: c.Ul_L_Us) c_int {
     var err: c_int = 0;
@@ -2536,7 +2998,7 @@ pub export fn zig_ret_Ul_L_Us() c.Ul_L_Us {
 //   void *v3;
 // };
 
-test "Ul_L_Vp layout" {
+test "Ul_L_Vp: layout" {
     var lv: c.Ul_L_Vp = undefined;
     try testing.expectSize(c.Ul_L_Vp, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_L_Vp, ABISELECT(8, 4));
@@ -2544,11 +3006,17 @@ test "Ul_L_Vp layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
-test "Ul_L_Vp C calls" {
-    try testing.expectEqual(c.ret_Ul_L_Vp(), .{ .v1 = 4315, .v2 = 13921, .v3 = null });
-    try testing.expectOk(c.assert_ret_Ul_L_Vp());
-    try testing.expectOk(c.send_Ul_L_Vp());
+test "Ul_L_Vp: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_L_Vp(.{ .v1 = 4315, .v2 = 13921, .v3 = null }));
+}
+test "Ul_L_Vp: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_L_Vp());
+}
+test "Ul_L_Vp: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_L_Vp());
+}
+test "Ul_L_Vp: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_L_Vp(), .{ .v1 = 4315, .v2 = 13921, .v3 = null });
 }
 pub export fn zig_assert_Ul_L_Vp(lv: c.Ul_L_Vp) c_int {
     var err: c_int = 0;
@@ -2568,18 +3036,24 @@ pub export fn zig_ret_Ul_L_Vp() c.Ul_L_Vp {
 //   short v2;
 // };
 
-test "Ul_S layout" {
+test "Ul_S: layout" {
     var lv: c.Ul_S = undefined;
     try testing.expectSize(c.Ul_S, ABISELECT(16, 12));
     try testing.expectAlign(c.Ul_S, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
 }
-test "Ul_S C calls" {
-    try testing.expectEqual(c.ret_Ul_S(), .{ .v1 = 15495, .v2 = 24354 });
-    try testing.expectOk(c.assert_ret_Ul_S());
-    try testing.expectOk(c.send_Ul_S());
+test "Ul_S: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_S(.{ .v1 = 15495, .v2 = 24354 }));
+}
+test "Ul_S: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_S());
+}
+test "Ul_S: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_S());
+}
+test "Ul_S: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_S(), .{ .v1 = 15495, .v2 = 24354 });
 }
 pub export fn zig_assert_Ul_S(lv: c.Ul_S) c_int {
     var err: c_int = 0;
@@ -2599,7 +3073,7 @@ pub export fn zig_ret_Ul_S() c.Ul_S {
 //   char v3;
 // };
 
-test "Ul_S_C layout" {
+test "Ul_S_C: layout" {
     var lv: c.Ul_S_C = undefined;
     try testing.expectSize(c.Ul_S_C, ABISELECT(16, 12));
     try testing.expectAlign(c.Ul_S_C, ABISELECT(8, 4));
@@ -2607,11 +3081,17 @@ test "Ul_S_C layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 10);
 }
-test "Ul_S_C C calls" {
-    try testing.expectEqual(c.ret_Ul_S_C(), .{ .v1 = 20311, .v2 = 15701, .v3 = 45 });
-    try testing.expectOk(c.assert_ret_Ul_S_C());
-    try testing.expectOk(c.send_Ul_S_C());
+test "Ul_S_C: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_S_C(.{ .v1 = 20311, .v2 = 15701, .v3 = 45 }));
+}
+test "Ul_S_C: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_S_C());
+}
+test "Ul_S_C: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_S_C());
+}
+test "Ul_S_C: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_S_C(), .{ .v1 = 20311, .v2 = 15701, .v3 = 45 });
 }
 pub export fn zig_assert_Ul_S_C(lv: c.Ul_S_C) c_int {
     var err: c_int = 0;
@@ -2632,7 +3112,7 @@ pub export fn zig_ret_Ul_S_C() c.Ul_S_C {
 //   double v3;
 // };
 
-test "Ul_S_D layout" {
+test "Ul_S_D: layout" {
     var lv: c.Ul_S_D = undefined;
     try testing.expectSize(c.Ul_S_D, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_S_D, ABISELECT(8, 4));
@@ -2640,11 +3120,17 @@ test "Ul_S_D layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_S_D C calls" {
-    try testing.expectEqual(c.ret_Ul_S_D(), .{ .v1 = 2529, .v2 = 28822, .v3 = 0.875 });
-    try testing.expectOk(c.assert_ret_Ul_S_D());
-    try testing.expectOk(c.send_Ul_S_D());
+test "Ul_S_D: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_S_D(.{ .v1 = 2529, .v2 = 28822, .v3 = 0.875 }));
+}
+test "Ul_S_D: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_S_D());
+}
+test "Ul_S_D: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_S_D());
+}
+test "Ul_S_D: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_S_D(), .{ .v1 = 2529, .v2 = 28822, .v3 = 0.875 });
 }
 pub export fn zig_assert_Ul_S_D(lv: c.Ul_S_D) c_int {
     var err: c_int = 0;
@@ -2665,7 +3151,7 @@ pub export fn zig_ret_Ul_S_D() c.Ul_S_D {
 //   float v3;
 // };
 
-test "Ul_S_F layout" {
+test "Ul_S_F: layout" {
     var lv: c.Ul_S_F = undefined;
     try testing.expectSize(c.Ul_S_F, 16);
     try testing.expectAlign(c.Ul_S_F, ABISELECT(8, 4));
@@ -2673,11 +3159,17 @@ test "Ul_S_F layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
-test "Ul_S_F C calls" {
-    try testing.expectEqual(c.ret_Ul_S_F(), .{ .v1 = 17877, .v2 = 24298, .v3 = 0.5 });
-    try testing.expectOk(c.assert_ret_Ul_S_F());
-    try testing.expectOk(c.send_Ul_S_F());
+test "Ul_S_F: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_S_F(.{ .v1 = 17877, .v2 = 24298, .v3 = 0.5 }));
+}
+test "Ul_S_F: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_S_F());
+}
+test "Ul_S_F: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_S_F());
+}
+test "Ul_S_F: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_S_F(), .{ .v1 = 17877, .v2 = 24298, .v3 = 0.5 });
 }
 pub export fn zig_assert_Ul_S_F(lv: c.Ul_S_F) c_int {
     var err: c_int = 0;
@@ -2698,7 +3190,7 @@ pub export fn zig_ret_Ul_S_F() c.Ul_S_F {
 //   int v3;
 // };
 
-test "Ul_S_I layout" {
+test "Ul_S_I: layout" {
     var lv: c.Ul_S_I = undefined;
     try testing.expectSize(c.Ul_S_I, 16);
     try testing.expectAlign(c.Ul_S_I, ABISELECT(8, 4));
@@ -2706,11 +3198,17 @@ test "Ul_S_I layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
-test "Ul_S_I C calls" {
-    try testing.expectEqual(c.ret_Ul_S_I(), .{ .v1 = 19761, .v2 = 8492, .v3 = 4769 });
-    try testing.expectOk(c.assert_ret_Ul_S_I());
-    try testing.expectOk(c.send_Ul_S_I());
+test "Ul_S_I: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_S_I(.{ .v1 = 19761, .v2 = 8492, .v3 = 4769 }));
+}
+test "Ul_S_I: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_S_I());
+}
+test "Ul_S_I: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_S_I());
+}
+test "Ul_S_I: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_S_I(), .{ .v1 = 19761, .v2 = 8492, .v3 = 4769 });
 }
 pub export fn zig_assert_Ul_S_I(lv: c.Ul_S_I) c_int {
     var err: c_int = 0;
@@ -2731,7 +3229,7 @@ pub export fn zig_ret_Ul_S_I() c.Ul_S_I {
 //   int *v3;
 // };
 
-test "Ul_S_Ip layout" {
+test "Ul_S_Ip: layout" {
     var lv: c.Ul_S_Ip = undefined;
     try testing.expectSize(c.Ul_S_Ip, ABISELECT(24, 16));
     try testing.expectAlign(c.Ul_S_Ip, ABISELECT(8, 4));
@@ -2739,11 +3237,17 @@ test "Ul_S_Ip layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_S_Ip C calls" {
-    try testing.expectEqual(c.ret_Ul_S_Ip(), .{ .v1 = 21285, .v2 = 6075, .v3 = null });
-    try testing.expectOk(c.assert_ret_Ul_S_Ip());
-    try testing.expectOk(c.send_Ul_S_Ip());
+test "Ul_S_Ip: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_S_Ip(.{ .v1 = 21285, .v2 = 6075, .v3 = null }));
+}
+test "Ul_S_Ip: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_S_Ip());
+}
+test "Ul_S_Ip: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_S_Ip());
+}
+test "Ul_S_Ip: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_S_Ip(), .{ .v1 = 21285, .v2 = 6075, .v3 = null });
 }
 pub export fn zig_assert_Ul_S_Ip(lv: c.Ul_S_Ip) c_int {
     var err: c_int = 0;
@@ -2764,7 +3268,7 @@ pub export fn zig_ret_Ul_S_Ip() c.Ul_S_Ip {
 //   __tsi64 v3;
 // };
 
-test "Ul_S_L layout" {
+test "Ul_S_L: layout" {
     var lv: c.Ul_S_L = undefined;
     try testing.expectSize(c.Ul_S_L, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_S_L, ABISELECT(8, 4));
@@ -2772,11 +3276,17 @@ test "Ul_S_L layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_S_L C calls" {
-    try testing.expectEqual(c.ret_Ul_S_L(), .{ .v1 = 4325, .v2 = 4313, .v3 = 14475 });
-    try testing.expectOk(c.assert_ret_Ul_S_L());
-    try testing.expectOk(c.send_Ul_S_L());
+test "Ul_S_L: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_S_L(.{ .v1 = 4325, .v2 = 4313, .v3 = 14475 }));
+}
+test "Ul_S_L: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_S_L());
+}
+test "Ul_S_L: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_S_L());
+}
+test "Ul_S_L: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_S_L(), .{ .v1 = 4325, .v2 = 4313, .v3 = 14475 });
 }
 pub export fn zig_assert_Ul_S_L(lv: c.Ul_S_L) c_int {
     var err: c_int = 0;
@@ -2797,7 +3307,7 @@ pub export fn zig_ret_Ul_S_L() c.Ul_S_L {
 //   short v3;
 // };
 
-test "Ul_S_S layout" {
+test "Ul_S_S: layout" {
     var lv: c.Ul_S_S = undefined;
     try testing.expectSize(c.Ul_S_S, ABISELECT(16, 12));
     try testing.expectAlign(c.Ul_S_S, ABISELECT(8, 4));
@@ -2805,11 +3315,17 @@ test "Ul_S_S layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 10);
 }
-test "Ul_S_S C calls" {
-    try testing.expectEqual(c.ret_Ul_S_S(), .{ .v1 = 28758, .v2 = 1479, .v3 = 15299 });
-    try testing.expectOk(c.assert_ret_Ul_S_S());
-    try testing.expectOk(c.send_Ul_S_S());
+test "Ul_S_S: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_S_S(.{ .v1 = 28758, .v2 = 1479, .v3 = 15299 }));
+}
+test "Ul_S_S: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_S_S());
+}
+test "Ul_S_S: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_S_S());
+}
+test "Ul_S_S: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_S_S(), .{ .v1 = 28758, .v2 = 1479, .v3 = 15299 });
 }
 pub export fn zig_assert_Ul_S_S(lv: c.Ul_S_S) c_int {
     var err: c_int = 0;
@@ -2830,7 +3346,7 @@ pub export fn zig_ret_Ul_S_S() c.Ul_S_S {
 //   unsigned char v3;
 // };
 
-test "Ul_S_Uc layout" {
+test "Ul_S_Uc: layout" {
     var lv: c.Ul_S_Uc = undefined;
     try testing.expectSize(c.Ul_S_Uc, ABISELECT(16, 12));
     try testing.expectAlign(c.Ul_S_Uc, ABISELECT(8, 4));
@@ -2838,11 +3354,17 @@ test "Ul_S_Uc layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 10);
 }
-test "Ul_S_Uc C calls" {
-    try testing.expectEqual(c.ret_Ul_S_Uc(), .{ .v1 = 23482, .v2 = 14404, .v3 = 62 });
-    try testing.expectOk(c.assert_ret_Ul_S_Uc());
-    try testing.expectOk(c.send_Ul_S_Uc());
+test "Ul_S_Uc: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_S_Uc(.{ .v1 = 23482, .v2 = 14404, .v3 = 62 }));
+}
+test "Ul_S_Uc: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_S_Uc());
+}
+test "Ul_S_Uc: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_S_Uc());
+}
+test "Ul_S_Uc: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_S_Uc(), .{ .v1 = 23482, .v2 = 14404, .v3 = 62 });
 }
 pub export fn zig_assert_Ul_S_Uc(lv: c.Ul_S_Uc) c_int {
     var err: c_int = 0;
@@ -2863,7 +3385,7 @@ pub export fn zig_ret_Ul_S_Uc() c.Ul_S_Uc {
 //   unsigned int v3;
 // };
 
-test "Ul_S_Ui layout" {
+test "Ul_S_Ui: layout" {
     var lv: c.Ul_S_Ui = undefined;
     try testing.expectSize(c.Ul_S_Ui, 16);
     try testing.expectAlign(c.Ul_S_Ui, ABISELECT(8, 4));
@@ -2871,11 +3393,17 @@ test "Ul_S_Ui layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
-test "Ul_S_Ui C calls" {
-    try testing.expectEqual(c.ret_Ul_S_Ui(), .{ .v1 = 14460, .v2 = 21505, .v3 = 10097 });
-    try testing.expectOk(c.assert_ret_Ul_S_Ui());
-    try testing.expectOk(c.send_Ul_S_Ui());
+test "Ul_S_Ui: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_S_Ui(.{ .v1 = 14460, .v2 = 21505, .v3 = 10097 }));
+}
+test "Ul_S_Ui: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_S_Ui());
+}
+test "Ul_S_Ui: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_S_Ui());
+}
+test "Ul_S_Ui: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_S_Ui(), .{ .v1 = 14460, .v2 = 21505, .v3 = 10097 });
 }
 pub export fn zig_assert_Ul_S_Ui(lv: c.Ul_S_Ui) c_int {
     var err: c_int = 0;
@@ -2896,7 +3424,7 @@ pub export fn zig_ret_Ul_S_Ui() c.Ul_S_Ui {
 //   __tsu64 v3;
 // };
 
-test "Ul_S_Ul layout" {
+test "Ul_S_Ul: layout" {
     var lv: c.Ul_S_Ul = undefined;
     try testing.expectSize(c.Ul_S_Ul, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_S_Ul, ABISELECT(8, 4));
@@ -2904,11 +3432,17 @@ test "Ul_S_Ul layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_S_Ul C calls" {
-    try testing.expectEqual(c.ret_Ul_S_Ul(), .{ .v1 = 1815, .v2 = 29350, .v3 = 3622 });
-    try testing.expectOk(c.assert_ret_Ul_S_Ul());
-    try testing.expectOk(c.send_Ul_S_Ul());
+test "Ul_S_Ul: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_S_Ul(.{ .v1 = 1815, .v2 = 29350, .v3 = 3622 }));
+}
+test "Ul_S_Ul: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_S_Ul());
+}
+test "Ul_S_Ul: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_S_Ul());
+}
+test "Ul_S_Ul: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_S_Ul(), .{ .v1 = 1815, .v2 = 29350, .v3 = 3622 });
 }
 pub export fn zig_assert_Ul_S_Ul(lv: c.Ul_S_Ul) c_int {
     var err: c_int = 0;
@@ -2929,7 +3463,7 @@ pub export fn zig_ret_Ul_S_Ul() c.Ul_S_Ul {
 //   unsigned short v3;
 // };
 
-test "Ul_S_Us layout" {
+test "Ul_S_Us: layout" {
     var lv: c.Ul_S_Us = undefined;
     try testing.expectSize(c.Ul_S_Us, ABISELECT(16, 12));
     try testing.expectAlign(c.Ul_S_Us, ABISELECT(8, 4));
@@ -2937,11 +3471,17 @@ test "Ul_S_Us layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 10);
 }
-test "Ul_S_Us C calls" {
-    try testing.expectEqual(c.ret_Ul_S_Us(), .{ .v1 = 25777, .v2 = 20180, .v3 = 7276 });
-    try testing.expectOk(c.assert_ret_Ul_S_Us());
-    try testing.expectOk(c.send_Ul_S_Us());
+test "Ul_S_Us: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_S_Us(.{ .v1 = 25777, .v2 = 20180, .v3 = 7276 }));
+}
+test "Ul_S_Us: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_S_Us());
+}
+test "Ul_S_Us: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_S_Us());
+}
+test "Ul_S_Us: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_S_Us(), .{ .v1 = 25777, .v2 = 20180, .v3 = 7276 });
 }
 pub export fn zig_assert_Ul_S_Us(lv: c.Ul_S_Us) c_int {
     var err: c_int = 0;
@@ -2962,7 +3502,7 @@ pub export fn zig_ret_Ul_S_Us() c.Ul_S_Us {
 //   void *v3;
 // };
 
-test "Ul_S_Vp layout" {
+test "Ul_S_Vp: layout" {
     var lv: c.Ul_S_Vp = undefined;
     try testing.expectSize(c.Ul_S_Vp, ABISELECT(24, 16));
     try testing.expectAlign(c.Ul_S_Vp, ABISELECT(8, 4));
@@ -2970,11 +3510,17 @@ test "Ul_S_Vp layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_S_Vp C calls" {
-    try testing.expectEqual(c.ret_Ul_S_Vp(), .{ .v1 = 28974, .v2 = 28956, .v3 = null });
-    try testing.expectOk(c.assert_ret_Ul_S_Vp());
-    try testing.expectOk(c.send_Ul_S_Vp());
+test "Ul_S_Vp: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_S_Vp(.{ .v1 = 28974, .v2 = 28956, .v3 = null }));
+}
+test "Ul_S_Vp: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_S_Vp());
+}
+test "Ul_S_Vp: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_S_Vp());
+}
+test "Ul_S_Vp: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_S_Vp(), .{ .v1 = 28974, .v2 = 28956, .v3 = null });
 }
 pub export fn zig_assert_Ul_S_Vp(lv: c.Ul_S_Vp) c_int {
     var err: c_int = 0;
@@ -2994,18 +3540,24 @@ pub export fn zig_ret_Ul_S_Vp() c.Ul_S_Vp {
 //   unsigned char v2;
 // };
 
-test "Ul_Uc layout" {
+test "Ul_Uc: layout" {
     var lv: c.Ul_Uc = undefined;
     try testing.expectSize(c.Ul_Uc, ABISELECT(16, 12));
     try testing.expectAlign(c.Ul_Uc, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
 }
-test "Ul_Uc C calls" {
-    try testing.expectEqual(c.ret_Ul_Uc(), .{ .v1 = 9532, .v2 = 30 });
-    try testing.expectOk(c.assert_ret_Ul_Uc());
-    try testing.expectOk(c.send_Ul_Uc());
+test "Ul_Uc: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Uc(.{ .v1 = 9532, .v2 = 30 }));
+}
+test "Ul_Uc: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Uc());
+}
+test "Ul_Uc: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Uc());
+}
+test "Ul_Uc: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Uc(), .{ .v1 = 9532, .v2 = 30 });
 }
 pub export fn zig_assert_Ul_Uc(lv: c.Ul_Uc) c_int {
     var err: c_int = 0;
@@ -3025,7 +3577,7 @@ pub export fn zig_ret_Ul_Uc() c.Ul_Uc {
 //   char v3;
 // };
 
-test "Ul_Uc_C layout" {
+test "Ul_Uc_C: layout" {
     var lv: c.Ul_Uc_C = undefined;
     try testing.expectSize(c.Ul_Uc_C, ABISELECT(16, 12));
     try testing.expectAlign(c.Ul_Uc_C, ABISELECT(8, 4));
@@ -3033,11 +3585,17 @@ test "Ul_Uc_C layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 9);
 }
-test "Ul_Uc_C C calls" {
-    try testing.expectEqual(c.ret_Ul_Uc_C(), .{ .v1 = 28644, .v2 = 23, .v3 = 64 });
-    try testing.expectOk(c.assert_ret_Ul_Uc_C());
-    try testing.expectOk(c.send_Ul_Uc_C());
+test "Ul_Uc_C: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Uc_C(.{ .v1 = 28644, .v2 = 23, .v3 = 64 }));
+}
+test "Ul_Uc_C: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Uc_C());
+}
+test "Ul_Uc_C: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Uc_C());
+}
+test "Ul_Uc_C: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Uc_C(), .{ .v1 = 28644, .v2 = 23, .v3 = 64 });
 }
 pub export fn zig_assert_Ul_Uc_C(lv: c.Ul_Uc_C) c_int {
     var err: c_int = 0;
@@ -3058,7 +3616,7 @@ pub export fn zig_ret_Ul_Uc_C() c.Ul_Uc_C {
 //   double v3;
 // };
 
-test "Ul_Uc_D layout" {
+test "Ul_Uc_D: layout" {
     var lv: c.Ul_Uc_D = undefined;
     try testing.expectSize(c.Ul_Uc_D, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_Uc_D, ABISELECT(8, 4));
@@ -3066,11 +3624,17 @@ test "Ul_Uc_D layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Uc_D C calls" {
-    try testing.expectEqual(c.ret_Ul_Uc_D(), .{ .v1 = 27342, .v2 = 53, .v3 = 7.0 });
-    try testing.expectOk(c.assert_ret_Ul_Uc_D());
-    try testing.expectOk(c.send_Ul_Uc_D());
+test "Ul_Uc_D: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Uc_D(.{ .v1 = 27342, .v2 = 53, .v3 = 7.0 }));
+}
+test "Ul_Uc_D: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Uc_D());
+}
+test "Ul_Uc_D: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Uc_D());
+}
+test "Ul_Uc_D: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Uc_D(), .{ .v1 = 27342, .v2 = 53, .v3 = 7.0 });
 }
 pub export fn zig_assert_Ul_Uc_D(lv: c.Ul_Uc_D) c_int {
     var err: c_int = 0;
@@ -3091,7 +3655,7 @@ pub export fn zig_ret_Ul_Uc_D() c.Ul_Uc_D {
 //   float v3;
 // };
 
-test "Ul_Uc_F layout" {
+test "Ul_Uc_F: layout" {
     var lv: c.Ul_Uc_F = undefined;
     try testing.expectSize(c.Ul_Uc_F, 16);
     try testing.expectAlign(c.Ul_Uc_F, ABISELECT(8, 4));
@@ -3099,11 +3663,17 @@ test "Ul_Uc_F layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
-test "Ul_Uc_F C calls" {
-    try testing.expectEqual(c.ret_Ul_Uc_F(), .{ .v1 = 357, .v2 = 83, .v3 = 1.0 });
-    try testing.expectOk(c.assert_ret_Ul_Uc_F());
-    try testing.expectOk(c.send_Ul_Uc_F());
+test "Ul_Uc_F: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Uc_F(.{ .v1 = 357, .v2 = 83, .v3 = 1.0 }));
+}
+test "Ul_Uc_F: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Uc_F());
+}
+test "Ul_Uc_F: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Uc_F());
+}
+test "Ul_Uc_F: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Uc_F(), .{ .v1 = 357, .v2 = 83, .v3 = 1.0 });
 }
 pub export fn zig_assert_Ul_Uc_F(lv: c.Ul_Uc_F) c_int {
     var err: c_int = 0;
@@ -3124,7 +3694,7 @@ pub export fn zig_ret_Ul_Uc_F() c.Ul_Uc_F {
 //   int v3;
 // };
 
-test "Ul_Uc_I layout" {
+test "Ul_Uc_I: layout" {
     var lv: c.Ul_Uc_I = undefined;
     try testing.expectSize(c.Ul_Uc_I, 16);
     try testing.expectAlign(c.Ul_Uc_I, ABISELECT(8, 4));
@@ -3132,11 +3702,17 @@ test "Ul_Uc_I layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
-test "Ul_Uc_I C calls" {
-    try testing.expectEqual(c.ret_Ul_Uc_I(), .{ .v1 = 9936, .v2 = 95, .v3 = 31107 });
-    try testing.expectOk(c.assert_ret_Ul_Uc_I());
-    try testing.expectOk(c.send_Ul_Uc_I());
+test "Ul_Uc_I: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Uc_I(.{ .v1 = 9936, .v2 = 95, .v3 = 31107 }));
+}
+test "Ul_Uc_I: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Uc_I());
+}
+test "Ul_Uc_I: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Uc_I());
+}
+test "Ul_Uc_I: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Uc_I(), .{ .v1 = 9936, .v2 = 95, .v3 = 31107 });
 }
 pub export fn zig_assert_Ul_Uc_I(lv: c.Ul_Uc_I) c_int {
     var err: c_int = 0;
@@ -3157,7 +3733,7 @@ pub export fn zig_ret_Ul_Uc_I() c.Ul_Uc_I {
 //   int *v3;
 // };
 
-test "Ul_Uc_Ip layout" {
+test "Ul_Uc_Ip: layout" {
     var lv: c.Ul_Uc_Ip = undefined;
     try testing.expectSize(c.Ul_Uc_Ip, ABISELECT(24, 16));
     try testing.expectAlign(c.Ul_Uc_Ip, ABISELECT(8, 4));
@@ -3165,11 +3741,17 @@ test "Ul_Uc_Ip layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Uc_Ip C calls" {
-    try testing.expectEqual(c.ret_Ul_Uc_Ip(), .{ .v1 = 28094, .v2 = 9, .v3 = null });
-    try testing.expectOk(c.assert_ret_Ul_Uc_Ip());
-    try testing.expectOk(c.send_Ul_Uc_Ip());
+test "Ul_Uc_Ip: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Uc_Ip(.{ .v1 = 28094, .v2 = 9, .v3 = null }));
+}
+test "Ul_Uc_Ip: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Uc_Ip());
+}
+test "Ul_Uc_Ip: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Uc_Ip());
+}
+test "Ul_Uc_Ip: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Uc_Ip(), .{ .v1 = 28094, .v2 = 9, .v3 = null });
 }
 pub export fn zig_assert_Ul_Uc_Ip(lv: c.Ul_Uc_Ip) c_int {
     var err: c_int = 0;
@@ -3190,7 +3772,7 @@ pub export fn zig_ret_Ul_Uc_Ip() c.Ul_Uc_Ip {
 //   __tsi64 v3;
 // };
 
-test "Ul_Uc_L layout" {
+test "Ul_Uc_L: layout" {
     var lv: c.Ul_Uc_L = undefined;
     try testing.expectSize(c.Ul_Uc_L, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_Uc_L, ABISELECT(8, 4));
@@ -3198,11 +3780,17 @@ test "Ul_Uc_L layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Uc_L C calls" {
-    try testing.expectEqual(c.ret_Ul_Uc_L(), .{ .v1 = 15634, .v2 = 17, .v3 = 1241 });
-    try testing.expectOk(c.assert_ret_Ul_Uc_L());
-    try testing.expectOk(c.send_Ul_Uc_L());
+test "Ul_Uc_L: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Uc_L(.{ .v1 = 15634, .v2 = 17, .v3 = 1241 }));
+}
+test "Ul_Uc_L: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Uc_L());
+}
+test "Ul_Uc_L: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Uc_L());
+}
+test "Ul_Uc_L: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Uc_L(), .{ .v1 = 15634, .v2 = 17, .v3 = 1241 });
 }
 pub export fn zig_assert_Ul_Uc_L(lv: c.Ul_Uc_L) c_int {
     var err: c_int = 0;
@@ -3223,7 +3811,7 @@ pub export fn zig_ret_Ul_Uc_L() c.Ul_Uc_L {
 //   short v3;
 // };
 
-test "Ul_Uc_S layout" {
+test "Ul_Uc_S: layout" {
     var lv: c.Ul_Uc_S = undefined;
     try testing.expectSize(c.Ul_Uc_S, ABISELECT(16, 12));
     try testing.expectAlign(c.Ul_Uc_S, ABISELECT(8, 4));
@@ -3231,11 +3819,17 @@ test "Ul_Uc_S layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 10);
 }
-test "Ul_Uc_S C calls" {
-    try testing.expectEqual(c.ret_Ul_Uc_S(), .{ .v1 = 30415, .v2 = 26, .v3 = 12477 });
-    try testing.expectOk(c.assert_ret_Ul_Uc_S());
-    try testing.expectOk(c.send_Ul_Uc_S());
+test "Ul_Uc_S: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Uc_S(.{ .v1 = 30415, .v2 = 26, .v3 = 12477 }));
+}
+test "Ul_Uc_S: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Uc_S());
+}
+test "Ul_Uc_S: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Uc_S());
+}
+test "Ul_Uc_S: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Uc_S(), .{ .v1 = 30415, .v2 = 26, .v3 = 12477 });
 }
 pub export fn zig_assert_Ul_Uc_S(lv: c.Ul_Uc_S) c_int {
     var err: c_int = 0;
@@ -3256,7 +3850,7 @@ pub export fn zig_ret_Ul_Uc_S() c.Ul_Uc_S {
 //   unsigned char v3;
 // };
 
-test "Ul_Uc_Uc layout" {
+test "Ul_Uc_Uc: layout" {
     var lv: c.Ul_Uc_Uc = undefined;
     try testing.expectSize(c.Ul_Uc_Uc, ABISELECT(16, 12));
     try testing.expectAlign(c.Ul_Uc_Uc, ABISELECT(8, 4));
@@ -3264,11 +3858,17 @@ test "Ul_Uc_Uc layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 9);
 }
-test "Ul_Uc_Uc C calls" {
-    try testing.expectEqual(c.ret_Ul_Uc_Uc(), .{ .v1 = 17391, .v2 = 91, .v3 = 22 });
-    try testing.expectOk(c.assert_ret_Ul_Uc_Uc());
-    try testing.expectOk(c.send_Ul_Uc_Uc());
+test "Ul_Uc_Uc: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Uc_Uc(.{ .v1 = 17391, .v2 = 91, .v3 = 22 }));
+}
+test "Ul_Uc_Uc: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Uc_Uc());
+}
+test "Ul_Uc_Uc: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Uc_Uc());
+}
+test "Ul_Uc_Uc: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Uc_Uc(), .{ .v1 = 17391, .v2 = 91, .v3 = 22 });
 }
 pub export fn zig_assert_Ul_Uc_Uc(lv: c.Ul_Uc_Uc) c_int {
     var err: c_int = 0;
@@ -3289,7 +3889,7 @@ pub export fn zig_ret_Ul_Uc_Uc() c.Ul_Uc_Uc {
 //   unsigned int v3;
 // };
 
-test "Ul_Uc_Ui layout" {
+test "Ul_Uc_Ui: layout" {
     var lv: c.Ul_Uc_Ui = undefined;
     try testing.expectSize(c.Ul_Uc_Ui, 16);
     try testing.expectAlign(c.Ul_Uc_Ui, ABISELECT(8, 4));
@@ -3297,11 +3897,17 @@ test "Ul_Uc_Ui layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
-test "Ul_Uc_Ui C calls" {
-    try testing.expectEqual(c.ret_Ul_Uc_Ui(), .{ .v1 = 20042, .v2 = 52, .v3 = 19522 });
-    try testing.expectOk(c.assert_ret_Ul_Uc_Ui());
-    try testing.expectOk(c.send_Ul_Uc_Ui());
+test "Ul_Uc_Ui: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Uc_Ui(.{ .v1 = 20042, .v2 = 52, .v3 = 19522 }));
+}
+test "Ul_Uc_Ui: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Uc_Ui());
+}
+test "Ul_Uc_Ui: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Uc_Ui());
+}
+test "Ul_Uc_Ui: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Uc_Ui(), .{ .v1 = 20042, .v2 = 52, .v3 = 19522 });
 }
 pub export fn zig_assert_Ul_Uc_Ui(lv: c.Ul_Uc_Ui) c_int {
     var err: c_int = 0;
@@ -3322,7 +3928,7 @@ pub export fn zig_ret_Ul_Uc_Ui() c.Ul_Uc_Ui {
 //   __tsu64 v3;
 // };
 
-test "Ul_Uc_Ul layout" {
+test "Ul_Uc_Ul: layout" {
     var lv: c.Ul_Uc_Ul = undefined;
     try testing.expectSize(c.Ul_Uc_Ul, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_Uc_Ul, ABISELECT(8, 4));
@@ -3330,11 +3936,17 @@ test "Ul_Uc_Ul layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Uc_Ul C calls" {
-    try testing.expectEqual(c.ret_Ul_Uc_Ul(), .{ .v1 = 18223, .v2 = 65, .v3 = 26245 });
-    try testing.expectOk(c.assert_ret_Ul_Uc_Ul());
-    try testing.expectOk(c.send_Ul_Uc_Ul());
+test "Ul_Uc_Ul: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Uc_Ul(.{ .v1 = 18223, .v2 = 65, .v3 = 26245 }));
+}
+test "Ul_Uc_Ul: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Uc_Ul());
+}
+test "Ul_Uc_Ul: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Uc_Ul());
+}
+test "Ul_Uc_Ul: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Uc_Ul(), .{ .v1 = 18223, .v2 = 65, .v3 = 26245 });
 }
 pub export fn zig_assert_Ul_Uc_Ul(lv: c.Ul_Uc_Ul) c_int {
     var err: c_int = 0;
@@ -3355,7 +3967,7 @@ pub export fn zig_ret_Ul_Uc_Ul() c.Ul_Uc_Ul {
 //   unsigned short v3;
 // };
 
-test "Ul_Uc_Us layout" {
+test "Ul_Uc_Us: layout" {
     var lv: c.Ul_Uc_Us = undefined;
     try testing.expectSize(c.Ul_Uc_Us, ABISELECT(16, 12));
     try testing.expectAlign(c.Ul_Uc_Us, ABISELECT(8, 4));
@@ -3363,11 +3975,17 @@ test "Ul_Uc_Us layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 10);
 }
-test "Ul_Uc_Us C calls" {
-    try testing.expectEqual(c.ret_Ul_Uc_Us(), .{ .v1 = 13507, .v2 = 81, .v3 = 16987 });
-    try testing.expectOk(c.assert_ret_Ul_Uc_Us());
-    try testing.expectOk(c.send_Ul_Uc_Us());
+test "Ul_Uc_Us: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Uc_Us(.{ .v1 = 13507, .v2 = 81, .v3 = 16987 }));
+}
+test "Ul_Uc_Us: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Uc_Us());
+}
+test "Ul_Uc_Us: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Uc_Us());
+}
+test "Ul_Uc_Us: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Uc_Us(), .{ .v1 = 13507, .v2 = 81, .v3 = 16987 });
 }
 pub export fn zig_assert_Ul_Uc_Us(lv: c.Ul_Uc_Us) c_int {
     var err: c_int = 0;
@@ -3388,7 +4006,7 @@ pub export fn zig_ret_Ul_Uc_Us() c.Ul_Uc_Us {
 //   void *v3;
 // };
 
-test "Ul_Uc_Vp layout" {
+test "Ul_Uc_Vp: layout" {
     var lv: c.Ul_Uc_Vp = undefined;
     try testing.expectSize(c.Ul_Uc_Vp, ABISELECT(24, 16));
     try testing.expectAlign(c.Ul_Uc_Vp, ABISELECT(8, 4));
@@ -3396,11 +4014,17 @@ test "Ul_Uc_Vp layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Uc_Vp C calls" {
-    try testing.expectEqual(c.ret_Ul_Uc_Vp(), .{ .v1 = 4951, .v2 = 65, .v3 = null });
-    try testing.expectOk(c.assert_ret_Ul_Uc_Vp());
-    try testing.expectOk(c.send_Ul_Uc_Vp());
+test "Ul_Uc_Vp: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Uc_Vp(.{ .v1 = 4951, .v2 = 65, .v3 = null }));
+}
+test "Ul_Uc_Vp: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Uc_Vp());
+}
+test "Ul_Uc_Vp: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Uc_Vp());
+}
+test "Ul_Uc_Vp: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Uc_Vp(), .{ .v1 = 4951, .v2 = 65, .v3 = null });
 }
 pub export fn zig_assert_Ul_Uc_Vp(lv: c.Ul_Uc_Vp) c_int {
     var err: c_int = 0;
@@ -3420,18 +4044,24 @@ pub export fn zig_ret_Ul_Uc_Vp() c.Ul_Uc_Vp {
 //   unsigned int v2;
 // };
 
-test "Ul_Ui layout" {
+test "Ul_Ui: layout" {
     var lv: c.Ul_Ui = undefined;
     try testing.expectSize(c.Ul_Ui, ABISELECT(16, 12));
     try testing.expectAlign(c.Ul_Ui, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
 }
-test "Ul_Ui C calls" {
-    try testing.expectEqual(c.ret_Ul_Ui(), .{ .v1 = 7789, .v2 = 28185 });
-    try testing.expectOk(c.assert_ret_Ul_Ui());
-    try testing.expectOk(c.send_Ul_Ui());
+test "Ul_Ui: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ui(.{ .v1 = 7789, .v2 = 28185 }));
+}
+test "Ul_Ui: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ui());
+}
+test "Ul_Ui: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ui());
+}
+test "Ul_Ui: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ui(), .{ .v1 = 7789, .v2 = 28185 });
 }
 pub export fn zig_assert_Ul_Ui(lv: c.Ul_Ui) c_int {
     var err: c_int = 0;
@@ -3451,7 +4081,7 @@ pub export fn zig_ret_Ul_Ui() c.Ul_Ui {
 //   char v3;
 // };
 
-test "Ul_Ui_C layout" {
+test "Ul_Ui_C: layout" {
     var lv: c.Ul_Ui_C = undefined;
     try testing.expectSize(c.Ul_Ui_C, 16);
     try testing.expectAlign(c.Ul_Ui_C, ABISELECT(8, 4));
@@ -3459,11 +4089,17 @@ test "Ul_Ui_C layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
-test "Ul_Ui_C C calls" {
-    try testing.expectEqual(c.ret_Ul_Ui_C(), .{ .v1 = 3948, .v2 = 28420, .v3 = 79 });
-    try testing.expectOk(c.assert_ret_Ul_Ui_C());
-    try testing.expectOk(c.send_Ul_Ui_C());
+test "Ul_Ui_C: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ui_C(.{ .v1 = 3948, .v2 = 28420, .v3 = 79 }));
+}
+test "Ul_Ui_C: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ui_C());
+}
+test "Ul_Ui_C: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ui_C());
+}
+test "Ul_Ui_C: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ui_C(), .{ .v1 = 3948, .v2 = 28420, .v3 = 79 });
 }
 pub export fn zig_assert_Ul_Ui_C(lv: c.Ul_Ui_C) c_int {
     var err: c_int = 0;
@@ -3484,7 +4120,7 @@ pub export fn zig_ret_Ul_Ui_C() c.Ul_Ui_C {
 //   double v3;
 // };
 
-test "Ul_Ui_D layout" {
+test "Ul_Ui_D: layout" {
     var lv: c.Ul_Ui_D = undefined;
     try testing.expectSize(c.Ul_Ui_D, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_Ui_D, ABISELECT(8, 4));
@@ -3492,11 +4128,17 @@ test "Ul_Ui_D layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Ui_D C calls" {
-    try testing.expectEqual(c.ret_Ul_Ui_D(), .{ .v1 = 1908, .v2 = 4685, .v3 = 7.0 });
-    try testing.expectOk(c.assert_ret_Ul_Ui_D());
-    try testing.expectOk(c.send_Ul_Ui_D());
+test "Ul_Ui_D: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ui_D(.{ .v1 = 1908, .v2 = 4685, .v3 = 7.0 }));
+}
+test "Ul_Ui_D: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ui_D());
+}
+test "Ul_Ui_D: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ui_D());
+}
+test "Ul_Ui_D: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ui_D(), .{ .v1 = 1908, .v2 = 4685, .v3 = 7.0 });
 }
 pub export fn zig_assert_Ul_Ui_D(lv: c.Ul_Ui_D) c_int {
     var err: c_int = 0;
@@ -3517,7 +4159,7 @@ pub export fn zig_ret_Ul_Ui_D() c.Ul_Ui_D {
 //   float v3;
 // };
 
-test "Ul_Ui_F layout" {
+test "Ul_Ui_F: layout" {
     var lv: c.Ul_Ui_F = undefined;
     try testing.expectSize(c.Ul_Ui_F, 16);
     try testing.expectAlign(c.Ul_Ui_F, ABISELECT(8, 4));
@@ -3525,11 +4167,17 @@ test "Ul_Ui_F layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
-test "Ul_Ui_F C calls" {
-    try testing.expectEqual(c.ret_Ul_Ui_F(), .{ .v1 = 24351, .v2 = 12662, .v3 = 4.5 });
-    try testing.expectOk(c.assert_ret_Ul_Ui_F());
-    try testing.expectOk(c.send_Ul_Ui_F());
+test "Ul_Ui_F: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ui_F(.{ .v1 = 24351, .v2 = 12662, .v3 = 4.5 }));
+}
+test "Ul_Ui_F: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ui_F());
+}
+test "Ul_Ui_F: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ui_F());
+}
+test "Ul_Ui_F: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ui_F(), .{ .v1 = 24351, .v2 = 12662, .v3 = 4.5 });
 }
 pub export fn zig_assert_Ul_Ui_F(lv: c.Ul_Ui_F) c_int {
     var err: c_int = 0;
@@ -3550,7 +4198,7 @@ pub export fn zig_ret_Ul_Ui_F() c.Ul_Ui_F {
 //   int v3;
 // };
 
-test "Ul_Ui_I layout" {
+test "Ul_Ui_I: layout" {
     var lv: c.Ul_Ui_I = undefined;
     try testing.expectSize(c.Ul_Ui_I, 16);
     try testing.expectAlign(c.Ul_Ui_I, ABISELECT(8, 4));
@@ -3558,11 +4206,17 @@ test "Ul_Ui_I layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
-test "Ul_Ui_I C calls" {
-    try testing.expectEqual(c.ret_Ul_Ui_I(), .{ .v1 = 2857, .v2 = 5187, .v3 = 24559 });
-    try testing.expectOk(c.assert_ret_Ul_Ui_I());
-    try testing.expectOk(c.send_Ul_Ui_I());
+test "Ul_Ui_I: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ui_I(.{ .v1 = 2857, .v2 = 5187, .v3 = 24559 }));
+}
+test "Ul_Ui_I: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ui_I());
+}
+test "Ul_Ui_I: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ui_I());
+}
+test "Ul_Ui_I: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ui_I(), .{ .v1 = 2857, .v2 = 5187, .v3 = 24559 });
 }
 pub export fn zig_assert_Ul_Ui_I(lv: c.Ul_Ui_I) c_int {
     var err: c_int = 0;
@@ -3583,7 +4237,7 @@ pub export fn zig_ret_Ul_Ui_I() c.Ul_Ui_I {
 //   int *v3;
 // };
 
-test "Ul_Ui_Ip layout" {
+test "Ul_Ui_Ip: layout" {
     var lv: c.Ul_Ui_Ip = undefined;
     try testing.expectSize(c.Ul_Ui_Ip, ABISELECT(24, 16));
     try testing.expectAlign(c.Ul_Ui_Ip, ABISELECT(8, 4));
@@ -3591,11 +4245,17 @@ test "Ul_Ui_Ip layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Ui_Ip C calls" {
-    try testing.expectEqual(c.ret_Ul_Ui_Ip(), .{ .v1 = 2720, .v2 = 966, .v3 = null });
-    try testing.expectOk(c.assert_ret_Ul_Ui_Ip());
-    try testing.expectOk(c.send_Ul_Ui_Ip());
+test "Ul_Ui_Ip: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ui_Ip(.{ .v1 = 2720, .v2 = 966, .v3 = null }));
+}
+test "Ul_Ui_Ip: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ui_Ip());
+}
+test "Ul_Ui_Ip: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ui_Ip());
+}
+test "Ul_Ui_Ip: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ui_Ip(), .{ .v1 = 2720, .v2 = 966, .v3 = null });
 }
 pub export fn zig_assert_Ul_Ui_Ip(lv: c.Ul_Ui_Ip) c_int {
     var err: c_int = 0;
@@ -3616,7 +4276,7 @@ pub export fn zig_ret_Ul_Ui_Ip() c.Ul_Ui_Ip {
 //   __tsi64 v3;
 // };
 
-test "Ul_Ui_L layout" {
+test "Ul_Ui_L: layout" {
     var lv: c.Ul_Ui_L = undefined;
     try testing.expectSize(c.Ul_Ui_L, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_Ui_L, ABISELECT(8, 4));
@@ -3624,11 +4284,17 @@ test "Ul_Ui_L layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Ui_L C calls" {
-    try testing.expectEqual(c.ret_Ul_Ui_L(), .{ .v1 = 6968, .v2 = 31951, .v3 = 7933 });
-    try testing.expectOk(c.assert_ret_Ul_Ui_L());
-    try testing.expectOk(c.send_Ul_Ui_L());
+test "Ul_Ui_L: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ui_L(.{ .v1 = 6968, .v2 = 31951, .v3 = 7933 }));
+}
+test "Ul_Ui_L: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ui_L());
+}
+test "Ul_Ui_L: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ui_L());
+}
+test "Ul_Ui_L: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ui_L(), .{ .v1 = 6968, .v2 = 31951, .v3 = 7933 });
 }
 pub export fn zig_assert_Ul_Ui_L(lv: c.Ul_Ui_L) c_int {
     var err: c_int = 0;
@@ -3649,7 +4315,7 @@ pub export fn zig_ret_Ul_Ui_L() c.Ul_Ui_L {
 //   short v3;
 // };
 
-test "Ul_Ui_S layout" {
+test "Ul_Ui_S: layout" {
     var lv: c.Ul_Ui_S = undefined;
     try testing.expectSize(c.Ul_Ui_S, 16);
     try testing.expectAlign(c.Ul_Ui_S, ABISELECT(8, 4));
@@ -3657,11 +4323,17 @@ test "Ul_Ui_S layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
-test "Ul_Ui_S C calls" {
-    try testing.expectEqual(c.ret_Ul_Ui_S(), .{ .v1 = 28303, .v2 = 27593, .v3 = 32181 });
-    try testing.expectOk(c.assert_ret_Ul_Ui_S());
-    try testing.expectOk(c.send_Ul_Ui_S());
+test "Ul_Ui_S: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ui_S(.{ .v1 = 28303, .v2 = 27593, .v3 = 32181 }));
+}
+test "Ul_Ui_S: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ui_S());
+}
+test "Ul_Ui_S: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ui_S());
+}
+test "Ul_Ui_S: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ui_S(), .{ .v1 = 28303, .v2 = 27593, .v3 = 32181 });
 }
 pub export fn zig_assert_Ul_Ui_S(lv: c.Ul_Ui_S) c_int {
     var err: c_int = 0;
@@ -3682,7 +4354,7 @@ pub export fn zig_ret_Ul_Ui_S() c.Ul_Ui_S {
 //   unsigned char v3;
 // };
 
-test "Ul_Ui_Uc layout" {
+test "Ul_Ui_Uc: layout" {
     var lv: c.Ul_Ui_Uc = undefined;
     try testing.expectSize(c.Ul_Ui_Uc, 16);
     try testing.expectAlign(c.Ul_Ui_Uc, ABISELECT(8, 4));
@@ -3690,11 +4362,17 @@ test "Ul_Ui_Uc layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
-test "Ul_Ui_Uc C calls" {
-    try testing.expectEqual(c.ret_Ul_Ui_Uc(), .{ .v1 = 2033, .v2 = 2860, .v3 = 81 });
-    try testing.expectOk(c.assert_ret_Ul_Ui_Uc());
-    try testing.expectOk(c.send_Ul_Ui_Uc());
+test "Ul_Ui_Uc: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ui_Uc(.{ .v1 = 2033, .v2 = 2860, .v3 = 81 }));
+}
+test "Ul_Ui_Uc: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ui_Uc());
+}
+test "Ul_Ui_Uc: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ui_Uc());
+}
+test "Ul_Ui_Uc: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ui_Uc(), .{ .v1 = 2033, .v2 = 2860, .v3 = 81 });
 }
 pub export fn zig_assert_Ul_Ui_Uc(lv: c.Ul_Ui_Uc) c_int {
     var err: c_int = 0;
@@ -3715,7 +4393,7 @@ pub export fn zig_ret_Ul_Ui_Uc() c.Ul_Ui_Uc {
 //   unsigned int v3;
 // };
 
-test "Ul_Ui_Ui layout" {
+test "Ul_Ui_Ui: layout" {
     var lv: c.Ul_Ui_Ui = undefined;
     try testing.expectSize(c.Ul_Ui_Ui, 16);
     try testing.expectAlign(c.Ul_Ui_Ui, ABISELECT(8, 4));
@@ -3723,11 +4401,17 @@ test "Ul_Ui_Ui layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
-test "Ul_Ui_Ui C calls" {
-    try testing.expectEqual(c.ret_Ul_Ui_Ui(), .{ .v1 = 3618, .v2 = 21646, .v3 = 30807 });
-    try testing.expectOk(c.assert_ret_Ul_Ui_Ui());
-    try testing.expectOk(c.send_Ul_Ui_Ui());
+test "Ul_Ui_Ui: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ui_Ui(.{ .v1 = 3618, .v2 = 21646, .v3 = 30807 }));
+}
+test "Ul_Ui_Ui: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ui_Ui());
+}
+test "Ul_Ui_Ui: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ui_Ui());
+}
+test "Ul_Ui_Ui: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ui_Ui(), .{ .v1 = 3618, .v2 = 21646, .v3 = 30807 });
 }
 pub export fn zig_assert_Ul_Ui_Ui(lv: c.Ul_Ui_Ui) c_int {
     var err: c_int = 0;
@@ -3748,7 +4432,7 @@ pub export fn zig_ret_Ul_Ui_Ui() c.Ul_Ui_Ui {
 //   __tsu64 v3;
 // };
 
-test "Ul_Ui_Ul layout" {
+test "Ul_Ui_Ul: layout" {
     var lv: c.Ul_Ui_Ul = undefined;
     try testing.expectSize(c.Ul_Ui_Ul, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_Ui_Ul, ABISELECT(8, 4));
@@ -3756,11 +4440,17 @@ test "Ul_Ui_Ul layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Ui_Ul C calls" {
-    try testing.expectEqual(c.ret_Ul_Ui_Ul(), .{ .v1 = 20561, .v2 = 27761, .v3 = 14975 });
-    try testing.expectOk(c.assert_ret_Ul_Ui_Ul());
-    try testing.expectOk(c.send_Ul_Ui_Ul());
+test "Ul_Ui_Ul: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ui_Ul(.{ .v1 = 20561, .v2 = 27761, .v3 = 14975 }));
+}
+test "Ul_Ui_Ul: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ui_Ul());
+}
+test "Ul_Ui_Ul: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ui_Ul());
+}
+test "Ul_Ui_Ul: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ui_Ul(), .{ .v1 = 20561, .v2 = 27761, .v3 = 14975 });
 }
 pub export fn zig_assert_Ul_Ui_Ul(lv: c.Ul_Ui_Ul) c_int {
     var err: c_int = 0;
@@ -3781,7 +4471,7 @@ pub export fn zig_ret_Ul_Ui_Ul() c.Ul_Ui_Ul {
 //   unsigned short v3;
 // };
 
-test "Ul_Ui_Us layout" {
+test "Ul_Ui_Us: layout" {
     var lv: c.Ul_Ui_Us = undefined;
     try testing.expectSize(c.Ul_Ui_Us, 16);
     try testing.expectAlign(c.Ul_Ui_Us, ABISELECT(8, 4));
@@ -3789,11 +4479,17 @@ test "Ul_Ui_Us layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
-test "Ul_Ui_Us C calls" {
-    try testing.expectEqual(c.ret_Ul_Ui_Us(), .{ .v1 = 32483, .v2 = 13395, .v3 = 8916 });
-    try testing.expectOk(c.assert_ret_Ul_Ui_Us());
-    try testing.expectOk(c.send_Ul_Ui_Us());
+test "Ul_Ui_Us: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ui_Us(.{ .v1 = 32483, .v2 = 13395, .v3 = 8916 }));
+}
+test "Ul_Ui_Us: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ui_Us());
+}
+test "Ul_Ui_Us: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ui_Us());
+}
+test "Ul_Ui_Us: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ui_Us(), .{ .v1 = 32483, .v2 = 13395, .v3 = 8916 });
 }
 pub export fn zig_assert_Ul_Ui_Us(lv: c.Ul_Ui_Us) c_int {
     var err: c_int = 0;
@@ -3814,7 +4510,7 @@ pub export fn zig_ret_Ul_Ui_Us() c.Ul_Ui_Us {
 //   void *v3;
 // };
 
-test "Ul_Ui_Vp layout" {
+test "Ul_Ui_Vp: layout" {
     var lv: c.Ul_Ui_Vp = undefined;
     try testing.expectSize(c.Ul_Ui_Vp, ABISELECT(24, 16));
     try testing.expectAlign(c.Ul_Ui_Vp, ABISELECT(8, 4));
@@ -3822,11 +4518,17 @@ test "Ul_Ui_Vp layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Ui_Vp C calls" {
-    try testing.expectEqual(c.ret_Ul_Ui_Vp(), .{ .v1 = 21478, .v2 = 4637, .v3 = null });
-    try testing.expectOk(c.assert_ret_Ul_Ui_Vp());
-    try testing.expectOk(c.send_Ul_Ui_Vp());
+test "Ul_Ui_Vp: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ui_Vp(.{ .v1 = 21478, .v2 = 4637, .v3 = null }));
+}
+test "Ul_Ui_Vp: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ui_Vp());
+}
+test "Ul_Ui_Vp: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ui_Vp());
+}
+test "Ul_Ui_Vp: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ui_Vp(), .{ .v1 = 21478, .v2 = 4637, .v3 = null });
 }
 pub export fn zig_assert_Ul_Ui_Vp(lv: c.Ul_Ui_Vp) c_int {
     var err: c_int = 0;
@@ -3846,18 +4548,24 @@ pub export fn zig_ret_Ul_Ui_Vp() c.Ul_Ui_Vp {
 //   __tsu64 v2;
 // };
 
-test "Ul_Ul layout" {
+test "Ul_Ul: layout" {
     var lv: c.Ul_Ul = undefined;
     try testing.expectSize(c.Ul_Ul, 16);
     try testing.expectAlign(c.Ul_Ul, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
 }
-test "Ul_Ul C calls" {
-    try testing.expectEqual(c.ret_Ul_Ul(), .{ .v1 = 21329, .v2 = 8885 });
-    try testing.expectOk(c.assert_ret_Ul_Ul());
-    try testing.expectOk(c.send_Ul_Ul());
+test "Ul_Ul: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ul(.{ .v1 = 21329, .v2 = 8885 }));
+}
+test "Ul_Ul: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ul());
+}
+test "Ul_Ul: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ul());
+}
+test "Ul_Ul: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ul(), .{ .v1 = 21329, .v2 = 8885 });
 }
 pub export fn zig_assert_Ul_Ul(lv: c.Ul_Ul) c_int {
     var err: c_int = 0;
@@ -3877,7 +4585,7 @@ pub export fn zig_ret_Ul_Ul() c.Ul_Ul {
 //   char v3;
 // };
 
-test "Ul_Ul_C layout" {
+test "Ul_Ul_C: layout" {
     var lv: c.Ul_Ul_C = undefined;
     try testing.expectSize(c.Ul_Ul_C, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_Ul_C, ABISELECT(8, 4));
@@ -3885,11 +4593,17 @@ test "Ul_Ul_C layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
-test "Ul_Ul_C C calls" {
-    try testing.expectEqual(c.ret_Ul_Ul_C(), .{ .v1 = 24860, .v2 = 9133, .v3 = 90 });
-    try testing.expectOk(c.assert_ret_Ul_Ul_C());
-    try testing.expectOk(c.send_Ul_Ul_C());
+test "Ul_Ul_C: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ul_C(.{ .v1 = 24860, .v2 = 9133, .v3 = 90 }));
+}
+test "Ul_Ul_C: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ul_C());
+}
+test "Ul_Ul_C: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ul_C());
+}
+test "Ul_Ul_C: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ul_C(), .{ .v1 = 24860, .v2 = 9133, .v3 = 90 });
 }
 pub export fn zig_assert_Ul_Ul_C(lv: c.Ul_Ul_C) c_int {
     var err: c_int = 0;
@@ -3910,7 +4624,7 @@ pub export fn zig_ret_Ul_Ul_C() c.Ul_Ul_C {
 //   double v3;
 // };
 
-test "Ul_Ul_D layout" {
+test "Ul_Ul_D: layout" {
     var lv: c.Ul_Ul_D = undefined;
     try testing.expectSize(c.Ul_Ul_D, 24);
     try testing.expectAlign(c.Ul_Ul_D, ABISELECT(8, 4));
@@ -3918,11 +4632,17 @@ test "Ul_Ul_D layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
-test "Ul_Ul_D C calls" {
-    try testing.expectEqual(c.ret_Ul_Ul_D(), .{ .v1 = 16601, .v2 = 13026, .v3 = -0.25 });
-    try testing.expectOk(c.assert_ret_Ul_Ul_D());
-    try testing.expectOk(c.send_Ul_Ul_D());
+test "Ul_Ul_D: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ul_D(.{ .v1 = 16601, .v2 = 13026, .v3 = -0.25 }));
+}
+test "Ul_Ul_D: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ul_D());
+}
+test "Ul_Ul_D: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ul_D());
+}
+test "Ul_Ul_D: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ul_D(), .{ .v1 = 16601, .v2 = 13026, .v3 = -0.25 });
 }
 pub export fn zig_assert_Ul_Ul_D(lv: c.Ul_Ul_D) c_int {
     var err: c_int = 0;
@@ -3943,7 +4663,7 @@ pub export fn zig_ret_Ul_Ul_D() c.Ul_Ul_D {
 //   float v3;
 // };
 
-test "Ul_Ul_F layout" {
+test "Ul_Ul_F: layout" {
     var lv: c.Ul_Ul_F = undefined;
     try testing.expectSize(c.Ul_Ul_F, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_Ul_F, ABISELECT(8, 4));
@@ -3951,11 +4671,17 @@ test "Ul_Ul_F layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
-test "Ul_Ul_F C calls" {
-    try testing.expectEqual(c.ret_Ul_Ul_F(), .{ .v1 = 30369, .v2 = 8873, .v3 = -0.25 });
-    try testing.expectOk(c.assert_ret_Ul_Ul_F());
-    try testing.expectOk(c.send_Ul_Ul_F());
+test "Ul_Ul_F: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ul_F(.{ .v1 = 30369, .v2 = 8873, .v3 = -0.25 }));
+}
+test "Ul_Ul_F: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ul_F());
+}
+test "Ul_Ul_F: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ul_F());
+}
+test "Ul_Ul_F: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ul_F(), .{ .v1 = 30369, .v2 = 8873, .v3 = -0.25 });
 }
 pub export fn zig_assert_Ul_Ul_F(lv: c.Ul_Ul_F) c_int {
     var err: c_int = 0;
@@ -3976,7 +4702,7 @@ pub export fn zig_ret_Ul_Ul_F() c.Ul_Ul_F {
 //   int v3;
 // };
 
-test "Ul_Ul_I layout" {
+test "Ul_Ul_I: layout" {
     var lv: c.Ul_Ul_I = undefined;
     try testing.expectSize(c.Ul_Ul_I, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_Ul_I, ABISELECT(8, 4));
@@ -3984,11 +4710,17 @@ test "Ul_Ul_I layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
-test "Ul_Ul_I C calls" {
-    try testing.expectEqual(c.ret_Ul_Ul_I(), .{ .v1 = 12703, .v2 = 15563, .v3 = 26532 });
-    try testing.expectOk(c.assert_ret_Ul_Ul_I());
-    try testing.expectOk(c.send_Ul_Ul_I());
+test "Ul_Ul_I: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ul_I(.{ .v1 = 12703, .v2 = 15563, .v3 = 26532 }));
+}
+test "Ul_Ul_I: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ul_I());
+}
+test "Ul_Ul_I: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ul_I());
+}
+test "Ul_Ul_I: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ul_I(), .{ .v1 = 12703, .v2 = 15563, .v3 = 26532 });
 }
 pub export fn zig_assert_Ul_Ul_I(lv: c.Ul_Ul_I) c_int {
     var err: c_int = 0;
@@ -4009,7 +4741,7 @@ pub export fn zig_ret_Ul_Ul_I() c.Ul_Ul_I {
 //   int *v3;
 // };
 
-test "Ul_Ul_Ip layout" {
+test "Ul_Ul_Ip: layout" {
     var lv: c.Ul_Ul_Ip = undefined;
     try testing.expectSize(c.Ul_Ul_Ip, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_Ul_Ip, ABISELECT(8, 4));
@@ -4017,11 +4749,17 @@ test "Ul_Ul_Ip layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
-test "Ul_Ul_Ip C calls" {
-    try testing.expectEqual(c.ret_Ul_Ul_Ip(), .{ .v1 = 18635, .v2 = 1782, .v3 = null });
-    try testing.expectOk(c.assert_ret_Ul_Ul_Ip());
-    try testing.expectOk(c.send_Ul_Ul_Ip());
+test "Ul_Ul_Ip: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ul_Ip(.{ .v1 = 18635, .v2 = 1782, .v3 = null }));
+}
+test "Ul_Ul_Ip: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ul_Ip());
+}
+test "Ul_Ul_Ip: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ul_Ip());
+}
+test "Ul_Ul_Ip: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ul_Ip(), .{ .v1 = 18635, .v2 = 1782, .v3 = null });
 }
 pub export fn zig_assert_Ul_Ul_Ip(lv: c.Ul_Ul_Ip) c_int {
     var err: c_int = 0;
@@ -4042,7 +4780,7 @@ pub export fn zig_ret_Ul_Ul_Ip() c.Ul_Ul_Ip {
 //   __tsi64 v3;
 // };
 
-test "Ul_Ul_L layout" {
+test "Ul_Ul_L: layout" {
     var lv: c.Ul_Ul_L = undefined;
     try testing.expectSize(c.Ul_Ul_L, 24);
     try testing.expectAlign(c.Ul_Ul_L, ABISELECT(8, 4));
@@ -4050,11 +4788,17 @@ test "Ul_Ul_L layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
-test "Ul_Ul_L C calls" {
-    try testing.expectEqual(c.ret_Ul_Ul_L(), .{ .v1 = 4753, .v2 = 14056, .v3 = 2292 });
-    try testing.expectOk(c.assert_ret_Ul_Ul_L());
-    try testing.expectOk(c.send_Ul_Ul_L());
+test "Ul_Ul_L: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ul_L(.{ .v1 = 4753, .v2 = 14056, .v3 = 2292 }));
+}
+test "Ul_Ul_L: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ul_L());
+}
+test "Ul_Ul_L: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ul_L());
+}
+test "Ul_Ul_L: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ul_L(), .{ .v1 = 4753, .v2 = 14056, .v3 = 2292 });
 }
 pub export fn zig_assert_Ul_Ul_L(lv: c.Ul_Ul_L) c_int {
     var err: c_int = 0;
@@ -4075,7 +4819,7 @@ pub export fn zig_ret_Ul_Ul_L() c.Ul_Ul_L {
 //   short v3;
 // };
 
-test "Ul_Ul_S layout" {
+test "Ul_Ul_S: layout" {
     var lv: c.Ul_Ul_S = undefined;
     try testing.expectSize(c.Ul_Ul_S, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_Ul_S, ABISELECT(8, 4));
@@ -4083,11 +4827,17 @@ test "Ul_Ul_S layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
-test "Ul_Ul_S C calls" {
-    try testing.expectEqual(c.ret_Ul_Ul_S(), .{ .v1 = 13277, .v2 = 14126, .v3 = 24506 });
-    try testing.expectOk(c.assert_ret_Ul_Ul_S());
-    try testing.expectOk(c.send_Ul_Ul_S());
+test "Ul_Ul_S: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ul_S(.{ .v1 = 13277, .v2 = 14126, .v3 = 24506 }));
+}
+test "Ul_Ul_S: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ul_S());
+}
+test "Ul_Ul_S: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ul_S());
+}
+test "Ul_Ul_S: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ul_S(), .{ .v1 = 13277, .v2 = 14126, .v3 = 24506 });
 }
 pub export fn zig_assert_Ul_Ul_S(lv: c.Ul_Ul_S) c_int {
     var err: c_int = 0;
@@ -4108,7 +4858,7 @@ pub export fn zig_ret_Ul_Ul_S() c.Ul_Ul_S {
 //   unsigned char v3;
 // };
 
-test "Ul_Ul_Uc layout" {
+test "Ul_Ul_Uc: layout" {
     var lv: c.Ul_Ul_Uc = undefined;
     try testing.expectSize(c.Ul_Ul_Uc, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_Ul_Uc, ABISELECT(8, 4));
@@ -4116,11 +4866,17 @@ test "Ul_Ul_Uc layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
-test "Ul_Ul_Uc C calls" {
-    try testing.expectEqual(c.ret_Ul_Ul_Uc(), .{ .v1 = 28837, .v2 = 22666, .v3 = 112 });
-    try testing.expectOk(c.assert_ret_Ul_Ul_Uc());
-    try testing.expectOk(c.send_Ul_Ul_Uc());
+test "Ul_Ul_Uc: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ul_Uc(.{ .v1 = 28837, .v2 = 22666, .v3 = 112 }));
+}
+test "Ul_Ul_Uc: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ul_Uc());
+}
+test "Ul_Ul_Uc: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ul_Uc());
+}
+test "Ul_Ul_Uc: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ul_Uc(), .{ .v1 = 28837, .v2 = 22666, .v3 = 112 });
 }
 pub export fn zig_assert_Ul_Ul_Uc(lv: c.Ul_Ul_Uc) c_int {
     var err: c_int = 0;
@@ -4141,7 +4897,7 @@ pub export fn zig_ret_Ul_Ul_Uc() c.Ul_Ul_Uc {
 //   unsigned int v3;
 // };
 
-test "Ul_Ul_Ui layout" {
+test "Ul_Ul_Ui: layout" {
     var lv: c.Ul_Ul_Ui = undefined;
     try testing.expectSize(c.Ul_Ul_Ui, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_Ul_Ui, ABISELECT(8, 4));
@@ -4149,11 +4905,17 @@ test "Ul_Ul_Ui layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
-test "Ul_Ul_Ui C calls" {
-    try testing.expectEqual(c.ret_Ul_Ul_Ui(), .{ .v1 = 1478, .v2 = 21614, .v3 = 19239 });
-    try testing.expectOk(c.assert_ret_Ul_Ul_Ui());
-    try testing.expectOk(c.send_Ul_Ul_Ui());
+test "Ul_Ul_Ui: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ul_Ui(.{ .v1 = 1478, .v2 = 21614, .v3 = 19239 }));
+}
+test "Ul_Ul_Ui: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ul_Ui());
+}
+test "Ul_Ul_Ui: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ul_Ui());
+}
+test "Ul_Ul_Ui: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ul_Ui(), .{ .v1 = 1478, .v2 = 21614, .v3 = 19239 });
 }
 pub export fn zig_assert_Ul_Ul_Ui(lv: c.Ul_Ul_Ui) c_int {
     var err: c_int = 0;
@@ -4174,7 +4936,7 @@ pub export fn zig_ret_Ul_Ul_Ui() c.Ul_Ul_Ui {
 //   __tsu64 v3;
 // };
 
-test "Ul_Ul_Ul layout" {
+test "Ul_Ul_Ul: layout" {
     var lv: c.Ul_Ul_Ul = undefined;
     try testing.expectSize(c.Ul_Ul_Ul, 24);
     try testing.expectAlign(c.Ul_Ul_Ul, ABISELECT(8, 4));
@@ -4182,11 +4944,17 @@ test "Ul_Ul_Ul layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
-test "Ul_Ul_Ul C calls" {
-    try testing.expectEqual(c.ret_Ul_Ul_Ul(), .{ .v1 = 3139, .v2 = 24472, .v3 = 2247 });
-    try testing.expectOk(c.assert_ret_Ul_Ul_Ul());
-    try testing.expectOk(c.send_Ul_Ul_Ul());
+test "Ul_Ul_Ul: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ul_Ul(.{ .v1 = 3139, .v2 = 24472, .v3 = 2247 }));
+}
+test "Ul_Ul_Ul: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ul_Ul());
+}
+test "Ul_Ul_Ul: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ul_Ul());
+}
+test "Ul_Ul_Ul: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ul_Ul(), .{ .v1 = 3139, .v2 = 24472, .v3 = 2247 });
 }
 pub export fn zig_assert_Ul_Ul_Ul(lv: c.Ul_Ul_Ul) c_int {
     var err: c_int = 0;
@@ -4207,7 +4975,7 @@ pub export fn zig_ret_Ul_Ul_Ul() c.Ul_Ul_Ul {
 //   unsigned short v3;
 // };
 
-test "Ul_Ul_Us layout" {
+test "Ul_Ul_Us: layout" {
     var lv: c.Ul_Ul_Us = undefined;
     try testing.expectSize(c.Ul_Ul_Us, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_Ul_Us, ABISELECT(8, 4));
@@ -4215,11 +4983,17 @@ test "Ul_Ul_Us layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
-test "Ul_Ul_Us C calls" {
-    try testing.expectEqual(c.ret_Ul_Ul_Us(), .{ .v1 = 27076, .v2 = 8474, .v3 = 9430 });
-    try testing.expectOk(c.assert_ret_Ul_Ul_Us());
-    try testing.expectOk(c.send_Ul_Ul_Us());
+test "Ul_Ul_Us: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ul_Us(.{ .v1 = 27076, .v2 = 8474, .v3 = 9430 }));
+}
+test "Ul_Ul_Us: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ul_Us());
+}
+test "Ul_Ul_Us: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ul_Us());
+}
+test "Ul_Ul_Us: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ul_Us(), .{ .v1 = 27076, .v2 = 8474, .v3 = 9430 });
 }
 pub export fn zig_assert_Ul_Ul_Us(lv: c.Ul_Ul_Us) c_int {
     var err: c_int = 0;
@@ -4240,7 +5014,7 @@ pub export fn zig_ret_Ul_Ul_Us() c.Ul_Ul_Us {
 //   void *v3;
 // };
 
-test "Ul_Ul_Vp layout" {
+test "Ul_Ul_Vp: layout" {
     var lv: c.Ul_Ul_Vp = undefined;
     try testing.expectSize(c.Ul_Ul_Vp, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_Ul_Vp, ABISELECT(8, 4));
@@ -4248,11 +5022,17 @@ test "Ul_Ul_Vp layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
-test "Ul_Ul_Vp C calls" {
-    try testing.expectEqual(c.ret_Ul_Ul_Vp(), .{ .v1 = 7942, .v2 = 18058, .v3 = null });
-    try testing.expectOk(c.assert_ret_Ul_Ul_Vp());
-    try testing.expectOk(c.send_Ul_Ul_Vp());
+test "Ul_Ul_Vp: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Ul_Vp(.{ .v1 = 7942, .v2 = 18058, .v3 = null }));
+}
+test "Ul_Ul_Vp: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Ul_Vp());
+}
+test "Ul_Ul_Vp: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Ul_Vp());
+}
+test "Ul_Ul_Vp: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Ul_Vp(), .{ .v1 = 7942, .v2 = 18058, .v3 = null });
 }
 pub export fn zig_assert_Ul_Ul_Vp(lv: c.Ul_Ul_Vp) c_int {
     var err: c_int = 0;
@@ -4272,18 +5052,24 @@ pub export fn zig_ret_Ul_Ul_Vp() c.Ul_Ul_Vp {
 //   unsigned short v2;
 // };
 
-test "Ul_Us layout" {
+test "Ul_Us: layout" {
     var lv: c.Ul_Us = undefined;
     try testing.expectSize(c.Ul_Us, ABISELECT(16, 12));
     try testing.expectAlign(c.Ul_Us, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
 }
-test "Ul_Us C calls" {
-    try testing.expectEqual(c.ret_Ul_Us(), .{ .v1 = 2643, .v2 = 28366 });
-    try testing.expectOk(c.assert_ret_Ul_Us());
-    try testing.expectOk(c.send_Ul_Us());
+test "Ul_Us: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Us(.{ .v1 = 2643, .v2 = 28366 }));
+}
+test "Ul_Us: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Us());
+}
+test "Ul_Us: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Us());
+}
+test "Ul_Us: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Us(), .{ .v1 = 2643, .v2 = 28366 });
 }
 pub export fn zig_assert_Ul_Us(lv: c.Ul_Us) c_int {
     var err: c_int = 0;
@@ -4303,7 +5089,7 @@ pub export fn zig_ret_Ul_Us() c.Ul_Us {
 //   char v3;
 // };
 
-test "Ul_Us_C layout" {
+test "Ul_Us_C: layout" {
     var lv: c.Ul_Us_C = undefined;
     try testing.expectSize(c.Ul_Us_C, ABISELECT(16, 12));
     try testing.expectAlign(c.Ul_Us_C, ABISELECT(8, 4));
@@ -4311,11 +5097,17 @@ test "Ul_Us_C layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 10);
 }
-test "Ul_Us_C C calls" {
-    try testing.expectEqual(c.ret_Ul_Us_C(), .{ .v1 = 3725, .v2 = 2617, .v3 = 120 });
-    try testing.expectOk(c.assert_ret_Ul_Us_C());
-    try testing.expectOk(c.send_Ul_Us_C());
+test "Ul_Us_C: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Us_C(.{ .v1 = 3725, .v2 = 2617, .v3 = 120 }));
+}
+test "Ul_Us_C: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Us_C());
+}
+test "Ul_Us_C: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Us_C());
+}
+test "Ul_Us_C: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Us_C(), .{ .v1 = 3725, .v2 = 2617, .v3 = 120 });
 }
 pub export fn zig_assert_Ul_Us_C(lv: c.Ul_Us_C) c_int {
     var err: c_int = 0;
@@ -4336,7 +5128,7 @@ pub export fn zig_ret_Ul_Us_C() c.Ul_Us_C {
 //   double v3;
 // };
 
-test "Ul_Us_D layout" {
+test "Ul_Us_D: layout" {
     var lv: c.Ul_Us_D = undefined;
     try testing.expectSize(c.Ul_Us_D, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_Us_D, ABISELECT(8, 4));
@@ -4344,11 +5136,17 @@ test "Ul_Us_D layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Us_D C calls" {
-    try testing.expectEqual(c.ret_Ul_Us_D(), .{ .v1 = 18843, .v2 = 22623, .v3 = 0.875 });
-    try testing.expectOk(c.assert_ret_Ul_Us_D());
-    try testing.expectOk(c.send_Ul_Us_D());
+test "Ul_Us_D: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Us_D(.{ .v1 = 18843, .v2 = 22623, .v3 = 0.875 }));
+}
+test "Ul_Us_D: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Us_D());
+}
+test "Ul_Us_D: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Us_D());
+}
+test "Ul_Us_D: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Us_D(), .{ .v1 = 18843, .v2 = 22623, .v3 = 0.875 });
 }
 pub export fn zig_assert_Ul_Us_D(lv: c.Ul_Us_D) c_int {
     var err: c_int = 0;
@@ -4369,7 +5167,7 @@ pub export fn zig_ret_Ul_Us_D() c.Ul_Us_D {
 //   float v3;
 // };
 
-test "Ul_Us_F layout" {
+test "Ul_Us_F: layout" {
     var lv: c.Ul_Us_F = undefined;
     try testing.expectSize(c.Ul_Us_F, 16);
     try testing.expectAlign(c.Ul_Us_F, ABISELECT(8, 4));
@@ -4377,11 +5175,17 @@ test "Ul_Us_F layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
-test "Ul_Us_F C calls" {
-    try testing.expectEqual(c.ret_Ul_Us_F(), .{ .v1 = 28743, .v2 = 16957, .v3 = 1.0 });
-    try testing.expectOk(c.assert_ret_Ul_Us_F());
-    try testing.expectOk(c.send_Ul_Us_F());
+test "Ul_Us_F: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Us_F(.{ .v1 = 28743, .v2 = 16957, .v3 = 1.0 }));
+}
+test "Ul_Us_F: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Us_F());
+}
+test "Ul_Us_F: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Us_F());
+}
+test "Ul_Us_F: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Us_F(), .{ .v1 = 28743, .v2 = 16957, .v3 = 1.0 });
 }
 pub export fn zig_assert_Ul_Us_F(lv: c.Ul_Us_F) c_int {
     var err: c_int = 0;
@@ -4402,7 +5206,7 @@ pub export fn zig_ret_Ul_Us_F() c.Ul_Us_F {
 //   int v3;
 // };
 
-test "Ul_Us_I layout" {
+test "Ul_Us_I: layout" {
     var lv: c.Ul_Us_I = undefined;
     try testing.expectSize(c.Ul_Us_I, 16);
     try testing.expectAlign(c.Ul_Us_I, ABISELECT(8, 4));
@@ -4410,11 +5214,17 @@ test "Ul_Us_I layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
-test "Ul_Us_I C calls" {
-    try testing.expectEqual(c.ret_Ul_Us_I(), .{ .v1 = 740, .v2 = 5377, .v3 = 29762 });
-    try testing.expectOk(c.assert_ret_Ul_Us_I());
-    try testing.expectOk(c.send_Ul_Us_I());
+test "Ul_Us_I: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Us_I(.{ .v1 = 740, .v2 = 5377, .v3 = 29762 }));
+}
+test "Ul_Us_I: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Us_I());
+}
+test "Ul_Us_I: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Us_I());
+}
+test "Ul_Us_I: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Us_I(), .{ .v1 = 740, .v2 = 5377, .v3 = 29762 });
 }
 pub export fn zig_assert_Ul_Us_I(lv: c.Ul_Us_I) c_int {
     var err: c_int = 0;
@@ -4435,7 +5245,7 @@ pub export fn zig_ret_Ul_Us_I() c.Ul_Us_I {
 //   int *v3;
 // };
 
-test "Ul_Us_Ip layout" {
+test "Ul_Us_Ip: layout" {
     var lv: c.Ul_Us_Ip = undefined;
     try testing.expectSize(c.Ul_Us_Ip, ABISELECT(24, 16));
     try testing.expectAlign(c.Ul_Us_Ip, ABISELECT(8, 4));
@@ -4443,11 +5253,17 @@ test "Ul_Us_Ip layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Us_Ip C calls" {
-    try testing.expectEqual(c.ret_Ul_Us_Ip(), .{ .v1 = 3105, .v2 = 17049, .v3 = null });
-    try testing.expectOk(c.assert_ret_Ul_Us_Ip());
-    try testing.expectOk(c.send_Ul_Us_Ip());
+test "Ul_Us_Ip: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Us_Ip(.{ .v1 = 3105, .v2 = 17049, .v3 = null }));
+}
+test "Ul_Us_Ip: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Us_Ip());
+}
+test "Ul_Us_Ip: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Us_Ip());
+}
+test "Ul_Us_Ip: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Us_Ip(), .{ .v1 = 3105, .v2 = 17049, .v3 = null });
 }
 pub export fn zig_assert_Ul_Us_Ip(lv: c.Ul_Us_Ip) c_int {
     var err: c_int = 0;
@@ -4468,7 +5284,7 @@ pub export fn zig_ret_Ul_Us_Ip() c.Ul_Us_Ip {
 //   __tsi64 v3;
 // };
 
-test "Ul_Us_L layout" {
+test "Ul_Us_L: layout" {
     var lv: c.Ul_Us_L = undefined;
     try testing.expectSize(c.Ul_Us_L, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_Us_L, ABISELECT(8, 4));
@@ -4476,11 +5292,17 @@ test "Ul_Us_L layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Us_L C calls" {
-    try testing.expectEqual(c.ret_Ul_Us_L(), .{ .v1 = 26785, .v2 = 14066, .v3 = 4067 });
-    try testing.expectOk(c.assert_ret_Ul_Us_L());
-    try testing.expectOk(c.send_Ul_Us_L());
+test "Ul_Us_L: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Us_L(.{ .v1 = 26785, .v2 = 14066, .v3 = 4067 }));
+}
+test "Ul_Us_L: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Us_L());
+}
+test "Ul_Us_L: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Us_L());
+}
+test "Ul_Us_L: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Us_L(), .{ .v1 = 26785, .v2 = 14066, .v3 = 4067 });
 }
 pub export fn zig_assert_Ul_Us_L(lv: c.Ul_Us_L) c_int {
     var err: c_int = 0;
@@ -4501,7 +5323,7 @@ pub export fn zig_ret_Ul_Us_L() c.Ul_Us_L {
 //   short v3;
 // };
 
-test "Ul_Us_S layout" {
+test "Ul_Us_S: layout" {
     var lv: c.Ul_Us_S = undefined;
     try testing.expectSize(c.Ul_Us_S, ABISELECT(16, 12));
     try testing.expectAlign(c.Ul_Us_S, ABISELECT(8, 4));
@@ -4509,11 +5331,17 @@ test "Ul_Us_S layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 10);
 }
-test "Ul_Us_S C calls" {
-    try testing.expectEqual(c.ret_Ul_Us_S(), .{ .v1 = 16835, .v2 = 29577, .v3 = 24424 });
-    try testing.expectOk(c.assert_ret_Ul_Us_S());
-    try testing.expectOk(c.send_Ul_Us_S());
+test "Ul_Us_S: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Us_S(.{ .v1 = 16835, .v2 = 29577, .v3 = 24424 }));
+}
+test "Ul_Us_S: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Us_S());
+}
+test "Ul_Us_S: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Us_S());
+}
+test "Ul_Us_S: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Us_S(), .{ .v1 = 16835, .v2 = 29577, .v3 = 24424 });
 }
 pub export fn zig_assert_Ul_Us_S(lv: c.Ul_Us_S) c_int {
     var err: c_int = 0;
@@ -4534,7 +5362,7 @@ pub export fn zig_ret_Ul_Us_S() c.Ul_Us_S {
 //   unsigned char v3;
 // };
 
-test "Ul_Us_Uc layout" {
+test "Ul_Us_Uc: layout" {
     var lv: c.Ul_Us_Uc = undefined;
     try testing.expectSize(c.Ul_Us_Uc, ABISELECT(16, 12));
     try testing.expectAlign(c.Ul_Us_Uc, ABISELECT(8, 4));
@@ -4542,11 +5370,17 @@ test "Ul_Us_Uc layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 10);
 }
-test "Ul_Us_Uc C calls" {
-    try testing.expectEqual(c.ret_Ul_Us_Uc(), .{ .v1 = 11719, .v2 = 12708, .v3 = 67 });
-    try testing.expectOk(c.assert_ret_Ul_Us_Uc());
-    try testing.expectOk(c.send_Ul_Us_Uc());
+test "Ul_Us_Uc: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Us_Uc(.{ .v1 = 11719, .v2 = 12708, .v3 = 67 }));
+}
+test "Ul_Us_Uc: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Us_Uc());
+}
+test "Ul_Us_Uc: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Us_Uc());
+}
+test "Ul_Us_Uc: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Us_Uc(), .{ .v1 = 11719, .v2 = 12708, .v3 = 67 });
 }
 pub export fn zig_assert_Ul_Us_Uc(lv: c.Ul_Us_Uc) c_int {
     var err: c_int = 0;
@@ -4567,7 +5401,7 @@ pub export fn zig_ret_Ul_Us_Uc() c.Ul_Us_Uc {
 //   unsigned int v3;
 // };
 
-test "Ul_Us_Ui layout" {
+test "Ul_Us_Ui: layout" {
     var lv: c.Ul_Us_Ui = undefined;
     try testing.expectSize(c.Ul_Us_Ui, 16);
     try testing.expectAlign(c.Ul_Us_Ui, ABISELECT(8, 4));
@@ -4575,11 +5409,17 @@ test "Ul_Us_Ui layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
-test "Ul_Us_Ui C calls" {
-    try testing.expectEqual(c.ret_Ul_Us_Ui(), .{ .v1 = 26605, .v2 = 10106, .v3 = 23753 });
-    try testing.expectOk(c.assert_ret_Ul_Us_Ui());
-    try testing.expectOk(c.send_Ul_Us_Ui());
+test "Ul_Us_Ui: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Us_Ui(.{ .v1 = 26605, .v2 = 10106, .v3 = 23753 }));
+}
+test "Ul_Us_Ui: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Us_Ui());
+}
+test "Ul_Us_Ui: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Us_Ui());
+}
+test "Ul_Us_Ui: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Us_Ui(), .{ .v1 = 26605, .v2 = 10106, .v3 = 23753 });
 }
 pub export fn zig_assert_Ul_Us_Ui(lv: c.Ul_Us_Ui) c_int {
     var err: c_int = 0;
@@ -4600,7 +5440,7 @@ pub export fn zig_ret_Ul_Us_Ui() c.Ul_Us_Ui {
 //   __tsu64 v3;
 // };
 
-test "Ul_Us_Ul layout" {
+test "Ul_Us_Ul: layout" {
     var lv: c.Ul_Us_Ul = undefined;
     try testing.expectSize(c.Ul_Us_Ul, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_Us_Ul, ABISELECT(8, 4));
@@ -4608,11 +5448,17 @@ test "Ul_Us_Ul layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Us_Ul C calls" {
-    try testing.expectEqual(c.ret_Ul_Us_Ul(), .{ .v1 = 1091, .v2 = 31951, .v3 = 2537 });
-    try testing.expectOk(c.assert_ret_Ul_Us_Ul());
-    try testing.expectOk(c.send_Ul_Us_Ul());
+test "Ul_Us_Ul: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Us_Ul(.{ .v1 = 1091, .v2 = 31951, .v3 = 2537 }));
+}
+test "Ul_Us_Ul: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Us_Ul());
+}
+test "Ul_Us_Ul: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Us_Ul());
+}
+test "Ul_Us_Ul: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Us_Ul(), .{ .v1 = 1091, .v2 = 31951, .v3 = 2537 });
 }
 pub export fn zig_assert_Ul_Us_Ul(lv: c.Ul_Us_Ul) c_int {
     var err: c_int = 0;
@@ -4633,7 +5479,7 @@ pub export fn zig_ret_Ul_Us_Ul() c.Ul_Us_Ul {
 //   unsigned short v3;
 // };
 
-test "Ul_Us_Us layout" {
+test "Ul_Us_Us: layout" {
     var lv: c.Ul_Us_Us = undefined;
     try testing.expectSize(c.Ul_Us_Us, ABISELECT(16, 12));
     try testing.expectAlign(c.Ul_Us_Us, ABISELECT(8, 4));
@@ -4641,11 +5487,17 @@ test "Ul_Us_Us layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, 10);
 }
-test "Ul_Us_Us C calls" {
-    try testing.expectEqual(c.ret_Ul_Us_Us(), .{ .v1 = 6339, .v2 = 31142, .v3 = 16115 });
-    try testing.expectOk(c.assert_ret_Ul_Us_Us());
-    try testing.expectOk(c.send_Ul_Us_Us());
+test "Ul_Us_Us: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Us_Us(.{ .v1 = 6339, .v2 = 31142, .v3 = 16115 }));
+}
+test "Ul_Us_Us: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Us_Us());
+}
+test "Ul_Us_Us: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Us_Us());
+}
+test "Ul_Us_Us: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Us_Us(), .{ .v1 = 6339, .v2 = 31142, .v3 = 16115 });
 }
 pub export fn zig_assert_Ul_Us_Us(lv: c.Ul_Us_Us) c_int {
     var err: c_int = 0;
@@ -4666,7 +5518,7 @@ pub export fn zig_ret_Ul_Us_Us() c.Ul_Us_Us {
 //   void *v3;
 // };
 
-test "Ul_Us_Vp layout" {
+test "Ul_Us_Vp: layout" {
     var lv: c.Ul_Us_Vp = undefined;
     try testing.expectSize(c.Ul_Us_Vp, ABISELECT(24, 16));
     try testing.expectAlign(c.Ul_Us_Vp, ABISELECT(8, 4));
@@ -4674,11 +5526,17 @@ test "Ul_Us_Vp layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Us_Vp C calls" {
-    try testing.expectEqual(c.ret_Ul_Us_Vp(), .{ .v1 = 18681, .v2 = 2174, .v3 = null });
-    try testing.expectOk(c.assert_ret_Ul_Us_Vp());
-    try testing.expectOk(c.send_Ul_Us_Vp());
+test "Ul_Us_Vp: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Us_Vp(.{ .v1 = 18681, .v2 = 2174, .v3 = null }));
+}
+test "Ul_Us_Vp: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Us_Vp());
+}
+test "Ul_Us_Vp: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Us_Vp());
+}
+test "Ul_Us_Vp: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Us_Vp(), .{ .v1 = 18681, .v2 = 2174, .v3 = null });
 }
 pub export fn zig_assert_Ul_Us_Vp(lv: c.Ul_Us_Vp) c_int {
     var err: c_int = 0;
@@ -4698,18 +5556,24 @@ pub export fn zig_ret_Ul_Us_Vp() c.Ul_Us_Vp {
 //   void *v2;
 // };
 
-test "Ul_Vp layout" {
+test "Ul_Vp: layout" {
     var lv: c.Ul_Vp = undefined;
     try testing.expectSize(c.Ul_Vp, ABISELECT(16, 12));
     try testing.expectAlign(c.Ul_Vp, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
 }
-test "Ul_Vp C calls" {
-    try testing.expectEqual(c.ret_Ul_Vp(), .{ .v1 = 7138, .v2 = null });
-    try testing.expectOk(c.assert_ret_Ul_Vp());
-    try testing.expectOk(c.send_Ul_Vp());
+test "Ul_Vp: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Vp(.{ .v1 = 7138, .v2 = null }));
+}
+test "Ul_Vp: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Vp());
+}
+test "Ul_Vp: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Vp());
+}
+test "Ul_Vp: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Vp(), .{ .v1 = 7138, .v2 = null });
 }
 pub export fn zig_assert_Ul_Vp(lv: c.Ul_Vp) c_int {
     var err: c_int = 0;
@@ -4729,7 +5593,7 @@ pub export fn zig_ret_Ul_Vp() c.Ul_Vp {
 //   char v3;
 // };
 
-test "Ul_Vp_C layout" {
+test "Ul_Vp_C: layout" {
     var lv: c.Ul_Vp_C = undefined;
     try testing.expectSize(c.Ul_Vp_C, ABISELECT(24, 16));
     try testing.expectAlign(c.Ul_Vp_C, ABISELECT(8, 4));
@@ -4737,11 +5601,17 @@ test "Ul_Vp_C layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Vp_C C calls" {
-    try testing.expectEqual(c.ret_Ul_Vp_C(), .{ .v1 = 12084, .v2 = null, .v3 = 77 });
-    try testing.expectOk(c.assert_ret_Ul_Vp_C());
-    try testing.expectOk(c.send_Ul_Vp_C());
+test "Ul_Vp_C: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Vp_C(.{ .v1 = 12084, .v2 = null, .v3 = 77 }));
+}
+test "Ul_Vp_C: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Vp_C());
+}
+test "Ul_Vp_C: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Vp_C());
+}
+test "Ul_Vp_C: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Vp_C(), .{ .v1 = 12084, .v2 = null, .v3 = 77 });
 }
 pub export fn zig_assert_Ul_Vp_C(lv: c.Ul_Vp_C) c_int {
     var err: c_int = 0;
@@ -4762,7 +5632,7 @@ pub export fn zig_ret_Ul_Vp_C() c.Ul_Vp_C {
 //   double v3;
 // };
 
-test "Ul_Vp_D layout" {
+test "Ul_Vp_D: layout" {
     var lv: c.Ul_Vp_D = undefined;
     try testing.expectSize(c.Ul_Vp_D, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_Vp_D, ABISELECT(8, 4));
@@ -4770,11 +5640,17 @@ test "Ul_Vp_D layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Vp_D C calls" {
-    try testing.expectEqual(c.ret_Ul_Vp_D(), .{ .v1 = 26067, .v2 = null, .v3 = -2.125 });
-    try testing.expectOk(c.assert_ret_Ul_Vp_D());
-    try testing.expectOk(c.send_Ul_Vp_D());
+test "Ul_Vp_D: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Vp_D(.{ .v1 = 26067, .v2 = null, .v3 = -2.125 }));
+}
+test "Ul_Vp_D: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Vp_D());
+}
+test "Ul_Vp_D: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Vp_D());
+}
+test "Ul_Vp_D: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Vp_D(), .{ .v1 = 26067, .v2 = null, .v3 = -2.125 });
 }
 pub export fn zig_assert_Ul_Vp_D(lv: c.Ul_Vp_D) c_int {
     var err: c_int = 0;
@@ -4795,7 +5671,7 @@ pub export fn zig_ret_Ul_Vp_D() c.Ul_Vp_D {
 //   float v3;
 // };
 
-test "Ul_Vp_F layout" {
+test "Ul_Vp_F: layout" {
     var lv: c.Ul_Vp_F = undefined;
     try testing.expectSize(c.Ul_Vp_F, ABISELECT(24, 16));
     try testing.expectAlign(c.Ul_Vp_F, ABISELECT(8, 4));
@@ -4803,11 +5679,17 @@ test "Ul_Vp_F layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Vp_F C calls" {
-    try testing.expectEqual(c.ret_Ul_Vp_F(), .{ .v1 = 14892, .v2 = null, .v3 = 0.5 });
-    try testing.expectOk(c.assert_ret_Ul_Vp_F());
-    try testing.expectOk(c.send_Ul_Vp_F());
+test "Ul_Vp_F: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Vp_F(.{ .v1 = 14892, .v2 = null, .v3 = 0.5 }));
+}
+test "Ul_Vp_F: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Vp_F());
+}
+test "Ul_Vp_F: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Vp_F());
+}
+test "Ul_Vp_F: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Vp_F(), .{ .v1 = 14892, .v2 = null, .v3 = 0.5 });
 }
 pub export fn zig_assert_Ul_Vp_F(lv: c.Ul_Vp_F) c_int {
     var err: c_int = 0;
@@ -4828,7 +5710,7 @@ pub export fn zig_ret_Ul_Vp_F() c.Ul_Vp_F {
 //   int v3;
 // };
 
-test "Ul_Vp_I layout" {
+test "Ul_Vp_I: layout" {
     var lv: c.Ul_Vp_I = undefined;
     try testing.expectSize(c.Ul_Vp_I, ABISELECT(24, 16));
     try testing.expectAlign(c.Ul_Vp_I, ABISELECT(8, 4));
@@ -4836,11 +5718,17 @@ test "Ul_Vp_I layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Vp_I C calls" {
-    try testing.expectEqual(c.ret_Ul_Vp_I(), .{ .v1 = 7902, .v2 = null, .v3 = 16411 });
-    try testing.expectOk(c.assert_ret_Ul_Vp_I());
-    try testing.expectOk(c.send_Ul_Vp_I());
+test "Ul_Vp_I: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Vp_I(.{ .v1 = 7902, .v2 = null, .v3 = 16411 }));
+}
+test "Ul_Vp_I: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Vp_I());
+}
+test "Ul_Vp_I: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Vp_I());
+}
+test "Ul_Vp_I: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Vp_I(), .{ .v1 = 7902, .v2 = null, .v3 = 16411 });
 }
 pub export fn zig_assert_Ul_Vp_I(lv: c.Ul_Vp_I) c_int {
     var err: c_int = 0;
@@ -4861,7 +5749,7 @@ pub export fn zig_ret_Ul_Vp_I() c.Ul_Vp_I {
 //   int *v3;
 // };
 
-test "Ul_Vp_Ip layout" {
+test "Ul_Vp_Ip: layout" {
     var lv: c.Ul_Vp_Ip = undefined;
     try testing.expectSize(c.Ul_Vp_Ip, ABISELECT(24, 16));
     try testing.expectAlign(c.Ul_Vp_Ip, ABISELECT(8, 4));
@@ -4869,11 +5757,17 @@ test "Ul_Vp_Ip layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Vp_Ip C calls" {
-    try testing.expectEqual(c.ret_Ul_Vp_Ip(), .{ .v1 = 3098, .v2 = null, .v3 = null });
-    try testing.expectOk(c.assert_ret_Ul_Vp_Ip());
-    try testing.expectOk(c.send_Ul_Vp_Ip());
+test "Ul_Vp_Ip: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Vp_Ip(.{ .v1 = 3098, .v2 = null, .v3 = null }));
+}
+test "Ul_Vp_Ip: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Vp_Ip());
+}
+test "Ul_Vp_Ip: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Vp_Ip());
+}
+test "Ul_Vp_Ip: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Vp_Ip(), .{ .v1 = 3098, .v2 = null, .v3 = null });
 }
 pub export fn zig_assert_Ul_Vp_Ip(lv: c.Ul_Vp_Ip) c_int {
     var err: c_int = 0;
@@ -4894,7 +5788,7 @@ pub export fn zig_ret_Ul_Vp_Ip() c.Ul_Vp_Ip {
 //   __tsi64 v3;
 // };
 
-test "Ul_Vp_L layout" {
+test "Ul_Vp_L: layout" {
     var lv: c.Ul_Vp_L = undefined;
     try testing.expectSize(c.Ul_Vp_L, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_Vp_L, ABISELECT(8, 4));
@@ -4902,11 +5796,17 @@ test "Ul_Vp_L layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Vp_L C calls" {
-    try testing.expectEqual(c.ret_Ul_Vp_L(), .{ .v1 = 10634, .v2 = null, .v3 = 13712 });
-    try testing.expectOk(c.assert_ret_Ul_Vp_L());
-    try testing.expectOk(c.send_Ul_Vp_L());
+test "Ul_Vp_L: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Vp_L(.{ .v1 = 10634, .v2 = null, .v3 = 13712 }));
+}
+test "Ul_Vp_L: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Vp_L());
+}
+test "Ul_Vp_L: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Vp_L());
+}
+test "Ul_Vp_L: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Vp_L(), .{ .v1 = 10634, .v2 = null, .v3 = 13712 });
 }
 pub export fn zig_assert_Ul_Vp_L(lv: c.Ul_Vp_L) c_int {
     var err: c_int = 0;
@@ -4927,7 +5827,7 @@ pub export fn zig_ret_Ul_Vp_L() c.Ul_Vp_L {
 //   short v3;
 // };
 
-test "Ul_Vp_S layout" {
+test "Ul_Vp_S: layout" {
     var lv: c.Ul_Vp_S = undefined;
     try testing.expectSize(c.Ul_Vp_S, ABISELECT(24, 16));
     try testing.expectAlign(c.Ul_Vp_S, ABISELECT(8, 4));
@@ -4935,11 +5835,17 @@ test "Ul_Vp_S layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Vp_S C calls" {
-    try testing.expectEqual(c.ret_Ul_Vp_S(), .{ .v1 = 13103, .v2 = null, .v3 = 26544 });
-    try testing.expectOk(c.assert_ret_Ul_Vp_S());
-    try testing.expectOk(c.send_Ul_Vp_S());
+test "Ul_Vp_S: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Vp_S(.{ .v1 = 13103, .v2 = null, .v3 = 26544 }));
+}
+test "Ul_Vp_S: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Vp_S());
+}
+test "Ul_Vp_S: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Vp_S());
+}
+test "Ul_Vp_S: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Vp_S(), .{ .v1 = 13103, .v2 = null, .v3 = 26544 });
 }
 pub export fn zig_assert_Ul_Vp_S(lv: c.Ul_Vp_S) c_int {
     var err: c_int = 0;
@@ -4960,7 +5866,7 @@ pub export fn zig_ret_Ul_Vp_S() c.Ul_Vp_S {
 //   unsigned char v3;
 // };
 
-test "Ul_Vp_Uc layout" {
+test "Ul_Vp_Uc: layout" {
     var lv: c.Ul_Vp_Uc = undefined;
     try testing.expectSize(c.Ul_Vp_Uc, ABISELECT(24, 16));
     try testing.expectAlign(c.Ul_Vp_Uc, ABISELECT(8, 4));
@@ -4968,11 +5874,17 @@ test "Ul_Vp_Uc layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Vp_Uc C calls" {
-    try testing.expectEqual(c.ret_Ul_Vp_Uc(), .{ .v1 = 7202, .v2 = null, .v3 = 80 });
-    try testing.expectOk(c.assert_ret_Ul_Vp_Uc());
-    try testing.expectOk(c.send_Ul_Vp_Uc());
+test "Ul_Vp_Uc: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Vp_Uc(.{ .v1 = 7202, .v2 = null, .v3 = 80 }));
+}
+test "Ul_Vp_Uc: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Vp_Uc());
+}
+test "Ul_Vp_Uc: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Vp_Uc());
+}
+test "Ul_Vp_Uc: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Vp_Uc(), .{ .v1 = 7202, .v2 = null, .v3 = 80 });
 }
 pub export fn zig_assert_Ul_Vp_Uc(lv: c.Ul_Vp_Uc) c_int {
     var err: c_int = 0;
@@ -4993,7 +5905,7 @@ pub export fn zig_ret_Ul_Vp_Uc() c.Ul_Vp_Uc {
 //   unsigned int v3;
 // };
 
-test "Ul_Vp_Ui layout" {
+test "Ul_Vp_Ui: layout" {
     var lv: c.Ul_Vp_Ui = undefined;
     try testing.expectSize(c.Ul_Vp_Ui, ABISELECT(24, 16));
     try testing.expectAlign(c.Ul_Vp_Ui, ABISELECT(8, 4));
@@ -5001,11 +5913,17 @@ test "Ul_Vp_Ui layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Vp_Ui C calls" {
-    try testing.expectEqual(c.ret_Ul_Vp_Ui(), .{ .v1 = 22663, .v2 = null, .v3 = 1363 });
-    try testing.expectOk(c.assert_ret_Ul_Vp_Ui());
-    try testing.expectOk(c.send_Ul_Vp_Ui());
+test "Ul_Vp_Ui: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Vp_Ui(.{ .v1 = 22663, .v2 = null, .v3 = 1363 }));
+}
+test "Ul_Vp_Ui: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Vp_Ui());
+}
+test "Ul_Vp_Ui: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Vp_Ui());
+}
+test "Ul_Vp_Ui: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Vp_Ui(), .{ .v1 = 22663, .v2 = null, .v3 = 1363 });
 }
 pub export fn zig_assert_Ul_Vp_Ui(lv: c.Ul_Vp_Ui) c_int {
     var err: c_int = 0;
@@ -5026,7 +5944,7 @@ pub export fn zig_ret_Ul_Vp_Ui() c.Ul_Vp_Ui {
 //   __tsu64 v3;
 // };
 
-test "Ul_Vp_Ul layout" {
+test "Ul_Vp_Ul: layout" {
     var lv: c.Ul_Vp_Ul = undefined;
     try testing.expectSize(c.Ul_Vp_Ul, ABISELECT(24, 20));
     try testing.expectAlign(c.Ul_Vp_Ul, ABISELECT(8, 4));
@@ -5034,11 +5952,17 @@ test "Ul_Vp_Ul layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Vp_Ul C calls" {
-    try testing.expectEqual(c.ret_Ul_Vp_Ul(), .{ .v1 = 18470, .v2 = null, .v3 = 9482 });
-    try testing.expectOk(c.assert_ret_Ul_Vp_Ul());
-    try testing.expectOk(c.send_Ul_Vp_Ul());
+test "Ul_Vp_Ul: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Vp_Ul(.{ .v1 = 18470, .v2 = null, .v3 = 9482 }));
+}
+test "Ul_Vp_Ul: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Vp_Ul());
+}
+test "Ul_Vp_Ul: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Vp_Ul());
+}
+test "Ul_Vp_Ul: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Vp_Ul(), .{ .v1 = 18470, .v2 = null, .v3 = 9482 });
 }
 pub export fn zig_assert_Ul_Vp_Ul(lv: c.Ul_Vp_Ul) c_int {
     var err: c_int = 0;
@@ -5059,7 +5983,7 @@ pub export fn zig_ret_Ul_Vp_Ul() c.Ul_Vp_Ul {
 //   unsigned short v3;
 // };
 
-test "Ul_Vp_Us layout" {
+test "Ul_Vp_Us: layout" {
     var lv: c.Ul_Vp_Us = undefined;
     try testing.expectSize(c.Ul_Vp_Us, ABISELECT(24, 16));
     try testing.expectAlign(c.Ul_Vp_Us, ABISELECT(8, 4));
@@ -5067,11 +5991,17 @@ test "Ul_Vp_Us layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Vp_Us C calls" {
-    try testing.expectEqual(c.ret_Ul_Vp_Us(), .{ .v1 = 28776, .v2 = null, .v3 = 16723 });
-    try testing.expectOk(c.assert_ret_Ul_Vp_Us());
-    try testing.expectOk(c.send_Ul_Vp_Us());
+test "Ul_Vp_Us: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Vp_Us(.{ .v1 = 28776, .v2 = null, .v3 = 16723 }));
+}
+test "Ul_Vp_Us: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Vp_Us());
+}
+test "Ul_Vp_Us: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Vp_Us());
+}
+test "Ul_Vp_Us: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Vp_Us(), .{ .v1 = 28776, .v2 = null, .v3 = 16723 });
 }
 pub export fn zig_assert_Ul_Vp_Us(lv: c.Ul_Vp_Us) c_int {
     var err: c_int = 0;
@@ -5092,7 +6022,7 @@ pub export fn zig_ret_Ul_Vp_Us() c.Ul_Vp_Us {
 //   void *v3;
 // };
 
-test "Ul_Vp_Vp layout" {
+test "Ul_Vp_Vp: layout" {
     var lv: c.Ul_Vp_Vp = undefined;
     try testing.expectSize(c.Ul_Vp_Vp, ABISELECT(24, 16));
     try testing.expectAlign(c.Ul_Vp_Vp, ABISELECT(8, 4));
@@ -5100,11 +6030,17 @@ test "Ul_Vp_Vp layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Ul_Vp_Vp C calls" {
-    try testing.expectEqual(c.ret_Ul_Vp_Vp(), .{ .v1 = 25197, .v2 = null, .v3 = null });
-    try testing.expectOk(c.assert_ret_Ul_Vp_Vp());
-    try testing.expectOk(c.send_Ul_Vp_Vp());
+test "Ul_Vp_Vp: Zig passes to C" {
     try testing.expectOk(c.assert_Ul_Vp_Vp(.{ .v1 = 25197, .v2 = null, .v3 = null }));
+}
+test "Ul_Vp_Vp: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Ul_Vp_Vp());
+}
+test "Ul_Vp_Vp: C passes to Zig" {
+    try testing.expectOk(c.send_Ul_Vp_Vp());
+}
+test "Ul_Vp_Vp: C returns to Zig" {
+    try testing.expectEqual(c.ret_Ul_Vp_Vp(), .{ .v1 = 25197, .v2 = null, .v3 = null });
 }
 pub export fn zig_assert_Ul_Vp_Vp(lv: c.Ul_Vp_Vp) c_int {
     var err: c_int = 0;
@@ -5123,17 +6059,23 @@ pub export fn zig_ret_Ul_Vp_Vp() c.Ul_Vp_Vp {
 //   unsigned short v1;
 // };
 
-test "Us layout" {
+test "Us: layout" {
     var lv: c.Us = undefined;
     try testing.expectSize(c.Us, 2);
     try testing.expectAlign(c.Us, 2);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
 }
-test "Us C calls" {
-    try testing.expectEqual(c.ret_Us(), .{ .v1 = 8994 });
-    try testing.expectOk(c.assert_ret_Us());
-    try testing.expectOk(c.send_Us());
+test "Us: Zig passes to C" {
     try testing.expectOk(c.assert_Us(.{ .v1 = 8994 }));
+}
+test "Us: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us());
+}
+test "Us: C passes to Zig" {
+    try testing.expectOk(c.send_Us());
+}
+test "Us: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us(), .{ .v1 = 8994 });
 }
 pub export fn zig_assert_Us(lv: c.Us) c_int {
     var err: c_int = 0;
@@ -5151,18 +6093,24 @@ pub export fn zig_ret_Us() c.Us {
 //   char v2;
 // };
 
-test "Us_C layout" {
+test "Us_C: layout" {
     var lv: c.Us_C = undefined;
     try testing.expectSize(c.Us_C, 4);
     try testing.expectAlign(c.Us_C, 2);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
 }
-test "Us_C C calls" {
-    try testing.expectEqual(c.ret_Us_C(), .{ .v1 = 16644, .v2 = 68 });
-    try testing.expectOk(c.assert_ret_Us_C());
-    try testing.expectOk(c.send_Us_C());
+test "Us_C: Zig passes to C" {
     try testing.expectOk(c.assert_Us_C(.{ .v1 = 16644, .v2 = 68 }));
+}
+test "Us_C: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_C());
+}
+test "Us_C: C passes to Zig" {
+    try testing.expectOk(c.send_Us_C());
+}
+test "Us_C: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_C(), .{ .v1 = 16644, .v2 = 68 });
 }
 pub export fn zig_assert_Us_C(lv: c.Us_C) c_int {
     var err: c_int = 0;
@@ -5182,7 +6130,7 @@ pub export fn zig_ret_Us_C() c.Us_C {
 //   char v3;
 // };
 
-test "Us_C_C layout" {
+test "Us_C_C: layout" {
     var lv: c.Us_C_C = undefined;
     try testing.expectSize(c.Us_C_C, 4);
     try testing.expectAlign(c.Us_C_C, 2);
@@ -5190,11 +6138,17 @@ test "Us_C_C layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 3);
 }
-test "Us_C_C C calls" {
-    try testing.expectEqual(c.ret_Us_C_C(), .{ .v1 = 2512, .v2 = 99, .v3 = 60 });
-    try testing.expectOk(c.assert_ret_Us_C_C());
-    try testing.expectOk(c.send_Us_C_C());
+test "Us_C_C: Zig passes to C" {
     try testing.expectOk(c.assert_Us_C_C(.{ .v1 = 2512, .v2 = 99, .v3 = 60 }));
+}
+test "Us_C_C: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_C_C());
+}
+test "Us_C_C: C passes to Zig" {
+    try testing.expectOk(c.send_Us_C_C());
+}
+test "Us_C_C: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_C_C(), .{ .v1 = 2512, .v2 = 99, .v3 = 60 });
 }
 pub export fn zig_assert_Us_C_C(lv: c.Us_C_C) c_int {
     var err: c_int = 0;
@@ -5215,7 +6169,7 @@ pub export fn zig_ret_Us_C_C() c.Us_C_C {
 //   double v3;
 // };
 
-test "Us_C_D layout" {
+test "Us_C_D: layout" {
     var lv: c.Us_C_D = undefined;
     try testing.expectSize(c.Us_C_D, ABISELECT(16, 12));
     try testing.expectAlign(c.Us_C_D, ABISELECT(8, 4));
@@ -5223,11 +6177,17 @@ test "Us_C_D layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
-test "Us_C_D C calls" {
-    try testing.expectEqual(c.ret_Us_C_D(), .{ .v1 = 21959, .v2 = 16, .v3 = 4.5 });
+test "Us_C_D: Zig passes to C" {
+    try testing.expectFail(c.assert_Us_C_D(.{ .v1 = 21959, .v2 = 16, .v3 = 4.5 }));
+}
+test "Us_C_D: Zig returns to C" {
     try testing.expectOk(c.assert_ret_Us_C_D());
-    try testing.expectOk(c.send_Us_C_D());
-    try testing.expectOk(c.assert_Us_C_D(.{ .v1 = 21959, .v2 = 16, .v3 = 4.5 }));
+}
+test "Us_C_D: C passes to Zig" {
+    try testing.expectFail(c.send_Us_C_D());
+}
+test "Us_C_D: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_C_D(), .{ .v1 = 21959, .v2 = 16, .v3 = 4.5 });
 }
 pub export fn zig_assert_Us_C_D(lv: c.Us_C_D) c_int {
     var err: c_int = 0;
@@ -5248,7 +6208,7 @@ pub export fn zig_ret_Us_C_D() c.Us_C_D {
 //   float v3;
 // };
 
-test "Us_C_F layout" {
+test "Us_C_F: layout" {
     var lv: c.Us_C_F = undefined;
     try testing.expectSize(c.Us_C_F, 8);
     try testing.expectAlign(c.Us_C_F, 4);
@@ -5256,11 +6216,17 @@ test "Us_C_F layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
-test "Us_C_F C calls" {
-    try testing.expectEqual(c.ret_Us_C_F(), .{ .v1 = 2567, .v2 = 34, .v3 = 4.5 });
-    try testing.expectOk(c.assert_ret_Us_C_F());
-    try testing.expectOk(c.send_Us_C_F());
+test "Us_C_F: Zig passes to C" {
     try testing.expectOk(c.assert_Us_C_F(.{ .v1 = 2567, .v2 = 34, .v3 = 4.5 }));
+}
+test "Us_C_F: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_C_F());
+}
+test "Us_C_F: C passes to Zig" {
+    try testing.expectOk(c.send_Us_C_F());
+}
+test "Us_C_F: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_C_F(), .{ .v1 = 2567, .v2 = 34, .v3 = 4.5 });
 }
 pub export fn zig_assert_Us_C_F(lv: c.Us_C_F) c_int {
     var err: c_int = 0;
@@ -5281,7 +6247,7 @@ pub export fn zig_ret_Us_C_F() c.Us_C_F {
 //   int v3;
 // };
 
-test "Us_C_I layout" {
+test "Us_C_I: layout" {
     var lv: c.Us_C_I = undefined;
     try testing.expectSize(c.Us_C_I, 8);
     try testing.expectAlign(c.Us_C_I, 4);
@@ -5289,11 +6255,17 @@ test "Us_C_I layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
-test "Us_C_I C calls" {
-    try testing.expectEqual(c.ret_Us_C_I(), .{ .v1 = 15462, .v2 = 25, .v3 = 9740 });
-    try testing.expectOk(c.assert_ret_Us_C_I());
-    try testing.expectOk(c.send_Us_C_I());
+test "Us_C_I: Zig passes to C" {
     try testing.expectOk(c.assert_Us_C_I(.{ .v1 = 15462, .v2 = 25, .v3 = 9740 }));
+}
+test "Us_C_I: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_C_I());
+}
+test "Us_C_I: C passes to Zig" {
+    try testing.expectOk(c.send_Us_C_I());
+}
+test "Us_C_I: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_C_I(), .{ .v1 = 15462, .v2 = 25, .v3 = 9740 });
 }
 pub export fn zig_assert_Us_C_I(lv: c.Us_C_I) c_int {
     var err: c_int = 0;
@@ -5314,7 +6286,7 @@ pub export fn zig_ret_Us_C_I() c.Us_C_I {
 //   int *v3;
 // };
 
-test "Us_C_Ip layout" {
+test "Us_C_Ip: layout" {
     var lv: c.Us_C_Ip = undefined;
     try testing.expectSize(c.Us_C_Ip, ABISELECT(16, 8));
     try testing.expectAlign(c.Us_C_Ip, ABISELECT(8, 4));
@@ -5322,11 +6294,17 @@ test "Us_C_Ip layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
-test "Us_C_Ip C calls" {
-    try testing.expectEqual(c.ret_Us_C_Ip(), .{ .v1 = 21044, .v2 = 85, .v3 = null });
-    try testing.expectOk(c.assert_ret_Us_C_Ip());
-    try testing.expectOk(c.send_Us_C_Ip());
+test "Us_C_Ip: Zig passes to C" {
     try testing.expectOk(c.assert_Us_C_Ip(.{ .v1 = 21044, .v2 = 85, .v3 = null }));
+}
+test "Us_C_Ip: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_C_Ip());
+}
+test "Us_C_Ip: C passes to Zig" {
+    try testing.expectOk(c.send_Us_C_Ip());
+}
+test "Us_C_Ip: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_C_Ip(), .{ .v1 = 21044, .v2 = 85, .v3 = null });
 }
 pub export fn zig_assert_Us_C_Ip(lv: c.Us_C_Ip) c_int {
     var err: c_int = 0;
@@ -5347,7 +6325,7 @@ pub export fn zig_ret_Us_C_Ip() c.Us_C_Ip {
 //   __tsi64 v3;
 // };
 
-test "Us_C_L layout" {
+test "Us_C_L: layout" {
     var lv: c.Us_C_L = undefined;
     try testing.expectSize(c.Us_C_L, ABISELECT(16, 12));
     try testing.expectAlign(c.Us_C_L, ABISELECT(8, 4));
@@ -5355,11 +6333,17 @@ test "Us_C_L layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
-test "Us_C_L C calls" {
-    try testing.expectEqual(c.ret_Us_C_L(), .{ .v1 = 15192, .v2 = 103, .v3 = 19299 });
-    try testing.expectOk(c.assert_ret_Us_C_L());
-    try testing.expectOk(c.send_Us_C_L());
+test "Us_C_L: Zig passes to C" {
     try testing.expectOk(c.assert_Us_C_L(.{ .v1 = 15192, .v2 = 103, .v3 = 19299 }));
+}
+test "Us_C_L: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_C_L());
+}
+test "Us_C_L: C passes to Zig" {
+    try testing.expectOk(c.send_Us_C_L());
+}
+test "Us_C_L: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_C_L(), .{ .v1 = 15192, .v2 = 103, .v3 = 19299 });
 }
 pub export fn zig_assert_Us_C_L(lv: c.Us_C_L) c_int {
     var err: c_int = 0;
@@ -5380,7 +6364,7 @@ pub export fn zig_ret_Us_C_L() c.Us_C_L {
 //   short v3;
 // };
 
-test "Us_C_S layout" {
+test "Us_C_S: layout" {
     var lv: c.Us_C_S = undefined;
     try testing.expectSize(c.Us_C_S, 6);
     try testing.expectAlign(c.Us_C_S, 2);
@@ -5388,11 +6372,17 @@ test "Us_C_S layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
-test "Us_C_S C calls" {
-    try testing.expectEqual(c.ret_Us_C_S(), .{ .v1 = 23346, .v2 = 103, .v3 = 22139 });
-    try testing.expectOk(c.assert_ret_Us_C_S());
-    try testing.expectOk(c.send_Us_C_S());
+test "Us_C_S: Zig passes to C" {
     try testing.expectOk(c.assert_Us_C_S(.{ .v1 = 23346, .v2 = 103, .v3 = 22139 }));
+}
+test "Us_C_S: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_C_S());
+}
+test "Us_C_S: C passes to Zig" {
+    try testing.expectOk(c.send_Us_C_S());
+}
+test "Us_C_S: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_C_S(), .{ .v1 = 23346, .v2 = 103, .v3 = 22139 });
 }
 pub export fn zig_assert_Us_C_S(lv: c.Us_C_S) c_int {
     var err: c_int = 0;
@@ -5413,7 +6403,7 @@ pub export fn zig_ret_Us_C_S() c.Us_C_S {
 //   unsigned char v3;
 // };
 
-test "Us_C_Uc layout" {
+test "Us_C_Uc: layout" {
     var lv: c.Us_C_Uc = undefined;
     try testing.expectSize(c.Us_C_Uc, 4);
     try testing.expectAlign(c.Us_C_Uc, 2);
@@ -5421,11 +6411,17 @@ test "Us_C_Uc layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 3);
 }
-test "Us_C_Uc C calls" {
-    try testing.expectEqual(c.ret_Us_C_Uc(), .{ .v1 = 3179, .v2 = 4, .v3 = 73 });
-    try testing.expectOk(c.assert_ret_Us_C_Uc());
-    try testing.expectOk(c.send_Us_C_Uc());
+test "Us_C_Uc: Zig passes to C" {
     try testing.expectOk(c.assert_Us_C_Uc(.{ .v1 = 3179, .v2 = 4, .v3 = 73 }));
+}
+test "Us_C_Uc: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_C_Uc());
+}
+test "Us_C_Uc: C passes to Zig" {
+    try testing.expectOk(c.send_Us_C_Uc());
+}
+test "Us_C_Uc: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_C_Uc(), .{ .v1 = 3179, .v2 = 4, .v3 = 73 });
 }
 pub export fn zig_assert_Us_C_Uc(lv: c.Us_C_Uc) c_int {
     var err: c_int = 0;
@@ -5446,7 +6442,7 @@ pub export fn zig_ret_Us_C_Uc() c.Us_C_Uc {
 //   unsigned int v3;
 // };
 
-test "Us_C_Ui layout" {
+test "Us_C_Ui: layout" {
     var lv: c.Us_C_Ui = undefined;
     try testing.expectSize(c.Us_C_Ui, 8);
     try testing.expectAlign(c.Us_C_Ui, 4);
@@ -5454,11 +6450,17 @@ test "Us_C_Ui layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
-test "Us_C_Ui C calls" {
-    try testing.expectEqual(c.ret_Us_C_Ui(), .{ .v1 = 19277, .v2 = 98, .v3 = 28789 });
-    try testing.expectOk(c.assert_ret_Us_C_Ui());
-    try testing.expectOk(c.send_Us_C_Ui());
+test "Us_C_Ui: Zig passes to C" {
     try testing.expectOk(c.assert_Us_C_Ui(.{ .v1 = 19277, .v2 = 98, .v3 = 28789 }));
+}
+test "Us_C_Ui: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_C_Ui());
+}
+test "Us_C_Ui: C passes to Zig" {
+    try testing.expectOk(c.send_Us_C_Ui());
+}
+test "Us_C_Ui: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_C_Ui(), .{ .v1 = 19277, .v2 = 98, .v3 = 28789 });
 }
 pub export fn zig_assert_Us_C_Ui(lv: c.Us_C_Ui) c_int {
     var err: c_int = 0;
@@ -5479,7 +6481,7 @@ pub export fn zig_ret_Us_C_Ui() c.Us_C_Ui {
 //   __tsu64 v3;
 // };
 
-test "Us_C_Ul layout" {
+test "Us_C_Ul: layout" {
     var lv: c.Us_C_Ul = undefined;
     try testing.expectSize(c.Us_C_Ul, ABISELECT(16, 12));
     try testing.expectAlign(c.Us_C_Ul, ABISELECT(8, 4));
@@ -5487,11 +6489,17 @@ test "Us_C_Ul layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
-test "Us_C_Ul C calls" {
-    try testing.expectEqual(c.ret_Us_C_Ul(), .{ .v1 = 24703, .v2 = 76, .v3 = 15589 });
-    try testing.expectOk(c.assert_ret_Us_C_Ul());
-    try testing.expectOk(c.send_Us_C_Ul());
+test "Us_C_Ul: Zig passes to C" {
     try testing.expectOk(c.assert_Us_C_Ul(.{ .v1 = 24703, .v2 = 76, .v3 = 15589 }));
+}
+test "Us_C_Ul: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_C_Ul());
+}
+test "Us_C_Ul: C passes to Zig" {
+    try testing.expectOk(c.send_Us_C_Ul());
+}
+test "Us_C_Ul: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_C_Ul(), .{ .v1 = 24703, .v2 = 76, .v3 = 15589 });
 }
 pub export fn zig_assert_Us_C_Ul(lv: c.Us_C_Ul) c_int {
     var err: c_int = 0;
@@ -5512,7 +6520,7 @@ pub export fn zig_ret_Us_C_Ul() c.Us_C_Ul {
 //   unsigned short v3;
 // };
 
-test "Us_C_Us layout" {
+test "Us_C_Us: layout" {
     var lv: c.Us_C_Us = undefined;
     try testing.expectSize(c.Us_C_Us, 6);
     try testing.expectAlign(c.Us_C_Us, 2);
@@ -5520,11 +6528,17 @@ test "Us_C_Us layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
-test "Us_C_Us C calls" {
-    try testing.expectEqual(c.ret_Us_C_Us(), .{ .v1 = 12247, .v2 = 66, .v3 = 10022 });
-    try testing.expectOk(c.assert_ret_Us_C_Us());
-    try testing.expectOk(c.send_Us_C_Us());
+test "Us_C_Us: Zig passes to C" {
     try testing.expectOk(c.assert_Us_C_Us(.{ .v1 = 12247, .v2 = 66, .v3 = 10022 }));
+}
+test "Us_C_Us: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_C_Us());
+}
+test "Us_C_Us: C passes to Zig" {
+    try testing.expectOk(c.send_Us_C_Us());
+}
+test "Us_C_Us: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_C_Us(), .{ .v1 = 12247, .v2 = 66, .v3 = 10022 });
 }
 pub export fn zig_assert_Us_C_Us(lv: c.Us_C_Us) c_int {
     var err: c_int = 0;
@@ -5545,7 +6559,7 @@ pub export fn zig_ret_Us_C_Us() c.Us_C_Us {
 //   void *v3;
 // };
 
-test "Us_C_Vp layout" {
+test "Us_C_Vp: layout" {
     var lv: c.Us_C_Vp = undefined;
     try testing.expectSize(c.Us_C_Vp, ABISELECT(16, 8));
     try testing.expectAlign(c.Us_C_Vp, ABISELECT(8, 4));
@@ -5553,11 +6567,17 @@ test "Us_C_Vp layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
-test "Us_C_Vp C calls" {
-    try testing.expectEqual(c.ret_Us_C_Vp(), .{ .v1 = 5932, .v2 = 39, .v3 = null });
-    try testing.expectOk(c.assert_ret_Us_C_Vp());
-    try testing.expectOk(c.send_Us_C_Vp());
+test "Us_C_Vp: Zig passes to C" {
     try testing.expectOk(c.assert_Us_C_Vp(.{ .v1 = 5932, .v2 = 39, .v3 = null }));
+}
+test "Us_C_Vp: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_C_Vp());
+}
+test "Us_C_Vp: C passes to Zig" {
+    try testing.expectOk(c.send_Us_C_Vp());
+}
+test "Us_C_Vp: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_C_Vp(), .{ .v1 = 5932, .v2 = 39, .v3 = null });
 }
 pub export fn zig_assert_Us_C_Vp(lv: c.Us_C_Vp) c_int {
     var err: c_int = 0;
@@ -5577,18 +6597,24 @@ pub export fn zig_ret_Us_C_Vp() c.Us_C_Vp {
 //   double v2;
 // };
 
-test "Us_D layout" {
+test "Us_D: layout" {
     var lv: c.Us_D = undefined;
     try testing.expectSize(c.Us_D, ABISELECT(16, 12));
     try testing.expectAlign(c.Us_D, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
 }
-test "Us_D C calls" {
-    try testing.expectEqual(c.ret_Us_D(), .{ .v1 = 18580, .v2 = -2.125 });
+test "Us_D: Zig passes to C" {
+    try testing.expectFail(c.assert_Us_D(.{ .v1 = 18580, .v2 = -2.125 }));
+}
+test "Us_D: Zig returns to C" {
     try testing.expectOk(c.assert_ret_Us_D());
-    try testing.expectOk(c.send_Us_D());
-    try testing.expectOk(c.assert_Us_D(.{ .v1 = 18580, .v2 = -2.125 }));
+}
+test "Us_D: C passes to Zig" {
+    try testing.expectFail(c.send_Us_D());
+}
+test "Us_D: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_D(), .{ .v1 = 18580, .v2 = -2.125 });
 }
 pub export fn zig_assert_Us_D(lv: c.Us_D) c_int {
     var err: c_int = 0;
@@ -5608,7 +6634,7 @@ pub export fn zig_ret_Us_D() c.Us_D {
 //   char v3;
 // };
 
-test "Us_D_C layout" {
+test "Us_D_C: layout" {
     var lv: c.Us_D_C = undefined;
     try testing.expectSize(c.Us_D_C, ABISELECT(24, 16));
     try testing.expectAlign(c.Us_D_C, ABISELECT(8, 4));
@@ -5616,11 +6642,17 @@ test "Us_D_C layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Us_D_C C calls" {
-    try testing.expectEqual(c.ret_Us_D_C(), .{ .v1 = 11240, .v2 = 4.5, .v3 = 72 });
-    try testing.expectOk(c.assert_ret_Us_D_C());
-    try testing.expectOk(c.send_Us_D_C());
+test "Us_D_C: Zig passes to C" {
     try testing.expectOk(c.assert_Us_D_C(.{ .v1 = 11240, .v2 = 4.5, .v3 = 72 }));
+}
+test "Us_D_C: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_D_C());
+}
+test "Us_D_C: C passes to Zig" {
+    try testing.expectOk(c.send_Us_D_C());
+}
+test "Us_D_C: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_D_C(), .{ .v1 = 11240, .v2 = 4.5, .v3 = 72 });
 }
 pub export fn zig_assert_Us_D_C(lv: c.Us_D_C) c_int {
     var err: c_int = 0;
@@ -5641,7 +6673,7 @@ pub export fn zig_ret_Us_D_C() c.Us_D_C {
 //   double v3;
 // };
 
-test "Us_D_D layout" {
+test "Us_D_D: layout" {
     var lv: c.Us_D_D = undefined;
     try testing.expectSize(c.Us_D_D, ABISELECT(24, 20));
     try testing.expectAlign(c.Us_D_D, ABISELECT(8, 4));
@@ -5649,11 +6681,17 @@ test "Us_D_D layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Us_D_D C calls" {
-    try testing.expectEqual(c.ret_Us_D_D(), .{ .v1 = 11524, .v2 = 1.0, .v3 = 0.875 });
-    try testing.expectOk(c.assert_ret_Us_D_D());
-    try testing.expectOk(c.send_Us_D_D());
+test "Us_D_D: Zig passes to C" {
     try testing.expectOk(c.assert_Us_D_D(.{ .v1 = 11524, .v2 = 1.0, .v3 = 0.875 }));
+}
+test "Us_D_D: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_D_D());
+}
+test "Us_D_D: C passes to Zig" {
+    try testing.expectOk(c.send_Us_D_D());
+}
+test "Us_D_D: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_D_D(), .{ .v1 = 11524, .v2 = 1.0, .v3 = 0.875 });
 }
 pub export fn zig_assert_Us_D_D(lv: c.Us_D_D) c_int {
     var err: c_int = 0;
@@ -5674,7 +6712,7 @@ pub export fn zig_ret_Us_D_D() c.Us_D_D {
 //   float v3;
 // };
 
-test "Us_D_F layout" {
+test "Us_D_F: layout" {
     var lv: c.Us_D_F = undefined;
     try testing.expectSize(c.Us_D_F, ABISELECT(24, 16));
     try testing.expectAlign(c.Us_D_F, ABISELECT(8, 4));
@@ -5682,11 +6720,17 @@ test "Us_D_F layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Us_D_F C calls" {
-    try testing.expectEqual(c.ret_Us_D_F(), .{ .v1 = 6365, .v2 = 7.0, .v3 = 7.0 });
-    try testing.expectOk(c.assert_ret_Us_D_F());
-    try testing.expectOk(c.send_Us_D_F());
+test "Us_D_F: Zig passes to C" {
     try testing.expectOk(c.assert_Us_D_F(.{ .v1 = 6365, .v2 = 7.0, .v3 = 7.0 }));
+}
+test "Us_D_F: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_D_F());
+}
+test "Us_D_F: C passes to Zig" {
+    try testing.expectOk(c.send_Us_D_F());
+}
+test "Us_D_F: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_D_F(), .{ .v1 = 6365, .v2 = 7.0, .v3 = 7.0 });
 }
 pub export fn zig_assert_Us_D_F(lv: c.Us_D_F) c_int {
     var err: c_int = 0;
@@ -5707,7 +6751,7 @@ pub export fn zig_ret_Us_D_F() c.Us_D_F {
 //   int v3;
 // };
 
-test "Us_D_I layout" {
+test "Us_D_I: layout" {
     var lv: c.Us_D_I = undefined;
     try testing.expectSize(c.Us_D_I, ABISELECT(24, 16));
     try testing.expectAlign(c.Us_D_I, ABISELECT(8, 4));
@@ -5715,11 +6759,17 @@ test "Us_D_I layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Us_D_I C calls" {
-    try testing.expectEqual(c.ret_Us_D_I(), .{ .v1 = 29281, .v2 = -2.125, .v3 = 22252 });
-    try testing.expectOk(c.assert_ret_Us_D_I());
-    try testing.expectOk(c.send_Us_D_I());
+test "Us_D_I: Zig passes to C" {
     try testing.expectOk(c.assert_Us_D_I(.{ .v1 = 29281, .v2 = -2.125, .v3 = 22252 }));
+}
+test "Us_D_I: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_D_I());
+}
+test "Us_D_I: C passes to Zig" {
+    try testing.expectOk(c.send_Us_D_I());
+}
+test "Us_D_I: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_D_I(), .{ .v1 = 29281, .v2 = -2.125, .v3 = 22252 });
 }
 pub export fn zig_assert_Us_D_I(lv: c.Us_D_I) c_int {
     var err: c_int = 0;
@@ -5740,7 +6790,7 @@ pub export fn zig_ret_Us_D_I() c.Us_D_I {
 //   int *v3;
 // };
 
-test "Us_D_Ip layout" {
+test "Us_D_Ip: layout" {
     var lv: c.Us_D_Ip = undefined;
     try testing.expectSize(c.Us_D_Ip, ABISELECT(24, 16));
     try testing.expectAlign(c.Us_D_Ip, ABISELECT(8, 4));
@@ -5748,11 +6798,17 @@ test "Us_D_Ip layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Us_D_Ip C calls" {
-    try testing.expectEqual(c.ret_Us_D_Ip(), .{ .v1 = 23514, .v2 = 1.0, .v3 = null });
-    try testing.expectOk(c.assert_ret_Us_D_Ip());
-    try testing.expectOk(c.send_Us_D_Ip());
+test "Us_D_Ip: Zig passes to C" {
     try testing.expectOk(c.assert_Us_D_Ip(.{ .v1 = 23514, .v2 = 1.0, .v3 = null }));
+}
+test "Us_D_Ip: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_D_Ip());
+}
+test "Us_D_Ip: C passes to Zig" {
+    try testing.expectOk(c.send_Us_D_Ip());
+}
+test "Us_D_Ip: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_D_Ip(), .{ .v1 = 23514, .v2 = 1.0, .v3 = null });
 }
 pub export fn zig_assert_Us_D_Ip(lv: c.Us_D_Ip) c_int {
     var err: c_int = 0;
@@ -5773,7 +6829,7 @@ pub export fn zig_ret_Us_D_Ip() c.Us_D_Ip {
 //   __tsi64 v3;
 // };
 
-test "Us_D_L layout" {
+test "Us_D_L: layout" {
     var lv: c.Us_D_L = undefined;
     try testing.expectSize(c.Us_D_L, ABISELECT(24, 20));
     try testing.expectAlign(c.Us_D_L, ABISELECT(8, 4));
@@ -5781,11 +6837,17 @@ test "Us_D_L layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Us_D_L C calls" {
-    try testing.expectEqual(c.ret_Us_D_L(), .{ .v1 = 19759, .v2 = -0.25, .v3 = 511 });
-    try testing.expectOk(c.assert_ret_Us_D_L());
-    try testing.expectOk(c.send_Us_D_L());
+test "Us_D_L: Zig passes to C" {
     try testing.expectOk(c.assert_Us_D_L(.{ .v1 = 19759, .v2 = -0.25, .v3 = 511 }));
+}
+test "Us_D_L: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_D_L());
+}
+test "Us_D_L: C passes to Zig" {
+    try testing.expectOk(c.send_Us_D_L());
+}
+test "Us_D_L: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_D_L(), .{ .v1 = 19759, .v2 = -0.25, .v3 = 511 });
 }
 pub export fn zig_assert_Us_D_L(lv: c.Us_D_L) c_int {
     var err: c_int = 0;
@@ -5806,7 +6868,7 @@ pub export fn zig_ret_Us_D_L() c.Us_D_L {
 //   short v3;
 // };
 
-test "Us_D_S layout" {
+test "Us_D_S: layout" {
     var lv: c.Us_D_S = undefined;
     try testing.expectSize(c.Us_D_S, ABISELECT(24, 16));
     try testing.expectAlign(c.Us_D_S, ABISELECT(8, 4));
@@ -5814,11 +6876,17 @@ test "Us_D_S layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Us_D_S C calls" {
-    try testing.expectEqual(c.ret_Us_D_S(), .{ .v1 = 9683, .v2 = -0.25, .v3 = 7749 });
-    try testing.expectOk(c.assert_ret_Us_D_S());
-    try testing.expectOk(c.send_Us_D_S());
+test "Us_D_S: Zig passes to C" {
     try testing.expectOk(c.assert_Us_D_S(.{ .v1 = 9683, .v2 = -0.25, .v3 = 7749 }));
+}
+test "Us_D_S: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_D_S());
+}
+test "Us_D_S: C passes to Zig" {
+    try testing.expectOk(c.send_Us_D_S());
+}
+test "Us_D_S: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_D_S(), .{ .v1 = 9683, .v2 = -0.25, .v3 = 7749 });
 }
 pub export fn zig_assert_Us_D_S(lv: c.Us_D_S) c_int {
     var err: c_int = 0;
@@ -5839,7 +6907,7 @@ pub export fn zig_ret_Us_D_S() c.Us_D_S {
 //   unsigned char v3;
 // };
 
-test "Us_D_Uc layout" {
+test "Us_D_Uc: layout" {
     var lv: c.Us_D_Uc = undefined;
     try testing.expectSize(c.Us_D_Uc, ABISELECT(24, 16));
     try testing.expectAlign(c.Us_D_Uc, ABISELECT(8, 4));
@@ -5847,11 +6915,17 @@ test "Us_D_Uc layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Us_D_Uc C calls" {
-    try testing.expectEqual(c.ret_Us_D_Uc(), .{ .v1 = 29022, .v2 = -2.125, .v3 = 20 });
-    try testing.expectOk(c.assert_ret_Us_D_Uc());
-    try testing.expectOk(c.send_Us_D_Uc());
+test "Us_D_Uc: Zig passes to C" {
     try testing.expectOk(c.assert_Us_D_Uc(.{ .v1 = 29022, .v2 = -2.125, .v3 = 20 }));
+}
+test "Us_D_Uc: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_D_Uc());
+}
+test "Us_D_Uc: C passes to Zig" {
+    try testing.expectOk(c.send_Us_D_Uc());
+}
+test "Us_D_Uc: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_D_Uc(), .{ .v1 = 29022, .v2 = -2.125, .v3 = 20 });
 }
 pub export fn zig_assert_Us_D_Uc(lv: c.Us_D_Uc) c_int {
     var err: c_int = 0;
@@ -5872,7 +6946,7 @@ pub export fn zig_ret_Us_D_Uc() c.Us_D_Uc {
 //   unsigned int v3;
 // };
 
-test "Us_D_Ui layout" {
+test "Us_D_Ui: layout" {
     var lv: c.Us_D_Ui = undefined;
     try testing.expectSize(c.Us_D_Ui, ABISELECT(24, 16));
     try testing.expectAlign(c.Us_D_Ui, ABISELECT(8, 4));
@@ -5880,11 +6954,17 @@ test "Us_D_Ui layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Us_D_Ui C calls" {
-    try testing.expectEqual(c.ret_Us_D_Ui(), .{ .v1 = 32591, .v2 = 0.5, .v3 = 30269 });
-    try testing.expectOk(c.assert_ret_Us_D_Ui());
-    try testing.expectOk(c.send_Us_D_Ui());
+test "Us_D_Ui: Zig passes to C" {
     try testing.expectOk(c.assert_Us_D_Ui(.{ .v1 = 32591, .v2 = 0.5, .v3 = 30269 }));
+}
+test "Us_D_Ui: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_D_Ui());
+}
+test "Us_D_Ui: C passes to Zig" {
+    try testing.expectOk(c.send_Us_D_Ui());
+}
+test "Us_D_Ui: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_D_Ui(), .{ .v1 = 32591, .v2 = 0.5, .v3 = 30269 });
 }
 pub export fn zig_assert_Us_D_Ui(lv: c.Us_D_Ui) c_int {
     var err: c_int = 0;
@@ -5905,7 +6985,7 @@ pub export fn zig_ret_Us_D_Ui() c.Us_D_Ui {
 //   __tsu64 v3;
 // };
 
-test "Us_D_Ul layout" {
+test "Us_D_Ul: layout" {
     var lv: c.Us_D_Ul = undefined;
     try testing.expectSize(c.Us_D_Ul, ABISELECT(24, 20));
     try testing.expectAlign(c.Us_D_Ul, ABISELECT(8, 4));
@@ -5913,11 +6993,17 @@ test "Us_D_Ul layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Us_D_Ul C calls" {
-    try testing.expectEqual(c.ret_Us_D_Ul(), .{ .v1 = 4318, .v2 = 7.0, .v3 = 28610 });
-    try testing.expectOk(c.assert_ret_Us_D_Ul());
-    try testing.expectOk(c.send_Us_D_Ul());
+test "Us_D_Ul: Zig passes to C" {
     try testing.expectOk(c.assert_Us_D_Ul(.{ .v1 = 4318, .v2 = 7.0, .v3 = 28610 }));
+}
+test "Us_D_Ul: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_D_Ul());
+}
+test "Us_D_Ul: C passes to Zig" {
+    try testing.expectOk(c.send_Us_D_Ul());
+}
+test "Us_D_Ul: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_D_Ul(), .{ .v1 = 4318, .v2 = 7.0, .v3 = 28610 });
 }
 pub export fn zig_assert_Us_D_Ul(lv: c.Us_D_Ul) c_int {
     var err: c_int = 0;
@@ -5938,7 +7024,7 @@ pub export fn zig_ret_Us_D_Ul() c.Us_D_Ul {
 //   unsigned short v3;
 // };
 
-test "Us_D_Us layout" {
+test "Us_D_Us: layout" {
     var lv: c.Us_D_Us = undefined;
     try testing.expectSize(c.Us_D_Us, ABISELECT(24, 16));
     try testing.expectAlign(c.Us_D_Us, ABISELECT(8, 4));
@@ -5946,11 +7032,17 @@ test "Us_D_Us layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Us_D_Us C calls" {
-    try testing.expectEqual(c.ret_Us_D_Us(), .{ .v1 = 30198, .v2 = 4.5, .v3 = 22443 });
-    try testing.expectOk(c.assert_ret_Us_D_Us());
-    try testing.expectOk(c.send_Us_D_Us());
+test "Us_D_Us: Zig passes to C" {
     try testing.expectOk(c.assert_Us_D_Us(.{ .v1 = 30198, .v2 = 4.5, .v3 = 22443 }));
+}
+test "Us_D_Us: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_D_Us());
+}
+test "Us_D_Us: C passes to Zig" {
+    try testing.expectOk(c.send_Us_D_Us());
+}
+test "Us_D_Us: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_D_Us(), .{ .v1 = 30198, .v2 = 4.5, .v3 = 22443 });
 }
 pub export fn zig_assert_Us_D_Us(lv: c.Us_D_Us) c_int {
     var err: c_int = 0;
@@ -5971,7 +7063,7 @@ pub export fn zig_ret_Us_D_Us() c.Us_D_Us {
 //   void *v3;
 // };
 
-test "Us_D_Vp layout" {
+test "Us_D_Vp: layout" {
     var lv: c.Us_D_Vp = undefined;
     try testing.expectSize(c.Us_D_Vp, ABISELECT(24, 16));
     try testing.expectAlign(c.Us_D_Vp, ABISELECT(8, 4));
@@ -5979,11 +7071,17 @@ test "Us_D_Vp layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Us_D_Vp C calls" {
-    try testing.expectEqual(c.ret_Us_D_Vp(), .{ .v1 = 1904, .v2 = 1.0, .v3 = null });
-    try testing.expectOk(c.assert_ret_Us_D_Vp());
-    try testing.expectOk(c.send_Us_D_Vp());
+test "Us_D_Vp: Zig passes to C" {
     try testing.expectOk(c.assert_Us_D_Vp(.{ .v1 = 1904, .v2 = 1.0, .v3 = null }));
+}
+test "Us_D_Vp: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_D_Vp());
+}
+test "Us_D_Vp: C passes to Zig" {
+    try testing.expectOk(c.send_Us_D_Vp());
+}
+test "Us_D_Vp: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_D_Vp(), .{ .v1 = 1904, .v2 = 1.0, .v3 = null });
 }
 pub export fn zig_assert_Us_D_Vp(lv: c.Us_D_Vp) c_int {
     var err: c_int = 0;
@@ -6003,18 +7101,24 @@ pub export fn zig_ret_Us_D_Vp() c.Us_D_Vp {
 //   float v2;
 // };
 
-test "Us_F layout" {
+test "Us_F: layout" {
     var lv: c.Us_F = undefined;
     try testing.expectSize(c.Us_F, 8);
     try testing.expectAlign(c.Us_F, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
 }
-test "Us_F C calls" {
-    try testing.expectEqual(c.ret_Us_F(), .{ .v1 = 26991, .v2 = 0.5 });
-    try testing.expectOk(c.assert_ret_Us_F());
-    try testing.expectOk(c.send_Us_F());
+test "Us_F: Zig passes to C" {
     try testing.expectOk(c.assert_Us_F(.{ .v1 = 26991, .v2 = 0.5 }));
+}
+test "Us_F: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_F());
+}
+test "Us_F: C passes to Zig" {
+    try testing.expectOk(c.send_Us_F());
+}
+test "Us_F: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_F(), .{ .v1 = 26991, .v2 = 0.5 });
 }
 pub export fn zig_assert_Us_F(lv: c.Us_F) c_int {
     var err: c_int = 0;
@@ -6034,7 +7138,7 @@ pub export fn zig_ret_Us_F() c.Us_F {
 //   char v3;
 // };
 
-test "Us_F_C layout" {
+test "Us_F_C: layout" {
     var lv: c.Us_F_C = undefined;
     try testing.expectSize(c.Us_F_C, 12);
     try testing.expectAlign(c.Us_F_C, 4);
@@ -6042,11 +7146,17 @@ test "Us_F_C layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
-test "Us_F_C C calls" {
-    try testing.expectEqual(c.ret_Us_F_C(), .{ .v1 = 27059, .v2 = 7.0, .v3 = 87 });
-    try testing.expectOk(c.assert_ret_Us_F_C());
-    try testing.expectOk(c.send_Us_F_C());
+test "Us_F_C: Zig passes to C" {
     try testing.expectOk(c.assert_Us_F_C(.{ .v1 = 27059, .v2 = 7.0, .v3 = 87 }));
+}
+test "Us_F_C: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_F_C());
+}
+test "Us_F_C: C passes to Zig" {
+    try testing.expectOk(c.send_Us_F_C());
+}
+test "Us_F_C: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_F_C(), .{ .v1 = 27059, .v2 = 7.0, .v3 = 87 });
 }
 pub export fn zig_assert_Us_F_C(lv: c.Us_F_C) c_int {
     var err: c_int = 0;
@@ -6067,7 +7177,7 @@ pub export fn zig_ret_Us_F_C() c.Us_F_C {
 //   double v3;
 // };
 
-test "Us_F_D layout" {
+test "Us_F_D: layout" {
     var lv: c.Us_F_D = undefined;
     try testing.expectSize(c.Us_F_D, 16);
     try testing.expectAlign(c.Us_F_D, ABISELECT(8, 4));
@@ -6075,11 +7185,17 @@ test "Us_F_D layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
-test "Us_F_D C calls" {
-    try testing.expectEqual(c.ret_Us_F_D(), .{ .v1 = 18964, .v2 = 7.0, .v3 = 1.0 });
+test "Us_F_D: Zig passes to C" {
+    try testing.expectFail(c.assert_Us_F_D(.{ .v1 = 18964, .v2 = 7.0, .v3 = 1.0 }));
+}
+test "Us_F_D: Zig returns to C" {
     try testing.expectOk(c.assert_ret_Us_F_D());
-    try testing.expectOk(c.send_Us_F_D());
-    try testing.expectOk(c.assert_Us_F_D(.{ .v1 = 18964, .v2 = 7.0, .v3 = 1.0 }));
+}
+test "Us_F_D: C passes to Zig" {
+    try testing.expectFail(c.send_Us_F_D());
+}
+test "Us_F_D: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_F_D(), .{ .v1 = 18964, .v2 = 7.0, .v3 = 1.0 });
 }
 pub export fn zig_assert_Us_F_D(lv: c.Us_F_D) c_int {
     var err: c_int = 0;
@@ -6100,7 +7216,7 @@ pub export fn zig_ret_Us_F_D() c.Us_F_D {
 //   float v3;
 // };
 
-test "Us_F_F layout" {
+test "Us_F_F: layout" {
     var lv: c.Us_F_F = undefined;
     try testing.expectSize(c.Us_F_F, 12);
     try testing.expectAlign(c.Us_F_F, 4);
@@ -6108,11 +7224,17 @@ test "Us_F_F layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
-test "Us_F_F C calls" {
-    try testing.expectEqual(c.ret_Us_F_F(), .{ .v1 = 18550, .v2 = 7.0, .v3 = 1.0 });
+test "Us_F_F: Zig passes to C" {
+    try testing.expectFail(c.assert_Us_F_F(.{ .v1 = 18550, .v2 = 7.0, .v3 = 1.0 }));
+}
+test "Us_F_F: Zig returns to C" {
     try testing.expectOk(c.assert_ret_Us_F_F());
-    try testing.expectOk(c.send_Us_F_F());
-    try testing.expectOk(c.assert_Us_F_F(.{ .v1 = 18550, .v2 = 7.0, .v3 = 1.0 }));
+}
+test "Us_F_F: C passes to Zig" {
+    try testing.expectFail(c.send_Us_F_F());
+}
+test "Us_F_F: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_F_F(), .{ .v1 = 18550, .v2 = 7.0, .v3 = 1.0 });
 }
 pub export fn zig_assert_Us_F_F(lv: c.Us_F_F) c_int {
     var err: c_int = 0;
@@ -6133,7 +7255,7 @@ pub export fn zig_ret_Us_F_F() c.Us_F_F {
 //   int v3;
 // };
 
-test "Us_F_I layout" {
+test "Us_F_I: layout" {
     var lv: c.Us_F_I = undefined;
     try testing.expectSize(c.Us_F_I, 12);
     try testing.expectAlign(c.Us_F_I, 4);
@@ -6141,11 +7263,17 @@ test "Us_F_I layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
-test "Us_F_I C calls" {
-    try testing.expectEqual(c.ret_Us_F_I(), .{ .v1 = 22098, .v2 = -2.125, .v3 = 5743 });
-    try testing.expectOk(c.assert_ret_Us_F_I());
-    try testing.expectOk(c.send_Us_F_I());
+test "Us_F_I: Zig passes to C" {
     try testing.expectOk(c.assert_Us_F_I(.{ .v1 = 22098, .v2 = -2.125, .v3 = 5743 }));
+}
+test "Us_F_I: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_F_I());
+}
+test "Us_F_I: C passes to Zig" {
+    try testing.expectOk(c.send_Us_F_I());
+}
+test "Us_F_I: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_F_I(), .{ .v1 = 22098, .v2 = -2.125, .v3 = 5743 });
 }
 pub export fn zig_assert_Us_F_I(lv: c.Us_F_I) c_int {
     var err: c_int = 0;
@@ -6166,7 +7294,7 @@ pub export fn zig_ret_Us_F_I() c.Us_F_I {
 //   int *v3;
 // };
 
-test "Us_F_Ip layout" {
+test "Us_F_Ip: layout" {
     var lv: c.Us_F_Ip = undefined;
     try testing.expectSize(c.Us_F_Ip, ABISELECT(16, 12));
     try testing.expectAlign(c.Us_F_Ip, ABISELECT(8, 4));
@@ -6174,11 +7302,17 @@ test "Us_F_Ip layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
-test "Us_F_Ip C calls" {
-    try testing.expectEqual(c.ret_Us_F_Ip(), .{ .v1 = 5299, .v2 = -0.25, .v3 = null });
-    try testing.expectOk(c.assert_ret_Us_F_Ip());
-    try testing.expectOk(c.send_Us_F_Ip());
+test "Us_F_Ip: Zig passes to C" {
     try testing.expectOk(c.assert_Us_F_Ip(.{ .v1 = 5299, .v2 = -0.25, .v3 = null }));
+}
+test "Us_F_Ip: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_F_Ip());
+}
+test "Us_F_Ip: C passes to Zig" {
+    try testing.expectOk(c.send_Us_F_Ip());
+}
+test "Us_F_Ip: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_F_Ip(), .{ .v1 = 5299, .v2 = -0.25, .v3 = null });
 }
 pub export fn zig_assert_Us_F_Ip(lv: c.Us_F_Ip) c_int {
     var err: c_int = 0;
@@ -6199,7 +7333,7 @@ pub export fn zig_ret_Us_F_Ip() c.Us_F_Ip {
 //   __tsi64 v3;
 // };
 
-test "Us_F_L layout" {
+test "Us_F_L: layout" {
     var lv: c.Us_F_L = undefined;
     try testing.expectSize(c.Us_F_L, 16);
     try testing.expectAlign(c.Us_F_L, ABISELECT(8, 4));
@@ -6207,11 +7341,17 @@ test "Us_F_L layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
-test "Us_F_L C calls" {
-    try testing.expectEqual(c.ret_Us_F_L(), .{ .v1 = 27576, .v2 = 0.875, .v3 = 12334 });
-    try testing.expectOk(c.assert_ret_Us_F_L());
-    try testing.expectOk(c.send_Us_F_L());
+test "Us_F_L: Zig passes to C" {
     try testing.expectOk(c.assert_Us_F_L(.{ .v1 = 27576, .v2 = 0.875, .v3 = 12334 }));
+}
+test "Us_F_L: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_F_L());
+}
+test "Us_F_L: C passes to Zig" {
+    try testing.expectOk(c.send_Us_F_L());
+}
+test "Us_F_L: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_F_L(), .{ .v1 = 27576, .v2 = 0.875, .v3 = 12334 });
 }
 pub export fn zig_assert_Us_F_L(lv: c.Us_F_L) c_int {
     var err: c_int = 0;
@@ -6232,7 +7372,7 @@ pub export fn zig_ret_Us_F_L() c.Us_F_L {
 //   short v3;
 // };
 
-test "Us_F_S layout" {
+test "Us_F_S: layout" {
     var lv: c.Us_F_S = undefined;
     try testing.expectSize(c.Us_F_S, 12);
     try testing.expectAlign(c.Us_F_S, 4);
@@ -6240,11 +7380,17 @@ test "Us_F_S layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
-test "Us_F_S C calls" {
-    try testing.expectEqual(c.ret_Us_F_S(), .{ .v1 = 1064, .v2 = -2.125, .v3 = 21363 });
-    try testing.expectOk(c.assert_ret_Us_F_S());
-    try testing.expectOk(c.send_Us_F_S());
+test "Us_F_S: Zig passes to C" {
     try testing.expectOk(c.assert_Us_F_S(.{ .v1 = 1064, .v2 = -2.125, .v3 = 21363 }));
+}
+test "Us_F_S: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_F_S());
+}
+test "Us_F_S: C passes to Zig" {
+    try testing.expectOk(c.send_Us_F_S());
+}
+test "Us_F_S: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_F_S(), .{ .v1 = 1064, .v2 = -2.125, .v3 = 21363 });
 }
 pub export fn zig_assert_Us_F_S(lv: c.Us_F_S) c_int {
     var err: c_int = 0;
@@ -6265,7 +7411,7 @@ pub export fn zig_ret_Us_F_S() c.Us_F_S {
 //   unsigned char v3;
 // };
 
-test "Us_F_Uc layout" {
+test "Us_F_Uc: layout" {
     var lv: c.Us_F_Uc = undefined;
     try testing.expectSize(c.Us_F_Uc, 12);
     try testing.expectAlign(c.Us_F_Uc, 4);
@@ -6273,11 +7419,17 @@ test "Us_F_Uc layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
-test "Us_F_Uc C calls" {
-    try testing.expectEqual(c.ret_Us_F_Uc(), .{ .v1 = 7692, .v2 = 4.5, .v3 = 76 });
-    try testing.expectOk(c.assert_ret_Us_F_Uc());
-    try testing.expectOk(c.send_Us_F_Uc());
+test "Us_F_Uc: Zig passes to C" {
     try testing.expectOk(c.assert_Us_F_Uc(.{ .v1 = 7692, .v2 = 4.5, .v3 = 76 }));
+}
+test "Us_F_Uc: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_F_Uc());
+}
+test "Us_F_Uc: C passes to Zig" {
+    try testing.expectOk(c.send_Us_F_Uc());
+}
+test "Us_F_Uc: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_F_Uc(), .{ .v1 = 7692, .v2 = 4.5, .v3 = 76 });
 }
 pub export fn zig_assert_Us_F_Uc(lv: c.Us_F_Uc) c_int {
     var err: c_int = 0;
@@ -6298,7 +7450,7 @@ pub export fn zig_ret_Us_F_Uc() c.Us_F_Uc {
 //   unsigned int v3;
 // };
 
-test "Us_F_Ui layout" {
+test "Us_F_Ui: layout" {
     var lv: c.Us_F_Ui = undefined;
     try testing.expectSize(c.Us_F_Ui, 12);
     try testing.expectAlign(c.Us_F_Ui, 4);
@@ -6306,11 +7458,17 @@ test "Us_F_Ui layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
-test "Us_F_Ui C calls" {
-    try testing.expectEqual(c.ret_Us_F_Ui(), .{ .v1 = 26868, .v2 = -0.25, .v3 = 26494 });
-    try testing.expectOk(c.assert_ret_Us_F_Ui());
-    try testing.expectOk(c.send_Us_F_Ui());
+test "Us_F_Ui: Zig passes to C" {
     try testing.expectOk(c.assert_Us_F_Ui(.{ .v1 = 26868, .v2 = -0.25, .v3 = 26494 }));
+}
+test "Us_F_Ui: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_F_Ui());
+}
+test "Us_F_Ui: C passes to Zig" {
+    try testing.expectOk(c.send_Us_F_Ui());
+}
+test "Us_F_Ui: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_F_Ui(), .{ .v1 = 26868, .v2 = -0.25, .v3 = 26494 });
 }
 pub export fn zig_assert_Us_F_Ui(lv: c.Us_F_Ui) c_int {
     var err: c_int = 0;
@@ -6331,7 +7489,7 @@ pub export fn zig_ret_Us_F_Ui() c.Us_F_Ui {
 //   __tsu64 v3;
 // };
 
-test "Us_F_Ul layout" {
+test "Us_F_Ul: layout" {
     var lv: c.Us_F_Ul = undefined;
     try testing.expectSize(c.Us_F_Ul, 16);
     try testing.expectAlign(c.Us_F_Ul, ABISELECT(8, 4));
@@ -6339,11 +7497,17 @@ test "Us_F_Ul layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
-test "Us_F_Ul C calls" {
-    try testing.expectEqual(c.ret_Us_F_Ul(), .{ .v1 = 19238, .v2 = 7.0, .v3 = 27012 });
-    try testing.expectOk(c.assert_ret_Us_F_Ul());
-    try testing.expectOk(c.send_Us_F_Ul());
+test "Us_F_Ul: Zig passes to C" {
     try testing.expectOk(c.assert_Us_F_Ul(.{ .v1 = 19238, .v2 = 7.0, .v3 = 27012 }));
+}
+test "Us_F_Ul: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_F_Ul());
+}
+test "Us_F_Ul: C passes to Zig" {
+    try testing.expectOk(c.send_Us_F_Ul());
+}
+test "Us_F_Ul: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_F_Ul(), .{ .v1 = 19238, .v2 = 7.0, .v3 = 27012 });
 }
 pub export fn zig_assert_Us_F_Ul(lv: c.Us_F_Ul) c_int {
     var err: c_int = 0;
@@ -6364,7 +7528,7 @@ pub export fn zig_ret_Us_F_Ul() c.Us_F_Ul {
 //   unsigned short v3;
 // };
 
-test "Us_F_Us layout" {
+test "Us_F_Us: layout" {
     var lv: c.Us_F_Us = undefined;
     try testing.expectSize(c.Us_F_Us, 12);
     try testing.expectAlign(c.Us_F_Us, 4);
@@ -6372,11 +7536,17 @@ test "Us_F_Us layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
-test "Us_F_Us C calls" {
-    try testing.expectEqual(c.ret_Us_F_Us(), .{ .v1 = 24992, .v2 = 7.0, .v3 = 6846 });
-    try testing.expectOk(c.assert_ret_Us_F_Us());
-    try testing.expectOk(c.send_Us_F_Us());
+test "Us_F_Us: Zig passes to C" {
     try testing.expectOk(c.assert_Us_F_Us(.{ .v1 = 24992, .v2 = 7.0, .v3 = 6846 }));
+}
+test "Us_F_Us: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_F_Us());
+}
+test "Us_F_Us: C passes to Zig" {
+    try testing.expectOk(c.send_Us_F_Us());
+}
+test "Us_F_Us: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_F_Us(), .{ .v1 = 24992, .v2 = 7.0, .v3 = 6846 });
 }
 pub export fn zig_assert_Us_F_Us(lv: c.Us_F_Us) c_int {
     var err: c_int = 0;
@@ -6397,7 +7567,7 @@ pub export fn zig_ret_Us_F_Us() c.Us_F_Us {
 //   void *v3;
 // };
 
-test "Us_F_Vp layout" {
+test "Us_F_Vp: layout" {
     var lv: c.Us_F_Vp = undefined;
     try testing.expectSize(c.Us_F_Vp, ABISELECT(16, 12));
     try testing.expectAlign(c.Us_F_Vp, ABISELECT(8, 4));
@@ -6405,11 +7575,17 @@ test "Us_F_Vp layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
-test "Us_F_Vp C calls" {
-    try testing.expectEqual(c.ret_Us_F_Vp(), .{ .v1 = 17908, .v2 = -0.25, .v3 = null });
-    try testing.expectOk(c.assert_ret_Us_F_Vp());
-    try testing.expectOk(c.send_Us_F_Vp());
+test "Us_F_Vp: Zig passes to C" {
     try testing.expectOk(c.assert_Us_F_Vp(.{ .v1 = 17908, .v2 = -0.25, .v3 = null }));
+}
+test "Us_F_Vp: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_F_Vp());
+}
+test "Us_F_Vp: C passes to Zig" {
+    try testing.expectOk(c.send_Us_F_Vp());
+}
+test "Us_F_Vp: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_F_Vp(), .{ .v1 = 17908, .v2 = -0.25, .v3 = null });
 }
 pub export fn zig_assert_Us_F_Vp(lv: c.Us_F_Vp) c_int {
     var err: c_int = 0;
@@ -6429,18 +7605,24 @@ pub export fn zig_ret_Us_F_Vp() c.Us_F_Vp {
 //   int v2;
 // };
 
-test "Us_I layout" {
+test "Us_I: layout" {
     var lv: c.Us_I = undefined;
     try testing.expectSize(c.Us_I, 8);
     try testing.expectAlign(c.Us_I, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
 }
-test "Us_I C calls" {
-    try testing.expectEqual(c.ret_Us_I(), .{ .v1 = 30600, .v2 = 1719 });
-    try testing.expectOk(c.assert_ret_Us_I());
-    try testing.expectOk(c.send_Us_I());
+test "Us_I: Zig passes to C" {
     try testing.expectOk(c.assert_Us_I(.{ .v1 = 30600, .v2 = 1719 }));
+}
+test "Us_I: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_I());
+}
+test "Us_I: C passes to Zig" {
+    try testing.expectOk(c.send_Us_I());
+}
+test "Us_I: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_I(), .{ .v1 = 30600, .v2 = 1719 });
 }
 pub export fn zig_assert_Us_I(lv: c.Us_I) c_int {
     var err: c_int = 0;
@@ -6460,7 +7642,7 @@ pub export fn zig_ret_Us_I() c.Us_I {
 //   char v3;
 // };
 
-test "Us_I_C layout" {
+test "Us_I_C: layout" {
     var lv: c.Us_I_C = undefined;
     try testing.expectSize(c.Us_I_C, 12);
     try testing.expectAlign(c.Us_I_C, 4);
@@ -6468,11 +7650,17 @@ test "Us_I_C layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
-test "Us_I_C C calls" {
-    try testing.expectEqual(c.ret_Us_I_C(), .{ .v1 = 13661, .v2 = 5376, .v3 = 111 });
-    try testing.expectOk(c.assert_ret_Us_I_C());
-    try testing.expectOk(c.send_Us_I_C());
+test "Us_I_C: Zig passes to C" {
     try testing.expectOk(c.assert_Us_I_C(.{ .v1 = 13661, .v2 = 5376, .v3 = 111 }));
+}
+test "Us_I_C: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_I_C());
+}
+test "Us_I_C: C passes to Zig" {
+    try testing.expectOk(c.send_Us_I_C());
+}
+test "Us_I_C: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_I_C(), .{ .v1 = 13661, .v2 = 5376, .v3 = 111 });
 }
 pub export fn zig_assert_Us_I_C(lv: c.Us_I_C) c_int {
     var err: c_int = 0;
@@ -6493,7 +7681,7 @@ pub export fn zig_ret_Us_I_C() c.Us_I_C {
 //   double v3;
 // };
 
-test "Us_I_D layout" {
+test "Us_I_D: layout" {
     var lv: c.Us_I_D = undefined;
     try testing.expectSize(c.Us_I_D, 16);
     try testing.expectAlign(c.Us_I_D, ABISELECT(8, 4));
@@ -6501,11 +7689,17 @@ test "Us_I_D layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
-test "Us_I_D C calls" {
-    try testing.expectEqual(c.ret_Us_I_D(), .{ .v1 = 8903, .v2 = 26042, .v3 = -2.125 });
+test "Us_I_D: Zig passes to C" {
+    try testing.expectFail(c.assert_Us_I_D(.{ .v1 = 8903, .v2 = 26042, .v3 = -2.125 }));
+}
+test "Us_I_D: Zig returns to C" {
     try testing.expectOk(c.assert_ret_Us_I_D());
-    try testing.expectOk(c.send_Us_I_D());
-    try testing.expectOk(c.assert_Us_I_D(.{ .v1 = 8903, .v2 = 26042, .v3 = -2.125 }));
+}
+test "Us_I_D: C passes to Zig" {
+    try testing.expectFail(c.send_Us_I_D());
+}
+test "Us_I_D: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_I_D(), .{ .v1 = 8903, .v2 = 26042, .v3 = -2.125 });
 }
 pub export fn zig_assert_Us_I_D(lv: c.Us_I_D) c_int {
     var err: c_int = 0;
@@ -6526,7 +7720,7 @@ pub export fn zig_ret_Us_I_D() c.Us_I_D {
 //   float v3;
 // };
 
-test "Us_I_F layout" {
+test "Us_I_F: layout" {
     var lv: c.Us_I_F = undefined;
     try testing.expectSize(c.Us_I_F, 12);
     try testing.expectAlign(c.Us_I_F, 4);
@@ -6534,11 +7728,17 @@ test "Us_I_F layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
-test "Us_I_F C calls" {
-    try testing.expectEqual(c.ret_Us_I_F(), .{ .v1 = 20027, .v2 = 12274, .v3 = 0.875 });
+test "Us_I_F: Zig passes to C" {
+    try testing.expectFail(c.assert_Us_I_F(.{ .v1 = 20027, .v2 = 12274, .v3 = 0.875 }));
+}
+test "Us_I_F: Zig returns to C" {
     try testing.expectOk(c.assert_ret_Us_I_F());
-    try testing.expectOk(c.send_Us_I_F());
-    try testing.expectOk(c.assert_Us_I_F(.{ .v1 = 20027, .v2 = 12274, .v3 = 0.875 }));
+}
+test "Us_I_F: C passes to Zig" {
+    try testing.expectFail(c.send_Us_I_F());
+}
+test "Us_I_F: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_I_F(), .{ .v1 = 20027, .v2 = 12274, .v3 = 0.875 });
 }
 pub export fn zig_assert_Us_I_F(lv: c.Us_I_F) c_int {
     var err: c_int = 0;
@@ -6559,7 +7759,7 @@ pub export fn zig_ret_Us_I_F() c.Us_I_F {
 //   int v3;
 // };
 
-test "Us_I_I layout" {
+test "Us_I_I: layout" {
     var lv: c.Us_I_I = undefined;
     try testing.expectSize(c.Us_I_I, 12);
     try testing.expectAlign(c.Us_I_I, 4);
@@ -6567,11 +7767,17 @@ test "Us_I_I layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
-test "Us_I_I C calls" {
-    try testing.expectEqual(c.ret_Us_I_I(), .{ .v1 = 16614, .v2 = 20431, .v3 = 2793 });
-    try testing.expectOk(c.assert_ret_Us_I_I());
-    try testing.expectOk(c.send_Us_I_I());
+test "Us_I_I: Zig passes to C" {
     try testing.expectOk(c.assert_Us_I_I(.{ .v1 = 16614, .v2 = 20431, .v3 = 2793 }));
+}
+test "Us_I_I: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_I_I());
+}
+test "Us_I_I: C passes to Zig" {
+    try testing.expectOk(c.send_Us_I_I());
+}
+test "Us_I_I: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_I_I(), .{ .v1 = 16614, .v2 = 20431, .v3 = 2793 });
 }
 pub export fn zig_assert_Us_I_I(lv: c.Us_I_I) c_int {
     var err: c_int = 0;
@@ -6592,7 +7798,7 @@ pub export fn zig_ret_Us_I_I() c.Us_I_I {
 //   int *v3;
 // };
 
-test "Us_I_Ip layout" {
+test "Us_I_Ip: layout" {
     var lv: c.Us_I_Ip = undefined;
     try testing.expectSize(c.Us_I_Ip, ABISELECT(16, 12));
     try testing.expectAlign(c.Us_I_Ip, ABISELECT(8, 4));
@@ -6600,11 +7806,17 @@ test "Us_I_Ip layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
-test "Us_I_Ip C calls" {
-    try testing.expectEqual(c.ret_Us_I_Ip(), .{ .v1 = 28542, .v2 = 11599, .v3 = null });
-    try testing.expectOk(c.assert_ret_Us_I_Ip());
-    try testing.expectOk(c.send_Us_I_Ip());
+test "Us_I_Ip: Zig passes to C" {
     try testing.expectOk(c.assert_Us_I_Ip(.{ .v1 = 28542, .v2 = 11599, .v3 = null }));
+}
+test "Us_I_Ip: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_I_Ip());
+}
+test "Us_I_Ip: C passes to Zig" {
+    try testing.expectOk(c.send_Us_I_Ip());
+}
+test "Us_I_Ip: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_I_Ip(), .{ .v1 = 28542, .v2 = 11599, .v3 = null });
 }
 pub export fn zig_assert_Us_I_Ip(lv: c.Us_I_Ip) c_int {
     var err: c_int = 0;
@@ -6625,7 +7837,7 @@ pub export fn zig_ret_Us_I_Ip() c.Us_I_Ip {
 //   __tsi64 v3;
 // };
 
-test "Us_I_L layout" {
+test "Us_I_L: layout" {
     var lv: c.Us_I_L = undefined;
     try testing.expectSize(c.Us_I_L, 16);
     try testing.expectAlign(c.Us_I_L, ABISELECT(8, 4));
@@ -6633,11 +7845,17 @@ test "Us_I_L layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
-test "Us_I_L C calls" {
-    try testing.expectEqual(c.ret_Us_I_L(), .{ .v1 = 10367, .v2 = 14385, .v3 = 15994 });
-    try testing.expectOk(c.assert_ret_Us_I_L());
-    try testing.expectOk(c.send_Us_I_L());
+test "Us_I_L: Zig passes to C" {
     try testing.expectOk(c.assert_Us_I_L(.{ .v1 = 10367, .v2 = 14385, .v3 = 15994 }));
+}
+test "Us_I_L: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_I_L());
+}
+test "Us_I_L: C passes to Zig" {
+    try testing.expectOk(c.send_Us_I_L());
+}
+test "Us_I_L: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_I_L(), .{ .v1 = 10367, .v2 = 14385, .v3 = 15994 });
 }
 pub export fn zig_assert_Us_I_L(lv: c.Us_I_L) c_int {
     var err: c_int = 0;
@@ -6658,7 +7876,7 @@ pub export fn zig_ret_Us_I_L() c.Us_I_L {
 //   short v3;
 // };
 
-test "Us_I_S layout" {
+test "Us_I_S: layout" {
     var lv: c.Us_I_S = undefined;
     try testing.expectSize(c.Us_I_S, 12);
     try testing.expectAlign(c.Us_I_S, 4);
@@ -6666,11 +7884,17 @@ test "Us_I_S layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
-test "Us_I_S C calls" {
-    try testing.expectEqual(c.ret_Us_I_S(), .{ .v1 = 11579, .v2 = 6917, .v3 = 7261 });
-    try testing.expectOk(c.assert_ret_Us_I_S());
-    try testing.expectOk(c.send_Us_I_S());
+test "Us_I_S: Zig passes to C" {
     try testing.expectOk(c.assert_Us_I_S(.{ .v1 = 11579, .v2 = 6917, .v3 = 7261 }));
+}
+test "Us_I_S: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_I_S());
+}
+test "Us_I_S: C passes to Zig" {
+    try testing.expectOk(c.send_Us_I_S());
+}
+test "Us_I_S: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_I_S(), .{ .v1 = 11579, .v2 = 6917, .v3 = 7261 });
 }
 pub export fn zig_assert_Us_I_S(lv: c.Us_I_S) c_int {
     var err: c_int = 0;
@@ -6691,7 +7915,7 @@ pub export fn zig_ret_Us_I_S() c.Us_I_S {
 //   unsigned char v3;
 // };
 
-test "Us_I_Uc layout" {
+test "Us_I_Uc: layout" {
     var lv: c.Us_I_Uc = undefined;
     try testing.expectSize(c.Us_I_Uc, 12);
     try testing.expectAlign(c.Us_I_Uc, 4);
@@ -6699,11 +7923,17 @@ test "Us_I_Uc layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
-test "Us_I_Uc C calls" {
-    try testing.expectEqual(c.ret_Us_I_Uc(), .{ .v1 = 26644, .v2 = 29019, .v3 = 82 });
-    try testing.expectOk(c.assert_ret_Us_I_Uc());
-    try testing.expectOk(c.send_Us_I_Uc());
+test "Us_I_Uc: Zig passes to C" {
     try testing.expectOk(c.assert_Us_I_Uc(.{ .v1 = 26644, .v2 = 29019, .v3 = 82 }));
+}
+test "Us_I_Uc: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_I_Uc());
+}
+test "Us_I_Uc: C passes to Zig" {
+    try testing.expectOk(c.send_Us_I_Uc());
+}
+test "Us_I_Uc: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_I_Uc(), .{ .v1 = 26644, .v2 = 29019, .v3 = 82 });
 }
 pub export fn zig_assert_Us_I_Uc(lv: c.Us_I_Uc) c_int {
     var err: c_int = 0;
@@ -6724,7 +7954,7 @@ pub export fn zig_ret_Us_I_Uc() c.Us_I_Uc {
 //   unsigned int v3;
 // };
 
-test "Us_I_Ui layout" {
+test "Us_I_Ui: layout" {
     var lv: c.Us_I_Ui = undefined;
     try testing.expectSize(c.Us_I_Ui, 12);
     try testing.expectAlign(c.Us_I_Ui, 4);
@@ -6732,11 +7962,17 @@ test "Us_I_Ui layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
-test "Us_I_Ui C calls" {
-    try testing.expectEqual(c.ret_Us_I_Ui(), .{ .v1 = 19361, .v2 = 28469, .v3 = 7208 });
-    try testing.expectOk(c.assert_ret_Us_I_Ui());
-    try testing.expectOk(c.send_Us_I_Ui());
+test "Us_I_Ui: Zig passes to C" {
     try testing.expectOk(c.assert_Us_I_Ui(.{ .v1 = 19361, .v2 = 28469, .v3 = 7208 }));
+}
+test "Us_I_Ui: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_I_Ui());
+}
+test "Us_I_Ui: C passes to Zig" {
+    try testing.expectOk(c.send_Us_I_Ui());
+}
+test "Us_I_Ui: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_I_Ui(), .{ .v1 = 19361, .v2 = 28469, .v3 = 7208 });
 }
 pub export fn zig_assert_Us_I_Ui(lv: c.Us_I_Ui) c_int {
     var err: c_int = 0;
@@ -6757,7 +7993,7 @@ pub export fn zig_ret_Us_I_Ui() c.Us_I_Ui {
 //   __tsu64 v3;
 // };
 
-test "Us_I_Ul layout" {
+test "Us_I_Ul: layout" {
     var lv: c.Us_I_Ul = undefined;
     try testing.expectSize(c.Us_I_Ul, 16);
     try testing.expectAlign(c.Us_I_Ul, ABISELECT(8, 4));
@@ -6765,11 +8001,17 @@ test "Us_I_Ul layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
-test "Us_I_Ul C calls" {
-    try testing.expectEqual(c.ret_Us_I_Ul(), .{ .v1 = 28076, .v2 = 27483, .v3 = 30933 });
-    try testing.expectOk(c.assert_ret_Us_I_Ul());
-    try testing.expectOk(c.send_Us_I_Ul());
+test "Us_I_Ul: Zig passes to C" {
     try testing.expectOk(c.assert_Us_I_Ul(.{ .v1 = 28076, .v2 = 27483, .v3 = 30933 }));
+}
+test "Us_I_Ul: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_I_Ul());
+}
+test "Us_I_Ul: C passes to Zig" {
+    try testing.expectOk(c.send_Us_I_Ul());
+}
+test "Us_I_Ul: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_I_Ul(), .{ .v1 = 28076, .v2 = 27483, .v3 = 30933 });
 }
 pub export fn zig_assert_Us_I_Ul(lv: c.Us_I_Ul) c_int {
     var err: c_int = 0;
@@ -6790,7 +8032,7 @@ pub export fn zig_ret_Us_I_Ul() c.Us_I_Ul {
 //   unsigned short v3;
 // };
 
-test "Us_I_Us layout" {
+test "Us_I_Us: layout" {
     var lv: c.Us_I_Us = undefined;
     try testing.expectSize(c.Us_I_Us, 12);
     try testing.expectAlign(c.Us_I_Us, 4);
@@ -6798,11 +8040,17 @@ test "Us_I_Us layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
-test "Us_I_Us C calls" {
-    try testing.expectEqual(c.ret_Us_I_Us(), .{ .v1 = 15877, .v2 = 5090, .v3 = 1580 });
-    try testing.expectOk(c.assert_ret_Us_I_Us());
-    try testing.expectOk(c.send_Us_I_Us());
+test "Us_I_Us: Zig passes to C" {
     try testing.expectOk(c.assert_Us_I_Us(.{ .v1 = 15877, .v2 = 5090, .v3 = 1580 }));
+}
+test "Us_I_Us: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_I_Us());
+}
+test "Us_I_Us: C passes to Zig" {
+    try testing.expectOk(c.send_Us_I_Us());
+}
+test "Us_I_Us: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_I_Us(), .{ .v1 = 15877, .v2 = 5090, .v3 = 1580 });
 }
 pub export fn zig_assert_Us_I_Us(lv: c.Us_I_Us) c_int {
     var err: c_int = 0;
@@ -6823,7 +8071,7 @@ pub export fn zig_ret_Us_I_Us() c.Us_I_Us {
 //   void *v3;
 // };
 
-test "Us_I_Vp layout" {
+test "Us_I_Vp: layout" {
     var lv: c.Us_I_Vp = undefined;
     try testing.expectSize(c.Us_I_Vp, ABISELECT(16, 12));
     try testing.expectAlign(c.Us_I_Vp, ABISELECT(8, 4));
@@ -6831,11 +8079,17 @@ test "Us_I_Vp layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
-test "Us_I_Vp C calls" {
-    try testing.expectEqual(c.ret_Us_I_Vp(), .{ .v1 = 1804, .v2 = 13795, .v3 = null });
-    try testing.expectOk(c.assert_ret_Us_I_Vp());
-    try testing.expectOk(c.send_Us_I_Vp());
+test "Us_I_Vp: Zig passes to C" {
     try testing.expectOk(c.assert_Us_I_Vp(.{ .v1 = 1804, .v2 = 13795, .v3 = null }));
+}
+test "Us_I_Vp: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_I_Vp());
+}
+test "Us_I_Vp: C passes to Zig" {
+    try testing.expectOk(c.send_Us_I_Vp());
+}
+test "Us_I_Vp: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_I_Vp(), .{ .v1 = 1804, .v2 = 13795, .v3 = null });
 }
 pub export fn zig_assert_Us_I_Vp(lv: c.Us_I_Vp) c_int {
     var err: c_int = 0;
@@ -6855,18 +8109,24 @@ pub export fn zig_ret_Us_I_Vp() c.Us_I_Vp {
 //   int *v2;
 // };
 
-test "Us_Ip layout" {
+test "Us_Ip: layout" {
     var lv: c.Us_Ip = undefined;
     try testing.expectSize(c.Us_Ip, ABISELECT(16, 8));
     try testing.expectAlign(c.Us_Ip, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
 }
-test "Us_Ip C calls" {
-    try testing.expectEqual(c.ret_Us_Ip(), .{ .v1 = 28828, .v2 = null });
-    try testing.expectOk(c.assert_ret_Us_Ip());
-    try testing.expectOk(c.send_Us_Ip());
+test "Us_Ip: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Ip(.{ .v1 = 28828, .v2 = null }));
+}
+test "Us_Ip: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Ip());
+}
+test "Us_Ip: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Ip());
+}
+test "Us_Ip: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ip(), .{ .v1 = 28828, .v2 = null });
 }
 pub export fn zig_assert_Us_Ip(lv: c.Us_Ip) c_int {
     var err: c_int = 0;
@@ -6886,7 +8146,7 @@ pub export fn zig_ret_Us_Ip() c.Us_Ip {
 //   char v3;
 // };
 
-test "Us_Ip_C layout" {
+test "Us_Ip_C: layout" {
     var lv: c.Us_Ip_C = undefined;
     try testing.expectSize(c.Us_Ip_C, ABISELECT(24, 12));
     try testing.expectAlign(c.Us_Ip_C, ABISELECT(8, 4));
@@ -6894,11 +8154,17 @@ test "Us_Ip_C layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
-test "Us_Ip_C C calls" {
-    try testing.expectEqual(c.ret_Us_Ip_C(), .{ .v1 = 11358, .v2 = null, .v3 = 95 });
-    try testing.expectOk(c.assert_ret_Us_Ip_C());
-    try testing.expectOk(c.send_Us_Ip_C());
+test "Us_Ip_C: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Ip_C(.{ .v1 = 11358, .v2 = null, .v3 = 95 }));
+}
+test "Us_Ip_C: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Ip_C());
+}
+test "Us_Ip_C: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Ip_C());
+}
+test "Us_Ip_C: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ip_C(), .{ .v1 = 11358, .v2 = null, .v3 = 95 });
 }
 pub export fn zig_assert_Us_Ip_C(lv: c.Us_Ip_C) c_int {
     var err: c_int = 0;
@@ -6919,7 +8185,7 @@ pub export fn zig_ret_Us_Ip_C() c.Us_Ip_C {
 //   double v3;
 // };
 
-test "Us_Ip_D layout" {
+test "Us_Ip_D: layout" {
     var lv: c.Us_Ip_D = undefined;
     try testing.expectSize(c.Us_Ip_D, ABISELECT(24, 16));
     try testing.expectAlign(c.Us_Ip_D, ABISELECT(8, 4));
@@ -6927,11 +8193,17 @@ test "Us_Ip_D layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
-test "Us_Ip_D C calls" {
-    try testing.expectEqual(c.ret_Us_Ip_D(), .{ .v1 = 32334, .v2 = null, .v3 = 4.5 });
-    try testing.expectOk(c.assert_ret_Us_Ip_D());
-    try testing.expectOk(c.send_Us_Ip_D());
+test "Us_Ip_D: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Ip_D(.{ .v1 = 32334, .v2 = null, .v3 = 4.5 }));
+}
+test "Us_Ip_D: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Ip_D());
+}
+test "Us_Ip_D: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Ip_D());
+}
+test "Us_Ip_D: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ip_D(), .{ .v1 = 32334, .v2 = null, .v3 = 4.5 });
 }
 pub export fn zig_assert_Us_Ip_D(lv: c.Us_Ip_D) c_int {
     var err: c_int = 0;
@@ -6952,7 +8224,7 @@ pub export fn zig_ret_Us_Ip_D() c.Us_Ip_D {
 //   float v3;
 // };
 
-test "Us_Ip_F layout" {
+test "Us_Ip_F: layout" {
     var lv: c.Us_Ip_F = undefined;
     try testing.expectSize(c.Us_Ip_F, ABISELECT(24, 12));
     try testing.expectAlign(c.Us_Ip_F, ABISELECT(8, 4));
@@ -6960,11 +8232,17 @@ test "Us_Ip_F layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
-test "Us_Ip_F C calls" {
-    try testing.expectEqual(c.ret_Us_Ip_F(), .{ .v1 = 19476, .v2 = null, .v3 = -2.125 });
-    try testing.expectOk(c.assert_ret_Us_Ip_F());
-    try testing.expectOk(c.send_Us_Ip_F());
+test "Us_Ip_F: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Ip_F(.{ .v1 = 19476, .v2 = null, .v3 = -2.125 }));
+}
+test "Us_Ip_F: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Ip_F());
+}
+test "Us_Ip_F: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Ip_F());
+}
+test "Us_Ip_F: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ip_F(), .{ .v1 = 19476, .v2 = null, .v3 = -2.125 });
 }
 pub export fn zig_assert_Us_Ip_F(lv: c.Us_Ip_F) c_int {
     var err: c_int = 0;
@@ -6985,7 +8263,7 @@ pub export fn zig_ret_Us_Ip_F() c.Us_Ip_F {
 //   int v3;
 // };
 
-test "Us_Ip_I layout" {
+test "Us_Ip_I: layout" {
     var lv: c.Us_Ip_I = undefined;
     try testing.expectSize(c.Us_Ip_I, ABISELECT(24, 12));
     try testing.expectAlign(c.Us_Ip_I, ABISELECT(8, 4));
@@ -6993,11 +8271,17 @@ test "Us_Ip_I layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
-test "Us_Ip_I C calls" {
-    try testing.expectEqual(c.ret_Us_Ip_I(), .{ .v1 = 14363, .v2 = null, .v3 = 12277 });
-    try testing.expectOk(c.assert_ret_Us_Ip_I());
-    try testing.expectOk(c.send_Us_Ip_I());
+test "Us_Ip_I: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Ip_I(.{ .v1 = 14363, .v2 = null, .v3 = 12277 }));
+}
+test "Us_Ip_I: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Ip_I());
+}
+test "Us_Ip_I: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Ip_I());
+}
+test "Us_Ip_I: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ip_I(), .{ .v1 = 14363, .v2 = null, .v3 = 12277 });
 }
 pub export fn zig_assert_Us_Ip_I(lv: c.Us_Ip_I) c_int {
     var err: c_int = 0;
@@ -7018,7 +8302,7 @@ pub export fn zig_ret_Us_Ip_I() c.Us_Ip_I {
 //   int *v3;
 // };
 
-test "Us_Ip_Ip layout" {
+test "Us_Ip_Ip: layout" {
     var lv: c.Us_Ip_Ip = undefined;
     try testing.expectSize(c.Us_Ip_Ip, ABISELECT(24, 12));
     try testing.expectAlign(c.Us_Ip_Ip, ABISELECT(8, 4));
@@ -7026,11 +8310,17 @@ test "Us_Ip_Ip layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
-test "Us_Ip_Ip C calls" {
-    try testing.expectEqual(c.ret_Us_Ip_Ip(), .{ .v1 = 27094, .v2 = null, .v3 = null });
-    try testing.expectOk(c.assert_ret_Us_Ip_Ip());
-    try testing.expectOk(c.send_Us_Ip_Ip());
+test "Us_Ip_Ip: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Ip_Ip(.{ .v1 = 27094, .v2 = null, .v3 = null }));
+}
+test "Us_Ip_Ip: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Ip_Ip());
+}
+test "Us_Ip_Ip: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Ip_Ip());
+}
+test "Us_Ip_Ip: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ip_Ip(), .{ .v1 = 27094, .v2 = null, .v3 = null });
 }
 pub export fn zig_assert_Us_Ip_Ip(lv: c.Us_Ip_Ip) c_int {
     var err: c_int = 0;
@@ -7051,7 +8341,7 @@ pub export fn zig_ret_Us_Ip_Ip() c.Us_Ip_Ip {
 //   __tsi64 v3;
 // };
 
-test "Us_Ip_L layout" {
+test "Us_Ip_L: layout" {
     var lv: c.Us_Ip_L = undefined;
     try testing.expectSize(c.Us_Ip_L, ABISELECT(24, 16));
     try testing.expectAlign(c.Us_Ip_L, ABISELECT(8, 4));
@@ -7059,11 +8349,17 @@ test "Us_Ip_L layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
-test "Us_Ip_L C calls" {
-    try testing.expectEqual(c.ret_Us_Ip_L(), .{ .v1 = 7648, .v2 = null, .v3 = 28696 });
-    try testing.expectOk(c.assert_ret_Us_Ip_L());
-    try testing.expectOk(c.send_Us_Ip_L());
+test "Us_Ip_L: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Ip_L(.{ .v1 = 7648, .v2 = null, .v3 = 28696 }));
+}
+test "Us_Ip_L: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Ip_L());
+}
+test "Us_Ip_L: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Ip_L());
+}
+test "Us_Ip_L: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ip_L(), .{ .v1 = 7648, .v2 = null, .v3 = 28696 });
 }
 pub export fn zig_assert_Us_Ip_L(lv: c.Us_Ip_L) c_int {
     var err: c_int = 0;
@@ -7084,7 +8380,7 @@ pub export fn zig_ret_Us_Ip_L() c.Us_Ip_L {
 //   short v3;
 // };
 
-test "Us_Ip_S layout" {
+test "Us_Ip_S: layout" {
     var lv: c.Us_Ip_S = undefined;
     try testing.expectSize(c.Us_Ip_S, ABISELECT(24, 12));
     try testing.expectAlign(c.Us_Ip_S, ABISELECT(8, 4));
@@ -7092,11 +8388,17 @@ test "Us_Ip_S layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
-test "Us_Ip_S C calls" {
-    try testing.expectEqual(c.ret_Us_Ip_S(), .{ .v1 = 15817, .v2 = null, .v3 = 7907 });
-    try testing.expectOk(c.assert_ret_Us_Ip_S());
-    try testing.expectOk(c.send_Us_Ip_S());
+test "Us_Ip_S: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Ip_S(.{ .v1 = 15817, .v2 = null, .v3 = 7907 }));
+}
+test "Us_Ip_S: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Ip_S());
+}
+test "Us_Ip_S: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Ip_S());
+}
+test "Us_Ip_S: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ip_S(), .{ .v1 = 15817, .v2 = null, .v3 = 7907 });
 }
 pub export fn zig_assert_Us_Ip_S(lv: c.Us_Ip_S) c_int {
     var err: c_int = 0;
@@ -7117,7 +8419,7 @@ pub export fn zig_ret_Us_Ip_S() c.Us_Ip_S {
 //   unsigned char v3;
 // };
 
-test "Us_Ip_Uc layout" {
+test "Us_Ip_Uc: layout" {
     var lv: c.Us_Ip_Uc = undefined;
     try testing.expectSize(c.Us_Ip_Uc, ABISELECT(24, 12));
     try testing.expectAlign(c.Us_Ip_Uc, ABISELECT(8, 4));
@@ -7125,11 +8427,17 @@ test "Us_Ip_Uc layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
-test "Us_Ip_Uc C calls" {
-    try testing.expectEqual(c.ret_Us_Ip_Uc(), .{ .v1 = 3074, .v2 = null, .v3 = 5 });
-    try testing.expectOk(c.assert_ret_Us_Ip_Uc());
-    try testing.expectOk(c.send_Us_Ip_Uc());
+test "Us_Ip_Uc: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Ip_Uc(.{ .v1 = 3074, .v2 = null, .v3 = 5 }));
+}
+test "Us_Ip_Uc: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Ip_Uc());
+}
+test "Us_Ip_Uc: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Ip_Uc());
+}
+test "Us_Ip_Uc: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ip_Uc(), .{ .v1 = 3074, .v2 = null, .v3 = 5 });
 }
 pub export fn zig_assert_Us_Ip_Uc(lv: c.Us_Ip_Uc) c_int {
     var err: c_int = 0;
@@ -7150,7 +8458,7 @@ pub export fn zig_ret_Us_Ip_Uc() c.Us_Ip_Uc {
 //   unsigned int v3;
 // };
 
-test "Us_Ip_Ui layout" {
+test "Us_Ip_Ui: layout" {
     var lv: c.Us_Ip_Ui = undefined;
     try testing.expectSize(c.Us_Ip_Ui, ABISELECT(24, 12));
     try testing.expectAlign(c.Us_Ip_Ui, ABISELECT(8, 4));
@@ -7158,11 +8466,17 @@ test "Us_Ip_Ui layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
-test "Us_Ip_Ui C calls" {
-    try testing.expectEqual(c.ret_Us_Ip_Ui(), .{ .v1 = 1622, .v2 = null, .v3 = 7385 });
-    try testing.expectOk(c.assert_ret_Us_Ip_Ui());
-    try testing.expectOk(c.send_Us_Ip_Ui());
+test "Us_Ip_Ui: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Ip_Ui(.{ .v1 = 1622, .v2 = null, .v3 = 7385 }));
+}
+test "Us_Ip_Ui: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Ip_Ui());
+}
+test "Us_Ip_Ui: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Ip_Ui());
+}
+test "Us_Ip_Ui: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ip_Ui(), .{ .v1 = 1622, .v2 = null, .v3 = 7385 });
 }
 pub export fn zig_assert_Us_Ip_Ui(lv: c.Us_Ip_Ui) c_int {
     var err: c_int = 0;
@@ -7183,7 +8497,7 @@ pub export fn zig_ret_Us_Ip_Ui() c.Us_Ip_Ui {
 //   __tsu64 v3;
 // };
 
-test "Us_Ip_Ul layout" {
+test "Us_Ip_Ul: layout" {
     var lv: c.Us_Ip_Ul = undefined;
     try testing.expectSize(c.Us_Ip_Ul, ABISELECT(24, 16));
     try testing.expectAlign(c.Us_Ip_Ul, ABISELECT(8, 4));
@@ -7191,11 +8505,17 @@ test "Us_Ip_Ul layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
-test "Us_Ip_Ul C calls" {
-    try testing.expectEqual(c.ret_Us_Ip_Ul(), .{ .v1 = 4903, .v2 = null, .v3 = 12817 });
-    try testing.expectOk(c.assert_ret_Us_Ip_Ul());
-    try testing.expectOk(c.send_Us_Ip_Ul());
+test "Us_Ip_Ul: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Ip_Ul(.{ .v1 = 4903, .v2 = null, .v3 = 12817 }));
+}
+test "Us_Ip_Ul: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Ip_Ul());
+}
+test "Us_Ip_Ul: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Ip_Ul());
+}
+test "Us_Ip_Ul: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ip_Ul(), .{ .v1 = 4903, .v2 = null, .v3 = 12817 });
 }
 pub export fn zig_assert_Us_Ip_Ul(lv: c.Us_Ip_Ul) c_int {
     var err: c_int = 0;
@@ -7216,7 +8536,7 @@ pub export fn zig_ret_Us_Ip_Ul() c.Us_Ip_Ul {
 //   unsigned short v3;
 // };
 
-test "Us_Ip_Us layout" {
+test "Us_Ip_Us: layout" {
     var lv: c.Us_Ip_Us = undefined;
     try testing.expectSize(c.Us_Ip_Us, ABISELECT(24, 12));
     try testing.expectAlign(c.Us_Ip_Us, ABISELECT(8, 4));
@@ -7224,11 +8544,17 @@ test "Us_Ip_Us layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
-test "Us_Ip_Us C calls" {
-    try testing.expectEqual(c.ret_Us_Ip_Us(), .{ .v1 = 13416, .v2 = null, .v3 = 15710 });
-    try testing.expectOk(c.assert_ret_Us_Ip_Us());
-    try testing.expectOk(c.send_Us_Ip_Us());
+test "Us_Ip_Us: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Ip_Us(.{ .v1 = 13416, .v2 = null, .v3 = 15710 }));
+}
+test "Us_Ip_Us: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Ip_Us());
+}
+test "Us_Ip_Us: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Ip_Us());
+}
+test "Us_Ip_Us: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ip_Us(), .{ .v1 = 13416, .v2 = null, .v3 = 15710 });
 }
 pub export fn zig_assert_Us_Ip_Us(lv: c.Us_Ip_Us) c_int {
     var err: c_int = 0;
@@ -7249,7 +8575,7 @@ pub export fn zig_ret_Us_Ip_Us() c.Us_Ip_Us {
 //   void *v3;
 // };
 
-test "Us_Ip_Vp layout" {
+test "Us_Ip_Vp: layout" {
     var lv: c.Us_Ip_Vp = undefined;
     try testing.expectSize(c.Us_Ip_Vp, ABISELECT(24, 12));
     try testing.expectAlign(c.Us_Ip_Vp, ABISELECT(8, 4));
@@ -7257,11 +8583,17 @@ test "Us_Ip_Vp layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
-test "Us_Ip_Vp C calls" {
-    try testing.expectEqual(c.ret_Us_Ip_Vp(), .{ .v1 = 24100, .v2 = null, .v3 = null });
-    try testing.expectOk(c.assert_ret_Us_Ip_Vp());
-    try testing.expectOk(c.send_Us_Ip_Vp());
+test "Us_Ip_Vp: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Ip_Vp(.{ .v1 = 24100, .v2 = null, .v3 = null }));
+}
+test "Us_Ip_Vp: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Ip_Vp());
+}
+test "Us_Ip_Vp: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Ip_Vp());
+}
+test "Us_Ip_Vp: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ip_Vp(), .{ .v1 = 24100, .v2 = null, .v3 = null });
 }
 pub export fn zig_assert_Us_Ip_Vp(lv: c.Us_Ip_Vp) c_int {
     var err: c_int = 0;
@@ -7281,18 +8613,24 @@ pub export fn zig_ret_Us_Ip_Vp() c.Us_Ip_Vp {
 //   __tsi64 v2;
 // };
 
-test "Us_L layout" {
+test "Us_L: layout" {
     var lv: c.Us_L = undefined;
     try testing.expectSize(c.Us_L, ABISELECT(16, 12));
     try testing.expectAlign(c.Us_L, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
 }
-test "Us_L C calls" {
-    try testing.expectEqual(c.ret_Us_L(), .{ .v1 = 24913, .v2 = 9960 });
-    try testing.expectOk(c.assert_ret_Us_L());
-    try testing.expectOk(c.send_Us_L());
+test "Us_L: Zig passes to C" {
     try testing.expectOk(c.assert_Us_L(.{ .v1 = 24913, .v2 = 9960 }));
+}
+test "Us_L: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_L());
+}
+test "Us_L: C passes to Zig" {
+    try testing.expectOk(c.send_Us_L());
+}
+test "Us_L: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_L(), .{ .v1 = 24913, .v2 = 9960 });
 }
 pub export fn zig_assert_Us_L(lv: c.Us_L) c_int {
     var err: c_int = 0;
@@ -7312,7 +8650,7 @@ pub export fn zig_ret_Us_L() c.Us_L {
 //   char v3;
 // };
 
-test "Us_L_C layout" {
+test "Us_L_C: layout" {
     var lv: c.Us_L_C = undefined;
     try testing.expectSize(c.Us_L_C, ABISELECT(24, 16));
     try testing.expectAlign(c.Us_L_C, ABISELECT(8, 4));
@@ -7320,11 +8658,17 @@ test "Us_L_C layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Us_L_C C calls" {
-    try testing.expectEqual(c.ret_Us_L_C(), .{ .v1 = 10232, .v2 = 9213, .v3 = 44 });
-    try testing.expectOk(c.assert_ret_Us_L_C());
-    try testing.expectOk(c.send_Us_L_C());
+test "Us_L_C: Zig passes to C" {
     try testing.expectOk(c.assert_Us_L_C(.{ .v1 = 10232, .v2 = 9213, .v3 = 44 }));
+}
+test "Us_L_C: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_L_C());
+}
+test "Us_L_C: C passes to Zig" {
+    try testing.expectOk(c.send_Us_L_C());
+}
+test "Us_L_C: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_L_C(), .{ .v1 = 10232, .v2 = 9213, .v3 = 44 });
 }
 pub export fn zig_assert_Us_L_C(lv: c.Us_L_C) c_int {
     var err: c_int = 0;
@@ -7345,7 +8689,7 @@ pub export fn zig_ret_Us_L_C() c.Us_L_C {
 //   double v3;
 // };
 
-test "Us_L_D layout" {
+test "Us_L_D: layout" {
     var lv: c.Us_L_D = undefined;
     try testing.expectSize(c.Us_L_D, ABISELECT(24, 20));
     try testing.expectAlign(c.Us_L_D, ABISELECT(8, 4));
@@ -7353,11 +8697,17 @@ test "Us_L_D layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Us_L_D C calls" {
-    try testing.expectEqual(c.ret_Us_L_D(), .{ .v1 = 23248, .v2 = 22734, .v3 = -0.25 });
-    try testing.expectOk(c.assert_ret_Us_L_D());
-    try testing.expectOk(c.send_Us_L_D());
+test "Us_L_D: Zig passes to C" {
     try testing.expectOk(c.assert_Us_L_D(.{ .v1 = 23248, .v2 = 22734, .v3 = -0.25 }));
+}
+test "Us_L_D: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_L_D());
+}
+test "Us_L_D: C passes to Zig" {
+    try testing.expectOk(c.send_Us_L_D());
+}
+test "Us_L_D: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_L_D(), .{ .v1 = 23248, .v2 = 22734, .v3 = -0.25 });
 }
 pub export fn zig_assert_Us_L_D(lv: c.Us_L_D) c_int {
     var err: c_int = 0;
@@ -7378,7 +8728,7 @@ pub export fn zig_ret_Us_L_D() c.Us_L_D {
 //   float v3;
 // };
 
-test "Us_L_F layout" {
+test "Us_L_F: layout" {
     var lv: c.Us_L_F = undefined;
     try testing.expectSize(c.Us_L_F, ABISELECT(24, 16));
     try testing.expectAlign(c.Us_L_F, ABISELECT(8, 4));
@@ -7386,11 +8736,17 @@ test "Us_L_F layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Us_L_F C calls" {
-    try testing.expectEqual(c.ret_Us_L_F(), .{ .v1 = 24117, .v2 = 9201, .v3 = -0.25 });
-    try testing.expectOk(c.assert_ret_Us_L_F());
-    try testing.expectOk(c.send_Us_L_F());
+test "Us_L_F: Zig passes to C" {
     try testing.expectOk(c.assert_Us_L_F(.{ .v1 = 24117, .v2 = 9201, .v3 = -0.25 }));
+}
+test "Us_L_F: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_L_F());
+}
+test "Us_L_F: C passes to Zig" {
+    try testing.expectOk(c.send_Us_L_F());
+}
+test "Us_L_F: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_L_F(), .{ .v1 = 24117, .v2 = 9201, .v3 = -0.25 });
 }
 pub export fn zig_assert_Us_L_F(lv: c.Us_L_F) c_int {
     var err: c_int = 0;
@@ -7411,7 +8767,7 @@ pub export fn zig_ret_Us_L_F() c.Us_L_F {
 //   int v3;
 // };
 
-test "Us_L_I layout" {
+test "Us_L_I: layout" {
     var lv: c.Us_L_I = undefined;
     try testing.expectSize(c.Us_L_I, ABISELECT(24, 16));
     try testing.expectAlign(c.Us_L_I, ABISELECT(8, 4));
@@ -7419,11 +8775,17 @@ test "Us_L_I layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Us_L_I C calls" {
-    try testing.expectEqual(c.ret_Us_L_I(), .{ .v1 = 3504, .v2 = 11336, .v3 = 24471 });
-    try testing.expectOk(c.assert_ret_Us_L_I());
-    try testing.expectOk(c.send_Us_L_I());
+test "Us_L_I: Zig passes to C" {
     try testing.expectOk(c.assert_Us_L_I(.{ .v1 = 3504, .v2 = 11336, .v3 = 24471 }));
+}
+test "Us_L_I: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_L_I());
+}
+test "Us_L_I: C passes to Zig" {
+    try testing.expectOk(c.send_Us_L_I());
+}
+test "Us_L_I: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_L_I(), .{ .v1 = 3504, .v2 = 11336, .v3 = 24471 });
 }
 pub export fn zig_assert_Us_L_I(lv: c.Us_L_I) c_int {
     var err: c_int = 0;
@@ -7444,7 +8806,7 @@ pub export fn zig_ret_Us_L_I() c.Us_L_I {
 //   int *v3;
 // };
 
-test "Us_L_Ip layout" {
+test "Us_L_Ip: layout" {
     var lv: c.Us_L_Ip = undefined;
     try testing.expectSize(c.Us_L_Ip, ABISELECT(24, 16));
     try testing.expectAlign(c.Us_L_Ip, ABISELECT(8, 4));
@@ -7452,11 +8814,17 @@ test "Us_L_Ip layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Us_L_Ip C calls" {
-    try testing.expectEqual(c.ret_Us_L_Ip(), .{ .v1 = 21042, .v2 = 20614, .v3 = null });
-    try testing.expectOk(c.assert_ret_Us_L_Ip());
-    try testing.expectOk(c.send_Us_L_Ip());
+test "Us_L_Ip: Zig passes to C" {
     try testing.expectOk(c.assert_Us_L_Ip(.{ .v1 = 21042, .v2 = 20614, .v3 = null }));
+}
+test "Us_L_Ip: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_L_Ip());
+}
+test "Us_L_Ip: C passes to Zig" {
+    try testing.expectOk(c.send_Us_L_Ip());
+}
+test "Us_L_Ip: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_L_Ip(), .{ .v1 = 21042, .v2 = 20614, .v3 = null });
 }
 pub export fn zig_assert_Us_L_Ip(lv: c.Us_L_Ip) c_int {
     var err: c_int = 0;
@@ -7477,7 +8845,7 @@ pub export fn zig_ret_Us_L_Ip() c.Us_L_Ip {
 //   __tsi64 v3;
 // };
 
-test "Us_L_L layout" {
+test "Us_L_L: layout" {
     var lv: c.Us_L_L = undefined;
     try testing.expectSize(c.Us_L_L, ABISELECT(24, 20));
     try testing.expectAlign(c.Us_L_L, ABISELECT(8, 4));
@@ -7485,11 +8853,17 @@ test "Us_L_L layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Us_L_L C calls" {
-    try testing.expectEqual(c.ret_Us_L_L(), .{ .v1 = 1123, .v2 = 30030, .v3 = 14538 });
-    try testing.expectOk(c.assert_ret_Us_L_L());
-    try testing.expectOk(c.send_Us_L_L());
+test "Us_L_L: Zig passes to C" {
     try testing.expectOk(c.assert_Us_L_L(.{ .v1 = 1123, .v2 = 30030, .v3 = 14538 }));
+}
+test "Us_L_L: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_L_L());
+}
+test "Us_L_L: C passes to Zig" {
+    try testing.expectOk(c.send_Us_L_L());
+}
+test "Us_L_L: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_L_L(), .{ .v1 = 1123, .v2 = 30030, .v3 = 14538 });
 }
 pub export fn zig_assert_Us_L_L(lv: c.Us_L_L) c_int {
     var err: c_int = 0;
@@ -7510,7 +8884,7 @@ pub export fn zig_ret_Us_L_L() c.Us_L_L {
 //   short v3;
 // };
 
-test "Us_L_S layout" {
+test "Us_L_S: layout" {
     var lv: c.Us_L_S = undefined;
     try testing.expectSize(c.Us_L_S, ABISELECT(24, 16));
     try testing.expectAlign(c.Us_L_S, ABISELECT(8, 4));
@@ -7518,11 +8892,17 @@ test "Us_L_S layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Us_L_S C calls" {
-    try testing.expectEqual(c.ret_Us_L_S(), .{ .v1 = 22132, .v2 = 25058, .v3 = 25622 });
-    try testing.expectOk(c.assert_ret_Us_L_S());
-    try testing.expectOk(c.send_Us_L_S());
+test "Us_L_S: Zig passes to C" {
     try testing.expectOk(c.assert_Us_L_S(.{ .v1 = 22132, .v2 = 25058, .v3 = 25622 }));
+}
+test "Us_L_S: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_L_S());
+}
+test "Us_L_S: C passes to Zig" {
+    try testing.expectOk(c.send_Us_L_S());
+}
+test "Us_L_S: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_L_S(), .{ .v1 = 22132, .v2 = 25058, .v3 = 25622 });
 }
 pub export fn zig_assert_Us_L_S(lv: c.Us_L_S) c_int {
     var err: c_int = 0;
@@ -7543,7 +8923,7 @@ pub export fn zig_ret_Us_L_S() c.Us_L_S {
 //   unsigned char v3;
 // };
 
-test "Us_L_Uc layout" {
+test "Us_L_Uc: layout" {
     var lv: c.Us_L_Uc = undefined;
     try testing.expectSize(c.Us_L_Uc, ABISELECT(24, 16));
     try testing.expectAlign(c.Us_L_Uc, ABISELECT(8, 4));
@@ -7551,11 +8931,17 @@ test "Us_L_Uc layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Us_L_Uc C calls" {
-    try testing.expectEqual(c.ret_Us_L_Uc(), .{ .v1 = 18839, .v2 = 17575, .v3 = 11 });
-    try testing.expectOk(c.assert_ret_Us_L_Uc());
-    try testing.expectOk(c.send_Us_L_Uc());
+test "Us_L_Uc: Zig passes to C" {
     try testing.expectOk(c.assert_Us_L_Uc(.{ .v1 = 18839, .v2 = 17575, .v3 = 11 }));
+}
+test "Us_L_Uc: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_L_Uc());
+}
+test "Us_L_Uc: C passes to Zig" {
+    try testing.expectOk(c.send_Us_L_Uc());
+}
+test "Us_L_Uc: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_L_Uc(), .{ .v1 = 18839, .v2 = 17575, .v3 = 11 });
 }
 pub export fn zig_assert_Us_L_Uc(lv: c.Us_L_Uc) c_int {
     var err: c_int = 0;
@@ -7576,7 +8962,7 @@ pub export fn zig_ret_Us_L_Uc() c.Us_L_Uc {
 //   unsigned int v3;
 // };
 
-test "Us_L_Ui layout" {
+test "Us_L_Ui: layout" {
     var lv: c.Us_L_Ui = undefined;
     try testing.expectSize(c.Us_L_Ui, ABISELECT(24, 16));
     try testing.expectAlign(c.Us_L_Ui, ABISELECT(8, 4));
@@ -7584,11 +8970,17 @@ test "Us_L_Ui layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Us_L_Ui C calls" {
-    try testing.expectEqual(c.ret_Us_L_Ui(), .{ .v1 = 13426, .v2 = 7778, .v3 = 20282 });
-    try testing.expectOk(c.assert_ret_Us_L_Ui());
-    try testing.expectOk(c.send_Us_L_Ui());
+test "Us_L_Ui: Zig passes to C" {
     try testing.expectOk(c.assert_Us_L_Ui(.{ .v1 = 13426, .v2 = 7778, .v3 = 20282 }));
+}
+test "Us_L_Ui: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_L_Ui());
+}
+test "Us_L_Ui: C passes to Zig" {
+    try testing.expectOk(c.send_Us_L_Ui());
+}
+test "Us_L_Ui: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_L_Ui(), .{ .v1 = 13426, .v2 = 7778, .v3 = 20282 });
 }
 pub export fn zig_assert_Us_L_Ui(lv: c.Us_L_Ui) c_int {
     var err: c_int = 0;
@@ -7609,7 +9001,7 @@ pub export fn zig_ret_Us_L_Ui() c.Us_L_Ui {
 //   __tsu64 v3;
 // };
 
-test "Us_L_Ul layout" {
+test "Us_L_Ul: layout" {
     var lv: c.Us_L_Ul = undefined;
     try testing.expectSize(c.Us_L_Ul, ABISELECT(24, 20));
     try testing.expectAlign(c.Us_L_Ul, ABISELECT(8, 4));
@@ -7617,11 +9009,17 @@ test "Us_L_Ul layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Us_L_Ul C calls" {
-    try testing.expectEqual(c.ret_Us_L_Ul(), .{ .v1 = 8840, .v2 = 7536, .v3 = 11028 });
-    try testing.expectOk(c.assert_ret_Us_L_Ul());
-    try testing.expectOk(c.send_Us_L_Ul());
+test "Us_L_Ul: Zig passes to C" {
     try testing.expectOk(c.assert_Us_L_Ul(.{ .v1 = 8840, .v2 = 7536, .v3 = 11028 }));
+}
+test "Us_L_Ul: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_L_Ul());
+}
+test "Us_L_Ul: C passes to Zig" {
+    try testing.expectOk(c.send_Us_L_Ul());
+}
+test "Us_L_Ul: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_L_Ul(), .{ .v1 = 8840, .v2 = 7536, .v3 = 11028 });
 }
 pub export fn zig_assert_Us_L_Ul(lv: c.Us_L_Ul) c_int {
     var err: c_int = 0;
@@ -7642,7 +9040,7 @@ pub export fn zig_ret_Us_L_Ul() c.Us_L_Ul {
 //   unsigned short v3;
 // };
 
-test "Us_L_Us layout" {
+test "Us_L_Us: layout" {
     var lv: c.Us_L_Us = undefined;
     try testing.expectSize(c.Us_L_Us, ABISELECT(24, 16));
     try testing.expectAlign(c.Us_L_Us, ABISELECT(8, 4));
@@ -7650,11 +9048,17 @@ test "Us_L_Us layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Us_L_Us C calls" {
-    try testing.expectEqual(c.ret_Us_L_Us(), .{ .v1 = 24633, .v2 = 16410, .v3 = 9161 });
-    try testing.expectOk(c.assert_ret_Us_L_Us());
-    try testing.expectOk(c.send_Us_L_Us());
+test "Us_L_Us: Zig passes to C" {
     try testing.expectOk(c.assert_Us_L_Us(.{ .v1 = 24633, .v2 = 16410, .v3 = 9161 }));
+}
+test "Us_L_Us: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_L_Us());
+}
+test "Us_L_Us: C passes to Zig" {
+    try testing.expectOk(c.send_Us_L_Us());
+}
+test "Us_L_Us: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_L_Us(), .{ .v1 = 24633, .v2 = 16410, .v3 = 9161 });
 }
 pub export fn zig_assert_Us_L_Us(lv: c.Us_L_Us) c_int {
     var err: c_int = 0;
@@ -7675,7 +9079,7 @@ pub export fn zig_ret_Us_L_Us() c.Us_L_Us {
 //   void *v3;
 // };
 
-test "Us_L_Vp layout" {
+test "Us_L_Vp: layout" {
     var lv: c.Us_L_Vp = undefined;
     try testing.expectSize(c.Us_L_Vp, ABISELECT(24, 16));
     try testing.expectAlign(c.Us_L_Vp, ABISELECT(8, 4));
@@ -7683,11 +9087,17 @@ test "Us_L_Vp layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Us_L_Vp C calls" {
-    try testing.expectEqual(c.ret_Us_L_Vp(), .{ .v1 = 21267, .v2 = 5661, .v3 = null });
-    try testing.expectOk(c.assert_ret_Us_L_Vp());
-    try testing.expectOk(c.send_Us_L_Vp());
+test "Us_L_Vp: Zig passes to C" {
     try testing.expectOk(c.assert_Us_L_Vp(.{ .v1 = 21267, .v2 = 5661, .v3 = null }));
+}
+test "Us_L_Vp: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_L_Vp());
+}
+test "Us_L_Vp: C passes to Zig" {
+    try testing.expectOk(c.send_Us_L_Vp());
+}
+test "Us_L_Vp: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_L_Vp(), .{ .v1 = 21267, .v2 = 5661, .v3 = null });
 }
 pub export fn zig_assert_Us_L_Vp(lv: c.Us_L_Vp) c_int {
     var err: c_int = 0;
@@ -7707,18 +9117,24 @@ pub export fn zig_ret_Us_L_Vp() c.Us_L_Vp {
 //   short v2;
 // };
 
-test "Us_S layout" {
+test "Us_S: layout" {
     var lv: c.Us_S = undefined;
     try testing.expectSize(c.Us_S, 4);
     try testing.expectAlign(c.Us_S, 2);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
 }
-test "Us_S C calls" {
-    try testing.expectEqual(c.ret_Us_S(), .{ .v1 = 24727, .v2 = 29166 });
-    try testing.expectOk(c.assert_ret_Us_S());
-    try testing.expectOk(c.send_Us_S());
+test "Us_S: Zig passes to C" {
     try testing.expectOk(c.assert_Us_S(.{ .v1 = 24727, .v2 = 29166 }));
+}
+test "Us_S: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_S());
+}
+test "Us_S: C passes to Zig" {
+    try testing.expectOk(c.send_Us_S());
+}
+test "Us_S: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_S(), .{ .v1 = 24727, .v2 = 29166 });
 }
 pub export fn zig_assert_Us_S(lv: c.Us_S) c_int {
     var err: c_int = 0;
@@ -7738,7 +9154,7 @@ pub export fn zig_ret_Us_S() c.Us_S {
 //   char v3;
 // };
 
-test "Us_S_C layout" {
+test "Us_S_C: layout" {
     var lv: c.Us_S_C = undefined;
     try testing.expectSize(c.Us_S_C, 6);
     try testing.expectAlign(c.Us_S_C, 2);
@@ -7746,11 +9162,17 @@ test "Us_S_C layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
-test "Us_S_C C calls" {
-    try testing.expectEqual(c.ret_Us_S_C(), .{ .v1 = 10311, .v2 = 30465, .v3 = 91 });
-    try testing.expectOk(c.assert_ret_Us_S_C());
-    try testing.expectOk(c.send_Us_S_C());
+test "Us_S_C: Zig passes to C" {
     try testing.expectOk(c.assert_Us_S_C(.{ .v1 = 10311, .v2 = 30465, .v3 = 91 }));
+}
+test "Us_S_C: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_S_C());
+}
+test "Us_S_C: C passes to Zig" {
+    try testing.expectOk(c.send_Us_S_C());
+}
+test "Us_S_C: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_S_C(), .{ .v1 = 10311, .v2 = 30465, .v3 = 91 });
 }
 pub export fn zig_assert_Us_S_C(lv: c.Us_S_C) c_int {
     var err: c_int = 0;
@@ -7771,7 +9193,7 @@ pub export fn zig_ret_Us_S_C() c.Us_S_C {
 //   double v3;
 // };
 
-test "Us_S_D layout" {
+test "Us_S_D: layout" {
     var lv: c.Us_S_D = undefined;
     try testing.expectSize(c.Us_S_D, ABISELECT(16, 12));
     try testing.expectAlign(c.Us_S_D, ABISELECT(8, 4));
@@ -7779,11 +9201,17 @@ test "Us_S_D layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
-test "Us_S_D C calls" {
-    try testing.expectEqual(c.ret_Us_S_D(), .{ .v1 = 23117, .v2 = 19592, .v3 = 0.875 });
+test "Us_S_D: Zig passes to C" {
+    try testing.expectFail(c.assert_Us_S_D(.{ .v1 = 23117, .v2 = 19592, .v3 = 0.875 }));
+}
+test "Us_S_D: Zig returns to C" {
     try testing.expectOk(c.assert_ret_Us_S_D());
-    try testing.expectOk(c.send_Us_S_D());
-    try testing.expectOk(c.assert_Us_S_D(.{ .v1 = 23117, .v2 = 19592, .v3 = 0.875 }));
+}
+test "Us_S_D: C passes to Zig" {
+    try testing.expectFail(c.send_Us_S_D());
+}
+test "Us_S_D: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_S_D(), .{ .v1 = 23117, .v2 = 19592, .v3 = 0.875 });
 }
 pub export fn zig_assert_Us_S_D(lv: c.Us_S_D) c_int {
     var err: c_int = 0;
@@ -7804,7 +9232,7 @@ pub export fn zig_ret_Us_S_D() c.Us_S_D {
 //   float v3;
 // };
 
-test "Us_S_F layout" {
+test "Us_S_F: layout" {
     var lv: c.Us_S_F = undefined;
     try testing.expectSize(c.Us_S_F, 8);
     try testing.expectAlign(c.Us_S_F, 4);
@@ -7812,11 +9240,17 @@ test "Us_S_F layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
-test "Us_S_F C calls" {
-    try testing.expectEqual(c.ret_Us_S_F(), .{ .v1 = 15422, .v2 = 892, .v3 = -0.25 });
-    try testing.expectOk(c.assert_ret_Us_S_F());
-    try testing.expectOk(c.send_Us_S_F());
+test "Us_S_F: Zig passes to C" {
     try testing.expectOk(c.assert_Us_S_F(.{ .v1 = 15422, .v2 = 892, .v3 = -0.25 }));
+}
+test "Us_S_F: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_S_F());
+}
+test "Us_S_F: C passes to Zig" {
+    try testing.expectOk(c.send_Us_S_F());
+}
+test "Us_S_F: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_S_F(), .{ .v1 = 15422, .v2 = 892, .v3 = -0.25 });
 }
 pub export fn zig_assert_Us_S_F(lv: c.Us_S_F) c_int {
     var err: c_int = 0;
@@ -7837,7 +9271,7 @@ pub export fn zig_ret_Us_S_F() c.Us_S_F {
 //   int v3;
 // };
 
-test "Us_S_I layout" {
+test "Us_S_I: layout" {
     var lv: c.Us_S_I = undefined;
     try testing.expectSize(c.Us_S_I, 8);
     try testing.expectAlign(c.Us_S_I, 4);
@@ -7845,11 +9279,17 @@ test "Us_S_I layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
-test "Us_S_I C calls" {
-    try testing.expectEqual(c.ret_Us_S_I(), .{ .v1 = 23242, .v2 = 26561, .v3 = 3363 });
-    try testing.expectOk(c.assert_ret_Us_S_I());
-    try testing.expectOk(c.send_Us_S_I());
+test "Us_S_I: Zig passes to C" {
     try testing.expectOk(c.assert_Us_S_I(.{ .v1 = 23242, .v2 = 26561, .v3 = 3363 }));
+}
+test "Us_S_I: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_S_I());
+}
+test "Us_S_I: C passes to Zig" {
+    try testing.expectOk(c.send_Us_S_I());
+}
+test "Us_S_I: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_S_I(), .{ .v1 = 23242, .v2 = 26561, .v3 = 3363 });
 }
 pub export fn zig_assert_Us_S_I(lv: c.Us_S_I) c_int {
     var err: c_int = 0;
@@ -7870,7 +9310,7 @@ pub export fn zig_ret_Us_S_I() c.Us_S_I {
 //   int *v3;
 // };
 
-test "Us_S_Ip layout" {
+test "Us_S_Ip: layout" {
     var lv: c.Us_S_Ip = undefined;
     try testing.expectSize(c.Us_S_Ip, ABISELECT(16, 8));
     try testing.expectAlign(c.Us_S_Ip, ABISELECT(8, 4));
@@ -7878,11 +9318,17 @@ test "Us_S_Ip layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
-test "Us_S_Ip C calls" {
-    try testing.expectEqual(c.ret_Us_S_Ip(), .{ .v1 = 20985, .v2 = 3457, .v3 = null });
-    try testing.expectOk(c.assert_ret_Us_S_Ip());
-    try testing.expectOk(c.send_Us_S_Ip());
+test "Us_S_Ip: Zig passes to C" {
     try testing.expectOk(c.assert_Us_S_Ip(.{ .v1 = 20985, .v2 = 3457, .v3 = null }));
+}
+test "Us_S_Ip: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_S_Ip());
+}
+test "Us_S_Ip: C passes to Zig" {
+    try testing.expectOk(c.send_Us_S_Ip());
+}
+test "Us_S_Ip: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_S_Ip(), .{ .v1 = 20985, .v2 = 3457, .v3 = null });
 }
 pub export fn zig_assert_Us_S_Ip(lv: c.Us_S_Ip) c_int {
     var err: c_int = 0;
@@ -7903,7 +9349,7 @@ pub export fn zig_ret_Us_S_Ip() c.Us_S_Ip {
 //   __tsi64 v3;
 // };
 
-test "Us_S_L layout" {
+test "Us_S_L: layout" {
     var lv: c.Us_S_L = undefined;
     try testing.expectSize(c.Us_S_L, ABISELECT(16, 12));
     try testing.expectAlign(c.Us_S_L, ABISELECT(8, 4));
@@ -7911,11 +9357,17 @@ test "Us_S_L layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
-test "Us_S_L C calls" {
-    try testing.expectEqual(c.ret_Us_S_L(), .{ .v1 = 18517, .v2 = 5247, .v3 = 15555 });
-    try testing.expectOk(c.assert_ret_Us_S_L());
-    try testing.expectOk(c.send_Us_S_L());
+test "Us_S_L: Zig passes to C" {
     try testing.expectOk(c.assert_Us_S_L(.{ .v1 = 18517, .v2 = 5247, .v3 = 15555 }));
+}
+test "Us_S_L: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_S_L());
+}
+test "Us_S_L: C passes to Zig" {
+    try testing.expectOk(c.send_Us_S_L());
+}
+test "Us_S_L: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_S_L(), .{ .v1 = 18517, .v2 = 5247, .v3 = 15555 });
 }
 pub export fn zig_assert_Us_S_L(lv: c.Us_S_L) c_int {
     var err: c_int = 0;
@@ -7936,7 +9388,7 @@ pub export fn zig_ret_Us_S_L() c.Us_S_L {
 //   short v3;
 // };
 
-test "Us_S_S layout" {
+test "Us_S_S: layout" {
     var lv: c.Us_S_S = undefined;
     try testing.expectSize(c.Us_S_S, 6);
     try testing.expectAlign(c.Us_S_S, 2);
@@ -7944,11 +9396,17 @@ test "Us_S_S layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
-test "Us_S_S C calls" {
-    try testing.expectEqual(c.ret_Us_S_S(), .{ .v1 = 11754, .v2 = 6358, .v3 = 12603 });
-    try testing.expectOk(c.assert_ret_Us_S_S());
-    try testing.expectOk(c.send_Us_S_S());
+test "Us_S_S: Zig passes to C" {
     try testing.expectOk(c.assert_Us_S_S(.{ .v1 = 11754, .v2 = 6358, .v3 = 12603 }));
+}
+test "Us_S_S: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_S_S());
+}
+test "Us_S_S: C passes to Zig" {
+    try testing.expectOk(c.send_Us_S_S());
+}
+test "Us_S_S: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_S_S(), .{ .v1 = 11754, .v2 = 6358, .v3 = 12603 });
 }
 pub export fn zig_assert_Us_S_S(lv: c.Us_S_S) c_int {
     var err: c_int = 0;
@@ -7969,7 +9427,7 @@ pub export fn zig_ret_Us_S_S() c.Us_S_S {
 //   unsigned char v3;
 // };
 
-test "Us_S_Uc layout" {
+test "Us_S_Uc: layout" {
     var lv: c.Us_S_Uc = undefined;
     try testing.expectSize(c.Us_S_Uc, 6);
     try testing.expectAlign(c.Us_S_Uc, 2);
@@ -7977,11 +9435,17 @@ test "Us_S_Uc layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
-test "Us_S_Uc C calls" {
-    try testing.expectEqual(c.ret_Us_S_Uc(), .{ .v1 = 21651, .v2 = 302, .v3 = 58 });
-    try testing.expectOk(c.assert_ret_Us_S_Uc());
-    try testing.expectOk(c.send_Us_S_Uc());
+test "Us_S_Uc: Zig passes to C" {
     try testing.expectOk(c.assert_Us_S_Uc(.{ .v1 = 21651, .v2 = 302, .v3 = 58 }));
+}
+test "Us_S_Uc: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_S_Uc());
+}
+test "Us_S_Uc: C passes to Zig" {
+    try testing.expectOk(c.send_Us_S_Uc());
+}
+test "Us_S_Uc: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_S_Uc(), .{ .v1 = 21651, .v2 = 302, .v3 = 58 });
 }
 pub export fn zig_assert_Us_S_Uc(lv: c.Us_S_Uc) c_int {
     var err: c_int = 0;
@@ -8002,7 +9466,7 @@ pub export fn zig_ret_Us_S_Uc() c.Us_S_Uc {
 //   unsigned int v3;
 // };
 
-test "Us_S_Ui layout" {
+test "Us_S_Ui: layout" {
     var lv: c.Us_S_Ui = undefined;
     try testing.expectSize(c.Us_S_Ui, 8);
     try testing.expectAlign(c.Us_S_Ui, 4);
@@ -8010,11 +9474,17 @@ test "Us_S_Ui layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
-test "Us_S_Ui C calls" {
-    try testing.expectEqual(c.ret_Us_S_Ui(), .{ .v1 = 7044, .v2 = 24986, .v3 = 27224 });
-    try testing.expectOk(c.assert_ret_Us_S_Ui());
-    try testing.expectOk(c.send_Us_S_Ui());
+test "Us_S_Ui: Zig passes to C" {
     try testing.expectOk(c.assert_Us_S_Ui(.{ .v1 = 7044, .v2 = 24986, .v3 = 27224 }));
+}
+test "Us_S_Ui: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_S_Ui());
+}
+test "Us_S_Ui: C passes to Zig" {
+    try testing.expectOk(c.send_Us_S_Ui());
+}
+test "Us_S_Ui: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_S_Ui(), .{ .v1 = 7044, .v2 = 24986, .v3 = 27224 });
 }
 pub export fn zig_assert_Us_S_Ui(lv: c.Us_S_Ui) c_int {
     var err: c_int = 0;
@@ -8035,7 +9505,7 @@ pub export fn zig_ret_Us_S_Ui() c.Us_S_Ui {
 //   __tsu64 v3;
 // };
 
-test "Us_S_Ul layout" {
+test "Us_S_Ul: layout" {
     var lv: c.Us_S_Ul = undefined;
     try testing.expectSize(c.Us_S_Ul, ABISELECT(16, 12));
     try testing.expectAlign(c.Us_S_Ul, ABISELECT(8, 4));
@@ -8043,11 +9513,17 @@ test "Us_S_Ul layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
-test "Us_S_Ul C calls" {
-    try testing.expectEqual(c.ret_Us_S_Ul(), .{ .v1 = 26369, .v2 = 29978, .v3 = 8606 });
-    try testing.expectOk(c.assert_ret_Us_S_Ul());
-    try testing.expectOk(c.send_Us_S_Ul());
+test "Us_S_Ul: Zig passes to C" {
     try testing.expectOk(c.assert_Us_S_Ul(.{ .v1 = 26369, .v2 = 29978, .v3 = 8606 }));
+}
+test "Us_S_Ul: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_S_Ul());
+}
+test "Us_S_Ul: C passes to Zig" {
+    try testing.expectOk(c.send_Us_S_Ul());
+}
+test "Us_S_Ul: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_S_Ul(), .{ .v1 = 26369, .v2 = 29978, .v3 = 8606 });
 }
 pub export fn zig_assert_Us_S_Ul(lv: c.Us_S_Ul) c_int {
     var err: c_int = 0;
@@ -8068,7 +9544,7 @@ pub export fn zig_ret_Us_S_Ul() c.Us_S_Ul {
 //   unsigned short v3;
 // };
 
-test "Us_S_Us layout" {
+test "Us_S_Us: layout" {
     var lv: c.Us_S_Us = undefined;
     try testing.expectSize(c.Us_S_Us, 6);
     try testing.expectAlign(c.Us_S_Us, 2);
@@ -8076,11 +9552,17 @@ test "Us_S_Us layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
-test "Us_S_Us C calls" {
-    try testing.expectEqual(c.ret_Us_S_Us(), .{ .v1 = 3928, .v2 = 25056, .v3 = 13273 });
-    try testing.expectOk(c.assert_ret_Us_S_Us());
-    try testing.expectOk(c.send_Us_S_Us());
+test "Us_S_Us: Zig passes to C" {
     try testing.expectOk(c.assert_Us_S_Us(.{ .v1 = 3928, .v2 = 25056, .v3 = 13273 }));
+}
+test "Us_S_Us: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_S_Us());
+}
+test "Us_S_Us: C passes to Zig" {
+    try testing.expectOk(c.send_Us_S_Us());
+}
+test "Us_S_Us: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_S_Us(), .{ .v1 = 3928, .v2 = 25056, .v3 = 13273 });
 }
 pub export fn zig_assert_Us_S_Us(lv: c.Us_S_Us) c_int {
     var err: c_int = 0;
@@ -8101,7 +9583,7 @@ pub export fn zig_ret_Us_S_Us() c.Us_S_Us {
 //   void *v3;
 // };
 
-test "Us_S_Vp layout" {
+test "Us_S_Vp: layout" {
     var lv: c.Us_S_Vp = undefined;
     try testing.expectSize(c.Us_S_Vp, ABISELECT(16, 8));
     try testing.expectAlign(c.Us_S_Vp, ABISELECT(8, 4));
@@ -8109,11 +9591,17 @@ test "Us_S_Vp layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
-test "Us_S_Vp C calls" {
-    try testing.expectEqual(c.ret_Us_S_Vp(), .{ .v1 = 10313, .v2 = 21627, .v3 = null });
-    try testing.expectOk(c.assert_ret_Us_S_Vp());
-    try testing.expectOk(c.send_Us_S_Vp());
+test "Us_S_Vp: Zig passes to C" {
     try testing.expectOk(c.assert_Us_S_Vp(.{ .v1 = 10313, .v2 = 21627, .v3 = null }));
+}
+test "Us_S_Vp: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_S_Vp());
+}
+test "Us_S_Vp: C passes to Zig" {
+    try testing.expectOk(c.send_Us_S_Vp());
+}
+test "Us_S_Vp: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_S_Vp(), .{ .v1 = 10313, .v2 = 21627, .v3 = null });
 }
 pub export fn zig_assert_Us_S_Vp(lv: c.Us_S_Vp) c_int {
     var err: c_int = 0;
@@ -8133,18 +9621,24 @@ pub export fn zig_ret_Us_S_Vp() c.Us_S_Vp {
 //   unsigned char v2;
 // };
 
-test "Us_Uc layout" {
+test "Us_Uc: layout" {
     var lv: c.Us_Uc = undefined;
     try testing.expectSize(c.Us_Uc, 4);
     try testing.expectAlign(c.Us_Uc, 2);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
 }
-test "Us_Uc C calls" {
-    try testing.expectEqual(c.ret_Us_Uc(), .{ .v1 = 10039, .v2 = 48 });
-    try testing.expectOk(c.assert_ret_Us_Uc());
-    try testing.expectOk(c.send_Us_Uc());
+test "Us_Uc: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Uc(.{ .v1 = 10039, .v2 = 48 }));
+}
+test "Us_Uc: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Uc());
+}
+test "Us_Uc: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Uc());
+}
+test "Us_Uc: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Uc(), .{ .v1 = 10039, .v2 = 48 });
 }
 pub export fn zig_assert_Us_Uc(lv: c.Us_Uc) c_int {
     var err: c_int = 0;
@@ -8164,7 +9658,7 @@ pub export fn zig_ret_Us_Uc() c.Us_Uc {
 //   char v3;
 // };
 
-test "Us_Uc_C layout" {
+test "Us_Uc_C: layout" {
     var lv: c.Us_Uc_C = undefined;
     try testing.expectSize(c.Us_Uc_C, 4);
     try testing.expectAlign(c.Us_Uc_C, 2);
@@ -8172,11 +9666,17 @@ test "Us_Uc_C layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 3);
 }
-test "Us_Uc_C C calls" {
-    try testing.expectEqual(c.ret_Us_Uc_C(), .{ .v1 = 1784, .v2 = 122, .v3 = 9 });
-    try testing.expectOk(c.assert_ret_Us_Uc_C());
-    try testing.expectOk(c.send_Us_Uc_C());
+test "Us_Uc_C: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Uc_C(.{ .v1 = 1784, .v2 = 122, .v3 = 9 }));
+}
+test "Us_Uc_C: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Uc_C());
+}
+test "Us_Uc_C: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Uc_C());
+}
+test "Us_Uc_C: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Uc_C(), .{ .v1 = 1784, .v2 = 122, .v3 = 9 });
 }
 pub export fn zig_assert_Us_Uc_C(lv: c.Us_Uc_C) c_int {
     var err: c_int = 0;
@@ -8197,7 +9697,7 @@ pub export fn zig_ret_Us_Uc_C() c.Us_Uc_C {
 //   double v3;
 // };
 
-test "Us_Uc_D layout" {
+test "Us_Uc_D: layout" {
     var lv: c.Us_Uc_D = undefined;
     try testing.expectSize(c.Us_Uc_D, ABISELECT(16, 12));
     try testing.expectAlign(c.Us_Uc_D, ABISELECT(8, 4));
@@ -8205,11 +9705,17 @@ test "Us_Uc_D layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
-test "Us_Uc_D C calls" {
-    try testing.expectEqual(c.ret_Us_Uc_D(), .{ .v1 = 21665, .v2 = 0, .v3 = -2.125 });
+test "Us_Uc_D: Zig passes to C" {
+    try testing.expectFail(c.assert_Us_Uc_D(.{ .v1 = 21665, .v2 = 0, .v3 = -2.125 }));
+}
+test "Us_Uc_D: Zig returns to C" {
     try testing.expectOk(c.assert_ret_Us_Uc_D());
-    try testing.expectOk(c.send_Us_Uc_D());
-    try testing.expectOk(c.assert_Us_Uc_D(.{ .v1 = 21665, .v2 = 0, .v3 = -2.125 }));
+}
+test "Us_Uc_D: C passes to Zig" {
+    try testing.expectFail(c.send_Us_Uc_D());
+}
+test "Us_Uc_D: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Uc_D(), .{ .v1 = 21665, .v2 = 0, .v3 = -2.125 });
 }
 pub export fn zig_assert_Us_Uc_D(lv: c.Us_Uc_D) c_int {
     var err: c_int = 0;
@@ -8230,7 +9736,7 @@ pub export fn zig_ret_Us_Uc_D() c.Us_Uc_D {
 //   float v3;
 // };
 
-test "Us_Uc_F layout" {
+test "Us_Uc_F: layout" {
     var lv: c.Us_Uc_F = undefined;
     try testing.expectSize(c.Us_Uc_F, 8);
     try testing.expectAlign(c.Us_Uc_F, 4);
@@ -8238,11 +9744,17 @@ test "Us_Uc_F layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
-test "Us_Uc_F C calls" {
-    try testing.expectEqual(c.ret_Us_Uc_F(), .{ .v1 = 30089, .v2 = 102, .v3 = 1.0 });
-    try testing.expectOk(c.assert_ret_Us_Uc_F());
-    try testing.expectOk(c.send_Us_Uc_F());
+test "Us_Uc_F: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Uc_F(.{ .v1 = 30089, .v2 = 102, .v3 = 1.0 }));
+}
+test "Us_Uc_F: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Uc_F());
+}
+test "Us_Uc_F: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Uc_F());
+}
+test "Us_Uc_F: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Uc_F(), .{ .v1 = 30089, .v2 = 102, .v3 = 1.0 });
 }
 pub export fn zig_assert_Us_Uc_F(lv: c.Us_Uc_F) c_int {
     var err: c_int = 0;
@@ -8263,7 +9775,7 @@ pub export fn zig_ret_Us_Uc_F() c.Us_Uc_F {
 //   int v3;
 // };
 
-test "Us_Uc_I layout" {
+test "Us_Uc_I: layout" {
     var lv: c.Us_Uc_I = undefined;
     try testing.expectSize(c.Us_Uc_I, 8);
     try testing.expectAlign(c.Us_Uc_I, 4);
@@ -8271,11 +9783,17 @@ test "Us_Uc_I layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
-test "Us_Uc_I C calls" {
-    try testing.expectEqual(c.ret_Us_Uc_I(), .{ .v1 = 32018, .v2 = 76, .v3 = 22674 });
-    try testing.expectOk(c.assert_ret_Us_Uc_I());
-    try testing.expectOk(c.send_Us_Uc_I());
+test "Us_Uc_I: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Uc_I(.{ .v1 = 32018, .v2 = 76, .v3 = 22674 }));
+}
+test "Us_Uc_I: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Uc_I());
+}
+test "Us_Uc_I: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Uc_I());
+}
+test "Us_Uc_I: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Uc_I(), .{ .v1 = 32018, .v2 = 76, .v3 = 22674 });
 }
 pub export fn zig_assert_Us_Uc_I(lv: c.Us_Uc_I) c_int {
     var err: c_int = 0;
@@ -8296,7 +9814,7 @@ pub export fn zig_ret_Us_Uc_I() c.Us_Uc_I {
 //   int *v3;
 // };
 
-test "Us_Uc_Ip layout" {
+test "Us_Uc_Ip: layout" {
     var lv: c.Us_Uc_Ip = undefined;
     try testing.expectSize(c.Us_Uc_Ip, ABISELECT(16, 8));
     try testing.expectAlign(c.Us_Uc_Ip, ABISELECT(8, 4));
@@ -8304,11 +9822,17 @@ test "Us_Uc_Ip layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
-test "Us_Uc_Ip C calls" {
-    try testing.expectEqual(c.ret_Us_Uc_Ip(), .{ .v1 = 5672, .v2 = 26, .v3 = null });
-    try testing.expectOk(c.assert_ret_Us_Uc_Ip());
-    try testing.expectOk(c.send_Us_Uc_Ip());
+test "Us_Uc_Ip: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Uc_Ip(.{ .v1 = 5672, .v2 = 26, .v3 = null }));
+}
+test "Us_Uc_Ip: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Uc_Ip());
+}
+test "Us_Uc_Ip: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Uc_Ip());
+}
+test "Us_Uc_Ip: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Uc_Ip(), .{ .v1 = 5672, .v2 = 26, .v3 = null });
 }
 pub export fn zig_assert_Us_Uc_Ip(lv: c.Us_Uc_Ip) c_int {
     var err: c_int = 0;
@@ -8329,7 +9853,7 @@ pub export fn zig_ret_Us_Uc_Ip() c.Us_Uc_Ip {
 //   __tsi64 v3;
 // };
 
-test "Us_Uc_L layout" {
+test "Us_Uc_L: layout" {
     var lv: c.Us_Uc_L = undefined;
     try testing.expectSize(c.Us_Uc_L, ABISELECT(16, 12));
     try testing.expectAlign(c.Us_Uc_L, ABISELECT(8, 4));
@@ -8337,11 +9861,17 @@ test "Us_Uc_L layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
-test "Us_Uc_L C calls" {
-    try testing.expectEqual(c.ret_Us_Uc_L(), .{ .v1 = 13171, .v2 = 48, .v3 = 11522 });
-    try testing.expectOk(c.assert_ret_Us_Uc_L());
-    try testing.expectOk(c.send_Us_Uc_L());
+test "Us_Uc_L: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Uc_L(.{ .v1 = 13171, .v2 = 48, .v3 = 11522 }));
+}
+test "Us_Uc_L: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Uc_L());
+}
+test "Us_Uc_L: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Uc_L());
+}
+test "Us_Uc_L: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Uc_L(), .{ .v1 = 13171, .v2 = 48, .v3 = 11522 });
 }
 pub export fn zig_assert_Us_Uc_L(lv: c.Us_Uc_L) c_int {
     var err: c_int = 0;
@@ -8362,7 +9892,7 @@ pub export fn zig_ret_Us_Uc_L() c.Us_Uc_L {
 //   short v3;
 // };
 
-test "Us_Uc_S layout" {
+test "Us_Uc_S: layout" {
     var lv: c.Us_Uc_S = undefined;
     try testing.expectSize(c.Us_Uc_S, 6);
     try testing.expectAlign(c.Us_Uc_S, 2);
@@ -8370,11 +9900,17 @@ test "Us_Uc_S layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
-test "Us_Uc_S C calls" {
-    try testing.expectEqual(c.ret_Us_Uc_S(), .{ .v1 = 13689, .v2 = 78, .v3 = 3457 });
-    try testing.expectOk(c.assert_ret_Us_Uc_S());
-    try testing.expectOk(c.send_Us_Uc_S());
+test "Us_Uc_S: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Uc_S(.{ .v1 = 13689, .v2 = 78, .v3 = 3457 }));
+}
+test "Us_Uc_S: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Uc_S());
+}
+test "Us_Uc_S: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Uc_S());
+}
+test "Us_Uc_S: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Uc_S(), .{ .v1 = 13689, .v2 = 78, .v3 = 3457 });
 }
 pub export fn zig_assert_Us_Uc_S(lv: c.Us_Uc_S) c_int {
     var err: c_int = 0;
@@ -8395,7 +9931,7 @@ pub export fn zig_ret_Us_Uc_S() c.Us_Uc_S {
 //   unsigned char v3;
 // };
 
-test "Us_Uc_Uc layout" {
+test "Us_Uc_Uc: layout" {
     var lv: c.Us_Uc_Uc = undefined;
     try testing.expectSize(c.Us_Uc_Uc, 4);
     try testing.expectAlign(c.Us_Uc_Uc, 2);
@@ -8403,11 +9939,17 @@ test "Us_Uc_Uc layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 3);
 }
-test "Us_Uc_Uc C calls" {
-    try testing.expectEqual(c.ret_Us_Uc_Uc(), .{ .v1 = 32576, .v2 = 114, .v3 = 6 });
-    try testing.expectOk(c.assert_ret_Us_Uc_Uc());
-    try testing.expectOk(c.send_Us_Uc_Uc());
+test "Us_Uc_Uc: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Uc_Uc(.{ .v1 = 32576, .v2 = 114, .v3 = 6 }));
+}
+test "Us_Uc_Uc: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Uc_Uc());
+}
+test "Us_Uc_Uc: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Uc_Uc());
+}
+test "Us_Uc_Uc: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Uc_Uc(), .{ .v1 = 32576, .v2 = 114, .v3 = 6 });
 }
 pub export fn zig_assert_Us_Uc_Uc(lv: c.Us_Uc_Uc) c_int {
     var err: c_int = 0;
@@ -8428,7 +9970,7 @@ pub export fn zig_ret_Us_Uc_Uc() c.Us_Uc_Uc {
 //   unsigned int v3;
 // };
 
-test "Us_Uc_Ui layout" {
+test "Us_Uc_Ui: layout" {
     var lv: c.Us_Uc_Ui = undefined;
     try testing.expectSize(c.Us_Uc_Ui, 8);
     try testing.expectAlign(c.Us_Uc_Ui, 4);
@@ -8436,11 +9978,17 @@ test "Us_Uc_Ui layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
-test "Us_Uc_Ui C calls" {
-    try testing.expectEqual(c.ret_Us_Uc_Ui(), .{ .v1 = 8544, .v2 = 77, .v3 = 31566 });
-    try testing.expectOk(c.assert_ret_Us_Uc_Ui());
-    try testing.expectOk(c.send_Us_Uc_Ui());
+test "Us_Uc_Ui: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Uc_Ui(.{ .v1 = 8544, .v2 = 77, .v3 = 31566 }));
+}
+test "Us_Uc_Ui: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Uc_Ui());
+}
+test "Us_Uc_Ui: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Uc_Ui());
+}
+test "Us_Uc_Ui: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Uc_Ui(), .{ .v1 = 8544, .v2 = 77, .v3 = 31566 });
 }
 pub export fn zig_assert_Us_Uc_Ui(lv: c.Us_Uc_Ui) c_int {
     var err: c_int = 0;
@@ -8461,7 +10009,7 @@ pub export fn zig_ret_Us_Uc_Ui() c.Us_Uc_Ui {
 //   __tsu64 v3;
 // };
 
-test "Us_Uc_Ul layout" {
+test "Us_Uc_Ul: layout" {
     var lv: c.Us_Uc_Ul = undefined;
     try testing.expectSize(c.Us_Uc_Ul, ABISELECT(16, 12));
     try testing.expectAlign(c.Us_Uc_Ul, ABISELECT(8, 4));
@@ -8469,11 +10017,17 @@ test "Us_Uc_Ul layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
-test "Us_Uc_Ul C calls" {
-    try testing.expectEqual(c.ret_Us_Uc_Ul(), .{ .v1 = 30788, .v2 = 29, .v3 = 22665 });
-    try testing.expectOk(c.assert_ret_Us_Uc_Ul());
-    try testing.expectOk(c.send_Us_Uc_Ul());
+test "Us_Uc_Ul: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Uc_Ul(.{ .v1 = 30788, .v2 = 29, .v3 = 22665 }));
+}
+test "Us_Uc_Ul: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Uc_Ul());
+}
+test "Us_Uc_Ul: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Uc_Ul());
+}
+test "Us_Uc_Ul: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Uc_Ul(), .{ .v1 = 30788, .v2 = 29, .v3 = 22665 });
 }
 pub export fn zig_assert_Us_Uc_Ul(lv: c.Us_Uc_Ul) c_int {
     var err: c_int = 0;
@@ -8494,7 +10048,7 @@ pub export fn zig_ret_Us_Uc_Ul() c.Us_Uc_Ul {
 //   unsigned short v3;
 // };
 
-test "Us_Uc_Us layout" {
+test "Us_Uc_Us: layout" {
     var lv: c.Us_Uc_Us = undefined;
     try testing.expectSize(c.Us_Uc_Us, 6);
     try testing.expectAlign(c.Us_Uc_Us, 2);
@@ -8502,11 +10056,17 @@ test "Us_Uc_Us layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
-test "Us_Uc_Us C calls" {
-    try testing.expectEqual(c.ret_Us_Uc_Us(), .{ .v1 = 28438, .v2 = 88, .v3 = 26894 });
-    try testing.expectOk(c.assert_ret_Us_Uc_Us());
-    try testing.expectOk(c.send_Us_Uc_Us());
+test "Us_Uc_Us: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Uc_Us(.{ .v1 = 28438, .v2 = 88, .v3 = 26894 }));
+}
+test "Us_Uc_Us: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Uc_Us());
+}
+test "Us_Uc_Us: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Uc_Us());
+}
+test "Us_Uc_Us: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Uc_Us(), .{ .v1 = 28438, .v2 = 88, .v3 = 26894 });
 }
 pub export fn zig_assert_Us_Uc_Us(lv: c.Us_Uc_Us) c_int {
     var err: c_int = 0;
@@ -8527,7 +10087,7 @@ pub export fn zig_ret_Us_Uc_Us() c.Us_Uc_Us {
 //   void *v3;
 // };
 
-test "Us_Uc_Vp layout" {
+test "Us_Uc_Vp: layout" {
     var lv: c.Us_Uc_Vp = undefined;
     try testing.expectSize(c.Us_Uc_Vp, ABISELECT(16, 8));
     try testing.expectAlign(c.Us_Uc_Vp, ABISELECT(8, 4));
@@ -8535,11 +10095,17 @@ test "Us_Uc_Vp layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
-test "Us_Uc_Vp C calls" {
-    try testing.expectEqual(c.ret_Us_Uc_Vp(), .{ .v1 = 19528, .v2 = 87, .v3 = null });
-    try testing.expectOk(c.assert_ret_Us_Uc_Vp());
-    try testing.expectOk(c.send_Us_Uc_Vp());
+test "Us_Uc_Vp: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Uc_Vp(.{ .v1 = 19528, .v2 = 87, .v3 = null }));
+}
+test "Us_Uc_Vp: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Uc_Vp());
+}
+test "Us_Uc_Vp: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Uc_Vp());
+}
+test "Us_Uc_Vp: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Uc_Vp(), .{ .v1 = 19528, .v2 = 87, .v3 = null });
 }
 pub export fn zig_assert_Us_Uc_Vp(lv: c.Us_Uc_Vp) c_int {
     var err: c_int = 0;
@@ -8559,18 +10125,24 @@ pub export fn zig_ret_Us_Uc_Vp() c.Us_Uc_Vp {
 //   unsigned int v2;
 // };
 
-test "Us_Ui layout" {
+test "Us_Ui: layout" {
     var lv: c.Us_Ui = undefined;
     try testing.expectSize(c.Us_Ui, 8);
     try testing.expectAlign(c.Us_Ui, 4);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
 }
-test "Us_Ui C calls" {
-    try testing.expectEqual(c.ret_Us_Ui(), .{ .v1 = 22821, .v2 = 31463 });
-    try testing.expectOk(c.assert_ret_Us_Ui());
-    try testing.expectOk(c.send_Us_Ui());
+test "Us_Ui: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Ui(.{ .v1 = 22821, .v2 = 31463 }));
+}
+test "Us_Ui: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Ui());
+}
+test "Us_Ui: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Ui());
+}
+test "Us_Ui: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ui(), .{ .v1 = 22821, .v2 = 31463 });
 }
 pub export fn zig_assert_Us_Ui(lv: c.Us_Ui) c_int {
     var err: c_int = 0;
@@ -8590,7 +10162,7 @@ pub export fn zig_ret_Us_Ui() c.Us_Ui {
 //   char v3;
 // };
 
-test "Us_Ui_C layout" {
+test "Us_Ui_C: layout" {
     var lv: c.Us_Ui_C = undefined;
     try testing.expectSize(c.Us_Ui_C, 12);
     try testing.expectAlign(c.Us_Ui_C, 4);
@@ -8598,11 +10170,17 @@ test "Us_Ui_C layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
-test "Us_Ui_C C calls" {
-    try testing.expectEqual(c.ret_Us_Ui_C(), .{ .v1 = 32462, .v2 = 8790, .v3 = 63 });
-    try testing.expectOk(c.assert_ret_Us_Ui_C());
-    try testing.expectOk(c.send_Us_Ui_C());
+test "Us_Ui_C: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Ui_C(.{ .v1 = 32462, .v2 = 8790, .v3 = 63 }));
+}
+test "Us_Ui_C: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Ui_C());
+}
+test "Us_Ui_C: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Ui_C());
+}
+test "Us_Ui_C: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ui_C(), .{ .v1 = 32462, .v2 = 8790, .v3 = 63 });
 }
 pub export fn zig_assert_Us_Ui_C(lv: c.Us_Ui_C) c_int {
     var err: c_int = 0;
@@ -8623,7 +10201,7 @@ pub export fn zig_ret_Us_Ui_C() c.Us_Ui_C {
 //   double v3;
 // };
 
-test "Us_Ui_D layout" {
+test "Us_Ui_D: layout" {
     var lv: c.Us_Ui_D = undefined;
     try testing.expectSize(c.Us_Ui_D, 16);
     try testing.expectAlign(c.Us_Ui_D, ABISELECT(8, 4));
@@ -8631,11 +10209,17 @@ test "Us_Ui_D layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
-test "Us_Ui_D C calls" {
-    try testing.expectEqual(c.ret_Us_Ui_D(), .{ .v1 = 12024, .v2 = 26928, .v3 = -0.25 });
+test "Us_Ui_D: Zig passes to C" {
+    try testing.expectFail(c.assert_Us_Ui_D(.{ .v1 = 12024, .v2 = 26928, .v3 = -0.25 }));
+}
+test "Us_Ui_D: Zig returns to C" {
     try testing.expectOk(c.assert_ret_Us_Ui_D());
-    try testing.expectOk(c.send_Us_Ui_D());
-    try testing.expectOk(c.assert_Us_Ui_D(.{ .v1 = 12024, .v2 = 26928, .v3 = -0.25 }));
+}
+test "Us_Ui_D: C passes to Zig" {
+    try testing.expectFail(c.send_Us_Ui_D());
+}
+test "Us_Ui_D: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ui_D(), .{ .v1 = 12024, .v2 = 26928, .v3 = -0.25 });
 }
 pub export fn zig_assert_Us_Ui_D(lv: c.Us_Ui_D) c_int {
     var err: c_int = 0;
@@ -8656,7 +10240,7 @@ pub export fn zig_ret_Us_Ui_D() c.Us_Ui_D {
 //   float v3;
 // };
 
-test "Us_Ui_F layout" {
+test "Us_Ui_F: layout" {
     var lv: c.Us_Ui_F = undefined;
     try testing.expectSize(c.Us_Ui_F, 12);
     try testing.expectAlign(c.Us_Ui_F, 4);
@@ -8664,11 +10248,17 @@ test "Us_Ui_F layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
-test "Us_Ui_F C calls" {
-    try testing.expectEqual(c.ret_Us_Ui_F(), .{ .v1 = 18149, .v2 = 22194, .v3 = -2.125 });
+test "Us_Ui_F: Zig passes to C" {
+    try testing.expectFail(c.assert_Us_Ui_F(.{ .v1 = 18149, .v2 = 22194, .v3 = -2.125 }));
+}
+test "Us_Ui_F: Zig returns to C" {
     try testing.expectOk(c.assert_ret_Us_Ui_F());
-    try testing.expectOk(c.send_Us_Ui_F());
-    try testing.expectOk(c.assert_Us_Ui_F(.{ .v1 = 18149, .v2 = 22194, .v3 = -2.125 }));
+}
+test "Us_Ui_F: C passes to Zig" {
+    try testing.expectFail(c.send_Us_Ui_F());
+}
+test "Us_Ui_F: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ui_F(), .{ .v1 = 18149, .v2 = 22194, .v3 = -2.125 });
 }
 pub export fn zig_assert_Us_Ui_F(lv: c.Us_Ui_F) c_int {
     var err: c_int = 0;
@@ -8689,7 +10279,7 @@ pub export fn zig_ret_Us_Ui_F() c.Us_Ui_F {
 //   int v3;
 // };
 
-test "Us_Ui_I layout" {
+test "Us_Ui_I: layout" {
     var lv: c.Us_Ui_I = undefined;
     try testing.expectSize(c.Us_Ui_I, 12);
     try testing.expectAlign(c.Us_Ui_I, 4);
@@ -8697,11 +10287,17 @@ test "Us_Ui_I layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
-test "Us_Ui_I C calls" {
-    try testing.expectEqual(c.ret_Us_Ui_I(), .{ .v1 = 20073, .v2 = 9610, .v3 = 6587 });
-    try testing.expectOk(c.assert_ret_Us_Ui_I());
-    try testing.expectOk(c.send_Us_Ui_I());
+test "Us_Ui_I: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Ui_I(.{ .v1 = 20073, .v2 = 9610, .v3 = 6587 }));
+}
+test "Us_Ui_I: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Ui_I());
+}
+test "Us_Ui_I: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Ui_I());
+}
+test "Us_Ui_I: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ui_I(), .{ .v1 = 20073, .v2 = 9610, .v3 = 6587 });
 }
 pub export fn zig_assert_Us_Ui_I(lv: c.Us_Ui_I) c_int {
     var err: c_int = 0;
@@ -8722,7 +10318,7 @@ pub export fn zig_ret_Us_Ui_I() c.Us_Ui_I {
 //   int *v3;
 // };
 
-test "Us_Ui_Ip layout" {
+test "Us_Ui_Ip: layout" {
     var lv: c.Us_Ui_Ip = undefined;
     try testing.expectSize(c.Us_Ui_Ip, ABISELECT(16, 12));
     try testing.expectAlign(c.Us_Ui_Ip, ABISELECT(8, 4));
@@ -8730,11 +10326,17 @@ test "Us_Ui_Ip layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
-test "Us_Ui_Ip C calls" {
-    try testing.expectEqual(c.ret_Us_Ui_Ip(), .{ .v1 = 5912, .v2 = 5511, .v3 = null });
-    try testing.expectOk(c.assert_ret_Us_Ui_Ip());
-    try testing.expectOk(c.send_Us_Ui_Ip());
+test "Us_Ui_Ip: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Ui_Ip(.{ .v1 = 5912, .v2 = 5511, .v3 = null }));
+}
+test "Us_Ui_Ip: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Ui_Ip());
+}
+test "Us_Ui_Ip: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Ui_Ip());
+}
+test "Us_Ui_Ip: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ui_Ip(), .{ .v1 = 5912, .v2 = 5511, .v3 = null });
 }
 pub export fn zig_assert_Us_Ui_Ip(lv: c.Us_Ui_Ip) c_int {
     var err: c_int = 0;
@@ -8755,7 +10357,7 @@ pub export fn zig_ret_Us_Ui_Ip() c.Us_Ui_Ip {
 //   __tsi64 v3;
 // };
 
-test "Us_Ui_L layout" {
+test "Us_Ui_L: layout" {
     var lv: c.Us_Ui_L = undefined;
     try testing.expectSize(c.Us_Ui_L, 16);
     try testing.expectAlign(c.Us_Ui_L, ABISELECT(8, 4));
@@ -8763,11 +10365,17 @@ test "Us_Ui_L layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
-test "Us_Ui_L C calls" {
-    try testing.expectEqual(c.ret_Us_Ui_L(), .{ .v1 = 3295, .v2 = 3241, .v3 = 591 });
-    try testing.expectOk(c.assert_ret_Us_Ui_L());
-    try testing.expectOk(c.send_Us_Ui_L());
+test "Us_Ui_L: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Ui_L(.{ .v1 = 3295, .v2 = 3241, .v3 = 591 }));
+}
+test "Us_Ui_L: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Ui_L());
+}
+test "Us_Ui_L: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Ui_L());
+}
+test "Us_Ui_L: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ui_L(), .{ .v1 = 3295, .v2 = 3241, .v3 = 591 });
 }
 pub export fn zig_assert_Us_Ui_L(lv: c.Us_Ui_L) c_int {
     var err: c_int = 0;
@@ -8788,7 +10396,7 @@ pub export fn zig_ret_Us_Ui_L() c.Us_Ui_L {
 //   short v3;
 // };
 
-test "Us_Ui_S layout" {
+test "Us_Ui_S: layout" {
     var lv: c.Us_Ui_S = undefined;
     try testing.expectSize(c.Us_Ui_S, 12);
     try testing.expectAlign(c.Us_Ui_S, 4);
@@ -8796,11 +10404,17 @@ test "Us_Ui_S layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
-test "Us_Ui_S C calls" {
-    try testing.expectEqual(c.ret_Us_Ui_S(), .{ .v1 = 190, .v2 = 10192, .v3 = 3934 });
-    try testing.expectOk(c.assert_ret_Us_Ui_S());
-    try testing.expectOk(c.send_Us_Ui_S());
+test "Us_Ui_S: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Ui_S(.{ .v1 = 190, .v2 = 10192, .v3 = 3934 }));
+}
+test "Us_Ui_S: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Ui_S());
+}
+test "Us_Ui_S: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Ui_S());
+}
+test "Us_Ui_S: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ui_S(), .{ .v1 = 190, .v2 = 10192, .v3 = 3934 });
 }
 pub export fn zig_assert_Us_Ui_S(lv: c.Us_Ui_S) c_int {
     var err: c_int = 0;
@@ -8821,7 +10435,7 @@ pub export fn zig_ret_Us_Ui_S() c.Us_Ui_S {
 //   unsigned char v3;
 // };
 
-test "Us_Ui_Uc layout" {
+test "Us_Ui_Uc: layout" {
     var lv: c.Us_Ui_Uc = undefined;
     try testing.expectSize(c.Us_Ui_Uc, 12);
     try testing.expectAlign(c.Us_Ui_Uc, 4);
@@ -8829,11 +10443,17 @@ test "Us_Ui_Uc layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
-test "Us_Ui_Uc C calls" {
-    try testing.expectEqual(c.ret_Us_Ui_Uc(), .{ .v1 = 27974, .v2 = 12257, .v3 = 100 });
-    try testing.expectOk(c.assert_ret_Us_Ui_Uc());
-    try testing.expectOk(c.send_Us_Ui_Uc());
+test "Us_Ui_Uc: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Ui_Uc(.{ .v1 = 27974, .v2 = 12257, .v3 = 100 }));
+}
+test "Us_Ui_Uc: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Ui_Uc());
+}
+test "Us_Ui_Uc: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Ui_Uc());
+}
+test "Us_Ui_Uc: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ui_Uc(), .{ .v1 = 27974, .v2 = 12257, .v3 = 100 });
 }
 pub export fn zig_assert_Us_Ui_Uc(lv: c.Us_Ui_Uc) c_int {
     var err: c_int = 0;
@@ -8854,7 +10474,7 @@ pub export fn zig_ret_Us_Ui_Uc() c.Us_Ui_Uc {
 //   unsigned int v3;
 // };
 
-test "Us_Ui_Ui layout" {
+test "Us_Ui_Ui: layout" {
     var lv: c.Us_Ui_Ui = undefined;
     try testing.expectSize(c.Us_Ui_Ui, 12);
     try testing.expectAlign(c.Us_Ui_Ui, 4);
@@ -8862,11 +10482,17 @@ test "Us_Ui_Ui layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
-test "Us_Ui_Ui C calls" {
-    try testing.expectEqual(c.ret_Us_Ui_Ui(), .{ .v1 = 3493, .v2 = 11093, .v3 = 28185 });
-    try testing.expectOk(c.assert_ret_Us_Ui_Ui());
-    try testing.expectOk(c.send_Us_Ui_Ui());
+test "Us_Ui_Ui: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Ui_Ui(.{ .v1 = 3493, .v2 = 11093, .v3 = 28185 }));
+}
+test "Us_Ui_Ui: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Ui_Ui());
+}
+test "Us_Ui_Ui: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Ui_Ui());
+}
+test "Us_Ui_Ui: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ui_Ui(), .{ .v1 = 3493, .v2 = 11093, .v3 = 28185 });
 }
 pub export fn zig_assert_Us_Ui_Ui(lv: c.Us_Ui_Ui) c_int {
     var err: c_int = 0;
@@ -8887,7 +10513,7 @@ pub export fn zig_ret_Us_Ui_Ui() c.Us_Ui_Ui {
 //   __tsu64 v3;
 // };
 
-test "Us_Ui_Ul layout" {
+test "Us_Ui_Ul: layout" {
     var lv: c.Us_Ui_Ul = undefined;
     try testing.expectSize(c.Us_Ui_Ul, 16);
     try testing.expectAlign(c.Us_Ui_Ul, ABISELECT(8, 4));
@@ -8895,11 +10521,17 @@ test "Us_Ui_Ul layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
-test "Us_Ui_Ul C calls" {
-    try testing.expectEqual(c.ret_Us_Ui_Ul(), .{ .v1 = 20393, .v2 = 2406, .v3 = 17503 });
-    try testing.expectOk(c.assert_ret_Us_Ui_Ul());
-    try testing.expectOk(c.send_Us_Ui_Ul());
+test "Us_Ui_Ul: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Ui_Ul(.{ .v1 = 20393, .v2 = 2406, .v3 = 17503 }));
+}
+test "Us_Ui_Ul: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Ui_Ul());
+}
+test "Us_Ui_Ul: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Ui_Ul());
+}
+test "Us_Ui_Ul: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ui_Ul(), .{ .v1 = 20393, .v2 = 2406, .v3 = 17503 });
 }
 pub export fn zig_assert_Us_Ui_Ul(lv: c.Us_Ui_Ul) c_int {
     var err: c_int = 0;
@@ -8920,7 +10552,7 @@ pub export fn zig_ret_Us_Ui_Ul() c.Us_Ui_Ul {
 //   unsigned short v3;
 // };
 
-test "Us_Ui_Us layout" {
+test "Us_Ui_Us: layout" {
     var lv: c.Us_Ui_Us = undefined;
     try testing.expectSize(c.Us_Ui_Us, 12);
     try testing.expectAlign(c.Us_Ui_Us, 4);
@@ -8928,11 +10560,17 @@ test "Us_Ui_Us layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
-test "Us_Ui_Us C calls" {
-    try testing.expectEqual(c.ret_Us_Ui_Us(), .{ .v1 = 14950, .v2 = 28030, .v3 = 26040 });
-    try testing.expectOk(c.assert_ret_Us_Ui_Us());
-    try testing.expectOk(c.send_Us_Ui_Us());
+test "Us_Ui_Us: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Ui_Us(.{ .v1 = 14950, .v2 = 28030, .v3 = 26040 }));
+}
+test "Us_Ui_Us: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Ui_Us());
+}
+test "Us_Ui_Us: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Ui_Us());
+}
+test "Us_Ui_Us: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ui_Us(), .{ .v1 = 14950, .v2 = 28030, .v3 = 26040 });
 }
 pub export fn zig_assert_Us_Ui_Us(lv: c.Us_Ui_Us) c_int {
     var err: c_int = 0;
@@ -8953,7 +10591,7 @@ pub export fn zig_ret_Us_Ui_Us() c.Us_Ui_Us {
 //   void *v3;
 // };
 
-test "Us_Ui_Vp layout" {
+test "Us_Ui_Vp: layout" {
     var lv: c.Us_Ui_Vp = undefined;
     try testing.expectSize(c.Us_Ui_Vp, ABISELECT(16, 12));
     try testing.expectAlign(c.Us_Ui_Vp, ABISELECT(8, 4));
@@ -8961,11 +10599,17 @@ test "Us_Ui_Vp layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
-test "Us_Ui_Vp C calls" {
-    try testing.expectEqual(c.ret_Us_Ui_Vp(), .{ .v1 = 13015, .v2 = 7991, .v3 = null });
-    try testing.expectOk(c.assert_ret_Us_Ui_Vp());
-    try testing.expectOk(c.send_Us_Ui_Vp());
+test "Us_Ui_Vp: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Ui_Vp(.{ .v1 = 13015, .v2 = 7991, .v3 = null }));
+}
+test "Us_Ui_Vp: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Ui_Vp());
+}
+test "Us_Ui_Vp: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Ui_Vp());
+}
+test "Us_Ui_Vp: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ui_Vp(), .{ .v1 = 13015, .v2 = 7991, .v3 = null });
 }
 pub export fn zig_assert_Us_Ui_Vp(lv: c.Us_Ui_Vp) c_int {
     var err: c_int = 0;
@@ -8985,18 +10629,24 @@ pub export fn zig_ret_Us_Ui_Vp() c.Us_Ui_Vp {
 //   __tsu64 v2;
 // };
 
-test "Us_Ul layout" {
+test "Us_Ul: layout" {
     var lv: c.Us_Ul = undefined;
     try testing.expectSize(c.Us_Ul, ABISELECT(16, 12));
     try testing.expectAlign(c.Us_Ul, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
 }
-test "Us_Ul C calls" {
-    try testing.expectEqual(c.ret_Us_Ul(), .{ .v1 = 16401, .v2 = 4479 });
-    try testing.expectOk(c.assert_ret_Us_Ul());
-    try testing.expectOk(c.send_Us_Ul());
+test "Us_Ul: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Ul(.{ .v1 = 16401, .v2 = 4479 }));
+}
+test "Us_Ul: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Ul());
+}
+test "Us_Ul: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Ul());
+}
+test "Us_Ul: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ul(), .{ .v1 = 16401, .v2 = 4479 });
 }
 pub export fn zig_assert_Us_Ul(lv: c.Us_Ul) c_int {
     var err: c_int = 0;
@@ -9016,7 +10666,7 @@ pub export fn zig_ret_Us_Ul() c.Us_Ul {
 //   char v3;
 // };
 
-test "Us_Ul_C layout" {
+test "Us_Ul_C: layout" {
     var lv: c.Us_Ul_C = undefined;
     try testing.expectSize(c.Us_Ul_C, ABISELECT(24, 16));
     try testing.expectAlign(c.Us_Ul_C, ABISELECT(8, 4));
@@ -9024,11 +10674,17 @@ test "Us_Ul_C layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Us_Ul_C C calls" {
-    try testing.expectEqual(c.ret_Us_Ul_C(), .{ .v1 = 26329, .v2 = 27940, .v3 = 45 });
-    try testing.expectOk(c.assert_ret_Us_Ul_C());
-    try testing.expectOk(c.send_Us_Ul_C());
+test "Us_Ul_C: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Ul_C(.{ .v1 = 26329, .v2 = 27940, .v3 = 45 }));
+}
+test "Us_Ul_C: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Ul_C());
+}
+test "Us_Ul_C: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Ul_C());
+}
+test "Us_Ul_C: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ul_C(), .{ .v1 = 26329, .v2 = 27940, .v3 = 45 });
 }
 pub export fn zig_assert_Us_Ul_C(lv: c.Us_Ul_C) c_int {
     var err: c_int = 0;
@@ -9049,7 +10705,7 @@ pub export fn zig_ret_Us_Ul_C() c.Us_Ul_C {
 //   double v3;
 // };
 
-test "Us_Ul_D layout" {
+test "Us_Ul_D: layout" {
     var lv: c.Us_Ul_D = undefined;
     try testing.expectSize(c.Us_Ul_D, ABISELECT(24, 20));
     try testing.expectAlign(c.Us_Ul_D, ABISELECT(8, 4));
@@ -9057,11 +10713,17 @@ test "Us_Ul_D layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Us_Ul_D C calls" {
-    try testing.expectEqual(c.ret_Us_Ul_D(), .{ .v1 = 17927, .v2 = 8476, .v3 = 0.875 });
-    try testing.expectOk(c.assert_ret_Us_Ul_D());
-    try testing.expectOk(c.send_Us_Ul_D());
+test "Us_Ul_D: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Ul_D(.{ .v1 = 17927, .v2 = 8476, .v3 = 0.875 }));
+}
+test "Us_Ul_D: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Ul_D());
+}
+test "Us_Ul_D: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Ul_D());
+}
+test "Us_Ul_D: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ul_D(), .{ .v1 = 17927, .v2 = 8476, .v3 = 0.875 });
 }
 pub export fn zig_assert_Us_Ul_D(lv: c.Us_Ul_D) c_int {
     var err: c_int = 0;
@@ -9082,7 +10744,7 @@ pub export fn zig_ret_Us_Ul_D() c.Us_Ul_D {
 //   float v3;
 // };
 
-test "Us_Ul_F layout" {
+test "Us_Ul_F: layout" {
     var lv: c.Us_Ul_F = undefined;
     try testing.expectSize(c.Us_Ul_F, ABISELECT(24, 16));
     try testing.expectAlign(c.Us_Ul_F, ABISELECT(8, 4));
@@ -9090,11 +10752,17 @@ test "Us_Ul_F layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Us_Ul_F C calls" {
-    try testing.expectEqual(c.ret_Us_Ul_F(), .{ .v1 = 20120, .v2 = 14441, .v3 = -0.25 });
-    try testing.expectOk(c.assert_ret_Us_Ul_F());
-    try testing.expectOk(c.send_Us_Ul_F());
+test "Us_Ul_F: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Ul_F(.{ .v1 = 20120, .v2 = 14441, .v3 = -0.25 }));
+}
+test "Us_Ul_F: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Ul_F());
+}
+test "Us_Ul_F: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Ul_F());
+}
+test "Us_Ul_F: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ul_F(), .{ .v1 = 20120, .v2 = 14441, .v3 = -0.25 });
 }
 pub export fn zig_assert_Us_Ul_F(lv: c.Us_Ul_F) c_int {
     var err: c_int = 0;
@@ -9115,7 +10783,7 @@ pub export fn zig_ret_Us_Ul_F() c.Us_Ul_F {
 //   int v3;
 // };
 
-test "Us_Ul_I layout" {
+test "Us_Ul_I: layout" {
     var lv: c.Us_Ul_I = undefined;
     try testing.expectSize(c.Us_Ul_I, ABISELECT(24, 16));
     try testing.expectAlign(c.Us_Ul_I, ABISELECT(8, 4));
@@ -9123,11 +10791,17 @@ test "Us_Ul_I layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Us_Ul_I C calls" {
-    try testing.expectEqual(c.ret_Us_Ul_I(), .{ .v1 = 8727, .v2 = 14648, .v3 = 27507 });
-    try testing.expectOk(c.assert_ret_Us_Ul_I());
-    try testing.expectOk(c.send_Us_Ul_I());
+test "Us_Ul_I: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Ul_I(.{ .v1 = 8727, .v2 = 14648, .v3 = 27507 }));
+}
+test "Us_Ul_I: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Ul_I());
+}
+test "Us_Ul_I: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Ul_I());
+}
+test "Us_Ul_I: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ul_I(), .{ .v1 = 8727, .v2 = 14648, .v3 = 27507 });
 }
 pub export fn zig_assert_Us_Ul_I(lv: c.Us_Ul_I) c_int {
     var err: c_int = 0;
@@ -9148,7 +10822,7 @@ pub export fn zig_ret_Us_Ul_I() c.Us_Ul_I {
 //   int *v3;
 // };
 
-test "Us_Ul_Ip layout" {
+test "Us_Ul_Ip: layout" {
     var lv: c.Us_Ul_Ip = undefined;
     try testing.expectSize(c.Us_Ul_Ip, ABISELECT(24, 16));
     try testing.expectAlign(c.Us_Ul_Ip, ABISELECT(8, 4));
@@ -9156,11 +10830,17 @@ test "Us_Ul_Ip layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Us_Ul_Ip C calls" {
-    try testing.expectEqual(c.ret_Us_Ul_Ip(), .{ .v1 = 24923, .v2 = 3980, .v3 = null });
-    try testing.expectOk(c.assert_ret_Us_Ul_Ip());
-    try testing.expectOk(c.send_Us_Ul_Ip());
+test "Us_Ul_Ip: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Ul_Ip(.{ .v1 = 24923, .v2 = 3980, .v3 = null }));
+}
+test "Us_Ul_Ip: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Ul_Ip());
+}
+test "Us_Ul_Ip: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Ul_Ip());
+}
+test "Us_Ul_Ip: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ul_Ip(), .{ .v1 = 24923, .v2 = 3980, .v3 = null });
 }
 pub export fn zig_assert_Us_Ul_Ip(lv: c.Us_Ul_Ip) c_int {
     var err: c_int = 0;
@@ -9181,7 +10861,7 @@ pub export fn zig_ret_Us_Ul_Ip() c.Us_Ul_Ip {
 //   __tsi64 v3;
 // };
 
-test "Us_Ul_L layout" {
+test "Us_Ul_L: layout" {
     var lv: c.Us_Ul_L = undefined;
     try testing.expectSize(c.Us_Ul_L, ABISELECT(24, 20));
     try testing.expectAlign(c.Us_Ul_L, ABISELECT(8, 4));
@@ -9189,11 +10869,17 @@ test "Us_Ul_L layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Us_Ul_L C calls" {
-    try testing.expectEqual(c.ret_Us_Ul_L(), .{ .v1 = 14072, .v2 = 26693, .v3 = 704 });
-    try testing.expectOk(c.assert_ret_Us_Ul_L());
-    try testing.expectOk(c.send_Us_Ul_L());
+test "Us_Ul_L: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Ul_L(.{ .v1 = 14072, .v2 = 26693, .v3 = 704 }));
+}
+test "Us_Ul_L: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Ul_L());
+}
+test "Us_Ul_L: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Ul_L());
+}
+test "Us_Ul_L: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ul_L(), .{ .v1 = 14072, .v2 = 26693, .v3 = 704 });
 }
 pub export fn zig_assert_Us_Ul_L(lv: c.Us_Ul_L) c_int {
     var err: c_int = 0;
@@ -9214,7 +10900,7 @@ pub export fn zig_ret_Us_Ul_L() c.Us_Ul_L {
 //   short v3;
 // };
 
-test "Us_Ul_S layout" {
+test "Us_Ul_S: layout" {
     var lv: c.Us_Ul_S = undefined;
     try testing.expectSize(c.Us_Ul_S, ABISELECT(24, 16));
     try testing.expectAlign(c.Us_Ul_S, ABISELECT(8, 4));
@@ -9222,11 +10908,17 @@ test "Us_Ul_S layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Us_Ul_S C calls" {
-    try testing.expectEqual(c.ret_Us_Ul_S(), .{ .v1 = 29540, .v2 = 2724, .v3 = 23630 });
-    try testing.expectOk(c.assert_ret_Us_Ul_S());
-    try testing.expectOk(c.send_Us_Ul_S());
+test "Us_Ul_S: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Ul_S(.{ .v1 = 29540, .v2 = 2724, .v3 = 23630 }));
+}
+test "Us_Ul_S: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Ul_S());
+}
+test "Us_Ul_S: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Ul_S());
+}
+test "Us_Ul_S: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ul_S(), .{ .v1 = 29540, .v2 = 2724, .v3 = 23630 });
 }
 pub export fn zig_assert_Us_Ul_S(lv: c.Us_Ul_S) c_int {
     var err: c_int = 0;
@@ -9247,7 +10939,7 @@ pub export fn zig_ret_Us_Ul_S() c.Us_Ul_S {
 //   unsigned char v3;
 // };
 
-test "Us_Ul_Uc layout" {
+test "Us_Ul_Uc: layout" {
     var lv: c.Us_Ul_Uc = undefined;
     try testing.expectSize(c.Us_Ul_Uc, ABISELECT(24, 16));
     try testing.expectAlign(c.Us_Ul_Uc, ABISELECT(8, 4));
@@ -9255,11 +10947,17 @@ test "Us_Ul_Uc layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Us_Ul_Uc C calls" {
-    try testing.expectEqual(c.ret_Us_Ul_Uc(), .{ .v1 = 2843, .v2 = 9302, .v3 = 9 });
-    try testing.expectOk(c.assert_ret_Us_Ul_Uc());
-    try testing.expectOk(c.send_Us_Ul_Uc());
+test "Us_Ul_Uc: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Ul_Uc(.{ .v1 = 2843, .v2 = 9302, .v3 = 9 }));
+}
+test "Us_Ul_Uc: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Ul_Uc());
+}
+test "Us_Ul_Uc: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Ul_Uc());
+}
+test "Us_Ul_Uc: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ul_Uc(), .{ .v1 = 2843, .v2 = 9302, .v3 = 9 });
 }
 pub export fn zig_assert_Us_Ul_Uc(lv: c.Us_Ul_Uc) c_int {
     var err: c_int = 0;
@@ -9280,7 +10978,7 @@ pub export fn zig_ret_Us_Ul_Uc() c.Us_Ul_Uc {
 //   unsigned int v3;
 // };
 
-test "Us_Ul_Ui layout" {
+test "Us_Ul_Ui: layout" {
     var lv: c.Us_Ul_Ui = undefined;
     try testing.expectSize(c.Us_Ul_Ui, ABISELECT(24, 16));
     try testing.expectAlign(c.Us_Ul_Ui, ABISELECT(8, 4));
@@ -9288,11 +10986,17 @@ test "Us_Ul_Ui layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Us_Ul_Ui C calls" {
-    try testing.expectEqual(c.ret_Us_Ul_Ui(), .{ .v1 = 1936, .v2 = 23128, .v3 = 25427 });
-    try testing.expectOk(c.assert_ret_Us_Ul_Ui());
-    try testing.expectOk(c.send_Us_Ul_Ui());
+test "Us_Ul_Ui: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Ul_Ui(.{ .v1 = 1936, .v2 = 23128, .v3 = 25427 }));
+}
+test "Us_Ul_Ui: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Ul_Ui());
+}
+test "Us_Ul_Ui: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Ul_Ui());
+}
+test "Us_Ul_Ui: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ul_Ui(), .{ .v1 = 1936, .v2 = 23128, .v3 = 25427 });
 }
 pub export fn zig_assert_Us_Ul_Ui(lv: c.Us_Ul_Ui) c_int {
     var err: c_int = 0;
@@ -9313,7 +11017,7 @@ pub export fn zig_ret_Us_Ul_Ui() c.Us_Ul_Ui {
 //   __tsu64 v3;
 // };
 
-test "Us_Ul_Ul layout" {
+test "Us_Ul_Ul: layout" {
     var lv: c.Us_Ul_Ul = undefined;
     try testing.expectSize(c.Us_Ul_Ul, ABISELECT(24, 20));
     try testing.expectAlign(c.Us_Ul_Ul, ABISELECT(8, 4));
@@ -9321,11 +11025,17 @@ test "Us_Ul_Ul layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Us_Ul_Ul C calls" {
-    try testing.expectEqual(c.ret_Us_Ul_Ul(), .{ .v1 = 21746, .v2 = 21824, .v3 = 14878 });
-    try testing.expectOk(c.assert_ret_Us_Ul_Ul());
-    try testing.expectOk(c.send_Us_Ul_Ul());
+test "Us_Ul_Ul: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Ul_Ul(.{ .v1 = 21746, .v2 = 21824, .v3 = 14878 }));
+}
+test "Us_Ul_Ul: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Ul_Ul());
+}
+test "Us_Ul_Ul: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Ul_Ul());
+}
+test "Us_Ul_Ul: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ul_Ul(), .{ .v1 = 21746, .v2 = 21824, .v3 = 14878 });
 }
 pub export fn zig_assert_Us_Ul_Ul(lv: c.Us_Ul_Ul) c_int {
     var err: c_int = 0;
@@ -9346,7 +11056,7 @@ pub export fn zig_ret_Us_Ul_Ul() c.Us_Ul_Ul {
 //   unsigned short v3;
 // };
 
-test "Us_Ul_Us layout" {
+test "Us_Ul_Us: layout" {
     var lv: c.Us_Ul_Us = undefined;
     try testing.expectSize(c.Us_Ul_Us, ABISELECT(24, 16));
     try testing.expectAlign(c.Us_Ul_Us, ABISELECT(8, 4));
@@ -9354,11 +11064,17 @@ test "Us_Ul_Us layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Us_Ul_Us C calls" {
-    try testing.expectEqual(c.ret_Us_Ul_Us(), .{ .v1 = 26984, .v2 = 13299, .v3 = 17140 });
-    try testing.expectOk(c.assert_ret_Us_Ul_Us());
-    try testing.expectOk(c.send_Us_Ul_Us());
+test "Us_Ul_Us: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Ul_Us(.{ .v1 = 26984, .v2 = 13299, .v3 = 17140 }));
+}
+test "Us_Ul_Us: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Ul_Us());
+}
+test "Us_Ul_Us: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Ul_Us());
+}
+test "Us_Ul_Us: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ul_Us(), .{ .v1 = 26984, .v2 = 13299, .v3 = 17140 });
 }
 pub export fn zig_assert_Us_Ul_Us(lv: c.Us_Ul_Us) c_int {
     var err: c_int = 0;
@@ -9379,7 +11095,7 @@ pub export fn zig_ret_Us_Ul_Us() c.Us_Ul_Us {
 //   void *v3;
 // };
 
-test "Us_Ul_Vp layout" {
+test "Us_Ul_Vp: layout" {
     var lv: c.Us_Ul_Vp = undefined;
     try testing.expectSize(c.Us_Ul_Vp, ABISELECT(24, 16));
     try testing.expectAlign(c.Us_Ul_Vp, ABISELECT(8, 4));
@@ -9387,11 +11103,17 @@ test "Us_Ul_Vp layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
-test "Us_Ul_Vp C calls" {
-    try testing.expectEqual(c.ret_Us_Ul_Vp(), .{ .v1 = 30518, .v2 = 21741, .v3 = null });
-    try testing.expectOk(c.assert_ret_Us_Ul_Vp());
-    try testing.expectOk(c.send_Us_Ul_Vp());
+test "Us_Ul_Vp: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Ul_Vp(.{ .v1 = 30518, .v2 = 21741, .v3 = null }));
+}
+test "Us_Ul_Vp: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Ul_Vp());
+}
+test "Us_Ul_Vp: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Ul_Vp());
+}
+test "Us_Ul_Vp: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Ul_Vp(), .{ .v1 = 30518, .v2 = 21741, .v3 = null });
 }
 pub export fn zig_assert_Us_Ul_Vp(lv: c.Us_Ul_Vp) c_int {
     var err: c_int = 0;
@@ -9411,18 +11133,24 @@ pub export fn zig_ret_Us_Ul_Vp() c.Us_Ul_Vp {
 //   unsigned short v2;
 // };
 
-test "Us_Us layout" {
+test "Us_Us: layout" {
     var lv: c.Us_Us = undefined;
     try testing.expectSize(c.Us_Us, 4);
     try testing.expectAlign(c.Us_Us, 2);
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
 }
-test "Us_Us C calls" {
-    try testing.expectEqual(c.ret_Us_Us(), .{ .v1 = 22395, .v2 = 24860 });
-    try testing.expectOk(c.assert_ret_Us_Us());
-    try testing.expectOk(c.send_Us_Us());
+test "Us_Us: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Us(.{ .v1 = 22395, .v2 = 24860 }));
+}
+test "Us_Us: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Us());
+}
+test "Us_Us: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Us());
+}
+test "Us_Us: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Us(), .{ .v1 = 22395, .v2 = 24860 });
 }
 pub export fn zig_assert_Us_Us(lv: c.Us_Us) c_int {
     var err: c_int = 0;
@@ -9442,7 +11170,7 @@ pub export fn zig_ret_Us_Us() c.Us_Us {
 //   char v3;
 // };
 
-test "Us_Us_C layout" {
+test "Us_Us_C: layout" {
     var lv: c.Us_Us_C = undefined;
     try testing.expectSize(c.Us_Us_C, 6);
     try testing.expectAlign(c.Us_Us_C, 2);
@@ -9450,11 +11178,17 @@ test "Us_Us_C layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
-test "Us_Us_C C calls" {
-    try testing.expectEqual(c.ret_Us_Us_C(), .{ .v1 = 29095, .v2 = 16896, .v3 = 12 });
-    try testing.expectOk(c.assert_ret_Us_Us_C());
-    try testing.expectOk(c.send_Us_Us_C());
+test "Us_Us_C: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Us_C(.{ .v1 = 29095, .v2 = 16896, .v3 = 12 }));
+}
+test "Us_Us_C: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Us_C());
+}
+test "Us_Us_C: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Us_C());
+}
+test "Us_Us_C: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Us_C(), .{ .v1 = 29095, .v2 = 16896, .v3 = 12 });
 }
 pub export fn zig_assert_Us_Us_C(lv: c.Us_Us_C) c_int {
     var err: c_int = 0;
@@ -9475,7 +11209,7 @@ pub export fn zig_ret_Us_Us_C() c.Us_Us_C {
 //   double v3;
 // };
 
-test "Us_Us_D layout" {
+test "Us_Us_D: layout" {
     var lv: c.Us_Us_D = undefined;
     try testing.expectSize(c.Us_Us_D, ABISELECT(16, 12));
     try testing.expectAlign(c.Us_Us_D, ABISELECT(8, 4));
@@ -9483,11 +11217,17 @@ test "Us_Us_D layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
-test "Us_Us_D C calls" {
-    try testing.expectEqual(c.ret_Us_Us_D(), .{ .v1 = 32400, .v2 = 24920, .v3 = 7.0 });
+test "Us_Us_D: Zig passes to C" {
+    try testing.expectFail(c.assert_Us_Us_D(.{ .v1 = 32400, .v2 = 24920, .v3 = 7.0 }));
+}
+test "Us_Us_D: Zig returns to C" {
     try testing.expectOk(c.assert_ret_Us_Us_D());
-    try testing.expectOk(c.send_Us_Us_D());
-    try testing.expectOk(c.assert_Us_Us_D(.{ .v1 = 32400, .v2 = 24920, .v3 = 7.0 }));
+}
+test "Us_Us_D: C passes to Zig" {
+    try testing.expectFail(c.send_Us_Us_D());
+}
+test "Us_Us_D: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Us_D(), .{ .v1 = 32400, .v2 = 24920, .v3 = 7.0 });
 }
 pub export fn zig_assert_Us_Us_D(lv: c.Us_Us_D) c_int {
     var err: c_int = 0;
@@ -9508,7 +11248,7 @@ pub export fn zig_ret_Us_Us_D() c.Us_Us_D {
 //   float v3;
 // };
 
-test "Us_Us_F layout" {
+test "Us_Us_F: layout" {
     var lv: c.Us_Us_F = undefined;
     try testing.expectSize(c.Us_Us_F, 8);
     try testing.expectAlign(c.Us_Us_F, 4);
@@ -9516,11 +11256,17 @@ test "Us_Us_F layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
-test "Us_Us_F C calls" {
-    try testing.expectEqual(c.ret_Us_Us_F(), .{ .v1 = 27252, .v2 = 23171, .v3 = 7.0 });
-    try testing.expectOk(c.assert_ret_Us_Us_F());
-    try testing.expectOk(c.send_Us_Us_F());
+test "Us_Us_F: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Us_F(.{ .v1 = 27252, .v2 = 23171, .v3 = 7.0 }));
+}
+test "Us_Us_F: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Us_F());
+}
+test "Us_Us_F: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Us_F());
+}
+test "Us_Us_F: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Us_F(), .{ .v1 = 27252, .v2 = 23171, .v3 = 7.0 });
 }
 pub export fn zig_assert_Us_Us_F(lv: c.Us_Us_F) c_int {
     var err: c_int = 0;
@@ -9541,7 +11287,7 @@ pub export fn zig_ret_Us_Us_F() c.Us_Us_F {
 //   int v3;
 // };
 
-test "Us_Us_I layout" {
+test "Us_Us_I: layout" {
     var lv: c.Us_Us_I = undefined;
     try testing.expectSize(c.Us_Us_I, 8);
     try testing.expectAlign(c.Us_Us_I, 4);
@@ -9549,11 +11295,17 @@ test "Us_Us_I layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
-test "Us_Us_I C calls" {
-    try testing.expectEqual(c.ret_Us_Us_I(), .{ .v1 = 30675, .v2 = 20018, .v3 = 11813 });
-    try testing.expectOk(c.assert_ret_Us_Us_I());
-    try testing.expectOk(c.send_Us_Us_I());
+test "Us_Us_I: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Us_I(.{ .v1 = 30675, .v2 = 20018, .v3 = 11813 }));
+}
+test "Us_Us_I: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Us_I());
+}
+test "Us_Us_I: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Us_I());
+}
+test "Us_Us_I: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Us_I(), .{ .v1 = 30675, .v2 = 20018, .v3 = 11813 });
 }
 pub export fn zig_assert_Us_Us_I(lv: c.Us_Us_I) c_int {
     var err: c_int = 0;
@@ -9574,7 +11326,7 @@ pub export fn zig_ret_Us_Us_I() c.Us_Us_I {
 //   int *v3;
 // };
 
-test "Us_Us_Ip layout" {
+test "Us_Us_Ip: layout" {
     var lv: c.Us_Us_Ip = undefined;
     try testing.expectSize(c.Us_Us_Ip, ABISELECT(16, 8));
     try testing.expectAlign(c.Us_Us_Ip, ABISELECT(8, 4));
@@ -9582,11 +11334,17 @@ test "Us_Us_Ip layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
-test "Us_Us_Ip C calls" {
-    try testing.expectEqual(c.ret_Us_Us_Ip(), .{ .v1 = 12267, .v2 = 8588, .v3 = null });
-    try testing.expectOk(c.assert_ret_Us_Us_Ip());
-    try testing.expectOk(c.send_Us_Us_Ip());
+test "Us_Us_Ip: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Us_Ip(.{ .v1 = 12267, .v2 = 8588, .v3 = null }));
+}
+test "Us_Us_Ip: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Us_Ip());
+}
+test "Us_Us_Ip: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Us_Ip());
+}
+test "Us_Us_Ip: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Us_Ip(), .{ .v1 = 12267, .v2 = 8588, .v3 = null });
 }
 pub export fn zig_assert_Us_Us_Ip(lv: c.Us_Us_Ip) c_int {
     var err: c_int = 0;
@@ -9607,7 +11365,7 @@ pub export fn zig_ret_Us_Us_Ip() c.Us_Us_Ip {
 //   __tsi64 v3;
 // };
 
-test "Us_Us_L layout" {
+test "Us_Us_L: layout" {
     var lv: c.Us_Us_L = undefined;
     try testing.expectSize(c.Us_Us_L, ABISELECT(16, 12));
     try testing.expectAlign(c.Us_Us_L, ABISELECT(8, 4));
@@ -9615,11 +11373,17 @@ test "Us_Us_L layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
-test "Us_Us_L C calls" {
-    try testing.expectEqual(c.ret_Us_Us_L(), .{ .v1 = 27707, .v2 = 22062, .v3 = 7550 });
-    try testing.expectOk(c.assert_ret_Us_Us_L());
-    try testing.expectOk(c.send_Us_Us_L());
+test "Us_Us_L: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Us_L(.{ .v1 = 27707, .v2 = 22062, .v3 = 7550 }));
+}
+test "Us_Us_L: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Us_L());
+}
+test "Us_Us_L: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Us_L());
+}
+test "Us_Us_L: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Us_L(), .{ .v1 = 27707, .v2 = 22062, .v3 = 7550 });
 }
 pub export fn zig_assert_Us_Us_L(lv: c.Us_Us_L) c_int {
     var err: c_int = 0;
@@ -9640,7 +11404,7 @@ pub export fn zig_ret_Us_Us_L() c.Us_Us_L {
 //   short v3;
 // };
 
-test "Us_Us_S layout" {
+test "Us_Us_S: layout" {
     var lv: c.Us_Us_S = undefined;
     try testing.expectSize(c.Us_Us_S, 6);
     try testing.expectAlign(c.Us_Us_S, 2);
@@ -9648,11 +11412,17 @@ test "Us_Us_S layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
-test "Us_Us_S C calls" {
-    try testing.expectEqual(c.ret_Us_Us_S(), .{ .v1 = 26438, .v2 = 9267, .v3 = 12429 });
-    try testing.expectOk(c.assert_ret_Us_Us_S());
-    try testing.expectOk(c.send_Us_Us_S());
+test "Us_Us_S: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Us_S(.{ .v1 = 26438, .v2 = 9267, .v3 = 12429 }));
+}
+test "Us_Us_S: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Us_S());
+}
+test "Us_Us_S: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Us_S());
+}
+test "Us_Us_S: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Us_S(), .{ .v1 = 26438, .v2 = 9267, .v3 = 12429 });
 }
 pub export fn zig_assert_Us_Us_S(lv: c.Us_Us_S) c_int {
     var err: c_int = 0;
@@ -9673,7 +11443,7 @@ pub export fn zig_ret_Us_Us_S() c.Us_Us_S {
 //   unsigned char v3;
 // };
 
-test "Us_Us_Uc layout" {
+test "Us_Us_Uc: layout" {
     var lv: c.Us_Us_Uc = undefined;
     try testing.expectSize(c.Us_Us_Uc, 6);
     try testing.expectAlign(c.Us_Us_Uc, 2);
@@ -9681,11 +11451,17 @@ test "Us_Us_Uc layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
-test "Us_Us_Uc C calls" {
-    try testing.expectEqual(c.ret_Us_Us_Uc(), .{ .v1 = 16024, .v2 = 16604, .v3 = 8 });
-    try testing.expectOk(c.assert_ret_Us_Us_Uc());
-    try testing.expectOk(c.send_Us_Us_Uc());
+test "Us_Us_Uc: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Us_Uc(.{ .v1 = 16024, .v2 = 16604, .v3 = 8 }));
+}
+test "Us_Us_Uc: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Us_Uc());
+}
+test "Us_Us_Uc: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Us_Uc());
+}
+test "Us_Us_Uc: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Us_Uc(), .{ .v1 = 16024, .v2 = 16604, .v3 = 8 });
 }
 pub export fn zig_assert_Us_Us_Uc(lv: c.Us_Us_Uc) c_int {
     var err: c_int = 0;
@@ -9706,7 +11482,7 @@ pub export fn zig_ret_Us_Us_Uc() c.Us_Us_Uc {
 //   unsigned int v3;
 // };
 
-test "Us_Us_Ui layout" {
+test "Us_Us_Ui: layout" {
     var lv: c.Us_Us_Ui = undefined;
     try testing.expectSize(c.Us_Us_Ui, 8);
     try testing.expectAlign(c.Us_Us_Ui, 4);
@@ -9714,11 +11490,17 @@ test "Us_Us_Ui layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
-test "Us_Us_Ui C calls" {
-    try testing.expectEqual(c.ret_Us_Us_Ui(), .{ .v1 = 31707, .v2 = 32474, .v3 = 20286 });
-    try testing.expectOk(c.assert_ret_Us_Us_Ui());
-    try testing.expectOk(c.send_Us_Us_Ui());
+test "Us_Us_Ui: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Us_Ui(.{ .v1 = 31707, .v2 = 32474, .v3 = 20286 }));
+}
+test "Us_Us_Ui: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Us_Ui());
+}
+test "Us_Us_Ui: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Us_Ui());
+}
+test "Us_Us_Ui: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Us_Ui(), .{ .v1 = 31707, .v2 = 32474, .v3 = 20286 });
 }
 pub export fn zig_assert_Us_Us_Ui(lv: c.Us_Us_Ui) c_int {
     var err: c_int = 0;
@@ -9739,7 +11521,7 @@ pub export fn zig_ret_Us_Us_Ui() c.Us_Us_Ui {
 //   __tsu64 v3;
 // };
 
-test "Us_Us_Ul layout" {
+test "Us_Us_Ul: layout" {
     var lv: c.Us_Us_Ul = undefined;
     try testing.expectSize(c.Us_Us_Ul, ABISELECT(16, 12));
     try testing.expectAlign(c.Us_Us_Ul, ABISELECT(8, 4));
@@ -9747,11 +11529,17 @@ test "Us_Us_Ul layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
-test "Us_Us_Ul C calls" {
-    try testing.expectEqual(c.ret_Us_Us_Ul(), .{ .v1 = 23168, .v2 = 25230, .v3 = 32395 });
-    try testing.expectOk(c.assert_ret_Us_Us_Ul());
-    try testing.expectOk(c.send_Us_Us_Ul());
+test "Us_Us_Ul: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Us_Ul(.{ .v1 = 23168, .v2 = 25230, .v3 = 32395 }));
+}
+test "Us_Us_Ul: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Us_Ul());
+}
+test "Us_Us_Ul: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Us_Ul());
+}
+test "Us_Us_Ul: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Us_Ul(), .{ .v1 = 23168, .v2 = 25230, .v3 = 32395 });
 }
 pub export fn zig_assert_Us_Us_Ul(lv: c.Us_Us_Ul) c_int {
     var err: c_int = 0;
@@ -9772,7 +11560,7 @@ pub export fn zig_ret_Us_Us_Ul() c.Us_Us_Ul {
 //   unsigned short v3;
 // };
 
-test "Us_Us_Us layout" {
+test "Us_Us_Us: layout" {
     var lv: c.Us_Us_Us = undefined;
     try testing.expectSize(c.Us_Us_Us, 6);
     try testing.expectAlign(c.Us_Us_Us, 2);
@@ -9780,11 +11568,17 @@ test "Us_Us_Us layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
-test "Us_Us_Us C calls" {
-    try testing.expectEqual(c.ret_Us_Us_Us(), .{ .v1 = 22020, .v2 = 15748, .v3 = 19041 });
-    try testing.expectOk(c.assert_ret_Us_Us_Us());
-    try testing.expectOk(c.send_Us_Us_Us());
+test "Us_Us_Us: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Us_Us(.{ .v1 = 22020, .v2 = 15748, .v3 = 19041 }));
+}
+test "Us_Us_Us: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Us_Us());
+}
+test "Us_Us_Us: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Us_Us());
+}
+test "Us_Us_Us: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Us_Us(), .{ .v1 = 22020, .v2 = 15748, .v3 = 19041 });
 }
 pub export fn zig_assert_Us_Us_Us(lv: c.Us_Us_Us) c_int {
     var err: c_int = 0;
@@ -9805,7 +11599,7 @@ pub export fn zig_ret_Us_Us_Us() c.Us_Us_Us {
 //   void *v3;
 // };
 
-test "Us_Us_Vp layout" {
+test "Us_Us_Vp: layout" {
     var lv: c.Us_Us_Vp = undefined;
     try testing.expectSize(c.Us_Us_Vp, ABISELECT(16, 8));
     try testing.expectAlign(c.Us_Us_Vp, ABISELECT(8, 4));
@@ -9813,11 +11607,17 @@ test "Us_Us_Vp layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
-test "Us_Us_Vp C calls" {
-    try testing.expectEqual(c.ret_Us_Us_Vp(), .{ .v1 = 2680, .v2 = 25163, .v3 = null });
-    try testing.expectOk(c.assert_ret_Us_Us_Vp());
-    try testing.expectOk(c.send_Us_Us_Vp());
+test "Us_Us_Vp: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Us_Vp(.{ .v1 = 2680, .v2 = 25163, .v3 = null }));
+}
+test "Us_Us_Vp: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Us_Vp());
+}
+test "Us_Us_Vp: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Us_Vp());
+}
+test "Us_Us_Vp: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Us_Vp(), .{ .v1 = 2680, .v2 = 25163, .v3 = null });
 }
 pub export fn zig_assert_Us_Us_Vp(lv: c.Us_Us_Vp) c_int {
     var err: c_int = 0;
@@ -9837,18 +11637,24 @@ pub export fn zig_ret_Us_Us_Vp() c.Us_Us_Vp {
 //   void *v2;
 // };
 
-test "Us_Vp layout" {
+test "Us_Vp: layout" {
     var lv: c.Us_Vp = undefined;
     try testing.expectSize(c.Us_Vp, ABISELECT(16, 8));
     try testing.expectAlign(c.Us_Vp, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
 }
-test "Us_Vp C calls" {
-    try testing.expectEqual(c.ret_Us_Vp(), .{ .v1 = 27963, .v2 = null });
-    try testing.expectOk(c.assert_ret_Us_Vp());
-    try testing.expectOk(c.send_Us_Vp());
+test "Us_Vp: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Vp(.{ .v1 = 27963, .v2 = null }));
+}
+test "Us_Vp: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Vp());
+}
+test "Us_Vp: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Vp());
+}
+test "Us_Vp: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Vp(), .{ .v1 = 27963, .v2 = null });
 }
 pub export fn zig_assert_Us_Vp(lv: c.Us_Vp) c_int {
     var err: c_int = 0;
@@ -9868,7 +11674,7 @@ pub export fn zig_ret_Us_Vp() c.Us_Vp {
 //   char v3;
 // };
 
-test "Us_Vp_C layout" {
+test "Us_Vp_C: layout" {
     var lv: c.Us_Vp_C = undefined;
     try testing.expectSize(c.Us_Vp_C, ABISELECT(24, 12));
     try testing.expectAlign(c.Us_Vp_C, ABISELECT(8, 4));
@@ -9876,11 +11682,17 @@ test "Us_Vp_C layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
-test "Us_Vp_C C calls" {
-    try testing.expectEqual(c.ret_Us_Vp_C(), .{ .v1 = 13429, .v2 = null, .v3 = 114 });
-    try testing.expectOk(c.assert_ret_Us_Vp_C());
-    try testing.expectOk(c.send_Us_Vp_C());
+test "Us_Vp_C: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Vp_C(.{ .v1 = 13429, .v2 = null, .v3 = 114 }));
+}
+test "Us_Vp_C: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Vp_C());
+}
+test "Us_Vp_C: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Vp_C());
+}
+test "Us_Vp_C: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Vp_C(), .{ .v1 = 13429, .v2 = null, .v3 = 114 });
 }
 pub export fn zig_assert_Us_Vp_C(lv: c.Us_Vp_C) c_int {
     var err: c_int = 0;
@@ -9901,7 +11713,7 @@ pub export fn zig_ret_Us_Vp_C() c.Us_Vp_C {
 //   double v3;
 // };
 
-test "Us_Vp_D layout" {
+test "Us_Vp_D: layout" {
     var lv: c.Us_Vp_D = undefined;
     try testing.expectSize(c.Us_Vp_D, ABISELECT(24, 16));
     try testing.expectAlign(c.Us_Vp_D, ABISELECT(8, 4));
@@ -9909,11 +11721,17 @@ test "Us_Vp_D layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
-test "Us_Vp_D C calls" {
-    try testing.expectEqual(c.ret_Us_Vp_D(), .{ .v1 = 14615, .v2 = null, .v3 = 7.0 });
-    try testing.expectOk(c.assert_ret_Us_Vp_D());
-    try testing.expectOk(c.send_Us_Vp_D());
+test "Us_Vp_D: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Vp_D(.{ .v1 = 14615, .v2 = null, .v3 = 7.0 }));
+}
+test "Us_Vp_D: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Vp_D());
+}
+test "Us_Vp_D: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Vp_D());
+}
+test "Us_Vp_D: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Vp_D(), .{ .v1 = 14615, .v2 = null, .v3 = 7.0 });
 }
 pub export fn zig_assert_Us_Vp_D(lv: c.Us_Vp_D) c_int {
     var err: c_int = 0;
@@ -9934,7 +11752,7 @@ pub export fn zig_ret_Us_Vp_D() c.Us_Vp_D {
 //   float v3;
 // };
 
-test "Us_Vp_F layout" {
+test "Us_Vp_F: layout" {
     var lv: c.Us_Vp_F = undefined;
     try testing.expectSize(c.Us_Vp_F, ABISELECT(24, 12));
     try testing.expectAlign(c.Us_Vp_F, ABISELECT(8, 4));
@@ -9942,11 +11760,17 @@ test "Us_Vp_F layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
-test "Us_Vp_F C calls" {
-    try testing.expectEqual(c.ret_Us_Vp_F(), .{ .v1 = 25809, .v2 = null, .v3 = -0.25 });
-    try testing.expectOk(c.assert_ret_Us_Vp_F());
-    try testing.expectOk(c.send_Us_Vp_F());
+test "Us_Vp_F: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Vp_F(.{ .v1 = 25809, .v2 = null, .v3 = -0.25 }));
+}
+test "Us_Vp_F: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Vp_F());
+}
+test "Us_Vp_F: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Vp_F());
+}
+test "Us_Vp_F: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Vp_F(), .{ .v1 = 25809, .v2 = null, .v3 = -0.25 });
 }
 pub export fn zig_assert_Us_Vp_F(lv: c.Us_Vp_F) c_int {
     var err: c_int = 0;
@@ -9967,7 +11791,7 @@ pub export fn zig_ret_Us_Vp_F() c.Us_Vp_F {
 //   int v3;
 // };
 
-test "Us_Vp_I layout" {
+test "Us_Vp_I: layout" {
     var lv: c.Us_Vp_I = undefined;
     try testing.expectSize(c.Us_Vp_I, ABISELECT(24, 12));
     try testing.expectAlign(c.Us_Vp_I, ABISELECT(8, 4));
@@ -9975,11 +11799,17 @@ test "Us_Vp_I layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
-test "Us_Vp_I C calls" {
-    try testing.expectEqual(c.ret_Us_Vp_I(), .{ .v1 = 21154, .v2 = null, .v3 = 12034 });
-    try testing.expectOk(c.assert_ret_Us_Vp_I());
-    try testing.expectOk(c.send_Us_Vp_I());
+test "Us_Vp_I: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Vp_I(.{ .v1 = 21154, .v2 = null, .v3 = 12034 }));
+}
+test "Us_Vp_I: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Vp_I());
+}
+test "Us_Vp_I: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Vp_I());
+}
+test "Us_Vp_I: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Vp_I(), .{ .v1 = 21154, .v2 = null, .v3 = 12034 });
 }
 pub export fn zig_assert_Us_Vp_I(lv: c.Us_Vp_I) c_int {
     var err: c_int = 0;
@@ -10000,7 +11830,7 @@ pub export fn zig_ret_Us_Vp_I() c.Us_Vp_I {
 //   int *v3;
 // };
 
-test "Us_Vp_Ip layout" {
+test "Us_Vp_Ip: layout" {
     var lv: c.Us_Vp_Ip = undefined;
     try testing.expectSize(c.Us_Vp_Ip, ABISELECT(24, 12));
     try testing.expectAlign(c.Us_Vp_Ip, ABISELECT(8, 4));
@@ -10008,11 +11838,17 @@ test "Us_Vp_Ip layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
-test "Us_Vp_Ip C calls" {
-    try testing.expectEqual(c.ret_Us_Vp_Ip(), .{ .v1 = 1558, .v2 = null, .v3 = null });
-    try testing.expectOk(c.assert_ret_Us_Vp_Ip());
-    try testing.expectOk(c.send_Us_Vp_Ip());
+test "Us_Vp_Ip: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Vp_Ip(.{ .v1 = 1558, .v2 = null, .v3 = null }));
+}
+test "Us_Vp_Ip: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Vp_Ip());
+}
+test "Us_Vp_Ip: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Vp_Ip());
+}
+test "Us_Vp_Ip: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Vp_Ip(), .{ .v1 = 1558, .v2 = null, .v3 = null });
 }
 pub export fn zig_assert_Us_Vp_Ip(lv: c.Us_Vp_Ip) c_int {
     var err: c_int = 0;
@@ -10033,7 +11869,7 @@ pub export fn zig_ret_Us_Vp_Ip() c.Us_Vp_Ip {
 //   __tsi64 v3;
 // };
 
-test "Us_Vp_L layout" {
+test "Us_Vp_L: layout" {
     var lv: c.Us_Vp_L = undefined;
     try testing.expectSize(c.Us_Vp_L, ABISELECT(24, 16));
     try testing.expectAlign(c.Us_Vp_L, ABISELECT(8, 4));
@@ -10041,11 +11877,17 @@ test "Us_Vp_L layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
-test "Us_Vp_L C calls" {
-    try testing.expectEqual(c.ret_Us_Vp_L(), .{ .v1 = 3956, .v2 = null, .v3 = 28044 });
-    try testing.expectOk(c.assert_ret_Us_Vp_L());
-    try testing.expectOk(c.send_Us_Vp_L());
+test "Us_Vp_L: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Vp_L(.{ .v1 = 3956, .v2 = null, .v3 = 28044 }));
+}
+test "Us_Vp_L: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Vp_L());
+}
+test "Us_Vp_L: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Vp_L());
+}
+test "Us_Vp_L: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Vp_L(), .{ .v1 = 3956, .v2 = null, .v3 = 28044 });
 }
 pub export fn zig_assert_Us_Vp_L(lv: c.Us_Vp_L) c_int {
     var err: c_int = 0;
@@ -10066,7 +11908,7 @@ pub export fn zig_ret_Us_Vp_L() c.Us_Vp_L {
 //   short v3;
 // };
 
-test "Us_Vp_S layout" {
+test "Us_Vp_S: layout" {
     var lv: c.Us_Vp_S = undefined;
     try testing.expectSize(c.Us_Vp_S, ABISELECT(24, 12));
     try testing.expectAlign(c.Us_Vp_S, ABISELECT(8, 4));
@@ -10074,11 +11916,17 @@ test "Us_Vp_S layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
-test "Us_Vp_S C calls" {
-    try testing.expectEqual(c.ret_Us_Vp_S(), .{ .v1 = 19785, .v2 = null, .v3 = 32420 });
-    try testing.expectOk(c.assert_ret_Us_Vp_S());
-    try testing.expectOk(c.send_Us_Vp_S());
+test "Us_Vp_S: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Vp_S(.{ .v1 = 19785, .v2 = null, .v3 = 32420 }));
+}
+test "Us_Vp_S: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Vp_S());
+}
+test "Us_Vp_S: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Vp_S());
+}
+test "Us_Vp_S: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Vp_S(), .{ .v1 = 19785, .v2 = null, .v3 = 32420 });
 }
 pub export fn zig_assert_Us_Vp_S(lv: c.Us_Vp_S) c_int {
     var err: c_int = 0;
@@ -10099,7 +11947,7 @@ pub export fn zig_ret_Us_Vp_S() c.Us_Vp_S {
 //   unsigned char v3;
 // };
 
-test "Us_Vp_Uc layout" {
+test "Us_Vp_Uc: layout" {
     var lv: c.Us_Vp_Uc = undefined;
     try testing.expectSize(c.Us_Vp_Uc, ABISELECT(24, 12));
     try testing.expectAlign(c.Us_Vp_Uc, ABISELECT(8, 4));
@@ -10107,11 +11955,17 @@ test "Us_Vp_Uc layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
-test "Us_Vp_Uc C calls" {
-    try testing.expectEqual(c.ret_Us_Vp_Uc(), .{ .v1 = 12798, .v2 = null, .v3 = 106 });
-    try testing.expectOk(c.assert_ret_Us_Vp_Uc());
-    try testing.expectOk(c.send_Us_Vp_Uc());
+test "Us_Vp_Uc: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Vp_Uc(.{ .v1 = 12798, .v2 = null, .v3 = 106 }));
+}
+test "Us_Vp_Uc: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Vp_Uc());
+}
+test "Us_Vp_Uc: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Vp_Uc());
+}
+test "Us_Vp_Uc: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Vp_Uc(), .{ .v1 = 12798, .v2 = null, .v3 = 106 });
 }
 pub export fn zig_assert_Us_Vp_Uc(lv: c.Us_Vp_Uc) c_int {
     var err: c_int = 0;
@@ -10132,7 +11986,7 @@ pub export fn zig_ret_Us_Vp_Uc() c.Us_Vp_Uc {
 //   unsigned int v3;
 // };
 
-test "Us_Vp_Ui layout" {
+test "Us_Vp_Ui: layout" {
     var lv: c.Us_Vp_Ui = undefined;
     try testing.expectSize(c.Us_Vp_Ui, ABISELECT(24, 12));
     try testing.expectAlign(c.Us_Vp_Ui, ABISELECT(8, 4));
@@ -10140,11 +11994,17 @@ test "Us_Vp_Ui layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
-test "Us_Vp_Ui C calls" {
-    try testing.expectEqual(c.ret_Us_Vp_Ui(), .{ .v1 = 18555, .v2 = null, .v3 = 25756 });
-    try testing.expectOk(c.assert_ret_Us_Vp_Ui());
-    try testing.expectOk(c.send_Us_Vp_Ui());
+test "Us_Vp_Ui: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Vp_Ui(.{ .v1 = 18555, .v2 = null, .v3 = 25756 }));
+}
+test "Us_Vp_Ui: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Vp_Ui());
+}
+test "Us_Vp_Ui: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Vp_Ui());
+}
+test "Us_Vp_Ui: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Vp_Ui(), .{ .v1 = 18555, .v2 = null, .v3 = 25756 });
 }
 pub export fn zig_assert_Us_Vp_Ui(lv: c.Us_Vp_Ui) c_int {
     var err: c_int = 0;
@@ -10165,7 +12025,7 @@ pub export fn zig_ret_Us_Vp_Ui() c.Us_Vp_Ui {
 //   __tsu64 v3;
 // };
 
-test "Us_Vp_Ul layout" {
+test "Us_Vp_Ul: layout" {
     var lv: c.Us_Vp_Ul = undefined;
     try testing.expectSize(c.Us_Vp_Ul, ABISELECT(24, 16));
     try testing.expectAlign(c.Us_Vp_Ul, ABISELECT(8, 4));
@@ -10173,11 +12033,17 @@ test "Us_Vp_Ul layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
-test "Us_Vp_Ul C calls" {
-    try testing.expectEqual(c.ret_Us_Vp_Ul(), .{ .v1 = 25009, .v2 = null, .v3 = 2138 });
-    try testing.expectOk(c.assert_ret_Us_Vp_Ul());
-    try testing.expectOk(c.send_Us_Vp_Ul());
+test "Us_Vp_Ul: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Vp_Ul(.{ .v1 = 25009, .v2 = null, .v3 = 2138 }));
+}
+test "Us_Vp_Ul: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Vp_Ul());
+}
+test "Us_Vp_Ul: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Vp_Ul());
+}
+test "Us_Vp_Ul: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Vp_Ul(), .{ .v1 = 25009, .v2 = null, .v3 = 2138 });
 }
 pub export fn zig_assert_Us_Vp_Ul(lv: c.Us_Vp_Ul) c_int {
     var err: c_int = 0;
@@ -10198,7 +12064,7 @@ pub export fn zig_ret_Us_Vp_Ul() c.Us_Vp_Ul {
 //   unsigned short v3;
 // };
 
-test "Us_Vp_Us layout" {
+test "Us_Vp_Us: layout" {
     var lv: c.Us_Vp_Us = undefined;
     try testing.expectSize(c.Us_Vp_Us, ABISELECT(24, 12));
     try testing.expectAlign(c.Us_Vp_Us, ABISELECT(8, 4));
@@ -10206,11 +12072,17 @@ test "Us_Vp_Us layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
-test "Us_Vp_Us C calls" {
-    try testing.expectEqual(c.ret_Us_Vp_Us(), .{ .v1 = 32123, .v2 = null, .v3 = 5039 });
-    try testing.expectOk(c.assert_ret_Us_Vp_Us());
-    try testing.expectOk(c.send_Us_Vp_Us());
+test "Us_Vp_Us: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Vp_Us(.{ .v1 = 32123, .v2 = null, .v3 = 5039 }));
+}
+test "Us_Vp_Us: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Vp_Us());
+}
+test "Us_Vp_Us: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Vp_Us());
+}
+test "Us_Vp_Us: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Vp_Us(), .{ .v1 = 32123, .v2 = null, .v3 = 5039 });
 }
 pub export fn zig_assert_Us_Vp_Us(lv: c.Us_Vp_Us) c_int {
     var err: c_int = 0;
@@ -10231,7 +12103,7 @@ pub export fn zig_ret_Us_Vp_Us() c.Us_Vp_Us {
 //   void *v3;
 // };
 
-test "Us_Vp_Vp layout" {
+test "Us_Vp_Vp: layout" {
     var lv: c.Us_Vp_Vp = undefined;
     try testing.expectSize(c.Us_Vp_Vp, ABISELECT(24, 12));
     try testing.expectAlign(c.Us_Vp_Vp, ABISELECT(8, 4));
@@ -10239,11 +12111,17 @@ test "Us_Vp_Vp layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
-test "Us_Vp_Vp C calls" {
-    try testing.expectEqual(c.ret_Us_Vp_Vp(), .{ .v1 = 29460, .v2 = null, .v3 = null });
-    try testing.expectOk(c.assert_ret_Us_Vp_Vp());
-    try testing.expectOk(c.send_Us_Vp_Vp());
+test "Us_Vp_Vp: Zig passes to C" {
     try testing.expectOk(c.assert_Us_Vp_Vp(.{ .v1 = 29460, .v2 = null, .v3 = null }));
+}
+test "Us_Vp_Vp: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Us_Vp_Vp());
+}
+test "Us_Vp_Vp: C passes to Zig" {
+    try testing.expectOk(c.send_Us_Vp_Vp());
+}
+test "Us_Vp_Vp: C returns to Zig" {
+    try testing.expectEqual(c.ret_Us_Vp_Vp(), .{ .v1 = 29460, .v2 = null, .v3 = null });
 }
 pub export fn zig_assert_Us_Vp_Vp(lv: c.Us_Vp_Vp) c_int {
     var err: c_int = 0;
@@ -10262,17 +12140,23 @@ pub export fn zig_ret_Us_Vp_Vp() c.Us_Vp_Vp {
 //   void *v1;
 // };
 
-test "Vp layout" {
+test "Vp: layout" {
     var lv: c.Vp = undefined;
     try testing.expectSize(c.Vp, ABISELECT(8, 4));
     try testing.expectAlign(c.Vp, ABISELECT(8, 4));
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
 }
-test "Vp C calls" {
-    try testing.expectEqual(c.ret_Vp(), .{ .v1 = null });
-    try testing.expectOk(c.assert_ret_Vp());
-    try testing.expectOk(c.send_Vp());
+test "Vp: Zig passes to C" {
     try testing.expectOk(c.assert_Vp(.{ .v1 = null }));
+}
+test "Vp: Zig returns to C" {
+    try testing.expectOk(c.assert_ret_Vp());
+}
+test "Vp: C passes to Zig" {
+    try testing.expectOk(c.send_Vp());
+}
+test "Vp: C returns to Zig" {
+    try testing.expectEqual(c.ret_Vp(), .{ .v1 = null });
 }
 pub export fn zig_assert_Vp(lv: c.Vp) c_int {
     var err: c_int = 0;

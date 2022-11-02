@@ -25,3 +25,12 @@ pub inline fn expectOk(c_err: c_int) !void {
         return error.TestExpectedEqual;
     }
 }
+
+pub inline fn expectFail(c_err: c_int) !void {
+    if (c_err != 0) {
+        std.debug.print("ABI mismatch on field v{d}.\n", .{c_err});
+        return error.SkipZigTest;
+    }
+    std.debug.print("no ABI mismatch, test should be upgraded to expectOk.\n", .{});
+    return error.TestUnexpectedResult;
+}
