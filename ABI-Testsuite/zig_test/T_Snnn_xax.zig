@@ -23,12 +23,14 @@ test "F_C C calls" {
     try testing.expectEqual(c.ret_F_C(), .{ .v1 = 0.5, .v2 = 105 });
     try testing.expectOk(c.assert_ret_F_C());
     try testing.expectOk(c.send_F_C());
-    try testing.expectOk(c.recv_F_C(.{ .v1 = 0.5, .v2 = 105 }));
+    try testing.expectOk(c.assert_F_C(.{ .v1 = 0.5, .v2 = 105 }));
 }
-pub export fn zig_recv_F_C(lv: c.F_C) c_int {
-    if (lv.v1 != 0.5) return 1;
-    if (lv.v2 != 105) return 2;
-    return 0;
+pub export fn zig_assert_F_C(lv: c.F_C) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.5) err = 1;
+    if (lv.v2 != 105) err = 2;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_C() c.F_C {
     return .{ .v1 = 0.5, .v2 = 105 };
@@ -53,13 +55,15 @@ test "F_C_C C calls" {
     try testing.expectEqual(c.ret_F_C_C(), .{ .v1 = -2.125, .v2 = 111, .v3 = 18 });
     try testing.expectOk(c.assert_ret_F_C_C());
     try testing.expectOk(c.send_F_C_C());
-    try testing.expectOk(c.recv_F_C_C(.{ .v1 = -2.125, .v2 = 111, .v3 = 18 }));
+    try testing.expectOk(c.assert_F_C_C(.{ .v1 = -2.125, .v2 = 111, .v3 = 18 }));
 }
-pub export fn zig_recv_F_C_C(lv: c.F_C_C) c_int {
-    if (lv.v1 != -2.125) return 1;
-    if (lv.v2 != 111) return 2;
-    if (lv.v3 != 18) return 3;
-    return 0;
+pub export fn zig_assert_F_C_C(lv: c.F_C_C) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -2.125) err = 1;
+    if (lv.v2 != 111) err = 2;
+    if (lv.v3 != 18) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_C_C() c.F_C_C {
     return .{ .v1 = -2.125, .v2 = 111, .v3 = 18 };
@@ -84,13 +88,15 @@ test "F_C_D C calls" {
     try testing.expectEqual(c.ret_F_C_D(), .{ .v1 = 0.5, .v2 = 57, .v3 = 0.5 });
     try testing.expectOk(c.assert_ret_F_C_D());
     try testing.expectOk(c.send_F_C_D());
-    try testing.expectOk(c.recv_F_C_D(.{ .v1 = 0.5, .v2 = 57, .v3 = 0.5 }));
+    try testing.expectOk(c.assert_F_C_D(.{ .v1 = 0.5, .v2 = 57, .v3 = 0.5 }));
 }
-pub export fn zig_recv_F_C_D(lv: c.F_C_D) c_int {
-    if (lv.v1 != 0.5) return 1;
-    if (lv.v2 != 57) return 2;
-    if (lv.v3 != 0.5) return 3;
-    return 0;
+pub export fn zig_assert_F_C_D(lv: c.F_C_D) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.5) err = 1;
+    if (lv.v2 != 57) err = 2;
+    if (lv.v3 != 0.5) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_C_D() c.F_C_D {
     return .{ .v1 = 0.5, .v2 = 57, .v3 = 0.5 };
@@ -115,13 +121,15 @@ test "F_C_F C calls" {
     try testing.expectEqual(c.ret_F_C_F(), .{ .v1 = 1.0, .v2 = 101, .v3 = 1.0 });
     try testing.expectOk(c.assert_ret_F_C_F());
     try testing.expectOk(c.send_F_C_F());
-    try testing.expectOk(c.recv_F_C_F(.{ .v1 = 1.0, .v2 = 101, .v3 = 1.0 }));
+    try testing.expectOk(c.assert_F_C_F(.{ .v1 = 1.0, .v2 = 101, .v3 = 1.0 }));
 }
-pub export fn zig_recv_F_C_F(lv: c.F_C_F) c_int {
-    if (lv.v1 != 1.0) return 1;
-    if (lv.v2 != 101) return 2;
-    if (lv.v3 != 1.0) return 3;
-    return 0;
+pub export fn zig_assert_F_C_F(lv: c.F_C_F) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 1.0) err = 1;
+    if (lv.v2 != 101) err = 2;
+    if (lv.v3 != 1.0) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_C_F() c.F_C_F {
     return .{ .v1 = 1.0, .v2 = 101, .v3 = 1.0 };
@@ -146,13 +154,15 @@ test "F_C_I C calls" {
     try testing.expectEqual(c.ret_F_C_I(), .{ .v1 = 1.0, .v2 = 112, .v3 = 2332 });
     try testing.expectOk(c.assert_ret_F_C_I());
     try testing.expectOk(c.send_F_C_I());
-    try testing.expectOk(c.recv_F_C_I(.{ .v1 = 1.0, .v2 = 112, .v3 = 2332 }));
+    try testing.expectOk(c.assert_F_C_I(.{ .v1 = 1.0, .v2 = 112, .v3 = 2332 }));
 }
-pub export fn zig_recv_F_C_I(lv: c.F_C_I) c_int {
-    if (lv.v1 != 1.0) return 1;
-    if (lv.v2 != 112) return 2;
-    if (lv.v3 != 2332) return 3;
-    return 0;
+pub export fn zig_assert_F_C_I(lv: c.F_C_I) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 1.0) err = 1;
+    if (lv.v2 != 112) err = 2;
+    if (lv.v3 != 2332) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_C_I() c.F_C_I {
     return .{ .v1 = 1.0, .v2 = 112, .v3 = 2332 };
@@ -177,13 +187,15 @@ test "F_C_Ip C calls" {
     try testing.expectEqual(c.ret_F_C_Ip(), .{ .v1 = -0.25, .v2 = 70, .v3 = null });
     try testing.expectOk(c.assert_ret_F_C_Ip());
     try testing.expectOk(c.send_F_C_Ip());
-    try testing.expectOk(c.recv_F_C_Ip(.{ .v1 = -0.25, .v2 = 70, .v3 = null }));
+    try testing.expectOk(c.assert_F_C_Ip(.{ .v1 = -0.25, .v2 = 70, .v3 = null }));
 }
-pub export fn zig_recv_F_C_Ip(lv: c.F_C_Ip) c_int {
-    if (lv.v1 != -0.25) return 1;
-    if (lv.v2 != 70) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_F_C_Ip(lv: c.F_C_Ip) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -0.25) err = 1;
+    if (lv.v2 != 70) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_C_Ip() c.F_C_Ip {
     return .{ .v1 = -0.25, .v2 = 70, .v3 = null };
@@ -208,13 +220,15 @@ test "F_C_L C calls" {
     try testing.expectEqual(c.ret_F_C_L(), .{ .v1 = 0.875, .v2 = 121, .v3 = 18229 });
     try testing.expectOk(c.assert_ret_F_C_L());
     try testing.expectOk(c.send_F_C_L());
-    try testing.expectOk(c.recv_F_C_L(.{ .v1 = 0.875, .v2 = 121, .v3 = 18229 }));
+    try testing.expectOk(c.assert_F_C_L(.{ .v1 = 0.875, .v2 = 121, .v3 = 18229 }));
 }
-pub export fn zig_recv_F_C_L(lv: c.F_C_L) c_int {
-    if (lv.v1 != 0.875) return 1;
-    if (lv.v2 != 121) return 2;
-    if (lv.v3 != 18229) return 3;
-    return 0;
+pub export fn zig_assert_F_C_L(lv: c.F_C_L) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.875) err = 1;
+    if (lv.v2 != 121) err = 2;
+    if (lv.v3 != 18229) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_C_L() c.F_C_L {
     return .{ .v1 = 0.875, .v2 = 121, .v3 = 18229 };
@@ -239,13 +253,15 @@ test "F_C_S C calls" {
     try testing.expectEqual(c.ret_F_C_S(), .{ .v1 = 0.875, .v2 = 31, .v3 = 31175 });
     try testing.expectOk(c.assert_ret_F_C_S());
     try testing.expectOk(c.send_F_C_S());
-    try testing.expectOk(c.recv_F_C_S(.{ .v1 = 0.875, .v2 = 31, .v3 = 31175 }));
+    try testing.expectOk(c.assert_F_C_S(.{ .v1 = 0.875, .v2 = 31, .v3 = 31175 }));
 }
-pub export fn zig_recv_F_C_S(lv: c.F_C_S) c_int {
-    if (lv.v1 != 0.875) return 1;
-    if (lv.v2 != 31) return 2;
-    if (lv.v3 != 31175) return 3;
-    return 0;
+pub export fn zig_assert_F_C_S(lv: c.F_C_S) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.875) err = 1;
+    if (lv.v2 != 31) err = 2;
+    if (lv.v3 != 31175) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_C_S() c.F_C_S {
     return .{ .v1 = 0.875, .v2 = 31, .v3 = 31175 };
@@ -270,13 +286,15 @@ test "F_C_Uc C calls" {
     try testing.expectEqual(c.ret_F_C_Uc(), .{ .v1 = 1.0, .v2 = 69, .v3 = 62 });
     try testing.expectOk(c.assert_ret_F_C_Uc());
     try testing.expectOk(c.send_F_C_Uc());
-    try testing.expectOk(c.recv_F_C_Uc(.{ .v1 = 1.0, .v2 = 69, .v3 = 62 }));
+    try testing.expectOk(c.assert_F_C_Uc(.{ .v1 = 1.0, .v2 = 69, .v3 = 62 }));
 }
-pub export fn zig_recv_F_C_Uc(lv: c.F_C_Uc) c_int {
-    if (lv.v1 != 1.0) return 1;
-    if (lv.v2 != 69) return 2;
-    if (lv.v3 != 62) return 3;
-    return 0;
+pub export fn zig_assert_F_C_Uc(lv: c.F_C_Uc) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 1.0) err = 1;
+    if (lv.v2 != 69) err = 2;
+    if (lv.v3 != 62) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_C_Uc() c.F_C_Uc {
     return .{ .v1 = 1.0, .v2 = 69, .v3 = 62 };
@@ -301,13 +319,15 @@ test "F_C_Ui C calls" {
     try testing.expectEqual(c.ret_F_C_Ui(), .{ .v1 = 7.0, .v2 = 36, .v3 = 24845 });
     try testing.expectOk(c.assert_ret_F_C_Ui());
     try testing.expectOk(c.send_F_C_Ui());
-    try testing.expectOk(c.recv_F_C_Ui(.{ .v1 = 7.0, .v2 = 36, .v3 = 24845 }));
+    try testing.expectOk(c.assert_F_C_Ui(.{ .v1 = 7.0, .v2 = 36, .v3 = 24845 }));
 }
-pub export fn zig_recv_F_C_Ui(lv: c.F_C_Ui) c_int {
-    if (lv.v1 != 7.0) return 1;
-    if (lv.v2 != 36) return 2;
-    if (lv.v3 != 24845) return 3;
-    return 0;
+pub export fn zig_assert_F_C_Ui(lv: c.F_C_Ui) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 7.0) err = 1;
+    if (lv.v2 != 36) err = 2;
+    if (lv.v3 != 24845) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_C_Ui() c.F_C_Ui {
     return .{ .v1 = 7.0, .v2 = 36, .v3 = 24845 };
@@ -332,13 +352,15 @@ test "F_C_Ul C calls" {
     try testing.expectEqual(c.ret_F_C_Ul(), .{ .v1 = 7.0, .v2 = 124, .v3 = 11914 });
     try testing.expectOk(c.assert_ret_F_C_Ul());
     try testing.expectOk(c.send_F_C_Ul());
-    try testing.expectOk(c.recv_F_C_Ul(.{ .v1 = 7.0, .v2 = 124, .v3 = 11914 }));
+    try testing.expectOk(c.assert_F_C_Ul(.{ .v1 = 7.0, .v2 = 124, .v3 = 11914 }));
 }
-pub export fn zig_recv_F_C_Ul(lv: c.F_C_Ul) c_int {
-    if (lv.v1 != 7.0) return 1;
-    if (lv.v2 != 124) return 2;
-    if (lv.v3 != 11914) return 3;
-    return 0;
+pub export fn zig_assert_F_C_Ul(lv: c.F_C_Ul) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 7.0) err = 1;
+    if (lv.v2 != 124) err = 2;
+    if (lv.v3 != 11914) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_C_Ul() c.F_C_Ul {
     return .{ .v1 = 7.0, .v2 = 124, .v3 = 11914 };
@@ -363,13 +385,15 @@ test "F_C_Us C calls" {
     try testing.expectEqual(c.ret_F_C_Us(), .{ .v1 = -2.125, .v2 = 81, .v3 = 25724 });
     try testing.expectOk(c.assert_ret_F_C_Us());
     try testing.expectOk(c.send_F_C_Us());
-    try testing.expectOk(c.recv_F_C_Us(.{ .v1 = -2.125, .v2 = 81, .v3 = 25724 }));
+    try testing.expectOk(c.assert_F_C_Us(.{ .v1 = -2.125, .v2 = 81, .v3 = 25724 }));
 }
-pub export fn zig_recv_F_C_Us(lv: c.F_C_Us) c_int {
-    if (lv.v1 != -2.125) return 1;
-    if (lv.v2 != 81) return 2;
-    if (lv.v3 != 25724) return 3;
-    return 0;
+pub export fn zig_assert_F_C_Us(lv: c.F_C_Us) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -2.125) err = 1;
+    if (lv.v2 != 81) err = 2;
+    if (lv.v3 != 25724) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_C_Us() c.F_C_Us {
     return .{ .v1 = -2.125, .v2 = 81, .v3 = 25724 };
@@ -394,13 +418,15 @@ test "F_C_Vp C calls" {
     try testing.expectEqual(c.ret_F_C_Vp(), .{ .v1 = 0.875, .v2 = 52, .v3 = null });
     try testing.expectOk(c.assert_ret_F_C_Vp());
     try testing.expectOk(c.send_F_C_Vp());
-    try testing.expectOk(c.recv_F_C_Vp(.{ .v1 = 0.875, .v2 = 52, .v3 = null }));
+    try testing.expectOk(c.assert_F_C_Vp(.{ .v1 = 0.875, .v2 = 52, .v3 = null }));
 }
-pub export fn zig_recv_F_C_Vp(lv: c.F_C_Vp) c_int {
-    if (lv.v1 != 0.875) return 1;
-    if (lv.v2 != 52) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_F_C_Vp(lv: c.F_C_Vp) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.875) err = 1;
+    if (lv.v2 != 52) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_C_Vp() c.F_C_Vp {
     return .{ .v1 = 0.875, .v2 = 52, .v3 = null };
@@ -423,12 +449,14 @@ test "F_D C calls" {
     try testing.expectEqual(c.ret_F_D(), .{ .v1 = 0.875, .v2 = 4.5 });
     try testing.expectOk(c.assert_ret_F_D());
     try testing.expectOk(c.send_F_D());
-    try testing.expectOk(c.recv_F_D(.{ .v1 = 0.875, .v2 = 4.5 }));
+    try testing.expectOk(c.assert_F_D(.{ .v1 = 0.875, .v2 = 4.5 }));
 }
-pub export fn zig_recv_F_D(lv: c.F_D) c_int {
-    if (lv.v1 != 0.875) return 1;
-    if (lv.v2 != 4.5) return 2;
-    return 0;
+pub export fn zig_assert_F_D(lv: c.F_D) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.875) err = 1;
+    if (lv.v2 != 4.5) err = 2;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_D() c.F_D {
     return .{ .v1 = 0.875, .v2 = 4.5 };
@@ -453,13 +481,15 @@ test "F_D_C C calls" {
     try testing.expectEqual(c.ret_F_D_C(), .{ .v1 = -2.125, .v2 = 0.5, .v3 = 36 });
     try testing.expectOk(c.assert_ret_F_D_C());
     try testing.expectOk(c.send_F_D_C());
-    try testing.expectOk(c.recv_F_D_C(.{ .v1 = -2.125, .v2 = 0.5, .v3 = 36 }));
+    try testing.expectOk(c.assert_F_D_C(.{ .v1 = -2.125, .v2 = 0.5, .v3 = 36 }));
 }
-pub export fn zig_recv_F_D_C(lv: c.F_D_C) c_int {
-    if (lv.v1 != -2.125) return 1;
-    if (lv.v2 != 0.5) return 2;
-    if (lv.v3 != 36) return 3;
-    return 0;
+pub export fn zig_assert_F_D_C(lv: c.F_D_C) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -2.125) err = 1;
+    if (lv.v2 != 0.5) err = 2;
+    if (lv.v3 != 36) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_D_C() c.F_D_C {
     return .{ .v1 = -2.125, .v2 = 0.5, .v3 = 36 };
@@ -484,13 +514,15 @@ test "F_D_D C calls" {
     try testing.expectEqual(c.ret_F_D_D(), .{ .v1 = 1.0, .v2 = -0.25, .v3 = -2.125 });
     try testing.expectOk(c.assert_ret_F_D_D());
     try testing.expectOk(c.send_F_D_D());
-    try testing.expectOk(c.recv_F_D_D(.{ .v1 = 1.0, .v2 = -0.25, .v3 = -2.125 }));
+    try testing.expectOk(c.assert_F_D_D(.{ .v1 = 1.0, .v2 = -0.25, .v3 = -2.125 }));
 }
-pub export fn zig_recv_F_D_D(lv: c.F_D_D) c_int {
-    if (lv.v1 != 1.0) return 1;
-    if (lv.v2 != -0.25) return 2;
-    if (lv.v3 != -2.125) return 3;
-    return 0;
+pub export fn zig_assert_F_D_D(lv: c.F_D_D) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 1.0) err = 1;
+    if (lv.v2 != -0.25) err = 2;
+    if (lv.v3 != -2.125) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_D_D() c.F_D_D {
     return .{ .v1 = 1.0, .v2 = -0.25, .v3 = -2.125 };
@@ -515,13 +547,15 @@ test "F_D_F C calls" {
     try testing.expectEqual(c.ret_F_D_F(), .{ .v1 = 0.5, .v2 = -0.25, .v3 = -0.25 });
     try testing.expectOk(c.assert_ret_F_D_F());
     try testing.expectOk(c.send_F_D_F());
-    try testing.expectOk(c.recv_F_D_F(.{ .v1 = 0.5, .v2 = -0.25, .v3 = -0.25 }));
+    try testing.expectOk(c.assert_F_D_F(.{ .v1 = 0.5, .v2 = -0.25, .v3 = -0.25 }));
 }
-pub export fn zig_recv_F_D_F(lv: c.F_D_F) c_int {
-    if (lv.v1 != 0.5) return 1;
-    if (lv.v2 != -0.25) return 2;
-    if (lv.v3 != -0.25) return 3;
-    return 0;
+pub export fn zig_assert_F_D_F(lv: c.F_D_F) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.5) err = 1;
+    if (lv.v2 != -0.25) err = 2;
+    if (lv.v3 != -0.25) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_D_F() c.F_D_F {
     return .{ .v1 = 0.5, .v2 = -0.25, .v3 = -0.25 };
@@ -546,13 +580,15 @@ test "F_D_I C calls" {
     try testing.expectEqual(c.ret_F_D_I(), .{ .v1 = 0.5, .v2 = 4.5, .v3 = 2184 });
     try testing.expectOk(c.assert_ret_F_D_I());
     try testing.expectOk(c.send_F_D_I());
-    try testing.expectOk(c.recv_F_D_I(.{ .v1 = 0.5, .v2 = 4.5, .v3 = 2184 }));
+    try testing.expectOk(c.assert_F_D_I(.{ .v1 = 0.5, .v2 = 4.5, .v3 = 2184 }));
 }
-pub export fn zig_recv_F_D_I(lv: c.F_D_I) c_int {
-    if (lv.v1 != 0.5) return 1;
-    if (lv.v2 != 4.5) return 2;
-    if (lv.v3 != 2184) return 3;
-    return 0;
+pub export fn zig_assert_F_D_I(lv: c.F_D_I) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.5) err = 1;
+    if (lv.v2 != 4.5) err = 2;
+    if (lv.v3 != 2184) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_D_I() c.F_D_I {
     return .{ .v1 = 0.5, .v2 = 4.5, .v3 = 2184 };
@@ -577,13 +613,15 @@ test "F_D_Ip C calls" {
     try testing.expectEqual(c.ret_F_D_Ip(), .{ .v1 = 7.0, .v2 = 7.0, .v3 = null });
     try testing.expectOk(c.assert_ret_F_D_Ip());
     try testing.expectOk(c.send_F_D_Ip());
-    try testing.expectOk(c.recv_F_D_Ip(.{ .v1 = 7.0, .v2 = 7.0, .v3 = null }));
+    try testing.expectOk(c.assert_F_D_Ip(.{ .v1 = 7.0, .v2 = 7.0, .v3 = null }));
 }
-pub export fn zig_recv_F_D_Ip(lv: c.F_D_Ip) c_int {
-    if (lv.v1 != 7.0) return 1;
-    if (lv.v2 != 7.0) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_F_D_Ip(lv: c.F_D_Ip) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 7.0) err = 1;
+    if (lv.v2 != 7.0) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_D_Ip() c.F_D_Ip {
     return .{ .v1 = 7.0, .v2 = 7.0, .v3 = null };
@@ -608,13 +646,15 @@ test "F_D_L C calls" {
     try testing.expectEqual(c.ret_F_D_L(), .{ .v1 = -0.25, .v2 = 0.875, .v3 = 13946 });
     try testing.expectOk(c.assert_ret_F_D_L());
     try testing.expectOk(c.send_F_D_L());
-    try testing.expectOk(c.recv_F_D_L(.{ .v1 = -0.25, .v2 = 0.875, .v3 = 13946 }));
+    try testing.expectOk(c.assert_F_D_L(.{ .v1 = -0.25, .v2 = 0.875, .v3 = 13946 }));
 }
-pub export fn zig_recv_F_D_L(lv: c.F_D_L) c_int {
-    if (lv.v1 != -0.25) return 1;
-    if (lv.v2 != 0.875) return 2;
-    if (lv.v3 != 13946) return 3;
-    return 0;
+pub export fn zig_assert_F_D_L(lv: c.F_D_L) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -0.25) err = 1;
+    if (lv.v2 != 0.875) err = 2;
+    if (lv.v3 != 13946) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_D_L() c.F_D_L {
     return .{ .v1 = -0.25, .v2 = 0.875, .v3 = 13946 };
@@ -639,13 +679,15 @@ test "F_D_S C calls" {
     try testing.expectEqual(c.ret_F_D_S(), .{ .v1 = 0.5, .v2 = 0.875, .v3 = 10845 });
     try testing.expectOk(c.assert_ret_F_D_S());
     try testing.expectOk(c.send_F_D_S());
-    try testing.expectOk(c.recv_F_D_S(.{ .v1 = 0.5, .v2 = 0.875, .v3 = 10845 }));
+    try testing.expectOk(c.assert_F_D_S(.{ .v1 = 0.5, .v2 = 0.875, .v3 = 10845 }));
 }
-pub export fn zig_recv_F_D_S(lv: c.F_D_S) c_int {
-    if (lv.v1 != 0.5) return 1;
-    if (lv.v2 != 0.875) return 2;
-    if (lv.v3 != 10845) return 3;
-    return 0;
+pub export fn zig_assert_F_D_S(lv: c.F_D_S) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.5) err = 1;
+    if (lv.v2 != 0.875) err = 2;
+    if (lv.v3 != 10845) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_D_S() c.F_D_S {
     return .{ .v1 = 0.5, .v2 = 0.875, .v3 = 10845 };
@@ -670,13 +712,15 @@ test "F_D_Uc C calls" {
     try testing.expectEqual(c.ret_F_D_Uc(), .{ .v1 = 0.5, .v2 = 7.0, .v3 = 85 });
     try testing.expectOk(c.assert_ret_F_D_Uc());
     try testing.expectOk(c.send_F_D_Uc());
-    try testing.expectOk(c.recv_F_D_Uc(.{ .v1 = 0.5, .v2 = 7.0, .v3 = 85 }));
+    try testing.expectOk(c.assert_F_D_Uc(.{ .v1 = 0.5, .v2 = 7.0, .v3 = 85 }));
 }
-pub export fn zig_recv_F_D_Uc(lv: c.F_D_Uc) c_int {
-    if (lv.v1 != 0.5) return 1;
-    if (lv.v2 != 7.0) return 2;
-    if (lv.v3 != 85) return 3;
-    return 0;
+pub export fn zig_assert_F_D_Uc(lv: c.F_D_Uc) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.5) err = 1;
+    if (lv.v2 != 7.0) err = 2;
+    if (lv.v3 != 85) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_D_Uc() c.F_D_Uc {
     return .{ .v1 = 0.5, .v2 = 7.0, .v3 = 85 };
@@ -701,13 +745,15 @@ test "F_D_Ui C calls" {
     try testing.expectEqual(c.ret_F_D_Ui(), .{ .v1 = 7.0, .v2 = 0.875, .v3 = 19194 });
     try testing.expectOk(c.assert_ret_F_D_Ui());
     try testing.expectOk(c.send_F_D_Ui());
-    try testing.expectOk(c.recv_F_D_Ui(.{ .v1 = 7.0, .v2 = 0.875, .v3 = 19194 }));
+    try testing.expectOk(c.assert_F_D_Ui(.{ .v1 = 7.0, .v2 = 0.875, .v3 = 19194 }));
 }
-pub export fn zig_recv_F_D_Ui(lv: c.F_D_Ui) c_int {
-    if (lv.v1 != 7.0) return 1;
-    if (lv.v2 != 0.875) return 2;
-    if (lv.v3 != 19194) return 3;
-    return 0;
+pub export fn zig_assert_F_D_Ui(lv: c.F_D_Ui) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 7.0) err = 1;
+    if (lv.v2 != 0.875) err = 2;
+    if (lv.v3 != 19194) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_D_Ui() c.F_D_Ui {
     return .{ .v1 = 7.0, .v2 = 0.875, .v3 = 19194 };
@@ -732,13 +778,15 @@ test "F_D_Ul C calls" {
     try testing.expectEqual(c.ret_F_D_Ul(), .{ .v1 = 4.5, .v2 = 0.875, .v3 = 20762 });
     try testing.expectOk(c.assert_ret_F_D_Ul());
     try testing.expectOk(c.send_F_D_Ul());
-    try testing.expectOk(c.recv_F_D_Ul(.{ .v1 = 4.5, .v2 = 0.875, .v3 = 20762 }));
+    try testing.expectOk(c.assert_F_D_Ul(.{ .v1 = 4.5, .v2 = 0.875, .v3 = 20762 }));
 }
-pub export fn zig_recv_F_D_Ul(lv: c.F_D_Ul) c_int {
-    if (lv.v1 != 4.5) return 1;
-    if (lv.v2 != 0.875) return 2;
-    if (lv.v3 != 20762) return 3;
-    return 0;
+pub export fn zig_assert_F_D_Ul(lv: c.F_D_Ul) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 4.5) err = 1;
+    if (lv.v2 != 0.875) err = 2;
+    if (lv.v3 != 20762) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_D_Ul() c.F_D_Ul {
     return .{ .v1 = 4.5, .v2 = 0.875, .v3 = 20762 };
@@ -763,13 +811,15 @@ test "F_D_Us C calls" {
     try testing.expectEqual(c.ret_F_D_Us(), .{ .v1 = 4.5, .v2 = -2.125, .v3 = 447 });
     try testing.expectOk(c.assert_ret_F_D_Us());
     try testing.expectOk(c.send_F_D_Us());
-    try testing.expectOk(c.recv_F_D_Us(.{ .v1 = 4.5, .v2 = -2.125, .v3 = 447 }));
+    try testing.expectOk(c.assert_F_D_Us(.{ .v1 = 4.5, .v2 = -2.125, .v3 = 447 }));
 }
-pub export fn zig_recv_F_D_Us(lv: c.F_D_Us) c_int {
-    if (lv.v1 != 4.5) return 1;
-    if (lv.v2 != -2.125) return 2;
-    if (lv.v3 != 447) return 3;
-    return 0;
+pub export fn zig_assert_F_D_Us(lv: c.F_D_Us) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 4.5) err = 1;
+    if (lv.v2 != -2.125) err = 2;
+    if (lv.v3 != 447) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_D_Us() c.F_D_Us {
     return .{ .v1 = 4.5, .v2 = -2.125, .v3 = 447 };
@@ -794,13 +844,15 @@ test "F_D_Vp C calls" {
     try testing.expectEqual(c.ret_F_D_Vp(), .{ .v1 = 1.0, .v2 = 7.0, .v3 = null });
     try testing.expectOk(c.assert_ret_F_D_Vp());
     try testing.expectOk(c.send_F_D_Vp());
-    try testing.expectOk(c.recv_F_D_Vp(.{ .v1 = 1.0, .v2 = 7.0, .v3 = null }));
+    try testing.expectOk(c.assert_F_D_Vp(.{ .v1 = 1.0, .v2 = 7.0, .v3 = null }));
 }
-pub export fn zig_recv_F_D_Vp(lv: c.F_D_Vp) c_int {
-    if (lv.v1 != 1.0) return 1;
-    if (lv.v2 != 7.0) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_F_D_Vp(lv: c.F_D_Vp) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 1.0) err = 1;
+    if (lv.v2 != 7.0) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_D_Vp() c.F_D_Vp {
     return .{ .v1 = 1.0, .v2 = 7.0, .v3 = null };
@@ -823,12 +875,14 @@ test "F_F C calls" {
     try testing.expectEqual(c.ret_F_F(), .{ .v1 = 1.0, .v2 = 4.5 });
     try testing.expectOk(c.assert_ret_F_F());
     try testing.expectOk(c.send_F_F());
-    try testing.expectOk(c.recv_F_F(.{ .v1 = 1.0, .v2 = 4.5 }));
+    try testing.expectOk(c.assert_F_F(.{ .v1 = 1.0, .v2 = 4.5 }));
 }
-pub export fn zig_recv_F_F(lv: c.F_F) c_int {
-    if (lv.v1 != 1.0) return 1;
-    if (lv.v2 != 4.5) return 2;
-    return 0;
+pub export fn zig_assert_F_F(lv: c.F_F) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 1.0) err = 1;
+    if (lv.v2 != 4.5) err = 2;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_F() c.F_F {
     return .{ .v1 = 1.0, .v2 = 4.5 };
@@ -853,13 +907,15 @@ test "F_F_C C calls" {
     try testing.expectEqual(c.ret_F_F_C(), .{ .v1 = 4.5, .v2 = -2.125, .v3 = 24 });
     try testing.expectOk(c.assert_ret_F_F_C());
     try testing.expectOk(c.send_F_F_C());
-    try testing.expectOk(c.recv_F_F_C(.{ .v1 = 4.5, .v2 = -2.125, .v3 = 24 }));
+    try testing.expectOk(c.assert_F_F_C(.{ .v1 = 4.5, .v2 = -2.125, .v3 = 24 }));
 }
-pub export fn zig_recv_F_F_C(lv: c.F_F_C) c_int {
-    if (lv.v1 != 4.5) return 1;
-    if (lv.v2 != -2.125) return 2;
-    if (lv.v3 != 24) return 3;
-    return 0;
+pub export fn zig_assert_F_F_C(lv: c.F_F_C) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 4.5) err = 1;
+    if (lv.v2 != -2.125) err = 2;
+    if (lv.v3 != 24) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_F_C() c.F_F_C {
     return .{ .v1 = 4.5, .v2 = -2.125, .v3 = 24 };
@@ -884,13 +940,15 @@ test "F_F_D C calls" {
     try testing.expectEqual(c.ret_F_F_D(), .{ .v1 = 1.0, .v2 = 1.0, .v3 = -2.125 });
     try testing.expectOk(c.assert_ret_F_F_D());
     try testing.expectOk(c.send_F_F_D());
-    try testing.expectOk(c.recv_F_F_D(.{ .v1 = 1.0, .v2 = 1.0, .v3 = -2.125 }));
+    try testing.expectOk(c.assert_F_F_D(.{ .v1 = 1.0, .v2 = 1.0, .v3 = -2.125 }));
 }
-pub export fn zig_recv_F_F_D(lv: c.F_F_D) c_int {
-    if (lv.v1 != 1.0) return 1;
-    if (lv.v2 != 1.0) return 2;
-    if (lv.v3 != -2.125) return 3;
-    return 0;
+pub export fn zig_assert_F_F_D(lv: c.F_F_D) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 1.0) err = 1;
+    if (lv.v2 != 1.0) err = 2;
+    if (lv.v3 != -2.125) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_F_D() c.F_F_D {
     return .{ .v1 = 1.0, .v2 = 1.0, .v3 = -2.125 };
@@ -915,13 +973,15 @@ test "F_F_F C calls" {
     try testing.expectEqual(c.ret_F_F_F(), .{ .v1 = 1.0, .v2 = 4.5, .v3 = -2.125 });
     try testing.expectOk(c.assert_ret_F_F_F());
     try testing.expectOk(c.send_F_F_F());
-    try testing.expectOk(c.recv_F_F_F(.{ .v1 = 1.0, .v2 = 4.5, .v3 = -2.125 }));
+    try testing.expectOk(c.assert_F_F_F(.{ .v1 = 1.0, .v2 = 4.5, .v3 = -2.125 }));
 }
-pub export fn zig_recv_F_F_F(lv: c.F_F_F) c_int {
-    if (lv.v1 != 1.0) return 1;
-    if (lv.v2 != 4.5) return 2;
-    if (lv.v3 != -2.125) return 3;
-    return 0;
+pub export fn zig_assert_F_F_F(lv: c.F_F_F) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 1.0) err = 1;
+    if (lv.v2 != 4.5) err = 2;
+    if (lv.v3 != -2.125) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_F_F() c.F_F_F {
     return .{ .v1 = 1.0, .v2 = 4.5, .v3 = -2.125 };
@@ -946,13 +1006,15 @@ test "F_F_I C calls" {
     try testing.expectEqual(c.ret_F_F_I(), .{ .v1 = -2.125, .v2 = 0.875, .v3 = 30673 });
     try testing.expectOk(c.assert_ret_F_F_I());
     try testing.expectOk(c.send_F_F_I());
-    try testing.expectOk(c.recv_F_F_I(.{ .v1 = -2.125, .v2 = 0.875, .v3 = 30673 }));
+    try testing.expectOk(c.assert_F_F_I(.{ .v1 = -2.125, .v2 = 0.875, .v3 = 30673 }));
 }
-pub export fn zig_recv_F_F_I(lv: c.F_F_I) c_int {
-    if (lv.v1 != -2.125) return 1;
-    if (lv.v2 != 0.875) return 2;
-    if (lv.v3 != 30673) return 3;
-    return 0;
+pub export fn zig_assert_F_F_I(lv: c.F_F_I) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -2.125) err = 1;
+    if (lv.v2 != 0.875) err = 2;
+    if (lv.v3 != 30673) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_F_I() c.F_F_I {
     return .{ .v1 = -2.125, .v2 = 0.875, .v3 = 30673 };
@@ -977,13 +1039,15 @@ test "F_F_Ip C calls" {
     try testing.expectEqual(c.ret_F_F_Ip(), .{ .v1 = -2.125, .v2 = 7.0, .v3 = null });
     try testing.expectOk(c.assert_ret_F_F_Ip());
     try testing.expectOk(c.send_F_F_Ip());
-    try testing.expectOk(c.recv_F_F_Ip(.{ .v1 = -2.125, .v2 = 7.0, .v3 = null }));
+    try testing.expectOk(c.assert_F_F_Ip(.{ .v1 = -2.125, .v2 = 7.0, .v3 = null }));
 }
-pub export fn zig_recv_F_F_Ip(lv: c.F_F_Ip) c_int {
-    if (lv.v1 != -2.125) return 1;
-    if (lv.v2 != 7.0) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_F_F_Ip(lv: c.F_F_Ip) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -2.125) err = 1;
+    if (lv.v2 != 7.0) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_F_Ip() c.F_F_Ip {
     return .{ .v1 = -2.125, .v2 = 7.0, .v3 = null };
@@ -1008,13 +1072,15 @@ test "F_F_L C calls" {
     try testing.expectEqual(c.ret_F_F_L(), .{ .v1 = 0.875, .v2 = 0.875, .v3 = 12916 });
     try testing.expectOk(c.assert_ret_F_F_L());
     try testing.expectOk(c.send_F_F_L());
-    try testing.expectOk(c.recv_F_F_L(.{ .v1 = 0.875, .v2 = 0.875, .v3 = 12916 }));
+    try testing.expectOk(c.assert_F_F_L(.{ .v1 = 0.875, .v2 = 0.875, .v3 = 12916 }));
 }
-pub export fn zig_recv_F_F_L(lv: c.F_F_L) c_int {
-    if (lv.v1 != 0.875) return 1;
-    if (lv.v2 != 0.875) return 2;
-    if (lv.v3 != 12916) return 3;
-    return 0;
+pub export fn zig_assert_F_F_L(lv: c.F_F_L) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.875) err = 1;
+    if (lv.v2 != 0.875) err = 2;
+    if (lv.v3 != 12916) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_F_L() c.F_F_L {
     return .{ .v1 = 0.875, .v2 = 0.875, .v3 = 12916 };
@@ -1039,13 +1105,15 @@ test "F_F_S C calls" {
     try testing.expectEqual(c.ret_F_F_S(), .{ .v1 = 0.5, .v2 = -2.125, .v3 = 24001 });
     try testing.expectOk(c.assert_ret_F_F_S());
     try testing.expectOk(c.send_F_F_S());
-    try testing.expectOk(c.recv_F_F_S(.{ .v1 = 0.5, .v2 = -2.125, .v3 = 24001 }));
+    try testing.expectOk(c.assert_F_F_S(.{ .v1 = 0.5, .v2 = -2.125, .v3 = 24001 }));
 }
-pub export fn zig_recv_F_F_S(lv: c.F_F_S) c_int {
-    if (lv.v1 != 0.5) return 1;
-    if (lv.v2 != -2.125) return 2;
-    if (lv.v3 != 24001) return 3;
-    return 0;
+pub export fn zig_assert_F_F_S(lv: c.F_F_S) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.5) err = 1;
+    if (lv.v2 != -2.125) err = 2;
+    if (lv.v3 != 24001) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_F_S() c.F_F_S {
     return .{ .v1 = 0.5, .v2 = -2.125, .v3 = 24001 };
@@ -1070,13 +1138,15 @@ test "F_F_Uc C calls" {
     try testing.expectEqual(c.ret_F_F_Uc(), .{ .v1 = 0.5, .v2 = -0.25, .v3 = 36 });
     try testing.expectOk(c.assert_ret_F_F_Uc());
     try testing.expectOk(c.send_F_F_Uc());
-    try testing.expectOk(c.recv_F_F_Uc(.{ .v1 = 0.5, .v2 = -0.25, .v3 = 36 }));
+    try testing.expectOk(c.assert_F_F_Uc(.{ .v1 = 0.5, .v2 = -0.25, .v3 = 36 }));
 }
-pub export fn zig_recv_F_F_Uc(lv: c.F_F_Uc) c_int {
-    if (lv.v1 != 0.5) return 1;
-    if (lv.v2 != -0.25) return 2;
-    if (lv.v3 != 36) return 3;
-    return 0;
+pub export fn zig_assert_F_F_Uc(lv: c.F_F_Uc) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.5) err = 1;
+    if (lv.v2 != -0.25) err = 2;
+    if (lv.v3 != 36) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_F_Uc() c.F_F_Uc {
     return .{ .v1 = 0.5, .v2 = -0.25, .v3 = 36 };
@@ -1101,13 +1171,15 @@ test "F_F_Ui C calls" {
     try testing.expectEqual(c.ret_F_F_Ui(), .{ .v1 = 1.0, .v2 = 7.0, .v3 = 18540 });
     try testing.expectOk(c.assert_ret_F_F_Ui());
     try testing.expectOk(c.send_F_F_Ui());
-    try testing.expectOk(c.recv_F_F_Ui(.{ .v1 = 1.0, .v2 = 7.0, .v3 = 18540 }));
+    try testing.expectOk(c.assert_F_F_Ui(.{ .v1 = 1.0, .v2 = 7.0, .v3 = 18540 }));
 }
-pub export fn zig_recv_F_F_Ui(lv: c.F_F_Ui) c_int {
-    if (lv.v1 != 1.0) return 1;
-    if (lv.v2 != 7.0) return 2;
-    if (lv.v3 != 18540) return 3;
-    return 0;
+pub export fn zig_assert_F_F_Ui(lv: c.F_F_Ui) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 1.0) err = 1;
+    if (lv.v2 != 7.0) err = 2;
+    if (lv.v3 != 18540) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_F_Ui() c.F_F_Ui {
     return .{ .v1 = 1.0, .v2 = 7.0, .v3 = 18540 };
@@ -1132,13 +1204,15 @@ test "F_F_Ul C calls" {
     try testing.expectEqual(c.ret_F_F_Ul(), .{ .v1 = -0.25, .v2 = 0.875, .v3 = 3966 });
     try testing.expectOk(c.assert_ret_F_F_Ul());
     try testing.expectOk(c.send_F_F_Ul());
-    try testing.expectOk(c.recv_F_F_Ul(.{ .v1 = -0.25, .v2 = 0.875, .v3 = 3966 }));
+    try testing.expectOk(c.assert_F_F_Ul(.{ .v1 = -0.25, .v2 = 0.875, .v3 = 3966 }));
 }
-pub export fn zig_recv_F_F_Ul(lv: c.F_F_Ul) c_int {
-    if (lv.v1 != -0.25) return 1;
-    if (lv.v2 != 0.875) return 2;
-    if (lv.v3 != 3966) return 3;
-    return 0;
+pub export fn zig_assert_F_F_Ul(lv: c.F_F_Ul) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -0.25) err = 1;
+    if (lv.v2 != 0.875) err = 2;
+    if (lv.v3 != 3966) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_F_Ul() c.F_F_Ul {
     return .{ .v1 = -0.25, .v2 = 0.875, .v3 = 3966 };
@@ -1163,13 +1237,15 @@ test "F_F_Us C calls" {
     try testing.expectEqual(c.ret_F_F_Us(), .{ .v1 = -0.25, .v2 = 1.0, .v3 = 27558 });
     try testing.expectOk(c.assert_ret_F_F_Us());
     try testing.expectOk(c.send_F_F_Us());
-    try testing.expectOk(c.recv_F_F_Us(.{ .v1 = -0.25, .v2 = 1.0, .v3 = 27558 }));
+    try testing.expectOk(c.assert_F_F_Us(.{ .v1 = -0.25, .v2 = 1.0, .v3 = 27558 }));
 }
-pub export fn zig_recv_F_F_Us(lv: c.F_F_Us) c_int {
-    if (lv.v1 != -0.25) return 1;
-    if (lv.v2 != 1.0) return 2;
-    if (lv.v3 != 27558) return 3;
-    return 0;
+pub export fn zig_assert_F_F_Us(lv: c.F_F_Us) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -0.25) err = 1;
+    if (lv.v2 != 1.0) err = 2;
+    if (lv.v3 != 27558) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_F_Us() c.F_F_Us {
     return .{ .v1 = -0.25, .v2 = 1.0, .v3 = 27558 };
@@ -1194,13 +1270,15 @@ test "F_F_Vp C calls" {
     try testing.expectEqual(c.ret_F_F_Vp(), .{ .v1 = 0.875, .v2 = 1.0, .v3 = null });
     try testing.expectOk(c.assert_ret_F_F_Vp());
     try testing.expectOk(c.send_F_F_Vp());
-    try testing.expectOk(c.recv_F_F_Vp(.{ .v1 = 0.875, .v2 = 1.0, .v3 = null }));
+    try testing.expectOk(c.assert_F_F_Vp(.{ .v1 = 0.875, .v2 = 1.0, .v3 = null }));
 }
-pub export fn zig_recv_F_F_Vp(lv: c.F_F_Vp) c_int {
-    if (lv.v1 != 0.875) return 1;
-    if (lv.v2 != 1.0) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_F_F_Vp(lv: c.F_F_Vp) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.875) err = 1;
+    if (lv.v2 != 1.0) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_F_Vp() c.F_F_Vp {
     return .{ .v1 = 0.875, .v2 = 1.0, .v3 = null };
@@ -1223,12 +1301,14 @@ test "F_I C calls" {
     try testing.expectEqual(c.ret_F_I(), .{ .v1 = -0.25, .v2 = 2673 });
     try testing.expectOk(c.assert_ret_F_I());
     try testing.expectOk(c.send_F_I());
-    try testing.expectOk(c.recv_F_I(.{ .v1 = -0.25, .v2 = 2673 }));
+    try testing.expectOk(c.assert_F_I(.{ .v1 = -0.25, .v2 = 2673 }));
 }
-pub export fn zig_recv_F_I(lv: c.F_I) c_int {
-    if (lv.v1 != -0.25) return 1;
-    if (lv.v2 != 2673) return 2;
-    return 0;
+pub export fn zig_assert_F_I(lv: c.F_I) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -0.25) err = 1;
+    if (lv.v2 != 2673) err = 2;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_I() c.F_I {
     return .{ .v1 = -0.25, .v2 = 2673 };
@@ -1253,13 +1333,15 @@ test "F_I_C C calls" {
     try testing.expectEqual(c.ret_F_I_C(), .{ .v1 = 7.0, .v2 = 9062, .v3 = 42 });
     try testing.expectOk(c.assert_ret_F_I_C());
     try testing.expectOk(c.send_F_I_C());
-    try testing.expectOk(c.recv_F_I_C(.{ .v1 = 7.0, .v2 = 9062, .v3 = 42 }));
+    try testing.expectOk(c.assert_F_I_C(.{ .v1 = 7.0, .v2 = 9062, .v3 = 42 }));
 }
-pub export fn zig_recv_F_I_C(lv: c.F_I_C) c_int {
-    if (lv.v1 != 7.0) return 1;
-    if (lv.v2 != 9062) return 2;
-    if (lv.v3 != 42) return 3;
-    return 0;
+pub export fn zig_assert_F_I_C(lv: c.F_I_C) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 7.0) err = 1;
+    if (lv.v2 != 9062) err = 2;
+    if (lv.v3 != 42) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_I_C() c.F_I_C {
     return .{ .v1 = 7.0, .v2 = 9062, .v3 = 42 };
@@ -1284,13 +1366,15 @@ test "F_I_D C calls" {
     try testing.expectEqual(c.ret_F_I_D(), .{ .v1 = -2.125, .v2 = 31457, .v3 = -0.25 });
     try testing.expectOk(c.assert_ret_F_I_D());
     try testing.expectOk(c.send_F_I_D());
-    try testing.expectOk(c.recv_F_I_D(.{ .v1 = -2.125, .v2 = 31457, .v3 = -0.25 }));
+    try testing.expectOk(c.assert_F_I_D(.{ .v1 = -2.125, .v2 = 31457, .v3 = -0.25 }));
 }
-pub export fn zig_recv_F_I_D(lv: c.F_I_D) c_int {
-    if (lv.v1 != -2.125) return 1;
-    if (lv.v2 != 31457) return 2;
-    if (lv.v3 != -0.25) return 3;
-    return 0;
+pub export fn zig_assert_F_I_D(lv: c.F_I_D) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -2.125) err = 1;
+    if (lv.v2 != 31457) err = 2;
+    if (lv.v3 != -0.25) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_I_D() c.F_I_D {
     return .{ .v1 = -2.125, .v2 = 31457, .v3 = -0.25 };
@@ -1315,13 +1399,15 @@ test "F_I_F C calls" {
     try testing.expectEqual(c.ret_F_I_F(), .{ .v1 = 4.5, .v2 = 29585, .v3 = -2.125 });
     try testing.expectOk(c.assert_ret_F_I_F());
     try testing.expectOk(c.send_F_I_F());
-    try testing.expectOk(c.recv_F_I_F(.{ .v1 = 4.5, .v2 = 29585, .v3 = -2.125 }));
+    try testing.expectOk(c.assert_F_I_F(.{ .v1 = 4.5, .v2 = 29585, .v3 = -2.125 }));
 }
-pub export fn zig_recv_F_I_F(lv: c.F_I_F) c_int {
-    if (lv.v1 != 4.5) return 1;
-    if (lv.v2 != 29585) return 2;
-    if (lv.v3 != -2.125) return 3;
-    return 0;
+pub export fn zig_assert_F_I_F(lv: c.F_I_F) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 4.5) err = 1;
+    if (lv.v2 != 29585) err = 2;
+    if (lv.v3 != -2.125) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_I_F() c.F_I_F {
     return .{ .v1 = 4.5, .v2 = 29585, .v3 = -2.125 };
@@ -1346,13 +1432,15 @@ test "F_I_I C calls" {
     try testing.expectEqual(c.ret_F_I_I(), .{ .v1 = 7.0, .v2 = 32140, .v3 = 26057 });
     try testing.expectOk(c.assert_ret_F_I_I());
     try testing.expectOk(c.send_F_I_I());
-    try testing.expectOk(c.recv_F_I_I(.{ .v1 = 7.0, .v2 = 32140, .v3 = 26057 }));
+    try testing.expectOk(c.assert_F_I_I(.{ .v1 = 7.0, .v2 = 32140, .v3 = 26057 }));
 }
-pub export fn zig_recv_F_I_I(lv: c.F_I_I) c_int {
-    if (lv.v1 != 7.0) return 1;
-    if (lv.v2 != 32140) return 2;
-    if (lv.v3 != 26057) return 3;
-    return 0;
+pub export fn zig_assert_F_I_I(lv: c.F_I_I) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 7.0) err = 1;
+    if (lv.v2 != 32140) err = 2;
+    if (lv.v3 != 26057) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_I_I() c.F_I_I {
     return .{ .v1 = 7.0, .v2 = 32140, .v3 = 26057 };
@@ -1377,13 +1465,15 @@ test "F_I_Ip C calls" {
     try testing.expectEqual(c.ret_F_I_Ip(), .{ .v1 = 0.875, .v2 = 15202, .v3 = null });
     try testing.expectOk(c.assert_ret_F_I_Ip());
     try testing.expectOk(c.send_F_I_Ip());
-    try testing.expectOk(c.recv_F_I_Ip(.{ .v1 = 0.875, .v2 = 15202, .v3 = null }));
+    try testing.expectOk(c.assert_F_I_Ip(.{ .v1 = 0.875, .v2 = 15202, .v3 = null }));
 }
-pub export fn zig_recv_F_I_Ip(lv: c.F_I_Ip) c_int {
-    if (lv.v1 != 0.875) return 1;
-    if (lv.v2 != 15202) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_F_I_Ip(lv: c.F_I_Ip) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.875) err = 1;
+    if (lv.v2 != 15202) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_I_Ip() c.F_I_Ip {
     return .{ .v1 = 0.875, .v2 = 15202, .v3 = null };
@@ -1408,13 +1498,15 @@ test "F_I_L C calls" {
     try testing.expectEqual(c.ret_F_I_L(), .{ .v1 = 0.5, .v2 = 6979, .v3 = 3920 });
     try testing.expectOk(c.assert_ret_F_I_L());
     try testing.expectOk(c.send_F_I_L());
-    try testing.expectOk(c.recv_F_I_L(.{ .v1 = 0.5, .v2 = 6979, .v3 = 3920 }));
+    try testing.expectOk(c.assert_F_I_L(.{ .v1 = 0.5, .v2 = 6979, .v3 = 3920 }));
 }
-pub export fn zig_recv_F_I_L(lv: c.F_I_L) c_int {
-    if (lv.v1 != 0.5) return 1;
-    if (lv.v2 != 6979) return 2;
-    if (lv.v3 != 3920) return 3;
-    return 0;
+pub export fn zig_assert_F_I_L(lv: c.F_I_L) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.5) err = 1;
+    if (lv.v2 != 6979) err = 2;
+    if (lv.v3 != 3920) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_I_L() c.F_I_L {
     return .{ .v1 = 0.5, .v2 = 6979, .v3 = 3920 };
@@ -1439,13 +1531,15 @@ test "F_I_S C calls" {
     try testing.expectEqual(c.ret_F_I_S(), .{ .v1 = -2.125, .v2 = 4337, .v3 = 955 });
     try testing.expectOk(c.assert_ret_F_I_S());
     try testing.expectOk(c.send_F_I_S());
-    try testing.expectOk(c.recv_F_I_S(.{ .v1 = -2.125, .v2 = 4337, .v3 = 955 }));
+    try testing.expectOk(c.assert_F_I_S(.{ .v1 = -2.125, .v2 = 4337, .v3 = 955 }));
 }
-pub export fn zig_recv_F_I_S(lv: c.F_I_S) c_int {
-    if (lv.v1 != -2.125) return 1;
-    if (lv.v2 != 4337) return 2;
-    if (lv.v3 != 955) return 3;
-    return 0;
+pub export fn zig_assert_F_I_S(lv: c.F_I_S) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -2.125) err = 1;
+    if (lv.v2 != 4337) err = 2;
+    if (lv.v3 != 955) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_I_S() c.F_I_S {
     return .{ .v1 = -2.125, .v2 = 4337, .v3 = 955 };
@@ -1470,13 +1564,15 @@ test "F_I_Uc C calls" {
     try testing.expectEqual(c.ret_F_I_Uc(), .{ .v1 = 4.5, .v2 = 24794, .v3 = 1 });
     try testing.expectOk(c.assert_ret_F_I_Uc());
     try testing.expectOk(c.send_F_I_Uc());
-    try testing.expectOk(c.recv_F_I_Uc(.{ .v1 = 4.5, .v2 = 24794, .v3 = 1 }));
+    try testing.expectOk(c.assert_F_I_Uc(.{ .v1 = 4.5, .v2 = 24794, .v3 = 1 }));
 }
-pub export fn zig_recv_F_I_Uc(lv: c.F_I_Uc) c_int {
-    if (lv.v1 != 4.5) return 1;
-    if (lv.v2 != 24794) return 2;
-    if (lv.v3 != 1) return 3;
-    return 0;
+pub export fn zig_assert_F_I_Uc(lv: c.F_I_Uc) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 4.5) err = 1;
+    if (lv.v2 != 24794) err = 2;
+    if (lv.v3 != 1) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_I_Uc() c.F_I_Uc {
     return .{ .v1 = 4.5, .v2 = 24794, .v3 = 1 };
@@ -1501,13 +1597,15 @@ test "F_I_Ui C calls" {
     try testing.expectEqual(c.ret_F_I_Ui(), .{ .v1 = 0.5, .v2 = 12911, .v3 = 9581 });
     try testing.expectOk(c.assert_ret_F_I_Ui());
     try testing.expectOk(c.send_F_I_Ui());
-    try testing.expectOk(c.recv_F_I_Ui(.{ .v1 = 0.5, .v2 = 12911, .v3 = 9581 }));
+    try testing.expectOk(c.assert_F_I_Ui(.{ .v1 = 0.5, .v2 = 12911, .v3 = 9581 }));
 }
-pub export fn zig_recv_F_I_Ui(lv: c.F_I_Ui) c_int {
-    if (lv.v1 != 0.5) return 1;
-    if (lv.v2 != 12911) return 2;
-    if (lv.v3 != 9581) return 3;
-    return 0;
+pub export fn zig_assert_F_I_Ui(lv: c.F_I_Ui) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.5) err = 1;
+    if (lv.v2 != 12911) err = 2;
+    if (lv.v3 != 9581) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_I_Ui() c.F_I_Ui {
     return .{ .v1 = 0.5, .v2 = 12911, .v3 = 9581 };
@@ -1532,13 +1630,15 @@ test "F_I_Ul C calls" {
     try testing.expectEqual(c.ret_F_I_Ul(), .{ .v1 = -2.125, .v2 = 8607, .v3 = 1051 });
     try testing.expectOk(c.assert_ret_F_I_Ul());
     try testing.expectOk(c.send_F_I_Ul());
-    try testing.expectOk(c.recv_F_I_Ul(.{ .v1 = -2.125, .v2 = 8607, .v3 = 1051 }));
+    try testing.expectOk(c.assert_F_I_Ul(.{ .v1 = -2.125, .v2 = 8607, .v3 = 1051 }));
 }
-pub export fn zig_recv_F_I_Ul(lv: c.F_I_Ul) c_int {
-    if (lv.v1 != -2.125) return 1;
-    if (lv.v2 != 8607) return 2;
-    if (lv.v3 != 1051) return 3;
-    return 0;
+pub export fn zig_assert_F_I_Ul(lv: c.F_I_Ul) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -2.125) err = 1;
+    if (lv.v2 != 8607) err = 2;
+    if (lv.v3 != 1051) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_I_Ul() c.F_I_Ul {
     return .{ .v1 = -2.125, .v2 = 8607, .v3 = 1051 };
@@ -1563,13 +1663,15 @@ test "F_I_Us C calls" {
     try testing.expectEqual(c.ret_F_I_Us(), .{ .v1 = 0.5, .v2 = 23512, .v3 = 5539 });
     try testing.expectOk(c.assert_ret_F_I_Us());
     try testing.expectOk(c.send_F_I_Us());
-    try testing.expectOk(c.recv_F_I_Us(.{ .v1 = 0.5, .v2 = 23512, .v3 = 5539 }));
+    try testing.expectOk(c.assert_F_I_Us(.{ .v1 = 0.5, .v2 = 23512, .v3 = 5539 }));
 }
-pub export fn zig_recv_F_I_Us(lv: c.F_I_Us) c_int {
-    if (lv.v1 != 0.5) return 1;
-    if (lv.v2 != 23512) return 2;
-    if (lv.v3 != 5539) return 3;
-    return 0;
+pub export fn zig_assert_F_I_Us(lv: c.F_I_Us) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.5) err = 1;
+    if (lv.v2 != 23512) err = 2;
+    if (lv.v3 != 5539) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_I_Us() c.F_I_Us {
     return .{ .v1 = 0.5, .v2 = 23512, .v3 = 5539 };
@@ -1594,13 +1696,15 @@ test "F_I_Vp C calls" {
     try testing.expectEqual(c.ret_F_I_Vp(), .{ .v1 = 0.875, .v2 = 1023, .v3 = null });
     try testing.expectOk(c.assert_ret_F_I_Vp());
     try testing.expectOk(c.send_F_I_Vp());
-    try testing.expectOk(c.recv_F_I_Vp(.{ .v1 = 0.875, .v2 = 1023, .v3 = null }));
+    try testing.expectOk(c.assert_F_I_Vp(.{ .v1 = 0.875, .v2 = 1023, .v3 = null }));
 }
-pub export fn zig_recv_F_I_Vp(lv: c.F_I_Vp) c_int {
-    if (lv.v1 != 0.875) return 1;
-    if (lv.v2 != 1023) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_F_I_Vp(lv: c.F_I_Vp) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.875) err = 1;
+    if (lv.v2 != 1023) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_I_Vp() c.F_I_Vp {
     return .{ .v1 = 0.875, .v2 = 1023, .v3 = null };
@@ -1623,12 +1727,14 @@ test "F_Ip C calls" {
     try testing.expectEqual(c.ret_F_Ip(), .{ .v1 = 4.5, .v2 = null });
     try testing.expectOk(c.assert_ret_F_Ip());
     try testing.expectOk(c.send_F_Ip());
-    try testing.expectOk(c.recv_F_Ip(.{ .v1 = 4.5, .v2 = null }));
+    try testing.expectOk(c.assert_F_Ip(.{ .v1 = 4.5, .v2 = null }));
 }
-pub export fn zig_recv_F_Ip(lv: c.F_Ip) c_int {
-    if (lv.v1 != 4.5) return 1;
-    if (lv.v2 != null) return 2;
-    return 0;
+pub export fn zig_assert_F_Ip(lv: c.F_Ip) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 4.5) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ip() c.F_Ip {
     return .{ .v1 = 4.5, .v2 = null };
@@ -1653,13 +1759,15 @@ test "F_Ip_C C calls" {
     try testing.expectEqual(c.ret_F_Ip_C(), .{ .v1 = -2.125, .v2 = null, .v3 = 88 });
     try testing.expectOk(c.assert_ret_F_Ip_C());
     try testing.expectOk(c.send_F_Ip_C());
-    try testing.expectOk(c.recv_F_Ip_C(.{ .v1 = -2.125, .v2 = null, .v3 = 88 }));
+    try testing.expectOk(c.assert_F_Ip_C(.{ .v1 = -2.125, .v2 = null, .v3 = 88 }));
 }
-pub export fn zig_recv_F_Ip_C(lv: c.F_Ip_C) c_int {
-    if (lv.v1 != -2.125) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 88) return 3;
-    return 0;
+pub export fn zig_assert_F_Ip_C(lv: c.F_Ip_C) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -2.125) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 88) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ip_C() c.F_Ip_C {
     return .{ .v1 = -2.125, .v2 = null, .v3 = 88 };
@@ -1684,13 +1792,15 @@ test "F_Ip_D C calls" {
     try testing.expectEqual(c.ret_F_Ip_D(), .{ .v1 = 4.5, .v2 = null, .v3 = 7.0 });
     try testing.expectOk(c.assert_ret_F_Ip_D());
     try testing.expectOk(c.send_F_Ip_D());
-    try testing.expectOk(c.recv_F_Ip_D(.{ .v1 = 4.5, .v2 = null, .v3 = 7.0 }));
+    try testing.expectOk(c.assert_F_Ip_D(.{ .v1 = 4.5, .v2 = null, .v3 = 7.0 }));
 }
-pub export fn zig_recv_F_Ip_D(lv: c.F_Ip_D) c_int {
-    if (lv.v1 != 4.5) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 7.0) return 3;
-    return 0;
+pub export fn zig_assert_F_Ip_D(lv: c.F_Ip_D) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 4.5) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 7.0) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ip_D() c.F_Ip_D {
     return .{ .v1 = 4.5, .v2 = null, .v3 = 7.0 };
@@ -1715,13 +1825,15 @@ test "F_Ip_F C calls" {
     try testing.expectEqual(c.ret_F_Ip_F(), .{ .v1 = -2.125, .v2 = null, .v3 = 1.0 });
     try testing.expectOk(c.assert_ret_F_Ip_F());
     try testing.expectOk(c.send_F_Ip_F());
-    try testing.expectOk(c.recv_F_Ip_F(.{ .v1 = -2.125, .v2 = null, .v3 = 1.0 }));
+    try testing.expectOk(c.assert_F_Ip_F(.{ .v1 = -2.125, .v2 = null, .v3 = 1.0 }));
 }
-pub export fn zig_recv_F_Ip_F(lv: c.F_Ip_F) c_int {
-    if (lv.v1 != -2.125) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 1.0) return 3;
-    return 0;
+pub export fn zig_assert_F_Ip_F(lv: c.F_Ip_F) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -2.125) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 1.0) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ip_F() c.F_Ip_F {
     return .{ .v1 = -2.125, .v2 = null, .v3 = 1.0 };
@@ -1746,13 +1858,15 @@ test "F_Ip_I C calls" {
     try testing.expectEqual(c.ret_F_Ip_I(), .{ .v1 = 1.0, .v2 = null, .v3 = 25911 });
     try testing.expectOk(c.assert_ret_F_Ip_I());
     try testing.expectOk(c.send_F_Ip_I());
-    try testing.expectOk(c.recv_F_Ip_I(.{ .v1 = 1.0, .v2 = null, .v3 = 25911 }));
+    try testing.expectOk(c.assert_F_Ip_I(.{ .v1 = 1.0, .v2 = null, .v3 = 25911 }));
 }
-pub export fn zig_recv_F_Ip_I(lv: c.F_Ip_I) c_int {
-    if (lv.v1 != 1.0) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 25911) return 3;
-    return 0;
+pub export fn zig_assert_F_Ip_I(lv: c.F_Ip_I) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 1.0) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 25911) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ip_I() c.F_Ip_I {
     return .{ .v1 = 1.0, .v2 = null, .v3 = 25911 };
@@ -1777,13 +1891,15 @@ test "F_Ip_Ip C calls" {
     try testing.expectEqual(c.ret_F_Ip_Ip(), .{ .v1 = -0.25, .v2 = null, .v3 = null });
     try testing.expectOk(c.assert_ret_F_Ip_Ip());
     try testing.expectOk(c.send_F_Ip_Ip());
-    try testing.expectOk(c.recv_F_Ip_Ip(.{ .v1 = -0.25, .v2 = null, .v3 = null }));
+    try testing.expectOk(c.assert_F_Ip_Ip(.{ .v1 = -0.25, .v2 = null, .v3 = null }));
 }
-pub export fn zig_recv_F_Ip_Ip(lv: c.F_Ip_Ip) c_int {
-    if (lv.v1 != -0.25) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_F_Ip_Ip(lv: c.F_Ip_Ip) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -0.25) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ip_Ip() c.F_Ip_Ip {
     return .{ .v1 = -0.25, .v2 = null, .v3 = null };
@@ -1808,13 +1924,15 @@ test "F_Ip_L C calls" {
     try testing.expectEqual(c.ret_F_Ip_L(), .{ .v1 = 7.0, .v2 = null, .v3 = 20726 });
     try testing.expectOk(c.assert_ret_F_Ip_L());
     try testing.expectOk(c.send_F_Ip_L());
-    try testing.expectOk(c.recv_F_Ip_L(.{ .v1 = 7.0, .v2 = null, .v3 = 20726 }));
+    try testing.expectOk(c.assert_F_Ip_L(.{ .v1 = 7.0, .v2 = null, .v3 = 20726 }));
 }
-pub export fn zig_recv_F_Ip_L(lv: c.F_Ip_L) c_int {
-    if (lv.v1 != 7.0) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 20726) return 3;
-    return 0;
+pub export fn zig_assert_F_Ip_L(lv: c.F_Ip_L) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 7.0) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 20726) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ip_L() c.F_Ip_L {
     return .{ .v1 = 7.0, .v2 = null, .v3 = 20726 };
@@ -1839,13 +1957,15 @@ test "F_Ip_S C calls" {
     try testing.expectEqual(c.ret_F_Ip_S(), .{ .v1 = 0.5, .v2 = null, .v3 = 17278 });
     try testing.expectOk(c.assert_ret_F_Ip_S());
     try testing.expectOk(c.send_F_Ip_S());
-    try testing.expectOk(c.recv_F_Ip_S(.{ .v1 = 0.5, .v2 = null, .v3 = 17278 }));
+    try testing.expectOk(c.assert_F_Ip_S(.{ .v1 = 0.5, .v2 = null, .v3 = 17278 }));
 }
-pub export fn zig_recv_F_Ip_S(lv: c.F_Ip_S) c_int {
-    if (lv.v1 != 0.5) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 17278) return 3;
-    return 0;
+pub export fn zig_assert_F_Ip_S(lv: c.F_Ip_S) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.5) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 17278) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ip_S() c.F_Ip_S {
     return .{ .v1 = 0.5, .v2 = null, .v3 = 17278 };
@@ -1870,13 +1990,15 @@ test "F_Ip_Uc C calls" {
     try testing.expectEqual(c.ret_F_Ip_Uc(), .{ .v1 = 7.0, .v2 = null, .v3 = 24 });
     try testing.expectOk(c.assert_ret_F_Ip_Uc());
     try testing.expectOk(c.send_F_Ip_Uc());
-    try testing.expectOk(c.recv_F_Ip_Uc(.{ .v1 = 7.0, .v2 = null, .v3 = 24 }));
+    try testing.expectOk(c.assert_F_Ip_Uc(.{ .v1 = 7.0, .v2 = null, .v3 = 24 }));
 }
-pub export fn zig_recv_F_Ip_Uc(lv: c.F_Ip_Uc) c_int {
-    if (lv.v1 != 7.0) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 24) return 3;
-    return 0;
+pub export fn zig_assert_F_Ip_Uc(lv: c.F_Ip_Uc) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 7.0) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 24) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ip_Uc() c.F_Ip_Uc {
     return .{ .v1 = 7.0, .v2 = null, .v3 = 24 };
@@ -1901,13 +2023,15 @@ test "F_Ip_Ui C calls" {
     try testing.expectEqual(c.ret_F_Ip_Ui(), .{ .v1 = 0.5, .v2 = null, .v3 = 28681 });
     try testing.expectOk(c.assert_ret_F_Ip_Ui());
     try testing.expectOk(c.send_F_Ip_Ui());
-    try testing.expectOk(c.recv_F_Ip_Ui(.{ .v1 = 0.5, .v2 = null, .v3 = 28681 }));
+    try testing.expectOk(c.assert_F_Ip_Ui(.{ .v1 = 0.5, .v2 = null, .v3 = 28681 }));
 }
-pub export fn zig_recv_F_Ip_Ui(lv: c.F_Ip_Ui) c_int {
-    if (lv.v1 != 0.5) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 28681) return 3;
-    return 0;
+pub export fn zig_assert_F_Ip_Ui(lv: c.F_Ip_Ui) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.5) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 28681) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ip_Ui() c.F_Ip_Ui {
     return .{ .v1 = 0.5, .v2 = null, .v3 = 28681 };
@@ -1932,13 +2056,15 @@ test "F_Ip_Ul C calls" {
     try testing.expectEqual(c.ret_F_Ip_Ul(), .{ .v1 = 0.875, .v2 = null, .v3 = 20410 });
     try testing.expectOk(c.assert_ret_F_Ip_Ul());
     try testing.expectOk(c.send_F_Ip_Ul());
-    try testing.expectOk(c.recv_F_Ip_Ul(.{ .v1 = 0.875, .v2 = null, .v3 = 20410 }));
+    try testing.expectOk(c.assert_F_Ip_Ul(.{ .v1 = 0.875, .v2 = null, .v3 = 20410 }));
 }
-pub export fn zig_recv_F_Ip_Ul(lv: c.F_Ip_Ul) c_int {
-    if (lv.v1 != 0.875) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 20410) return 3;
-    return 0;
+pub export fn zig_assert_F_Ip_Ul(lv: c.F_Ip_Ul) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.875) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 20410) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ip_Ul() c.F_Ip_Ul {
     return .{ .v1 = 0.875, .v2 = null, .v3 = 20410 };
@@ -1963,13 +2089,15 @@ test "F_Ip_Us C calls" {
     try testing.expectEqual(c.ret_F_Ip_Us(), .{ .v1 = -2.125, .v2 = null, .v3 = 21682 });
     try testing.expectOk(c.assert_ret_F_Ip_Us());
     try testing.expectOk(c.send_F_Ip_Us());
-    try testing.expectOk(c.recv_F_Ip_Us(.{ .v1 = -2.125, .v2 = null, .v3 = 21682 }));
+    try testing.expectOk(c.assert_F_Ip_Us(.{ .v1 = -2.125, .v2 = null, .v3 = 21682 }));
 }
-pub export fn zig_recv_F_Ip_Us(lv: c.F_Ip_Us) c_int {
-    if (lv.v1 != -2.125) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 21682) return 3;
-    return 0;
+pub export fn zig_assert_F_Ip_Us(lv: c.F_Ip_Us) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -2.125) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 21682) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ip_Us() c.F_Ip_Us {
     return .{ .v1 = -2.125, .v2 = null, .v3 = 21682 };
@@ -1994,13 +2122,15 @@ test "F_Ip_Vp C calls" {
     try testing.expectEqual(c.ret_F_Ip_Vp(), .{ .v1 = 0.875, .v2 = null, .v3 = null });
     try testing.expectOk(c.assert_ret_F_Ip_Vp());
     try testing.expectOk(c.send_F_Ip_Vp());
-    try testing.expectOk(c.recv_F_Ip_Vp(.{ .v1 = 0.875, .v2 = null, .v3 = null }));
+    try testing.expectOk(c.assert_F_Ip_Vp(.{ .v1 = 0.875, .v2 = null, .v3 = null }));
 }
-pub export fn zig_recv_F_Ip_Vp(lv: c.F_Ip_Vp) c_int {
-    if (lv.v1 != 0.875) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_F_Ip_Vp(lv: c.F_Ip_Vp) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.875) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ip_Vp() c.F_Ip_Vp {
     return .{ .v1 = 0.875, .v2 = null, .v3 = null };
@@ -2023,12 +2153,14 @@ test "F_L C calls" {
     try testing.expectEqual(c.ret_F_L(), .{ .v1 = -2.125, .v2 = 11017 });
     try testing.expectOk(c.assert_ret_F_L());
     try testing.expectOk(c.send_F_L());
-    try testing.expectOk(c.recv_F_L(.{ .v1 = -2.125, .v2 = 11017 }));
+    try testing.expectOk(c.assert_F_L(.{ .v1 = -2.125, .v2 = 11017 }));
 }
-pub export fn zig_recv_F_L(lv: c.F_L) c_int {
-    if (lv.v1 != -2.125) return 1;
-    if (lv.v2 != 11017) return 2;
-    return 0;
+pub export fn zig_assert_F_L(lv: c.F_L) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -2.125) err = 1;
+    if (lv.v2 != 11017) err = 2;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_L() c.F_L {
     return .{ .v1 = -2.125, .v2 = 11017 };
@@ -2053,13 +2185,15 @@ test "F_L_C C calls" {
     try testing.expectEqual(c.ret_F_L_C(), .{ .v1 = 0.5, .v2 = 26491, .v3 = 72 });
     try testing.expectOk(c.assert_ret_F_L_C());
     try testing.expectOk(c.send_F_L_C());
-    try testing.expectOk(c.recv_F_L_C(.{ .v1 = 0.5, .v2 = 26491, .v3 = 72 }));
+    try testing.expectOk(c.assert_F_L_C(.{ .v1 = 0.5, .v2 = 26491, .v3 = 72 }));
 }
-pub export fn zig_recv_F_L_C(lv: c.F_L_C) c_int {
-    if (lv.v1 != 0.5) return 1;
-    if (lv.v2 != 26491) return 2;
-    if (lv.v3 != 72) return 3;
-    return 0;
+pub export fn zig_assert_F_L_C(lv: c.F_L_C) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.5) err = 1;
+    if (lv.v2 != 26491) err = 2;
+    if (lv.v3 != 72) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_L_C() c.F_L_C {
     return .{ .v1 = 0.5, .v2 = 26491, .v3 = 72 };
@@ -2084,13 +2218,15 @@ test "F_L_D C calls" {
     try testing.expectEqual(c.ret_F_L_D(), .{ .v1 = 4.5, .v2 = 6010, .v3 = -2.125 });
     try testing.expectOk(c.assert_ret_F_L_D());
     try testing.expectOk(c.send_F_L_D());
-    try testing.expectOk(c.recv_F_L_D(.{ .v1 = 4.5, .v2 = 6010, .v3 = -2.125 }));
+    try testing.expectOk(c.assert_F_L_D(.{ .v1 = 4.5, .v2 = 6010, .v3 = -2.125 }));
 }
-pub export fn zig_recv_F_L_D(lv: c.F_L_D) c_int {
-    if (lv.v1 != 4.5) return 1;
-    if (lv.v2 != 6010) return 2;
-    if (lv.v3 != -2.125) return 3;
-    return 0;
+pub export fn zig_assert_F_L_D(lv: c.F_L_D) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 4.5) err = 1;
+    if (lv.v2 != 6010) err = 2;
+    if (lv.v3 != -2.125) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_L_D() c.F_L_D {
     return .{ .v1 = 4.5, .v2 = 6010, .v3 = -2.125 };
@@ -2115,13 +2251,15 @@ test "F_L_F C calls" {
     try testing.expectEqual(c.ret_F_L_F(), .{ .v1 = 4.5, .v2 = 1339, .v3 = 4.5 });
     try testing.expectOk(c.assert_ret_F_L_F());
     try testing.expectOk(c.send_F_L_F());
-    try testing.expectOk(c.recv_F_L_F(.{ .v1 = 4.5, .v2 = 1339, .v3 = 4.5 }));
+    try testing.expectOk(c.assert_F_L_F(.{ .v1 = 4.5, .v2 = 1339, .v3 = 4.5 }));
 }
-pub export fn zig_recv_F_L_F(lv: c.F_L_F) c_int {
-    if (lv.v1 != 4.5) return 1;
-    if (lv.v2 != 1339) return 2;
-    if (lv.v3 != 4.5) return 3;
-    return 0;
+pub export fn zig_assert_F_L_F(lv: c.F_L_F) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 4.5) err = 1;
+    if (lv.v2 != 1339) err = 2;
+    if (lv.v3 != 4.5) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_L_F() c.F_L_F {
     return .{ .v1 = 4.5, .v2 = 1339, .v3 = 4.5 };
@@ -2146,13 +2284,15 @@ test "F_L_I C calls" {
     try testing.expectEqual(c.ret_F_L_I(), .{ .v1 = -0.25, .v2 = 5595, .v3 = 27088 });
     try testing.expectOk(c.assert_ret_F_L_I());
     try testing.expectOk(c.send_F_L_I());
-    try testing.expectOk(c.recv_F_L_I(.{ .v1 = -0.25, .v2 = 5595, .v3 = 27088 }));
+    try testing.expectOk(c.assert_F_L_I(.{ .v1 = -0.25, .v2 = 5595, .v3 = 27088 }));
 }
-pub export fn zig_recv_F_L_I(lv: c.F_L_I) c_int {
-    if (lv.v1 != -0.25) return 1;
-    if (lv.v2 != 5595) return 2;
-    if (lv.v3 != 27088) return 3;
-    return 0;
+pub export fn zig_assert_F_L_I(lv: c.F_L_I) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -0.25) err = 1;
+    if (lv.v2 != 5595) err = 2;
+    if (lv.v3 != 27088) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_L_I() c.F_L_I {
     return .{ .v1 = -0.25, .v2 = 5595, .v3 = 27088 };
@@ -2177,13 +2317,15 @@ test "F_L_Ip C calls" {
     try testing.expectEqual(c.ret_F_L_Ip(), .{ .v1 = 0.875, .v2 = 30167, .v3 = null });
     try testing.expectOk(c.assert_ret_F_L_Ip());
     try testing.expectOk(c.send_F_L_Ip());
-    try testing.expectOk(c.recv_F_L_Ip(.{ .v1 = 0.875, .v2 = 30167, .v3 = null }));
+    try testing.expectOk(c.assert_F_L_Ip(.{ .v1 = 0.875, .v2 = 30167, .v3 = null }));
 }
-pub export fn zig_recv_F_L_Ip(lv: c.F_L_Ip) c_int {
-    if (lv.v1 != 0.875) return 1;
-    if (lv.v2 != 30167) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_F_L_Ip(lv: c.F_L_Ip) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.875) err = 1;
+    if (lv.v2 != 30167) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_L_Ip() c.F_L_Ip {
     return .{ .v1 = 0.875, .v2 = 30167, .v3 = null };
@@ -2208,13 +2350,15 @@ test "F_L_L C calls" {
     try testing.expectEqual(c.ret_F_L_L(), .{ .v1 = 0.875, .v2 = 31661, .v3 = 592 });
     try testing.expectOk(c.assert_ret_F_L_L());
     try testing.expectOk(c.send_F_L_L());
-    try testing.expectOk(c.recv_F_L_L(.{ .v1 = 0.875, .v2 = 31661, .v3 = 592 }));
+    try testing.expectOk(c.assert_F_L_L(.{ .v1 = 0.875, .v2 = 31661, .v3 = 592 }));
 }
-pub export fn zig_recv_F_L_L(lv: c.F_L_L) c_int {
-    if (lv.v1 != 0.875) return 1;
-    if (lv.v2 != 31661) return 2;
-    if (lv.v3 != 592) return 3;
-    return 0;
+pub export fn zig_assert_F_L_L(lv: c.F_L_L) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.875) err = 1;
+    if (lv.v2 != 31661) err = 2;
+    if (lv.v3 != 592) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_L_L() c.F_L_L {
     return .{ .v1 = 0.875, .v2 = 31661, .v3 = 592 };
@@ -2239,13 +2383,15 @@ test "F_L_S C calls" {
     try testing.expectEqual(c.ret_F_L_S(), .{ .v1 = 0.875, .v2 = 29218, .v3 = 27604 });
     try testing.expectOk(c.assert_ret_F_L_S());
     try testing.expectOk(c.send_F_L_S());
-    try testing.expectOk(c.recv_F_L_S(.{ .v1 = 0.875, .v2 = 29218, .v3 = 27604 }));
+    try testing.expectOk(c.assert_F_L_S(.{ .v1 = 0.875, .v2 = 29218, .v3 = 27604 }));
 }
-pub export fn zig_recv_F_L_S(lv: c.F_L_S) c_int {
-    if (lv.v1 != 0.875) return 1;
-    if (lv.v2 != 29218) return 2;
-    if (lv.v3 != 27604) return 3;
-    return 0;
+pub export fn zig_assert_F_L_S(lv: c.F_L_S) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.875) err = 1;
+    if (lv.v2 != 29218) err = 2;
+    if (lv.v3 != 27604) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_L_S() c.F_L_S {
     return .{ .v1 = 0.875, .v2 = 29218, .v3 = 27604 };
@@ -2270,13 +2416,15 @@ test "F_L_Uc C calls" {
     try testing.expectEqual(c.ret_F_L_Uc(), .{ .v1 = 4.5, .v2 = 31405, .v3 = 5 });
     try testing.expectOk(c.assert_ret_F_L_Uc());
     try testing.expectOk(c.send_F_L_Uc());
-    try testing.expectOk(c.recv_F_L_Uc(.{ .v1 = 4.5, .v2 = 31405, .v3 = 5 }));
+    try testing.expectOk(c.assert_F_L_Uc(.{ .v1 = 4.5, .v2 = 31405, .v3 = 5 }));
 }
-pub export fn zig_recv_F_L_Uc(lv: c.F_L_Uc) c_int {
-    if (lv.v1 != 4.5) return 1;
-    if (lv.v2 != 31405) return 2;
-    if (lv.v3 != 5) return 3;
-    return 0;
+pub export fn zig_assert_F_L_Uc(lv: c.F_L_Uc) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 4.5) err = 1;
+    if (lv.v2 != 31405) err = 2;
+    if (lv.v3 != 5) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_L_Uc() c.F_L_Uc {
     return .{ .v1 = 4.5, .v2 = 31405, .v3 = 5 };
@@ -2301,13 +2449,15 @@ test "F_L_Ui C calls" {
     try testing.expectEqual(c.ret_F_L_Ui(), .{ .v1 = 0.5, .v2 = 9274, .v3 = 21311 });
     try testing.expectOk(c.assert_ret_F_L_Ui());
     try testing.expectOk(c.send_F_L_Ui());
-    try testing.expectOk(c.recv_F_L_Ui(.{ .v1 = 0.5, .v2 = 9274, .v3 = 21311 }));
+    try testing.expectOk(c.assert_F_L_Ui(.{ .v1 = 0.5, .v2 = 9274, .v3 = 21311 }));
 }
-pub export fn zig_recv_F_L_Ui(lv: c.F_L_Ui) c_int {
-    if (lv.v1 != 0.5) return 1;
-    if (lv.v2 != 9274) return 2;
-    if (lv.v3 != 21311) return 3;
-    return 0;
+pub export fn zig_assert_F_L_Ui(lv: c.F_L_Ui) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.5) err = 1;
+    if (lv.v2 != 9274) err = 2;
+    if (lv.v3 != 21311) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_L_Ui() c.F_L_Ui {
     return .{ .v1 = 0.5, .v2 = 9274, .v3 = 21311 };
@@ -2332,13 +2482,15 @@ test "F_L_Ul C calls" {
     try testing.expectEqual(c.ret_F_L_Ul(), .{ .v1 = 4.5, .v2 = 9453, .v3 = 27799 });
     try testing.expectOk(c.assert_ret_F_L_Ul());
     try testing.expectOk(c.send_F_L_Ul());
-    try testing.expectOk(c.recv_F_L_Ul(.{ .v1 = 4.5, .v2 = 9453, .v3 = 27799 }));
+    try testing.expectOk(c.assert_F_L_Ul(.{ .v1 = 4.5, .v2 = 9453, .v3 = 27799 }));
 }
-pub export fn zig_recv_F_L_Ul(lv: c.F_L_Ul) c_int {
-    if (lv.v1 != 4.5) return 1;
-    if (lv.v2 != 9453) return 2;
-    if (lv.v3 != 27799) return 3;
-    return 0;
+pub export fn zig_assert_F_L_Ul(lv: c.F_L_Ul) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 4.5) err = 1;
+    if (lv.v2 != 9453) err = 2;
+    if (lv.v3 != 27799) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_L_Ul() c.F_L_Ul {
     return .{ .v1 = 4.5, .v2 = 9453, .v3 = 27799 };
@@ -2363,13 +2515,15 @@ test "F_L_Us C calls" {
     try testing.expectEqual(c.ret_F_L_Us(), .{ .v1 = 0.5, .v2 = 6123, .v3 = 22927 });
     try testing.expectOk(c.assert_ret_F_L_Us());
     try testing.expectOk(c.send_F_L_Us());
-    try testing.expectOk(c.recv_F_L_Us(.{ .v1 = 0.5, .v2 = 6123, .v3 = 22927 }));
+    try testing.expectOk(c.assert_F_L_Us(.{ .v1 = 0.5, .v2 = 6123, .v3 = 22927 }));
 }
-pub export fn zig_recv_F_L_Us(lv: c.F_L_Us) c_int {
-    if (lv.v1 != 0.5) return 1;
-    if (lv.v2 != 6123) return 2;
-    if (lv.v3 != 22927) return 3;
-    return 0;
+pub export fn zig_assert_F_L_Us(lv: c.F_L_Us) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.5) err = 1;
+    if (lv.v2 != 6123) err = 2;
+    if (lv.v3 != 22927) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_L_Us() c.F_L_Us {
     return .{ .v1 = 0.5, .v2 = 6123, .v3 = 22927 };
@@ -2394,13 +2548,15 @@ test "F_L_Vp C calls" {
     try testing.expectEqual(c.ret_F_L_Vp(), .{ .v1 = -0.25, .v2 = 29255, .v3 = null });
     try testing.expectOk(c.assert_ret_F_L_Vp());
     try testing.expectOk(c.send_F_L_Vp());
-    try testing.expectOk(c.recv_F_L_Vp(.{ .v1 = -0.25, .v2 = 29255, .v3 = null }));
+    try testing.expectOk(c.assert_F_L_Vp(.{ .v1 = -0.25, .v2 = 29255, .v3 = null }));
 }
-pub export fn zig_recv_F_L_Vp(lv: c.F_L_Vp) c_int {
-    if (lv.v1 != -0.25) return 1;
-    if (lv.v2 != 29255) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_F_L_Vp(lv: c.F_L_Vp) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -0.25) err = 1;
+    if (lv.v2 != 29255) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_L_Vp() c.F_L_Vp {
     return .{ .v1 = -0.25, .v2 = 29255, .v3 = null };
@@ -2423,12 +2579,14 @@ test "F_S C calls" {
     try testing.expectEqual(c.ret_F_S(), .{ .v1 = 7.0, .v2 = 28164 });
     try testing.expectOk(c.assert_ret_F_S());
     try testing.expectOk(c.send_F_S());
-    try testing.expectOk(c.recv_F_S(.{ .v1 = 7.0, .v2 = 28164 }));
+    try testing.expectOk(c.assert_F_S(.{ .v1 = 7.0, .v2 = 28164 }));
 }
-pub export fn zig_recv_F_S(lv: c.F_S) c_int {
-    if (lv.v1 != 7.0) return 1;
-    if (lv.v2 != 28164) return 2;
-    return 0;
+pub export fn zig_assert_F_S(lv: c.F_S) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 7.0) err = 1;
+    if (lv.v2 != 28164) err = 2;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_S() c.F_S {
     return .{ .v1 = 7.0, .v2 = 28164 };
@@ -2453,13 +2611,15 @@ test "F_S_C C calls" {
     try testing.expectEqual(c.ret_F_S_C(), .{ .v1 = 7.0, .v2 = 29744, .v3 = 119 });
     try testing.expectOk(c.assert_ret_F_S_C());
     try testing.expectOk(c.send_F_S_C());
-    try testing.expectOk(c.recv_F_S_C(.{ .v1 = 7.0, .v2 = 29744, .v3 = 119 }));
+    try testing.expectOk(c.assert_F_S_C(.{ .v1 = 7.0, .v2 = 29744, .v3 = 119 }));
 }
-pub export fn zig_recv_F_S_C(lv: c.F_S_C) c_int {
-    if (lv.v1 != 7.0) return 1;
-    if (lv.v2 != 29744) return 2;
-    if (lv.v3 != 119) return 3;
-    return 0;
+pub export fn zig_assert_F_S_C(lv: c.F_S_C) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 7.0) err = 1;
+    if (lv.v2 != 29744) err = 2;
+    if (lv.v3 != 119) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_S_C() c.F_S_C {
     return .{ .v1 = 7.0, .v2 = 29744, .v3 = 119 };
@@ -2484,13 +2644,15 @@ test "F_S_D C calls" {
     try testing.expectEqual(c.ret_F_S_D(), .{ .v1 = -2.125, .v2 = 18960, .v3 = 1.0 });
     try testing.expectOk(c.assert_ret_F_S_D());
     try testing.expectOk(c.send_F_S_D());
-    try testing.expectOk(c.recv_F_S_D(.{ .v1 = -2.125, .v2 = 18960, .v3 = 1.0 }));
+    try testing.expectOk(c.assert_F_S_D(.{ .v1 = -2.125, .v2 = 18960, .v3 = 1.0 }));
 }
-pub export fn zig_recv_F_S_D(lv: c.F_S_D) c_int {
-    if (lv.v1 != -2.125) return 1;
-    if (lv.v2 != 18960) return 2;
-    if (lv.v3 != 1.0) return 3;
-    return 0;
+pub export fn zig_assert_F_S_D(lv: c.F_S_D) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -2.125) err = 1;
+    if (lv.v2 != 18960) err = 2;
+    if (lv.v3 != 1.0) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_S_D() c.F_S_D {
     return .{ .v1 = -2.125, .v2 = 18960, .v3 = 1.0 };
@@ -2515,13 +2677,15 @@ test "F_S_F C calls" {
     try testing.expectEqual(c.ret_F_S_F(), .{ .v1 = 7.0, .v2 = 14516, .v3 = -2.125 });
     try testing.expectOk(c.assert_ret_F_S_F());
     try testing.expectOk(c.send_F_S_F());
-    try testing.expectOk(c.recv_F_S_F(.{ .v1 = 7.0, .v2 = 14516, .v3 = -2.125 }));
+    try testing.expectOk(c.assert_F_S_F(.{ .v1 = 7.0, .v2 = 14516, .v3 = -2.125 }));
 }
-pub export fn zig_recv_F_S_F(lv: c.F_S_F) c_int {
-    if (lv.v1 != 7.0) return 1;
-    if (lv.v2 != 14516) return 2;
-    if (lv.v3 != -2.125) return 3;
-    return 0;
+pub export fn zig_assert_F_S_F(lv: c.F_S_F) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 7.0) err = 1;
+    if (lv.v2 != 14516) err = 2;
+    if (lv.v3 != -2.125) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_S_F() c.F_S_F {
     return .{ .v1 = 7.0, .v2 = 14516, .v3 = -2.125 };
@@ -2546,13 +2710,15 @@ test "F_S_I C calls" {
     try testing.expectEqual(c.ret_F_S_I(), .{ .v1 = 7.0, .v2 = 24764, .v3 = 23226 });
     try testing.expectOk(c.assert_ret_F_S_I());
     try testing.expectOk(c.send_F_S_I());
-    try testing.expectOk(c.recv_F_S_I(.{ .v1 = 7.0, .v2 = 24764, .v3 = 23226 }));
+    try testing.expectOk(c.assert_F_S_I(.{ .v1 = 7.0, .v2 = 24764, .v3 = 23226 }));
 }
-pub export fn zig_recv_F_S_I(lv: c.F_S_I) c_int {
-    if (lv.v1 != 7.0) return 1;
-    if (lv.v2 != 24764) return 2;
-    if (lv.v3 != 23226) return 3;
-    return 0;
+pub export fn zig_assert_F_S_I(lv: c.F_S_I) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 7.0) err = 1;
+    if (lv.v2 != 24764) err = 2;
+    if (lv.v3 != 23226) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_S_I() c.F_S_I {
     return .{ .v1 = 7.0, .v2 = 24764, .v3 = 23226 };
@@ -2577,13 +2743,15 @@ test "F_S_Ip C calls" {
     try testing.expectEqual(c.ret_F_S_Ip(), .{ .v1 = 1.0, .v2 = 5176, .v3 = null });
     try testing.expectOk(c.assert_ret_F_S_Ip());
     try testing.expectOk(c.send_F_S_Ip());
-    try testing.expectOk(c.recv_F_S_Ip(.{ .v1 = 1.0, .v2 = 5176, .v3 = null }));
+    try testing.expectOk(c.assert_F_S_Ip(.{ .v1 = 1.0, .v2 = 5176, .v3 = null }));
 }
-pub export fn zig_recv_F_S_Ip(lv: c.F_S_Ip) c_int {
-    if (lv.v1 != 1.0) return 1;
-    if (lv.v2 != 5176) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_F_S_Ip(lv: c.F_S_Ip) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 1.0) err = 1;
+    if (lv.v2 != 5176) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_S_Ip() c.F_S_Ip {
     return .{ .v1 = 1.0, .v2 = 5176, .v3 = null };
@@ -2608,13 +2776,15 @@ test "F_S_L C calls" {
     try testing.expectEqual(c.ret_F_S_L(), .{ .v1 = -2.125, .v2 = 11860, .v3 = 24497 });
     try testing.expectOk(c.assert_ret_F_S_L());
     try testing.expectOk(c.send_F_S_L());
-    try testing.expectOk(c.recv_F_S_L(.{ .v1 = -2.125, .v2 = 11860, .v3 = 24497 }));
+    try testing.expectOk(c.assert_F_S_L(.{ .v1 = -2.125, .v2 = 11860, .v3 = 24497 }));
 }
-pub export fn zig_recv_F_S_L(lv: c.F_S_L) c_int {
-    if (lv.v1 != -2.125) return 1;
-    if (lv.v2 != 11860) return 2;
-    if (lv.v3 != 24497) return 3;
-    return 0;
+pub export fn zig_assert_F_S_L(lv: c.F_S_L) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -2.125) err = 1;
+    if (lv.v2 != 11860) err = 2;
+    if (lv.v3 != 24497) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_S_L() c.F_S_L {
     return .{ .v1 = -2.125, .v2 = 11860, .v3 = 24497 };
@@ -2639,13 +2809,15 @@ test "F_S_S C calls" {
     try testing.expectEqual(c.ret_F_S_S(), .{ .v1 = 1.0, .v2 = 7971, .v3 = 12118 });
     try testing.expectOk(c.assert_ret_F_S_S());
     try testing.expectOk(c.send_F_S_S());
-    try testing.expectOk(c.recv_F_S_S(.{ .v1 = 1.0, .v2 = 7971, .v3 = 12118 }));
+    try testing.expectOk(c.assert_F_S_S(.{ .v1 = 1.0, .v2 = 7971, .v3 = 12118 }));
 }
-pub export fn zig_recv_F_S_S(lv: c.F_S_S) c_int {
-    if (lv.v1 != 1.0) return 1;
-    if (lv.v2 != 7971) return 2;
-    if (lv.v3 != 12118) return 3;
-    return 0;
+pub export fn zig_assert_F_S_S(lv: c.F_S_S) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 1.0) err = 1;
+    if (lv.v2 != 7971) err = 2;
+    if (lv.v3 != 12118) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_S_S() c.F_S_S {
     return .{ .v1 = 1.0, .v2 = 7971, .v3 = 12118 };
@@ -2670,13 +2842,15 @@ test "F_S_Uc C calls" {
     try testing.expectEqual(c.ret_F_S_Uc(), .{ .v1 = 7.0, .v2 = 30467, .v3 = 22 });
     try testing.expectOk(c.assert_ret_F_S_Uc());
     try testing.expectOk(c.send_F_S_Uc());
-    try testing.expectOk(c.recv_F_S_Uc(.{ .v1 = 7.0, .v2 = 30467, .v3 = 22 }));
+    try testing.expectOk(c.assert_F_S_Uc(.{ .v1 = 7.0, .v2 = 30467, .v3 = 22 }));
 }
-pub export fn zig_recv_F_S_Uc(lv: c.F_S_Uc) c_int {
-    if (lv.v1 != 7.0) return 1;
-    if (lv.v2 != 30467) return 2;
-    if (lv.v3 != 22) return 3;
-    return 0;
+pub export fn zig_assert_F_S_Uc(lv: c.F_S_Uc) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 7.0) err = 1;
+    if (lv.v2 != 30467) err = 2;
+    if (lv.v3 != 22) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_S_Uc() c.F_S_Uc {
     return .{ .v1 = 7.0, .v2 = 30467, .v3 = 22 };
@@ -2701,13 +2875,15 @@ test "F_S_Ui C calls" {
     try testing.expectEqual(c.ret_F_S_Ui(), .{ .v1 = 0.875, .v2 = 4283, .v3 = 12381 });
     try testing.expectOk(c.assert_ret_F_S_Ui());
     try testing.expectOk(c.send_F_S_Ui());
-    try testing.expectOk(c.recv_F_S_Ui(.{ .v1 = 0.875, .v2 = 4283, .v3 = 12381 }));
+    try testing.expectOk(c.assert_F_S_Ui(.{ .v1 = 0.875, .v2 = 4283, .v3 = 12381 }));
 }
-pub export fn zig_recv_F_S_Ui(lv: c.F_S_Ui) c_int {
-    if (lv.v1 != 0.875) return 1;
-    if (lv.v2 != 4283) return 2;
-    if (lv.v3 != 12381) return 3;
-    return 0;
+pub export fn zig_assert_F_S_Ui(lv: c.F_S_Ui) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.875) err = 1;
+    if (lv.v2 != 4283) err = 2;
+    if (lv.v3 != 12381) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_S_Ui() c.F_S_Ui {
     return .{ .v1 = 0.875, .v2 = 4283, .v3 = 12381 };
@@ -2732,13 +2908,15 @@ test "F_S_Ul C calls" {
     try testing.expectEqual(c.ret_F_S_Ul(), .{ .v1 = -0.25, .v2 = 12799, .v3 = 20298 });
     try testing.expectOk(c.assert_ret_F_S_Ul());
     try testing.expectOk(c.send_F_S_Ul());
-    try testing.expectOk(c.recv_F_S_Ul(.{ .v1 = -0.25, .v2 = 12799, .v3 = 20298 }));
+    try testing.expectOk(c.assert_F_S_Ul(.{ .v1 = -0.25, .v2 = 12799, .v3 = 20298 }));
 }
-pub export fn zig_recv_F_S_Ul(lv: c.F_S_Ul) c_int {
-    if (lv.v1 != -0.25) return 1;
-    if (lv.v2 != 12799) return 2;
-    if (lv.v3 != 20298) return 3;
-    return 0;
+pub export fn zig_assert_F_S_Ul(lv: c.F_S_Ul) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -0.25) err = 1;
+    if (lv.v2 != 12799) err = 2;
+    if (lv.v3 != 20298) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_S_Ul() c.F_S_Ul {
     return .{ .v1 = -0.25, .v2 = 12799, .v3 = 20298 };
@@ -2763,13 +2941,15 @@ test "F_S_Us C calls" {
     try testing.expectEqual(c.ret_F_S_Us(), .{ .v1 = -2.125, .v2 = 29977, .v3 = 6734 });
     try testing.expectOk(c.assert_ret_F_S_Us());
     try testing.expectOk(c.send_F_S_Us());
-    try testing.expectOk(c.recv_F_S_Us(.{ .v1 = -2.125, .v2 = 29977, .v3 = 6734 }));
+    try testing.expectOk(c.assert_F_S_Us(.{ .v1 = -2.125, .v2 = 29977, .v3 = 6734 }));
 }
-pub export fn zig_recv_F_S_Us(lv: c.F_S_Us) c_int {
-    if (lv.v1 != -2.125) return 1;
-    if (lv.v2 != 29977) return 2;
-    if (lv.v3 != 6734) return 3;
-    return 0;
+pub export fn zig_assert_F_S_Us(lv: c.F_S_Us) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -2.125) err = 1;
+    if (lv.v2 != 29977) err = 2;
+    if (lv.v3 != 6734) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_S_Us() c.F_S_Us {
     return .{ .v1 = -2.125, .v2 = 29977, .v3 = 6734 };
@@ -2794,13 +2974,15 @@ test "F_S_Vp C calls" {
     try testing.expectEqual(c.ret_F_S_Vp(), .{ .v1 = 4.5, .v2 = 23368, .v3 = null });
     try testing.expectOk(c.assert_ret_F_S_Vp());
     try testing.expectOk(c.send_F_S_Vp());
-    try testing.expectOk(c.recv_F_S_Vp(.{ .v1 = 4.5, .v2 = 23368, .v3 = null }));
+    try testing.expectOk(c.assert_F_S_Vp(.{ .v1 = 4.5, .v2 = 23368, .v3 = null }));
 }
-pub export fn zig_recv_F_S_Vp(lv: c.F_S_Vp) c_int {
-    if (lv.v1 != 4.5) return 1;
-    if (lv.v2 != 23368) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_F_S_Vp(lv: c.F_S_Vp) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 4.5) err = 1;
+    if (lv.v2 != 23368) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_S_Vp() c.F_S_Vp {
     return .{ .v1 = 4.5, .v2 = 23368, .v3 = null };
@@ -2823,12 +3005,14 @@ test "F_Uc C calls" {
     try testing.expectEqual(c.ret_F_Uc(), .{ .v1 = -0.25, .v2 = 118 });
     try testing.expectOk(c.assert_ret_F_Uc());
     try testing.expectOk(c.send_F_Uc());
-    try testing.expectOk(c.recv_F_Uc(.{ .v1 = -0.25, .v2 = 118 }));
+    try testing.expectOk(c.assert_F_Uc(.{ .v1 = -0.25, .v2 = 118 }));
 }
-pub export fn zig_recv_F_Uc(lv: c.F_Uc) c_int {
-    if (lv.v1 != -0.25) return 1;
-    if (lv.v2 != 118) return 2;
-    return 0;
+pub export fn zig_assert_F_Uc(lv: c.F_Uc) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -0.25) err = 1;
+    if (lv.v2 != 118) err = 2;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Uc() c.F_Uc {
     return .{ .v1 = -0.25, .v2 = 118 };
@@ -2853,13 +3037,15 @@ test "F_Uc_C C calls" {
     try testing.expectEqual(c.ret_F_Uc_C(), .{ .v1 = -2.125, .v2 = 96, .v3 = 48 });
     try testing.expectOk(c.assert_ret_F_Uc_C());
     try testing.expectOk(c.send_F_Uc_C());
-    try testing.expectOk(c.recv_F_Uc_C(.{ .v1 = -2.125, .v2 = 96, .v3 = 48 }));
+    try testing.expectOk(c.assert_F_Uc_C(.{ .v1 = -2.125, .v2 = 96, .v3 = 48 }));
 }
-pub export fn zig_recv_F_Uc_C(lv: c.F_Uc_C) c_int {
-    if (lv.v1 != -2.125) return 1;
-    if (lv.v2 != 96) return 2;
-    if (lv.v3 != 48) return 3;
-    return 0;
+pub export fn zig_assert_F_Uc_C(lv: c.F_Uc_C) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -2.125) err = 1;
+    if (lv.v2 != 96) err = 2;
+    if (lv.v3 != 48) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Uc_C() c.F_Uc_C {
     return .{ .v1 = -2.125, .v2 = 96, .v3 = 48 };
@@ -2884,13 +3070,15 @@ test "F_Uc_D C calls" {
     try testing.expectEqual(c.ret_F_Uc_D(), .{ .v1 = 7.0, .v2 = 109, .v3 = 0.5 });
     try testing.expectOk(c.assert_ret_F_Uc_D());
     try testing.expectOk(c.send_F_Uc_D());
-    try testing.expectOk(c.recv_F_Uc_D(.{ .v1 = 7.0, .v2 = 109, .v3 = 0.5 }));
+    try testing.expectOk(c.assert_F_Uc_D(.{ .v1 = 7.0, .v2 = 109, .v3 = 0.5 }));
 }
-pub export fn zig_recv_F_Uc_D(lv: c.F_Uc_D) c_int {
-    if (lv.v1 != 7.0) return 1;
-    if (lv.v2 != 109) return 2;
-    if (lv.v3 != 0.5) return 3;
-    return 0;
+pub export fn zig_assert_F_Uc_D(lv: c.F_Uc_D) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 7.0) err = 1;
+    if (lv.v2 != 109) err = 2;
+    if (lv.v3 != 0.5) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Uc_D() c.F_Uc_D {
     return .{ .v1 = 7.0, .v2 = 109, .v3 = 0.5 };
@@ -2915,13 +3103,15 @@ test "F_Uc_F C calls" {
     try testing.expectEqual(c.ret_F_Uc_F(), .{ .v1 = -2.125, .v2 = 84, .v3 = 4.5 });
     try testing.expectOk(c.assert_ret_F_Uc_F());
     try testing.expectOk(c.send_F_Uc_F());
-    try testing.expectOk(c.recv_F_Uc_F(.{ .v1 = -2.125, .v2 = 84, .v3 = 4.5 }));
+    try testing.expectOk(c.assert_F_Uc_F(.{ .v1 = -2.125, .v2 = 84, .v3 = 4.5 }));
 }
-pub export fn zig_recv_F_Uc_F(lv: c.F_Uc_F) c_int {
-    if (lv.v1 != -2.125) return 1;
-    if (lv.v2 != 84) return 2;
-    if (lv.v3 != 4.5) return 3;
-    return 0;
+pub export fn zig_assert_F_Uc_F(lv: c.F_Uc_F) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -2.125) err = 1;
+    if (lv.v2 != 84) err = 2;
+    if (lv.v3 != 4.5) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Uc_F() c.F_Uc_F {
     return .{ .v1 = -2.125, .v2 = 84, .v3 = 4.5 };
@@ -2946,13 +3136,15 @@ test "F_Uc_I C calls" {
     try testing.expectEqual(c.ret_F_Uc_I(), .{ .v1 = 7.0, .v2 = 127, .v3 = 20842 });
     try testing.expectOk(c.assert_ret_F_Uc_I());
     try testing.expectOk(c.send_F_Uc_I());
-    try testing.expectOk(c.recv_F_Uc_I(.{ .v1 = 7.0, .v2 = 127, .v3 = 20842 }));
+    try testing.expectOk(c.assert_F_Uc_I(.{ .v1 = 7.0, .v2 = 127, .v3 = 20842 }));
 }
-pub export fn zig_recv_F_Uc_I(lv: c.F_Uc_I) c_int {
-    if (lv.v1 != 7.0) return 1;
-    if (lv.v2 != 127) return 2;
-    if (lv.v3 != 20842) return 3;
-    return 0;
+pub export fn zig_assert_F_Uc_I(lv: c.F_Uc_I) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 7.0) err = 1;
+    if (lv.v2 != 127) err = 2;
+    if (lv.v3 != 20842) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Uc_I() c.F_Uc_I {
     return .{ .v1 = 7.0, .v2 = 127, .v3 = 20842 };
@@ -2977,13 +3169,15 @@ test "F_Uc_Ip C calls" {
     try testing.expectEqual(c.ret_F_Uc_Ip(), .{ .v1 = 0.875, .v2 = 40, .v3 = null });
     try testing.expectOk(c.assert_ret_F_Uc_Ip());
     try testing.expectOk(c.send_F_Uc_Ip());
-    try testing.expectOk(c.recv_F_Uc_Ip(.{ .v1 = 0.875, .v2 = 40, .v3 = null }));
+    try testing.expectOk(c.assert_F_Uc_Ip(.{ .v1 = 0.875, .v2 = 40, .v3 = null }));
 }
-pub export fn zig_recv_F_Uc_Ip(lv: c.F_Uc_Ip) c_int {
-    if (lv.v1 != 0.875) return 1;
-    if (lv.v2 != 40) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_F_Uc_Ip(lv: c.F_Uc_Ip) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.875) err = 1;
+    if (lv.v2 != 40) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Uc_Ip() c.F_Uc_Ip {
     return .{ .v1 = 0.875, .v2 = 40, .v3 = null };
@@ -3008,13 +3202,15 @@ test "F_Uc_L C calls" {
     try testing.expectEqual(c.ret_F_Uc_L(), .{ .v1 = 7.0, .v2 = 64, .v3 = 26076 });
     try testing.expectOk(c.assert_ret_F_Uc_L());
     try testing.expectOk(c.send_F_Uc_L());
-    try testing.expectOk(c.recv_F_Uc_L(.{ .v1 = 7.0, .v2 = 64, .v3 = 26076 }));
+    try testing.expectOk(c.assert_F_Uc_L(.{ .v1 = 7.0, .v2 = 64, .v3 = 26076 }));
 }
-pub export fn zig_recv_F_Uc_L(lv: c.F_Uc_L) c_int {
-    if (lv.v1 != 7.0) return 1;
-    if (lv.v2 != 64) return 2;
-    if (lv.v3 != 26076) return 3;
-    return 0;
+pub export fn zig_assert_F_Uc_L(lv: c.F_Uc_L) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 7.0) err = 1;
+    if (lv.v2 != 64) err = 2;
+    if (lv.v3 != 26076) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Uc_L() c.F_Uc_L {
     return .{ .v1 = 7.0, .v2 = 64, .v3 = 26076 };
@@ -3039,13 +3235,15 @@ test "F_Uc_S C calls" {
     try testing.expectEqual(c.ret_F_Uc_S(), .{ .v1 = 4.5, .v2 = 115, .v3 = 32111 });
     try testing.expectOk(c.assert_ret_F_Uc_S());
     try testing.expectOk(c.send_F_Uc_S());
-    try testing.expectOk(c.recv_F_Uc_S(.{ .v1 = 4.5, .v2 = 115, .v3 = 32111 }));
+    try testing.expectOk(c.assert_F_Uc_S(.{ .v1 = 4.5, .v2 = 115, .v3 = 32111 }));
 }
-pub export fn zig_recv_F_Uc_S(lv: c.F_Uc_S) c_int {
-    if (lv.v1 != 4.5) return 1;
-    if (lv.v2 != 115) return 2;
-    if (lv.v3 != 32111) return 3;
-    return 0;
+pub export fn zig_assert_F_Uc_S(lv: c.F_Uc_S) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 4.5) err = 1;
+    if (lv.v2 != 115) err = 2;
+    if (lv.v3 != 32111) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Uc_S() c.F_Uc_S {
     return .{ .v1 = 4.5, .v2 = 115, .v3 = 32111 };
@@ -3070,13 +3268,15 @@ test "F_Uc_Uc C calls" {
     try testing.expectEqual(c.ret_F_Uc_Uc(), .{ .v1 = -2.125, .v2 = 2, .v3 = 27 });
     try testing.expectOk(c.assert_ret_F_Uc_Uc());
     try testing.expectOk(c.send_F_Uc_Uc());
-    try testing.expectOk(c.recv_F_Uc_Uc(.{ .v1 = -2.125, .v2 = 2, .v3 = 27 }));
+    try testing.expectOk(c.assert_F_Uc_Uc(.{ .v1 = -2.125, .v2 = 2, .v3 = 27 }));
 }
-pub export fn zig_recv_F_Uc_Uc(lv: c.F_Uc_Uc) c_int {
-    if (lv.v1 != -2.125) return 1;
-    if (lv.v2 != 2) return 2;
-    if (lv.v3 != 27) return 3;
-    return 0;
+pub export fn zig_assert_F_Uc_Uc(lv: c.F_Uc_Uc) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -2.125) err = 1;
+    if (lv.v2 != 2) err = 2;
+    if (lv.v3 != 27) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Uc_Uc() c.F_Uc_Uc {
     return .{ .v1 = -2.125, .v2 = 2, .v3 = 27 };
@@ -3101,13 +3301,15 @@ test "F_Uc_Ui C calls" {
     try testing.expectEqual(c.ret_F_Uc_Ui(), .{ .v1 = 1.0, .v2 = 12, .v3 = 25869 });
     try testing.expectOk(c.assert_ret_F_Uc_Ui());
     try testing.expectOk(c.send_F_Uc_Ui());
-    try testing.expectOk(c.recv_F_Uc_Ui(.{ .v1 = 1.0, .v2 = 12, .v3 = 25869 }));
+    try testing.expectOk(c.assert_F_Uc_Ui(.{ .v1 = 1.0, .v2 = 12, .v3 = 25869 }));
 }
-pub export fn zig_recv_F_Uc_Ui(lv: c.F_Uc_Ui) c_int {
-    if (lv.v1 != 1.0) return 1;
-    if (lv.v2 != 12) return 2;
-    if (lv.v3 != 25869) return 3;
-    return 0;
+pub export fn zig_assert_F_Uc_Ui(lv: c.F_Uc_Ui) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 1.0) err = 1;
+    if (lv.v2 != 12) err = 2;
+    if (lv.v3 != 25869) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Uc_Ui() c.F_Uc_Ui {
     return .{ .v1 = 1.0, .v2 = 12, .v3 = 25869 };
@@ -3132,13 +3334,15 @@ test "F_Uc_Ul C calls" {
     try testing.expectEqual(c.ret_F_Uc_Ul(), .{ .v1 = 7.0, .v2 = 92, .v3 = 22425 });
     try testing.expectOk(c.assert_ret_F_Uc_Ul());
     try testing.expectOk(c.send_F_Uc_Ul());
-    try testing.expectOk(c.recv_F_Uc_Ul(.{ .v1 = 7.0, .v2 = 92, .v3 = 22425 }));
+    try testing.expectOk(c.assert_F_Uc_Ul(.{ .v1 = 7.0, .v2 = 92, .v3 = 22425 }));
 }
-pub export fn zig_recv_F_Uc_Ul(lv: c.F_Uc_Ul) c_int {
-    if (lv.v1 != 7.0) return 1;
-    if (lv.v2 != 92) return 2;
-    if (lv.v3 != 22425) return 3;
-    return 0;
+pub export fn zig_assert_F_Uc_Ul(lv: c.F_Uc_Ul) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 7.0) err = 1;
+    if (lv.v2 != 92) err = 2;
+    if (lv.v3 != 22425) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Uc_Ul() c.F_Uc_Ul {
     return .{ .v1 = 7.0, .v2 = 92, .v3 = 22425 };
@@ -3163,13 +3367,15 @@ test "F_Uc_Us C calls" {
     try testing.expectEqual(c.ret_F_Uc_Us(), .{ .v1 = 0.5, .v2 = 45, .v3 = 2721 });
     try testing.expectOk(c.assert_ret_F_Uc_Us());
     try testing.expectOk(c.send_F_Uc_Us());
-    try testing.expectOk(c.recv_F_Uc_Us(.{ .v1 = 0.5, .v2 = 45, .v3 = 2721 }));
+    try testing.expectOk(c.assert_F_Uc_Us(.{ .v1 = 0.5, .v2 = 45, .v3 = 2721 }));
 }
-pub export fn zig_recv_F_Uc_Us(lv: c.F_Uc_Us) c_int {
-    if (lv.v1 != 0.5) return 1;
-    if (lv.v2 != 45) return 2;
-    if (lv.v3 != 2721) return 3;
-    return 0;
+pub export fn zig_assert_F_Uc_Us(lv: c.F_Uc_Us) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.5) err = 1;
+    if (lv.v2 != 45) err = 2;
+    if (lv.v3 != 2721) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Uc_Us() c.F_Uc_Us {
     return .{ .v1 = 0.5, .v2 = 45, .v3 = 2721 };
@@ -3194,13 +3400,15 @@ test "F_Uc_Vp C calls" {
     try testing.expectEqual(c.ret_F_Uc_Vp(), .{ .v1 = -0.25, .v2 = 68, .v3 = null });
     try testing.expectOk(c.assert_ret_F_Uc_Vp());
     try testing.expectOk(c.send_F_Uc_Vp());
-    try testing.expectOk(c.recv_F_Uc_Vp(.{ .v1 = -0.25, .v2 = 68, .v3 = null }));
+    try testing.expectOk(c.assert_F_Uc_Vp(.{ .v1 = -0.25, .v2 = 68, .v3 = null }));
 }
-pub export fn zig_recv_F_Uc_Vp(lv: c.F_Uc_Vp) c_int {
-    if (lv.v1 != -0.25) return 1;
-    if (lv.v2 != 68) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_F_Uc_Vp(lv: c.F_Uc_Vp) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -0.25) err = 1;
+    if (lv.v2 != 68) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Uc_Vp() c.F_Uc_Vp {
     return .{ .v1 = -0.25, .v2 = 68, .v3 = null };
@@ -3223,12 +3431,14 @@ test "F_Ui C calls" {
     try testing.expectEqual(c.ret_F_Ui(), .{ .v1 = 4.5, .v2 = 27782 });
     try testing.expectOk(c.assert_ret_F_Ui());
     try testing.expectOk(c.send_F_Ui());
-    try testing.expectOk(c.recv_F_Ui(.{ .v1 = 4.5, .v2 = 27782 }));
+    try testing.expectOk(c.assert_F_Ui(.{ .v1 = 4.5, .v2 = 27782 }));
 }
-pub export fn zig_recv_F_Ui(lv: c.F_Ui) c_int {
-    if (lv.v1 != 4.5) return 1;
-    if (lv.v2 != 27782) return 2;
-    return 0;
+pub export fn zig_assert_F_Ui(lv: c.F_Ui) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 4.5) err = 1;
+    if (lv.v2 != 27782) err = 2;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ui() c.F_Ui {
     return .{ .v1 = 4.5, .v2 = 27782 };
@@ -3253,13 +3463,15 @@ test "F_Ui_C C calls" {
     try testing.expectEqual(c.ret_F_Ui_C(), .{ .v1 = 4.5, .v2 = 26810, .v3 = 15 });
     try testing.expectOk(c.assert_ret_F_Ui_C());
     try testing.expectOk(c.send_F_Ui_C());
-    try testing.expectOk(c.recv_F_Ui_C(.{ .v1 = 4.5, .v2 = 26810, .v3 = 15 }));
+    try testing.expectOk(c.assert_F_Ui_C(.{ .v1 = 4.5, .v2 = 26810, .v3 = 15 }));
 }
-pub export fn zig_recv_F_Ui_C(lv: c.F_Ui_C) c_int {
-    if (lv.v1 != 4.5) return 1;
-    if (lv.v2 != 26810) return 2;
-    if (lv.v3 != 15) return 3;
-    return 0;
+pub export fn zig_assert_F_Ui_C(lv: c.F_Ui_C) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 4.5) err = 1;
+    if (lv.v2 != 26810) err = 2;
+    if (lv.v3 != 15) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ui_C() c.F_Ui_C {
     return .{ .v1 = 4.5, .v2 = 26810, .v3 = 15 };
@@ -3284,13 +3496,15 @@ test "F_Ui_D C calls" {
     try testing.expectEqual(c.ret_F_Ui_D(), .{ .v1 = 7.0, .v2 = 18724, .v3 = 1.0 });
     try testing.expectOk(c.assert_ret_F_Ui_D());
     try testing.expectOk(c.send_F_Ui_D());
-    try testing.expectOk(c.recv_F_Ui_D(.{ .v1 = 7.0, .v2 = 18724, .v3 = 1.0 }));
+    try testing.expectOk(c.assert_F_Ui_D(.{ .v1 = 7.0, .v2 = 18724, .v3 = 1.0 }));
 }
-pub export fn zig_recv_F_Ui_D(lv: c.F_Ui_D) c_int {
-    if (lv.v1 != 7.0) return 1;
-    if (lv.v2 != 18724) return 2;
-    if (lv.v3 != 1.0) return 3;
-    return 0;
+pub export fn zig_assert_F_Ui_D(lv: c.F_Ui_D) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 7.0) err = 1;
+    if (lv.v2 != 18724) err = 2;
+    if (lv.v3 != 1.0) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ui_D() c.F_Ui_D {
     return .{ .v1 = 7.0, .v2 = 18724, .v3 = 1.0 };
@@ -3315,13 +3529,15 @@ test "F_Ui_F C calls" {
     try testing.expectEqual(c.ret_F_Ui_F(), .{ .v1 = -0.25, .v2 = 5603, .v3 = 0.5 });
     try testing.expectOk(c.assert_ret_F_Ui_F());
     try testing.expectOk(c.send_F_Ui_F());
-    try testing.expectOk(c.recv_F_Ui_F(.{ .v1 = -0.25, .v2 = 5603, .v3 = 0.5 }));
+    try testing.expectOk(c.assert_F_Ui_F(.{ .v1 = -0.25, .v2 = 5603, .v3 = 0.5 }));
 }
-pub export fn zig_recv_F_Ui_F(lv: c.F_Ui_F) c_int {
-    if (lv.v1 != -0.25) return 1;
-    if (lv.v2 != 5603) return 2;
-    if (lv.v3 != 0.5) return 3;
-    return 0;
+pub export fn zig_assert_F_Ui_F(lv: c.F_Ui_F) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -0.25) err = 1;
+    if (lv.v2 != 5603) err = 2;
+    if (lv.v3 != 0.5) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ui_F() c.F_Ui_F {
     return .{ .v1 = -0.25, .v2 = 5603, .v3 = 0.5 };
@@ -3346,13 +3562,15 @@ test "F_Ui_I C calls" {
     try testing.expectEqual(c.ret_F_Ui_I(), .{ .v1 = -2.125, .v2 = 7194, .v3 = 6964 });
     try testing.expectOk(c.assert_ret_F_Ui_I());
     try testing.expectOk(c.send_F_Ui_I());
-    try testing.expectOk(c.recv_F_Ui_I(.{ .v1 = -2.125, .v2 = 7194, .v3 = 6964 }));
+    try testing.expectOk(c.assert_F_Ui_I(.{ .v1 = -2.125, .v2 = 7194, .v3 = 6964 }));
 }
-pub export fn zig_recv_F_Ui_I(lv: c.F_Ui_I) c_int {
-    if (lv.v1 != -2.125) return 1;
-    if (lv.v2 != 7194) return 2;
-    if (lv.v3 != 6964) return 3;
-    return 0;
+pub export fn zig_assert_F_Ui_I(lv: c.F_Ui_I) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -2.125) err = 1;
+    if (lv.v2 != 7194) err = 2;
+    if (lv.v3 != 6964) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ui_I() c.F_Ui_I {
     return .{ .v1 = -2.125, .v2 = 7194, .v3 = 6964 };
@@ -3377,13 +3595,15 @@ test "F_Ui_Ip C calls" {
     try testing.expectEqual(c.ret_F_Ui_Ip(), .{ .v1 = -2.125, .v2 = 25159, .v3 = null });
     try testing.expectOk(c.assert_ret_F_Ui_Ip());
     try testing.expectOk(c.send_F_Ui_Ip());
-    try testing.expectOk(c.recv_F_Ui_Ip(.{ .v1 = -2.125, .v2 = 25159, .v3 = null }));
+    try testing.expectOk(c.assert_F_Ui_Ip(.{ .v1 = -2.125, .v2 = 25159, .v3 = null }));
 }
-pub export fn zig_recv_F_Ui_Ip(lv: c.F_Ui_Ip) c_int {
-    if (lv.v1 != -2.125) return 1;
-    if (lv.v2 != 25159) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_F_Ui_Ip(lv: c.F_Ui_Ip) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -2.125) err = 1;
+    if (lv.v2 != 25159) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ui_Ip() c.F_Ui_Ip {
     return .{ .v1 = -2.125, .v2 = 25159, .v3 = null };
@@ -3408,13 +3628,15 @@ test "F_Ui_L C calls" {
     try testing.expectEqual(c.ret_F_Ui_L(), .{ .v1 = 0.5, .v2 = 6394, .v3 = 24104 });
     try testing.expectOk(c.assert_ret_F_Ui_L());
     try testing.expectOk(c.send_F_Ui_L());
-    try testing.expectOk(c.recv_F_Ui_L(.{ .v1 = 0.5, .v2 = 6394, .v3 = 24104 }));
+    try testing.expectOk(c.assert_F_Ui_L(.{ .v1 = 0.5, .v2 = 6394, .v3 = 24104 }));
 }
-pub export fn zig_recv_F_Ui_L(lv: c.F_Ui_L) c_int {
-    if (lv.v1 != 0.5) return 1;
-    if (lv.v2 != 6394) return 2;
-    if (lv.v3 != 24104) return 3;
-    return 0;
+pub export fn zig_assert_F_Ui_L(lv: c.F_Ui_L) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.5) err = 1;
+    if (lv.v2 != 6394) err = 2;
+    if (lv.v3 != 24104) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ui_L() c.F_Ui_L {
     return .{ .v1 = 0.5, .v2 = 6394, .v3 = 24104 };
@@ -3439,13 +3661,15 @@ test "F_Ui_S C calls" {
     try testing.expectEqual(c.ret_F_Ui_S(), .{ .v1 = 7.0, .v2 = 16310, .v3 = 2152 });
     try testing.expectOk(c.assert_ret_F_Ui_S());
     try testing.expectOk(c.send_F_Ui_S());
-    try testing.expectOk(c.recv_F_Ui_S(.{ .v1 = 7.0, .v2 = 16310, .v3 = 2152 }));
+    try testing.expectOk(c.assert_F_Ui_S(.{ .v1 = 7.0, .v2 = 16310, .v3 = 2152 }));
 }
-pub export fn zig_recv_F_Ui_S(lv: c.F_Ui_S) c_int {
-    if (lv.v1 != 7.0) return 1;
-    if (lv.v2 != 16310) return 2;
-    if (lv.v3 != 2152) return 3;
-    return 0;
+pub export fn zig_assert_F_Ui_S(lv: c.F_Ui_S) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 7.0) err = 1;
+    if (lv.v2 != 16310) err = 2;
+    if (lv.v3 != 2152) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ui_S() c.F_Ui_S {
     return .{ .v1 = 7.0, .v2 = 16310, .v3 = 2152 };
@@ -3470,13 +3694,15 @@ test "F_Ui_Uc C calls" {
     try testing.expectEqual(c.ret_F_Ui_Uc(), .{ .v1 = 0.5, .v2 = 31933, .v3 = 84 });
     try testing.expectOk(c.assert_ret_F_Ui_Uc());
     try testing.expectOk(c.send_F_Ui_Uc());
-    try testing.expectOk(c.recv_F_Ui_Uc(.{ .v1 = 0.5, .v2 = 31933, .v3 = 84 }));
+    try testing.expectOk(c.assert_F_Ui_Uc(.{ .v1 = 0.5, .v2 = 31933, .v3 = 84 }));
 }
-pub export fn zig_recv_F_Ui_Uc(lv: c.F_Ui_Uc) c_int {
-    if (lv.v1 != 0.5) return 1;
-    if (lv.v2 != 31933) return 2;
-    if (lv.v3 != 84) return 3;
-    return 0;
+pub export fn zig_assert_F_Ui_Uc(lv: c.F_Ui_Uc) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.5) err = 1;
+    if (lv.v2 != 31933) err = 2;
+    if (lv.v3 != 84) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ui_Uc() c.F_Ui_Uc {
     return .{ .v1 = 0.5, .v2 = 31933, .v3 = 84 };
@@ -3501,13 +3727,15 @@ test "F_Ui_Ui C calls" {
     try testing.expectEqual(c.ret_F_Ui_Ui(), .{ .v1 = 1.0, .v2 = 21258, .v3 = 27470 });
     try testing.expectOk(c.assert_ret_F_Ui_Ui());
     try testing.expectOk(c.send_F_Ui_Ui());
-    try testing.expectOk(c.recv_F_Ui_Ui(.{ .v1 = 1.0, .v2 = 21258, .v3 = 27470 }));
+    try testing.expectOk(c.assert_F_Ui_Ui(.{ .v1 = 1.0, .v2 = 21258, .v3 = 27470 }));
 }
-pub export fn zig_recv_F_Ui_Ui(lv: c.F_Ui_Ui) c_int {
-    if (lv.v1 != 1.0) return 1;
-    if (lv.v2 != 21258) return 2;
-    if (lv.v3 != 27470) return 3;
-    return 0;
+pub export fn zig_assert_F_Ui_Ui(lv: c.F_Ui_Ui) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 1.0) err = 1;
+    if (lv.v2 != 21258) err = 2;
+    if (lv.v3 != 27470) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ui_Ui() c.F_Ui_Ui {
     return .{ .v1 = 1.0, .v2 = 21258, .v3 = 27470 };
@@ -3532,13 +3760,15 @@ test "F_Ui_Ul C calls" {
     try testing.expectEqual(c.ret_F_Ui_Ul(), .{ .v1 = -2.125, .v2 = 2270, .v3 = 24341 });
     try testing.expectOk(c.assert_ret_F_Ui_Ul());
     try testing.expectOk(c.send_F_Ui_Ul());
-    try testing.expectOk(c.recv_F_Ui_Ul(.{ .v1 = -2.125, .v2 = 2270, .v3 = 24341 }));
+    try testing.expectOk(c.assert_F_Ui_Ul(.{ .v1 = -2.125, .v2 = 2270, .v3 = 24341 }));
 }
-pub export fn zig_recv_F_Ui_Ul(lv: c.F_Ui_Ul) c_int {
-    if (lv.v1 != -2.125) return 1;
-    if (lv.v2 != 2270) return 2;
-    if (lv.v3 != 24341) return 3;
-    return 0;
+pub export fn zig_assert_F_Ui_Ul(lv: c.F_Ui_Ul) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -2.125) err = 1;
+    if (lv.v2 != 2270) err = 2;
+    if (lv.v3 != 24341) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ui_Ul() c.F_Ui_Ul {
     return .{ .v1 = -2.125, .v2 = 2270, .v3 = 24341 };
@@ -3563,13 +3793,15 @@ test "F_Ui_Us C calls" {
     try testing.expectEqual(c.ret_F_Ui_Us(), .{ .v1 = -2.125, .v2 = 26884, .v3 = 20081 });
     try testing.expectOk(c.assert_ret_F_Ui_Us());
     try testing.expectOk(c.send_F_Ui_Us());
-    try testing.expectOk(c.recv_F_Ui_Us(.{ .v1 = -2.125, .v2 = 26884, .v3 = 20081 }));
+    try testing.expectOk(c.assert_F_Ui_Us(.{ .v1 = -2.125, .v2 = 26884, .v3 = 20081 }));
 }
-pub export fn zig_recv_F_Ui_Us(lv: c.F_Ui_Us) c_int {
-    if (lv.v1 != -2.125) return 1;
-    if (lv.v2 != 26884) return 2;
-    if (lv.v3 != 20081) return 3;
-    return 0;
+pub export fn zig_assert_F_Ui_Us(lv: c.F_Ui_Us) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -2.125) err = 1;
+    if (lv.v2 != 26884) err = 2;
+    if (lv.v3 != 20081) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ui_Us() c.F_Ui_Us {
     return .{ .v1 = -2.125, .v2 = 26884, .v3 = 20081 };
@@ -3594,13 +3826,15 @@ test "F_Ui_Vp C calls" {
     try testing.expectEqual(c.ret_F_Ui_Vp(), .{ .v1 = 0.875, .v2 = 29111, .v3 = null });
     try testing.expectOk(c.assert_ret_F_Ui_Vp());
     try testing.expectOk(c.send_F_Ui_Vp());
-    try testing.expectOk(c.recv_F_Ui_Vp(.{ .v1 = 0.875, .v2 = 29111, .v3 = null }));
+    try testing.expectOk(c.assert_F_Ui_Vp(.{ .v1 = 0.875, .v2 = 29111, .v3 = null }));
 }
-pub export fn zig_recv_F_Ui_Vp(lv: c.F_Ui_Vp) c_int {
-    if (lv.v1 != 0.875) return 1;
-    if (lv.v2 != 29111) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_F_Ui_Vp(lv: c.F_Ui_Vp) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.875) err = 1;
+    if (lv.v2 != 29111) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ui_Vp() c.F_Ui_Vp {
     return .{ .v1 = 0.875, .v2 = 29111, .v3 = null };
@@ -3623,12 +3857,14 @@ test "F_Ul C calls" {
     try testing.expectEqual(c.ret_F_Ul(), .{ .v1 = 7.0, .v2 = 502 });
     try testing.expectOk(c.assert_ret_F_Ul());
     try testing.expectOk(c.send_F_Ul());
-    try testing.expectOk(c.recv_F_Ul(.{ .v1 = 7.0, .v2 = 502 }));
+    try testing.expectOk(c.assert_F_Ul(.{ .v1 = 7.0, .v2 = 502 }));
 }
-pub export fn zig_recv_F_Ul(lv: c.F_Ul) c_int {
-    if (lv.v1 != 7.0) return 1;
-    if (lv.v2 != 502) return 2;
-    return 0;
+pub export fn zig_assert_F_Ul(lv: c.F_Ul) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 7.0) err = 1;
+    if (lv.v2 != 502) err = 2;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ul() c.F_Ul {
     return .{ .v1 = 7.0, .v2 = 502 };
@@ -3653,13 +3889,15 @@ test "F_Ul_C C calls" {
     try testing.expectEqual(c.ret_F_Ul_C(), .{ .v1 = 1.0, .v2 = 16763, .v3 = 7 });
     try testing.expectOk(c.assert_ret_F_Ul_C());
     try testing.expectOk(c.send_F_Ul_C());
-    try testing.expectOk(c.recv_F_Ul_C(.{ .v1 = 1.0, .v2 = 16763, .v3 = 7 }));
+    try testing.expectOk(c.assert_F_Ul_C(.{ .v1 = 1.0, .v2 = 16763, .v3 = 7 }));
 }
-pub export fn zig_recv_F_Ul_C(lv: c.F_Ul_C) c_int {
-    if (lv.v1 != 1.0) return 1;
-    if (lv.v2 != 16763) return 2;
-    if (lv.v3 != 7) return 3;
-    return 0;
+pub export fn zig_assert_F_Ul_C(lv: c.F_Ul_C) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 1.0) err = 1;
+    if (lv.v2 != 16763) err = 2;
+    if (lv.v3 != 7) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ul_C() c.F_Ul_C {
     return .{ .v1 = 1.0, .v2 = 16763, .v3 = 7 };
@@ -3684,13 +3922,15 @@ test "F_Ul_D C calls" {
     try testing.expectEqual(c.ret_F_Ul_D(), .{ .v1 = 0.875, .v2 = 5788, .v3 = 7.0 });
     try testing.expectOk(c.assert_ret_F_Ul_D());
     try testing.expectOk(c.send_F_Ul_D());
-    try testing.expectOk(c.recv_F_Ul_D(.{ .v1 = 0.875, .v2 = 5788, .v3 = 7.0 }));
+    try testing.expectOk(c.assert_F_Ul_D(.{ .v1 = 0.875, .v2 = 5788, .v3 = 7.0 }));
 }
-pub export fn zig_recv_F_Ul_D(lv: c.F_Ul_D) c_int {
-    if (lv.v1 != 0.875) return 1;
-    if (lv.v2 != 5788) return 2;
-    if (lv.v3 != 7.0) return 3;
-    return 0;
+pub export fn zig_assert_F_Ul_D(lv: c.F_Ul_D) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.875) err = 1;
+    if (lv.v2 != 5788) err = 2;
+    if (lv.v3 != 7.0) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ul_D() c.F_Ul_D {
     return .{ .v1 = 0.875, .v2 = 5788, .v3 = 7.0 };
@@ -3715,13 +3955,15 @@ test "F_Ul_F C calls" {
     try testing.expectEqual(c.ret_F_Ul_F(), .{ .v1 = -0.25, .v2 = 13617, .v3 = 0.875 });
     try testing.expectOk(c.assert_ret_F_Ul_F());
     try testing.expectOk(c.send_F_Ul_F());
-    try testing.expectOk(c.recv_F_Ul_F(.{ .v1 = -0.25, .v2 = 13617, .v3 = 0.875 }));
+    try testing.expectOk(c.assert_F_Ul_F(.{ .v1 = -0.25, .v2 = 13617, .v3 = 0.875 }));
 }
-pub export fn zig_recv_F_Ul_F(lv: c.F_Ul_F) c_int {
-    if (lv.v1 != -0.25) return 1;
-    if (lv.v2 != 13617) return 2;
-    if (lv.v3 != 0.875) return 3;
-    return 0;
+pub export fn zig_assert_F_Ul_F(lv: c.F_Ul_F) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -0.25) err = 1;
+    if (lv.v2 != 13617) err = 2;
+    if (lv.v3 != 0.875) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ul_F() c.F_Ul_F {
     return .{ .v1 = -0.25, .v2 = 13617, .v3 = 0.875 };
@@ -3746,13 +3988,15 @@ test "F_Ul_I C calls" {
     try testing.expectEqual(c.ret_F_Ul_I(), .{ .v1 = 7.0, .v2 = 4234, .v3 = 27107 });
     try testing.expectOk(c.assert_ret_F_Ul_I());
     try testing.expectOk(c.send_F_Ul_I());
-    try testing.expectOk(c.recv_F_Ul_I(.{ .v1 = 7.0, .v2 = 4234, .v3 = 27107 }));
+    try testing.expectOk(c.assert_F_Ul_I(.{ .v1 = 7.0, .v2 = 4234, .v3 = 27107 }));
 }
-pub export fn zig_recv_F_Ul_I(lv: c.F_Ul_I) c_int {
-    if (lv.v1 != 7.0) return 1;
-    if (lv.v2 != 4234) return 2;
-    if (lv.v3 != 27107) return 3;
-    return 0;
+pub export fn zig_assert_F_Ul_I(lv: c.F_Ul_I) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 7.0) err = 1;
+    if (lv.v2 != 4234) err = 2;
+    if (lv.v3 != 27107) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ul_I() c.F_Ul_I {
     return .{ .v1 = 7.0, .v2 = 4234, .v3 = 27107 };
@@ -3777,13 +4021,15 @@ test "F_Ul_Ip C calls" {
     try testing.expectEqual(c.ret_F_Ul_Ip(), .{ .v1 = -2.125, .v2 = 18940, .v3 = null });
     try testing.expectOk(c.assert_ret_F_Ul_Ip());
     try testing.expectOk(c.send_F_Ul_Ip());
-    try testing.expectOk(c.recv_F_Ul_Ip(.{ .v1 = -2.125, .v2 = 18940, .v3 = null }));
+    try testing.expectOk(c.assert_F_Ul_Ip(.{ .v1 = -2.125, .v2 = 18940, .v3 = null }));
 }
-pub export fn zig_recv_F_Ul_Ip(lv: c.F_Ul_Ip) c_int {
-    if (lv.v1 != -2.125) return 1;
-    if (lv.v2 != 18940) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_F_Ul_Ip(lv: c.F_Ul_Ip) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -2.125) err = 1;
+    if (lv.v2 != 18940) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ul_Ip() c.F_Ul_Ip {
     return .{ .v1 = -2.125, .v2 = 18940, .v3 = null };
@@ -3808,13 +4054,15 @@ test "F_Ul_L C calls" {
     try testing.expectEqual(c.ret_F_Ul_L(), .{ .v1 = 7.0, .v2 = 2524, .v3 = 1186 });
     try testing.expectOk(c.assert_ret_F_Ul_L());
     try testing.expectOk(c.send_F_Ul_L());
-    try testing.expectOk(c.recv_F_Ul_L(.{ .v1 = 7.0, .v2 = 2524, .v3 = 1186 }));
+    try testing.expectOk(c.assert_F_Ul_L(.{ .v1 = 7.0, .v2 = 2524, .v3 = 1186 }));
 }
-pub export fn zig_recv_F_Ul_L(lv: c.F_Ul_L) c_int {
-    if (lv.v1 != 7.0) return 1;
-    if (lv.v2 != 2524) return 2;
-    if (lv.v3 != 1186) return 3;
-    return 0;
+pub export fn zig_assert_F_Ul_L(lv: c.F_Ul_L) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 7.0) err = 1;
+    if (lv.v2 != 2524) err = 2;
+    if (lv.v3 != 1186) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ul_L() c.F_Ul_L {
     return .{ .v1 = 7.0, .v2 = 2524, .v3 = 1186 };
@@ -3839,13 +4087,15 @@ test "F_Ul_S C calls" {
     try testing.expectEqual(c.ret_F_Ul_S(), .{ .v1 = 0.5, .v2 = 21773, .v3 = 17719 });
     try testing.expectOk(c.assert_ret_F_Ul_S());
     try testing.expectOk(c.send_F_Ul_S());
-    try testing.expectOk(c.recv_F_Ul_S(.{ .v1 = 0.5, .v2 = 21773, .v3 = 17719 }));
+    try testing.expectOk(c.assert_F_Ul_S(.{ .v1 = 0.5, .v2 = 21773, .v3 = 17719 }));
 }
-pub export fn zig_recv_F_Ul_S(lv: c.F_Ul_S) c_int {
-    if (lv.v1 != 0.5) return 1;
-    if (lv.v2 != 21773) return 2;
-    if (lv.v3 != 17719) return 3;
-    return 0;
+pub export fn zig_assert_F_Ul_S(lv: c.F_Ul_S) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.5) err = 1;
+    if (lv.v2 != 21773) err = 2;
+    if (lv.v3 != 17719) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ul_S() c.F_Ul_S {
     return .{ .v1 = 0.5, .v2 = 21773, .v3 = 17719 };
@@ -3870,13 +4120,15 @@ test "F_Ul_Uc C calls" {
     try testing.expectEqual(c.ret_F_Ul_Uc(), .{ .v1 = 7.0, .v2 = 25283, .v3 = 93 });
     try testing.expectOk(c.assert_ret_F_Ul_Uc());
     try testing.expectOk(c.send_F_Ul_Uc());
-    try testing.expectOk(c.recv_F_Ul_Uc(.{ .v1 = 7.0, .v2 = 25283, .v3 = 93 }));
+    try testing.expectOk(c.assert_F_Ul_Uc(.{ .v1 = 7.0, .v2 = 25283, .v3 = 93 }));
 }
-pub export fn zig_recv_F_Ul_Uc(lv: c.F_Ul_Uc) c_int {
-    if (lv.v1 != 7.0) return 1;
-    if (lv.v2 != 25283) return 2;
-    if (lv.v3 != 93) return 3;
-    return 0;
+pub export fn zig_assert_F_Ul_Uc(lv: c.F_Ul_Uc) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 7.0) err = 1;
+    if (lv.v2 != 25283) err = 2;
+    if (lv.v3 != 93) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ul_Uc() c.F_Ul_Uc {
     return .{ .v1 = 7.0, .v2 = 25283, .v3 = 93 };
@@ -3901,13 +4153,15 @@ test "F_Ul_Ui C calls" {
     try testing.expectEqual(c.ret_F_Ul_Ui(), .{ .v1 = 7.0, .v2 = 24342, .v3 = 20594 });
     try testing.expectOk(c.assert_ret_F_Ul_Ui());
     try testing.expectOk(c.send_F_Ul_Ui());
-    try testing.expectOk(c.recv_F_Ul_Ui(.{ .v1 = 7.0, .v2 = 24342, .v3 = 20594 }));
+    try testing.expectOk(c.assert_F_Ul_Ui(.{ .v1 = 7.0, .v2 = 24342, .v3 = 20594 }));
 }
-pub export fn zig_recv_F_Ul_Ui(lv: c.F_Ul_Ui) c_int {
-    if (lv.v1 != 7.0) return 1;
-    if (lv.v2 != 24342) return 2;
-    if (lv.v3 != 20594) return 3;
-    return 0;
+pub export fn zig_assert_F_Ul_Ui(lv: c.F_Ul_Ui) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 7.0) err = 1;
+    if (lv.v2 != 24342) err = 2;
+    if (lv.v3 != 20594) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ul_Ui() c.F_Ul_Ui {
     return .{ .v1 = 7.0, .v2 = 24342, .v3 = 20594 };
@@ -3932,13 +4186,15 @@ test "F_Ul_Ul C calls" {
     try testing.expectEqual(c.ret_F_Ul_Ul(), .{ .v1 = -2.125, .v2 = 31964, .v3 = 4612 });
     try testing.expectOk(c.assert_ret_F_Ul_Ul());
     try testing.expectOk(c.send_F_Ul_Ul());
-    try testing.expectOk(c.recv_F_Ul_Ul(.{ .v1 = -2.125, .v2 = 31964, .v3 = 4612 }));
+    try testing.expectOk(c.assert_F_Ul_Ul(.{ .v1 = -2.125, .v2 = 31964, .v3 = 4612 }));
 }
-pub export fn zig_recv_F_Ul_Ul(lv: c.F_Ul_Ul) c_int {
-    if (lv.v1 != -2.125) return 1;
-    if (lv.v2 != 31964) return 2;
-    if (lv.v3 != 4612) return 3;
-    return 0;
+pub export fn zig_assert_F_Ul_Ul(lv: c.F_Ul_Ul) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -2.125) err = 1;
+    if (lv.v2 != 31964) err = 2;
+    if (lv.v3 != 4612) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ul_Ul() c.F_Ul_Ul {
     return .{ .v1 = -2.125, .v2 = 31964, .v3 = 4612 };
@@ -3963,13 +4219,15 @@ test "F_Ul_Us C calls" {
     try testing.expectEqual(c.ret_F_Ul_Us(), .{ .v1 = 1.0, .v2 = 4378, .v3 = 28649 });
     try testing.expectOk(c.assert_ret_F_Ul_Us());
     try testing.expectOk(c.send_F_Ul_Us());
-    try testing.expectOk(c.recv_F_Ul_Us(.{ .v1 = 1.0, .v2 = 4378, .v3 = 28649 }));
+    try testing.expectOk(c.assert_F_Ul_Us(.{ .v1 = 1.0, .v2 = 4378, .v3 = 28649 }));
 }
-pub export fn zig_recv_F_Ul_Us(lv: c.F_Ul_Us) c_int {
-    if (lv.v1 != 1.0) return 1;
-    if (lv.v2 != 4378) return 2;
-    if (lv.v3 != 28649) return 3;
-    return 0;
+pub export fn zig_assert_F_Ul_Us(lv: c.F_Ul_Us) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 1.0) err = 1;
+    if (lv.v2 != 4378) err = 2;
+    if (lv.v3 != 28649) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ul_Us() c.F_Ul_Us {
     return .{ .v1 = 1.0, .v2 = 4378, .v3 = 28649 };
@@ -3994,13 +4252,15 @@ test "F_Ul_Vp C calls" {
     try testing.expectEqual(c.ret_F_Ul_Vp(), .{ .v1 = 0.5, .v2 = 16097, .v3 = null });
     try testing.expectOk(c.assert_ret_F_Ul_Vp());
     try testing.expectOk(c.send_F_Ul_Vp());
-    try testing.expectOk(c.recv_F_Ul_Vp(.{ .v1 = 0.5, .v2 = 16097, .v3 = null }));
+    try testing.expectOk(c.assert_F_Ul_Vp(.{ .v1 = 0.5, .v2 = 16097, .v3 = null }));
 }
-pub export fn zig_recv_F_Ul_Vp(lv: c.F_Ul_Vp) c_int {
-    if (lv.v1 != 0.5) return 1;
-    if (lv.v2 != 16097) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_F_Ul_Vp(lv: c.F_Ul_Vp) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.5) err = 1;
+    if (lv.v2 != 16097) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Ul_Vp() c.F_Ul_Vp {
     return .{ .v1 = 0.5, .v2 = 16097, .v3 = null };
@@ -4023,12 +4283,14 @@ test "F_Us C calls" {
     try testing.expectEqual(c.ret_F_Us(), .{ .v1 = 4.5, .v2 = 27623 });
     try testing.expectOk(c.assert_ret_F_Us());
     try testing.expectOk(c.send_F_Us());
-    try testing.expectOk(c.recv_F_Us(.{ .v1 = 4.5, .v2 = 27623 }));
+    try testing.expectOk(c.assert_F_Us(.{ .v1 = 4.5, .v2 = 27623 }));
 }
-pub export fn zig_recv_F_Us(lv: c.F_Us) c_int {
-    if (lv.v1 != 4.5) return 1;
-    if (lv.v2 != 27623) return 2;
-    return 0;
+pub export fn zig_assert_F_Us(lv: c.F_Us) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 4.5) err = 1;
+    if (lv.v2 != 27623) err = 2;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Us() c.F_Us {
     return .{ .v1 = 4.5, .v2 = 27623 };
@@ -4053,13 +4315,15 @@ test "F_Us_C C calls" {
     try testing.expectEqual(c.ret_F_Us_C(), .{ .v1 = 0.5, .v2 = 9824, .v3 = 22 });
     try testing.expectOk(c.assert_ret_F_Us_C());
     try testing.expectOk(c.send_F_Us_C());
-    try testing.expectOk(c.recv_F_Us_C(.{ .v1 = 0.5, .v2 = 9824, .v3 = 22 }));
+    try testing.expectOk(c.assert_F_Us_C(.{ .v1 = 0.5, .v2 = 9824, .v3 = 22 }));
 }
-pub export fn zig_recv_F_Us_C(lv: c.F_Us_C) c_int {
-    if (lv.v1 != 0.5) return 1;
-    if (lv.v2 != 9824) return 2;
-    if (lv.v3 != 22) return 3;
-    return 0;
+pub export fn zig_assert_F_Us_C(lv: c.F_Us_C) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.5) err = 1;
+    if (lv.v2 != 9824) err = 2;
+    if (lv.v3 != 22) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Us_C() c.F_Us_C {
     return .{ .v1 = 0.5, .v2 = 9824, .v3 = 22 };
@@ -4084,13 +4348,15 @@ test "F_Us_D C calls" {
     try testing.expectEqual(c.ret_F_Us_D(), .{ .v1 = 7.0, .v2 = 17509, .v3 = 0.5 });
     try testing.expectOk(c.assert_ret_F_Us_D());
     try testing.expectOk(c.send_F_Us_D());
-    try testing.expectOk(c.recv_F_Us_D(.{ .v1 = 7.0, .v2 = 17509, .v3 = 0.5 }));
+    try testing.expectOk(c.assert_F_Us_D(.{ .v1 = 7.0, .v2 = 17509, .v3 = 0.5 }));
 }
-pub export fn zig_recv_F_Us_D(lv: c.F_Us_D) c_int {
-    if (lv.v1 != 7.0) return 1;
-    if (lv.v2 != 17509) return 2;
-    if (lv.v3 != 0.5) return 3;
-    return 0;
+pub export fn zig_assert_F_Us_D(lv: c.F_Us_D) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 7.0) err = 1;
+    if (lv.v2 != 17509) err = 2;
+    if (lv.v3 != 0.5) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Us_D() c.F_Us_D {
     return .{ .v1 = 7.0, .v2 = 17509, .v3 = 0.5 };
@@ -4115,13 +4381,15 @@ test "F_Us_F C calls" {
     try testing.expectEqual(c.ret_F_Us_F(), .{ .v1 = 4.5, .v2 = 32668, .v3 = 4.5 });
     try testing.expectOk(c.assert_ret_F_Us_F());
     try testing.expectOk(c.send_F_Us_F());
-    try testing.expectOk(c.recv_F_Us_F(.{ .v1 = 4.5, .v2 = 32668, .v3 = 4.5 }));
+    try testing.expectOk(c.assert_F_Us_F(.{ .v1 = 4.5, .v2 = 32668, .v3 = 4.5 }));
 }
-pub export fn zig_recv_F_Us_F(lv: c.F_Us_F) c_int {
-    if (lv.v1 != 4.5) return 1;
-    if (lv.v2 != 32668) return 2;
-    if (lv.v3 != 4.5) return 3;
-    return 0;
+pub export fn zig_assert_F_Us_F(lv: c.F_Us_F) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 4.5) err = 1;
+    if (lv.v2 != 32668) err = 2;
+    if (lv.v3 != 4.5) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Us_F() c.F_Us_F {
     return .{ .v1 = 4.5, .v2 = 32668, .v3 = 4.5 };
@@ -4146,13 +4414,15 @@ test "F_Us_I C calls" {
     try testing.expectEqual(c.ret_F_Us_I(), .{ .v1 = 0.5, .v2 = 25895, .v3 = 32572 });
     try testing.expectOk(c.assert_ret_F_Us_I());
     try testing.expectOk(c.send_F_Us_I());
-    try testing.expectOk(c.recv_F_Us_I(.{ .v1 = 0.5, .v2 = 25895, .v3 = 32572 }));
+    try testing.expectOk(c.assert_F_Us_I(.{ .v1 = 0.5, .v2 = 25895, .v3 = 32572 }));
 }
-pub export fn zig_recv_F_Us_I(lv: c.F_Us_I) c_int {
-    if (lv.v1 != 0.5) return 1;
-    if (lv.v2 != 25895) return 2;
-    if (lv.v3 != 32572) return 3;
-    return 0;
+pub export fn zig_assert_F_Us_I(lv: c.F_Us_I) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.5) err = 1;
+    if (lv.v2 != 25895) err = 2;
+    if (lv.v3 != 32572) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Us_I() c.F_Us_I {
     return .{ .v1 = 0.5, .v2 = 25895, .v3 = 32572 };
@@ -4177,13 +4447,15 @@ test "F_Us_Ip C calls" {
     try testing.expectEqual(c.ret_F_Us_Ip(), .{ .v1 = 0.875, .v2 = 31390, .v3 = null });
     try testing.expectOk(c.assert_ret_F_Us_Ip());
     try testing.expectOk(c.send_F_Us_Ip());
-    try testing.expectOk(c.recv_F_Us_Ip(.{ .v1 = 0.875, .v2 = 31390, .v3 = null }));
+    try testing.expectOk(c.assert_F_Us_Ip(.{ .v1 = 0.875, .v2 = 31390, .v3 = null }));
 }
-pub export fn zig_recv_F_Us_Ip(lv: c.F_Us_Ip) c_int {
-    if (lv.v1 != 0.875) return 1;
-    if (lv.v2 != 31390) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_F_Us_Ip(lv: c.F_Us_Ip) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.875) err = 1;
+    if (lv.v2 != 31390) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Us_Ip() c.F_Us_Ip {
     return .{ .v1 = 0.875, .v2 = 31390, .v3 = null };
@@ -4208,13 +4480,15 @@ test "F_Us_L C calls" {
     try testing.expectEqual(c.ret_F_Us_L(), .{ .v1 = 7.0, .v2 = 13124, .v3 = 14055 });
     try testing.expectOk(c.assert_ret_F_Us_L());
     try testing.expectOk(c.send_F_Us_L());
-    try testing.expectOk(c.recv_F_Us_L(.{ .v1 = 7.0, .v2 = 13124, .v3 = 14055 }));
+    try testing.expectOk(c.assert_F_Us_L(.{ .v1 = 7.0, .v2 = 13124, .v3 = 14055 }));
 }
-pub export fn zig_recv_F_Us_L(lv: c.F_Us_L) c_int {
-    if (lv.v1 != 7.0) return 1;
-    if (lv.v2 != 13124) return 2;
-    if (lv.v3 != 14055) return 3;
-    return 0;
+pub export fn zig_assert_F_Us_L(lv: c.F_Us_L) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 7.0) err = 1;
+    if (lv.v2 != 13124) err = 2;
+    if (lv.v3 != 14055) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Us_L() c.F_Us_L {
     return .{ .v1 = 7.0, .v2 = 13124, .v3 = 14055 };
@@ -4239,13 +4513,15 @@ test "F_Us_S C calls" {
     try testing.expectEqual(c.ret_F_Us_S(), .{ .v1 = 7.0, .v2 = 26736, .v3 = 24374 });
     try testing.expectOk(c.assert_ret_F_Us_S());
     try testing.expectOk(c.send_F_Us_S());
-    try testing.expectOk(c.recv_F_Us_S(.{ .v1 = 7.0, .v2 = 26736, .v3 = 24374 }));
+    try testing.expectOk(c.assert_F_Us_S(.{ .v1 = 7.0, .v2 = 26736, .v3 = 24374 }));
 }
-pub export fn zig_recv_F_Us_S(lv: c.F_Us_S) c_int {
-    if (lv.v1 != 7.0) return 1;
-    if (lv.v2 != 26736) return 2;
-    if (lv.v3 != 24374) return 3;
-    return 0;
+pub export fn zig_assert_F_Us_S(lv: c.F_Us_S) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 7.0) err = 1;
+    if (lv.v2 != 26736) err = 2;
+    if (lv.v3 != 24374) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Us_S() c.F_Us_S {
     return .{ .v1 = 7.0, .v2 = 26736, .v3 = 24374 };
@@ -4270,13 +4546,15 @@ test "F_Us_Uc C calls" {
     try testing.expectEqual(c.ret_F_Us_Uc(), .{ .v1 = 0.875, .v2 = 1879, .v3 = 8 });
     try testing.expectOk(c.assert_ret_F_Us_Uc());
     try testing.expectOk(c.send_F_Us_Uc());
-    try testing.expectOk(c.recv_F_Us_Uc(.{ .v1 = 0.875, .v2 = 1879, .v3 = 8 }));
+    try testing.expectOk(c.assert_F_Us_Uc(.{ .v1 = 0.875, .v2 = 1879, .v3 = 8 }));
 }
-pub export fn zig_recv_F_Us_Uc(lv: c.F_Us_Uc) c_int {
-    if (lv.v1 != 0.875) return 1;
-    if (lv.v2 != 1879) return 2;
-    if (lv.v3 != 8) return 3;
-    return 0;
+pub export fn zig_assert_F_Us_Uc(lv: c.F_Us_Uc) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.875) err = 1;
+    if (lv.v2 != 1879) err = 2;
+    if (lv.v3 != 8) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Us_Uc() c.F_Us_Uc {
     return .{ .v1 = 0.875, .v2 = 1879, .v3 = 8 };
@@ -4301,13 +4579,15 @@ test "F_Us_Ui C calls" {
     try testing.expectEqual(c.ret_F_Us_Ui(), .{ .v1 = 0.875, .v2 = 15041, .v3 = 1344 });
     try testing.expectOk(c.assert_ret_F_Us_Ui());
     try testing.expectOk(c.send_F_Us_Ui());
-    try testing.expectOk(c.recv_F_Us_Ui(.{ .v1 = 0.875, .v2 = 15041, .v3 = 1344 }));
+    try testing.expectOk(c.assert_F_Us_Ui(.{ .v1 = 0.875, .v2 = 15041, .v3 = 1344 }));
 }
-pub export fn zig_recv_F_Us_Ui(lv: c.F_Us_Ui) c_int {
-    if (lv.v1 != 0.875) return 1;
-    if (lv.v2 != 15041) return 2;
-    if (lv.v3 != 1344) return 3;
-    return 0;
+pub export fn zig_assert_F_Us_Ui(lv: c.F_Us_Ui) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.875) err = 1;
+    if (lv.v2 != 15041) err = 2;
+    if (lv.v3 != 1344) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Us_Ui() c.F_Us_Ui {
     return .{ .v1 = 0.875, .v2 = 15041, .v3 = 1344 };
@@ -4332,13 +4612,15 @@ test "F_Us_Ul C calls" {
     try testing.expectEqual(c.ret_F_Us_Ul(), .{ .v1 = 1.0, .v2 = 15873, .v3 = 13395 });
     try testing.expectOk(c.assert_ret_F_Us_Ul());
     try testing.expectOk(c.send_F_Us_Ul());
-    try testing.expectOk(c.recv_F_Us_Ul(.{ .v1 = 1.0, .v2 = 15873, .v3 = 13395 }));
+    try testing.expectOk(c.assert_F_Us_Ul(.{ .v1 = 1.0, .v2 = 15873, .v3 = 13395 }));
 }
-pub export fn zig_recv_F_Us_Ul(lv: c.F_Us_Ul) c_int {
-    if (lv.v1 != 1.0) return 1;
-    if (lv.v2 != 15873) return 2;
-    if (lv.v3 != 13395) return 3;
-    return 0;
+pub export fn zig_assert_F_Us_Ul(lv: c.F_Us_Ul) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 1.0) err = 1;
+    if (lv.v2 != 15873) err = 2;
+    if (lv.v3 != 13395) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Us_Ul() c.F_Us_Ul {
     return .{ .v1 = 1.0, .v2 = 15873, .v3 = 13395 };
@@ -4363,13 +4645,15 @@ test "F_Us_Us C calls" {
     try testing.expectEqual(c.ret_F_Us_Us(), .{ .v1 = 4.5, .v2 = 19507, .v3 = 32357 });
     try testing.expectOk(c.assert_ret_F_Us_Us());
     try testing.expectOk(c.send_F_Us_Us());
-    try testing.expectOk(c.recv_F_Us_Us(.{ .v1 = 4.5, .v2 = 19507, .v3 = 32357 }));
+    try testing.expectOk(c.assert_F_Us_Us(.{ .v1 = 4.5, .v2 = 19507, .v3 = 32357 }));
 }
-pub export fn zig_recv_F_Us_Us(lv: c.F_Us_Us) c_int {
-    if (lv.v1 != 4.5) return 1;
-    if (lv.v2 != 19507) return 2;
-    if (lv.v3 != 32357) return 3;
-    return 0;
+pub export fn zig_assert_F_Us_Us(lv: c.F_Us_Us) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 4.5) err = 1;
+    if (lv.v2 != 19507) err = 2;
+    if (lv.v3 != 32357) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Us_Us() c.F_Us_Us {
     return .{ .v1 = 4.5, .v2 = 19507, .v3 = 32357 };
@@ -4394,13 +4678,15 @@ test "F_Us_Vp C calls" {
     try testing.expectEqual(c.ret_F_Us_Vp(), .{ .v1 = -2.125, .v2 = 14866, .v3 = null });
     try testing.expectOk(c.assert_ret_F_Us_Vp());
     try testing.expectOk(c.send_F_Us_Vp());
-    try testing.expectOk(c.recv_F_Us_Vp(.{ .v1 = -2.125, .v2 = 14866, .v3 = null }));
+    try testing.expectOk(c.assert_F_Us_Vp(.{ .v1 = -2.125, .v2 = 14866, .v3 = null }));
 }
-pub export fn zig_recv_F_Us_Vp(lv: c.F_Us_Vp) c_int {
-    if (lv.v1 != -2.125) return 1;
-    if (lv.v2 != 14866) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_F_Us_Vp(lv: c.F_Us_Vp) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -2.125) err = 1;
+    if (lv.v2 != 14866) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Us_Vp() c.F_Us_Vp {
     return .{ .v1 = -2.125, .v2 = 14866, .v3 = null };
@@ -4423,12 +4709,14 @@ test "F_Vp C calls" {
     try testing.expectEqual(c.ret_F_Vp(), .{ .v1 = -2.125, .v2 = null });
     try testing.expectOk(c.assert_ret_F_Vp());
     try testing.expectOk(c.send_F_Vp());
-    try testing.expectOk(c.recv_F_Vp(.{ .v1 = -2.125, .v2 = null }));
+    try testing.expectOk(c.assert_F_Vp(.{ .v1 = -2.125, .v2 = null }));
 }
-pub export fn zig_recv_F_Vp(lv: c.F_Vp) c_int {
-    if (lv.v1 != -2.125) return 1;
-    if (lv.v2 != null) return 2;
-    return 0;
+pub export fn zig_assert_F_Vp(lv: c.F_Vp) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -2.125) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Vp() c.F_Vp {
     return .{ .v1 = -2.125, .v2 = null };
@@ -4453,13 +4741,15 @@ test "F_Vp_C C calls" {
     try testing.expectEqual(c.ret_F_Vp_C(), .{ .v1 = 0.875, .v2 = null, .v3 = 77 });
     try testing.expectOk(c.assert_ret_F_Vp_C());
     try testing.expectOk(c.send_F_Vp_C());
-    try testing.expectOk(c.recv_F_Vp_C(.{ .v1 = 0.875, .v2 = null, .v3 = 77 }));
+    try testing.expectOk(c.assert_F_Vp_C(.{ .v1 = 0.875, .v2 = null, .v3 = 77 }));
 }
-pub export fn zig_recv_F_Vp_C(lv: c.F_Vp_C) c_int {
-    if (lv.v1 != 0.875) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 77) return 3;
-    return 0;
+pub export fn zig_assert_F_Vp_C(lv: c.F_Vp_C) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.875) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 77) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Vp_C() c.F_Vp_C {
     return .{ .v1 = 0.875, .v2 = null, .v3 = 77 };
@@ -4484,13 +4774,15 @@ test "F_Vp_D C calls" {
     try testing.expectEqual(c.ret_F_Vp_D(), .{ .v1 = -0.25, .v2 = null, .v3 = 7.0 });
     try testing.expectOk(c.assert_ret_F_Vp_D());
     try testing.expectOk(c.send_F_Vp_D());
-    try testing.expectOk(c.recv_F_Vp_D(.{ .v1 = -0.25, .v2 = null, .v3 = 7.0 }));
+    try testing.expectOk(c.assert_F_Vp_D(.{ .v1 = -0.25, .v2 = null, .v3 = 7.0 }));
 }
-pub export fn zig_recv_F_Vp_D(lv: c.F_Vp_D) c_int {
-    if (lv.v1 != -0.25) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 7.0) return 3;
-    return 0;
+pub export fn zig_assert_F_Vp_D(lv: c.F_Vp_D) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -0.25) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 7.0) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Vp_D() c.F_Vp_D {
     return .{ .v1 = -0.25, .v2 = null, .v3 = 7.0 };
@@ -4515,13 +4807,15 @@ test "F_Vp_F C calls" {
     try testing.expectEqual(c.ret_F_Vp_F(), .{ .v1 = -0.25, .v2 = null, .v3 = 7.0 });
     try testing.expectOk(c.assert_ret_F_Vp_F());
     try testing.expectOk(c.send_F_Vp_F());
-    try testing.expectOk(c.recv_F_Vp_F(.{ .v1 = -0.25, .v2 = null, .v3 = 7.0 }));
+    try testing.expectOk(c.assert_F_Vp_F(.{ .v1 = -0.25, .v2 = null, .v3 = 7.0 }));
 }
-pub export fn zig_recv_F_Vp_F(lv: c.F_Vp_F) c_int {
-    if (lv.v1 != -0.25) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 7.0) return 3;
-    return 0;
+pub export fn zig_assert_F_Vp_F(lv: c.F_Vp_F) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -0.25) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 7.0) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Vp_F() c.F_Vp_F {
     return .{ .v1 = -0.25, .v2 = null, .v3 = 7.0 };
@@ -4546,13 +4840,15 @@ test "F_Vp_I C calls" {
     try testing.expectEqual(c.ret_F_Vp_I(), .{ .v1 = 0.875, .v2 = null, .v3 = 5405 });
     try testing.expectOk(c.assert_ret_F_Vp_I());
     try testing.expectOk(c.send_F_Vp_I());
-    try testing.expectOk(c.recv_F_Vp_I(.{ .v1 = 0.875, .v2 = null, .v3 = 5405 }));
+    try testing.expectOk(c.assert_F_Vp_I(.{ .v1 = 0.875, .v2 = null, .v3 = 5405 }));
 }
-pub export fn zig_recv_F_Vp_I(lv: c.F_Vp_I) c_int {
-    if (lv.v1 != 0.875) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 5405) return 3;
-    return 0;
+pub export fn zig_assert_F_Vp_I(lv: c.F_Vp_I) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.875) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 5405) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Vp_I() c.F_Vp_I {
     return .{ .v1 = 0.875, .v2 = null, .v3 = 5405 };
@@ -4577,13 +4873,15 @@ test "F_Vp_Ip C calls" {
     try testing.expectEqual(c.ret_F_Vp_Ip(), .{ .v1 = 1.0, .v2 = null, .v3 = null });
     try testing.expectOk(c.assert_ret_F_Vp_Ip());
     try testing.expectOk(c.send_F_Vp_Ip());
-    try testing.expectOk(c.recv_F_Vp_Ip(.{ .v1 = 1.0, .v2 = null, .v3 = null }));
+    try testing.expectOk(c.assert_F_Vp_Ip(.{ .v1 = 1.0, .v2 = null, .v3 = null }));
 }
-pub export fn zig_recv_F_Vp_Ip(lv: c.F_Vp_Ip) c_int {
-    if (lv.v1 != 1.0) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_F_Vp_Ip(lv: c.F_Vp_Ip) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 1.0) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Vp_Ip() c.F_Vp_Ip {
     return .{ .v1 = 1.0, .v2 = null, .v3 = null };
@@ -4608,13 +4906,15 @@ test "F_Vp_L C calls" {
     try testing.expectEqual(c.ret_F_Vp_L(), .{ .v1 = 7.0, .v2 = null, .v3 = 4556 });
     try testing.expectOk(c.assert_ret_F_Vp_L());
     try testing.expectOk(c.send_F_Vp_L());
-    try testing.expectOk(c.recv_F_Vp_L(.{ .v1 = 7.0, .v2 = null, .v3 = 4556 }));
+    try testing.expectOk(c.assert_F_Vp_L(.{ .v1 = 7.0, .v2 = null, .v3 = 4556 }));
 }
-pub export fn zig_recv_F_Vp_L(lv: c.F_Vp_L) c_int {
-    if (lv.v1 != 7.0) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 4556) return 3;
-    return 0;
+pub export fn zig_assert_F_Vp_L(lv: c.F_Vp_L) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 7.0) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 4556) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Vp_L() c.F_Vp_L {
     return .{ .v1 = 7.0, .v2 = null, .v3 = 4556 };
@@ -4639,13 +4939,15 @@ test "F_Vp_S C calls" {
     try testing.expectEqual(c.ret_F_Vp_S(), .{ .v1 = 1.0, .v2 = null, .v3 = 22690 });
     try testing.expectOk(c.assert_ret_F_Vp_S());
     try testing.expectOk(c.send_F_Vp_S());
-    try testing.expectOk(c.recv_F_Vp_S(.{ .v1 = 1.0, .v2 = null, .v3 = 22690 }));
+    try testing.expectOk(c.assert_F_Vp_S(.{ .v1 = 1.0, .v2 = null, .v3 = 22690 }));
 }
-pub export fn zig_recv_F_Vp_S(lv: c.F_Vp_S) c_int {
-    if (lv.v1 != 1.0) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 22690) return 3;
-    return 0;
+pub export fn zig_assert_F_Vp_S(lv: c.F_Vp_S) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 1.0) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 22690) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Vp_S() c.F_Vp_S {
     return .{ .v1 = 1.0, .v2 = null, .v3 = 22690 };
@@ -4670,13 +4972,15 @@ test "F_Vp_Uc C calls" {
     try testing.expectEqual(c.ret_F_Vp_Uc(), .{ .v1 = 4.5, .v2 = null, .v3 = 6 });
     try testing.expectOk(c.assert_ret_F_Vp_Uc());
     try testing.expectOk(c.send_F_Vp_Uc());
-    try testing.expectOk(c.recv_F_Vp_Uc(.{ .v1 = 4.5, .v2 = null, .v3 = 6 }));
+    try testing.expectOk(c.assert_F_Vp_Uc(.{ .v1 = 4.5, .v2 = null, .v3 = 6 }));
 }
-pub export fn zig_recv_F_Vp_Uc(lv: c.F_Vp_Uc) c_int {
-    if (lv.v1 != 4.5) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 6) return 3;
-    return 0;
+pub export fn zig_assert_F_Vp_Uc(lv: c.F_Vp_Uc) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 4.5) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 6) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Vp_Uc() c.F_Vp_Uc {
     return .{ .v1 = 4.5, .v2 = null, .v3 = 6 };
@@ -4701,13 +5005,15 @@ test "F_Vp_Ui C calls" {
     try testing.expectEqual(c.ret_F_Vp_Ui(), .{ .v1 = -2.125, .v2 = null, .v3 = 3327 });
     try testing.expectOk(c.assert_ret_F_Vp_Ui());
     try testing.expectOk(c.send_F_Vp_Ui());
-    try testing.expectOk(c.recv_F_Vp_Ui(.{ .v1 = -2.125, .v2 = null, .v3 = 3327 }));
+    try testing.expectOk(c.assert_F_Vp_Ui(.{ .v1 = -2.125, .v2 = null, .v3 = 3327 }));
 }
-pub export fn zig_recv_F_Vp_Ui(lv: c.F_Vp_Ui) c_int {
-    if (lv.v1 != -2.125) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 3327) return 3;
-    return 0;
+pub export fn zig_assert_F_Vp_Ui(lv: c.F_Vp_Ui) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -2.125) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 3327) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Vp_Ui() c.F_Vp_Ui {
     return .{ .v1 = -2.125, .v2 = null, .v3 = 3327 };
@@ -4732,13 +5038,15 @@ test "F_Vp_Ul C calls" {
     try testing.expectEqual(c.ret_F_Vp_Ul(), .{ .v1 = 0.875, .v2 = null, .v3 = 21417 });
     try testing.expectOk(c.assert_ret_F_Vp_Ul());
     try testing.expectOk(c.send_F_Vp_Ul());
-    try testing.expectOk(c.recv_F_Vp_Ul(.{ .v1 = 0.875, .v2 = null, .v3 = 21417 }));
+    try testing.expectOk(c.assert_F_Vp_Ul(.{ .v1 = 0.875, .v2 = null, .v3 = 21417 }));
 }
-pub export fn zig_recv_F_Vp_Ul(lv: c.F_Vp_Ul) c_int {
-    if (lv.v1 != 0.875) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 21417) return 3;
-    return 0;
+pub export fn zig_assert_F_Vp_Ul(lv: c.F_Vp_Ul) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 0.875) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 21417) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Vp_Ul() c.F_Vp_Ul {
     return .{ .v1 = 0.875, .v2 = null, .v3 = 21417 };
@@ -4763,13 +5071,15 @@ test "F_Vp_Us C calls" {
     try testing.expectEqual(c.ret_F_Vp_Us(), .{ .v1 = -2.125, .v2 = null, .v3 = 10303 });
     try testing.expectOk(c.assert_ret_F_Vp_Us());
     try testing.expectOk(c.send_F_Vp_Us());
-    try testing.expectOk(c.recv_F_Vp_Us(.{ .v1 = -2.125, .v2 = null, .v3 = 10303 }));
+    try testing.expectOk(c.assert_F_Vp_Us(.{ .v1 = -2.125, .v2 = null, .v3 = 10303 }));
 }
-pub export fn zig_recv_F_Vp_Us(lv: c.F_Vp_Us) c_int {
-    if (lv.v1 != -2.125) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 10303) return 3;
-    return 0;
+pub export fn zig_assert_F_Vp_Us(lv: c.F_Vp_Us) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != -2.125) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 10303) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Vp_Us() c.F_Vp_Us {
     return .{ .v1 = -2.125, .v2 = null, .v3 = 10303 };
@@ -4794,13 +5104,15 @@ test "F_Vp_Vp C calls" {
     try testing.expectEqual(c.ret_F_Vp_Vp(), .{ .v1 = 4.5, .v2 = null, .v3 = null });
     try testing.expectOk(c.assert_ret_F_Vp_Vp());
     try testing.expectOk(c.send_F_Vp_Vp());
-    try testing.expectOk(c.recv_F_Vp_Vp(.{ .v1 = 4.5, .v2 = null, .v3 = null }));
+    try testing.expectOk(c.assert_F_Vp_Vp(.{ .v1 = 4.5, .v2 = null, .v3 = null }));
 }
-pub export fn zig_recv_F_Vp_Vp(lv: c.F_Vp_Vp) c_int {
-    if (lv.v1 != 4.5) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_F_Vp_Vp(lv: c.F_Vp_Vp) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 4.5) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_F_Vp_Vp() c.F_Vp_Vp {
     return .{ .v1 = 4.5, .v2 = null, .v3 = null };
@@ -4821,11 +5133,13 @@ test "I C calls" {
     try testing.expectEqual(c.ret_I(), .{ .v1 = 17446 });
     try testing.expectOk(c.assert_ret_I());
     try testing.expectOk(c.send_I());
-    try testing.expectOk(c.recv_I(.{ .v1 = 17446 }));
+    try testing.expectOk(c.assert_I(.{ .v1 = 17446 }));
 }
-pub export fn zig_recv_I(lv: c.I) c_int {
-    if (lv.v1 != 17446) return 1;
-    return 0;
+pub export fn zig_assert_I(lv: c.I) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 17446) err = 1;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I() c.I {
     return .{ .v1 = 17446 };
@@ -4848,12 +5162,14 @@ test "I_C C calls" {
     try testing.expectEqual(c.ret_I_C(), .{ .v1 = 27188, .v2 = 109 });
     try testing.expectOk(c.assert_ret_I_C());
     try testing.expectOk(c.send_I_C());
-    try testing.expectOk(c.recv_I_C(.{ .v1 = 27188, .v2 = 109 }));
+    try testing.expectOk(c.assert_I_C(.{ .v1 = 27188, .v2 = 109 }));
 }
-pub export fn zig_recv_I_C(lv: c.I_C) c_int {
-    if (lv.v1 != 27188) return 1;
-    if (lv.v2 != 109) return 2;
-    return 0;
+pub export fn zig_assert_I_C(lv: c.I_C) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 27188) err = 1;
+    if (lv.v2 != 109) err = 2;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_C() c.I_C {
     return .{ .v1 = 27188, .v2 = 109 };
@@ -4878,13 +5194,15 @@ test "I_C_C C calls" {
     try testing.expectEqual(c.ret_I_C_C(), .{ .v1 = 9281, .v2 = 5, .v3 = 27 });
     try testing.expectOk(c.assert_ret_I_C_C());
     try testing.expectOk(c.send_I_C_C());
-    try testing.expectOk(c.recv_I_C_C(.{ .v1 = 9281, .v2 = 5, .v3 = 27 }));
+    try testing.expectOk(c.assert_I_C_C(.{ .v1 = 9281, .v2 = 5, .v3 = 27 }));
 }
-pub export fn zig_recv_I_C_C(lv: c.I_C_C) c_int {
-    if (lv.v1 != 9281) return 1;
-    if (lv.v2 != 5) return 2;
-    if (lv.v3 != 27) return 3;
-    return 0;
+pub export fn zig_assert_I_C_C(lv: c.I_C_C) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 9281) err = 1;
+    if (lv.v2 != 5) err = 2;
+    if (lv.v3 != 27) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_C_C() c.I_C_C {
     return .{ .v1 = 9281, .v2 = 5, .v3 = 27 };
@@ -4909,13 +5227,15 @@ test "I_C_D C calls" {
     try testing.expectEqual(c.ret_I_C_D(), .{ .v1 = 11, .v2 = 124, .v3 = -2.125 });
     try testing.expectOk(c.assert_ret_I_C_D());
     try testing.expectOk(c.send_I_C_D());
-    try testing.expectOk(c.recv_I_C_D(.{ .v1 = 11, .v2 = 124, .v3 = -2.125 }));
+    try testing.expectOk(c.assert_I_C_D(.{ .v1 = 11, .v2 = 124, .v3 = -2.125 }));
 }
-pub export fn zig_recv_I_C_D(lv: c.I_C_D) c_int {
-    if (lv.v1 != 11) return 1;
-    if (lv.v2 != 124) return 2;
-    if (lv.v3 != -2.125) return 3;
-    return 0;
+pub export fn zig_assert_I_C_D(lv: c.I_C_D) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 11) err = 1;
+    if (lv.v2 != 124) err = 2;
+    if (lv.v3 != -2.125) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_C_D() c.I_C_D {
     return .{ .v1 = 11, .v2 = 124, .v3 = -2.125 };
@@ -4940,13 +5260,15 @@ test "I_C_F C calls" {
     try testing.expectEqual(c.ret_I_C_F(), .{ .v1 = 22444, .v2 = 7, .v3 = 0.5 });
     try testing.expectOk(c.assert_ret_I_C_F());
     try testing.expectOk(c.send_I_C_F());
-    try testing.expectOk(c.recv_I_C_F(.{ .v1 = 22444, .v2 = 7, .v3 = 0.5 }));
+    try testing.expectOk(c.assert_I_C_F(.{ .v1 = 22444, .v2 = 7, .v3 = 0.5 }));
 }
-pub export fn zig_recv_I_C_F(lv: c.I_C_F) c_int {
-    if (lv.v1 != 22444) return 1;
-    if (lv.v2 != 7) return 2;
-    if (lv.v3 != 0.5) return 3;
-    return 0;
+pub export fn zig_assert_I_C_F(lv: c.I_C_F) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 22444) err = 1;
+    if (lv.v2 != 7) err = 2;
+    if (lv.v3 != 0.5) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_C_F() c.I_C_F {
     return .{ .v1 = 22444, .v2 = 7, .v3 = 0.5 };
@@ -4971,13 +5293,15 @@ test "I_C_I C calls" {
     try testing.expectEqual(c.ret_I_C_I(), .{ .v1 = 3062, .v2 = 32, .v3 = 3299 });
     try testing.expectOk(c.assert_ret_I_C_I());
     try testing.expectOk(c.send_I_C_I());
-    try testing.expectOk(c.recv_I_C_I(.{ .v1 = 3062, .v2 = 32, .v3 = 3299 }));
+    try testing.expectOk(c.assert_I_C_I(.{ .v1 = 3062, .v2 = 32, .v3 = 3299 }));
 }
-pub export fn zig_recv_I_C_I(lv: c.I_C_I) c_int {
-    if (lv.v1 != 3062) return 1;
-    if (lv.v2 != 32) return 2;
-    if (lv.v3 != 3299) return 3;
-    return 0;
+pub export fn zig_assert_I_C_I(lv: c.I_C_I) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 3062) err = 1;
+    if (lv.v2 != 32) err = 2;
+    if (lv.v3 != 3299) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_C_I() c.I_C_I {
     return .{ .v1 = 3062, .v2 = 32, .v3 = 3299 };
@@ -5002,13 +5326,15 @@ test "I_C_Ip C calls" {
     try testing.expectEqual(c.ret_I_C_Ip(), .{ .v1 = 1006, .v2 = 27, .v3 = null });
     try testing.expectOk(c.assert_ret_I_C_Ip());
     try testing.expectOk(c.send_I_C_Ip());
-    try testing.expectOk(c.recv_I_C_Ip(.{ .v1 = 1006, .v2 = 27, .v3 = null }));
+    try testing.expectOk(c.assert_I_C_Ip(.{ .v1 = 1006, .v2 = 27, .v3 = null }));
 }
-pub export fn zig_recv_I_C_Ip(lv: c.I_C_Ip) c_int {
-    if (lv.v1 != 1006) return 1;
-    if (lv.v2 != 27) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_I_C_Ip(lv: c.I_C_Ip) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 1006) err = 1;
+    if (lv.v2 != 27) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_C_Ip() c.I_C_Ip {
     return .{ .v1 = 1006, .v2 = 27, .v3 = null };
@@ -5033,13 +5359,15 @@ test "I_C_L C calls" {
     try testing.expectEqual(c.ret_I_C_L(), .{ .v1 = 2698, .v2 = 125, .v3 = 27877 });
     try testing.expectOk(c.assert_ret_I_C_L());
     try testing.expectOk(c.send_I_C_L());
-    try testing.expectOk(c.recv_I_C_L(.{ .v1 = 2698, .v2 = 125, .v3 = 27877 }));
+    try testing.expectOk(c.assert_I_C_L(.{ .v1 = 2698, .v2 = 125, .v3 = 27877 }));
 }
-pub export fn zig_recv_I_C_L(lv: c.I_C_L) c_int {
-    if (lv.v1 != 2698) return 1;
-    if (lv.v2 != 125) return 2;
-    if (lv.v3 != 27877) return 3;
-    return 0;
+pub export fn zig_assert_I_C_L(lv: c.I_C_L) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 2698) err = 1;
+    if (lv.v2 != 125) err = 2;
+    if (lv.v3 != 27877) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_C_L() c.I_C_L {
     return .{ .v1 = 2698, .v2 = 125, .v3 = 27877 };
@@ -5064,13 +5392,15 @@ test "I_C_S C calls" {
     try testing.expectEqual(c.ret_I_C_S(), .{ .v1 = 8815, .v2 = 126, .v3 = 10343 });
     try testing.expectOk(c.assert_ret_I_C_S());
     try testing.expectOk(c.send_I_C_S());
-    try testing.expectOk(c.recv_I_C_S(.{ .v1 = 8815, .v2 = 126, .v3 = 10343 }));
+    try testing.expectOk(c.assert_I_C_S(.{ .v1 = 8815, .v2 = 126, .v3 = 10343 }));
 }
-pub export fn zig_recv_I_C_S(lv: c.I_C_S) c_int {
-    if (lv.v1 != 8815) return 1;
-    if (lv.v2 != 126) return 2;
-    if (lv.v3 != 10343) return 3;
-    return 0;
+pub export fn zig_assert_I_C_S(lv: c.I_C_S) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 8815) err = 1;
+    if (lv.v2 != 126) err = 2;
+    if (lv.v3 != 10343) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_C_S() c.I_C_S {
     return .{ .v1 = 8815, .v2 = 126, .v3 = 10343 };
@@ -5095,13 +5425,15 @@ test "I_C_Uc C calls" {
     try testing.expectEqual(c.ret_I_C_Uc(), .{ .v1 = 9659, .v2 = 11, .v3 = 95 });
     try testing.expectOk(c.assert_ret_I_C_Uc());
     try testing.expectOk(c.send_I_C_Uc());
-    try testing.expectOk(c.recv_I_C_Uc(.{ .v1 = 9659, .v2 = 11, .v3 = 95 }));
+    try testing.expectOk(c.assert_I_C_Uc(.{ .v1 = 9659, .v2 = 11, .v3 = 95 }));
 }
-pub export fn zig_recv_I_C_Uc(lv: c.I_C_Uc) c_int {
-    if (lv.v1 != 9659) return 1;
-    if (lv.v2 != 11) return 2;
-    if (lv.v3 != 95) return 3;
-    return 0;
+pub export fn zig_assert_I_C_Uc(lv: c.I_C_Uc) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 9659) err = 1;
+    if (lv.v2 != 11) err = 2;
+    if (lv.v3 != 95) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_C_Uc() c.I_C_Uc {
     return .{ .v1 = 9659, .v2 = 11, .v3 = 95 };
@@ -5126,13 +5458,15 @@ test "I_C_Ui C calls" {
     try testing.expectEqual(c.ret_I_C_Ui(), .{ .v1 = 12781, .v2 = 106, .v3 = 4108 });
     try testing.expectOk(c.assert_ret_I_C_Ui());
     try testing.expectOk(c.send_I_C_Ui());
-    try testing.expectOk(c.recv_I_C_Ui(.{ .v1 = 12781, .v2 = 106, .v3 = 4108 }));
+    try testing.expectOk(c.assert_I_C_Ui(.{ .v1 = 12781, .v2 = 106, .v3 = 4108 }));
 }
-pub export fn zig_recv_I_C_Ui(lv: c.I_C_Ui) c_int {
-    if (lv.v1 != 12781) return 1;
-    if (lv.v2 != 106) return 2;
-    if (lv.v3 != 4108) return 3;
-    return 0;
+pub export fn zig_assert_I_C_Ui(lv: c.I_C_Ui) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 12781) err = 1;
+    if (lv.v2 != 106) err = 2;
+    if (lv.v3 != 4108) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_C_Ui() c.I_C_Ui {
     return .{ .v1 = 12781, .v2 = 106, .v3 = 4108 };
@@ -5157,13 +5491,15 @@ test "I_C_Ul C calls" {
     try testing.expectEqual(c.ret_I_C_Ul(), .{ .v1 = 6776, .v2 = 16, .v3 = 8336 });
     try testing.expectOk(c.assert_ret_I_C_Ul());
     try testing.expectOk(c.send_I_C_Ul());
-    try testing.expectOk(c.recv_I_C_Ul(.{ .v1 = 6776, .v2 = 16, .v3 = 8336 }));
+    try testing.expectOk(c.assert_I_C_Ul(.{ .v1 = 6776, .v2 = 16, .v3 = 8336 }));
 }
-pub export fn zig_recv_I_C_Ul(lv: c.I_C_Ul) c_int {
-    if (lv.v1 != 6776) return 1;
-    if (lv.v2 != 16) return 2;
-    if (lv.v3 != 8336) return 3;
-    return 0;
+pub export fn zig_assert_I_C_Ul(lv: c.I_C_Ul) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 6776) err = 1;
+    if (lv.v2 != 16) err = 2;
+    if (lv.v3 != 8336) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_C_Ul() c.I_C_Ul {
     return .{ .v1 = 6776, .v2 = 16, .v3 = 8336 };
@@ -5188,13 +5524,15 @@ test "I_C_Us C calls" {
     try testing.expectEqual(c.ret_I_C_Us(), .{ .v1 = 9679, .v2 = 50, .v3 = 19135 });
     try testing.expectOk(c.assert_ret_I_C_Us());
     try testing.expectOk(c.send_I_C_Us());
-    try testing.expectOk(c.recv_I_C_Us(.{ .v1 = 9679, .v2 = 50, .v3 = 19135 }));
+    try testing.expectOk(c.assert_I_C_Us(.{ .v1 = 9679, .v2 = 50, .v3 = 19135 }));
 }
-pub export fn zig_recv_I_C_Us(lv: c.I_C_Us) c_int {
-    if (lv.v1 != 9679) return 1;
-    if (lv.v2 != 50) return 2;
-    if (lv.v3 != 19135) return 3;
-    return 0;
+pub export fn zig_assert_I_C_Us(lv: c.I_C_Us) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 9679) err = 1;
+    if (lv.v2 != 50) err = 2;
+    if (lv.v3 != 19135) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_C_Us() c.I_C_Us {
     return .{ .v1 = 9679, .v2 = 50, .v3 = 19135 };
@@ -5219,13 +5557,15 @@ test "I_C_Vp C calls" {
     try testing.expectEqual(c.ret_I_C_Vp(), .{ .v1 = 5526, .v2 = 73, .v3 = null });
     try testing.expectOk(c.assert_ret_I_C_Vp());
     try testing.expectOk(c.send_I_C_Vp());
-    try testing.expectOk(c.recv_I_C_Vp(.{ .v1 = 5526, .v2 = 73, .v3 = null }));
+    try testing.expectOk(c.assert_I_C_Vp(.{ .v1 = 5526, .v2 = 73, .v3 = null }));
 }
-pub export fn zig_recv_I_C_Vp(lv: c.I_C_Vp) c_int {
-    if (lv.v1 != 5526) return 1;
-    if (lv.v2 != 73) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_I_C_Vp(lv: c.I_C_Vp) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 5526) err = 1;
+    if (lv.v2 != 73) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_C_Vp() c.I_C_Vp {
     return .{ .v1 = 5526, .v2 = 73, .v3 = null };
@@ -5248,12 +5588,14 @@ test "I_D C calls" {
     try testing.expectEqual(c.ret_I_D(), .{ .v1 = 20372, .v2 = -2.125 });
     try testing.expectOk(c.assert_ret_I_D());
     try testing.expectOk(c.send_I_D());
-    try testing.expectOk(c.recv_I_D(.{ .v1 = 20372, .v2 = -2.125 }));
+    try testing.expectOk(c.assert_I_D(.{ .v1 = 20372, .v2 = -2.125 }));
 }
-pub export fn zig_recv_I_D(lv: c.I_D) c_int {
-    if (lv.v1 != 20372) return 1;
-    if (lv.v2 != -2.125) return 2;
-    return 0;
+pub export fn zig_assert_I_D(lv: c.I_D) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 20372) err = 1;
+    if (lv.v2 != -2.125) err = 2;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_D() c.I_D {
     return .{ .v1 = 20372, .v2 = -2.125 };
@@ -5278,13 +5620,15 @@ test "I_D_C C calls" {
     try testing.expectEqual(c.ret_I_D_C(), .{ .v1 = 12641, .v2 = 0.875, .v3 = 101 });
     try testing.expectOk(c.assert_ret_I_D_C());
     try testing.expectOk(c.send_I_D_C());
-    try testing.expectOk(c.recv_I_D_C(.{ .v1 = 12641, .v2 = 0.875, .v3 = 101 }));
+    try testing.expectOk(c.assert_I_D_C(.{ .v1 = 12641, .v2 = 0.875, .v3 = 101 }));
 }
-pub export fn zig_recv_I_D_C(lv: c.I_D_C) c_int {
-    if (lv.v1 != 12641) return 1;
-    if (lv.v2 != 0.875) return 2;
-    if (lv.v3 != 101) return 3;
-    return 0;
+pub export fn zig_assert_I_D_C(lv: c.I_D_C) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 12641) err = 1;
+    if (lv.v2 != 0.875) err = 2;
+    if (lv.v3 != 101) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_D_C() c.I_D_C {
     return .{ .v1 = 12641, .v2 = 0.875, .v3 = 101 };
@@ -5309,13 +5653,15 @@ test "I_D_D C calls" {
     try testing.expectEqual(c.ret_I_D_D(), .{ .v1 = 2553, .v2 = 0.875, .v3 = 0.875 });
     try testing.expectOk(c.assert_ret_I_D_D());
     try testing.expectOk(c.send_I_D_D());
-    try testing.expectOk(c.recv_I_D_D(.{ .v1 = 2553, .v2 = 0.875, .v3 = 0.875 }));
+    try testing.expectOk(c.assert_I_D_D(.{ .v1 = 2553, .v2 = 0.875, .v3 = 0.875 }));
 }
-pub export fn zig_recv_I_D_D(lv: c.I_D_D) c_int {
-    if (lv.v1 != 2553) return 1;
-    if (lv.v2 != 0.875) return 2;
-    if (lv.v3 != 0.875) return 3;
-    return 0;
+pub export fn zig_assert_I_D_D(lv: c.I_D_D) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 2553) err = 1;
+    if (lv.v2 != 0.875) err = 2;
+    if (lv.v3 != 0.875) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_D_D() c.I_D_D {
     return .{ .v1 = 2553, .v2 = 0.875, .v3 = 0.875 };
@@ -5340,13 +5686,15 @@ test "I_D_F C calls" {
     try testing.expectEqual(c.ret_I_D_F(), .{ .v1 = 27668, .v2 = -0.25, .v3 = 7.0 });
     try testing.expectOk(c.assert_ret_I_D_F());
     try testing.expectOk(c.send_I_D_F());
-    try testing.expectOk(c.recv_I_D_F(.{ .v1 = 27668, .v2 = -0.25, .v3 = 7.0 }));
+    try testing.expectOk(c.assert_I_D_F(.{ .v1 = 27668, .v2 = -0.25, .v3 = 7.0 }));
 }
-pub export fn zig_recv_I_D_F(lv: c.I_D_F) c_int {
-    if (lv.v1 != 27668) return 1;
-    if (lv.v2 != -0.25) return 2;
-    if (lv.v3 != 7.0) return 3;
-    return 0;
+pub export fn zig_assert_I_D_F(lv: c.I_D_F) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 27668) err = 1;
+    if (lv.v2 != -0.25) err = 2;
+    if (lv.v3 != 7.0) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_D_F() c.I_D_F {
     return .{ .v1 = 27668, .v2 = -0.25, .v3 = 7.0 };
@@ -5371,13 +5719,15 @@ test "I_D_I C calls" {
     try testing.expectEqual(c.ret_I_D_I(), .{ .v1 = 1093, .v2 = 7.0, .v3 = 17976 });
     try testing.expectOk(c.assert_ret_I_D_I());
     try testing.expectOk(c.send_I_D_I());
-    try testing.expectOk(c.recv_I_D_I(.{ .v1 = 1093, .v2 = 7.0, .v3 = 17976 }));
+    try testing.expectOk(c.assert_I_D_I(.{ .v1 = 1093, .v2 = 7.0, .v3 = 17976 }));
 }
-pub export fn zig_recv_I_D_I(lv: c.I_D_I) c_int {
-    if (lv.v1 != 1093) return 1;
-    if (lv.v2 != 7.0) return 2;
-    if (lv.v3 != 17976) return 3;
-    return 0;
+pub export fn zig_assert_I_D_I(lv: c.I_D_I) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 1093) err = 1;
+    if (lv.v2 != 7.0) err = 2;
+    if (lv.v3 != 17976) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_D_I() c.I_D_I {
     return .{ .v1 = 1093, .v2 = 7.0, .v3 = 17976 };
@@ -5402,13 +5752,15 @@ test "I_D_Ip C calls" {
     try testing.expectEqual(c.ret_I_D_Ip(), .{ .v1 = 1902, .v2 = 7.0, .v3 = null });
     try testing.expectOk(c.assert_ret_I_D_Ip());
     try testing.expectOk(c.send_I_D_Ip());
-    try testing.expectOk(c.recv_I_D_Ip(.{ .v1 = 1902, .v2 = 7.0, .v3 = null }));
+    try testing.expectOk(c.assert_I_D_Ip(.{ .v1 = 1902, .v2 = 7.0, .v3 = null }));
 }
-pub export fn zig_recv_I_D_Ip(lv: c.I_D_Ip) c_int {
-    if (lv.v1 != 1902) return 1;
-    if (lv.v2 != 7.0) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_I_D_Ip(lv: c.I_D_Ip) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 1902) err = 1;
+    if (lv.v2 != 7.0) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_D_Ip() c.I_D_Ip {
     return .{ .v1 = 1902, .v2 = 7.0, .v3 = null };
@@ -5433,13 +5785,15 @@ test "I_D_L C calls" {
     try testing.expectEqual(c.ret_I_D_L(), .{ .v1 = 29, .v2 = 0.875, .v3 = 10866 });
     try testing.expectOk(c.assert_ret_I_D_L());
     try testing.expectOk(c.send_I_D_L());
-    try testing.expectOk(c.recv_I_D_L(.{ .v1 = 29, .v2 = 0.875, .v3 = 10866 }));
+    try testing.expectOk(c.assert_I_D_L(.{ .v1 = 29, .v2 = 0.875, .v3 = 10866 }));
 }
-pub export fn zig_recv_I_D_L(lv: c.I_D_L) c_int {
-    if (lv.v1 != 29) return 1;
-    if (lv.v2 != 0.875) return 2;
-    if (lv.v3 != 10866) return 3;
-    return 0;
+pub export fn zig_assert_I_D_L(lv: c.I_D_L) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 29) err = 1;
+    if (lv.v2 != 0.875) err = 2;
+    if (lv.v3 != 10866) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_D_L() c.I_D_L {
     return .{ .v1 = 29, .v2 = 0.875, .v3 = 10866 };
@@ -5464,13 +5818,15 @@ test "I_D_S C calls" {
     try testing.expectEqual(c.ret_I_D_S(), .{ .v1 = 21029, .v2 = 0.5, .v3 = 12193 });
     try testing.expectOk(c.assert_ret_I_D_S());
     try testing.expectOk(c.send_I_D_S());
-    try testing.expectOk(c.recv_I_D_S(.{ .v1 = 21029, .v2 = 0.5, .v3 = 12193 }));
+    try testing.expectOk(c.assert_I_D_S(.{ .v1 = 21029, .v2 = 0.5, .v3 = 12193 }));
 }
-pub export fn zig_recv_I_D_S(lv: c.I_D_S) c_int {
-    if (lv.v1 != 21029) return 1;
-    if (lv.v2 != 0.5) return 2;
-    if (lv.v3 != 12193) return 3;
-    return 0;
+pub export fn zig_assert_I_D_S(lv: c.I_D_S) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 21029) err = 1;
+    if (lv.v2 != 0.5) err = 2;
+    if (lv.v3 != 12193) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_D_S() c.I_D_S {
     return .{ .v1 = 21029, .v2 = 0.5, .v3 = 12193 };
@@ -5495,13 +5851,15 @@ test "I_D_Uc C calls" {
     try testing.expectEqual(c.ret_I_D_Uc(), .{ .v1 = 26572, .v2 = 0.875, .v3 = 77 });
     try testing.expectOk(c.assert_ret_I_D_Uc());
     try testing.expectOk(c.send_I_D_Uc());
-    try testing.expectOk(c.recv_I_D_Uc(.{ .v1 = 26572, .v2 = 0.875, .v3 = 77 }));
+    try testing.expectOk(c.assert_I_D_Uc(.{ .v1 = 26572, .v2 = 0.875, .v3 = 77 }));
 }
-pub export fn zig_recv_I_D_Uc(lv: c.I_D_Uc) c_int {
-    if (lv.v1 != 26572) return 1;
-    if (lv.v2 != 0.875) return 2;
-    if (lv.v3 != 77) return 3;
-    return 0;
+pub export fn zig_assert_I_D_Uc(lv: c.I_D_Uc) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 26572) err = 1;
+    if (lv.v2 != 0.875) err = 2;
+    if (lv.v3 != 77) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_D_Uc() c.I_D_Uc {
     return .{ .v1 = 26572, .v2 = 0.875, .v3 = 77 };
@@ -5526,13 +5884,15 @@ test "I_D_Ui C calls" {
     try testing.expectEqual(c.ret_I_D_Ui(), .{ .v1 = 17463, .v2 = 0.5, .v3 = 30633 });
     try testing.expectOk(c.assert_ret_I_D_Ui());
     try testing.expectOk(c.send_I_D_Ui());
-    try testing.expectOk(c.recv_I_D_Ui(.{ .v1 = 17463, .v2 = 0.5, .v3 = 30633 }));
+    try testing.expectOk(c.assert_I_D_Ui(.{ .v1 = 17463, .v2 = 0.5, .v3 = 30633 }));
 }
-pub export fn zig_recv_I_D_Ui(lv: c.I_D_Ui) c_int {
-    if (lv.v1 != 17463) return 1;
-    if (lv.v2 != 0.5) return 2;
-    if (lv.v3 != 30633) return 3;
-    return 0;
+pub export fn zig_assert_I_D_Ui(lv: c.I_D_Ui) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 17463) err = 1;
+    if (lv.v2 != 0.5) err = 2;
+    if (lv.v3 != 30633) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_D_Ui() c.I_D_Ui {
     return .{ .v1 = 17463, .v2 = 0.5, .v3 = 30633 };
@@ -5557,13 +5917,15 @@ test "I_D_Ul C calls" {
     try testing.expectEqual(c.ret_I_D_Ul(), .{ .v1 = 23110, .v2 = 0.875, .v3 = 5933 });
     try testing.expectOk(c.assert_ret_I_D_Ul());
     try testing.expectOk(c.send_I_D_Ul());
-    try testing.expectOk(c.recv_I_D_Ul(.{ .v1 = 23110, .v2 = 0.875, .v3 = 5933 }));
+    try testing.expectOk(c.assert_I_D_Ul(.{ .v1 = 23110, .v2 = 0.875, .v3 = 5933 }));
 }
-pub export fn zig_recv_I_D_Ul(lv: c.I_D_Ul) c_int {
-    if (lv.v1 != 23110) return 1;
-    if (lv.v2 != 0.875) return 2;
-    if (lv.v3 != 5933) return 3;
-    return 0;
+pub export fn zig_assert_I_D_Ul(lv: c.I_D_Ul) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 23110) err = 1;
+    if (lv.v2 != 0.875) err = 2;
+    if (lv.v3 != 5933) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_D_Ul() c.I_D_Ul {
     return .{ .v1 = 23110, .v2 = 0.875, .v3 = 5933 };
@@ -5588,13 +5950,15 @@ test "I_D_Us C calls" {
     try testing.expectEqual(c.ret_I_D_Us(), .{ .v1 = 10730, .v2 = 7.0, .v3 = 2491 });
     try testing.expectOk(c.assert_ret_I_D_Us());
     try testing.expectOk(c.send_I_D_Us());
-    try testing.expectOk(c.recv_I_D_Us(.{ .v1 = 10730, .v2 = 7.0, .v3 = 2491 }));
+    try testing.expectOk(c.assert_I_D_Us(.{ .v1 = 10730, .v2 = 7.0, .v3 = 2491 }));
 }
-pub export fn zig_recv_I_D_Us(lv: c.I_D_Us) c_int {
-    if (lv.v1 != 10730) return 1;
-    if (lv.v2 != 7.0) return 2;
-    if (lv.v3 != 2491) return 3;
-    return 0;
+pub export fn zig_assert_I_D_Us(lv: c.I_D_Us) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 10730) err = 1;
+    if (lv.v2 != 7.0) err = 2;
+    if (lv.v3 != 2491) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_D_Us() c.I_D_Us {
     return .{ .v1 = 10730, .v2 = 7.0, .v3 = 2491 };
@@ -5619,13 +5983,15 @@ test "I_D_Vp C calls" {
     try testing.expectEqual(c.ret_I_D_Vp(), .{ .v1 = 16938, .v2 = -0.25, .v3 = null });
     try testing.expectOk(c.assert_ret_I_D_Vp());
     try testing.expectOk(c.send_I_D_Vp());
-    try testing.expectOk(c.recv_I_D_Vp(.{ .v1 = 16938, .v2 = -0.25, .v3 = null }));
+    try testing.expectOk(c.assert_I_D_Vp(.{ .v1 = 16938, .v2 = -0.25, .v3 = null }));
 }
-pub export fn zig_recv_I_D_Vp(lv: c.I_D_Vp) c_int {
-    if (lv.v1 != 16938) return 1;
-    if (lv.v2 != -0.25) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_I_D_Vp(lv: c.I_D_Vp) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 16938) err = 1;
+    if (lv.v2 != -0.25) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_D_Vp() c.I_D_Vp {
     return .{ .v1 = 16938, .v2 = -0.25, .v3 = null };
@@ -5648,12 +6014,14 @@ test "I_F C calls" {
     try testing.expectEqual(c.ret_I_F(), .{ .v1 = 18073, .v2 = 7.0 });
     try testing.expectOk(c.assert_ret_I_F());
     try testing.expectOk(c.send_I_F());
-    try testing.expectOk(c.recv_I_F(.{ .v1 = 18073, .v2 = 7.0 }));
+    try testing.expectOk(c.assert_I_F(.{ .v1 = 18073, .v2 = 7.0 }));
 }
-pub export fn zig_recv_I_F(lv: c.I_F) c_int {
-    if (lv.v1 != 18073) return 1;
-    if (lv.v2 != 7.0) return 2;
-    return 0;
+pub export fn zig_assert_I_F(lv: c.I_F) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 18073) err = 1;
+    if (lv.v2 != 7.0) err = 2;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_F() c.I_F {
     return .{ .v1 = 18073, .v2 = 7.0 };
@@ -5678,13 +6046,15 @@ test "I_F_C C calls" {
     try testing.expectEqual(c.ret_I_F_C(), .{ .v1 = 22692, .v2 = 4.5, .v3 = 92 });
     try testing.expectOk(c.assert_ret_I_F_C());
     try testing.expectOk(c.send_I_F_C());
-    try testing.expectOk(c.recv_I_F_C(.{ .v1 = 22692, .v2 = 4.5, .v3 = 92 }));
+    try testing.expectOk(c.assert_I_F_C(.{ .v1 = 22692, .v2 = 4.5, .v3 = 92 }));
 }
-pub export fn zig_recv_I_F_C(lv: c.I_F_C) c_int {
-    if (lv.v1 != 22692) return 1;
-    if (lv.v2 != 4.5) return 2;
-    if (lv.v3 != 92) return 3;
-    return 0;
+pub export fn zig_assert_I_F_C(lv: c.I_F_C) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 22692) err = 1;
+    if (lv.v2 != 4.5) err = 2;
+    if (lv.v3 != 92) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_F_C() c.I_F_C {
     return .{ .v1 = 22692, .v2 = 4.5, .v3 = 92 };
@@ -5709,13 +6079,15 @@ test "I_F_D C calls" {
     try testing.expectEqual(c.ret_I_F_D(), .{ .v1 = 12941, .v2 = 0.875, .v3 = 0.5 });
     try testing.expectOk(c.assert_ret_I_F_D());
     try testing.expectOk(c.send_I_F_D());
-    try testing.expectOk(c.recv_I_F_D(.{ .v1 = 12941, .v2 = 0.875, .v3 = 0.5 }));
+    try testing.expectOk(c.assert_I_F_D(.{ .v1 = 12941, .v2 = 0.875, .v3 = 0.5 }));
 }
-pub export fn zig_recv_I_F_D(lv: c.I_F_D) c_int {
-    if (lv.v1 != 12941) return 1;
-    if (lv.v2 != 0.875) return 2;
-    if (lv.v3 != 0.5) return 3;
-    return 0;
+pub export fn zig_assert_I_F_D(lv: c.I_F_D) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 12941) err = 1;
+    if (lv.v2 != 0.875) err = 2;
+    if (lv.v3 != 0.5) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_F_D() c.I_F_D {
     return .{ .v1 = 12941, .v2 = 0.875, .v3 = 0.5 };
@@ -5740,13 +6112,15 @@ test "I_F_F C calls" {
     try testing.expectEqual(c.ret_I_F_F(), .{ .v1 = 2124, .v2 = -0.25, .v3 = 7.0 });
     try testing.expectOk(c.assert_ret_I_F_F());
     try testing.expectOk(c.send_I_F_F());
-    try testing.expectOk(c.recv_I_F_F(.{ .v1 = 2124, .v2 = -0.25, .v3 = 7.0 }));
+    try testing.expectOk(c.assert_I_F_F(.{ .v1 = 2124, .v2 = -0.25, .v3 = 7.0 }));
 }
-pub export fn zig_recv_I_F_F(lv: c.I_F_F) c_int {
-    if (lv.v1 != 2124) return 1;
-    if (lv.v2 != -0.25) return 2;
-    if (lv.v3 != 7.0) return 3;
-    return 0;
+pub export fn zig_assert_I_F_F(lv: c.I_F_F) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 2124) err = 1;
+    if (lv.v2 != -0.25) err = 2;
+    if (lv.v3 != 7.0) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_F_F() c.I_F_F {
     return .{ .v1 = 2124, .v2 = -0.25, .v3 = 7.0 };
@@ -5771,13 +6145,15 @@ test "I_F_I C calls" {
     try testing.expectEqual(c.ret_I_F_I(), .{ .v1 = 1040, .v2 = -2.125, .v3 = 3590 });
     try testing.expectOk(c.assert_ret_I_F_I());
     try testing.expectOk(c.send_I_F_I());
-    try testing.expectOk(c.recv_I_F_I(.{ .v1 = 1040, .v2 = -2.125, .v3 = 3590 }));
+    try testing.expectOk(c.assert_I_F_I(.{ .v1 = 1040, .v2 = -2.125, .v3 = 3590 }));
 }
-pub export fn zig_recv_I_F_I(lv: c.I_F_I) c_int {
-    if (lv.v1 != 1040) return 1;
-    if (lv.v2 != -2.125) return 2;
-    if (lv.v3 != 3590) return 3;
-    return 0;
+pub export fn zig_assert_I_F_I(lv: c.I_F_I) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 1040) err = 1;
+    if (lv.v2 != -2.125) err = 2;
+    if (lv.v3 != 3590) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_F_I() c.I_F_I {
     return .{ .v1 = 1040, .v2 = -2.125, .v3 = 3590 };
@@ -5802,13 +6178,15 @@ test "I_F_Ip C calls" {
     try testing.expectEqual(c.ret_I_F_Ip(), .{ .v1 = 5132, .v2 = 0.5, .v3 = null });
     try testing.expectOk(c.assert_ret_I_F_Ip());
     try testing.expectOk(c.send_I_F_Ip());
-    try testing.expectOk(c.recv_I_F_Ip(.{ .v1 = 5132, .v2 = 0.5, .v3 = null }));
+    try testing.expectOk(c.assert_I_F_Ip(.{ .v1 = 5132, .v2 = 0.5, .v3 = null }));
 }
-pub export fn zig_recv_I_F_Ip(lv: c.I_F_Ip) c_int {
-    if (lv.v1 != 5132) return 1;
-    if (lv.v2 != 0.5) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_I_F_Ip(lv: c.I_F_Ip) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 5132) err = 1;
+    if (lv.v2 != 0.5) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_F_Ip() c.I_F_Ip {
     return .{ .v1 = 5132, .v2 = 0.5, .v3 = null };
@@ -5833,13 +6211,15 @@ test "I_F_L C calls" {
     try testing.expectEqual(c.ret_I_F_L(), .{ .v1 = 9972, .v2 = 7.0, .v3 = 27944 });
     try testing.expectOk(c.assert_ret_I_F_L());
     try testing.expectOk(c.send_I_F_L());
-    try testing.expectOk(c.recv_I_F_L(.{ .v1 = 9972, .v2 = 7.0, .v3 = 27944 }));
+    try testing.expectOk(c.assert_I_F_L(.{ .v1 = 9972, .v2 = 7.0, .v3 = 27944 }));
 }
-pub export fn zig_recv_I_F_L(lv: c.I_F_L) c_int {
-    if (lv.v1 != 9972) return 1;
-    if (lv.v2 != 7.0) return 2;
-    if (lv.v3 != 27944) return 3;
-    return 0;
+pub export fn zig_assert_I_F_L(lv: c.I_F_L) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 9972) err = 1;
+    if (lv.v2 != 7.0) err = 2;
+    if (lv.v3 != 27944) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_F_L() c.I_F_L {
     return .{ .v1 = 9972, .v2 = 7.0, .v3 = 27944 };
@@ -5864,13 +6244,15 @@ test "I_F_S C calls" {
     try testing.expectEqual(c.ret_I_F_S(), .{ .v1 = 22732, .v2 = 4.5, .v3 = 27757 });
     try testing.expectOk(c.assert_ret_I_F_S());
     try testing.expectOk(c.send_I_F_S());
-    try testing.expectOk(c.recv_I_F_S(.{ .v1 = 22732, .v2 = 4.5, .v3 = 27757 }));
+    try testing.expectOk(c.assert_I_F_S(.{ .v1 = 22732, .v2 = 4.5, .v3 = 27757 }));
 }
-pub export fn zig_recv_I_F_S(lv: c.I_F_S) c_int {
-    if (lv.v1 != 22732) return 1;
-    if (lv.v2 != 4.5) return 2;
-    if (lv.v3 != 27757) return 3;
-    return 0;
+pub export fn zig_assert_I_F_S(lv: c.I_F_S) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 22732) err = 1;
+    if (lv.v2 != 4.5) err = 2;
+    if (lv.v3 != 27757) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_F_S() c.I_F_S {
     return .{ .v1 = 22732, .v2 = 4.5, .v3 = 27757 };
@@ -5895,13 +6277,15 @@ test "I_F_Uc C calls" {
     try testing.expectEqual(c.ret_I_F_Uc(), .{ .v1 = 2422, .v2 = -0.25, .v3 = 125 });
     try testing.expectOk(c.assert_ret_I_F_Uc());
     try testing.expectOk(c.send_I_F_Uc());
-    try testing.expectOk(c.recv_I_F_Uc(.{ .v1 = 2422, .v2 = -0.25, .v3 = 125 }));
+    try testing.expectOk(c.assert_I_F_Uc(.{ .v1 = 2422, .v2 = -0.25, .v3 = 125 }));
 }
-pub export fn zig_recv_I_F_Uc(lv: c.I_F_Uc) c_int {
-    if (lv.v1 != 2422) return 1;
-    if (lv.v2 != -0.25) return 2;
-    if (lv.v3 != 125) return 3;
-    return 0;
+pub export fn zig_assert_I_F_Uc(lv: c.I_F_Uc) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 2422) err = 1;
+    if (lv.v2 != -0.25) err = 2;
+    if (lv.v3 != 125) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_F_Uc() c.I_F_Uc {
     return .{ .v1 = 2422, .v2 = -0.25, .v3 = 125 };
@@ -5926,13 +6310,15 @@ test "I_F_Ui C calls" {
     try testing.expectEqual(c.ret_I_F_Ui(), .{ .v1 = 2378, .v2 = 4.5, .v3 = 16314 });
     try testing.expectOk(c.assert_ret_I_F_Ui());
     try testing.expectOk(c.send_I_F_Ui());
-    try testing.expectOk(c.recv_I_F_Ui(.{ .v1 = 2378, .v2 = 4.5, .v3 = 16314 }));
+    try testing.expectOk(c.assert_I_F_Ui(.{ .v1 = 2378, .v2 = 4.5, .v3 = 16314 }));
 }
-pub export fn zig_recv_I_F_Ui(lv: c.I_F_Ui) c_int {
-    if (lv.v1 != 2378) return 1;
-    if (lv.v2 != 4.5) return 2;
-    if (lv.v3 != 16314) return 3;
-    return 0;
+pub export fn zig_assert_I_F_Ui(lv: c.I_F_Ui) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 2378) err = 1;
+    if (lv.v2 != 4.5) err = 2;
+    if (lv.v3 != 16314) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_F_Ui() c.I_F_Ui {
     return .{ .v1 = 2378, .v2 = 4.5, .v3 = 16314 };
@@ -5957,13 +6343,15 @@ test "I_F_Ul C calls" {
     try testing.expectEqual(c.ret_I_F_Ul(), .{ .v1 = 32591, .v2 = 7.0, .v3 = 2455 });
     try testing.expectOk(c.assert_ret_I_F_Ul());
     try testing.expectOk(c.send_I_F_Ul());
-    try testing.expectOk(c.recv_I_F_Ul(.{ .v1 = 32591, .v2 = 7.0, .v3 = 2455 }));
+    try testing.expectOk(c.assert_I_F_Ul(.{ .v1 = 32591, .v2 = 7.0, .v3 = 2455 }));
 }
-pub export fn zig_recv_I_F_Ul(lv: c.I_F_Ul) c_int {
-    if (lv.v1 != 32591) return 1;
-    if (lv.v2 != 7.0) return 2;
-    if (lv.v3 != 2455) return 3;
-    return 0;
+pub export fn zig_assert_I_F_Ul(lv: c.I_F_Ul) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 32591) err = 1;
+    if (lv.v2 != 7.0) err = 2;
+    if (lv.v3 != 2455) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_F_Ul() c.I_F_Ul {
     return .{ .v1 = 32591, .v2 = 7.0, .v3 = 2455 };
@@ -5988,13 +6376,15 @@ test "I_F_Us C calls" {
     try testing.expectEqual(c.ret_I_F_Us(), .{ .v1 = 24697, .v2 = -0.25, .v3 = 26553 });
     try testing.expectOk(c.assert_ret_I_F_Us());
     try testing.expectOk(c.send_I_F_Us());
-    try testing.expectOk(c.recv_I_F_Us(.{ .v1 = 24697, .v2 = -0.25, .v3 = 26553 }));
+    try testing.expectOk(c.assert_I_F_Us(.{ .v1 = 24697, .v2 = -0.25, .v3 = 26553 }));
 }
-pub export fn zig_recv_I_F_Us(lv: c.I_F_Us) c_int {
-    if (lv.v1 != 24697) return 1;
-    if (lv.v2 != -0.25) return 2;
-    if (lv.v3 != 26553) return 3;
-    return 0;
+pub export fn zig_assert_I_F_Us(lv: c.I_F_Us) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 24697) err = 1;
+    if (lv.v2 != -0.25) err = 2;
+    if (lv.v3 != 26553) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_F_Us() c.I_F_Us {
     return .{ .v1 = 24697, .v2 = -0.25, .v3 = 26553 };
@@ -6019,13 +6409,15 @@ test "I_F_Vp C calls" {
     try testing.expectEqual(c.ret_I_F_Vp(), .{ .v1 = 9459, .v2 = 4.5, .v3 = null });
     try testing.expectOk(c.assert_ret_I_F_Vp());
     try testing.expectOk(c.send_I_F_Vp());
-    try testing.expectOk(c.recv_I_F_Vp(.{ .v1 = 9459, .v2 = 4.5, .v3 = null }));
+    try testing.expectOk(c.assert_I_F_Vp(.{ .v1 = 9459, .v2 = 4.5, .v3 = null }));
 }
-pub export fn zig_recv_I_F_Vp(lv: c.I_F_Vp) c_int {
-    if (lv.v1 != 9459) return 1;
-    if (lv.v2 != 4.5) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_I_F_Vp(lv: c.I_F_Vp) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 9459) err = 1;
+    if (lv.v2 != 4.5) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_F_Vp() c.I_F_Vp {
     return .{ .v1 = 9459, .v2 = 4.5, .v3 = null };
@@ -6048,12 +6440,14 @@ test "I_I C calls" {
     try testing.expectEqual(c.ret_I_I(), .{ .v1 = 25696, .v2 = 22162 });
     try testing.expectOk(c.assert_ret_I_I());
     try testing.expectOk(c.send_I_I());
-    try testing.expectOk(c.recv_I_I(.{ .v1 = 25696, .v2 = 22162 }));
+    try testing.expectOk(c.assert_I_I(.{ .v1 = 25696, .v2 = 22162 }));
 }
-pub export fn zig_recv_I_I(lv: c.I_I) c_int {
-    if (lv.v1 != 25696) return 1;
-    if (lv.v2 != 22162) return 2;
-    return 0;
+pub export fn zig_assert_I_I(lv: c.I_I) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 25696) err = 1;
+    if (lv.v2 != 22162) err = 2;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_I() c.I_I {
     return .{ .v1 = 25696, .v2 = 22162 };
@@ -6078,13 +6472,15 @@ test "I_I_C C calls" {
     try testing.expectEqual(c.ret_I_I_C(), .{ .v1 = 10622, .v2 = 26317, .v3 = 54 });
     try testing.expectOk(c.assert_ret_I_I_C());
     try testing.expectOk(c.send_I_I_C());
-    try testing.expectOk(c.recv_I_I_C(.{ .v1 = 10622, .v2 = 26317, .v3 = 54 }));
+    try testing.expectOk(c.assert_I_I_C(.{ .v1 = 10622, .v2 = 26317, .v3 = 54 }));
 }
-pub export fn zig_recv_I_I_C(lv: c.I_I_C) c_int {
-    if (lv.v1 != 10622) return 1;
-    if (lv.v2 != 26317) return 2;
-    if (lv.v3 != 54) return 3;
-    return 0;
+pub export fn zig_assert_I_I_C(lv: c.I_I_C) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 10622) err = 1;
+    if (lv.v2 != 26317) err = 2;
+    if (lv.v3 != 54) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_I_C() c.I_I_C {
     return .{ .v1 = 10622, .v2 = 26317, .v3 = 54 };
@@ -6109,13 +6505,15 @@ test "I_I_D C calls" {
     try testing.expectEqual(c.ret_I_I_D(), .{ .v1 = 26453, .v2 = 22783, .v3 = 4.5 });
     try testing.expectOk(c.assert_ret_I_I_D());
     try testing.expectOk(c.send_I_I_D());
-    try testing.expectOk(c.recv_I_I_D(.{ .v1 = 26453, .v2 = 22783, .v3 = 4.5 }));
+    try testing.expectOk(c.assert_I_I_D(.{ .v1 = 26453, .v2 = 22783, .v3 = 4.5 }));
 }
-pub export fn zig_recv_I_I_D(lv: c.I_I_D) c_int {
-    if (lv.v1 != 26453) return 1;
-    if (lv.v2 != 22783) return 2;
-    if (lv.v3 != 4.5) return 3;
-    return 0;
+pub export fn zig_assert_I_I_D(lv: c.I_I_D) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 26453) err = 1;
+    if (lv.v2 != 22783) err = 2;
+    if (lv.v3 != 4.5) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_I_D() c.I_I_D {
     return .{ .v1 = 26453, .v2 = 22783, .v3 = 4.5 };
@@ -6140,13 +6538,15 @@ test "I_I_F C calls" {
     try testing.expectEqual(c.ret_I_I_F(), .{ .v1 = 25300, .v2 = 31232, .v3 = -0.25 });
     try testing.expectOk(c.assert_ret_I_I_F());
     try testing.expectOk(c.send_I_I_F());
-    try testing.expectOk(c.recv_I_I_F(.{ .v1 = 25300, .v2 = 31232, .v3 = -0.25 }));
+    try testing.expectOk(c.assert_I_I_F(.{ .v1 = 25300, .v2 = 31232, .v3 = -0.25 }));
 }
-pub export fn zig_recv_I_I_F(lv: c.I_I_F) c_int {
-    if (lv.v1 != 25300) return 1;
-    if (lv.v2 != 31232) return 2;
-    if (lv.v3 != -0.25) return 3;
-    return 0;
+pub export fn zig_assert_I_I_F(lv: c.I_I_F) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 25300) err = 1;
+    if (lv.v2 != 31232) err = 2;
+    if (lv.v3 != -0.25) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_I_F() c.I_I_F {
     return .{ .v1 = 25300, .v2 = 31232, .v3 = -0.25 };
@@ -6171,13 +6571,15 @@ test "I_I_I C calls" {
     try testing.expectEqual(c.ret_I_I_I(), .{ .v1 = 27961, .v2 = 24345, .v3 = 24769 });
     try testing.expectOk(c.assert_ret_I_I_I());
     try testing.expectOk(c.send_I_I_I());
-    try testing.expectOk(c.recv_I_I_I(.{ .v1 = 27961, .v2 = 24345, .v3 = 24769 }));
+    try testing.expectOk(c.assert_I_I_I(.{ .v1 = 27961, .v2 = 24345, .v3 = 24769 }));
 }
-pub export fn zig_recv_I_I_I(lv: c.I_I_I) c_int {
-    if (lv.v1 != 27961) return 1;
-    if (lv.v2 != 24345) return 2;
-    if (lv.v3 != 24769) return 3;
-    return 0;
+pub export fn zig_assert_I_I_I(lv: c.I_I_I) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 27961) err = 1;
+    if (lv.v2 != 24345) err = 2;
+    if (lv.v3 != 24769) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_I_I() c.I_I_I {
     return .{ .v1 = 27961, .v2 = 24345, .v3 = 24769 };
@@ -6202,13 +6604,15 @@ test "I_I_Ip C calls" {
     try testing.expectEqual(c.ret_I_I_Ip(), .{ .v1 = 115, .v2 = 29069, .v3 = null });
     try testing.expectOk(c.assert_ret_I_I_Ip());
     try testing.expectOk(c.send_I_I_Ip());
-    try testing.expectOk(c.recv_I_I_Ip(.{ .v1 = 115, .v2 = 29069, .v3 = null }));
+    try testing.expectOk(c.assert_I_I_Ip(.{ .v1 = 115, .v2 = 29069, .v3 = null }));
 }
-pub export fn zig_recv_I_I_Ip(lv: c.I_I_Ip) c_int {
-    if (lv.v1 != 115) return 1;
-    if (lv.v2 != 29069) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_I_I_Ip(lv: c.I_I_Ip) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 115) err = 1;
+    if (lv.v2 != 29069) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_I_Ip() c.I_I_Ip {
     return .{ .v1 = 115, .v2 = 29069, .v3 = null };
@@ -6233,13 +6637,15 @@ test "I_I_L C calls" {
     try testing.expectEqual(c.ret_I_I_L(), .{ .v1 = 31682, .v2 = 7411, .v3 = 18481 });
     try testing.expectOk(c.assert_ret_I_I_L());
     try testing.expectOk(c.send_I_I_L());
-    try testing.expectOk(c.recv_I_I_L(.{ .v1 = 31682, .v2 = 7411, .v3 = 18481 }));
+    try testing.expectOk(c.assert_I_I_L(.{ .v1 = 31682, .v2 = 7411, .v3 = 18481 }));
 }
-pub export fn zig_recv_I_I_L(lv: c.I_I_L) c_int {
-    if (lv.v1 != 31682) return 1;
-    if (lv.v2 != 7411) return 2;
-    if (lv.v3 != 18481) return 3;
-    return 0;
+pub export fn zig_assert_I_I_L(lv: c.I_I_L) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 31682) err = 1;
+    if (lv.v2 != 7411) err = 2;
+    if (lv.v3 != 18481) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_I_L() c.I_I_L {
     return .{ .v1 = 31682, .v2 = 7411, .v3 = 18481 };
@@ -6264,13 +6670,15 @@ test "I_I_S C calls" {
     try testing.expectEqual(c.ret_I_I_S(), .{ .v1 = 23632, .v2 = 31412, .v3 = 28557 });
     try testing.expectOk(c.assert_ret_I_I_S());
     try testing.expectOk(c.send_I_I_S());
-    try testing.expectOk(c.recv_I_I_S(.{ .v1 = 23632, .v2 = 31412, .v3 = 28557 }));
+    try testing.expectOk(c.assert_I_I_S(.{ .v1 = 23632, .v2 = 31412, .v3 = 28557 }));
 }
-pub export fn zig_recv_I_I_S(lv: c.I_I_S) c_int {
-    if (lv.v1 != 23632) return 1;
-    if (lv.v2 != 31412) return 2;
-    if (lv.v3 != 28557) return 3;
-    return 0;
+pub export fn zig_assert_I_I_S(lv: c.I_I_S) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 23632) err = 1;
+    if (lv.v2 != 31412) err = 2;
+    if (lv.v3 != 28557) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_I_S() c.I_I_S {
     return .{ .v1 = 23632, .v2 = 31412, .v3 = 28557 };
@@ -6295,13 +6703,15 @@ test "I_I_Uc C calls" {
     try testing.expectEqual(c.ret_I_I_Uc(), .{ .v1 = 10669, .v2 = 23177, .v3 = 84 });
     try testing.expectOk(c.assert_ret_I_I_Uc());
     try testing.expectOk(c.send_I_I_Uc());
-    try testing.expectOk(c.recv_I_I_Uc(.{ .v1 = 10669, .v2 = 23177, .v3 = 84 }));
+    try testing.expectOk(c.assert_I_I_Uc(.{ .v1 = 10669, .v2 = 23177, .v3 = 84 }));
 }
-pub export fn zig_recv_I_I_Uc(lv: c.I_I_Uc) c_int {
-    if (lv.v1 != 10669) return 1;
-    if (lv.v2 != 23177) return 2;
-    if (lv.v3 != 84) return 3;
-    return 0;
+pub export fn zig_assert_I_I_Uc(lv: c.I_I_Uc) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 10669) err = 1;
+    if (lv.v2 != 23177) err = 2;
+    if (lv.v3 != 84) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_I_Uc() c.I_I_Uc {
     return .{ .v1 = 10669, .v2 = 23177, .v3 = 84 };
@@ -6326,13 +6736,15 @@ test "I_I_Ui C calls" {
     try testing.expectEqual(c.ret_I_I_Ui(), .{ .v1 = 19858, .v2 = 31111, .v3 = 266 });
     try testing.expectOk(c.assert_ret_I_I_Ui());
     try testing.expectOk(c.send_I_I_Ui());
-    try testing.expectOk(c.recv_I_I_Ui(.{ .v1 = 19858, .v2 = 31111, .v3 = 266 }));
+    try testing.expectOk(c.assert_I_I_Ui(.{ .v1 = 19858, .v2 = 31111, .v3 = 266 }));
 }
-pub export fn zig_recv_I_I_Ui(lv: c.I_I_Ui) c_int {
-    if (lv.v1 != 19858) return 1;
-    if (lv.v2 != 31111) return 2;
-    if (lv.v3 != 266) return 3;
-    return 0;
+pub export fn zig_assert_I_I_Ui(lv: c.I_I_Ui) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 19858) err = 1;
+    if (lv.v2 != 31111) err = 2;
+    if (lv.v3 != 266) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_I_Ui() c.I_I_Ui {
     return .{ .v1 = 19858, .v2 = 31111, .v3 = 266 };
@@ -6357,13 +6769,15 @@ test "I_I_Ul C calls" {
     try testing.expectEqual(c.ret_I_I_Ul(), .{ .v1 = 6762, .v2 = 13697, .v3 = 16792 });
     try testing.expectOk(c.assert_ret_I_I_Ul());
     try testing.expectOk(c.send_I_I_Ul());
-    try testing.expectOk(c.recv_I_I_Ul(.{ .v1 = 6762, .v2 = 13697, .v3 = 16792 }));
+    try testing.expectOk(c.assert_I_I_Ul(.{ .v1 = 6762, .v2 = 13697, .v3 = 16792 }));
 }
-pub export fn zig_recv_I_I_Ul(lv: c.I_I_Ul) c_int {
-    if (lv.v1 != 6762) return 1;
-    if (lv.v2 != 13697) return 2;
-    if (lv.v3 != 16792) return 3;
-    return 0;
+pub export fn zig_assert_I_I_Ul(lv: c.I_I_Ul) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 6762) err = 1;
+    if (lv.v2 != 13697) err = 2;
+    if (lv.v3 != 16792) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_I_Ul() c.I_I_Ul {
     return .{ .v1 = 6762, .v2 = 13697, .v3 = 16792 };
@@ -6388,13 +6802,15 @@ test "I_I_Us C calls" {
     try testing.expectEqual(c.ret_I_I_Us(), .{ .v1 = 24170, .v2 = 32025, .v3 = 8080 });
     try testing.expectOk(c.assert_ret_I_I_Us());
     try testing.expectOk(c.send_I_I_Us());
-    try testing.expectOk(c.recv_I_I_Us(.{ .v1 = 24170, .v2 = 32025, .v3 = 8080 }));
+    try testing.expectOk(c.assert_I_I_Us(.{ .v1 = 24170, .v2 = 32025, .v3 = 8080 }));
 }
-pub export fn zig_recv_I_I_Us(lv: c.I_I_Us) c_int {
-    if (lv.v1 != 24170) return 1;
-    if (lv.v2 != 32025) return 2;
-    if (lv.v3 != 8080) return 3;
-    return 0;
+pub export fn zig_assert_I_I_Us(lv: c.I_I_Us) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 24170) err = 1;
+    if (lv.v2 != 32025) err = 2;
+    if (lv.v3 != 8080) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_I_Us() c.I_I_Us {
     return .{ .v1 = 24170, .v2 = 32025, .v3 = 8080 };
@@ -6419,13 +6835,15 @@ test "I_I_Vp C calls" {
     try testing.expectEqual(c.ret_I_I_Vp(), .{ .v1 = 25106, .v2 = 21604, .v3 = null });
     try testing.expectOk(c.assert_ret_I_I_Vp());
     try testing.expectOk(c.send_I_I_Vp());
-    try testing.expectOk(c.recv_I_I_Vp(.{ .v1 = 25106, .v2 = 21604, .v3 = null }));
+    try testing.expectOk(c.assert_I_I_Vp(.{ .v1 = 25106, .v2 = 21604, .v3 = null }));
 }
-pub export fn zig_recv_I_I_Vp(lv: c.I_I_Vp) c_int {
-    if (lv.v1 != 25106) return 1;
-    if (lv.v2 != 21604) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_I_I_Vp(lv: c.I_I_Vp) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 25106) err = 1;
+    if (lv.v2 != 21604) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_I_Vp() c.I_I_Vp {
     return .{ .v1 = 25106, .v2 = 21604, .v3 = null };
@@ -6448,12 +6866,14 @@ test "I_Ip C calls" {
     try testing.expectEqual(c.ret_I_Ip(), .{ .v1 = 1345, .v2 = null });
     try testing.expectOk(c.assert_ret_I_Ip());
     try testing.expectOk(c.send_I_Ip());
-    try testing.expectOk(c.recv_I_Ip(.{ .v1 = 1345, .v2 = null }));
+    try testing.expectOk(c.assert_I_Ip(.{ .v1 = 1345, .v2 = null }));
 }
-pub export fn zig_recv_I_Ip(lv: c.I_Ip) c_int {
-    if (lv.v1 != 1345) return 1;
-    if (lv.v2 != null) return 2;
-    return 0;
+pub export fn zig_assert_I_Ip(lv: c.I_Ip) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 1345) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ip() c.I_Ip {
     return .{ .v1 = 1345, .v2 = null };
@@ -6478,13 +6898,15 @@ test "I_Ip_C C calls" {
     try testing.expectEqual(c.ret_I_Ip_C(), .{ .v1 = 1373, .v2 = null, .v3 = 14 });
     try testing.expectOk(c.assert_ret_I_Ip_C());
     try testing.expectOk(c.send_I_Ip_C());
-    try testing.expectOk(c.recv_I_Ip_C(.{ .v1 = 1373, .v2 = null, .v3 = 14 }));
+    try testing.expectOk(c.assert_I_Ip_C(.{ .v1 = 1373, .v2 = null, .v3 = 14 }));
 }
-pub export fn zig_recv_I_Ip_C(lv: c.I_Ip_C) c_int {
-    if (lv.v1 != 1373) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 14) return 3;
-    return 0;
+pub export fn zig_assert_I_Ip_C(lv: c.I_Ip_C) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 1373) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 14) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ip_C() c.I_Ip_C {
     return .{ .v1 = 1373, .v2 = null, .v3 = 14 };
@@ -6509,13 +6931,15 @@ test "I_Ip_D C calls" {
     try testing.expectEqual(c.ret_I_Ip_D(), .{ .v1 = 10474, .v2 = null, .v3 = 7.0 });
     try testing.expectOk(c.assert_ret_I_Ip_D());
     try testing.expectOk(c.send_I_Ip_D());
-    try testing.expectOk(c.recv_I_Ip_D(.{ .v1 = 10474, .v2 = null, .v3 = 7.0 }));
+    try testing.expectOk(c.assert_I_Ip_D(.{ .v1 = 10474, .v2 = null, .v3 = 7.0 }));
 }
-pub export fn zig_recv_I_Ip_D(lv: c.I_Ip_D) c_int {
-    if (lv.v1 != 10474) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 7.0) return 3;
-    return 0;
+pub export fn zig_assert_I_Ip_D(lv: c.I_Ip_D) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 10474) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 7.0) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ip_D() c.I_Ip_D {
     return .{ .v1 = 10474, .v2 = null, .v3 = 7.0 };
@@ -6540,13 +6964,15 @@ test "I_Ip_F C calls" {
     try testing.expectEqual(c.ret_I_Ip_F(), .{ .v1 = 5032, .v2 = null, .v3 = -0.25 });
     try testing.expectOk(c.assert_ret_I_Ip_F());
     try testing.expectOk(c.send_I_Ip_F());
-    try testing.expectOk(c.recv_I_Ip_F(.{ .v1 = 5032, .v2 = null, .v3 = -0.25 }));
+    try testing.expectOk(c.assert_I_Ip_F(.{ .v1 = 5032, .v2 = null, .v3 = -0.25 }));
 }
-pub export fn zig_recv_I_Ip_F(lv: c.I_Ip_F) c_int {
-    if (lv.v1 != 5032) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != -0.25) return 3;
-    return 0;
+pub export fn zig_assert_I_Ip_F(lv: c.I_Ip_F) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 5032) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != -0.25) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ip_F() c.I_Ip_F {
     return .{ .v1 = 5032, .v2 = null, .v3 = -0.25 };
@@ -6571,13 +6997,15 @@ test "I_Ip_I C calls" {
     try testing.expectEqual(c.ret_I_Ip_I(), .{ .v1 = 9003, .v2 = null, .v3 = 11875 });
     try testing.expectOk(c.assert_ret_I_Ip_I());
     try testing.expectOk(c.send_I_Ip_I());
-    try testing.expectOk(c.recv_I_Ip_I(.{ .v1 = 9003, .v2 = null, .v3 = 11875 }));
+    try testing.expectOk(c.assert_I_Ip_I(.{ .v1 = 9003, .v2 = null, .v3 = 11875 }));
 }
-pub export fn zig_recv_I_Ip_I(lv: c.I_Ip_I) c_int {
-    if (lv.v1 != 9003) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 11875) return 3;
-    return 0;
+pub export fn zig_assert_I_Ip_I(lv: c.I_Ip_I) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 9003) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 11875) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ip_I() c.I_Ip_I {
     return .{ .v1 = 9003, .v2 = null, .v3 = 11875 };
@@ -6602,13 +7030,15 @@ test "I_Ip_Ip C calls" {
     try testing.expectEqual(c.ret_I_Ip_Ip(), .{ .v1 = 11522, .v2 = null, .v3 = null });
     try testing.expectOk(c.assert_ret_I_Ip_Ip());
     try testing.expectOk(c.send_I_Ip_Ip());
-    try testing.expectOk(c.recv_I_Ip_Ip(.{ .v1 = 11522, .v2 = null, .v3 = null }));
+    try testing.expectOk(c.assert_I_Ip_Ip(.{ .v1 = 11522, .v2 = null, .v3 = null }));
 }
-pub export fn zig_recv_I_Ip_Ip(lv: c.I_Ip_Ip) c_int {
-    if (lv.v1 != 11522) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_I_Ip_Ip(lv: c.I_Ip_Ip) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 11522) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ip_Ip() c.I_Ip_Ip {
     return .{ .v1 = 11522, .v2 = null, .v3 = null };
@@ -6633,13 +7063,15 @@ test "I_Ip_L C calls" {
     try testing.expectEqual(c.ret_I_Ip_L(), .{ .v1 = 12609, .v2 = null, .v3 = 30005 });
     try testing.expectOk(c.assert_ret_I_Ip_L());
     try testing.expectOk(c.send_I_Ip_L());
-    try testing.expectOk(c.recv_I_Ip_L(.{ .v1 = 12609, .v2 = null, .v3 = 30005 }));
+    try testing.expectOk(c.assert_I_Ip_L(.{ .v1 = 12609, .v2 = null, .v3 = 30005 }));
 }
-pub export fn zig_recv_I_Ip_L(lv: c.I_Ip_L) c_int {
-    if (lv.v1 != 12609) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 30005) return 3;
-    return 0;
+pub export fn zig_assert_I_Ip_L(lv: c.I_Ip_L) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 12609) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 30005) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ip_L() c.I_Ip_L {
     return .{ .v1 = 12609, .v2 = null, .v3 = 30005 };
@@ -6664,13 +7096,15 @@ test "I_Ip_S C calls" {
     try testing.expectEqual(c.ret_I_Ip_S(), .{ .v1 = 1059, .v2 = null, .v3 = 12558 });
     try testing.expectOk(c.assert_ret_I_Ip_S());
     try testing.expectOk(c.send_I_Ip_S());
-    try testing.expectOk(c.recv_I_Ip_S(.{ .v1 = 1059, .v2 = null, .v3 = 12558 }));
+    try testing.expectOk(c.assert_I_Ip_S(.{ .v1 = 1059, .v2 = null, .v3 = 12558 }));
 }
-pub export fn zig_recv_I_Ip_S(lv: c.I_Ip_S) c_int {
-    if (lv.v1 != 1059) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 12558) return 3;
-    return 0;
+pub export fn zig_assert_I_Ip_S(lv: c.I_Ip_S) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 1059) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 12558) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ip_S() c.I_Ip_S {
     return .{ .v1 = 1059, .v2 = null, .v3 = 12558 };
@@ -6695,13 +7129,15 @@ test "I_Ip_Uc C calls" {
     try testing.expectEqual(c.ret_I_Ip_Uc(), .{ .v1 = 19459, .v2 = null, .v3 = 5 });
     try testing.expectOk(c.assert_ret_I_Ip_Uc());
     try testing.expectOk(c.send_I_Ip_Uc());
-    try testing.expectOk(c.recv_I_Ip_Uc(.{ .v1 = 19459, .v2 = null, .v3 = 5 }));
+    try testing.expectOk(c.assert_I_Ip_Uc(.{ .v1 = 19459, .v2 = null, .v3 = 5 }));
 }
-pub export fn zig_recv_I_Ip_Uc(lv: c.I_Ip_Uc) c_int {
-    if (lv.v1 != 19459) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 5) return 3;
-    return 0;
+pub export fn zig_assert_I_Ip_Uc(lv: c.I_Ip_Uc) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 19459) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 5) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ip_Uc() c.I_Ip_Uc {
     return .{ .v1 = 19459, .v2 = null, .v3 = 5 };
@@ -6726,13 +7162,15 @@ test "I_Ip_Ui C calls" {
     try testing.expectEqual(c.ret_I_Ip_Ui(), .{ .v1 = 6589, .v2 = null, .v3 = 18101 });
     try testing.expectOk(c.assert_ret_I_Ip_Ui());
     try testing.expectOk(c.send_I_Ip_Ui());
-    try testing.expectOk(c.recv_I_Ip_Ui(.{ .v1 = 6589, .v2 = null, .v3 = 18101 }));
+    try testing.expectOk(c.assert_I_Ip_Ui(.{ .v1 = 6589, .v2 = null, .v3 = 18101 }));
 }
-pub export fn zig_recv_I_Ip_Ui(lv: c.I_Ip_Ui) c_int {
-    if (lv.v1 != 6589) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 18101) return 3;
-    return 0;
+pub export fn zig_assert_I_Ip_Ui(lv: c.I_Ip_Ui) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 6589) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 18101) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ip_Ui() c.I_Ip_Ui {
     return .{ .v1 = 6589, .v2 = null, .v3 = 18101 };
@@ -6757,13 +7195,15 @@ test "I_Ip_Ul C calls" {
     try testing.expectEqual(c.ret_I_Ip_Ul(), .{ .v1 = 7, .v2 = null, .v3 = 6657 });
     try testing.expectOk(c.assert_ret_I_Ip_Ul());
     try testing.expectOk(c.send_I_Ip_Ul());
-    try testing.expectOk(c.recv_I_Ip_Ul(.{ .v1 = 7, .v2 = null, .v3 = 6657 }));
+    try testing.expectOk(c.assert_I_Ip_Ul(.{ .v1 = 7, .v2 = null, .v3 = 6657 }));
 }
-pub export fn zig_recv_I_Ip_Ul(lv: c.I_Ip_Ul) c_int {
-    if (lv.v1 != 7) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 6657) return 3;
-    return 0;
+pub export fn zig_assert_I_Ip_Ul(lv: c.I_Ip_Ul) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 7) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 6657) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ip_Ul() c.I_Ip_Ul {
     return .{ .v1 = 7, .v2 = null, .v3 = 6657 };
@@ -6788,13 +7228,15 @@ test "I_Ip_Us C calls" {
     try testing.expectEqual(c.ret_I_Ip_Us(), .{ .v1 = 12797, .v2 = null, .v3 = 13372 });
     try testing.expectOk(c.assert_ret_I_Ip_Us());
     try testing.expectOk(c.send_I_Ip_Us());
-    try testing.expectOk(c.recv_I_Ip_Us(.{ .v1 = 12797, .v2 = null, .v3 = 13372 }));
+    try testing.expectOk(c.assert_I_Ip_Us(.{ .v1 = 12797, .v2 = null, .v3 = 13372 }));
 }
-pub export fn zig_recv_I_Ip_Us(lv: c.I_Ip_Us) c_int {
-    if (lv.v1 != 12797) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 13372) return 3;
-    return 0;
+pub export fn zig_assert_I_Ip_Us(lv: c.I_Ip_Us) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 12797) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 13372) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ip_Us() c.I_Ip_Us {
     return .{ .v1 = 12797, .v2 = null, .v3 = 13372 };
@@ -6819,13 +7261,15 @@ test "I_Ip_Vp C calls" {
     try testing.expectEqual(c.ret_I_Ip_Vp(), .{ .v1 = 23149, .v2 = null, .v3 = null });
     try testing.expectOk(c.assert_ret_I_Ip_Vp());
     try testing.expectOk(c.send_I_Ip_Vp());
-    try testing.expectOk(c.recv_I_Ip_Vp(.{ .v1 = 23149, .v2 = null, .v3 = null }));
+    try testing.expectOk(c.assert_I_Ip_Vp(.{ .v1 = 23149, .v2 = null, .v3 = null }));
 }
-pub export fn zig_recv_I_Ip_Vp(lv: c.I_Ip_Vp) c_int {
-    if (lv.v1 != 23149) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_I_Ip_Vp(lv: c.I_Ip_Vp) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 23149) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ip_Vp() c.I_Ip_Vp {
     return .{ .v1 = 23149, .v2 = null, .v3 = null };
@@ -6848,12 +7292,14 @@ test "I_L C calls" {
     try testing.expectEqual(c.ret_I_L(), .{ .v1 = 11062, .v2 = 25927 });
     try testing.expectOk(c.assert_ret_I_L());
     try testing.expectOk(c.send_I_L());
-    try testing.expectOk(c.recv_I_L(.{ .v1 = 11062, .v2 = 25927 }));
+    try testing.expectOk(c.assert_I_L(.{ .v1 = 11062, .v2 = 25927 }));
 }
-pub export fn zig_recv_I_L(lv: c.I_L) c_int {
-    if (lv.v1 != 11062) return 1;
-    if (lv.v2 != 25927) return 2;
-    return 0;
+pub export fn zig_assert_I_L(lv: c.I_L) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 11062) err = 1;
+    if (lv.v2 != 25927) err = 2;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_L() c.I_L {
     return .{ .v1 = 11062, .v2 = 25927 };
@@ -6878,13 +7324,15 @@ test "I_L_C C calls" {
     try testing.expectEqual(c.ret_I_L_C(), .{ .v1 = 3285, .v2 = 26260, .v3 = 38 });
     try testing.expectOk(c.assert_ret_I_L_C());
     try testing.expectOk(c.send_I_L_C());
-    try testing.expectOk(c.recv_I_L_C(.{ .v1 = 3285, .v2 = 26260, .v3 = 38 }));
+    try testing.expectOk(c.assert_I_L_C(.{ .v1 = 3285, .v2 = 26260, .v3 = 38 }));
 }
-pub export fn zig_recv_I_L_C(lv: c.I_L_C) c_int {
-    if (lv.v1 != 3285) return 1;
-    if (lv.v2 != 26260) return 2;
-    if (lv.v3 != 38) return 3;
-    return 0;
+pub export fn zig_assert_I_L_C(lv: c.I_L_C) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 3285) err = 1;
+    if (lv.v2 != 26260) err = 2;
+    if (lv.v3 != 38) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_L_C() c.I_L_C {
     return .{ .v1 = 3285, .v2 = 26260, .v3 = 38 };
@@ -6909,13 +7357,15 @@ test "I_L_D C calls" {
     try testing.expectEqual(c.ret_I_L_D(), .{ .v1 = 6996, .v2 = 15320, .v3 = -0.25 });
     try testing.expectOk(c.assert_ret_I_L_D());
     try testing.expectOk(c.send_I_L_D());
-    try testing.expectOk(c.recv_I_L_D(.{ .v1 = 6996, .v2 = 15320, .v3 = -0.25 }));
+    try testing.expectOk(c.assert_I_L_D(.{ .v1 = 6996, .v2 = 15320, .v3 = -0.25 }));
 }
-pub export fn zig_recv_I_L_D(lv: c.I_L_D) c_int {
-    if (lv.v1 != 6996) return 1;
-    if (lv.v2 != 15320) return 2;
-    if (lv.v3 != -0.25) return 3;
-    return 0;
+pub export fn zig_assert_I_L_D(lv: c.I_L_D) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 6996) err = 1;
+    if (lv.v2 != 15320) err = 2;
+    if (lv.v3 != -0.25) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_L_D() c.I_L_D {
     return .{ .v1 = 6996, .v2 = 15320, .v3 = -0.25 };
@@ -6940,13 +7390,15 @@ test "I_L_F C calls" {
     try testing.expectEqual(c.ret_I_L_F(), .{ .v1 = 3417, .v2 = 5705, .v3 = 7.0 });
     try testing.expectOk(c.assert_ret_I_L_F());
     try testing.expectOk(c.send_I_L_F());
-    try testing.expectOk(c.recv_I_L_F(.{ .v1 = 3417, .v2 = 5705, .v3 = 7.0 }));
+    try testing.expectOk(c.assert_I_L_F(.{ .v1 = 3417, .v2 = 5705, .v3 = 7.0 }));
 }
-pub export fn zig_recv_I_L_F(lv: c.I_L_F) c_int {
-    if (lv.v1 != 3417) return 1;
-    if (lv.v2 != 5705) return 2;
-    if (lv.v3 != 7.0) return 3;
-    return 0;
+pub export fn zig_assert_I_L_F(lv: c.I_L_F) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 3417) err = 1;
+    if (lv.v2 != 5705) err = 2;
+    if (lv.v3 != 7.0) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_L_F() c.I_L_F {
     return .{ .v1 = 3417, .v2 = 5705, .v3 = 7.0 };
@@ -6971,13 +7423,15 @@ test "I_L_I C calls" {
     try testing.expectEqual(c.ret_I_L_I(), .{ .v1 = 2878, .v2 = 28742, .v3 = 27089 });
     try testing.expectOk(c.assert_ret_I_L_I());
     try testing.expectOk(c.send_I_L_I());
-    try testing.expectOk(c.recv_I_L_I(.{ .v1 = 2878, .v2 = 28742, .v3 = 27089 }));
+    try testing.expectOk(c.assert_I_L_I(.{ .v1 = 2878, .v2 = 28742, .v3 = 27089 }));
 }
-pub export fn zig_recv_I_L_I(lv: c.I_L_I) c_int {
-    if (lv.v1 != 2878) return 1;
-    if (lv.v2 != 28742) return 2;
-    if (lv.v3 != 27089) return 3;
-    return 0;
+pub export fn zig_assert_I_L_I(lv: c.I_L_I) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 2878) err = 1;
+    if (lv.v2 != 28742) err = 2;
+    if (lv.v3 != 27089) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_L_I() c.I_L_I {
     return .{ .v1 = 2878, .v2 = 28742, .v3 = 27089 };
@@ -7002,13 +7456,15 @@ test "I_L_Ip C calls" {
     try testing.expectEqual(c.ret_I_L_Ip(), .{ .v1 = 14448, .v2 = 27305, .v3 = null });
     try testing.expectOk(c.assert_ret_I_L_Ip());
     try testing.expectOk(c.send_I_L_Ip());
-    try testing.expectOk(c.recv_I_L_Ip(.{ .v1 = 14448, .v2 = 27305, .v3 = null }));
+    try testing.expectOk(c.assert_I_L_Ip(.{ .v1 = 14448, .v2 = 27305, .v3 = null }));
 }
-pub export fn zig_recv_I_L_Ip(lv: c.I_L_Ip) c_int {
-    if (lv.v1 != 14448) return 1;
-    if (lv.v2 != 27305) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_I_L_Ip(lv: c.I_L_Ip) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 14448) err = 1;
+    if (lv.v2 != 27305) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_L_Ip() c.I_L_Ip {
     return .{ .v1 = 14448, .v2 = 27305, .v3 = null };
@@ -7033,13 +7489,15 @@ test "I_L_L C calls" {
     try testing.expectEqual(c.ret_I_L_L(), .{ .v1 = 16994, .v2 = 26074, .v3 = 1517 });
     try testing.expectOk(c.assert_ret_I_L_L());
     try testing.expectOk(c.send_I_L_L());
-    try testing.expectOk(c.recv_I_L_L(.{ .v1 = 16994, .v2 = 26074, .v3 = 1517 }));
+    try testing.expectOk(c.assert_I_L_L(.{ .v1 = 16994, .v2 = 26074, .v3 = 1517 }));
 }
-pub export fn zig_recv_I_L_L(lv: c.I_L_L) c_int {
-    if (lv.v1 != 16994) return 1;
-    if (lv.v2 != 26074) return 2;
-    if (lv.v3 != 1517) return 3;
-    return 0;
+pub export fn zig_assert_I_L_L(lv: c.I_L_L) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 16994) err = 1;
+    if (lv.v2 != 26074) err = 2;
+    if (lv.v3 != 1517) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_L_L() c.I_L_L {
     return .{ .v1 = 16994, .v2 = 26074, .v3 = 1517 };
@@ -7064,13 +7522,15 @@ test "I_L_S C calls" {
     try testing.expectEqual(c.ret_I_L_S(), .{ .v1 = 20300, .v2 = 20165, .v3 = 29078 });
     try testing.expectOk(c.assert_ret_I_L_S());
     try testing.expectOk(c.send_I_L_S());
-    try testing.expectOk(c.recv_I_L_S(.{ .v1 = 20300, .v2 = 20165, .v3 = 29078 }));
+    try testing.expectOk(c.assert_I_L_S(.{ .v1 = 20300, .v2 = 20165, .v3 = 29078 }));
 }
-pub export fn zig_recv_I_L_S(lv: c.I_L_S) c_int {
-    if (lv.v1 != 20300) return 1;
-    if (lv.v2 != 20165) return 2;
-    if (lv.v3 != 29078) return 3;
-    return 0;
+pub export fn zig_assert_I_L_S(lv: c.I_L_S) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 20300) err = 1;
+    if (lv.v2 != 20165) err = 2;
+    if (lv.v3 != 29078) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_L_S() c.I_L_S {
     return .{ .v1 = 20300, .v2 = 20165, .v3 = 29078 };
@@ -7095,13 +7555,15 @@ test "I_L_Uc C calls" {
     try testing.expectEqual(c.ret_I_L_Uc(), .{ .v1 = 17820, .v2 = 24592, .v3 = 125 });
     try testing.expectOk(c.assert_ret_I_L_Uc());
     try testing.expectOk(c.send_I_L_Uc());
-    try testing.expectOk(c.recv_I_L_Uc(.{ .v1 = 17820, .v2 = 24592, .v3 = 125 }));
+    try testing.expectOk(c.assert_I_L_Uc(.{ .v1 = 17820, .v2 = 24592, .v3 = 125 }));
 }
-pub export fn zig_recv_I_L_Uc(lv: c.I_L_Uc) c_int {
-    if (lv.v1 != 17820) return 1;
-    if (lv.v2 != 24592) return 2;
-    if (lv.v3 != 125) return 3;
-    return 0;
+pub export fn zig_assert_I_L_Uc(lv: c.I_L_Uc) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 17820) err = 1;
+    if (lv.v2 != 24592) err = 2;
+    if (lv.v3 != 125) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_L_Uc() c.I_L_Uc {
     return .{ .v1 = 17820, .v2 = 24592, .v3 = 125 };
@@ -7126,13 +7588,15 @@ test "I_L_Ui C calls" {
     try testing.expectEqual(c.ret_I_L_Ui(), .{ .v1 = 2268, .v2 = 14982, .v3 = 1284 });
     try testing.expectOk(c.assert_ret_I_L_Ui());
     try testing.expectOk(c.send_I_L_Ui());
-    try testing.expectOk(c.recv_I_L_Ui(.{ .v1 = 2268, .v2 = 14982, .v3 = 1284 }));
+    try testing.expectOk(c.assert_I_L_Ui(.{ .v1 = 2268, .v2 = 14982, .v3 = 1284 }));
 }
-pub export fn zig_recv_I_L_Ui(lv: c.I_L_Ui) c_int {
-    if (lv.v1 != 2268) return 1;
-    if (lv.v2 != 14982) return 2;
-    if (lv.v3 != 1284) return 3;
-    return 0;
+pub export fn zig_assert_I_L_Ui(lv: c.I_L_Ui) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 2268) err = 1;
+    if (lv.v2 != 14982) err = 2;
+    if (lv.v3 != 1284) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_L_Ui() c.I_L_Ui {
     return .{ .v1 = 2268, .v2 = 14982, .v3 = 1284 };
@@ -7157,13 +7621,15 @@ test "I_L_Ul C calls" {
     try testing.expectEqual(c.ret_I_L_Ul(), .{ .v1 = 25117, .v2 = 28257, .v3 = 12345 });
     try testing.expectOk(c.assert_ret_I_L_Ul());
     try testing.expectOk(c.send_I_L_Ul());
-    try testing.expectOk(c.recv_I_L_Ul(.{ .v1 = 25117, .v2 = 28257, .v3 = 12345 }));
+    try testing.expectOk(c.assert_I_L_Ul(.{ .v1 = 25117, .v2 = 28257, .v3 = 12345 }));
 }
-pub export fn zig_recv_I_L_Ul(lv: c.I_L_Ul) c_int {
-    if (lv.v1 != 25117) return 1;
-    if (lv.v2 != 28257) return 2;
-    if (lv.v3 != 12345) return 3;
-    return 0;
+pub export fn zig_assert_I_L_Ul(lv: c.I_L_Ul) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 25117) err = 1;
+    if (lv.v2 != 28257) err = 2;
+    if (lv.v3 != 12345) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_L_Ul() c.I_L_Ul {
     return .{ .v1 = 25117, .v2 = 28257, .v3 = 12345 };
@@ -7188,13 +7654,15 @@ test "I_L_Us C calls" {
     try testing.expectEqual(c.ret_I_L_Us(), .{ .v1 = 6112, .v2 = 1636, .v3 = 20956 });
     try testing.expectOk(c.assert_ret_I_L_Us());
     try testing.expectOk(c.send_I_L_Us());
-    try testing.expectOk(c.recv_I_L_Us(.{ .v1 = 6112, .v2 = 1636, .v3 = 20956 }));
+    try testing.expectOk(c.assert_I_L_Us(.{ .v1 = 6112, .v2 = 1636, .v3 = 20956 }));
 }
-pub export fn zig_recv_I_L_Us(lv: c.I_L_Us) c_int {
-    if (lv.v1 != 6112) return 1;
-    if (lv.v2 != 1636) return 2;
-    if (lv.v3 != 20956) return 3;
-    return 0;
+pub export fn zig_assert_I_L_Us(lv: c.I_L_Us) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 6112) err = 1;
+    if (lv.v2 != 1636) err = 2;
+    if (lv.v3 != 20956) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_L_Us() c.I_L_Us {
     return .{ .v1 = 6112, .v2 = 1636, .v3 = 20956 };
@@ -7219,13 +7687,15 @@ test "I_L_Vp C calls" {
     try testing.expectEqual(c.ret_I_L_Vp(), .{ .v1 = 17111, .v2 = 29128, .v3 = null });
     try testing.expectOk(c.assert_ret_I_L_Vp());
     try testing.expectOk(c.send_I_L_Vp());
-    try testing.expectOk(c.recv_I_L_Vp(.{ .v1 = 17111, .v2 = 29128, .v3 = null }));
+    try testing.expectOk(c.assert_I_L_Vp(.{ .v1 = 17111, .v2 = 29128, .v3 = null }));
 }
-pub export fn zig_recv_I_L_Vp(lv: c.I_L_Vp) c_int {
-    if (lv.v1 != 17111) return 1;
-    if (lv.v2 != 29128) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_I_L_Vp(lv: c.I_L_Vp) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 17111) err = 1;
+    if (lv.v2 != 29128) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_L_Vp() c.I_L_Vp {
     return .{ .v1 = 17111, .v2 = 29128, .v3 = null };
@@ -7248,12 +7718,14 @@ test "I_S C calls" {
     try testing.expectEqual(c.ret_I_S(), .{ .v1 = 20472, .v2 = 19735 });
     try testing.expectOk(c.assert_ret_I_S());
     try testing.expectOk(c.send_I_S());
-    try testing.expectOk(c.recv_I_S(.{ .v1 = 20472, .v2 = 19735 }));
+    try testing.expectOk(c.assert_I_S(.{ .v1 = 20472, .v2 = 19735 }));
 }
-pub export fn zig_recv_I_S(lv: c.I_S) c_int {
-    if (lv.v1 != 20472) return 1;
-    if (lv.v2 != 19735) return 2;
-    return 0;
+pub export fn zig_assert_I_S(lv: c.I_S) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 20472) err = 1;
+    if (lv.v2 != 19735) err = 2;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_S() c.I_S {
     return .{ .v1 = 20472, .v2 = 19735 };
@@ -7278,13 +7750,15 @@ test "I_S_C C calls" {
     try testing.expectEqual(c.ret_I_S_C(), .{ .v1 = 30085, .v2 = 12535, .v3 = 68 });
     try testing.expectOk(c.assert_ret_I_S_C());
     try testing.expectOk(c.send_I_S_C());
-    try testing.expectOk(c.recv_I_S_C(.{ .v1 = 30085, .v2 = 12535, .v3 = 68 }));
+    try testing.expectOk(c.assert_I_S_C(.{ .v1 = 30085, .v2 = 12535, .v3 = 68 }));
 }
-pub export fn zig_recv_I_S_C(lv: c.I_S_C) c_int {
-    if (lv.v1 != 30085) return 1;
-    if (lv.v2 != 12535) return 2;
-    if (lv.v3 != 68) return 3;
-    return 0;
+pub export fn zig_assert_I_S_C(lv: c.I_S_C) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 30085) err = 1;
+    if (lv.v2 != 12535) err = 2;
+    if (lv.v3 != 68) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_S_C() c.I_S_C {
     return .{ .v1 = 30085, .v2 = 12535, .v3 = 68 };
@@ -7309,13 +7783,15 @@ test "I_S_D C calls" {
     try testing.expectEqual(c.ret_I_S_D(), .{ .v1 = 20790, .v2 = 12807, .v3 = 7.0 });
     try testing.expectOk(c.assert_ret_I_S_D());
     try testing.expectOk(c.send_I_S_D());
-    try testing.expectOk(c.recv_I_S_D(.{ .v1 = 20790, .v2 = 12807, .v3 = 7.0 }));
+    try testing.expectOk(c.assert_I_S_D(.{ .v1 = 20790, .v2 = 12807, .v3 = 7.0 }));
 }
-pub export fn zig_recv_I_S_D(lv: c.I_S_D) c_int {
-    if (lv.v1 != 20790) return 1;
-    if (lv.v2 != 12807) return 2;
-    if (lv.v3 != 7.0) return 3;
-    return 0;
+pub export fn zig_assert_I_S_D(lv: c.I_S_D) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 20790) err = 1;
+    if (lv.v2 != 12807) err = 2;
+    if (lv.v3 != 7.0) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_S_D() c.I_S_D {
     return .{ .v1 = 20790, .v2 = 12807, .v3 = 7.0 };
@@ -7340,13 +7816,15 @@ test "I_S_F C calls" {
     try testing.expectEqual(c.ret_I_S_F(), .{ .v1 = 21659, .v2 = 15482, .v3 = 1.0 });
     try testing.expectOk(c.assert_ret_I_S_F());
     try testing.expectOk(c.send_I_S_F());
-    try testing.expectOk(c.recv_I_S_F(.{ .v1 = 21659, .v2 = 15482, .v3 = 1.0 }));
+    try testing.expectOk(c.assert_I_S_F(.{ .v1 = 21659, .v2 = 15482, .v3 = 1.0 }));
 }
-pub export fn zig_recv_I_S_F(lv: c.I_S_F) c_int {
-    if (lv.v1 != 21659) return 1;
-    if (lv.v2 != 15482) return 2;
-    if (lv.v3 != 1.0) return 3;
-    return 0;
+pub export fn zig_assert_I_S_F(lv: c.I_S_F) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 21659) err = 1;
+    if (lv.v2 != 15482) err = 2;
+    if (lv.v3 != 1.0) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_S_F() c.I_S_F {
     return .{ .v1 = 21659, .v2 = 15482, .v3 = 1.0 };
@@ -7371,13 +7849,15 @@ test "I_S_I C calls" {
     try testing.expectEqual(c.ret_I_S_I(), .{ .v1 = 19770, .v2 = 17968, .v3 = 30797 });
     try testing.expectOk(c.assert_ret_I_S_I());
     try testing.expectOk(c.send_I_S_I());
-    try testing.expectOk(c.recv_I_S_I(.{ .v1 = 19770, .v2 = 17968, .v3 = 30797 }));
+    try testing.expectOk(c.assert_I_S_I(.{ .v1 = 19770, .v2 = 17968, .v3 = 30797 }));
 }
-pub export fn zig_recv_I_S_I(lv: c.I_S_I) c_int {
-    if (lv.v1 != 19770) return 1;
-    if (lv.v2 != 17968) return 2;
-    if (lv.v3 != 30797) return 3;
-    return 0;
+pub export fn zig_assert_I_S_I(lv: c.I_S_I) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 19770) err = 1;
+    if (lv.v2 != 17968) err = 2;
+    if (lv.v3 != 30797) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_S_I() c.I_S_I {
     return .{ .v1 = 19770, .v2 = 17968, .v3 = 30797 };
@@ -7402,13 +7882,15 @@ test "I_S_Ip C calls" {
     try testing.expectEqual(c.ret_I_S_Ip(), .{ .v1 = 11156, .v2 = 459, .v3 = null });
     try testing.expectOk(c.assert_ret_I_S_Ip());
     try testing.expectOk(c.send_I_S_Ip());
-    try testing.expectOk(c.recv_I_S_Ip(.{ .v1 = 11156, .v2 = 459, .v3 = null }));
+    try testing.expectOk(c.assert_I_S_Ip(.{ .v1 = 11156, .v2 = 459, .v3 = null }));
 }
-pub export fn zig_recv_I_S_Ip(lv: c.I_S_Ip) c_int {
-    if (lv.v1 != 11156) return 1;
-    if (lv.v2 != 459) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_I_S_Ip(lv: c.I_S_Ip) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 11156) err = 1;
+    if (lv.v2 != 459) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_S_Ip() c.I_S_Ip {
     return .{ .v1 = 11156, .v2 = 459, .v3 = null };
@@ -7433,13 +7915,15 @@ test "I_S_L C calls" {
     try testing.expectEqual(c.ret_I_S_L(), .{ .v1 = 20002, .v2 = 1407, .v3 = 28466 });
     try testing.expectOk(c.assert_ret_I_S_L());
     try testing.expectOk(c.send_I_S_L());
-    try testing.expectOk(c.recv_I_S_L(.{ .v1 = 20002, .v2 = 1407, .v3 = 28466 }));
+    try testing.expectOk(c.assert_I_S_L(.{ .v1 = 20002, .v2 = 1407, .v3 = 28466 }));
 }
-pub export fn zig_recv_I_S_L(lv: c.I_S_L) c_int {
-    if (lv.v1 != 20002) return 1;
-    if (lv.v2 != 1407) return 2;
-    if (lv.v3 != 28466) return 3;
-    return 0;
+pub export fn zig_assert_I_S_L(lv: c.I_S_L) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 20002) err = 1;
+    if (lv.v2 != 1407) err = 2;
+    if (lv.v3 != 28466) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_S_L() c.I_S_L {
     return .{ .v1 = 20002, .v2 = 1407, .v3 = 28466 };
@@ -7464,13 +7948,15 @@ test "I_S_S C calls" {
     try testing.expectEqual(c.ret_I_S_S(), .{ .v1 = 23178, .v2 = 17246, .v3 = 30600 });
     try testing.expectOk(c.assert_ret_I_S_S());
     try testing.expectOk(c.send_I_S_S());
-    try testing.expectOk(c.recv_I_S_S(.{ .v1 = 23178, .v2 = 17246, .v3 = 30600 }));
+    try testing.expectOk(c.assert_I_S_S(.{ .v1 = 23178, .v2 = 17246, .v3 = 30600 }));
 }
-pub export fn zig_recv_I_S_S(lv: c.I_S_S) c_int {
-    if (lv.v1 != 23178) return 1;
-    if (lv.v2 != 17246) return 2;
-    if (lv.v3 != 30600) return 3;
-    return 0;
+pub export fn zig_assert_I_S_S(lv: c.I_S_S) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 23178) err = 1;
+    if (lv.v2 != 17246) err = 2;
+    if (lv.v3 != 30600) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_S_S() c.I_S_S {
     return .{ .v1 = 23178, .v2 = 17246, .v3 = 30600 };
@@ -7495,13 +7981,15 @@ test "I_S_Uc C calls" {
     try testing.expectEqual(c.ret_I_S_Uc(), .{ .v1 = 29081, .v2 = 27093, .v3 = 104 });
     try testing.expectOk(c.assert_ret_I_S_Uc());
     try testing.expectOk(c.send_I_S_Uc());
-    try testing.expectOk(c.recv_I_S_Uc(.{ .v1 = 29081, .v2 = 27093, .v3 = 104 }));
+    try testing.expectOk(c.assert_I_S_Uc(.{ .v1 = 29081, .v2 = 27093, .v3 = 104 }));
 }
-pub export fn zig_recv_I_S_Uc(lv: c.I_S_Uc) c_int {
-    if (lv.v1 != 29081) return 1;
-    if (lv.v2 != 27093) return 2;
-    if (lv.v3 != 104) return 3;
-    return 0;
+pub export fn zig_assert_I_S_Uc(lv: c.I_S_Uc) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 29081) err = 1;
+    if (lv.v2 != 27093) err = 2;
+    if (lv.v3 != 104) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_S_Uc() c.I_S_Uc {
     return .{ .v1 = 29081, .v2 = 27093, .v3 = 104 };
@@ -7526,13 +8014,15 @@ test "I_S_Ui C calls" {
     try testing.expectEqual(c.ret_I_S_Ui(), .{ .v1 = 19804, .v2 = 17359, .v3 = 32650 });
     try testing.expectOk(c.assert_ret_I_S_Ui());
     try testing.expectOk(c.send_I_S_Ui());
-    try testing.expectOk(c.recv_I_S_Ui(.{ .v1 = 19804, .v2 = 17359, .v3 = 32650 }));
+    try testing.expectOk(c.assert_I_S_Ui(.{ .v1 = 19804, .v2 = 17359, .v3 = 32650 }));
 }
-pub export fn zig_recv_I_S_Ui(lv: c.I_S_Ui) c_int {
-    if (lv.v1 != 19804) return 1;
-    if (lv.v2 != 17359) return 2;
-    if (lv.v3 != 32650) return 3;
-    return 0;
+pub export fn zig_assert_I_S_Ui(lv: c.I_S_Ui) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 19804) err = 1;
+    if (lv.v2 != 17359) err = 2;
+    if (lv.v3 != 32650) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_S_Ui() c.I_S_Ui {
     return .{ .v1 = 19804, .v2 = 17359, .v3 = 32650 };
@@ -7557,13 +8047,15 @@ test "I_S_Ul C calls" {
     try testing.expectEqual(c.ret_I_S_Ul(), .{ .v1 = 16785, .v2 = 22570, .v3 = 20471 });
     try testing.expectOk(c.assert_ret_I_S_Ul());
     try testing.expectOk(c.send_I_S_Ul());
-    try testing.expectOk(c.recv_I_S_Ul(.{ .v1 = 16785, .v2 = 22570, .v3 = 20471 }));
+    try testing.expectOk(c.assert_I_S_Ul(.{ .v1 = 16785, .v2 = 22570, .v3 = 20471 }));
 }
-pub export fn zig_recv_I_S_Ul(lv: c.I_S_Ul) c_int {
-    if (lv.v1 != 16785) return 1;
-    if (lv.v2 != 22570) return 2;
-    if (lv.v3 != 20471) return 3;
-    return 0;
+pub export fn zig_assert_I_S_Ul(lv: c.I_S_Ul) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 16785) err = 1;
+    if (lv.v2 != 22570) err = 2;
+    if (lv.v3 != 20471) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_S_Ul() c.I_S_Ul {
     return .{ .v1 = 16785, .v2 = 22570, .v3 = 20471 };
@@ -7588,13 +8080,15 @@ test "I_S_Us C calls" {
     try testing.expectEqual(c.ret_I_S_Us(), .{ .v1 = 18528, .v2 = 17634, .v3 = 13815 });
     try testing.expectOk(c.assert_ret_I_S_Us());
     try testing.expectOk(c.send_I_S_Us());
-    try testing.expectOk(c.recv_I_S_Us(.{ .v1 = 18528, .v2 = 17634, .v3 = 13815 }));
+    try testing.expectOk(c.assert_I_S_Us(.{ .v1 = 18528, .v2 = 17634, .v3 = 13815 }));
 }
-pub export fn zig_recv_I_S_Us(lv: c.I_S_Us) c_int {
-    if (lv.v1 != 18528) return 1;
-    if (lv.v2 != 17634) return 2;
-    if (lv.v3 != 13815) return 3;
-    return 0;
+pub export fn zig_assert_I_S_Us(lv: c.I_S_Us) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 18528) err = 1;
+    if (lv.v2 != 17634) err = 2;
+    if (lv.v3 != 13815) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_S_Us() c.I_S_Us {
     return .{ .v1 = 18528, .v2 = 17634, .v3 = 13815 };
@@ -7619,13 +8113,15 @@ test "I_S_Vp C calls" {
     try testing.expectEqual(c.ret_I_S_Vp(), .{ .v1 = 5046, .v2 = 3734, .v3 = null });
     try testing.expectOk(c.assert_ret_I_S_Vp());
     try testing.expectOk(c.send_I_S_Vp());
-    try testing.expectOk(c.recv_I_S_Vp(.{ .v1 = 5046, .v2 = 3734, .v3 = null }));
+    try testing.expectOk(c.assert_I_S_Vp(.{ .v1 = 5046, .v2 = 3734, .v3 = null }));
 }
-pub export fn zig_recv_I_S_Vp(lv: c.I_S_Vp) c_int {
-    if (lv.v1 != 5046) return 1;
-    if (lv.v2 != 3734) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_I_S_Vp(lv: c.I_S_Vp) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 5046) err = 1;
+    if (lv.v2 != 3734) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_S_Vp() c.I_S_Vp {
     return .{ .v1 = 5046, .v2 = 3734, .v3 = null };
@@ -7648,12 +8144,14 @@ test "I_Uc C calls" {
     try testing.expectEqual(c.ret_I_Uc(), .{ .v1 = 9907, .v2 = 62 });
     try testing.expectOk(c.assert_ret_I_Uc());
     try testing.expectOk(c.send_I_Uc());
-    try testing.expectOk(c.recv_I_Uc(.{ .v1 = 9907, .v2 = 62 }));
+    try testing.expectOk(c.assert_I_Uc(.{ .v1 = 9907, .v2 = 62 }));
 }
-pub export fn zig_recv_I_Uc(lv: c.I_Uc) c_int {
-    if (lv.v1 != 9907) return 1;
-    if (lv.v2 != 62) return 2;
-    return 0;
+pub export fn zig_assert_I_Uc(lv: c.I_Uc) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 9907) err = 1;
+    if (lv.v2 != 62) err = 2;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Uc() c.I_Uc {
     return .{ .v1 = 9907, .v2 = 62 };
@@ -7678,13 +8176,15 @@ test "I_Uc_C C calls" {
     try testing.expectEqual(c.ret_I_Uc_C(), .{ .v1 = 814, .v2 = 78, .v3 = 109 });
     try testing.expectOk(c.assert_ret_I_Uc_C());
     try testing.expectOk(c.send_I_Uc_C());
-    try testing.expectOk(c.recv_I_Uc_C(.{ .v1 = 814, .v2 = 78, .v3 = 109 }));
+    try testing.expectOk(c.assert_I_Uc_C(.{ .v1 = 814, .v2 = 78, .v3 = 109 }));
 }
-pub export fn zig_recv_I_Uc_C(lv: c.I_Uc_C) c_int {
-    if (lv.v1 != 814) return 1;
-    if (lv.v2 != 78) return 2;
-    if (lv.v3 != 109) return 3;
-    return 0;
+pub export fn zig_assert_I_Uc_C(lv: c.I_Uc_C) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 814) err = 1;
+    if (lv.v2 != 78) err = 2;
+    if (lv.v3 != 109) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Uc_C() c.I_Uc_C {
     return .{ .v1 = 814, .v2 = 78, .v3 = 109 };
@@ -7709,13 +8209,15 @@ test "I_Uc_D C calls" {
     try testing.expectEqual(c.ret_I_Uc_D(), .{ .v1 = 22054, .v2 = 100, .v3 = 4.5 });
     try testing.expectOk(c.assert_ret_I_Uc_D());
     try testing.expectOk(c.send_I_Uc_D());
-    try testing.expectOk(c.recv_I_Uc_D(.{ .v1 = 22054, .v2 = 100, .v3 = 4.5 }));
+    try testing.expectOk(c.assert_I_Uc_D(.{ .v1 = 22054, .v2 = 100, .v3 = 4.5 }));
 }
-pub export fn zig_recv_I_Uc_D(lv: c.I_Uc_D) c_int {
-    if (lv.v1 != 22054) return 1;
-    if (lv.v2 != 100) return 2;
-    if (lv.v3 != 4.5) return 3;
-    return 0;
+pub export fn zig_assert_I_Uc_D(lv: c.I_Uc_D) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 22054) err = 1;
+    if (lv.v2 != 100) err = 2;
+    if (lv.v3 != 4.5) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Uc_D() c.I_Uc_D {
     return .{ .v1 = 22054, .v2 = 100, .v3 = 4.5 };
@@ -7740,13 +8242,15 @@ test "I_Uc_F C calls" {
     try testing.expectEqual(c.ret_I_Uc_F(), .{ .v1 = 4971, .v2 = 16, .v3 = 0.875 });
     try testing.expectOk(c.assert_ret_I_Uc_F());
     try testing.expectOk(c.send_I_Uc_F());
-    try testing.expectOk(c.recv_I_Uc_F(.{ .v1 = 4971, .v2 = 16, .v3 = 0.875 }));
+    try testing.expectOk(c.assert_I_Uc_F(.{ .v1 = 4971, .v2 = 16, .v3 = 0.875 }));
 }
-pub export fn zig_recv_I_Uc_F(lv: c.I_Uc_F) c_int {
-    if (lv.v1 != 4971) return 1;
-    if (lv.v2 != 16) return 2;
-    if (lv.v3 != 0.875) return 3;
-    return 0;
+pub export fn zig_assert_I_Uc_F(lv: c.I_Uc_F) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 4971) err = 1;
+    if (lv.v2 != 16) err = 2;
+    if (lv.v3 != 0.875) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Uc_F() c.I_Uc_F {
     return .{ .v1 = 4971, .v2 = 16, .v3 = 0.875 };
@@ -7771,13 +8275,15 @@ test "I_Uc_I C calls" {
     try testing.expectEqual(c.ret_I_Uc_I(), .{ .v1 = 11510, .v2 = 113, .v3 = 9530 });
     try testing.expectOk(c.assert_ret_I_Uc_I());
     try testing.expectOk(c.send_I_Uc_I());
-    try testing.expectOk(c.recv_I_Uc_I(.{ .v1 = 11510, .v2 = 113, .v3 = 9530 }));
+    try testing.expectOk(c.assert_I_Uc_I(.{ .v1 = 11510, .v2 = 113, .v3 = 9530 }));
 }
-pub export fn zig_recv_I_Uc_I(lv: c.I_Uc_I) c_int {
-    if (lv.v1 != 11510) return 1;
-    if (lv.v2 != 113) return 2;
-    if (lv.v3 != 9530) return 3;
-    return 0;
+pub export fn zig_assert_I_Uc_I(lv: c.I_Uc_I) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 11510) err = 1;
+    if (lv.v2 != 113) err = 2;
+    if (lv.v3 != 9530) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Uc_I() c.I_Uc_I {
     return .{ .v1 = 11510, .v2 = 113, .v3 = 9530 };
@@ -7802,13 +8308,15 @@ test "I_Uc_Ip C calls" {
     try testing.expectEqual(c.ret_I_Uc_Ip(), .{ .v1 = 10563, .v2 = 11, .v3 = null });
     try testing.expectOk(c.assert_ret_I_Uc_Ip());
     try testing.expectOk(c.send_I_Uc_Ip());
-    try testing.expectOk(c.recv_I_Uc_Ip(.{ .v1 = 10563, .v2 = 11, .v3 = null }));
+    try testing.expectOk(c.assert_I_Uc_Ip(.{ .v1 = 10563, .v2 = 11, .v3 = null }));
 }
-pub export fn zig_recv_I_Uc_Ip(lv: c.I_Uc_Ip) c_int {
-    if (lv.v1 != 10563) return 1;
-    if (lv.v2 != 11) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_I_Uc_Ip(lv: c.I_Uc_Ip) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 10563) err = 1;
+    if (lv.v2 != 11) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Uc_Ip() c.I_Uc_Ip {
     return .{ .v1 = 10563, .v2 = 11, .v3 = null };
@@ -7833,13 +8341,15 @@ test "I_Uc_L C calls" {
     try testing.expectEqual(c.ret_I_Uc_L(), .{ .v1 = 28918, .v2 = 4, .v3 = 2052 });
     try testing.expectOk(c.assert_ret_I_Uc_L());
     try testing.expectOk(c.send_I_Uc_L());
-    try testing.expectOk(c.recv_I_Uc_L(.{ .v1 = 28918, .v2 = 4, .v3 = 2052 }));
+    try testing.expectOk(c.assert_I_Uc_L(.{ .v1 = 28918, .v2 = 4, .v3 = 2052 }));
 }
-pub export fn zig_recv_I_Uc_L(lv: c.I_Uc_L) c_int {
-    if (lv.v1 != 28918) return 1;
-    if (lv.v2 != 4) return 2;
-    if (lv.v3 != 2052) return 3;
-    return 0;
+pub export fn zig_assert_I_Uc_L(lv: c.I_Uc_L) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 28918) err = 1;
+    if (lv.v2 != 4) err = 2;
+    if (lv.v3 != 2052) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Uc_L() c.I_Uc_L {
     return .{ .v1 = 28918, .v2 = 4, .v3 = 2052 };
@@ -7864,13 +8374,15 @@ test "I_Uc_S C calls" {
     try testing.expectEqual(c.ret_I_Uc_S(), .{ .v1 = 17185, .v2 = 74, .v3 = 22429 });
     try testing.expectOk(c.assert_ret_I_Uc_S());
     try testing.expectOk(c.send_I_Uc_S());
-    try testing.expectOk(c.recv_I_Uc_S(.{ .v1 = 17185, .v2 = 74, .v3 = 22429 }));
+    try testing.expectOk(c.assert_I_Uc_S(.{ .v1 = 17185, .v2 = 74, .v3 = 22429 }));
 }
-pub export fn zig_recv_I_Uc_S(lv: c.I_Uc_S) c_int {
-    if (lv.v1 != 17185) return 1;
-    if (lv.v2 != 74) return 2;
-    if (lv.v3 != 22429) return 3;
-    return 0;
+pub export fn zig_assert_I_Uc_S(lv: c.I_Uc_S) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 17185) err = 1;
+    if (lv.v2 != 74) err = 2;
+    if (lv.v3 != 22429) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Uc_S() c.I_Uc_S {
     return .{ .v1 = 17185, .v2 = 74, .v3 = 22429 };
@@ -7895,13 +8407,15 @@ test "I_Uc_Uc C calls" {
     try testing.expectEqual(c.ret_I_Uc_Uc(), .{ .v1 = 7894, .v2 = 53, .v3 = 84 });
     try testing.expectOk(c.assert_ret_I_Uc_Uc());
     try testing.expectOk(c.send_I_Uc_Uc());
-    try testing.expectOk(c.recv_I_Uc_Uc(.{ .v1 = 7894, .v2 = 53, .v3 = 84 }));
+    try testing.expectOk(c.assert_I_Uc_Uc(.{ .v1 = 7894, .v2 = 53, .v3 = 84 }));
 }
-pub export fn zig_recv_I_Uc_Uc(lv: c.I_Uc_Uc) c_int {
-    if (lv.v1 != 7894) return 1;
-    if (lv.v2 != 53) return 2;
-    if (lv.v3 != 84) return 3;
-    return 0;
+pub export fn zig_assert_I_Uc_Uc(lv: c.I_Uc_Uc) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 7894) err = 1;
+    if (lv.v2 != 53) err = 2;
+    if (lv.v3 != 84) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Uc_Uc() c.I_Uc_Uc {
     return .{ .v1 = 7894, .v2 = 53, .v3 = 84 };
@@ -7926,13 +8440,15 @@ test "I_Uc_Ui C calls" {
     try testing.expectEqual(c.ret_I_Uc_Ui(), .{ .v1 = 29649, .v2 = 52, .v3 = 28628 });
     try testing.expectOk(c.assert_ret_I_Uc_Ui());
     try testing.expectOk(c.send_I_Uc_Ui());
-    try testing.expectOk(c.recv_I_Uc_Ui(.{ .v1 = 29649, .v2 = 52, .v3 = 28628 }));
+    try testing.expectOk(c.assert_I_Uc_Ui(.{ .v1 = 29649, .v2 = 52, .v3 = 28628 }));
 }
-pub export fn zig_recv_I_Uc_Ui(lv: c.I_Uc_Ui) c_int {
-    if (lv.v1 != 29649) return 1;
-    if (lv.v2 != 52) return 2;
-    if (lv.v3 != 28628) return 3;
-    return 0;
+pub export fn zig_assert_I_Uc_Ui(lv: c.I_Uc_Ui) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 29649) err = 1;
+    if (lv.v2 != 52) err = 2;
+    if (lv.v3 != 28628) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Uc_Ui() c.I_Uc_Ui {
     return .{ .v1 = 29649, .v2 = 52, .v3 = 28628 };
@@ -7957,13 +8473,15 @@ test "I_Uc_Ul C calls" {
     try testing.expectEqual(c.ret_I_Uc_Ul(), .{ .v1 = 13864, .v2 = 71, .v3 = 17139 });
     try testing.expectOk(c.assert_ret_I_Uc_Ul());
     try testing.expectOk(c.send_I_Uc_Ul());
-    try testing.expectOk(c.recv_I_Uc_Ul(.{ .v1 = 13864, .v2 = 71, .v3 = 17139 }));
+    try testing.expectOk(c.assert_I_Uc_Ul(.{ .v1 = 13864, .v2 = 71, .v3 = 17139 }));
 }
-pub export fn zig_recv_I_Uc_Ul(lv: c.I_Uc_Ul) c_int {
-    if (lv.v1 != 13864) return 1;
-    if (lv.v2 != 71) return 2;
-    if (lv.v3 != 17139) return 3;
-    return 0;
+pub export fn zig_assert_I_Uc_Ul(lv: c.I_Uc_Ul) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 13864) err = 1;
+    if (lv.v2 != 71) err = 2;
+    if (lv.v3 != 17139) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Uc_Ul() c.I_Uc_Ul {
     return .{ .v1 = 13864, .v2 = 71, .v3 = 17139 };
@@ -7988,13 +8506,15 @@ test "I_Uc_Us C calls" {
     try testing.expectEqual(c.ret_I_Uc_Us(), .{ .v1 = 621, .v2 = 24, .v3 = 87 });
     try testing.expectOk(c.assert_ret_I_Uc_Us());
     try testing.expectOk(c.send_I_Uc_Us());
-    try testing.expectOk(c.recv_I_Uc_Us(.{ .v1 = 621, .v2 = 24, .v3 = 87 }));
+    try testing.expectOk(c.assert_I_Uc_Us(.{ .v1 = 621, .v2 = 24, .v3 = 87 }));
 }
-pub export fn zig_recv_I_Uc_Us(lv: c.I_Uc_Us) c_int {
-    if (lv.v1 != 621) return 1;
-    if (lv.v2 != 24) return 2;
-    if (lv.v3 != 87) return 3;
-    return 0;
+pub export fn zig_assert_I_Uc_Us(lv: c.I_Uc_Us) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 621) err = 1;
+    if (lv.v2 != 24) err = 2;
+    if (lv.v3 != 87) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Uc_Us() c.I_Uc_Us {
     return .{ .v1 = 621, .v2 = 24, .v3 = 87 };
@@ -8019,13 +8539,15 @@ test "I_Uc_Vp C calls" {
     try testing.expectEqual(c.ret_I_Uc_Vp(), .{ .v1 = 15733, .v2 = 107, .v3 = null });
     try testing.expectOk(c.assert_ret_I_Uc_Vp());
     try testing.expectOk(c.send_I_Uc_Vp());
-    try testing.expectOk(c.recv_I_Uc_Vp(.{ .v1 = 15733, .v2 = 107, .v3 = null }));
+    try testing.expectOk(c.assert_I_Uc_Vp(.{ .v1 = 15733, .v2 = 107, .v3 = null }));
 }
-pub export fn zig_recv_I_Uc_Vp(lv: c.I_Uc_Vp) c_int {
-    if (lv.v1 != 15733) return 1;
-    if (lv.v2 != 107) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_I_Uc_Vp(lv: c.I_Uc_Vp) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 15733) err = 1;
+    if (lv.v2 != 107) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Uc_Vp() c.I_Uc_Vp {
     return .{ .v1 = 15733, .v2 = 107, .v3 = null };
@@ -8048,12 +8570,14 @@ test "I_Ui C calls" {
     try testing.expectEqual(c.ret_I_Ui(), .{ .v1 = 7752, .v2 = 28087 });
     try testing.expectOk(c.assert_ret_I_Ui());
     try testing.expectOk(c.send_I_Ui());
-    try testing.expectOk(c.recv_I_Ui(.{ .v1 = 7752, .v2 = 28087 }));
+    try testing.expectOk(c.assert_I_Ui(.{ .v1 = 7752, .v2 = 28087 }));
 }
-pub export fn zig_recv_I_Ui(lv: c.I_Ui) c_int {
-    if (lv.v1 != 7752) return 1;
-    if (lv.v2 != 28087) return 2;
-    return 0;
+pub export fn zig_assert_I_Ui(lv: c.I_Ui) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 7752) err = 1;
+    if (lv.v2 != 28087) err = 2;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ui() c.I_Ui {
     return .{ .v1 = 7752, .v2 = 28087 };
@@ -8078,13 +8602,15 @@ test "I_Ui_C C calls" {
     try testing.expectEqual(c.ret_I_Ui_C(), .{ .v1 = 16981, .v2 = 17288, .v3 = 2 });
     try testing.expectOk(c.assert_ret_I_Ui_C());
     try testing.expectOk(c.send_I_Ui_C());
-    try testing.expectOk(c.recv_I_Ui_C(.{ .v1 = 16981, .v2 = 17288, .v3 = 2 }));
+    try testing.expectOk(c.assert_I_Ui_C(.{ .v1 = 16981, .v2 = 17288, .v3 = 2 }));
 }
-pub export fn zig_recv_I_Ui_C(lv: c.I_Ui_C) c_int {
-    if (lv.v1 != 16981) return 1;
-    if (lv.v2 != 17288) return 2;
-    if (lv.v3 != 2) return 3;
-    return 0;
+pub export fn zig_assert_I_Ui_C(lv: c.I_Ui_C) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 16981) err = 1;
+    if (lv.v2 != 17288) err = 2;
+    if (lv.v3 != 2) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ui_C() c.I_Ui_C {
     return .{ .v1 = 16981, .v2 = 17288, .v3 = 2 };
@@ -8109,13 +8635,15 @@ test "I_Ui_D C calls" {
     try testing.expectEqual(c.ret_I_Ui_D(), .{ .v1 = 23540, .v2 = 10678, .v3 = 0.5 });
     try testing.expectOk(c.assert_ret_I_Ui_D());
     try testing.expectOk(c.send_I_Ui_D());
-    try testing.expectOk(c.recv_I_Ui_D(.{ .v1 = 23540, .v2 = 10678, .v3 = 0.5 }));
+    try testing.expectOk(c.assert_I_Ui_D(.{ .v1 = 23540, .v2 = 10678, .v3 = 0.5 }));
 }
-pub export fn zig_recv_I_Ui_D(lv: c.I_Ui_D) c_int {
-    if (lv.v1 != 23540) return 1;
-    if (lv.v2 != 10678) return 2;
-    if (lv.v3 != 0.5) return 3;
-    return 0;
+pub export fn zig_assert_I_Ui_D(lv: c.I_Ui_D) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 23540) err = 1;
+    if (lv.v2 != 10678) err = 2;
+    if (lv.v3 != 0.5) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ui_D() c.I_Ui_D {
     return .{ .v1 = 23540, .v2 = 10678, .v3 = 0.5 };
@@ -8140,13 +8668,15 @@ test "I_Ui_F C calls" {
     try testing.expectEqual(c.ret_I_Ui_F(), .{ .v1 = 24642, .v2 = 26856, .v3 = 0.5 });
     try testing.expectOk(c.assert_ret_I_Ui_F());
     try testing.expectOk(c.send_I_Ui_F());
-    try testing.expectOk(c.recv_I_Ui_F(.{ .v1 = 24642, .v2 = 26856, .v3 = 0.5 }));
+    try testing.expectOk(c.assert_I_Ui_F(.{ .v1 = 24642, .v2 = 26856, .v3 = 0.5 }));
 }
-pub export fn zig_recv_I_Ui_F(lv: c.I_Ui_F) c_int {
-    if (lv.v1 != 24642) return 1;
-    if (lv.v2 != 26856) return 2;
-    if (lv.v3 != 0.5) return 3;
-    return 0;
+pub export fn zig_assert_I_Ui_F(lv: c.I_Ui_F) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 24642) err = 1;
+    if (lv.v2 != 26856) err = 2;
+    if (lv.v3 != 0.5) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ui_F() c.I_Ui_F {
     return .{ .v1 = 24642, .v2 = 26856, .v3 = 0.5 };
@@ -8171,13 +8701,15 @@ test "I_Ui_I C calls" {
     try testing.expectEqual(c.ret_I_Ui_I(), .{ .v1 = 8999, .v2 = 1538, .v3 = 10112 });
     try testing.expectOk(c.assert_ret_I_Ui_I());
     try testing.expectOk(c.send_I_Ui_I());
-    try testing.expectOk(c.recv_I_Ui_I(.{ .v1 = 8999, .v2 = 1538, .v3 = 10112 }));
+    try testing.expectOk(c.assert_I_Ui_I(.{ .v1 = 8999, .v2 = 1538, .v3 = 10112 }));
 }
-pub export fn zig_recv_I_Ui_I(lv: c.I_Ui_I) c_int {
-    if (lv.v1 != 8999) return 1;
-    if (lv.v2 != 1538) return 2;
-    if (lv.v3 != 10112) return 3;
-    return 0;
+pub export fn zig_assert_I_Ui_I(lv: c.I_Ui_I) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 8999) err = 1;
+    if (lv.v2 != 1538) err = 2;
+    if (lv.v3 != 10112) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ui_I() c.I_Ui_I {
     return .{ .v1 = 8999, .v2 = 1538, .v3 = 10112 };
@@ -8202,13 +8734,15 @@ test "I_Ui_Ip C calls" {
     try testing.expectEqual(c.ret_I_Ui_Ip(), .{ .v1 = 12833, .v2 = 8536, .v3 = null });
     try testing.expectOk(c.assert_ret_I_Ui_Ip());
     try testing.expectOk(c.send_I_Ui_Ip());
-    try testing.expectOk(c.recv_I_Ui_Ip(.{ .v1 = 12833, .v2 = 8536, .v3 = null }));
+    try testing.expectOk(c.assert_I_Ui_Ip(.{ .v1 = 12833, .v2 = 8536, .v3 = null }));
 }
-pub export fn zig_recv_I_Ui_Ip(lv: c.I_Ui_Ip) c_int {
-    if (lv.v1 != 12833) return 1;
-    if (lv.v2 != 8536) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_I_Ui_Ip(lv: c.I_Ui_Ip) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 12833) err = 1;
+    if (lv.v2 != 8536) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ui_Ip() c.I_Ui_Ip {
     return .{ .v1 = 12833, .v2 = 8536, .v3 = null };
@@ -8233,13 +8767,15 @@ test "I_Ui_L C calls" {
     try testing.expectEqual(c.ret_I_Ui_L(), .{ .v1 = 5275, .v2 = 28397, .v3 = 7892 });
     try testing.expectOk(c.assert_ret_I_Ui_L());
     try testing.expectOk(c.send_I_Ui_L());
-    try testing.expectOk(c.recv_I_Ui_L(.{ .v1 = 5275, .v2 = 28397, .v3 = 7892 }));
+    try testing.expectOk(c.assert_I_Ui_L(.{ .v1 = 5275, .v2 = 28397, .v3 = 7892 }));
 }
-pub export fn zig_recv_I_Ui_L(lv: c.I_Ui_L) c_int {
-    if (lv.v1 != 5275) return 1;
-    if (lv.v2 != 28397) return 2;
-    if (lv.v3 != 7892) return 3;
-    return 0;
+pub export fn zig_assert_I_Ui_L(lv: c.I_Ui_L) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 5275) err = 1;
+    if (lv.v2 != 28397) err = 2;
+    if (lv.v3 != 7892) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ui_L() c.I_Ui_L {
     return .{ .v1 = 5275, .v2 = 28397, .v3 = 7892 };
@@ -8264,13 +8800,15 @@ test "I_Ui_S C calls" {
     try testing.expectEqual(c.ret_I_Ui_S(), .{ .v1 = 2988, .v2 = 13600, .v3 = 2866 });
     try testing.expectOk(c.assert_ret_I_Ui_S());
     try testing.expectOk(c.send_I_Ui_S());
-    try testing.expectOk(c.recv_I_Ui_S(.{ .v1 = 2988, .v2 = 13600, .v3 = 2866 }));
+    try testing.expectOk(c.assert_I_Ui_S(.{ .v1 = 2988, .v2 = 13600, .v3 = 2866 }));
 }
-pub export fn zig_recv_I_Ui_S(lv: c.I_Ui_S) c_int {
-    if (lv.v1 != 2988) return 1;
-    if (lv.v2 != 13600) return 2;
-    if (lv.v3 != 2866) return 3;
-    return 0;
+pub export fn zig_assert_I_Ui_S(lv: c.I_Ui_S) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 2988) err = 1;
+    if (lv.v2 != 13600) err = 2;
+    if (lv.v3 != 2866) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ui_S() c.I_Ui_S {
     return .{ .v1 = 2988, .v2 = 13600, .v3 = 2866 };
@@ -8295,13 +8833,15 @@ test "I_Ui_Uc C calls" {
     try testing.expectEqual(c.ret_I_Ui_Uc(), .{ .v1 = 22817, .v2 = 14264, .v3 = 36 });
     try testing.expectOk(c.assert_ret_I_Ui_Uc());
     try testing.expectOk(c.send_I_Ui_Uc());
-    try testing.expectOk(c.recv_I_Ui_Uc(.{ .v1 = 22817, .v2 = 14264, .v3 = 36 }));
+    try testing.expectOk(c.assert_I_Ui_Uc(.{ .v1 = 22817, .v2 = 14264, .v3 = 36 }));
 }
-pub export fn zig_recv_I_Ui_Uc(lv: c.I_Ui_Uc) c_int {
-    if (lv.v1 != 22817) return 1;
-    if (lv.v2 != 14264) return 2;
-    if (lv.v3 != 36) return 3;
-    return 0;
+pub export fn zig_assert_I_Ui_Uc(lv: c.I_Ui_Uc) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 22817) err = 1;
+    if (lv.v2 != 14264) err = 2;
+    if (lv.v3 != 36) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ui_Uc() c.I_Ui_Uc {
     return .{ .v1 = 22817, .v2 = 14264, .v3 = 36 };
@@ -8326,13 +8866,15 @@ test "I_Ui_Ui C calls" {
     try testing.expectEqual(c.ret_I_Ui_Ui(), .{ .v1 = 24298, .v2 = 4517, .v3 = 19633 });
     try testing.expectOk(c.assert_ret_I_Ui_Ui());
     try testing.expectOk(c.send_I_Ui_Ui());
-    try testing.expectOk(c.recv_I_Ui_Ui(.{ .v1 = 24298, .v2 = 4517, .v3 = 19633 }));
+    try testing.expectOk(c.assert_I_Ui_Ui(.{ .v1 = 24298, .v2 = 4517, .v3 = 19633 }));
 }
-pub export fn zig_recv_I_Ui_Ui(lv: c.I_Ui_Ui) c_int {
-    if (lv.v1 != 24298) return 1;
-    if (lv.v2 != 4517) return 2;
-    if (lv.v3 != 19633) return 3;
-    return 0;
+pub export fn zig_assert_I_Ui_Ui(lv: c.I_Ui_Ui) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 24298) err = 1;
+    if (lv.v2 != 4517) err = 2;
+    if (lv.v3 != 19633) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ui_Ui() c.I_Ui_Ui {
     return .{ .v1 = 24298, .v2 = 4517, .v3 = 19633 };
@@ -8357,13 +8899,15 @@ test "I_Ui_Ul C calls" {
     try testing.expectEqual(c.ret_I_Ui_Ul(), .{ .v1 = 14891, .v2 = 14320, .v3 = 17109 });
     try testing.expectOk(c.assert_ret_I_Ui_Ul());
     try testing.expectOk(c.send_I_Ui_Ul());
-    try testing.expectOk(c.recv_I_Ui_Ul(.{ .v1 = 14891, .v2 = 14320, .v3 = 17109 }));
+    try testing.expectOk(c.assert_I_Ui_Ul(.{ .v1 = 14891, .v2 = 14320, .v3 = 17109 }));
 }
-pub export fn zig_recv_I_Ui_Ul(lv: c.I_Ui_Ul) c_int {
-    if (lv.v1 != 14891) return 1;
-    if (lv.v2 != 14320) return 2;
-    if (lv.v3 != 17109) return 3;
-    return 0;
+pub export fn zig_assert_I_Ui_Ul(lv: c.I_Ui_Ul) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 14891) err = 1;
+    if (lv.v2 != 14320) err = 2;
+    if (lv.v3 != 17109) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ui_Ul() c.I_Ui_Ul {
     return .{ .v1 = 14891, .v2 = 14320, .v3 = 17109 };
@@ -8388,13 +8932,15 @@ test "I_Ui_Us C calls" {
     try testing.expectEqual(c.ret_I_Ui_Us(), .{ .v1 = 12774, .v2 = 30862, .v3 = 23839 });
     try testing.expectOk(c.assert_ret_I_Ui_Us());
     try testing.expectOk(c.send_I_Ui_Us());
-    try testing.expectOk(c.recv_I_Ui_Us(.{ .v1 = 12774, .v2 = 30862, .v3 = 23839 }));
+    try testing.expectOk(c.assert_I_Ui_Us(.{ .v1 = 12774, .v2 = 30862, .v3 = 23839 }));
 }
-pub export fn zig_recv_I_Ui_Us(lv: c.I_Ui_Us) c_int {
-    if (lv.v1 != 12774) return 1;
-    if (lv.v2 != 30862) return 2;
-    if (lv.v3 != 23839) return 3;
-    return 0;
+pub export fn zig_assert_I_Ui_Us(lv: c.I_Ui_Us) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 12774) err = 1;
+    if (lv.v2 != 30862) err = 2;
+    if (lv.v3 != 23839) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ui_Us() c.I_Ui_Us {
     return .{ .v1 = 12774, .v2 = 30862, .v3 = 23839 };
@@ -8419,13 +8965,15 @@ test "I_Ui_Vp C calls" {
     try testing.expectEqual(c.ret_I_Ui_Vp(), .{ .v1 = 25010, .v2 = 12563, .v3 = null });
     try testing.expectOk(c.assert_ret_I_Ui_Vp());
     try testing.expectOk(c.send_I_Ui_Vp());
-    try testing.expectOk(c.recv_I_Ui_Vp(.{ .v1 = 25010, .v2 = 12563, .v3 = null }));
+    try testing.expectOk(c.assert_I_Ui_Vp(.{ .v1 = 25010, .v2 = 12563, .v3 = null }));
 }
-pub export fn zig_recv_I_Ui_Vp(lv: c.I_Ui_Vp) c_int {
-    if (lv.v1 != 25010) return 1;
-    if (lv.v2 != 12563) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_I_Ui_Vp(lv: c.I_Ui_Vp) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 25010) err = 1;
+    if (lv.v2 != 12563) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ui_Vp() c.I_Ui_Vp {
     return .{ .v1 = 25010, .v2 = 12563, .v3 = null };
@@ -8448,12 +8996,14 @@ test "I_Ul C calls" {
     try testing.expectEqual(c.ret_I_Ul(), .{ .v1 = 29320, .v2 = 9969 });
     try testing.expectOk(c.assert_ret_I_Ul());
     try testing.expectOk(c.send_I_Ul());
-    try testing.expectOk(c.recv_I_Ul(.{ .v1 = 29320, .v2 = 9969 }));
+    try testing.expectOk(c.assert_I_Ul(.{ .v1 = 29320, .v2 = 9969 }));
 }
-pub export fn zig_recv_I_Ul(lv: c.I_Ul) c_int {
-    if (lv.v1 != 29320) return 1;
-    if (lv.v2 != 9969) return 2;
-    return 0;
+pub export fn zig_assert_I_Ul(lv: c.I_Ul) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 29320) err = 1;
+    if (lv.v2 != 9969) err = 2;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ul() c.I_Ul {
     return .{ .v1 = 29320, .v2 = 9969 };
@@ -8478,13 +9028,15 @@ test "I_Ul_C C calls" {
     try testing.expectEqual(c.ret_I_Ul_C(), .{ .v1 = 20010, .v2 = 6864, .v3 = 53 });
     try testing.expectOk(c.assert_ret_I_Ul_C());
     try testing.expectOk(c.send_I_Ul_C());
-    try testing.expectOk(c.recv_I_Ul_C(.{ .v1 = 20010, .v2 = 6864, .v3 = 53 }));
+    try testing.expectOk(c.assert_I_Ul_C(.{ .v1 = 20010, .v2 = 6864, .v3 = 53 }));
 }
-pub export fn zig_recv_I_Ul_C(lv: c.I_Ul_C) c_int {
-    if (lv.v1 != 20010) return 1;
-    if (lv.v2 != 6864) return 2;
-    if (lv.v3 != 53) return 3;
-    return 0;
+pub export fn zig_assert_I_Ul_C(lv: c.I_Ul_C) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 20010) err = 1;
+    if (lv.v2 != 6864) err = 2;
+    if (lv.v3 != 53) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ul_C() c.I_Ul_C {
     return .{ .v1 = 20010, .v2 = 6864, .v3 = 53 };
@@ -8509,13 +9061,15 @@ test "I_Ul_D C calls" {
     try testing.expectEqual(c.ret_I_Ul_D(), .{ .v1 = 31184, .v2 = 21032, .v3 = 1.0 });
     try testing.expectOk(c.assert_ret_I_Ul_D());
     try testing.expectOk(c.send_I_Ul_D());
-    try testing.expectOk(c.recv_I_Ul_D(.{ .v1 = 31184, .v2 = 21032, .v3 = 1.0 }));
+    try testing.expectOk(c.assert_I_Ul_D(.{ .v1 = 31184, .v2 = 21032, .v3 = 1.0 }));
 }
-pub export fn zig_recv_I_Ul_D(lv: c.I_Ul_D) c_int {
-    if (lv.v1 != 31184) return 1;
-    if (lv.v2 != 21032) return 2;
-    if (lv.v3 != 1.0) return 3;
-    return 0;
+pub export fn zig_assert_I_Ul_D(lv: c.I_Ul_D) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 31184) err = 1;
+    if (lv.v2 != 21032) err = 2;
+    if (lv.v3 != 1.0) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ul_D() c.I_Ul_D {
     return .{ .v1 = 31184, .v2 = 21032, .v3 = 1.0 };
@@ -8540,13 +9094,15 @@ test "I_Ul_F C calls" {
     try testing.expectEqual(c.ret_I_Ul_F(), .{ .v1 = 13631, .v2 = 23584, .v3 = 0.5 });
     try testing.expectOk(c.assert_ret_I_Ul_F());
     try testing.expectOk(c.send_I_Ul_F());
-    try testing.expectOk(c.recv_I_Ul_F(.{ .v1 = 13631, .v2 = 23584, .v3 = 0.5 }));
+    try testing.expectOk(c.assert_I_Ul_F(.{ .v1 = 13631, .v2 = 23584, .v3 = 0.5 }));
 }
-pub export fn zig_recv_I_Ul_F(lv: c.I_Ul_F) c_int {
-    if (lv.v1 != 13631) return 1;
-    if (lv.v2 != 23584) return 2;
-    if (lv.v3 != 0.5) return 3;
-    return 0;
+pub export fn zig_assert_I_Ul_F(lv: c.I_Ul_F) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 13631) err = 1;
+    if (lv.v2 != 23584) err = 2;
+    if (lv.v3 != 0.5) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ul_F() c.I_Ul_F {
     return .{ .v1 = 13631, .v2 = 23584, .v3 = 0.5 };
@@ -8571,13 +9127,15 @@ test "I_Ul_I C calls" {
     try testing.expectEqual(c.ret_I_Ul_I(), .{ .v1 = 24693, .v2 = 10012, .v3 = 25520 });
     try testing.expectOk(c.assert_ret_I_Ul_I());
     try testing.expectOk(c.send_I_Ul_I());
-    try testing.expectOk(c.recv_I_Ul_I(.{ .v1 = 24693, .v2 = 10012, .v3 = 25520 }));
+    try testing.expectOk(c.assert_I_Ul_I(.{ .v1 = 24693, .v2 = 10012, .v3 = 25520 }));
 }
-pub export fn zig_recv_I_Ul_I(lv: c.I_Ul_I) c_int {
-    if (lv.v1 != 24693) return 1;
-    if (lv.v2 != 10012) return 2;
-    if (lv.v3 != 25520) return 3;
-    return 0;
+pub export fn zig_assert_I_Ul_I(lv: c.I_Ul_I) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 24693) err = 1;
+    if (lv.v2 != 10012) err = 2;
+    if (lv.v3 != 25520) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ul_I() c.I_Ul_I {
     return .{ .v1 = 24693, .v2 = 10012, .v3 = 25520 };
@@ -8602,13 +9160,15 @@ test "I_Ul_Ip C calls" {
     try testing.expectEqual(c.ret_I_Ul_Ip(), .{ .v1 = 24608, .v2 = 31825, .v3 = null });
     try testing.expectOk(c.assert_ret_I_Ul_Ip());
     try testing.expectOk(c.send_I_Ul_Ip());
-    try testing.expectOk(c.recv_I_Ul_Ip(.{ .v1 = 24608, .v2 = 31825, .v3 = null }));
+    try testing.expectOk(c.assert_I_Ul_Ip(.{ .v1 = 24608, .v2 = 31825, .v3 = null }));
 }
-pub export fn zig_recv_I_Ul_Ip(lv: c.I_Ul_Ip) c_int {
-    if (lv.v1 != 24608) return 1;
-    if (lv.v2 != 31825) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_I_Ul_Ip(lv: c.I_Ul_Ip) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 24608) err = 1;
+    if (lv.v2 != 31825) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ul_Ip() c.I_Ul_Ip {
     return .{ .v1 = 24608, .v2 = 31825, .v3 = null };
@@ -8633,13 +9193,15 @@ test "I_Ul_L C calls" {
     try testing.expectEqual(c.ret_I_Ul_L(), .{ .v1 = 2359, .v2 = 23401, .v3 = 32239 });
     try testing.expectOk(c.assert_ret_I_Ul_L());
     try testing.expectOk(c.send_I_Ul_L());
-    try testing.expectOk(c.recv_I_Ul_L(.{ .v1 = 2359, .v2 = 23401, .v3 = 32239 }));
+    try testing.expectOk(c.assert_I_Ul_L(.{ .v1 = 2359, .v2 = 23401, .v3 = 32239 }));
 }
-pub export fn zig_recv_I_Ul_L(lv: c.I_Ul_L) c_int {
-    if (lv.v1 != 2359) return 1;
-    if (lv.v2 != 23401) return 2;
-    if (lv.v3 != 32239) return 3;
-    return 0;
+pub export fn zig_assert_I_Ul_L(lv: c.I_Ul_L) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 2359) err = 1;
+    if (lv.v2 != 23401) err = 2;
+    if (lv.v3 != 32239) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ul_L() c.I_Ul_L {
     return .{ .v1 = 2359, .v2 = 23401, .v3 = 32239 };
@@ -8664,13 +9226,15 @@ test "I_Ul_S C calls" {
     try testing.expectEqual(c.ret_I_Ul_S(), .{ .v1 = 29907, .v2 = 31008, .v3 = 28563 });
     try testing.expectOk(c.assert_ret_I_Ul_S());
     try testing.expectOk(c.send_I_Ul_S());
-    try testing.expectOk(c.recv_I_Ul_S(.{ .v1 = 29907, .v2 = 31008, .v3 = 28563 }));
+    try testing.expectOk(c.assert_I_Ul_S(.{ .v1 = 29907, .v2 = 31008, .v3 = 28563 }));
 }
-pub export fn zig_recv_I_Ul_S(lv: c.I_Ul_S) c_int {
-    if (lv.v1 != 29907) return 1;
-    if (lv.v2 != 31008) return 2;
-    if (lv.v3 != 28563) return 3;
-    return 0;
+pub export fn zig_assert_I_Ul_S(lv: c.I_Ul_S) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 29907) err = 1;
+    if (lv.v2 != 31008) err = 2;
+    if (lv.v3 != 28563) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ul_S() c.I_Ul_S {
     return .{ .v1 = 29907, .v2 = 31008, .v3 = 28563 };
@@ -8695,13 +9259,15 @@ test "I_Ul_Uc C calls" {
     try testing.expectEqual(c.ret_I_Ul_Uc(), .{ .v1 = 425, .v2 = 18214, .v3 = 121 });
     try testing.expectOk(c.assert_ret_I_Ul_Uc());
     try testing.expectOk(c.send_I_Ul_Uc());
-    try testing.expectOk(c.recv_I_Ul_Uc(.{ .v1 = 425, .v2 = 18214, .v3 = 121 }));
+    try testing.expectOk(c.assert_I_Ul_Uc(.{ .v1 = 425, .v2 = 18214, .v3 = 121 }));
 }
-pub export fn zig_recv_I_Ul_Uc(lv: c.I_Ul_Uc) c_int {
-    if (lv.v1 != 425) return 1;
-    if (lv.v2 != 18214) return 2;
-    if (lv.v3 != 121) return 3;
-    return 0;
+pub export fn zig_assert_I_Ul_Uc(lv: c.I_Ul_Uc) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 425) err = 1;
+    if (lv.v2 != 18214) err = 2;
+    if (lv.v3 != 121) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ul_Uc() c.I_Ul_Uc {
     return .{ .v1 = 425, .v2 = 18214, .v3 = 121 };
@@ -8726,13 +9292,15 @@ test "I_Ul_Ui C calls" {
     try testing.expectEqual(c.ret_I_Ul_Ui(), .{ .v1 = 19879, .v2 = 18445, .v3 = 2904 });
     try testing.expectOk(c.assert_ret_I_Ul_Ui());
     try testing.expectOk(c.send_I_Ul_Ui());
-    try testing.expectOk(c.recv_I_Ul_Ui(.{ .v1 = 19879, .v2 = 18445, .v3 = 2904 }));
+    try testing.expectOk(c.assert_I_Ul_Ui(.{ .v1 = 19879, .v2 = 18445, .v3 = 2904 }));
 }
-pub export fn zig_recv_I_Ul_Ui(lv: c.I_Ul_Ui) c_int {
-    if (lv.v1 != 19879) return 1;
-    if (lv.v2 != 18445) return 2;
-    if (lv.v3 != 2904) return 3;
-    return 0;
+pub export fn zig_assert_I_Ul_Ui(lv: c.I_Ul_Ui) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 19879) err = 1;
+    if (lv.v2 != 18445) err = 2;
+    if (lv.v3 != 2904) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ul_Ui() c.I_Ul_Ui {
     return .{ .v1 = 19879, .v2 = 18445, .v3 = 2904 };
@@ -8757,13 +9325,15 @@ test "I_Ul_Ul C calls" {
     try testing.expectEqual(c.ret_I_Ul_Ul(), .{ .v1 = 22126, .v2 = 4806, .v3 = 9350 });
     try testing.expectOk(c.assert_ret_I_Ul_Ul());
     try testing.expectOk(c.send_I_Ul_Ul());
-    try testing.expectOk(c.recv_I_Ul_Ul(.{ .v1 = 22126, .v2 = 4806, .v3 = 9350 }));
+    try testing.expectOk(c.assert_I_Ul_Ul(.{ .v1 = 22126, .v2 = 4806, .v3 = 9350 }));
 }
-pub export fn zig_recv_I_Ul_Ul(lv: c.I_Ul_Ul) c_int {
-    if (lv.v1 != 22126) return 1;
-    if (lv.v2 != 4806) return 2;
-    if (lv.v3 != 9350) return 3;
-    return 0;
+pub export fn zig_assert_I_Ul_Ul(lv: c.I_Ul_Ul) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 22126) err = 1;
+    if (lv.v2 != 4806) err = 2;
+    if (lv.v3 != 9350) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ul_Ul() c.I_Ul_Ul {
     return .{ .v1 = 22126, .v2 = 4806, .v3 = 9350 };
@@ -8788,13 +9358,15 @@ test "I_Ul_Us C calls" {
     try testing.expectEqual(c.ret_I_Ul_Us(), .{ .v1 = 23692, .v2 = 18615, .v3 = 3046 });
     try testing.expectOk(c.assert_ret_I_Ul_Us());
     try testing.expectOk(c.send_I_Ul_Us());
-    try testing.expectOk(c.recv_I_Ul_Us(.{ .v1 = 23692, .v2 = 18615, .v3 = 3046 }));
+    try testing.expectOk(c.assert_I_Ul_Us(.{ .v1 = 23692, .v2 = 18615, .v3 = 3046 }));
 }
-pub export fn zig_recv_I_Ul_Us(lv: c.I_Ul_Us) c_int {
-    if (lv.v1 != 23692) return 1;
-    if (lv.v2 != 18615) return 2;
-    if (lv.v3 != 3046) return 3;
-    return 0;
+pub export fn zig_assert_I_Ul_Us(lv: c.I_Ul_Us) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 23692) err = 1;
+    if (lv.v2 != 18615) err = 2;
+    if (lv.v3 != 3046) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ul_Us() c.I_Ul_Us {
     return .{ .v1 = 23692, .v2 = 18615, .v3 = 3046 };
@@ -8819,13 +9391,15 @@ test "I_Ul_Vp C calls" {
     try testing.expectEqual(c.ret_I_Ul_Vp(), .{ .v1 = 7177, .v2 = 6432, .v3 = null });
     try testing.expectOk(c.assert_ret_I_Ul_Vp());
     try testing.expectOk(c.send_I_Ul_Vp());
-    try testing.expectOk(c.recv_I_Ul_Vp(.{ .v1 = 7177, .v2 = 6432, .v3 = null }));
+    try testing.expectOk(c.assert_I_Ul_Vp(.{ .v1 = 7177, .v2 = 6432, .v3 = null }));
 }
-pub export fn zig_recv_I_Ul_Vp(lv: c.I_Ul_Vp) c_int {
-    if (lv.v1 != 7177) return 1;
-    if (lv.v2 != 6432) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_I_Ul_Vp(lv: c.I_Ul_Vp) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 7177) err = 1;
+    if (lv.v2 != 6432) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Ul_Vp() c.I_Ul_Vp {
     return .{ .v1 = 7177, .v2 = 6432, .v3 = null };
@@ -8848,12 +9422,14 @@ test "I_Us C calls" {
     try testing.expectEqual(c.ret_I_Us(), .{ .v1 = 2019, .v2 = 19027 });
     try testing.expectOk(c.assert_ret_I_Us());
     try testing.expectOk(c.send_I_Us());
-    try testing.expectOk(c.recv_I_Us(.{ .v1 = 2019, .v2 = 19027 }));
+    try testing.expectOk(c.assert_I_Us(.{ .v1 = 2019, .v2 = 19027 }));
 }
-pub export fn zig_recv_I_Us(lv: c.I_Us) c_int {
-    if (lv.v1 != 2019) return 1;
-    if (lv.v2 != 19027) return 2;
-    return 0;
+pub export fn zig_assert_I_Us(lv: c.I_Us) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 2019) err = 1;
+    if (lv.v2 != 19027) err = 2;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Us() c.I_Us {
     return .{ .v1 = 2019, .v2 = 19027 };
@@ -8878,13 +9454,15 @@ test "I_Us_C C calls" {
     try testing.expectEqual(c.ret_I_Us_C(), .{ .v1 = 13272, .v2 = 23928, .v3 = 68 });
     try testing.expectOk(c.assert_ret_I_Us_C());
     try testing.expectOk(c.send_I_Us_C());
-    try testing.expectOk(c.recv_I_Us_C(.{ .v1 = 13272, .v2 = 23928, .v3 = 68 }));
+    try testing.expectOk(c.assert_I_Us_C(.{ .v1 = 13272, .v2 = 23928, .v3 = 68 }));
 }
-pub export fn zig_recv_I_Us_C(lv: c.I_Us_C) c_int {
-    if (lv.v1 != 13272) return 1;
-    if (lv.v2 != 23928) return 2;
-    if (lv.v3 != 68) return 3;
-    return 0;
+pub export fn zig_assert_I_Us_C(lv: c.I_Us_C) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 13272) err = 1;
+    if (lv.v2 != 23928) err = 2;
+    if (lv.v3 != 68) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Us_C() c.I_Us_C {
     return .{ .v1 = 13272, .v2 = 23928, .v3 = 68 };
@@ -8909,13 +9487,15 @@ test "I_Us_D C calls" {
     try testing.expectEqual(c.ret_I_Us_D(), .{ .v1 = 29968, .v2 = 8541, .v3 = 0.875 });
     try testing.expectOk(c.assert_ret_I_Us_D());
     try testing.expectOk(c.send_I_Us_D());
-    try testing.expectOk(c.recv_I_Us_D(.{ .v1 = 29968, .v2 = 8541, .v3 = 0.875 }));
+    try testing.expectOk(c.assert_I_Us_D(.{ .v1 = 29968, .v2 = 8541, .v3 = 0.875 }));
 }
-pub export fn zig_recv_I_Us_D(lv: c.I_Us_D) c_int {
-    if (lv.v1 != 29968) return 1;
-    if (lv.v2 != 8541) return 2;
-    if (lv.v3 != 0.875) return 3;
-    return 0;
+pub export fn zig_assert_I_Us_D(lv: c.I_Us_D) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 29968) err = 1;
+    if (lv.v2 != 8541) err = 2;
+    if (lv.v3 != 0.875) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Us_D() c.I_Us_D {
     return .{ .v1 = 29968, .v2 = 8541, .v3 = 0.875 };
@@ -8940,13 +9520,15 @@ test "I_Us_F C calls" {
     try testing.expectEqual(c.ret_I_Us_F(), .{ .v1 = 2365, .v2 = 20461, .v3 = 4.5 });
     try testing.expectOk(c.assert_ret_I_Us_F());
     try testing.expectOk(c.send_I_Us_F());
-    try testing.expectOk(c.recv_I_Us_F(.{ .v1 = 2365, .v2 = 20461, .v3 = 4.5 }));
+    try testing.expectOk(c.assert_I_Us_F(.{ .v1 = 2365, .v2 = 20461, .v3 = 4.5 }));
 }
-pub export fn zig_recv_I_Us_F(lv: c.I_Us_F) c_int {
-    if (lv.v1 != 2365) return 1;
-    if (lv.v2 != 20461) return 2;
-    if (lv.v3 != 4.5) return 3;
-    return 0;
+pub export fn zig_assert_I_Us_F(lv: c.I_Us_F) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 2365) err = 1;
+    if (lv.v2 != 20461) err = 2;
+    if (lv.v3 != 4.5) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Us_F() c.I_Us_F {
     return .{ .v1 = 2365, .v2 = 20461, .v3 = 4.5 };
@@ -8971,13 +9553,15 @@ test "I_Us_I C calls" {
     try testing.expectEqual(c.ret_I_Us_I(), .{ .v1 = 10524, .v2 = 18897, .v3 = 1284 });
     try testing.expectOk(c.assert_ret_I_Us_I());
     try testing.expectOk(c.send_I_Us_I());
-    try testing.expectOk(c.recv_I_Us_I(.{ .v1 = 10524, .v2 = 18897, .v3 = 1284 }));
+    try testing.expectOk(c.assert_I_Us_I(.{ .v1 = 10524, .v2 = 18897, .v3 = 1284 }));
 }
-pub export fn zig_recv_I_Us_I(lv: c.I_Us_I) c_int {
-    if (lv.v1 != 10524) return 1;
-    if (lv.v2 != 18897) return 2;
-    if (lv.v3 != 1284) return 3;
-    return 0;
+pub export fn zig_assert_I_Us_I(lv: c.I_Us_I) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 10524) err = 1;
+    if (lv.v2 != 18897) err = 2;
+    if (lv.v3 != 1284) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Us_I() c.I_Us_I {
     return .{ .v1 = 10524, .v2 = 18897, .v3 = 1284 };
@@ -9002,13 +9586,15 @@ test "I_Us_Ip C calls" {
     try testing.expectEqual(c.ret_I_Us_Ip(), .{ .v1 = 17227, .v2 = 19352, .v3 = null });
     try testing.expectOk(c.assert_ret_I_Us_Ip());
     try testing.expectOk(c.send_I_Us_Ip());
-    try testing.expectOk(c.recv_I_Us_Ip(.{ .v1 = 17227, .v2 = 19352, .v3 = null }));
+    try testing.expectOk(c.assert_I_Us_Ip(.{ .v1 = 17227, .v2 = 19352, .v3 = null }));
 }
-pub export fn zig_recv_I_Us_Ip(lv: c.I_Us_Ip) c_int {
-    if (lv.v1 != 17227) return 1;
-    if (lv.v2 != 19352) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_I_Us_Ip(lv: c.I_Us_Ip) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 17227) err = 1;
+    if (lv.v2 != 19352) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Us_Ip() c.I_Us_Ip {
     return .{ .v1 = 17227, .v2 = 19352, .v3 = null };
@@ -9033,13 +9619,15 @@ test "I_Us_L C calls" {
     try testing.expectEqual(c.ret_I_Us_L(), .{ .v1 = 12034, .v2 = 21029, .v3 = 616 });
     try testing.expectOk(c.assert_ret_I_Us_L());
     try testing.expectOk(c.send_I_Us_L());
-    try testing.expectOk(c.recv_I_Us_L(.{ .v1 = 12034, .v2 = 21029, .v3 = 616 }));
+    try testing.expectOk(c.assert_I_Us_L(.{ .v1 = 12034, .v2 = 21029, .v3 = 616 }));
 }
-pub export fn zig_recv_I_Us_L(lv: c.I_Us_L) c_int {
-    if (lv.v1 != 12034) return 1;
-    if (lv.v2 != 21029) return 2;
-    if (lv.v3 != 616) return 3;
-    return 0;
+pub export fn zig_assert_I_Us_L(lv: c.I_Us_L) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 12034) err = 1;
+    if (lv.v2 != 21029) err = 2;
+    if (lv.v3 != 616) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Us_L() c.I_Us_L {
     return .{ .v1 = 12034, .v2 = 21029, .v3 = 616 };
@@ -9064,13 +9652,15 @@ test "I_Us_S C calls" {
     try testing.expectEqual(c.ret_I_Us_S(), .{ .v1 = 19176, .v2 = 14442, .v3 = 1020 });
     try testing.expectOk(c.assert_ret_I_Us_S());
     try testing.expectOk(c.send_I_Us_S());
-    try testing.expectOk(c.recv_I_Us_S(.{ .v1 = 19176, .v2 = 14442, .v3 = 1020 }));
+    try testing.expectOk(c.assert_I_Us_S(.{ .v1 = 19176, .v2 = 14442, .v3 = 1020 }));
 }
-pub export fn zig_recv_I_Us_S(lv: c.I_Us_S) c_int {
-    if (lv.v1 != 19176) return 1;
-    if (lv.v2 != 14442) return 2;
-    if (lv.v3 != 1020) return 3;
-    return 0;
+pub export fn zig_assert_I_Us_S(lv: c.I_Us_S) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 19176) err = 1;
+    if (lv.v2 != 14442) err = 2;
+    if (lv.v3 != 1020) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Us_S() c.I_Us_S {
     return .{ .v1 = 19176, .v2 = 14442, .v3 = 1020 };
@@ -9095,13 +9685,15 @@ test "I_Us_Uc C calls" {
     try testing.expectEqual(c.ret_I_Us_Uc(), .{ .v1 = 8333, .v2 = 4402, .v3 = 66 });
     try testing.expectOk(c.assert_ret_I_Us_Uc());
     try testing.expectOk(c.send_I_Us_Uc());
-    try testing.expectOk(c.recv_I_Us_Uc(.{ .v1 = 8333, .v2 = 4402, .v3 = 66 }));
+    try testing.expectOk(c.assert_I_Us_Uc(.{ .v1 = 8333, .v2 = 4402, .v3 = 66 }));
 }
-pub export fn zig_recv_I_Us_Uc(lv: c.I_Us_Uc) c_int {
-    if (lv.v1 != 8333) return 1;
-    if (lv.v2 != 4402) return 2;
-    if (lv.v3 != 66) return 3;
-    return 0;
+pub export fn zig_assert_I_Us_Uc(lv: c.I_Us_Uc) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 8333) err = 1;
+    if (lv.v2 != 4402) err = 2;
+    if (lv.v3 != 66) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Us_Uc() c.I_Us_Uc {
     return .{ .v1 = 8333, .v2 = 4402, .v3 = 66 };
@@ -9126,13 +9718,15 @@ test "I_Us_Ui C calls" {
     try testing.expectEqual(c.ret_I_Us_Ui(), .{ .v1 = 73, .v2 = 15233, .v3 = 28358 });
     try testing.expectOk(c.assert_ret_I_Us_Ui());
     try testing.expectOk(c.send_I_Us_Ui());
-    try testing.expectOk(c.recv_I_Us_Ui(.{ .v1 = 73, .v2 = 15233, .v3 = 28358 }));
+    try testing.expectOk(c.assert_I_Us_Ui(.{ .v1 = 73, .v2 = 15233, .v3 = 28358 }));
 }
-pub export fn zig_recv_I_Us_Ui(lv: c.I_Us_Ui) c_int {
-    if (lv.v1 != 73) return 1;
-    if (lv.v2 != 15233) return 2;
-    if (lv.v3 != 28358) return 3;
-    return 0;
+pub export fn zig_assert_I_Us_Ui(lv: c.I_Us_Ui) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 73) err = 1;
+    if (lv.v2 != 15233) err = 2;
+    if (lv.v3 != 28358) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Us_Ui() c.I_Us_Ui {
     return .{ .v1 = 73, .v2 = 15233, .v3 = 28358 };
@@ -9157,13 +9751,15 @@ test "I_Us_Ul C calls" {
     try testing.expectEqual(c.ret_I_Us_Ul(), .{ .v1 = 27440, .v2 = 23695, .v3 = 21809 });
     try testing.expectOk(c.assert_ret_I_Us_Ul());
     try testing.expectOk(c.send_I_Us_Ul());
-    try testing.expectOk(c.recv_I_Us_Ul(.{ .v1 = 27440, .v2 = 23695, .v3 = 21809 }));
+    try testing.expectOk(c.assert_I_Us_Ul(.{ .v1 = 27440, .v2 = 23695, .v3 = 21809 }));
 }
-pub export fn zig_recv_I_Us_Ul(lv: c.I_Us_Ul) c_int {
-    if (lv.v1 != 27440) return 1;
-    if (lv.v2 != 23695) return 2;
-    if (lv.v3 != 21809) return 3;
-    return 0;
+pub export fn zig_assert_I_Us_Ul(lv: c.I_Us_Ul) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 27440) err = 1;
+    if (lv.v2 != 23695) err = 2;
+    if (lv.v3 != 21809) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Us_Ul() c.I_Us_Ul {
     return .{ .v1 = 27440, .v2 = 23695, .v3 = 21809 };
@@ -9188,13 +9784,15 @@ test "I_Us_Us C calls" {
     try testing.expectEqual(c.ret_I_Us_Us(), .{ .v1 = 343, .v2 = 3972, .v3 = 6185 });
     try testing.expectOk(c.assert_ret_I_Us_Us());
     try testing.expectOk(c.send_I_Us_Us());
-    try testing.expectOk(c.recv_I_Us_Us(.{ .v1 = 343, .v2 = 3972, .v3 = 6185 }));
+    try testing.expectOk(c.assert_I_Us_Us(.{ .v1 = 343, .v2 = 3972, .v3 = 6185 }));
 }
-pub export fn zig_recv_I_Us_Us(lv: c.I_Us_Us) c_int {
-    if (lv.v1 != 343) return 1;
-    if (lv.v2 != 3972) return 2;
-    if (lv.v3 != 6185) return 3;
-    return 0;
+pub export fn zig_assert_I_Us_Us(lv: c.I_Us_Us) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 343) err = 1;
+    if (lv.v2 != 3972) err = 2;
+    if (lv.v3 != 6185) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Us_Us() c.I_Us_Us {
     return .{ .v1 = 343, .v2 = 3972, .v3 = 6185 };
@@ -9219,13 +9817,15 @@ test "I_Us_Vp C calls" {
     try testing.expectEqual(c.ret_I_Us_Vp(), .{ .v1 = 20872, .v2 = 4076, .v3 = null });
     try testing.expectOk(c.assert_ret_I_Us_Vp());
     try testing.expectOk(c.send_I_Us_Vp());
-    try testing.expectOk(c.recv_I_Us_Vp(.{ .v1 = 20872, .v2 = 4076, .v3 = null }));
+    try testing.expectOk(c.assert_I_Us_Vp(.{ .v1 = 20872, .v2 = 4076, .v3 = null }));
 }
-pub export fn zig_recv_I_Us_Vp(lv: c.I_Us_Vp) c_int {
-    if (lv.v1 != 20872) return 1;
-    if (lv.v2 != 4076) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_I_Us_Vp(lv: c.I_Us_Vp) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 20872) err = 1;
+    if (lv.v2 != 4076) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Us_Vp() c.I_Us_Vp {
     return .{ .v1 = 20872, .v2 = 4076, .v3 = null };
@@ -9248,12 +9848,14 @@ test "I_Vp C calls" {
     try testing.expectEqual(c.ret_I_Vp(), .{ .v1 = 14125, .v2 = null });
     try testing.expectOk(c.assert_ret_I_Vp());
     try testing.expectOk(c.send_I_Vp());
-    try testing.expectOk(c.recv_I_Vp(.{ .v1 = 14125, .v2 = null }));
+    try testing.expectOk(c.assert_I_Vp(.{ .v1 = 14125, .v2 = null }));
 }
-pub export fn zig_recv_I_Vp(lv: c.I_Vp) c_int {
-    if (lv.v1 != 14125) return 1;
-    if (lv.v2 != null) return 2;
-    return 0;
+pub export fn zig_assert_I_Vp(lv: c.I_Vp) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 14125) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Vp() c.I_Vp {
     return .{ .v1 = 14125, .v2 = null };
@@ -9278,13 +9880,15 @@ test "I_Vp_C C calls" {
     try testing.expectEqual(c.ret_I_Vp_C(), .{ .v1 = 5602, .v2 = null, .v3 = 126 });
     try testing.expectOk(c.assert_ret_I_Vp_C());
     try testing.expectOk(c.send_I_Vp_C());
-    try testing.expectOk(c.recv_I_Vp_C(.{ .v1 = 5602, .v2 = null, .v3 = 126 }));
+    try testing.expectOk(c.assert_I_Vp_C(.{ .v1 = 5602, .v2 = null, .v3 = 126 }));
 }
-pub export fn zig_recv_I_Vp_C(lv: c.I_Vp_C) c_int {
-    if (lv.v1 != 5602) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 126) return 3;
-    return 0;
+pub export fn zig_assert_I_Vp_C(lv: c.I_Vp_C) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 5602) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 126) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Vp_C() c.I_Vp_C {
     return .{ .v1 = 5602, .v2 = null, .v3 = 126 };
@@ -9309,13 +9913,15 @@ test "I_Vp_D C calls" {
     try testing.expectEqual(c.ret_I_Vp_D(), .{ .v1 = 4595, .v2 = null, .v3 = 1.0 });
     try testing.expectOk(c.assert_ret_I_Vp_D());
     try testing.expectOk(c.send_I_Vp_D());
-    try testing.expectOk(c.recv_I_Vp_D(.{ .v1 = 4595, .v2 = null, .v3 = 1.0 }));
+    try testing.expectOk(c.assert_I_Vp_D(.{ .v1 = 4595, .v2 = null, .v3 = 1.0 }));
 }
-pub export fn zig_recv_I_Vp_D(lv: c.I_Vp_D) c_int {
-    if (lv.v1 != 4595) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 1.0) return 3;
-    return 0;
+pub export fn zig_assert_I_Vp_D(lv: c.I_Vp_D) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 4595) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 1.0) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Vp_D() c.I_Vp_D {
     return .{ .v1 = 4595, .v2 = null, .v3 = 1.0 };
@@ -9340,13 +9946,15 @@ test "I_Vp_F C calls" {
     try testing.expectEqual(c.ret_I_Vp_F(), .{ .v1 = 10132, .v2 = null, .v3 = 4.5 });
     try testing.expectOk(c.assert_ret_I_Vp_F());
     try testing.expectOk(c.send_I_Vp_F());
-    try testing.expectOk(c.recv_I_Vp_F(.{ .v1 = 10132, .v2 = null, .v3 = 4.5 }));
+    try testing.expectOk(c.assert_I_Vp_F(.{ .v1 = 10132, .v2 = null, .v3 = 4.5 }));
 }
-pub export fn zig_recv_I_Vp_F(lv: c.I_Vp_F) c_int {
-    if (lv.v1 != 10132) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 4.5) return 3;
-    return 0;
+pub export fn zig_assert_I_Vp_F(lv: c.I_Vp_F) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 10132) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 4.5) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Vp_F() c.I_Vp_F {
     return .{ .v1 = 10132, .v2 = null, .v3 = 4.5 };
@@ -9371,13 +9979,15 @@ test "I_Vp_I C calls" {
     try testing.expectEqual(c.ret_I_Vp_I(), .{ .v1 = 105, .v2 = null, .v3 = 25037 });
     try testing.expectOk(c.assert_ret_I_Vp_I());
     try testing.expectOk(c.send_I_Vp_I());
-    try testing.expectOk(c.recv_I_Vp_I(.{ .v1 = 105, .v2 = null, .v3 = 25037 }));
+    try testing.expectOk(c.assert_I_Vp_I(.{ .v1 = 105, .v2 = null, .v3 = 25037 }));
 }
-pub export fn zig_recv_I_Vp_I(lv: c.I_Vp_I) c_int {
-    if (lv.v1 != 105) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 25037) return 3;
-    return 0;
+pub export fn zig_assert_I_Vp_I(lv: c.I_Vp_I) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 105) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 25037) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Vp_I() c.I_Vp_I {
     return .{ .v1 = 105, .v2 = null, .v3 = 25037 };
@@ -9402,13 +10012,15 @@ test "I_Vp_Ip C calls" {
     try testing.expectEqual(c.ret_I_Vp_Ip(), .{ .v1 = 30849, .v2 = null, .v3 = null });
     try testing.expectOk(c.assert_ret_I_Vp_Ip());
     try testing.expectOk(c.send_I_Vp_Ip());
-    try testing.expectOk(c.recv_I_Vp_Ip(.{ .v1 = 30849, .v2 = null, .v3 = null }));
+    try testing.expectOk(c.assert_I_Vp_Ip(.{ .v1 = 30849, .v2 = null, .v3 = null }));
 }
-pub export fn zig_recv_I_Vp_Ip(lv: c.I_Vp_Ip) c_int {
-    if (lv.v1 != 30849) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_I_Vp_Ip(lv: c.I_Vp_Ip) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 30849) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Vp_Ip() c.I_Vp_Ip {
     return .{ .v1 = 30849, .v2 = null, .v3 = null };
@@ -9433,13 +10045,15 @@ test "I_Vp_L C calls" {
     try testing.expectEqual(c.ret_I_Vp_L(), .{ .v1 = 30130, .v2 = null, .v3 = 7703 });
     try testing.expectOk(c.assert_ret_I_Vp_L());
     try testing.expectOk(c.send_I_Vp_L());
-    try testing.expectOk(c.recv_I_Vp_L(.{ .v1 = 30130, .v2 = null, .v3 = 7703 }));
+    try testing.expectOk(c.assert_I_Vp_L(.{ .v1 = 30130, .v2 = null, .v3 = 7703 }));
 }
-pub export fn zig_recv_I_Vp_L(lv: c.I_Vp_L) c_int {
-    if (lv.v1 != 30130) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 7703) return 3;
-    return 0;
+pub export fn zig_assert_I_Vp_L(lv: c.I_Vp_L) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 30130) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 7703) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Vp_L() c.I_Vp_L {
     return .{ .v1 = 30130, .v2 = null, .v3 = 7703 };
@@ -9464,13 +10078,15 @@ test "I_Vp_S C calls" {
     try testing.expectEqual(c.ret_I_Vp_S(), .{ .v1 = 7707, .v2 = null, .v3 = 4892 });
     try testing.expectOk(c.assert_ret_I_Vp_S());
     try testing.expectOk(c.send_I_Vp_S());
-    try testing.expectOk(c.recv_I_Vp_S(.{ .v1 = 7707, .v2 = null, .v3 = 4892 }));
+    try testing.expectOk(c.assert_I_Vp_S(.{ .v1 = 7707, .v2 = null, .v3 = 4892 }));
 }
-pub export fn zig_recv_I_Vp_S(lv: c.I_Vp_S) c_int {
-    if (lv.v1 != 7707) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 4892) return 3;
-    return 0;
+pub export fn zig_assert_I_Vp_S(lv: c.I_Vp_S) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 7707) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 4892) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Vp_S() c.I_Vp_S {
     return .{ .v1 = 7707, .v2 = null, .v3 = 4892 };
@@ -9495,13 +10111,15 @@ test "I_Vp_Uc C calls" {
     try testing.expectEqual(c.ret_I_Vp_Uc(), .{ .v1 = 2818, .v2 = null, .v3 = 85 });
     try testing.expectOk(c.assert_ret_I_Vp_Uc());
     try testing.expectOk(c.send_I_Vp_Uc());
-    try testing.expectOk(c.recv_I_Vp_Uc(.{ .v1 = 2818, .v2 = null, .v3 = 85 }));
+    try testing.expectOk(c.assert_I_Vp_Uc(.{ .v1 = 2818, .v2 = null, .v3 = 85 }));
 }
-pub export fn zig_recv_I_Vp_Uc(lv: c.I_Vp_Uc) c_int {
-    if (lv.v1 != 2818) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 85) return 3;
-    return 0;
+pub export fn zig_assert_I_Vp_Uc(lv: c.I_Vp_Uc) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 2818) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 85) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Vp_Uc() c.I_Vp_Uc {
     return .{ .v1 = 2818, .v2 = null, .v3 = 85 };
@@ -9526,13 +10144,15 @@ test "I_Vp_Ui C calls" {
     try testing.expectEqual(c.ret_I_Vp_Ui(), .{ .v1 = 16364, .v2 = null, .v3 = 5730 });
     try testing.expectOk(c.assert_ret_I_Vp_Ui());
     try testing.expectOk(c.send_I_Vp_Ui());
-    try testing.expectOk(c.recv_I_Vp_Ui(.{ .v1 = 16364, .v2 = null, .v3 = 5730 }));
+    try testing.expectOk(c.assert_I_Vp_Ui(.{ .v1 = 16364, .v2 = null, .v3 = 5730 }));
 }
-pub export fn zig_recv_I_Vp_Ui(lv: c.I_Vp_Ui) c_int {
-    if (lv.v1 != 16364) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 5730) return 3;
-    return 0;
+pub export fn zig_assert_I_Vp_Ui(lv: c.I_Vp_Ui) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 16364) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 5730) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Vp_Ui() c.I_Vp_Ui {
     return .{ .v1 = 16364, .v2 = null, .v3 = 5730 };
@@ -9557,13 +10177,15 @@ test "I_Vp_Ul C calls" {
     try testing.expectEqual(c.ret_I_Vp_Ul(), .{ .v1 = 12923, .v2 = null, .v3 = 21204 });
     try testing.expectOk(c.assert_ret_I_Vp_Ul());
     try testing.expectOk(c.send_I_Vp_Ul());
-    try testing.expectOk(c.recv_I_Vp_Ul(.{ .v1 = 12923, .v2 = null, .v3 = 21204 }));
+    try testing.expectOk(c.assert_I_Vp_Ul(.{ .v1 = 12923, .v2 = null, .v3 = 21204 }));
 }
-pub export fn zig_recv_I_Vp_Ul(lv: c.I_Vp_Ul) c_int {
-    if (lv.v1 != 12923) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 21204) return 3;
-    return 0;
+pub export fn zig_assert_I_Vp_Ul(lv: c.I_Vp_Ul) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 12923) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 21204) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Vp_Ul() c.I_Vp_Ul {
     return .{ .v1 = 12923, .v2 = null, .v3 = 21204 };
@@ -9588,13 +10210,15 @@ test "I_Vp_Us C calls" {
     try testing.expectEqual(c.ret_I_Vp_Us(), .{ .v1 = 19642, .v2 = null, .v3 = 20053 });
     try testing.expectOk(c.assert_ret_I_Vp_Us());
     try testing.expectOk(c.send_I_Vp_Us());
-    try testing.expectOk(c.recv_I_Vp_Us(.{ .v1 = 19642, .v2 = null, .v3 = 20053 }));
+    try testing.expectOk(c.assert_I_Vp_Us(.{ .v1 = 19642, .v2 = null, .v3 = 20053 }));
 }
-pub export fn zig_recv_I_Vp_Us(lv: c.I_Vp_Us) c_int {
-    if (lv.v1 != 19642) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != 20053) return 3;
-    return 0;
+pub export fn zig_assert_I_Vp_Us(lv: c.I_Vp_Us) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 19642) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != 20053) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Vp_Us() c.I_Vp_Us {
     return .{ .v1 = 19642, .v2 = null, .v3 = 20053 };
@@ -9619,13 +10243,15 @@ test "I_Vp_Vp C calls" {
     try testing.expectEqual(c.ret_I_Vp_Vp(), .{ .v1 = 9745, .v2 = null, .v3 = null });
     try testing.expectOk(c.assert_ret_I_Vp_Vp());
     try testing.expectOk(c.send_I_Vp_Vp());
-    try testing.expectOk(c.recv_I_Vp_Vp(.{ .v1 = 9745, .v2 = null, .v3 = null }));
+    try testing.expectOk(c.assert_I_Vp_Vp(.{ .v1 = 9745, .v2 = null, .v3 = null }));
 }
-pub export fn zig_recv_I_Vp_Vp(lv: c.I_Vp_Vp) c_int {
-    if (lv.v1 != 9745) return 1;
-    if (lv.v2 != null) return 2;
-    if (lv.v3 != null) return 3;
-    return 0;
+pub export fn zig_assert_I_Vp_Vp(lv: c.I_Vp_Vp) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 9745) err = 1;
+    if (lv.v2 != null) err = 2;
+    if (lv.v3 != null) err = 3;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_I_Vp_Vp() c.I_Vp_Vp {
     return .{ .v1 = 9745, .v2 = null, .v3 = null };
@@ -9646,11 +10272,13 @@ test "Ip C calls" {
     try testing.expectEqual(c.ret_Ip(), .{ .v1 = null });
     try testing.expectOk(c.assert_ret_Ip());
     try testing.expectOk(c.send_Ip());
-    try testing.expectOk(c.recv_Ip(.{ .v1 = null }));
+    try testing.expectOk(c.assert_Ip(.{ .v1 = null }));
 }
-pub export fn zig_recv_Ip(lv: c.Ip) c_int {
-    if (lv.v1 != null) return 1;
-    return 0;
+pub export fn zig_assert_Ip(lv: c.Ip) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != null) err = 1;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_Ip() c.Ip {
     return .{ .v1 = null };

@@ -21,11 +21,13 @@ test "C C calls" {
     try testing.expectEqual(c.ret_C(), .{ .v1 = 19 });
     try testing.expectOk(c.assert_ret_C());
     try testing.expectOk(c.send_C());
-    try testing.expectOk(c.recv_C(.{ .v1 = 19 }));
+    try testing.expectOk(c.assert_C(.{ .v1 = 19 }));
 }
-pub export fn zig_recv_C(lv: c.C) c_int {
-    if (lv.v1 != 19) return 1;
-    return 0;
+pub export fn zig_assert_C(lv: c.C) c_int {
+    var err: c_int = 0;
+    if (lv.v1 != 19) err = 1;
+    if (err != 0) std.debug.print("Received {}", .{lv});
+    return err;
 }
 pub export fn zig_ret_C() c.C {
     return .{ .v1 = 19 };

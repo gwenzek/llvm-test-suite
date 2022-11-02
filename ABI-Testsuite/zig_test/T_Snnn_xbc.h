@@ -5,6 +5,7 @@
 
 #define bool    _Bool
 struct empty {};
+struct empty EMPTY = {};
 
 // From T_Snnn_xbc.c:13651:13654
 struct  Vp_C  {
@@ -12,7 +13,7 @@ struct  Vp_C  {
   char v2;
 };
 
-int recv_Vp_C(struct Vp_C lv);
+int assert_Vp_C(struct Vp_C lv);
 struct Vp_C ret_Vp_C();
 int send_Vp_C();
 int assert_ret_Vp_C();
@@ -24,7 +25,7 @@ struct  Vp_C_C  {
   char v3;
 };
 
-int recv_Vp_C_C(struct Vp_C_C lv);
+int assert_Vp_C_C(struct Vp_C_C lv);
 struct Vp_C_C ret_Vp_C_C();
 int send_Vp_C_C();
 int assert_ret_Vp_C_C();
@@ -36,7 +37,7 @@ struct  Vp_C_D  {
   double v3;
 };
 
-int recv_Vp_C_D(struct Vp_C_D lv);
+int assert_Vp_C_D(struct Vp_C_D lv);
 struct Vp_C_D ret_Vp_C_D();
 int send_Vp_C_D();
 int assert_ret_Vp_C_D();
@@ -48,7 +49,7 @@ struct  Vp_C_F  {
   float v3;
 };
 
-int recv_Vp_C_F(struct Vp_C_F lv);
+int assert_Vp_C_F(struct Vp_C_F lv);
 struct Vp_C_F ret_Vp_C_F();
 int send_Vp_C_F();
 int assert_ret_Vp_C_F();
@@ -60,7 +61,7 @@ struct  Vp_C_I  {
   int v3;
 };
 
-int recv_Vp_C_I(struct Vp_C_I lv);
+int assert_Vp_C_I(struct Vp_C_I lv);
 struct Vp_C_I ret_Vp_C_I();
 int send_Vp_C_I();
 int assert_ret_Vp_C_I();
@@ -72,7 +73,7 @@ struct  Vp_C_Ip  {
   int *v3;
 };
 
-int recv_Vp_C_Ip(struct Vp_C_Ip lv);
+int assert_Vp_C_Ip(struct Vp_C_Ip lv);
 struct Vp_C_Ip ret_Vp_C_Ip();
 int send_Vp_C_Ip();
 int assert_ret_Vp_C_Ip();
@@ -84,7 +85,7 @@ struct  Vp_C_L  {
   __tsi64 v3;
 };
 
-int recv_Vp_C_L(struct Vp_C_L lv);
+int assert_Vp_C_L(struct Vp_C_L lv);
 struct Vp_C_L ret_Vp_C_L();
 int send_Vp_C_L();
 int assert_ret_Vp_C_L();
@@ -96,7 +97,7 @@ struct  Vp_C_S  {
   short v3;
 };
 
-int recv_Vp_C_S(struct Vp_C_S lv);
+int assert_Vp_C_S(struct Vp_C_S lv);
 struct Vp_C_S ret_Vp_C_S();
 int send_Vp_C_S();
 int assert_ret_Vp_C_S();
@@ -108,7 +109,7 @@ struct  Vp_C_Uc  {
   unsigned char v3;
 };
 
-int recv_Vp_C_Uc(struct Vp_C_Uc lv);
+int assert_Vp_C_Uc(struct Vp_C_Uc lv);
 struct Vp_C_Uc ret_Vp_C_Uc();
 int send_Vp_C_Uc();
 int assert_ret_Vp_C_Uc();
@@ -120,7 +121,7 @@ struct  Vp_C_Ui  {
   unsigned int v3;
 };
 
-int recv_Vp_C_Ui(struct Vp_C_Ui lv);
+int assert_Vp_C_Ui(struct Vp_C_Ui lv);
 struct Vp_C_Ui ret_Vp_C_Ui();
 int send_Vp_C_Ui();
 int assert_ret_Vp_C_Ui();
@@ -132,7 +133,7 @@ struct  Vp_C_Ul  {
   __tsu64 v3;
 };
 
-int recv_Vp_C_Ul(struct Vp_C_Ul lv);
+int assert_Vp_C_Ul(struct Vp_C_Ul lv);
 struct Vp_C_Ul ret_Vp_C_Ul();
 int send_Vp_C_Ul();
 int assert_ret_Vp_C_Ul();
@@ -144,7 +145,7 @@ struct  Vp_C_Us  {
   unsigned short v3;
 };
 
-int recv_Vp_C_Us(struct Vp_C_Us lv);
+int assert_Vp_C_Us(struct Vp_C_Us lv);
 struct Vp_C_Us ret_Vp_C_Us();
 int send_Vp_C_Us();
 int assert_ret_Vp_C_Us();
@@ -156,7 +157,7 @@ struct  Vp_C_Vp  {
   void *v3;
 };
 
-int recv_Vp_C_Vp(struct Vp_C_Vp lv);
+int assert_Vp_C_Vp(struct Vp_C_Vp lv);
 struct Vp_C_Vp ret_Vp_C_Vp();
 int send_Vp_C_Vp();
 int assert_ret_Vp_C_Vp();
@@ -167,7 +168,7 @@ struct  Vp_D  {
   double v2;
 };
 
-int recv_Vp_D(struct Vp_D lv);
+int assert_Vp_D(struct Vp_D lv);
 struct Vp_D ret_Vp_D();
 int send_Vp_D();
 int assert_ret_Vp_D();
@@ -179,7 +180,7 @@ struct  Vp_D_C  {
   char v3;
 };
 
-int recv_Vp_D_C(struct Vp_D_C lv);
+int assert_Vp_D_C(struct Vp_D_C lv);
 struct Vp_D_C ret_Vp_D_C();
 int send_Vp_D_C();
 int assert_ret_Vp_D_C();
@@ -191,7 +192,7 @@ struct  Vp_D_D  {
   double v3;
 };
 
-int recv_Vp_D_D(struct Vp_D_D lv);
+int assert_Vp_D_D(struct Vp_D_D lv);
 struct Vp_D_D ret_Vp_D_D();
 int send_Vp_D_D();
 int assert_ret_Vp_D_D();
@@ -203,7 +204,7 @@ struct  Vp_D_F  {
   float v3;
 };
 
-int recv_Vp_D_F(struct Vp_D_F lv);
+int assert_Vp_D_F(struct Vp_D_F lv);
 struct Vp_D_F ret_Vp_D_F();
 int send_Vp_D_F();
 int assert_ret_Vp_D_F();
@@ -215,7 +216,7 @@ struct  Vp_D_I  {
   int v3;
 };
 
-int recv_Vp_D_I(struct Vp_D_I lv);
+int assert_Vp_D_I(struct Vp_D_I lv);
 struct Vp_D_I ret_Vp_D_I();
 int send_Vp_D_I();
 int assert_ret_Vp_D_I();
@@ -227,7 +228,7 @@ struct  Vp_D_Ip  {
   int *v3;
 };
 
-int recv_Vp_D_Ip(struct Vp_D_Ip lv);
+int assert_Vp_D_Ip(struct Vp_D_Ip lv);
 struct Vp_D_Ip ret_Vp_D_Ip();
 int send_Vp_D_Ip();
 int assert_ret_Vp_D_Ip();
@@ -239,7 +240,7 @@ struct  Vp_D_L  {
   __tsi64 v3;
 };
 
-int recv_Vp_D_L(struct Vp_D_L lv);
+int assert_Vp_D_L(struct Vp_D_L lv);
 struct Vp_D_L ret_Vp_D_L();
 int send_Vp_D_L();
 int assert_ret_Vp_D_L();
@@ -251,7 +252,7 @@ struct  Vp_D_S  {
   short v3;
 };
 
-int recv_Vp_D_S(struct Vp_D_S lv);
+int assert_Vp_D_S(struct Vp_D_S lv);
 struct Vp_D_S ret_Vp_D_S();
 int send_Vp_D_S();
 int assert_ret_Vp_D_S();
@@ -263,7 +264,7 @@ struct  Vp_D_Uc  {
   unsigned char v3;
 };
 
-int recv_Vp_D_Uc(struct Vp_D_Uc lv);
+int assert_Vp_D_Uc(struct Vp_D_Uc lv);
 struct Vp_D_Uc ret_Vp_D_Uc();
 int send_Vp_D_Uc();
 int assert_ret_Vp_D_Uc();
@@ -275,7 +276,7 @@ struct  Vp_D_Ui  {
   unsigned int v3;
 };
 
-int recv_Vp_D_Ui(struct Vp_D_Ui lv);
+int assert_Vp_D_Ui(struct Vp_D_Ui lv);
 struct Vp_D_Ui ret_Vp_D_Ui();
 int send_Vp_D_Ui();
 int assert_ret_Vp_D_Ui();
@@ -287,7 +288,7 @@ struct  Vp_D_Ul  {
   __tsu64 v3;
 };
 
-int recv_Vp_D_Ul(struct Vp_D_Ul lv);
+int assert_Vp_D_Ul(struct Vp_D_Ul lv);
 struct Vp_D_Ul ret_Vp_D_Ul();
 int send_Vp_D_Ul();
 int assert_ret_Vp_D_Ul();
@@ -299,7 +300,7 @@ struct  Vp_D_Us  {
   unsigned short v3;
 };
 
-int recv_Vp_D_Us(struct Vp_D_Us lv);
+int assert_Vp_D_Us(struct Vp_D_Us lv);
 struct Vp_D_Us ret_Vp_D_Us();
 int send_Vp_D_Us();
 int assert_ret_Vp_D_Us();
@@ -311,7 +312,7 @@ struct  Vp_D_Vp  {
   void *v3;
 };
 
-int recv_Vp_D_Vp(struct Vp_D_Vp lv);
+int assert_Vp_D_Vp(struct Vp_D_Vp lv);
 struct Vp_D_Vp ret_Vp_D_Vp();
 int send_Vp_D_Vp();
 int assert_ret_Vp_D_Vp();
@@ -322,7 +323,7 @@ struct  Vp_F  {
   float v2;
 };
 
-int recv_Vp_F(struct Vp_F lv);
+int assert_Vp_F(struct Vp_F lv);
 struct Vp_F ret_Vp_F();
 int send_Vp_F();
 int assert_ret_Vp_F();
@@ -334,7 +335,7 @@ struct  Vp_F_C  {
   char v3;
 };
 
-int recv_Vp_F_C(struct Vp_F_C lv);
+int assert_Vp_F_C(struct Vp_F_C lv);
 struct Vp_F_C ret_Vp_F_C();
 int send_Vp_F_C();
 int assert_ret_Vp_F_C();
@@ -346,7 +347,7 @@ struct  Vp_F_D  {
   double v3;
 };
 
-int recv_Vp_F_D(struct Vp_F_D lv);
+int assert_Vp_F_D(struct Vp_F_D lv);
 struct Vp_F_D ret_Vp_F_D();
 int send_Vp_F_D();
 int assert_ret_Vp_F_D();
@@ -358,7 +359,7 @@ struct  Vp_F_F  {
   float v3;
 };
 
-int recv_Vp_F_F(struct Vp_F_F lv);
+int assert_Vp_F_F(struct Vp_F_F lv);
 struct Vp_F_F ret_Vp_F_F();
 int send_Vp_F_F();
 int assert_ret_Vp_F_F();
@@ -370,7 +371,7 @@ struct  Vp_F_I  {
   int v3;
 };
 
-int recv_Vp_F_I(struct Vp_F_I lv);
+int assert_Vp_F_I(struct Vp_F_I lv);
 struct Vp_F_I ret_Vp_F_I();
 int send_Vp_F_I();
 int assert_ret_Vp_F_I();
@@ -382,7 +383,7 @@ struct  Vp_F_Ip  {
   int *v3;
 };
 
-int recv_Vp_F_Ip(struct Vp_F_Ip lv);
+int assert_Vp_F_Ip(struct Vp_F_Ip lv);
 struct Vp_F_Ip ret_Vp_F_Ip();
 int send_Vp_F_Ip();
 int assert_ret_Vp_F_Ip();
@@ -394,7 +395,7 @@ struct  Vp_F_L  {
   __tsi64 v3;
 };
 
-int recv_Vp_F_L(struct Vp_F_L lv);
+int assert_Vp_F_L(struct Vp_F_L lv);
 struct Vp_F_L ret_Vp_F_L();
 int send_Vp_F_L();
 int assert_ret_Vp_F_L();
@@ -406,7 +407,7 @@ struct  Vp_F_S  {
   short v3;
 };
 
-int recv_Vp_F_S(struct Vp_F_S lv);
+int assert_Vp_F_S(struct Vp_F_S lv);
 struct Vp_F_S ret_Vp_F_S();
 int send_Vp_F_S();
 int assert_ret_Vp_F_S();
@@ -418,7 +419,7 @@ struct  Vp_F_Uc  {
   unsigned char v3;
 };
 
-int recv_Vp_F_Uc(struct Vp_F_Uc lv);
+int assert_Vp_F_Uc(struct Vp_F_Uc lv);
 struct Vp_F_Uc ret_Vp_F_Uc();
 int send_Vp_F_Uc();
 int assert_ret_Vp_F_Uc();
@@ -430,7 +431,7 @@ struct  Vp_F_Ui  {
   unsigned int v3;
 };
 
-int recv_Vp_F_Ui(struct Vp_F_Ui lv);
+int assert_Vp_F_Ui(struct Vp_F_Ui lv);
 struct Vp_F_Ui ret_Vp_F_Ui();
 int send_Vp_F_Ui();
 int assert_ret_Vp_F_Ui();
@@ -442,7 +443,7 @@ struct  Vp_F_Ul  {
   __tsu64 v3;
 };
 
-int recv_Vp_F_Ul(struct Vp_F_Ul lv);
+int assert_Vp_F_Ul(struct Vp_F_Ul lv);
 struct Vp_F_Ul ret_Vp_F_Ul();
 int send_Vp_F_Ul();
 int assert_ret_Vp_F_Ul();
@@ -454,7 +455,7 @@ struct  Vp_F_Us  {
   unsigned short v3;
 };
 
-int recv_Vp_F_Us(struct Vp_F_Us lv);
+int assert_Vp_F_Us(struct Vp_F_Us lv);
 struct Vp_F_Us ret_Vp_F_Us();
 int send_Vp_F_Us();
 int assert_ret_Vp_F_Us();
@@ -466,7 +467,7 @@ struct  Vp_F_Vp  {
   void *v3;
 };
 
-int recv_Vp_F_Vp(struct Vp_F_Vp lv);
+int assert_Vp_F_Vp(struct Vp_F_Vp lv);
 struct Vp_F_Vp ret_Vp_F_Vp();
 int send_Vp_F_Vp();
 int assert_ret_Vp_F_Vp();
@@ -477,7 +478,7 @@ struct  Vp_I  {
   int v2;
 };
 
-int recv_Vp_I(struct Vp_I lv);
+int assert_Vp_I(struct Vp_I lv);
 struct Vp_I ret_Vp_I();
 int send_Vp_I();
 int assert_ret_Vp_I();
@@ -489,7 +490,7 @@ struct  Vp_I_C  {
   char v3;
 };
 
-int recv_Vp_I_C(struct Vp_I_C lv);
+int assert_Vp_I_C(struct Vp_I_C lv);
 struct Vp_I_C ret_Vp_I_C();
 int send_Vp_I_C();
 int assert_ret_Vp_I_C();
@@ -501,7 +502,7 @@ struct  Vp_I_D  {
   double v3;
 };
 
-int recv_Vp_I_D(struct Vp_I_D lv);
+int assert_Vp_I_D(struct Vp_I_D lv);
 struct Vp_I_D ret_Vp_I_D();
 int send_Vp_I_D();
 int assert_ret_Vp_I_D();
@@ -513,7 +514,7 @@ struct  Vp_I_F  {
   float v3;
 };
 
-int recv_Vp_I_F(struct Vp_I_F lv);
+int assert_Vp_I_F(struct Vp_I_F lv);
 struct Vp_I_F ret_Vp_I_F();
 int send_Vp_I_F();
 int assert_ret_Vp_I_F();
@@ -525,7 +526,7 @@ struct  Vp_I_I  {
   int v3;
 };
 
-int recv_Vp_I_I(struct Vp_I_I lv);
+int assert_Vp_I_I(struct Vp_I_I lv);
 struct Vp_I_I ret_Vp_I_I();
 int send_Vp_I_I();
 int assert_ret_Vp_I_I();
@@ -537,7 +538,7 @@ struct  Vp_I_Ip  {
   int *v3;
 };
 
-int recv_Vp_I_Ip(struct Vp_I_Ip lv);
+int assert_Vp_I_Ip(struct Vp_I_Ip lv);
 struct Vp_I_Ip ret_Vp_I_Ip();
 int send_Vp_I_Ip();
 int assert_ret_Vp_I_Ip();
@@ -549,7 +550,7 @@ struct  Vp_I_L  {
   __tsi64 v3;
 };
 
-int recv_Vp_I_L(struct Vp_I_L lv);
+int assert_Vp_I_L(struct Vp_I_L lv);
 struct Vp_I_L ret_Vp_I_L();
 int send_Vp_I_L();
 int assert_ret_Vp_I_L();
@@ -561,7 +562,7 @@ struct  Vp_I_S  {
   short v3;
 };
 
-int recv_Vp_I_S(struct Vp_I_S lv);
+int assert_Vp_I_S(struct Vp_I_S lv);
 struct Vp_I_S ret_Vp_I_S();
 int send_Vp_I_S();
 int assert_ret_Vp_I_S();
@@ -573,7 +574,7 @@ struct  Vp_I_Uc  {
   unsigned char v3;
 };
 
-int recv_Vp_I_Uc(struct Vp_I_Uc lv);
+int assert_Vp_I_Uc(struct Vp_I_Uc lv);
 struct Vp_I_Uc ret_Vp_I_Uc();
 int send_Vp_I_Uc();
 int assert_ret_Vp_I_Uc();
@@ -585,7 +586,7 @@ struct  Vp_I_Ui  {
   unsigned int v3;
 };
 
-int recv_Vp_I_Ui(struct Vp_I_Ui lv);
+int assert_Vp_I_Ui(struct Vp_I_Ui lv);
 struct Vp_I_Ui ret_Vp_I_Ui();
 int send_Vp_I_Ui();
 int assert_ret_Vp_I_Ui();
@@ -597,7 +598,7 @@ struct  Vp_I_Ul  {
   __tsu64 v3;
 };
 
-int recv_Vp_I_Ul(struct Vp_I_Ul lv);
+int assert_Vp_I_Ul(struct Vp_I_Ul lv);
 struct Vp_I_Ul ret_Vp_I_Ul();
 int send_Vp_I_Ul();
 int assert_ret_Vp_I_Ul();
@@ -609,7 +610,7 @@ struct  Vp_I_Us  {
   unsigned short v3;
 };
 
-int recv_Vp_I_Us(struct Vp_I_Us lv);
+int assert_Vp_I_Us(struct Vp_I_Us lv);
 struct Vp_I_Us ret_Vp_I_Us();
 int send_Vp_I_Us();
 int assert_ret_Vp_I_Us();
@@ -621,7 +622,7 @@ struct  Vp_I_Vp  {
   void *v3;
 };
 
-int recv_Vp_I_Vp(struct Vp_I_Vp lv);
+int assert_Vp_I_Vp(struct Vp_I_Vp lv);
 struct Vp_I_Vp ret_Vp_I_Vp();
 int send_Vp_I_Vp();
 int assert_ret_Vp_I_Vp();
@@ -632,7 +633,7 @@ struct  Vp_Ip  {
   int *v2;
 };
 
-int recv_Vp_Ip(struct Vp_Ip lv);
+int assert_Vp_Ip(struct Vp_Ip lv);
 struct Vp_Ip ret_Vp_Ip();
 int send_Vp_Ip();
 int assert_ret_Vp_Ip();
@@ -644,7 +645,7 @@ struct  Vp_Ip_C  {
   char v3;
 };
 
-int recv_Vp_Ip_C(struct Vp_Ip_C lv);
+int assert_Vp_Ip_C(struct Vp_Ip_C lv);
 struct Vp_Ip_C ret_Vp_Ip_C();
 int send_Vp_Ip_C();
 int assert_ret_Vp_Ip_C();
@@ -656,7 +657,7 @@ struct  Vp_Ip_D  {
   double v3;
 };
 
-int recv_Vp_Ip_D(struct Vp_Ip_D lv);
+int assert_Vp_Ip_D(struct Vp_Ip_D lv);
 struct Vp_Ip_D ret_Vp_Ip_D();
 int send_Vp_Ip_D();
 int assert_ret_Vp_Ip_D();
@@ -668,7 +669,7 @@ struct  Vp_Ip_F  {
   float v3;
 };
 
-int recv_Vp_Ip_F(struct Vp_Ip_F lv);
+int assert_Vp_Ip_F(struct Vp_Ip_F lv);
 struct Vp_Ip_F ret_Vp_Ip_F();
 int send_Vp_Ip_F();
 int assert_ret_Vp_Ip_F();
@@ -680,7 +681,7 @@ struct  Vp_Ip_I  {
   int v3;
 };
 
-int recv_Vp_Ip_I(struct Vp_Ip_I lv);
+int assert_Vp_Ip_I(struct Vp_Ip_I lv);
 struct Vp_Ip_I ret_Vp_Ip_I();
 int send_Vp_Ip_I();
 int assert_ret_Vp_Ip_I();
@@ -692,7 +693,7 @@ struct  Vp_Ip_Ip  {
   int *v3;
 };
 
-int recv_Vp_Ip_Ip(struct Vp_Ip_Ip lv);
+int assert_Vp_Ip_Ip(struct Vp_Ip_Ip lv);
 struct Vp_Ip_Ip ret_Vp_Ip_Ip();
 int send_Vp_Ip_Ip();
 int assert_ret_Vp_Ip_Ip();
@@ -704,7 +705,7 @@ struct  Vp_Ip_L  {
   __tsi64 v3;
 };
 
-int recv_Vp_Ip_L(struct Vp_Ip_L lv);
+int assert_Vp_Ip_L(struct Vp_Ip_L lv);
 struct Vp_Ip_L ret_Vp_Ip_L();
 int send_Vp_Ip_L();
 int assert_ret_Vp_Ip_L();
@@ -716,7 +717,7 @@ struct  Vp_Ip_S  {
   short v3;
 };
 
-int recv_Vp_Ip_S(struct Vp_Ip_S lv);
+int assert_Vp_Ip_S(struct Vp_Ip_S lv);
 struct Vp_Ip_S ret_Vp_Ip_S();
 int send_Vp_Ip_S();
 int assert_ret_Vp_Ip_S();
@@ -728,7 +729,7 @@ struct  Vp_Ip_Uc  {
   unsigned char v3;
 };
 
-int recv_Vp_Ip_Uc(struct Vp_Ip_Uc lv);
+int assert_Vp_Ip_Uc(struct Vp_Ip_Uc lv);
 struct Vp_Ip_Uc ret_Vp_Ip_Uc();
 int send_Vp_Ip_Uc();
 int assert_ret_Vp_Ip_Uc();
@@ -740,7 +741,7 @@ struct  Vp_Ip_Ui  {
   unsigned int v3;
 };
 
-int recv_Vp_Ip_Ui(struct Vp_Ip_Ui lv);
+int assert_Vp_Ip_Ui(struct Vp_Ip_Ui lv);
 struct Vp_Ip_Ui ret_Vp_Ip_Ui();
 int send_Vp_Ip_Ui();
 int assert_ret_Vp_Ip_Ui();
@@ -752,7 +753,7 @@ struct  Vp_Ip_Ul  {
   __tsu64 v3;
 };
 
-int recv_Vp_Ip_Ul(struct Vp_Ip_Ul lv);
+int assert_Vp_Ip_Ul(struct Vp_Ip_Ul lv);
 struct Vp_Ip_Ul ret_Vp_Ip_Ul();
 int send_Vp_Ip_Ul();
 int assert_ret_Vp_Ip_Ul();
@@ -764,7 +765,7 @@ struct  Vp_Ip_Us  {
   unsigned short v3;
 };
 
-int recv_Vp_Ip_Us(struct Vp_Ip_Us lv);
+int assert_Vp_Ip_Us(struct Vp_Ip_Us lv);
 struct Vp_Ip_Us ret_Vp_Ip_Us();
 int send_Vp_Ip_Us();
 int assert_ret_Vp_Ip_Us();
@@ -776,7 +777,7 @@ struct  Vp_Ip_Vp  {
   void *v3;
 };
 
-int recv_Vp_Ip_Vp(struct Vp_Ip_Vp lv);
+int assert_Vp_Ip_Vp(struct Vp_Ip_Vp lv);
 struct Vp_Ip_Vp ret_Vp_Ip_Vp();
 int send_Vp_Ip_Vp();
 int assert_ret_Vp_Ip_Vp();
@@ -787,7 +788,7 @@ struct  Vp_L  {
   __tsi64 v2;
 };
 
-int recv_Vp_L(struct Vp_L lv);
+int assert_Vp_L(struct Vp_L lv);
 struct Vp_L ret_Vp_L();
 int send_Vp_L();
 int assert_ret_Vp_L();
@@ -799,7 +800,7 @@ struct  Vp_L_C  {
   char v3;
 };
 
-int recv_Vp_L_C(struct Vp_L_C lv);
+int assert_Vp_L_C(struct Vp_L_C lv);
 struct Vp_L_C ret_Vp_L_C();
 int send_Vp_L_C();
 int assert_ret_Vp_L_C();
@@ -811,7 +812,7 @@ struct  Vp_L_D  {
   double v3;
 };
 
-int recv_Vp_L_D(struct Vp_L_D lv);
+int assert_Vp_L_D(struct Vp_L_D lv);
 struct Vp_L_D ret_Vp_L_D();
 int send_Vp_L_D();
 int assert_ret_Vp_L_D();
@@ -823,7 +824,7 @@ struct  Vp_L_F  {
   float v3;
 };
 
-int recv_Vp_L_F(struct Vp_L_F lv);
+int assert_Vp_L_F(struct Vp_L_F lv);
 struct Vp_L_F ret_Vp_L_F();
 int send_Vp_L_F();
 int assert_ret_Vp_L_F();
@@ -835,7 +836,7 @@ struct  Vp_L_I  {
   int v3;
 };
 
-int recv_Vp_L_I(struct Vp_L_I lv);
+int assert_Vp_L_I(struct Vp_L_I lv);
 struct Vp_L_I ret_Vp_L_I();
 int send_Vp_L_I();
 int assert_ret_Vp_L_I();
@@ -847,7 +848,7 @@ struct  Vp_L_Ip  {
   int *v3;
 };
 
-int recv_Vp_L_Ip(struct Vp_L_Ip lv);
+int assert_Vp_L_Ip(struct Vp_L_Ip lv);
 struct Vp_L_Ip ret_Vp_L_Ip();
 int send_Vp_L_Ip();
 int assert_ret_Vp_L_Ip();
@@ -859,7 +860,7 @@ struct  Vp_L_L  {
   __tsi64 v3;
 };
 
-int recv_Vp_L_L(struct Vp_L_L lv);
+int assert_Vp_L_L(struct Vp_L_L lv);
 struct Vp_L_L ret_Vp_L_L();
 int send_Vp_L_L();
 int assert_ret_Vp_L_L();
@@ -871,7 +872,7 @@ struct  Vp_L_S  {
   short v3;
 };
 
-int recv_Vp_L_S(struct Vp_L_S lv);
+int assert_Vp_L_S(struct Vp_L_S lv);
 struct Vp_L_S ret_Vp_L_S();
 int send_Vp_L_S();
 int assert_ret_Vp_L_S();
@@ -883,7 +884,7 @@ struct  Vp_L_Uc  {
   unsigned char v3;
 };
 
-int recv_Vp_L_Uc(struct Vp_L_Uc lv);
+int assert_Vp_L_Uc(struct Vp_L_Uc lv);
 struct Vp_L_Uc ret_Vp_L_Uc();
 int send_Vp_L_Uc();
 int assert_ret_Vp_L_Uc();
@@ -895,7 +896,7 @@ struct  Vp_L_Ui  {
   unsigned int v3;
 };
 
-int recv_Vp_L_Ui(struct Vp_L_Ui lv);
+int assert_Vp_L_Ui(struct Vp_L_Ui lv);
 struct Vp_L_Ui ret_Vp_L_Ui();
 int send_Vp_L_Ui();
 int assert_ret_Vp_L_Ui();
@@ -907,7 +908,7 @@ struct  Vp_L_Ul  {
   __tsu64 v3;
 };
 
-int recv_Vp_L_Ul(struct Vp_L_Ul lv);
+int assert_Vp_L_Ul(struct Vp_L_Ul lv);
 struct Vp_L_Ul ret_Vp_L_Ul();
 int send_Vp_L_Ul();
 int assert_ret_Vp_L_Ul();
@@ -919,7 +920,7 @@ struct  Vp_L_Us  {
   unsigned short v3;
 };
 
-int recv_Vp_L_Us(struct Vp_L_Us lv);
+int assert_Vp_L_Us(struct Vp_L_Us lv);
 struct Vp_L_Us ret_Vp_L_Us();
 int send_Vp_L_Us();
 int assert_ret_Vp_L_Us();
@@ -931,7 +932,7 @@ struct  Vp_L_Vp  {
   void *v3;
 };
 
-int recv_Vp_L_Vp(struct Vp_L_Vp lv);
+int assert_Vp_L_Vp(struct Vp_L_Vp lv);
 struct Vp_L_Vp ret_Vp_L_Vp();
 int send_Vp_L_Vp();
 int assert_ret_Vp_L_Vp();
@@ -942,7 +943,7 @@ struct  Vp_S  {
   short v2;
 };
 
-int recv_Vp_S(struct Vp_S lv);
+int assert_Vp_S(struct Vp_S lv);
 struct Vp_S ret_Vp_S();
 int send_Vp_S();
 int assert_ret_Vp_S();
@@ -954,7 +955,7 @@ struct  Vp_S_C  {
   char v3;
 };
 
-int recv_Vp_S_C(struct Vp_S_C lv);
+int assert_Vp_S_C(struct Vp_S_C lv);
 struct Vp_S_C ret_Vp_S_C();
 int send_Vp_S_C();
 int assert_ret_Vp_S_C();
@@ -966,7 +967,7 @@ struct  Vp_S_D  {
   double v3;
 };
 
-int recv_Vp_S_D(struct Vp_S_D lv);
+int assert_Vp_S_D(struct Vp_S_D lv);
 struct Vp_S_D ret_Vp_S_D();
 int send_Vp_S_D();
 int assert_ret_Vp_S_D();
@@ -978,7 +979,7 @@ struct  Vp_S_F  {
   float v3;
 };
 
-int recv_Vp_S_F(struct Vp_S_F lv);
+int assert_Vp_S_F(struct Vp_S_F lv);
 struct Vp_S_F ret_Vp_S_F();
 int send_Vp_S_F();
 int assert_ret_Vp_S_F();
@@ -990,7 +991,7 @@ struct  Vp_S_I  {
   int v3;
 };
 
-int recv_Vp_S_I(struct Vp_S_I lv);
+int assert_Vp_S_I(struct Vp_S_I lv);
 struct Vp_S_I ret_Vp_S_I();
 int send_Vp_S_I();
 int assert_ret_Vp_S_I();
@@ -1002,7 +1003,7 @@ struct  Vp_S_Ip  {
   int *v3;
 };
 
-int recv_Vp_S_Ip(struct Vp_S_Ip lv);
+int assert_Vp_S_Ip(struct Vp_S_Ip lv);
 struct Vp_S_Ip ret_Vp_S_Ip();
 int send_Vp_S_Ip();
 int assert_ret_Vp_S_Ip();
@@ -1014,7 +1015,7 @@ struct  Vp_S_L  {
   __tsi64 v3;
 };
 
-int recv_Vp_S_L(struct Vp_S_L lv);
+int assert_Vp_S_L(struct Vp_S_L lv);
 struct Vp_S_L ret_Vp_S_L();
 int send_Vp_S_L();
 int assert_ret_Vp_S_L();
@@ -1026,7 +1027,7 @@ struct  Vp_S_S  {
   short v3;
 };
 
-int recv_Vp_S_S(struct Vp_S_S lv);
+int assert_Vp_S_S(struct Vp_S_S lv);
 struct Vp_S_S ret_Vp_S_S();
 int send_Vp_S_S();
 int assert_ret_Vp_S_S();
@@ -1038,7 +1039,7 @@ struct  Vp_S_Uc  {
   unsigned char v3;
 };
 
-int recv_Vp_S_Uc(struct Vp_S_Uc lv);
+int assert_Vp_S_Uc(struct Vp_S_Uc lv);
 struct Vp_S_Uc ret_Vp_S_Uc();
 int send_Vp_S_Uc();
 int assert_ret_Vp_S_Uc();
@@ -1050,7 +1051,7 @@ struct  Vp_S_Ui  {
   unsigned int v3;
 };
 
-int recv_Vp_S_Ui(struct Vp_S_Ui lv);
+int assert_Vp_S_Ui(struct Vp_S_Ui lv);
 struct Vp_S_Ui ret_Vp_S_Ui();
 int send_Vp_S_Ui();
 int assert_ret_Vp_S_Ui();
@@ -1062,7 +1063,7 @@ struct  Vp_S_Ul  {
   __tsu64 v3;
 };
 
-int recv_Vp_S_Ul(struct Vp_S_Ul lv);
+int assert_Vp_S_Ul(struct Vp_S_Ul lv);
 struct Vp_S_Ul ret_Vp_S_Ul();
 int send_Vp_S_Ul();
 int assert_ret_Vp_S_Ul();
@@ -1074,7 +1075,7 @@ struct  Vp_S_Us  {
   unsigned short v3;
 };
 
-int recv_Vp_S_Us(struct Vp_S_Us lv);
+int assert_Vp_S_Us(struct Vp_S_Us lv);
 struct Vp_S_Us ret_Vp_S_Us();
 int send_Vp_S_Us();
 int assert_ret_Vp_S_Us();
@@ -1086,7 +1087,7 @@ struct  Vp_S_Vp  {
   void *v3;
 };
 
-int recv_Vp_S_Vp(struct Vp_S_Vp lv);
+int assert_Vp_S_Vp(struct Vp_S_Vp lv);
 struct Vp_S_Vp ret_Vp_S_Vp();
 int send_Vp_S_Vp();
 int assert_ret_Vp_S_Vp();
@@ -1097,7 +1098,7 @@ struct  Vp_Uc  {
   unsigned char v2;
 };
 
-int recv_Vp_Uc(struct Vp_Uc lv);
+int assert_Vp_Uc(struct Vp_Uc lv);
 struct Vp_Uc ret_Vp_Uc();
 int send_Vp_Uc();
 int assert_ret_Vp_Uc();
@@ -1109,7 +1110,7 @@ struct  Vp_Uc_C  {
   char v3;
 };
 
-int recv_Vp_Uc_C(struct Vp_Uc_C lv);
+int assert_Vp_Uc_C(struct Vp_Uc_C lv);
 struct Vp_Uc_C ret_Vp_Uc_C();
 int send_Vp_Uc_C();
 int assert_ret_Vp_Uc_C();
@@ -1121,7 +1122,7 @@ struct  Vp_Uc_D  {
   double v3;
 };
 
-int recv_Vp_Uc_D(struct Vp_Uc_D lv);
+int assert_Vp_Uc_D(struct Vp_Uc_D lv);
 struct Vp_Uc_D ret_Vp_Uc_D();
 int send_Vp_Uc_D();
 int assert_ret_Vp_Uc_D();
@@ -1133,7 +1134,7 @@ struct  Vp_Uc_F  {
   float v3;
 };
 
-int recv_Vp_Uc_F(struct Vp_Uc_F lv);
+int assert_Vp_Uc_F(struct Vp_Uc_F lv);
 struct Vp_Uc_F ret_Vp_Uc_F();
 int send_Vp_Uc_F();
 int assert_ret_Vp_Uc_F();
@@ -1145,7 +1146,7 @@ struct  Vp_Uc_I  {
   int v3;
 };
 
-int recv_Vp_Uc_I(struct Vp_Uc_I lv);
+int assert_Vp_Uc_I(struct Vp_Uc_I lv);
 struct Vp_Uc_I ret_Vp_Uc_I();
 int send_Vp_Uc_I();
 int assert_ret_Vp_Uc_I();
@@ -1157,7 +1158,7 @@ struct  Vp_Uc_Ip  {
   int *v3;
 };
 
-int recv_Vp_Uc_Ip(struct Vp_Uc_Ip lv);
+int assert_Vp_Uc_Ip(struct Vp_Uc_Ip lv);
 struct Vp_Uc_Ip ret_Vp_Uc_Ip();
 int send_Vp_Uc_Ip();
 int assert_ret_Vp_Uc_Ip();
@@ -1169,7 +1170,7 @@ struct  Vp_Uc_L  {
   __tsi64 v3;
 };
 
-int recv_Vp_Uc_L(struct Vp_Uc_L lv);
+int assert_Vp_Uc_L(struct Vp_Uc_L lv);
 struct Vp_Uc_L ret_Vp_Uc_L();
 int send_Vp_Uc_L();
 int assert_ret_Vp_Uc_L();
@@ -1181,7 +1182,7 @@ struct  Vp_Uc_S  {
   short v3;
 };
 
-int recv_Vp_Uc_S(struct Vp_Uc_S lv);
+int assert_Vp_Uc_S(struct Vp_Uc_S lv);
 struct Vp_Uc_S ret_Vp_Uc_S();
 int send_Vp_Uc_S();
 int assert_ret_Vp_Uc_S();
@@ -1193,7 +1194,7 @@ struct  Vp_Uc_Uc  {
   unsigned char v3;
 };
 
-int recv_Vp_Uc_Uc(struct Vp_Uc_Uc lv);
+int assert_Vp_Uc_Uc(struct Vp_Uc_Uc lv);
 struct Vp_Uc_Uc ret_Vp_Uc_Uc();
 int send_Vp_Uc_Uc();
 int assert_ret_Vp_Uc_Uc();
@@ -1205,7 +1206,7 @@ struct  Vp_Uc_Ui  {
   unsigned int v3;
 };
 
-int recv_Vp_Uc_Ui(struct Vp_Uc_Ui lv);
+int assert_Vp_Uc_Ui(struct Vp_Uc_Ui lv);
 struct Vp_Uc_Ui ret_Vp_Uc_Ui();
 int send_Vp_Uc_Ui();
 int assert_ret_Vp_Uc_Ui();
@@ -1217,7 +1218,7 @@ struct  Vp_Uc_Ul  {
   __tsu64 v3;
 };
 
-int recv_Vp_Uc_Ul(struct Vp_Uc_Ul lv);
+int assert_Vp_Uc_Ul(struct Vp_Uc_Ul lv);
 struct Vp_Uc_Ul ret_Vp_Uc_Ul();
 int send_Vp_Uc_Ul();
 int assert_ret_Vp_Uc_Ul();
@@ -1229,7 +1230,7 @@ struct  Vp_Uc_Us  {
   unsigned short v3;
 };
 
-int recv_Vp_Uc_Us(struct Vp_Uc_Us lv);
+int assert_Vp_Uc_Us(struct Vp_Uc_Us lv);
 struct Vp_Uc_Us ret_Vp_Uc_Us();
 int send_Vp_Uc_Us();
 int assert_ret_Vp_Uc_Us();
@@ -1241,7 +1242,7 @@ struct  Vp_Uc_Vp  {
   void *v3;
 };
 
-int recv_Vp_Uc_Vp(struct Vp_Uc_Vp lv);
+int assert_Vp_Uc_Vp(struct Vp_Uc_Vp lv);
 struct Vp_Uc_Vp ret_Vp_Uc_Vp();
 int send_Vp_Uc_Vp();
 int assert_ret_Vp_Uc_Vp();
@@ -1252,7 +1253,7 @@ struct  Vp_Ui  {
   unsigned int v2;
 };
 
-int recv_Vp_Ui(struct Vp_Ui lv);
+int assert_Vp_Ui(struct Vp_Ui lv);
 struct Vp_Ui ret_Vp_Ui();
 int send_Vp_Ui();
 int assert_ret_Vp_Ui();
@@ -1264,7 +1265,7 @@ struct  Vp_Ui_C  {
   char v3;
 };
 
-int recv_Vp_Ui_C(struct Vp_Ui_C lv);
+int assert_Vp_Ui_C(struct Vp_Ui_C lv);
 struct Vp_Ui_C ret_Vp_Ui_C();
 int send_Vp_Ui_C();
 int assert_ret_Vp_Ui_C();
@@ -1276,7 +1277,7 @@ struct  Vp_Ui_D  {
   double v3;
 };
 
-int recv_Vp_Ui_D(struct Vp_Ui_D lv);
+int assert_Vp_Ui_D(struct Vp_Ui_D lv);
 struct Vp_Ui_D ret_Vp_Ui_D();
 int send_Vp_Ui_D();
 int assert_ret_Vp_Ui_D();
@@ -1288,7 +1289,7 @@ struct  Vp_Ui_F  {
   float v3;
 };
 
-int recv_Vp_Ui_F(struct Vp_Ui_F lv);
+int assert_Vp_Ui_F(struct Vp_Ui_F lv);
 struct Vp_Ui_F ret_Vp_Ui_F();
 int send_Vp_Ui_F();
 int assert_ret_Vp_Ui_F();
@@ -1300,7 +1301,7 @@ struct  Vp_Ui_I  {
   int v3;
 };
 
-int recv_Vp_Ui_I(struct Vp_Ui_I lv);
+int assert_Vp_Ui_I(struct Vp_Ui_I lv);
 struct Vp_Ui_I ret_Vp_Ui_I();
 int send_Vp_Ui_I();
 int assert_ret_Vp_Ui_I();
@@ -1312,7 +1313,7 @@ struct  Vp_Ui_Ip  {
   int *v3;
 };
 
-int recv_Vp_Ui_Ip(struct Vp_Ui_Ip lv);
+int assert_Vp_Ui_Ip(struct Vp_Ui_Ip lv);
 struct Vp_Ui_Ip ret_Vp_Ui_Ip();
 int send_Vp_Ui_Ip();
 int assert_ret_Vp_Ui_Ip();
@@ -1324,7 +1325,7 @@ struct  Vp_Ui_L  {
   __tsi64 v3;
 };
 
-int recv_Vp_Ui_L(struct Vp_Ui_L lv);
+int assert_Vp_Ui_L(struct Vp_Ui_L lv);
 struct Vp_Ui_L ret_Vp_Ui_L();
 int send_Vp_Ui_L();
 int assert_ret_Vp_Ui_L();
@@ -1336,7 +1337,7 @@ struct  Vp_Ui_S  {
   short v3;
 };
 
-int recv_Vp_Ui_S(struct Vp_Ui_S lv);
+int assert_Vp_Ui_S(struct Vp_Ui_S lv);
 struct Vp_Ui_S ret_Vp_Ui_S();
 int send_Vp_Ui_S();
 int assert_ret_Vp_Ui_S();
@@ -1348,7 +1349,7 @@ struct  Vp_Ui_Uc  {
   unsigned char v3;
 };
 
-int recv_Vp_Ui_Uc(struct Vp_Ui_Uc lv);
+int assert_Vp_Ui_Uc(struct Vp_Ui_Uc lv);
 struct Vp_Ui_Uc ret_Vp_Ui_Uc();
 int send_Vp_Ui_Uc();
 int assert_ret_Vp_Ui_Uc();
@@ -1360,7 +1361,7 @@ struct  Vp_Ui_Ui  {
   unsigned int v3;
 };
 
-int recv_Vp_Ui_Ui(struct Vp_Ui_Ui lv);
+int assert_Vp_Ui_Ui(struct Vp_Ui_Ui lv);
 struct Vp_Ui_Ui ret_Vp_Ui_Ui();
 int send_Vp_Ui_Ui();
 int assert_ret_Vp_Ui_Ui();
@@ -1372,7 +1373,7 @@ struct  Vp_Ui_Ul  {
   __tsu64 v3;
 };
 
-int recv_Vp_Ui_Ul(struct Vp_Ui_Ul lv);
+int assert_Vp_Ui_Ul(struct Vp_Ui_Ul lv);
 struct Vp_Ui_Ul ret_Vp_Ui_Ul();
 int send_Vp_Ui_Ul();
 int assert_ret_Vp_Ui_Ul();
@@ -1384,7 +1385,7 @@ struct  Vp_Ui_Us  {
   unsigned short v3;
 };
 
-int recv_Vp_Ui_Us(struct Vp_Ui_Us lv);
+int assert_Vp_Ui_Us(struct Vp_Ui_Us lv);
 struct Vp_Ui_Us ret_Vp_Ui_Us();
 int send_Vp_Ui_Us();
 int assert_ret_Vp_Ui_Us();
@@ -1396,7 +1397,7 @@ struct  Vp_Ui_Vp  {
   void *v3;
 };
 
-int recv_Vp_Ui_Vp(struct Vp_Ui_Vp lv);
+int assert_Vp_Ui_Vp(struct Vp_Ui_Vp lv);
 struct Vp_Ui_Vp ret_Vp_Ui_Vp();
 int send_Vp_Ui_Vp();
 int assert_ret_Vp_Ui_Vp();
@@ -1407,7 +1408,7 @@ struct  Vp_Ul  {
   __tsu64 v2;
 };
 
-int recv_Vp_Ul(struct Vp_Ul lv);
+int assert_Vp_Ul(struct Vp_Ul lv);
 struct Vp_Ul ret_Vp_Ul();
 int send_Vp_Ul();
 int assert_ret_Vp_Ul();
@@ -1419,7 +1420,7 @@ struct  Vp_Ul_C  {
   char v3;
 };
 
-int recv_Vp_Ul_C(struct Vp_Ul_C lv);
+int assert_Vp_Ul_C(struct Vp_Ul_C lv);
 struct Vp_Ul_C ret_Vp_Ul_C();
 int send_Vp_Ul_C();
 int assert_ret_Vp_Ul_C();
@@ -1431,7 +1432,7 @@ struct  Vp_Ul_D  {
   double v3;
 };
 
-int recv_Vp_Ul_D(struct Vp_Ul_D lv);
+int assert_Vp_Ul_D(struct Vp_Ul_D lv);
 struct Vp_Ul_D ret_Vp_Ul_D();
 int send_Vp_Ul_D();
 int assert_ret_Vp_Ul_D();
@@ -1443,7 +1444,7 @@ struct  Vp_Ul_F  {
   float v3;
 };
 
-int recv_Vp_Ul_F(struct Vp_Ul_F lv);
+int assert_Vp_Ul_F(struct Vp_Ul_F lv);
 struct Vp_Ul_F ret_Vp_Ul_F();
 int send_Vp_Ul_F();
 int assert_ret_Vp_Ul_F();
@@ -1455,7 +1456,7 @@ struct  Vp_Ul_I  {
   int v3;
 };
 
-int recv_Vp_Ul_I(struct Vp_Ul_I lv);
+int assert_Vp_Ul_I(struct Vp_Ul_I lv);
 struct Vp_Ul_I ret_Vp_Ul_I();
 int send_Vp_Ul_I();
 int assert_ret_Vp_Ul_I();
@@ -1467,7 +1468,7 @@ struct  Vp_Ul_Ip  {
   int *v3;
 };
 
-int recv_Vp_Ul_Ip(struct Vp_Ul_Ip lv);
+int assert_Vp_Ul_Ip(struct Vp_Ul_Ip lv);
 struct Vp_Ul_Ip ret_Vp_Ul_Ip();
 int send_Vp_Ul_Ip();
 int assert_ret_Vp_Ul_Ip();
@@ -1479,7 +1480,7 @@ struct  Vp_Ul_L  {
   __tsi64 v3;
 };
 
-int recv_Vp_Ul_L(struct Vp_Ul_L lv);
+int assert_Vp_Ul_L(struct Vp_Ul_L lv);
 struct Vp_Ul_L ret_Vp_Ul_L();
 int send_Vp_Ul_L();
 int assert_ret_Vp_Ul_L();
@@ -1491,7 +1492,7 @@ struct  Vp_Ul_S  {
   short v3;
 };
 
-int recv_Vp_Ul_S(struct Vp_Ul_S lv);
+int assert_Vp_Ul_S(struct Vp_Ul_S lv);
 struct Vp_Ul_S ret_Vp_Ul_S();
 int send_Vp_Ul_S();
 int assert_ret_Vp_Ul_S();
@@ -1503,7 +1504,7 @@ struct  Vp_Ul_Uc  {
   unsigned char v3;
 };
 
-int recv_Vp_Ul_Uc(struct Vp_Ul_Uc lv);
+int assert_Vp_Ul_Uc(struct Vp_Ul_Uc lv);
 struct Vp_Ul_Uc ret_Vp_Ul_Uc();
 int send_Vp_Ul_Uc();
 int assert_ret_Vp_Ul_Uc();
@@ -1515,7 +1516,7 @@ struct  Vp_Ul_Ui  {
   unsigned int v3;
 };
 
-int recv_Vp_Ul_Ui(struct Vp_Ul_Ui lv);
+int assert_Vp_Ul_Ui(struct Vp_Ul_Ui lv);
 struct Vp_Ul_Ui ret_Vp_Ul_Ui();
 int send_Vp_Ul_Ui();
 int assert_ret_Vp_Ul_Ui();
@@ -1527,7 +1528,7 @@ struct  Vp_Ul_Ul  {
   __tsu64 v3;
 };
 
-int recv_Vp_Ul_Ul(struct Vp_Ul_Ul lv);
+int assert_Vp_Ul_Ul(struct Vp_Ul_Ul lv);
 struct Vp_Ul_Ul ret_Vp_Ul_Ul();
 int send_Vp_Ul_Ul();
 int assert_ret_Vp_Ul_Ul();
@@ -1539,7 +1540,7 @@ struct  Vp_Ul_Us  {
   unsigned short v3;
 };
 
-int recv_Vp_Ul_Us(struct Vp_Ul_Us lv);
+int assert_Vp_Ul_Us(struct Vp_Ul_Us lv);
 struct Vp_Ul_Us ret_Vp_Ul_Us();
 int send_Vp_Ul_Us();
 int assert_ret_Vp_Ul_Us();
@@ -1551,7 +1552,7 @@ struct  Vp_Ul_Vp  {
   void *v3;
 };
 
-int recv_Vp_Ul_Vp(struct Vp_Ul_Vp lv);
+int assert_Vp_Ul_Vp(struct Vp_Ul_Vp lv);
 struct Vp_Ul_Vp ret_Vp_Ul_Vp();
 int send_Vp_Ul_Vp();
 int assert_ret_Vp_Ul_Vp();
@@ -1562,7 +1563,7 @@ struct  Vp_Us  {
   unsigned short v2;
 };
 
-int recv_Vp_Us(struct Vp_Us lv);
+int assert_Vp_Us(struct Vp_Us lv);
 struct Vp_Us ret_Vp_Us();
 int send_Vp_Us();
 int assert_ret_Vp_Us();
@@ -1574,7 +1575,7 @@ struct  Vp_Us_C  {
   char v3;
 };
 
-int recv_Vp_Us_C(struct Vp_Us_C lv);
+int assert_Vp_Us_C(struct Vp_Us_C lv);
 struct Vp_Us_C ret_Vp_Us_C();
 int send_Vp_Us_C();
 int assert_ret_Vp_Us_C();
@@ -1586,7 +1587,7 @@ struct  Vp_Us_D  {
   double v3;
 };
 
-int recv_Vp_Us_D(struct Vp_Us_D lv);
+int assert_Vp_Us_D(struct Vp_Us_D lv);
 struct Vp_Us_D ret_Vp_Us_D();
 int send_Vp_Us_D();
 int assert_ret_Vp_Us_D();
@@ -1598,7 +1599,7 @@ struct  Vp_Us_F  {
   float v3;
 };
 
-int recv_Vp_Us_F(struct Vp_Us_F lv);
+int assert_Vp_Us_F(struct Vp_Us_F lv);
 struct Vp_Us_F ret_Vp_Us_F();
 int send_Vp_Us_F();
 int assert_ret_Vp_Us_F();
@@ -1610,7 +1611,7 @@ struct  Vp_Us_I  {
   int v3;
 };
 
-int recv_Vp_Us_I(struct Vp_Us_I lv);
+int assert_Vp_Us_I(struct Vp_Us_I lv);
 struct Vp_Us_I ret_Vp_Us_I();
 int send_Vp_Us_I();
 int assert_ret_Vp_Us_I();
@@ -1622,7 +1623,7 @@ struct  Vp_Us_Ip  {
   int *v3;
 };
 
-int recv_Vp_Us_Ip(struct Vp_Us_Ip lv);
+int assert_Vp_Us_Ip(struct Vp_Us_Ip lv);
 struct Vp_Us_Ip ret_Vp_Us_Ip();
 int send_Vp_Us_Ip();
 int assert_ret_Vp_Us_Ip();
@@ -1634,7 +1635,7 @@ struct  Vp_Us_L  {
   __tsi64 v3;
 };
 
-int recv_Vp_Us_L(struct Vp_Us_L lv);
+int assert_Vp_Us_L(struct Vp_Us_L lv);
 struct Vp_Us_L ret_Vp_Us_L();
 int send_Vp_Us_L();
 int assert_ret_Vp_Us_L();
@@ -1646,7 +1647,7 @@ struct  Vp_Us_S  {
   short v3;
 };
 
-int recv_Vp_Us_S(struct Vp_Us_S lv);
+int assert_Vp_Us_S(struct Vp_Us_S lv);
 struct Vp_Us_S ret_Vp_Us_S();
 int send_Vp_Us_S();
 int assert_ret_Vp_Us_S();
@@ -1658,7 +1659,7 @@ struct  Vp_Us_Uc  {
   unsigned char v3;
 };
 
-int recv_Vp_Us_Uc(struct Vp_Us_Uc lv);
+int assert_Vp_Us_Uc(struct Vp_Us_Uc lv);
 struct Vp_Us_Uc ret_Vp_Us_Uc();
 int send_Vp_Us_Uc();
 int assert_ret_Vp_Us_Uc();
@@ -1670,7 +1671,7 @@ struct  Vp_Us_Ui  {
   unsigned int v3;
 };
 
-int recv_Vp_Us_Ui(struct Vp_Us_Ui lv);
+int assert_Vp_Us_Ui(struct Vp_Us_Ui lv);
 struct Vp_Us_Ui ret_Vp_Us_Ui();
 int send_Vp_Us_Ui();
 int assert_ret_Vp_Us_Ui();
@@ -1682,7 +1683,7 @@ struct  Vp_Us_Ul  {
   __tsu64 v3;
 };
 
-int recv_Vp_Us_Ul(struct Vp_Us_Ul lv);
+int assert_Vp_Us_Ul(struct Vp_Us_Ul lv);
 struct Vp_Us_Ul ret_Vp_Us_Ul();
 int send_Vp_Us_Ul();
 int assert_ret_Vp_Us_Ul();
@@ -1694,7 +1695,7 @@ struct  Vp_Us_Us  {
   unsigned short v3;
 };
 
-int recv_Vp_Us_Us(struct Vp_Us_Us lv);
+int assert_Vp_Us_Us(struct Vp_Us_Us lv);
 struct Vp_Us_Us ret_Vp_Us_Us();
 int send_Vp_Us_Us();
 int assert_ret_Vp_Us_Us();
@@ -1706,7 +1707,7 @@ struct  Vp_Us_Vp  {
   void *v3;
 };
 
-int recv_Vp_Us_Vp(struct Vp_Us_Vp lv);
+int assert_Vp_Us_Vp(struct Vp_Us_Vp lv);
 struct Vp_Us_Vp ret_Vp_Us_Vp();
 int send_Vp_Us_Vp();
 int assert_ret_Vp_Us_Vp();
@@ -1717,7 +1718,7 @@ struct  Vp_Vp  {
   void *v2;
 };
 
-int recv_Vp_Vp(struct Vp_Vp lv);
+int assert_Vp_Vp(struct Vp_Vp lv);
 struct Vp_Vp ret_Vp_Vp();
 int send_Vp_Vp();
 int assert_ret_Vp_Vp();
@@ -1729,7 +1730,7 @@ struct  Vp_Vp_C  {
   char v3;
 };
 
-int recv_Vp_Vp_C(struct Vp_Vp_C lv);
+int assert_Vp_Vp_C(struct Vp_Vp_C lv);
 struct Vp_Vp_C ret_Vp_Vp_C();
 int send_Vp_Vp_C();
 int assert_ret_Vp_Vp_C();
@@ -1741,7 +1742,7 @@ struct  Vp_Vp_D  {
   double v3;
 };
 
-int recv_Vp_Vp_D(struct Vp_Vp_D lv);
+int assert_Vp_Vp_D(struct Vp_Vp_D lv);
 struct Vp_Vp_D ret_Vp_Vp_D();
 int send_Vp_Vp_D();
 int assert_ret_Vp_Vp_D();
@@ -1753,7 +1754,7 @@ struct  Vp_Vp_F  {
   float v3;
 };
 
-int recv_Vp_Vp_F(struct Vp_Vp_F lv);
+int assert_Vp_Vp_F(struct Vp_Vp_F lv);
 struct Vp_Vp_F ret_Vp_Vp_F();
 int send_Vp_Vp_F();
 int assert_ret_Vp_Vp_F();
@@ -1765,7 +1766,7 @@ struct  Vp_Vp_I  {
   int v3;
 };
 
-int recv_Vp_Vp_I(struct Vp_Vp_I lv);
+int assert_Vp_Vp_I(struct Vp_Vp_I lv);
 struct Vp_Vp_I ret_Vp_Vp_I();
 int send_Vp_Vp_I();
 int assert_ret_Vp_Vp_I();
@@ -1777,7 +1778,7 @@ struct  Vp_Vp_Ip  {
   int *v3;
 };
 
-int recv_Vp_Vp_Ip(struct Vp_Vp_Ip lv);
+int assert_Vp_Vp_Ip(struct Vp_Vp_Ip lv);
 struct Vp_Vp_Ip ret_Vp_Vp_Ip();
 int send_Vp_Vp_Ip();
 int assert_ret_Vp_Vp_Ip();
@@ -1789,7 +1790,7 @@ struct  Vp_Vp_L  {
   __tsi64 v3;
 };
 
-int recv_Vp_Vp_L(struct Vp_Vp_L lv);
+int assert_Vp_Vp_L(struct Vp_Vp_L lv);
 struct Vp_Vp_L ret_Vp_Vp_L();
 int send_Vp_Vp_L();
 int assert_ret_Vp_Vp_L();
@@ -1801,7 +1802,7 @@ struct  Vp_Vp_S  {
   short v3;
 };
 
-int recv_Vp_Vp_S(struct Vp_Vp_S lv);
+int assert_Vp_Vp_S(struct Vp_Vp_S lv);
 struct Vp_Vp_S ret_Vp_Vp_S();
 int send_Vp_Vp_S();
 int assert_ret_Vp_Vp_S();
@@ -1813,7 +1814,7 @@ struct  Vp_Vp_Uc  {
   unsigned char v3;
 };
 
-int recv_Vp_Vp_Uc(struct Vp_Vp_Uc lv);
+int assert_Vp_Vp_Uc(struct Vp_Vp_Uc lv);
 struct Vp_Vp_Uc ret_Vp_Vp_Uc();
 int send_Vp_Vp_Uc();
 int assert_ret_Vp_Vp_Uc();
@@ -1825,7 +1826,7 @@ struct  Vp_Vp_Ui  {
   unsigned int v3;
 };
 
-int recv_Vp_Vp_Ui(struct Vp_Vp_Ui lv);
+int assert_Vp_Vp_Ui(struct Vp_Vp_Ui lv);
 struct Vp_Vp_Ui ret_Vp_Vp_Ui();
 int send_Vp_Vp_Ui();
 int assert_ret_Vp_Vp_Ui();
@@ -1837,7 +1838,7 @@ struct  Vp_Vp_Ul  {
   __tsu64 v3;
 };
 
-int recv_Vp_Vp_Ul(struct Vp_Vp_Ul lv);
+int assert_Vp_Vp_Ul(struct Vp_Vp_Ul lv);
 struct Vp_Vp_Ul ret_Vp_Vp_Ul();
 int send_Vp_Vp_Ul();
 int assert_ret_Vp_Vp_Ul();
@@ -1849,7 +1850,7 @@ struct  Vp_Vp_Us  {
   unsigned short v3;
 };
 
-int recv_Vp_Vp_Us(struct Vp_Vp_Us lv);
+int assert_Vp_Vp_Us(struct Vp_Vp_Us lv);
 struct Vp_Vp_Us ret_Vp_Vp_Us();
 int send_Vp_Vp_Us();
 int assert_ret_Vp_Vp_Us();
@@ -1861,7 +1862,7 @@ struct  Vp_Vp_Vp  {
   void *v3;
 };
 
-int recv_Vp_Vp_Vp(struct Vp_Vp_Vp lv);
+int assert_Vp_Vp_Vp(struct Vp_Vp_Vp lv);
 struct Vp_Vp_Vp ret_Vp_Vp_Vp();
 int send_Vp_Vp_Vp();
 int assert_ret_Vp_Vp_Vp();
