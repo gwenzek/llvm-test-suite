@@ -1,4 +1,5 @@
 const std = @import("std");
+const builtin = @import("builtin");
 
 pub const expectEqual = std.testing.expectEqual;
 
@@ -29,8 +30,12 @@ pub inline fn expectOk(c_err: c_int) !void {
 pub inline fn expectFail(c_err: c_int) !void {
     if (c_err != 0) {
         std.debug.print("ABI mismatch on field v{d}.\n", .{c_err});
-        return error.SkipZigTest;
+        return error.TestUnexpectedResult;
     }
     std.debug.print("no ABI mismatch, test should be upgraded to expectOk.\n", .{});
     return error.TestUnexpectedResult;
+}
+
+pub inline fn expectOutcome(c_err: c_int, expected_outcome: bool) !void {
+    return if (expected_outcome) expectOk(c_err) else expectFail(c_err);
 }

@@ -1,20 +1,28 @@
 import collections
+import functools
+import logging
 import random
 import re
 import subprocess
 import sys
-import functools
 from enum import Enum
 from pathlib import Path
 from typing import Dict, Iterable, Iterator, List, NamedTuple, Optional, Tuple
 
+log = logging.getLogger("cabi_tests")
+
 # List of tests expected to fail.
 # This will generate an "expectFail" and mark the test as "skipped" instead of "failed".
 # This is needed to allow to put failing tests as "TODOs"
-_FAILING_TESTS = """
-C_F_F,D_C,F_L,C_C_D,C_D,C_F_D,C_I_D,C_I_F,C_S_D,C_Uc_D,C_Ui_D,C_Ui_F,C_Us_D,D_C_C,D_C_F,D_C_I,D_C_S,D_C_Uc,D_C_Ui,D_C_Us,D_F_C,D_F_I,D_F_S,D_F_Uc,D_F_Ui,D_F_Us,D_I,D_I_C,D_I_F,D_I_I,D_I_S,D_I_Uc,D_I_Ui,D_I_Us,D_Ip,D_L,D_S,D_S_C,D_S_F,D_S_I,D_S_S,D_S_Uc,D_S_Ui,D_S_Us,D_Uc,D_Uc_C,D_Uc_F,D_Uc_I,D_Uc_S,D_Uc_Uc,D_Uc_Ui,D_Uc_Us,D_Ui,D_Ui_C,D_Ui_F,D_Ui_I,D_Ui_S,D_Ui_Uc,D_Ui_Ui,D_Ui_Us,D_Ul,D_Us,D_Us_C,D_Us_F,D_Us_I,D_Us_S,D_Us_Uc,D_Us_Ui,D_Us_Us,D_Vp,F_C_D,F_C_F,F_F_C,F_F_I,F_F_Ip,F_F_L,F_F_S,F_F_Uc,F_F_Ui,F_F_Ul,F_F_Us,F_F_Vp,F_I_D,F_I_F,F_Ip,F_S_D,F_S_F,F_Uc_D,F_Uc_F,F_Ui_D,F_Ui_F,F_Ul,F_Us_D,F_Us_F,F_Vp,I_C_D,I_C_F,I_D,I_F_D,I_F_F,I_I_D,I_I_F,I_S_D,I_S_F,I_Uc_D,I_Uc_F,I_Ui_D,I_Ui_F,I_Us_D,I_Us_F,Ip_D,Ip_F,Ip_F_F,L_D,L_F,L_F_F,S_C_D,S_D,S_F_D,S_F_F,S_I_D,S_I_F,S_S_D,S_Uc_D,S_Ui_D,S_Ui_F,S_Us_D,Uc_C_D,Uc_D,Uc_F_D,Uc_F_F,Uc_I_D,Uc_I_F,Uc_S_D,Uc_Uc_D,Uc_Ui_D,Uc_Ui_F,Uc_Us_D,Ui_C_D,Ui_C_F,Ui_D,Ui_F_D,Ui_F_F,Ui_I_D,Ui_I_F,Ui_S_D,Ui_S_F,Ui_Uc_D,Ui_Uc_F,Ui_Ui_D,Ui_Ui_F,Ui_Us_D,Ui_Us_F,Ul_D,Ul_F,Ul_F_F,Us_C_D,Us_D,Us_F_D,Us_F_F,Us_I_D,Us_I_F,Us_S_D,Us_Uc_D,Us_Ui_D,Us_Ui_F,Us_Us_D,Vp_D,Vp_F,Vp_F_F
-"""
-FAILING_TESTS = set(_FAILING_TESTS.strip().split(","))
+_FAILING_TESTS = {
+    "x86_64": "C_F_F,D_C,F_L,C_C_D,C_D,C_F_D,C_I_D,C_I_F,C_S_D,C_Uc_D,C_Ui_D,C_Ui_F,C_Us_D,D_C_C,D_C_F,D_C_I,D_C_S,D_C_Uc,D_C_Ui,D_C_Us,D_F_C,D_F_I,D_F_S,D_F_Uc,D_F_Ui,D_F_Us,D_I,D_I_C,D_I_F,D_I_I,D_I_S,D_I_Uc,D_I_Ui,D_I_Us,D_Ip,D_L,D_S,D_S_C,D_S_F,D_S_I,D_S_S,D_S_Uc,D_S_Ui,D_S_Us,D_Uc,D_Uc_C,D_Uc_F,D_Uc_I,D_Uc_S,D_Uc_Uc,D_Uc_Ui,D_Uc_Us,D_Ui,D_Ui_C,D_Ui_F,D_Ui_I,D_Ui_S,D_Ui_Uc,D_Ui_Ui,D_Ui_Us,D_Ul,D_Us,D_Us_C,D_Us_F,D_Us_I,D_Us_S,D_Us_Uc,D_Us_Ui,D_Us_Us,D_Vp,F_C_D,F_C_F,F_F_C,F_F_I,F_F_Ip,F_F_L,F_F_S,F_F_Uc,F_F_Ui,F_F_Ul,F_F_Us,F_F_Vp,F_I_D,F_I_F,F_Ip,F_S_D,F_S_F,F_Uc_D,F_Uc_F,F_Ui_D,F_Ui_F,F_Ul,F_Us_D,F_Us_F,F_Vp,I_C_D,I_C_F,I_D,I_F_D,I_F_F,I_I_D,I_I_F,I_S_D,I_S_F,I_Uc_D,I_Uc_F,I_Ui_D,I_Ui_F,I_Us_D,I_Us_F,Ip_D,Ip_F,Ip_F_F,L_D,L_F,L_F_F,S_C_D,S_D,S_F_D,S_F_F,S_I_D,S_I_F,S_S_D,S_Uc_D,S_Ui_D,S_Ui_F,S_Us_D,Uc_C_D,Uc_D,Uc_F_D,Uc_F_F,Uc_I_D,Uc_I_F,Uc_S_D,Uc_Uc_D,Uc_Ui_D,Uc_Ui_F,Uc_Us_D,Ui_C_D,Ui_C_F,Ui_D,Ui_F_D,Ui_F_F,Ui_I_D,Ui_I_F,Ui_S_D,Ui_S_F,Ui_Uc_D,Ui_Uc_F,Ui_Ui_D,Ui_Ui_F,Ui_Us_D,Ui_Us_F,Ul_D,Ul_F,Ul_F_F,Us_C_D,Us_D,Us_F_D,Us_F_F,Us_I_D,Us_I_F,Us_S_D,Us_Uc_D,Us_Ui_D,Us_Ui_F,Us_Us_D,Vp_D,Vp_F,Vp_F_F"
+}
+FAILING_ARCHS: Dict[str, List[str]] = collections.defaultdict(list)
+for arch, _failing in _FAILING_TESTS.items():
+    for failing in _failing.strip().split(","):
+        FAILING_ARCHS[failing].append(arch)
+
+AARCH64_SEGFAULT = "F_C,F_F,F_I,F_S,F_Uc,F_Ui,F_Us,C_F,I_F,I_C,I_I,I_S,I_Uc".split(",")
 
 class Struct(NamedTuple):
     name: str
@@ -265,6 +273,7 @@ struct empty EMPTY = {};
 
 ZIG_HEADER = """const std = @import("std");
 const testing = @import("testing.zig");
+const builtin = @import("builtin");
 const ABISELECT = testing.ABISELECT;
 
 pub const c = @cImport({
@@ -298,7 +307,9 @@ def translate_test_line(struct_name: str, line: str) -> str:
     if line.startswith("check_field_offset"):
         line = line.replace("check_field_offset", "try testing.expectFieldOffset")
         line = line.replace("(lv, ", "(&lv, &lv.")
-        line = rm_debug_string(line)
+        # C tests are passing the struct name everywhere to get nice test errors,
+        # but this is built-in Zig test runner.
+        line = _debug_string.sub(")", line)
         return line
 
     if line == "}":
@@ -307,29 +318,48 @@ def translate_test_line(struct_name: str, line: str) -> str:
     raise NotImplementedError(line)
 
 
-debug_string = re.compile(r',\s*"[a-zA-Z0-9()\._]+"\)')
-
-
-def rm_debug_string(line: str) -> str:
-    return debug_string.sub(")", line)
+# Matches a struct name passed as a string argument.
+_debug_string = re.compile(r',\s*"[a-zA-Z0-9()\._]+"\)')
 
 
 def generate_c_calls_test(struct: Struct, field_values: dict) -> str:
+    guard, guards = "", []
+    for arch in FAILING_ARCHS[struct.name]:
+        guards.append(f"if (builtin.cpu.arch == .{arch}) outcome = false;")
+
+    if guards:
+        guard = "\n    ".join(guards)
+
+    ret_guards = ""
+    struct_suffix = struct.name.split("_", 1)[-1]
+
+    # TODO, find a better way to differentiate between failure and segfault
+    # can we catch segfault in the test runner ?
+    ret_guards = "if (builtin.cpu.arch == .i386) return error.SkipZigTest;"
+    if struct_suffix in AARCH64_SEGFAULT:
+        ret_guards += "if (builtin.cpu.arch == .aarch64) return error.SkipZigTest;"
+
     # TODO: handle pointers, Zig doesn't allow implicit int to ptr casting.
     struct_lit = ", ".join(f".{field}={val}" for field, val in field_values.items())
-    status = "Fail" if struct.name in FAILING_TESTS else "Ok"
 
     return f"""
 test "{struct.name}: Zig passes to C" {{
-    try testing.expect{status}(c.assert_{struct.name}(.{{{struct_lit}}}));
+    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
+    var outcome = true;{guard}
+    try testing.expectOutcome(c.assert_{struct.name}(.{{{struct_lit}}}), outcome);
 }}
-test "{struct.name}: Zig returns to C" {{
+test "{struct.name}: Zig returns to C" {{{ret_guards}
     try testing.expectOk(c.assert_ret_{struct.name}());
 }}
 test "{struct.name}: C passes to Zig" {{
-    try testing.expect{status}(c.send_{struct.name}());
+    var outcome = true;
+    {guard}
+    if (builtin.cpu.arch.isPPC()) outcome = false;
+    try testing.expectOutcome(c.send_{struct.name}(), outcome);
 }}
 test "{struct.name}: C returns to Zig" {{
+    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
+    {ret_guards}
     try testing.expectEqual(c.ret_{struct.name}(), .{{{struct_lit}}});
 }}
 """.strip()
@@ -433,13 +463,7 @@ def generate_field_val(ctype: str) -> str:
     return str(random.randint(0, 2**15 - 1))
 
 
-def main(allow_empty: bool) -> None:
-    """Parses all test/struct_layout_tests/*.c files for relevant test cases.
-    Translate them to zig files in zig_test/*.zig.
-    Then run `zig test` on them.
-
-    Use --allow_empty to allow tests with empty field structs.
-    """
+def gen_tests(allow_empty: bool) -> List[Path]:
     struct_layout_tests = Path("test") / "struct_layout_tests"
     zig_tests = Path("zig_test")
 
@@ -460,46 +484,124 @@ def main(allow_empty: bool) -> None:
         if test_file is not None:
             test_files.append(test_file)
             # break
-    print(full_stats)
-    failed_tests = []
-    returncode = 0
-    for test_file in test_files:
-        print(test_file)
-        test = subprocess.run(
+    log.info(full_stats)
+    return test_files
+
+
+QEMU_ARCH = {"x86": "i386", "powerpc": "ppc"}
+
+
+def run_test(test_file: Path, target: str) -> subprocess.CompletedProcess[str]:
+    cmd = [
+        "zig",
+        "test",
+        "-fno-stage1",
+        "-cflags",
+        "-std=c99",
+        "--",
+        "-I",
+        test_file.parent,
+        test_file,
+        test_file.with_suffix(".aux.c"),
+    ]
+
+    if target:
+        arch, os_variant = target.split("-", 1)
+        qemu_arch = QEMU_ARCH.get(arch, arch)
+        cmd.extend(
             [
-                "zig",
-                "test",
-                "-I",
-                zig_tests,
-                test_file,
-                test_file.with_suffix(".aux.o"),
-            ],
-            check=False,
-            capture_output=False,
-            encoding="ascii",
+                "-target",
+                target,
+                "--test-cmd",
+                f"qemu-{qemu_arch}",
+                "--test-cmd-bin",
+            ]
         )
+
+    return subprocess.run(cmd, check=False, capture_output=True, encoding="ascii")  # type: ignore
+
+
+def test_and_parse_results(
+    test_files: List[Path], target: str, verbose: bool = False
+) -> int:
+    failed_tests, crashed_tests = [], []
+    returncode = 0
+    t_passed, t_skipped, t_failed = 0, 0, 0
+    for test_file in test_files:
+        test = run_test(test_file, target)
         if test.returncode != 0:
             failed_tests.append(test_file)
-            print(f"{test} failed !")
-            print(test.stderr)
-            returncode = test.returncode
-        # else:
-        # # Success
-        # # TODO: parse test numbers
-        # status_line = test.stderr.splitlines()[-1]
-        # match = re.match(r"All (\d+) tests passed\.", status_line)
-        # assert match and int(match.group(1)) ==
+            returncode = max(returncode, test.returncode)
 
+        stderr = test.stderr.splitlines()
+        if returncode == 0:
+            status_line = stderr[-1]
+        else:
+            status_line = stderr[-3] if len(stderr) > 3 else ""
+        match = re.match(r"All (\d+) tests passed\.", status_line)
+        if match:
+            passed, skipped, failed = int(match.group(1)), 0, 0
+        else:
+            match = re.match(r"(\d+) passed; (\d+) skipped; (\d+) failed.", status_line)
+            if match:
+                passed, skipped, failed = [int(match.group(i)) for i in range(1, 4)]
+            else:
+                # The test runner didn't exited correctly, probably a segfault
+                log.error(
+                    "Test runner crashed: %s", " ".join(str(x) for x in test.args)
+                )
+                if verbose:
+                    log.error("\n".join(test.stderr.splitlines()[-10:]))
+                crashed_tests.append(test_file)
+                # TODO: we should be able to estimate the number of tests skipped by this crash
+                continue
+        t_passed += passed
+        t_skipped += skipped
+        t_failed += failed
+        print(f"{test_file}: {passed} passed; {skipped} skipped; {failed} failed.")
+
+    target = target or "native"
     success = len(test_files) - len(failed_tests)
-    print(f"Test success: {success} / {len(test_files)}")
+    print(
+        f"Test success ({target}): {success} / {len(test_files)} ({len(crashed_tests)} crashes)"
+    )
+    if len(crashed_tests) < len(test_files):
+        print(
+            f"Test results ({target}): {t_passed} passed; {t_skipped} skipped; {t_failed} failed."
+        )
+    return returncode
+
+
+def main(allow_empty: bool, target: str = "", verbose: bool = False) -> None:
+    """Parses all test/struct_layout_tests/*.c files for relevant test cases.
+    Translate them to zig files in zig_test/*.zig.
+    Then run `zig test` on them.
+
+    Use --allow_empty to allow tests with empty field structs.
+    """
+    test_files = gen_tests(allow_empty)
+    if target == "all":
+        targets = [
+            "i386-linux",
+            "x86_64-linux",
+            "aarch64-linux",
+            "ppc-linux",
+            "riscv64-linux",
+            "mips-linux",
+        ]
+    else:
+        targets = [target]
+
+    returncode = 0
+    for target in targets:
+        print(f"--- C ABI testsuite for target {target or 'native'} ---")
+        returncode = max(
+            returncode, test_and_parse_results(test_files, target, verbose)
+        )
     sys.exit(returncode)
 
 
 if __name__ == "__main__":
-    import sys
+    import func_argparse
 
-    args = sys.argv[1:]
-    if "-h" in args or "--help" in args:
-        print(main.__doc__)
-    else:
-        main(allow_empty="--allow_empty" in args)
+    func_argparse.single_main(main)
