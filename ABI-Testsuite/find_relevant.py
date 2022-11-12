@@ -11,6 +11,10 @@ from typing import Dict, Iterable, Iterator, List, NamedTuple, Optional, Tuple
 
 log = logging.getLogger("cabi_tests")
 
+ROOT = Path(__file__).parent
+STRUCT_LAYOUT_TESTS = ROOT / "test" / "struct_layout_tests"
+ZIG_TESTS = ROOT / "zig_test"
+
 # List of tests expected to fail.
 # This will generate an "expectFail" and mark the test as "skipped" instead of "failed".
 # This is needed to allow to put failing tests as "TODOs"
@@ -23,6 +27,7 @@ for arch, _failing in _FAILING_TESTS.items():
         FAILING_ARCHS[failing].append(arch)
 
 AARCH64_SEGFAULT = "F_C,F_F,F_I,F_S,F_Uc,F_Ui,F_Us,C_F,I_F,I_C,I_I,I_S,I_Uc".split(",")
+
 
 class Struct(NamedTuple):
     name: str
@@ -168,14 +173,16 @@ def check_struct(struct: Struct) -> Status:
     return Status.STRUCT_OK
 
 
-def extract_file(
-    file: Path, outdir: Path, allow_empty: bool = False
+def gen_test_file(
+    file: Path, outdir: Path, allow_empty: bool = False, struct_filter: str = ""
 ) -> Tuple[Optional[Path], Progress]:
     """Reads a .c test file, splits it into a Zig test file and a .h for the struct definitions."""
     stats: Progress = collections.defaultdict(int)
     structs = {}
     with file.open("r") as f:
         for struct in parse_structs(f):
+            if struct_filter and not re.match(struct_filter, struct.name):
+                continue
             res = check_struct(struct)
             stats[res] += 1
             if res == Status.STRUCT_OK:
@@ -463,18 +470,21 @@ def generate_field_val(ctype: str) -> str:
     return str(random.randint(0, 2**15 - 1))
 
 
-def gen_tests(allow_empty: bool) -> List[Path]:
-    struct_layout_tests = Path("test") / "struct_layout_tests"
-    zig_tests = Path("zig_test")
+def gen_tests(allow_empty: bool, lazy: bool = False) -> List[Path]:
+    last_change = Path(__file__).stat().st_mtime
 
     full_stats: Progress = collections.defaultdict(int)
     test_files = []
-    for file in struct_layout_tests.glob("*.c"):
+    for file in STRUCT_LAYOUT_TESTS.glob("*.c"):
         if file.name.startswith("PC_"):
             # Those are C++ tests only
             continue
 
-        test_file, stats = extract_file(file, zig_tests, allow_empty)
+        target = ZIG_TESTS / file.with_suffix(".zig").name
+        if lazy and target.exists() and target.stat().st_mtime > last_change:
+            continue
+
+        test_file, stats = gen_test_file(file, ZIG_TESTS, allow_empty)
         assert (
             stats[Status.TRANSLATION_OK] + stats[Status.TRANSLATION_ERROR]
             == stats[Status.STRUCT_OK]
@@ -483,12 +493,13 @@ def gen_tests(allow_empty: bool) -> List[Path]:
             full_stats[k] += v
         if test_file is not None:
             test_files.append(test_file)
-            # break
+        else:
+            file.unlink()
     log.info(full_stats)
     return test_files
 
 
-QEMU_ARCH = {"x86": "i386", "powerpc": "ppc"}
+QEMU_ARCH = {"x86": "i386"}
 
 
 def run_test(test_file: Path, target: str) -> subprocess.CompletedProcess[str]:
@@ -508,6 +519,7 @@ def run_test(test_file: Path, target: str) -> subprocess.CompletedProcess[str]:
     if target:
         arch, os_variant = target.split("-", 1)
         qemu_arch = QEMU_ARCH.get(arch, arch)
+        qemu_arch = qemu_arch.replace("powerpc", "ppc")
         cmd.extend(
             [
                 "-target",
@@ -545,6 +557,11 @@ def test_and_parse_results(
             match = re.match(r"(\d+) passed; (\d+) skipped; (\d+) failed.", status_line)
             if match:
                 passed, skipped, failed = [int(match.group(i)) for i in range(1, 4)]
+                if verbose:
+                    error_lines = [
+                        l for l in test.stderr.splitlines() if not l.endswith("... OK")
+                    ]
+                    log.error("\n".join(error_lines))
             else:
                 # The test runner didn't exited correctly, probably a segfault
                 log.error(
@@ -572,14 +589,95 @@ def test_and_parse_results(
     return returncode
 
 
-def main(allow_empty: bool, target: str = "", verbose: bool = False) -> None:
+def diff(file_name: str, struct: str, target: str = "native"):
+    original_test_file = STRUCT_LAYOUT_TESTS / (file_name + ".c")
+    assert original_test_file.exists(), f"File not found {original_test_file}"
+    test_file, _ = gen_test_file(
+        original_test_file, ZIG_TESTS, allow_empty=False, struct_filter=struct
+    )
+    assert test_file, f"Struct {struct} not found in {original_test_file}"
+
+    ll_diff = ZIG_TESTS / "ll_diff"
+    raw_dir = ll_diff / "raw"
+    raw_dir.mkdir(exist_ok=True, parents=True)
+    zig_ll = raw_dir / (test_file.name + f".{target}.ll")
+    subprocess.check_call(
+        [
+            "zig",
+            "build-lib",
+            "-I",
+            ZIG_TESTS,
+            test_file,
+            "-fstrip",
+            f"-femit-llvm-ir={zig_ll}",
+        ]
+    )
+    zig_ll_ = zig_ll.read_text().splitlines()
+    zig_ret = extract_fn(zig_ll_, f"zig_ret_{struct}")
+    (raw_dir / f"ret_{struct}.zig.ll").write_text(zig_ret)
+    zig_assert = extract_fn(zig_ll_, f"zig_assert_{struct}")
+    (raw_dir / f"assert_{struct}.zig.ll").write_text(zig_assert)
+
+    c_file = test_file.with_suffix(".aux.c")
+    c_ll = raw_dir / (c_file.name + f".{target}.ll")
+    subprocess.check_call(
+        # TODO: use clang 15
+        ["clang", "-S", "-I", ".", "-emit-llvm", "-o", c_ll, "-c", c_file]
+    )
+    c_ll_ = c_ll.read_text().splitlines()
+    c_ret = extract_fn(c_ll_, f"ret_{struct}")
+    (raw_dir / f"ret_{struct}.c.ll").write_text(c_ret)
+    c_assert = extract_fn(c_ll_, f"assert_{struct}")
+    (raw_dir / f"assert_{struct}.c.ll").write_text(c_assert)
+
+    diff_assert = subprocess.run(
+        [
+            "diff",
+            "-y",
+            raw_dir / f"assert_{struct}.c.ll",
+            raw_dir / f"assert_{struct}.zig.ll",
+        ],
+        capture_output=True,
+        encoding="ascii",
+        check=False,
+    )
+    print(diff_assert.stdout)
+
+
+def extract_fn(ll: List[str], fn: str) -> str:
+    fn_decl = f" @{fn}("
+    for i, line in enumerate(ll):
+        if not line.startswith("define dso_local "):
+            continue
+        if not fn_decl in line:
+            continue
+
+        fn_lines = [ll[i - 1], line]
+        for line in ll[i + 1 :]:
+            fn_lines.append(line)
+            if line == "}":
+                break
+        assert fn_lines[-1] == "}"
+        return cleanup_llvm_ir("\n".join(fn_lines))
+    raise Exception(f"Fn {fn} not found in LLVM IR")
+
+
+_VERBOSE_STRUCT_NAME = re.compile(r"%[^ ]*\.o\.[0-9a-f]+\.cimport\.struct_")
+
+
+def cleanup_llvm_ir(ll: str) -> str:
+    ll = _VERBOSE_STRUCT_NAME.sub("%struct.", ll)
+    # ll = re.sub(r"%\d+", "%x", ll)  # strip all register ids
+    return ll
+
+
+def run(allow_empty: bool, target: str = "", verbose: bool = False) -> None:
     """Parses all test/struct_layout_tests/*.c files for relevant test cases.
     Translate them to zig files in zig_test/*.zig.
     Then run `zig test` on them.
 
     Use --allow_empty to allow tests with empty field structs.
     """
-    test_files = gen_tests(allow_empty)
     if target == "all":
         targets = [
             "i386-linux",
@@ -591,6 +689,7 @@ def main(allow_empty: bool, target: str = "", verbose: bool = False) -> None:
         ]
     else:
         targets = [target]
+    test_files = gen_tests(allow_empty, lazy=True)
 
     returncode = 0
     for target in targets:
@@ -604,4 +703,4 @@ def main(allow_empty: bool, target: str = "", verbose: bool = False) -> None:
 if __name__ == "__main__":
     import func_argparse
 
-    func_argparse.single_main(main)
+    func_argparse.main(run, gen_tests, diff)
