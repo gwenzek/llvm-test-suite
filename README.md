@@ -129,21 +129,11 @@ zig_test/CT_Snen_xaa.zig:147:5: 0x21a6b2 in test.C_Sf_C (test)
 AFAICT Zig doesn't agree with gcc of what to do when there is an empty field in the middle of a struct and tends to insert too many padding.
 
 
-## Next steps
-
-I don't know if there is much left to learn from this.
-The test suite is mostly here to help Clang follow `gcc` behavior.
-But Zig doesn't have to do the same thing and reproduce unspecified quirks.
-If that were to change, I could update the repo to run more tests.
-
-Maybe it could be a source of inspiration to test the behavior of `packed` struct ?
-
-I'm going to look into other parts of the Clang/LLVM tests for C compatibility.
-Maybe: https://github.com/llvm/llvm-project/blob/main/clang/test/CodeGen/X86/x86_64-arguments.c
-
 ## Passing structs through the C ABI
 
-Failing test:
+Topolarity suggested generating more tests than just layout test.
+So for each struct I pass it through arguments and return it,
+both C to Zig and Zig to C.
 
 ```
 // .h
@@ -214,3 +204,22 @@ pub export fn zig_ret_C_C_D() c.C_C_D {
 }
 
 ```
+
+Using qemu I can run the above tests on different platforms.
+I found a number of failing tests.
+Note that crashes indicate that not all 8 test suites were able to finish,
+resulting in non counted test cases.
+
+| Target          | passed  | skipped | failed | crashes |
+| --------------- | --------| --------| -------| --------|
+| i386-linux      | 3725    | 3768    |   1927 |       0 |
+| x86_64-linux    | 9080    |       0 |    340 |       0 |
+| aarch64-linux   | 5       |       0 |      0 |   **7** |
+| riscv64-linux   | 8494    |       0 |    146 |   **1** |
+| --------------- | --------| --------| -------| --------|
+
+
+Obtained with `python find_relevant.py --target all`.
+Note that I could easily add more targets supported by qemu,
+and it would be interesting to run the tests on windows because
+x86_64 uses a different calling convention on Windows and will behave differently.
