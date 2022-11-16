@@ -33,12 +33,12 @@ KNOWN_TESTS = [
 # This will generate an "expectFail" and mark the test as "skipped" instead of "failed".
 # This is needed to allow to put failing tests as "TODOs"
 _FAILING_TESTS = {
-    "x86_64": "C_F_F,D_C,F_L,C_C_D,C_D,C_F_D,C_I_D,C_I_F,C_S_D,C_Uc_D,C_Ui_D,C_Ui_F,C_Us_D,D_C_C,D_C_F,D_C_I,D_C_S,D_C_Uc,D_C_Ui,D_C_Us,D_F_C,D_F_I,D_F_S,D_F_Uc,D_F_Ui,D_F_Us,D_I,D_I_C,D_I_F,D_I_I,D_I_S,D_I_Uc,D_I_Ui,D_I_Us,D_Ip,D_L,D_S,D_S_C,D_S_F,D_S_I,D_S_S,D_S_Uc,D_S_Ui,D_S_Us,D_Uc,D_Uc_C,D_Uc_F,D_Uc_I,D_Uc_S,D_Uc_Uc,D_Uc_Ui,D_Uc_Us,D_Ui,D_Ui_C,D_Ui_F,D_Ui_I,D_Ui_S,D_Ui_Uc,D_Ui_Ui,D_Ui_Us,D_Ul,D_Us,D_Us_C,D_Us_F,D_Us_I,D_Us_S,D_Us_Uc,D_Us_Ui,D_Us_Us,D_Vp,F_C_D,F_C_F,F_F_C,F_F_I,F_F_Ip,F_F_L,F_F_S,F_F_Uc,F_F_Ui,F_F_Ul,F_F_Us,F_F_Vp,F_I_D,F_I_F,F_Ip,F_S_D,F_S_F,F_Uc_D,F_Uc_F,F_Ui_D,F_Ui_F,F_Ul,F_Us_D,F_Us_F,F_Vp,I_C_D,I_C_F,I_D,I_F_D,I_F_F,I_I_D,I_I_F,I_S_D,I_S_F,I_Uc_D,I_Uc_F,I_Ui_D,I_Ui_F,I_Us_D,I_Us_F,Ip_D,Ip_F,Ip_F_F,L_D,L_F,L_F_F,S_C_D,S_D,S_F_D,S_F_F,S_I_D,S_I_F,S_S_D,S_Uc_D,S_Ui_D,S_Ui_F,S_Us_D,Uc_C_D,Uc_D,Uc_F_D,Uc_F_F,Uc_I_D,Uc_I_F,Uc_S_D,Uc_Uc_D,Uc_Ui_D,Uc_Ui_F,Uc_Us_D,Ui_C_D,Ui_C_F,Ui_D,Ui_F_D,Ui_F_F,Ui_I_D,Ui_I_F,Ui_S_D,Ui_S_F,Ui_Uc_D,Ui_Uc_F,Ui_Ui_D,Ui_Ui_F,Ui_Us_D,Ui_Us_F,Ul_D,Ul_F,Ul_F_F,Us_C_D,Us_D,Us_F_D,Us_F_F,Us_I_D,Us_I_F,Us_S_D,Us_Uc_D,Us_Ui_D,Us_Ui_F,Us_Us_D,Vp_D,Vp_F,Vp_F_F"
+    "x86_64-linux": "C_F_F,D_C,F_L,C_C_D,C_D,C_F_D,C_I_D,C_I_F,C_S_D,C_Uc_D,C_Ui_D,C_Ui_F,C_Us_D,D_C_C,D_C_F,D_C_I,D_C_S,D_C_Uc,D_C_Ui,D_C_Us,D_F_C,D_F_I,D_F_S,D_F_Uc,D_F_Ui,D_F_Us,D_I,D_I_C,D_I_F,D_I_I,D_I_S,D_I_Uc,D_I_Ui,D_I_Us,D_Ip,D_L,D_S,D_S_C,D_S_F,D_S_I,D_S_S,D_S_Uc,D_S_Ui,D_S_Us,D_Uc,D_Uc_C,D_Uc_F,D_Uc_I,D_Uc_S,D_Uc_Uc,D_Uc_Ui,D_Uc_Us,D_Ui,D_Ui_C,D_Ui_F,D_Ui_I,D_Ui_S,D_Ui_Uc,D_Ui_Ui,D_Ui_Us,D_Ul,D_Us,D_Us_C,D_Us_F,D_Us_I,D_Us_S,D_Us_Uc,D_Us_Ui,D_Us_Us,D_Vp,F_C_D,F_C_F,F_F_C,F_F_I,F_F_Ip,F_F_L,F_F_S,F_F_Uc,F_F_Ui,F_F_Ul,F_F_Us,F_F_Vp,F_I_D,F_I_F,F_Ip,F_S_D,F_S_F,F_Uc_D,F_Uc_F,F_Ui_D,F_Ui_F,F_Ul,F_Us_D,F_Us_F,F_Vp,I_C_D,I_C_F,I_D,I_F_D,I_F_F,I_I_D,I_I_F,I_S_D,I_S_F,I_Uc_D,I_Uc_F,I_Ui_D,I_Ui_F,I_Us_D,I_Us_F,Ip_D,Ip_F,Ip_F_F,L_D,L_F,L_F_F,S_C_D,S_D,S_F_D,S_F_F,S_I_D,S_I_F,S_S_D,S_Uc_D,S_Ui_D,S_Ui_F,S_Us_D,Uc_C_D,Uc_D,Uc_F_D,Uc_F_F,Uc_I_D,Uc_I_F,Uc_S_D,Uc_Uc_D,Uc_Ui_D,Uc_Ui_F,Uc_Us_D,Ui_C_D,Ui_C_F,Ui_D,Ui_F_D,Ui_F_F,Ui_I_D,Ui_I_F,Ui_S_D,Ui_S_F,Ui_Uc_D,Ui_Uc_F,Ui_Ui_D,Ui_Ui_F,Ui_Us_D,Ui_Us_F,Ul_D,Ul_F,Ul_F_F,Us_C_D,Us_D,Us_F_D,Us_F_F,Us_I_D,Us_I_F,Us_S_D,Us_Uc_D,Us_Ui_D,Us_Ui_F,Us_Us_D,Vp_D,Vp_F,Vp_F_F"
 }
-FAILING_ARCHS: Dict[str, List[str]] = collections.defaultdict(list)
-for arch, _failing in _FAILING_TESTS.items():
+FAILING_TARGET: Dict[str, List[str]] = collections.defaultdict(list)
+for target, _failing in _FAILING_TESTS.items():
     for failing in _failing.strip().split(","):
-        FAILING_ARCHS[failing].append(arch)
+        FAILING_TARGET[failing].append(target)
 
 AARCH64_SEGFAULT = "F_C,F_F,F_I,F_S,F_Uc,F_Ui,F_Us,C_F,I_F,I_C,I_I,I_S,I_Uc".split(",")
 
@@ -344,21 +344,14 @@ _debug_string = re.compile(r',\s*"[a-zA-Z0-9()\._]+"\)')
 
 
 def generate_c_calls_test(struct: Struct, field_values: dict) -> str:
-    guard, guards = "", []
-    # for arch in FAILING_ARCHS[struct.name]:
-    #     guards.append(f"if (builtin.cpu.arch == .{arch}) outcome = false;")
-
-    if guards:
-        guard = "\n    ".join(guards)
 
     ret_guards = ""
     struct_suffix = struct.name.split("_", 1)[-1]
 
-    # TODO, find a better way to differentiate between failure and segfault
-    # can we catch segfault in the test runner ?
-    ret_guards = "if (builtin.cpu.arch == .x86) return error.SkipZigTest;"
+    # SkipTest are here to avoid segfaults
+    ret_guards = ""
     if struct_suffix in AARCH64_SEGFAULT:
-        ret_guards += "if (builtin.cpu.arch == .aarch64) return error.SkipZigTest;"
+        ret_guards = "if (builtin.cpu.arch == .aarch64) return error.SkipZigTest;"
 
     # TODO: handle pointers, Zig doesn't allow implicit int to ptr casting.
     struct_lit = ", ".join(f".{field}={val}" for field, val in field_values.items())
@@ -366,21 +359,18 @@ def generate_c_calls_test(struct: Struct, field_values: dict) -> str:
     return f"""
 test "{struct.name}: Zig passes to C" {{
     if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;{guard}
-    try testing.expectOutcome(c.assert_{struct.name}(.{{{struct_lit}}}), outcome);
+    try testing.expectOk(zig_assert_{struct.name}(.{{{struct_lit}}}));
 }}
-test "{struct.name}: Zig returns to C" {{{ret_guards}
+test "{struct.name}: Zig returns to C" {{
+    if (builtin.cpu.arch == .x86) return error.SkipZigTest;{ret_guards}
     try testing.expectOk(c.assert_ret_{struct.name}());
 }}
 test "{struct.name}: C passes to Zig" {{
-    var outcome = true;
-    {guard}
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_{struct.name}(), outcome);
+    try testing.expectOk(c.send_{struct.name}());
 }}
 test "{struct.name}: C returns to Zig" {{
     if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    {ret_guards}
+    if (builtin.cpu.arch == .x86) return error.SkipZigTest;{ret_guards}
     try testing.expectEqual(c.ret_{struct.name}(), .{{{struct_lit}}});
 }}
 """.strip()
@@ -388,16 +378,17 @@ test "{struct.name}: C returns to Zig" {{
 
 def generate_c_recv(struct: Struct, fields: dict) -> str:
     """C function that receives a struct from Zig, and match it against comptime values."""
-    lines = [f"int assert_{struct.name}(struct {struct.name} lv){{"]
+    lines = [f"int assert_{struct.name}(struct {struct.name} lv){{",
+    "    int err = 0;"]
 
     for i, (field, val) in enumerate(fields.items(), start=1):
         if val == "null":
             val = 0
         if val == ".{}":
             continue
-        asser = f"  if (lv.{field} != {val}) return {i};"
+        asser = f"  if (lv.{field} != {val}) err = {i};"
         lines.append(asser)
-    lines.extend(["  return 0;", "}"])
+    lines.extend(["  return err;", "}"])
     return "\n".join(lines)
 
 
@@ -484,7 +475,9 @@ def generate_field_val(ctype: str) -> str:
     return str(random.randint(0, 2**15 - 1))
 
 
-def gen_tests(allow_empty: bool, lazy: bool = False, curious: bool = False) -> List[Path]:
+def gen_tests(
+    allow_empty: bool, lazy: bool = False, curious: bool = False
+) -> List[Path]:
     last_change = Path(__file__).stat().st_mtime
 
     full_stats: Progress = collections.defaultdict(int)
@@ -495,8 +488,9 @@ def gen_tests(allow_empty: bool, lazy: bool = False, curious: bool = False) -> L
         test_candidates = [STRUCT_LAYOUT_TESTS / t for t in KNOWN_TESTS]
 
     for file in test_candidates:
-        target = ZIG_TESTS / file.with_suffix(".zig").name
-        if lazy and target.exists() and target.stat().st_mtime > last_change:
+        test_file = ZIG_TESTS / file.with_suffix(".zig").name
+        if lazy and test_file.exists() and test_file.stat().st_mtime > last_change:
+            test_files.append(test_file)
             continue
 
         test_file, stats = gen_test_file(file, ZIG_TESTS, allow_empty)
@@ -508,8 +502,8 @@ def gen_tests(allow_empty: bool, lazy: bool = False, curious: bool = False) -> L
             full_stats[k] += v
         if test_file is not None:
             test_files.append(test_file)
-        else:
-            file.unlink()
+        # else:
+        #     file.unlink()
     log.info(full_stats)
     return test_files
 
@@ -554,6 +548,8 @@ def test_and_parse_results(
     failed_tests, crashed_tests = [], []
     returncode = 0
     t_passed, t_skipped, t_failed = 0, 0, 0
+    failing_structs = set()
+
     for test_file in test_files:
         test = run_test(test_file, target)
         if test.returncode != 0:
@@ -572,12 +568,16 @@ def test_and_parse_results(
             match = re.match(r"(\d+) passed; (\d+) skipped; (\d+) failed.", status_line)
             if match:
                 passed, skipped, failed = [int(match.group(i)) for i in range(1, 4)]
+                error_lines = [
+                    l for l in test.stderr.splitlines() if not l.endswith("... OK")
+                ]
+                for line in error_lines:
+                    m = re.match(r"\d+/\d+ test\.([a-zA-Z_]+): .*", line)
+                    if m:
+                        failing_structs.add(m.group(1))
                 if verbose:
-                    error_lines = [
-                        l for l in test.stderr.splitlines() if not l.endswith("... OK")
-                    ]
-                    # TODO we could collect the name of the failing test cases
                     log.error("\n".join(error_lines))
+                # print(f"{target}: failed with the following structs {','.join(failing_structs)}")
             else:
                 # The test runner didn't exited correctly, probably a segfault
                 log.error(
@@ -596,23 +596,27 @@ def test_and_parse_results(
     target = target or "native"
     success = len(test_files) - len(failed_tests)
     print(
-        f"Test success ({target}): {success} / {len(test_files)} ({len(crashed_tests)} crashes)"
+        f"{target}: Test success: {success} / {len(test_files)} ({len(crashed_tests)} crashes)"
     )
     if len(crashed_tests) < len(test_files):
         print(
-            f"Test results ({target}): {t_passed} passed; {t_skipped} skipped; {t_failed} failed."
+            f"{target}: Test results: {t_passed} passed; {t_skipped} skipped; {t_failed} failed."
         )
+    print(f"{target}: failed with the following structs {','.join(failing_structs)}")
     return returncode
 
 
-def diff(file_name: str, struct: str, target: str = "native"):
+def diff(file_name: str, struct_filter: str = "", target: str = "native"):
     original_test_file = STRUCT_LAYOUT_TESTS / (file_name + ".c")
     assert original_test_file.exists(), f"File not found {original_test_file}"
     test_file, _ = gen_test_file(
-        original_test_file, ZIG_TESTS, allow_empty=False, struct_filter=struct
+        original_test_file, ZIG_TESTS, allow_empty=False, struct_filter=struct_filter
     )
-    assert test_file, f"Struct {struct} not found in {original_test_file}"
-
+    assert test_file, f"Structs '{struct_filter}' not found in {original_test_file}"
+    structs = extract_structs(test_file)
+    print(
+        f"Found {len(structs)} structs in {test_file} matching filter '{struct_filter}'"
+    )
     ll_diff = ZIG_TESTS / "ll_diff"
     raw_dir = ll_diff / "raw"
     raw_dir.mkdir(exist_ok=True, parents=True)
@@ -629,10 +633,6 @@ def diff(file_name: str, struct: str, target: str = "native"):
         ]
     )
     zig_ll_ = zig_ll.read_text().splitlines()
-    zig_ret = extract_fn(zig_ll_, f"zig_ret_{struct}")
-    # (raw_dir / f"ret_{struct}.zig.ll").write_text(zig_ret)
-    zig_assert = extract_fn(zig_ll_, f"zig_assert_{struct}")
-    # (raw_dir / f"assert_{struct}.zig.ll").write_text(zig_assert)
 
     c_file = test_file.with_suffix(".aux.c")
     c_ll = raw_dir / (c_file.name + f".{target}.ll")
@@ -641,10 +641,62 @@ def diff(file_name: str, struct: str, target: str = "native"):
         ["clang", "-S", "-I", ".", "-emit-llvm", "-o", c_ll, "-c", c_file]
     )
     c_ll_ = c_ll.read_text().splitlines()
-    c_ret = extract_fn(c_ll_, f"ret_{struct}")
-    # (raw_dir / f"ret_{struct}.c.ll").write_text(c_ret)
-    c_assert = extract_fn(c_ll_, f"assert_{struct}")
-    # (raw_dir / f"assert_{struct}.c.ll").write_text(c_assert)
+
+    # O(n2) perf ... TODO: make {zig,c}_ll_ iterators
+    # Print all the .ll function decl in
+    with (ll_diff / f"{file_name}.zig.ll").open("wt") as zig_ll_o, (
+        ll_diff / f"{file_name}.clang.ll"
+    ).open("wt") as c_ll_o:
+        print(";Generated by Zig", file=zig_ll_o)
+        print(";Generated by Clang", file=c_ll_o)
+        for struct in structs:
+            if struct in FAILING_TARGET and target in FAILING_TARGET[struct]:
+                print(";Failing test", file=zig_ll_o)
+                print(";Failing test", file=c_ll_o)
+            else:
+                continue
+
+            print(extract_struct_decl(zig_ll_, struct), file=zig_ll_o)
+            zig_ret = extract_fn(zig_ll_, f"zig_ret_{struct}")
+            print(zig_ret, file=zig_ll_o)
+            (raw_dir / f"ret_{struct}.zig.ll").write_text(zig_ret)
+            zig_assert = extract_fn(zig_ll_, f"zig_assert_{struct}")
+            print(zig_assert.splitlines()[1], "... }", file=zig_ll_o)
+            (raw_dir / f"assert_{struct}.zig.ll").write_text(zig_assert)
+
+            print(extract_struct_decl(c_ll_, struct), file=c_ll_o)
+            c_ret = extract_fn(c_ll_, f"ret_{struct}")
+            print(c_ret, file=c_ll_o)
+            (raw_dir / f"ret_{struct}.c.ll").write_text(c_ret)
+            c_assert = extract_fn(c_ll_, f"assert_{struct}")
+            print(c_assert.splitlines()[1], "... }", file=c_ll_o)
+            (raw_dir / f"assert_{struct}.c.ll").write_text(c_assert)
+
+
+def extract_structs(test_file: Path) -> List[str]:
+    structs = []
+
+    for line in test_file.read_text().splitlines():
+        if not line.startswith('test "'):
+            continue
+        line = line.split('"', 1)[-1]
+        if not line.endswith(': layout" {'):
+            continue
+        line = line.split(":", 1)[0]
+        structs.append(line)
+    return structs
+
+
+def extract_struct_decl(ll: List[str], struct: str) -> str:
+    c_decl = f"%struct.{struct} = type "
+    zig_decl = f".cimport.struct_{struct} = type "
+    for line in ll:
+        if line.startswith(c_decl):
+            return line
+
+        if zig_decl in line:
+            return cleanup_llvm_ir(line)
+    raise Exception(f"Struct {struct} not found in LLVM IR")
 
 
 def extract_fn(ll: List[str], fn: str) -> str:
@@ -670,11 +722,19 @@ _VERBOSE_STRUCT_NAME = re.compile(r"%[^ ]*\.o\.[0-9a-f]+\.cimport\.struct_")
 
 def cleanup_llvm_ir(ll: str) -> str:
     ll = _VERBOSE_STRUCT_NAME.sub("%struct.", ll)
-    # ll = re.sub(r"%\d+", "%x", ll)  # strip all register ids
+    # strip all register ids
+    # ll = re.sub(r"%\d+", "%x", ll)
+    # replace zig function names by their c equivalent
+    ll = re.sub(r"@zig_", "@", ll)
+    # close trailing brackets
+    if ll.endswith("{"):
+        ll += "...}"
     return ll
 
 
-def run(allow_empty: bool, target: str = "", verbose: bool = False, curious: bool = False) -> None:
+def run(
+    allow_empty: bool, target: str = "", verbose: bool = False, curious: bool = False
+) -> None:
     """Parses all test/struct_layout_tests/*.c files for relevant test cases.
     Translate them to zig files in zig_test/*.zig.
     Then run `zig test` on them.
