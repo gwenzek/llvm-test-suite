@@ -24,7 +24,7 @@ test "C: Zig passes to C" {
     try testing.expectOutcome(c.assert_C(.{ .v1 = 19 }), outcome);
 }
 test "C: Zig returns to C" {
-    if (builtin.cpu.arch == .i386) return error.SkipZigTest;
+    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_C());
 }
 test "C: C passes to Zig" {
@@ -35,7 +35,7 @@ test "C: C passes to Zig" {
 }
 test "C: C returns to Zig" {
     if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .i386) return error.SkipZigTest;
+    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectEqual(c.ret_C(), .{ .v1 = 19 });
 }
 pub export fn zig_assert_C(lv: c.C) c_int {
