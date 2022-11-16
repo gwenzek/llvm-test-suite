@@ -6,3 +6,6 @@
 zig-cache/
 *.o
 *.core
+/ABI-Testsuite/venv/
+/ABI-Testsuite/.gdb_history
+ABI-Testsuite/zig_test/ll_diff/raw/

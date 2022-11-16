@@ -223,3 +223,43 @@ Obtained with `python find_relevant.py --target all`.
 Note that I could easily add more targets supported by qemu,
 and it would be interesting to run the tests on windows because
 x86_64 uses a different calling convention on Windows and will behave differently.
+
+
+## Diffing LLVM IR
+
+Clang generates the following IR:
+
+```
+; Function Attrs: noinline nounwind optnone uwtable
+%struct.C_C_D = type { i8, i8, double }
+; Function Attrs: noinline nounwind optnone uwtable
+define dso_local { i64, double } @ret_C_C_D() #0 {
+  %1 = alloca %struct.C_C_D, align 8
+  %2 = bitcast %struct.C_C_D* %1 to i8*
+  call void @llvm.memcpy.p0i8.p0i8.i64(i8* align 8 %2, i8* align 8 getelementptr inbounds (%struct.C_C_D, %struct.C_C_D* @__const.ret_C_C_D.lv, i32 0, i32 0), i64 16, i1 false)
+  %3 = bitcast %struct.C_C_D* %1 to { i64, double }*
+  %4 = load { i64, double }, { i64, double }* %3, align 8
+  ret { i64, double } %4
+}
+```
+
+Zig:
+
+```
+%struct.C_C_D = type { i8, i8, [6 x i8], double }
+
+; Function Attrs: nounwind
+define dso_local i32 @zig_assert_C_Uc_D(i64 %0, i64 %1) #0 {
+Entry:
+  ...
+  Block3:                                           ; preds = %Else2, %Then1
+  %13 = getelementptr inbounds %struct_C_Uc_D, ptr %4, i32 0, i32 3
+  %14 = load double, ptr %13, align 8
+  %15 = fcmp une double %14, 5.000000e-01
+  br i1 %15, label %Then4, label %Else5
+  ...
+}
+```
+
+
+https://zigbin.io/0cc641

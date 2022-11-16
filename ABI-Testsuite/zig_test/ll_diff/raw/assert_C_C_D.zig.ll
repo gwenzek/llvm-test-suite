@@ -1,5 +1,7 @@
 ; Function Attrs: nounwind
-define dso_local i32 @zig_assert_C_C_D(i64 %0, i64 %1) #0 {
+%struct_C_Uc_D = type { i8, i8, [6 x i8], double }
+
+define dso_local i32 @assert_C_C_D(i64 %0, i64 %1) #0 {
 Entry:
   %2 = alloca %0, align 8
   %3 = alloca i32, align 4
@@ -53,9 +55,9 @@ Block6:                                           ; preds = %Else5, %Then4
   br i1 %17, label %Then7, label %Else8
 
 Then7:                                            ; preds = %Block6
-  %18 = getelementptr inbounds %0, ptr %2, i32 0, i32 0
+  %18 = getelementptr inbounds %2, ptr %2, i32 0, i32 0
   call void @llvm.memcpy.p0.p0.i64(ptr align 8 %18, ptr align 8 %4, i64 16, i1 false)
-  call fastcc void @debug.print__anon_797(ptr %2)
+  call fastcc void @debug.print__anon_5181(ptr %2)
   br label %Block9
 
 Else8:                                            ; preds = %Block6
