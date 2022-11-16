@@ -1,8 +1,9 @@
 #include "T_Snnn_xav.h"
 
 int assert_C(struct C lv){
-  if (lv.v1 != 19) return 1;
-  return 0;
+    int err = 0;
+  if (lv.v1 != 19) err = 1;
+  return err;
 }
 struct C ret_C(){
     struct C lv = { .v1 = 19 };

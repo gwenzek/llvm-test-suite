@@ -20,18 +20,14 @@ test "C: layout" {
 }
 test "C: Zig passes to C" {
     if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_C(.{ .v1 = 19 }), outcome);
+    try testing.expectOk(c.assert_C(.{ .v1 = 19 }));
 }
 test "C: Zig returns to C" {
     if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_C());
 }
 test "C: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_C(), outcome);
+    try testing.expectOk(c.send_C());
 }
 test "C: C returns to Zig" {
     if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
