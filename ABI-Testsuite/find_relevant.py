@@ -15,6 +15,20 @@ ROOT = Path(__file__).parent
 STRUCT_LAYOUT_TESTS = ROOT / "test" / "struct_layout_tests"
 ZIG_TESTS = ROOT / "zig_test"
 
+# Relevant test files. Remove this if you want to change the translation algorithm
+KNOWN_TESTS = [
+    "CT_Snen_xaa.c",
+    "CT_Snen_xab.c",
+    "T_Snnn_xav.c",
+    "T_Snnn_xaw.c",
+    "T_Snnn_xax.c",
+    "T_Snnn_xay.c",
+    "T_Snnn_xaz.c",
+    "T_Snnn_xba.c",
+    "T_Snnn_xbb.c",
+    "T_Snnn_xbc.c",
+]
+
 # List of tests expected to fail.
 # This will generate an "expectFail" and mark the test as "skipped" instead of "failed".
 # This is needed to allow to put failing tests as "TODOs"
@@ -331,8 +345,8 @@ _debug_string = re.compile(r',\s*"[a-zA-Z0-9()\._]+"\)')
 
 def generate_c_calls_test(struct: Struct, field_values: dict) -> str:
     guard, guards = "", []
-    for arch in FAILING_ARCHS[struct.name]:
-        guards.append(f"if (builtin.cpu.arch == .{arch}) outcome = false;")
+    # for arch in FAILING_ARCHS[struct.name]:
+    #     guards.append(f"if (builtin.cpu.arch == .{arch}) outcome = false;")
 
     if guards:
         guard = "\n    ".join(guards)
@@ -342,7 +356,7 @@ def generate_c_calls_test(struct: Struct, field_values: dict) -> str:
 
     # TODO, find a better way to differentiate between failure and segfault
     # can we catch segfault in the test runner ?
-    ret_guards = "if (builtin.cpu.arch == .i386) return error.SkipZigTest;"
+    ret_guards = "if (builtin.cpu.arch == .x86) return error.SkipZigTest;"
     if struct_suffix in AARCH64_SEGFAULT:
         ret_guards += "if (builtin.cpu.arch == .aarch64) return error.SkipZigTest;"
 
@@ -470,16 +484,17 @@ def generate_field_val(ctype: str) -> str:
     return str(random.randint(0, 2**15 - 1))
 
 
-def gen_tests(allow_empty: bool, lazy: bool = False) -> List[Path]:
+def gen_tests(allow_empty: bool, lazy: bool = False, curious: bool = False) -> List[Path]:
     last_change = Path(__file__).stat().st_mtime
 
     full_stats: Progress = collections.defaultdict(int)
     test_files = []
-    for file in STRUCT_LAYOUT_TESTS.glob("*.c"):
-        if file.name.startswith("PC_"):
-            # Those are C++ tests only
-            continue
+    if curious:
+        test_candidates = list(STRUCT_LAYOUT_TESTS.glob("*.c"))
+    else:
+        test_candidates = [STRUCT_LAYOUT_TESTS / t for t in KNOWN_TESTS]
 
+    for file in test_candidates:
         target = ZIG_TESTS / file.with_suffix(".zig").name
         if lazy and target.exists() and target.stat().st_mtime > last_change:
             continue
@@ -561,6 +576,7 @@ def test_and_parse_results(
                     error_lines = [
                         l for l in test.stderr.splitlines() if not l.endswith("... OK")
                     ]
+                    # TODO we could collect the name of the failing test cases
                     log.error("\n".join(error_lines))
             else:
                 # The test runner didn't exited correctly, probably a segfault
@@ -614,9 +630,9 @@ def diff(file_name: str, struct: str, target: str = "native"):
     )
     zig_ll_ = zig_ll.read_text().splitlines()
     zig_ret = extract_fn(zig_ll_, f"zig_ret_{struct}")
-    (raw_dir / f"ret_{struct}.zig.ll").write_text(zig_ret)
+    # (raw_dir / f"ret_{struct}.zig.ll").write_text(zig_ret)
     zig_assert = extract_fn(zig_ll_, f"zig_assert_{struct}")
-    (raw_dir / f"assert_{struct}.zig.ll").write_text(zig_assert)
+    # (raw_dir / f"assert_{struct}.zig.ll").write_text(zig_assert)
 
     c_file = test_file.with_suffix(".aux.c")
     c_ll = raw_dir / (c_file.name + f".{target}.ll")
@@ -626,22 +642,9 @@ def diff(file_name: str, struct: str, target: str = "native"):
     )
     c_ll_ = c_ll.read_text().splitlines()
     c_ret = extract_fn(c_ll_, f"ret_{struct}")
-    (raw_dir / f"ret_{struct}.c.ll").write_text(c_ret)
+    # (raw_dir / f"ret_{struct}.c.ll").write_text(c_ret)
     c_assert = extract_fn(c_ll_, f"assert_{struct}")
-    (raw_dir / f"assert_{struct}.c.ll").write_text(c_assert)
-
-    diff_assert = subprocess.run(
-        [
-            "diff",
-            "-y",
-            raw_dir / f"assert_{struct}.c.ll",
-            raw_dir / f"assert_{struct}.zig.ll",
-        ],
-        capture_output=True,
-        encoding="ascii",
-        check=False,
-    )
-    print(diff_assert.stdout)
+    # (raw_dir / f"assert_{struct}.c.ll").write_text(c_assert)
 
 
 def extract_fn(ll: List[str], fn: str) -> str:
@@ -671,16 +674,18 @@ def cleanup_llvm_ir(ll: str) -> str:
     return ll
 
 
-def run(allow_empty: bool, target: str = "", verbose: bool = False) -> None:
+def run(allow_empty: bool, target: str = "", verbose: bool = False, curious: bool = False) -> None:
     """Parses all test/struct_layout_tests/*.c files for relevant test cases.
     Translate them to zig files in zig_test/*.zig.
     Then run `zig test` on them.
 
-    Use --allow_empty to allow tests with empty field structs.
+    allow_empty: allow tests with empty field structs.
+    target: target to run the test on (using Qemu). Default is "native".
+    curious: if you modified the test generation algorithm
     """
     if target == "all":
         targets = [
-            "i386-linux",
+            "x86-linux",
             "x86_64-linux",
             "aarch64-linux",
             "ppc-linux",
@@ -689,7 +694,7 @@ def run(allow_empty: bool, target: str = "", verbose: bool = False) -> None:
         ]
     else:
         targets = [target]
-    test_files = gen_tests(allow_empty, lazy=True)
+    test_files = gen_tests(allow_empty, lazy=True, curious=curious)
 
     returncode = 0
     for target in targets:
