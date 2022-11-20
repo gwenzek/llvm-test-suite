@@ -227,20 +227,18 @@ x86_64 uses a different calling convention on Windows and will behave differentl
 
 ## Diffing LLVM IR
 
+For the `C_C_D = extern struct { v1: i8, v2: i8, v3: f64 }` struct
 Clang generates the following IR:
 
 ```
 ; Function Attrs: noinline nounwind optnone uwtable
-%struct.C_C_D = type { i8, i8, double }
-; Function Attrs: noinline nounwind optnone uwtable
-define dso_local { i64, double } @ret_C_C_D() #0 {
-  %1 = alloca %struct.C_C_D, align 8
-  %2 = bitcast %struct.C_C_D* %1 to i8*
-  call void @llvm.memcpy.p0i8.p0i8.i64(i8* align 8 %2, i8* align 8 getelementptr inbounds (%struct.C_C_D, %struct.C_C_D* @__const.ret_C_C_D.lv, i32 0, i32 0), i64 16, i1 false)
-  %3 = bitcast %struct.C_C_D* %1 to { i64, double }*
-  %4 = load { i64, double }, { i64, double }* %3, align 8
-  ret { i64, double } %4
-}
+define dso_local i32 @assert_C_C_D(i64 %0, double %1) #0 !dbg !10 {
+  %3 = alloca %struct.C_C_D, align 8
+  %4 = alloca i32, align 4
+  %5 = getelementptr inbounds { i64, double }, ptr %3, i32 0, i32 0
+  store i64 %0, ptr %5, align 8
+  %6 = getelementptr inbounds { i64, double }, ptr %3, i32 0, i32 1
+  store double %1, ptr %6, align 8
 ```
 
 Zig:
@@ -249,17 +247,30 @@ Zig:
 %struct.C_C_D = type { i8, i8, [6 x i8], double }
 
 ; Function Attrs: nounwind
-define dso_local i32 @zig_assert_C_Uc_D(i64 %0, i64 %1) #0 {
+define dso_local i32 @zig_assert_C_C_D(i64 %0, i64 %1) #0 !dbg !32 {
 Entry:
-  ...
-  Block3:                                           ; preds = %Else2, %Then1
-  %13 = getelementptr inbounds %struct_C_Uc_D, ptr %4, i32 0, i32 3
-  %14 = load double, ptr %13, align 8
-  %15 = fcmp une double %14, 5.000000e-01
-  br i1 %15, label %Then4, label %Else5
-  ...
+  %2 = alloca i32, align 4
+  %3 = alloca %example.C_C_D, align 8
+  %4 = getelementptr inbounds { i64, i64 }, ptr %3, i32 0, i32 0
+  store i64 %0, ptr %4, align 8
+  %5 = getelementptr inbounds { i64, i64 }, ptr %3, i32 0, i32 1
+  store i64 %1, ptr %5, align 8
+
 }
 ```
 
+The main difference is that the Clang reads the arguments with a `load {i64, double}` which reads from an integer register and a float register, while Zig reads with `load {i64, i64}` which reads from two integer registers.
 
 https://zigbin.io/0cc641
+
+
+I was first looking into the `classifySystemV` Zig function that tells the compiler
+how to read arguments for different calling convention.
+But I came under the impression the logic there was correct.
+@Vexu pointed me to the llvm backend where the codegen for function call is using `.multiple_llvm_ints` and `.multiple_llvm_ints` to handle complex struct.
+Which doesn't work for struct with mixed floats and ints.
+
+With https://github.com/ziglang/zig/pull/13592:
+
+x86_64-linux: Test success: 8 / 8 (0 crashes)
+x86_64-linux: Test results: 9420 passed; 0 skipped; 0 failed.
