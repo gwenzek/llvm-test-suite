@@ -5,6 +5,7 @@ import random
 import re
 import subprocess
 import sys
+import platform
 from enum import Enum
 from pathlib import Path
 from typing import Dict, Iterable, Iterator, List, NamedTuple, Optional, Tuple
@@ -14,6 +15,7 @@ log = logging.getLogger("cabi_tests")
 ROOT = Path(__file__).parent
 STRUCT_LAYOUT_TESTS = ROOT / "test" / "struct_layout_tests"
 ZIG_TESTS = ROOT / "zig_test"
+ZIG = "zig"
 
 # Relevant test files. Remove this if you want to change the translation algorithm
 KNOWN_TESTS = [
@@ -276,9 +278,9 @@ def gen_test_file(
 
     if c_test.with_suffix(".o").exists():
         c_test.with_suffix(".o").unlink()
-    subprocess.check_call(["zig", "build-obj", c_test.name], cwd=c_test.parent),
+    subprocess.check_call([ZIG, "build-obj", c_test.name], cwd=c_test.parent),
     assert c_test.with_suffix(".o").exists()
-    subprocess.check_call(["zig", "fmt", zig_test]),
+    subprocess.check_call([ZIG, "fmt", zig_test]),
     return zig_test, stats
 
 
@@ -378,8 +380,7 @@ test "{struct.name}: C returns to Zig" {{
 
 def generate_c_recv(struct: Struct, fields: dict) -> str:
     """C function that receives a struct from Zig, and match it against comptime values."""
-    lines = [f"int assert_{struct.name}(struct {struct.name} lv){{",
-    "    int err = 0;"]
+    lines = [f"int assert_{struct.name}(struct {struct.name} lv){{", "    int err = 0;"]
 
     for i, (field, val) in enumerate(fields.items(), start=1):
         if val == "null":
@@ -513,7 +514,7 @@ QEMU_ARCH = {"x86": "i386"}
 
 def run_test(test_file: Path, target: str) -> subprocess.CompletedProcess[str]:
     cmd = [
-        "zig",
+        ZIG,
         "test",
         "-fno-stage1",
         "-cflags",
@@ -606,7 +607,8 @@ def test_and_parse_results(
     return returncode
 
 
-def diff(file_name: str, struct_filter: str = "", target: str = "native"):
+def diff(file_name: str, struct_filter: str = "", target: str = ""):
+    target = target or native_target()
     original_test_file = STRUCT_LAYOUT_TESTS / (file_name + ".c")
     assert original_test_file.exists(), f"File not found {original_test_file}"
     test_file, _ = gen_test_file(
@@ -623,7 +625,7 @@ def diff(file_name: str, struct_filter: str = "", target: str = "native"):
     zig_ll = raw_dir / (test_file.name + f".{target}.ll")
     subprocess.check_call(
         [
-            "zig",
+            ZIG,
             "build-lib",
             "-I",
             ZIG_TESTS,
@@ -732,6 +734,12 @@ def cleanup_llvm_ir(ll: str) -> str:
     return ll
 
 
+def native_target() -> str:
+    target = "-".join((platform.machine(), platform.system().lower()))
+    target.replace("i386", "x86")
+    return target
+
+
 def run(
     allow_empty: bool, target: str = "", verbose: bool = False, curious: bool = False
 ) -> None:
@@ -743,6 +751,7 @@ def run(
     target: target to run the test on (using Qemu). Default is "native".
     curious: if you modified the test generation algorithm
     """
+    target = target or native_target()
     if target == "all":
         targets = [
             "x86-linux",
