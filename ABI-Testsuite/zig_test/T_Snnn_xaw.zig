@@ -107,7 +107,7 @@ test "C_C_D: layout" {
 }
 test "C_C_D: Zig passes to C" {
     if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    try testing.expectOk(assert_C_C_D(.{ .v1 = 88, .v2 = 39, .v3 = -2.125 }));
+    try testing.expectOk(c.assert_C_C_D(.{ .v1 = 88, .v2 = 39, .v3 = -2.125 }));
 }
 test "C_C_D: Zig returns to C" {
     if (builtin.cpu.arch == .x86) return error.SkipZigTest;
