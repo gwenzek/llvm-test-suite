@@ -361,7 +361,7 @@ def generate_c_calls_test(struct: Struct, field_values: dict) -> str:
     return f"""
 test "{struct.name}: Zig passes to C" {{
     if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    try testing.expectOk(zig_assert_{struct.name}(.{{{struct_lit}}}));
+    try testing.expectOk(c.assert_{struct.name}(.{{{struct_lit}}}));
 }}
 test "{struct.name}: Zig returns to C" {{
     if (builtin.cpu.arch == .x86) return error.SkipZigTest;{ret_guards}
