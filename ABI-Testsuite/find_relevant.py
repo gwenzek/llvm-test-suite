@@ -8,14 +8,13 @@ import sys
 import platform
 from enum import Enum
 from pathlib import Path
-from typing import Dict, Iterable, Iterator, List, NamedTuple, Optional, Tuple
+from typing import Any, Dict, Iterable, Iterator, List, NamedTuple, Optional, Tuple
 
 log = logging.getLogger("cabi_tests")
 
 ROOT = Path(__file__).parent
 STRUCT_LAYOUT_TESTS = ROOT / "test" / "struct_layout_tests"
 ZIG_TESTS = ROOT / "zig_test"
-ZIG = "zig"
 
 # Relevant test files. Remove this if you want to change the translation algorithm
 KNOWN_TESTS = [
@@ -43,6 +42,8 @@ for target, _failing in _FAILING_TESTS.items():
         FAILING_TARGET[failing].append(target)
 
 AARCH64_SEGFAULT = "F_C,F_F,F_I,F_S,F_Uc,F_Ui,F_Us,C_F,I_F,I_C,I_I,I_S,I_Uc".split(",")
+
+StructFields = Dict[str, Any]
 
 
 class Struct(NamedTuple):
@@ -278,9 +279,12 @@ def gen_test_file(
 
     if c_test.with_suffix(".o").exists():
         c_test.with_suffix(".o").unlink()
-    subprocess.check_call([ZIG, "build-obj", c_test.name], cwd=c_test.parent),
+    # Note: we are using default zig. Those cmd just validates the generated code,
+    # they should succeed with any zig version.
+    # If that fails we could also pass zig here.
+    subprocess.check_call(["zig", "build-obj", c_test.name], cwd=c_test.parent),
     assert c_test.with_suffix(".o").exists()
-    subprocess.check_call([ZIG, "fmt", zig_test]),
+    subprocess.check_call(["zig", "fmt", zig_test]),
     return zig_test, stats
 
 
@@ -345,7 +349,7 @@ def translate_test_line(struct_name: str, line: str) -> str:
 _debug_string = re.compile(r',\s*"[a-zA-Z0-9()\._]+"\)')
 
 
-def generate_c_calls_test(struct: Struct, field_values: dict) -> str:
+def generate_c_calls_test(struct: Struct, field_values: StructFields) -> str:
 
     ret_guards = ""
     struct_suffix = struct.name.split("_", 1)[-1]
@@ -378,7 +382,7 @@ test "{struct.name}: C returns to Zig" {{
 """.strip()
 
 
-def generate_c_recv(struct: Struct, fields: dict) -> str:
+def generate_c_recv(struct: Struct, fields: StructFields) -> str:
     """C function that receives a struct from Zig, and match it against comptime values."""
     lines = [f"int assert_{struct.name}(struct {struct.name} lv){{", "    int err = 0;"]
 
@@ -401,7 +405,7 @@ def _to_c(val: str) -> str:
     return val
 
 
-def generate_c_ret(struct: Struct, fields: dict) -> str:
+def generate_c_ret(struct: Struct, fields: StructFields) -> str:
     struct_lit = ", ".join(f".{field} = {_to_c(val)}" for field, val in fields.items())
     return f"""
 struct {struct.name} ret_{struct.name}(){{
@@ -410,7 +414,7 @@ struct {struct.name} ret_{struct.name}(){{
 }}""".strip()
 
 
-def generate_c_send(struct: Struct, fields: dict) -> str:
+def generate_c_send(struct: Struct, fields: StructFields) -> str:
     """C function that sends a struct to Zig. Returns the errcode."""
     return f"""
 int zig_assert_{struct.name}(struct {struct.name});
@@ -420,7 +424,7 @@ int send_{struct.name}(){{
 """.strip()
 
 
-def generate_c_assert_ret(struct: Struct, fields: dict) -> str:
+def generate_c_assert_ret(struct: Struct, fields: StructFields) -> str:
     """C code that calls Zig to get a struct, then assert it."""
     return f"""
 struct {struct.name} zig_ret_{struct.name}();
@@ -430,7 +434,7 @@ int assert_ret_{struct.name}(){{
 """.strip()
 
 
-def generate_zig_ret(struct: Struct, fields: dict) -> str:
+def generate_zig_ret(struct: Struct, fields: StructFields) -> str:
     """Zig function that returns a comptime struct."""
     struct_lit = ", ".join(f".{field}={val}" for field, val in fields.items())
     return f"""
@@ -440,7 +444,7 @@ def generate_zig_ret(struct: Struct, fields: dict) -> str:
 """.strip()
 
 
-def generate_zig_recv(struct: Struct, fields: dict) -> str:
+def generate_zig_recv(struct: Struct, fields: StructFields) -> str:
     lines = [
         f"pub export fn zig_assert_{struct.name}(lv: c.{struct.name}) c_int {{",
         "var err: c_int = 0;",
@@ -456,7 +460,7 @@ def generate_zig_recv(struct: Struct, fields: dict) -> str:
     return "\n".join(lines)
 
 
-def generate_struct_vals(struct: Struct) -> dict:
+def generate_struct_vals(struct: Struct) -> StructFields:
     random.seed(struct.name)
     return {name: generate_field_val(ctype) for name, ctype in struct.fields()}
 
@@ -489,9 +493,9 @@ def gen_tests(
         test_candidates = [STRUCT_LAYOUT_TESTS / t for t in KNOWN_TESTS]
 
     for file in test_candidates:
-        test_file = ZIG_TESTS / file.with_suffix(".zig").name
-        if lazy and test_file.exists() and test_file.stat().st_mtime > last_change:
-            test_files.append(test_file)
+        target_file = ZIG_TESTS / file.with_suffix(".zig").name
+        if lazy and target_file.exists() and target_file.stat().st_mtime > last_change:
+            test_files.append(target_file)
             continue
 
         test_file, stats = gen_test_file(file, ZIG_TESTS, allow_empty)
@@ -512,9 +516,9 @@ def gen_tests(
 QEMU_ARCH = {"x86": "i386"}
 
 
-def run_test(test_file: Path, target: str) -> subprocess.CompletedProcess[str]:
+def run_test(test_file: Path, target: str, zig: str) -> subprocess.CompletedProcess[str]:
     cmd = [
-        ZIG,
+        zig,
         "test",
         "-fno-stage1",
         "-cflags",
@@ -544,7 +548,7 @@ def run_test(test_file: Path, target: str) -> subprocess.CompletedProcess[str]:
 
 
 def test_and_parse_results(
-    test_files: List[Path], target: str, verbose: bool = False
+    test_files: List[Path], target: str, zig: str, verbose: bool = False
 ) -> int:
     failed_tests, crashed_tests = [], []
     returncode = 0
@@ -552,7 +556,7 @@ def test_and_parse_results(
     failing_structs = set()
 
     for test_file in test_files:
-        test = run_test(test_file, target)
+        test = run_test(test_file, target, zig)
         if test.returncode != 0:
             failed_tests.append(test_file)
             returncode = max(returncode, test.returncode)
@@ -607,7 +611,7 @@ def test_and_parse_results(
     return returncode
 
 
-def diff(file_name: str, struct_filter: str = "", target: str = ""):
+def diff(file_name: str, struct_filter: str = "", zig: str = "zig", target: str = "") -> None:
     target = target or native_target()
     original_test_file = STRUCT_LAYOUT_TESTS / (file_name + ".c")
     assert original_test_file.exists(), f"File not found {original_test_file}"
@@ -625,7 +629,7 @@ def diff(file_name: str, struct_filter: str = "", target: str = ""):
     zig_ll = raw_dir / (test_file.name + f".{target}.ll")
     subprocess.check_call(
         [
-            ZIG,
+            zig,
             "build-lib",
             "-I",
             ZIG_TESTS,
@@ -741,7 +745,7 @@ def native_target() -> str:
 
 
 def run(
-    allow_empty: bool, target: str = "", verbose: bool = False, curious: bool = False
+    allow_empty: bool, target: str = "", zig: str = "zig", verbose: bool = False, curious: bool = False
 ) -> None:
     """Parses all test/struct_layout_tests/*.c files for relevant test cases.
     Translate them to zig files in zig_test/*.zig.
@@ -769,7 +773,7 @@ def run(
     for target in targets:
         print(f"--- C ABI testsuite for target {target or 'native'} ---")
         returncode = max(
-            returncode, test_and_parse_results(test_files, target, verbose)
+            returncode, test_and_parse_results(test_files, target, zig, verbose)
         )
     sys.exit(returncode)
 
