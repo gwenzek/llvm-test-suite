@@ -20,6 +20,7 @@ test "C: layout" {
 }
 test "C: Zig passes to C" {
     if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
+    try testing.expectEqual(c.assert_C(.{ .v1 = 0 }), 1);
     try testing.expectOk(c.assert_C(.{ .v1 = 19 }));
 }
 test "C: Zig returns to C" {
