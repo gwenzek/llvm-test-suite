@@ -20,7 +20,6 @@ test "C: layout" {
 }
 test "C: Zig passes to C" {
     if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    try testing.expectEqual(c.assert_C(.{ .v1 = 0 }), 1);
     try testing.expectOk(c.assert_C(.{ .v1 = 19 }));
 }
 test "C: Zig returns to C" {
@@ -33,12 +32,11 @@ test "C: C passes to Zig" {
 test "C: C returns to Zig" {
     if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
     if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_C(), .{ .v1 = 19 });
+    try testing.expectOk(zig_assert_C(c.ret_C()));
 }
 pub export fn zig_assert_C(lv: c.C) c_int {
     var err: c_int = 0;
     if (lv.v1 != 19) err = 1;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_C() c.C {
