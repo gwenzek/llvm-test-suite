@@ -1,7 +1,6 @@
 const std = @import("std");
-const builtin = @import("builtin");
-
 pub const expectEqual = std.testing.expectEqual;
+const builtin = @import("builtin");
 
 pub inline fn expectSize(comptime t: type, size: u32) !void {
     try std.testing.expectEqual(size, @sizeOf(t));
@@ -12,8 +11,8 @@ pub inline fn expectAlign(comptime t: type, alignment: u32) !void {
 }
 
 pub fn expectFieldOffset(ps: anytype, pf: anytype, ofst: usize) !void {
-    try std.testing.expect(@ptrToInt(ps) <= @ptrToInt(pf));
-    try std.testing.expectEqual(ofst, @ptrToInt(pf) - @ptrToInt(ps));
+    try std.testing.expect(@intFromPtr(ps) <= @intFromPtr(pf));
+    try std.testing.expectEqual(ofst, @intFromPtr(pf) - @intFromPtr(ps));
 }
 
 pub inline fn ABISELECT(a: u8, b: u8) u8 {

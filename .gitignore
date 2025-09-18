@@ -3,7 +3,7 @@
 /test-suite-externals
 *.pyc
 /build*
-zig-cache/
+.zig-cache/
 *.o
 *.core
 /ABI-Testsuite/venv/

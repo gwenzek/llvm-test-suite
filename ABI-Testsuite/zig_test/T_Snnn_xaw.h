@@ -5,7 +5,7 @@
 
 #define bool    _Bool
 struct empty {};
-struct empty EMPTY = {};
+#define EMPTY  {}
 
 // From T_Snnn_xaw.c:12293:12296
 struct  C_C  {

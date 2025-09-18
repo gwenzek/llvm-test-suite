@@ -1,3 +1,7 @@
+# /// script
+# dependencies = ["func_argparse"]
+# ///
+# Run me with `uv run find_relevant.py`
 import collections
 import functools
 import logging
@@ -290,7 +294,7 @@ H_HEADER = """
 
 #define bool    _Bool
 struct empty {};
-struct empty EMPTY = {};
+#define EMPTY  {}
 """
 
 ZIG_HEADER = """const std = @import("std");
@@ -376,19 +380,16 @@ def generate_c_calls_test(struct: Struct, field_values: StructFields) -> str:
 
     return f"""
 test "{struct.name}: Zig passes to C" {{
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;{check_corrupted}
     try testing.expectOk(c.assert_{struct.name}({struct_lit}));
 }}
 test "{struct.name}: Zig returns to C" {{
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_{struct.name}());
 }}
 test "{struct.name}: C passes to Zig" {{
     try testing.expectOk(c.send_{struct.name}());
 }}
 test "{struct.name}: C returns to Zig" {{
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;{ret_guards}{check_corrupted2}
+    {ret_guards}{check_corrupted2}
     try testing.expectOk(zig_assert_{struct.name}(c.ret_{struct.name}()));
 }}
 """.strip()
@@ -466,6 +467,9 @@ def generate_zig_recv(struct: Struct, fields: StructFields) -> str:
             continue
         asser = f"  if (lv.{field} != {val}) err = {i};"
         lines.append(asser)
+    if len(fields) == 0:
+        lines.append("_ = &err");
+
     lines.extend(
         [
             # 'if (err != 0) std.debug.print("Received {}", .{lv});',
@@ -538,13 +542,12 @@ QEMU_ARCH = {"x86": "i386"}
 
 
 def run_test(
-    test_file: Path, target: str, zig: str, optimization: str
-) -> subprocess.CompletedProcess[str]:
+    test_file: Path, target: str, zig: str, optimization: str, llvm: bool
+) -> subprocess.CompletedProcess:
     cmd = [
         zig,
         "test",
         f"-O{optimization}",
-        "-fno-stage1",
         "-cflags",
         "-std=c99",
         "--",
@@ -560,6 +563,7 @@ def run_test(
         qemu_arch = qemu_arch.replace("powerpc", "ppc")
         cmd.extend(
             [
+                "-fllvm" if llvm else "-fno-llvm",
                 "-target",
                 target,
                 "--test-cmd",
@@ -576,6 +580,7 @@ def test_and_parse_results(
     target: str,
     zig: str,
     optimization: str,
+    llvm: bool,
     verbose: bool = False,
 ) -> int:
     failed_tests, crashed_tests = [], []
@@ -584,7 +589,7 @@ def test_and_parse_results(
     failing_structs = set()
 
     for test_file in test_files:
-        test = run_test(test_file, target, zig, optimization)
+        test = run_test(test_file, target, zig, optimization, llvm)
         if test.returncode != 0:
             failed_tests.append(test_file)
             t_returncode = max(t_returncode, test.returncode)
@@ -793,10 +798,11 @@ def run(
     allow_empty: bool,
     target: str = "",
     zig: str = "zig",
-    Optimization: str = "Debug",
+    optimization: str = "Debug",
     verbose: bool = False,
     curious: bool = False,
     file_name: str = "",
+    llvm: bool = False,
 ) -> None:
     """Parses all test/struct_layout_tests/*.c files for relevant test cases.
     Translate them to zig files in zig_test/*.zig.
@@ -831,7 +837,7 @@ def run(
         print(f"--- C ABI testsuite for target {target or 'native'} ---")
         returncode = max(
             returncode,
-            test_and_parse_results(test_files, target, zig, Optimization, verbose),
+            test_and_parse_results(test_files, target, zig, optimization, llvm, verbose),
         )
     sys.exit(returncode)
 

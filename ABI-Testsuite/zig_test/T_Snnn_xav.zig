@@ -19,19 +19,15 @@ test "C: layout" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
 }
 test "C: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
     try testing.expectOk(c.assert_C(.{ .v1 = 19 }));
 }
 test "C: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_C());
 }
 test "C: C passes to Zig" {
     try testing.expectOk(c.send_C());
 }
 test "C: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(zig_assert_C(c.ret_C()));
 }
 pub export fn zig_assert_C(lv: c.C) c_int {

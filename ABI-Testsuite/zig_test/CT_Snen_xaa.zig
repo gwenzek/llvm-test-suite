@@ -23,30 +23,21 @@ test "C_C_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 2);
 }
 test "C_C_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_C_C_Sf(.{ .v1 = 117, .v2 = 73, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_C_C_Sf(.{ .v1 = 117, .v2 = 73, .v3 = .{} }));
 }
 test "C_C_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_C_C_Sf());
 }
 test "C_C_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_C_C_Sf(), outcome);
+    try testing.expectOk(c.send_C_C_Sf());
 }
 test "C_C_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_C_C_Sf(), .{ .v1 = 117, .v2 = 73, .v3 = .{} });
+    try testing.expectOk(zig_assert_C_C_Sf(c.ret_C_C_Sf()));
 }
 pub export fn zig_assert_C_C_Sf(lv: c.C_C_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 117) err = 1;
     if (lv.v2 != 73) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_C_C_Sf() c.C_C_Sf {
@@ -69,30 +60,21 @@ test "C_D_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 test "C_D_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_C_D_Sf(.{ .v1 = 118, .v2 = 1.0, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_C_D_Sf(.{ .v1 = 118, .v2 = 1.0, .v3 = .{} }));
 }
 test "C_D_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_C_D_Sf());
 }
 test "C_D_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_C_D_Sf(), outcome);
+    try testing.expectOk(c.send_C_D_Sf());
 }
 test "C_D_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_C_D_Sf(), .{ .v1 = 118, .v2 = 1.0, .v3 = .{} });
+    try testing.expectOk(zig_assert_C_D_Sf(c.ret_C_D_Sf()));
 }
 pub export fn zig_assert_C_D_Sf(lv: c.C_D_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 118) err = 1;
     if (lv.v2 != 1.0) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_C_D_Sf() c.C_D_Sf {
@@ -115,30 +97,21 @@ test "C_F_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "C_F_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_C_F_Sf(.{ .v1 = 74, .v2 = -2.125, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_C_F_Sf(.{ .v1 = 74, .v2 = -2.125, .v3 = .{} }));
 }
 test "C_F_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_C_F_Sf());
 }
 test "C_F_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_C_F_Sf(), outcome);
+    try testing.expectOk(c.send_C_F_Sf());
 }
 test "C_F_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_C_F_Sf(), .{ .v1 = 74, .v2 = -2.125, .v3 = .{} });
+    try testing.expectOk(zig_assert_C_F_Sf(c.ret_C_F_Sf()));
 }
 pub export fn zig_assert_C_F_Sf(lv: c.C_F_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 74) err = 1;
     if (lv.v2 != -2.125) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_C_F_Sf() c.C_F_Sf {
@@ -161,30 +134,21 @@ test "C_I_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "C_I_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_C_I_Sf(.{ .v1 = 64, .v2 = 22728, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_C_I_Sf(.{ .v1 = 64, .v2 = 22728, .v3 = .{} }));
 }
 test "C_I_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_C_I_Sf());
 }
 test "C_I_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_C_I_Sf(), outcome);
+    try testing.expectOk(c.send_C_I_Sf());
 }
 test "C_I_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_C_I_Sf(), .{ .v1 = 64, .v2 = 22728, .v3 = .{} });
+    try testing.expectOk(zig_assert_C_I_Sf(c.ret_C_I_Sf()));
 }
 pub export fn zig_assert_C_I_Sf(lv: c.C_I_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 64) err = 1;
     if (lv.v2 != 22728) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_C_I_Sf() c.C_I_Sf {
@@ -207,30 +171,21 @@ test "C_Ip_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 test "C_Ip_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_C_Ip_Sf(.{ .v1 = 76, .v2 = null, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_C_Ip_Sf(.{ .v1 = 76, .v2 = null, .v3 = .{} }));
 }
 test "C_Ip_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_C_Ip_Sf());
 }
 test "C_Ip_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_C_Ip_Sf(), outcome);
+    try testing.expectOk(c.send_C_Ip_Sf());
 }
 test "C_Ip_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_C_Ip_Sf(), .{ .v1 = 76, .v2 = null, .v3 = .{} });
+    try testing.expectOk(zig_assert_C_Ip_Sf(c.ret_C_Ip_Sf()));
 }
 pub export fn zig_assert_C_Ip_Sf(lv: c.C_Ip_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 76) err = 1;
     if (lv.v2 != null) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_C_Ip_Sf() c.C_Ip_Sf {
@@ -253,30 +208,21 @@ test "C_L_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 test "C_L_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_C_L_Sf(.{ .v1 = 37, .v2 = 19332, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_C_L_Sf(.{ .v1 = 37, .v2 = 19332, .v3 = .{} }));
 }
 test "C_L_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_C_L_Sf());
 }
 test "C_L_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_C_L_Sf(), outcome);
+    try testing.expectOk(c.send_C_L_Sf());
 }
 test "C_L_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_C_L_Sf(), .{ .v1 = 37, .v2 = 19332, .v3 = .{} });
+    try testing.expectOk(zig_assert_C_L_Sf(c.ret_C_L_Sf()));
 }
 pub export fn zig_assert_C_L_Sf(lv: c.C_L_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 37) err = 1;
     if (lv.v2 != 19332) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_C_L_Sf() c.C_L_Sf {
@@ -299,30 +245,21 @@ test "C_S_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
 test "C_S_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_C_S_Sf(.{ .v1 = 73, .v2 = 7184, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_C_S_Sf(.{ .v1 = 73, .v2 = 7184, .v3 = .{} }));
 }
 test "C_S_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_C_S_Sf());
 }
 test "C_S_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_C_S_Sf(), outcome);
+    try testing.expectOk(c.send_C_S_Sf());
 }
 test "C_S_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_C_S_Sf(), .{ .v1 = 73, .v2 = 7184, .v3 = .{} });
+    try testing.expectOk(zig_assert_C_S_Sf(c.ret_C_S_Sf()));
 }
 pub export fn zig_assert_C_S_Sf(lv: c.C_S_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 73) err = 1;
     if (lv.v2 != 7184) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_C_S_Sf() c.C_S_Sf {
@@ -343,29 +280,20 @@ test "C_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 1);
 }
 test "C_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_C_Sf(.{ .v1 = 12, .v2 = .{} }), outcome);
+    try testing.expectOk(c.assert_C_Sf(.{ .v1 = 12, .v2 = .{} }));
 }
 test "C_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_C_Sf());
 }
 test "C_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_C_Sf(), outcome);
+    try testing.expectOk(c.send_C_Sf());
 }
 test "C_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_C_Sf(), .{ .v1 = 12, .v2 = .{} });
+    try testing.expectOk(zig_assert_C_Sf(c.ret_C_Sf()));
 }
 pub export fn zig_assert_C_Sf(lv: c.C_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 12) err = 1;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_C_Sf() c.C_Sf {
@@ -388,30 +316,21 @@ test "C_Sf_C: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 1);
 }
 test "C_Sf_C: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_C_Sf_C(.{ .v1 = 91, .v2 = .{}, .v3 = 3 }), outcome);
+    try testing.expectOk(c.assert_C_Sf_C(.{ .v1 = 91, .v2 = .{}, .v3 = 3 }));
 }
 test "C_Sf_C: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_C_Sf_C());
 }
 test "C_Sf_C: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_C_Sf_C(), outcome);
+    try testing.expectOk(c.send_C_Sf_C());
 }
 test "C_Sf_C: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_C_Sf_C(), .{ .v1 = 91, .v2 = .{}, .v3 = 3 });
+    try testing.expectOk(zig_assert_C_Sf_C(c.ret_C_Sf_C()));
 }
 pub export fn zig_assert_C_Sf_C(lv: c.C_Sf_C) c_int {
     var err: c_int = 0;
     if (lv.v1 != 91) err = 1;
     if (lv.v3 != 3) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_C_Sf_C() c.C_Sf_C {
@@ -434,30 +353,21 @@ test "C_Sf_D: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
 test "C_Sf_D: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_C_Sf_D(.{ .v1 = 108, .v2 = .{}, .v3 = 4.5 }), outcome);
+    try testing.expectOk(c.assert_C_Sf_D(.{ .v1 = 108, .v2 = .{}, .v3 = 4.5 }));
 }
 test "C_Sf_D: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_C_Sf_D());
 }
 test "C_Sf_D: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_C_Sf_D(), outcome);
+    try testing.expectOk(c.send_C_Sf_D());
 }
 test "C_Sf_D: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_C_Sf_D(), .{ .v1 = 108, .v2 = .{}, .v3 = 4.5 });
+    try testing.expectOk(zig_assert_C_Sf_D(c.ret_C_Sf_D()));
 }
 pub export fn zig_assert_C_Sf_D(lv: c.C_Sf_D) c_int {
     var err: c_int = 0;
     if (lv.v1 != 108) err = 1;
     if (lv.v3 != 4.5) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_C_Sf_D() c.C_Sf_D {
@@ -480,30 +390,21 @@ test "C_Sf_F: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
 test "C_Sf_F: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_C_Sf_F(.{ .v1 = 115, .v2 = .{}, .v3 = 4.5 }), outcome);
+    try testing.expectOk(c.assert_C_Sf_F(.{ .v1 = 115, .v2 = .{}, .v3 = 4.5 }));
 }
 test "C_Sf_F: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_C_Sf_F());
 }
 test "C_Sf_F: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_C_Sf_F(), outcome);
+    try testing.expectOk(c.send_C_Sf_F());
 }
 test "C_Sf_F: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_C_Sf_F(), .{ .v1 = 115, .v2 = .{}, .v3 = 4.5 });
+    try testing.expectOk(zig_assert_C_Sf_F(c.ret_C_Sf_F()));
 }
 pub export fn zig_assert_C_Sf_F(lv: c.C_Sf_F) c_int {
     var err: c_int = 0;
     if (lv.v1 != 115) err = 1;
     if (lv.v3 != 4.5) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_C_Sf_F() c.C_Sf_F {
@@ -526,30 +427,21 @@ test "C_Sf_I: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
 test "C_Sf_I: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_C_Sf_I(.{ .v1 = 95, .v2 = .{}, .v3 = 16729 }), outcome);
+    try testing.expectOk(c.assert_C_Sf_I(.{ .v1 = 95, .v2 = .{}, .v3 = 16729 }));
 }
 test "C_Sf_I: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_C_Sf_I());
 }
 test "C_Sf_I: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_C_Sf_I(), outcome);
+    try testing.expectOk(c.send_C_Sf_I());
 }
 test "C_Sf_I: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_C_Sf_I(), .{ .v1 = 95, .v2 = .{}, .v3 = 16729 });
+    try testing.expectOk(zig_assert_C_Sf_I(c.ret_C_Sf_I()));
 }
 pub export fn zig_assert_C_Sf_I(lv: c.C_Sf_I) c_int {
     var err: c_int = 0;
     if (lv.v1 != 95) err = 1;
     if (lv.v3 != 16729) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_C_Sf_I() c.C_Sf_I {
@@ -572,30 +464,21 @@ test "C_Sf_Ip: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
 test "C_Sf_Ip: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_C_Sf_Ip(.{ .v1 = 100, .v2 = .{}, .v3 = null }), outcome);
+    try testing.expectOk(c.assert_C_Sf_Ip(.{ .v1 = 100, .v2 = .{}, .v3 = null }));
 }
 test "C_Sf_Ip: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_C_Sf_Ip());
 }
 test "C_Sf_Ip: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_C_Sf_Ip(), outcome);
+    try testing.expectOk(c.send_C_Sf_Ip());
 }
 test "C_Sf_Ip: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_C_Sf_Ip(), .{ .v1 = 100, .v2 = .{}, .v3 = null });
+    try testing.expectOk(zig_assert_C_Sf_Ip(c.ret_C_Sf_Ip()));
 }
 pub export fn zig_assert_C_Sf_Ip(lv: c.C_Sf_Ip) c_int {
     var err: c_int = 0;
     if (lv.v1 != 100) err = 1;
     if (lv.v3 != null) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_C_Sf_Ip() c.C_Sf_Ip {
@@ -618,30 +501,21 @@ test "C_Sf_L: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
 test "C_Sf_L: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_C_Sf_L(.{ .v1 = 41, .v2 = .{}, .v3 = 23271 }), outcome);
+    try testing.expectOk(c.assert_C_Sf_L(.{ .v1 = 41, .v2 = .{}, .v3 = 23271 }));
 }
 test "C_Sf_L: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_C_Sf_L());
 }
 test "C_Sf_L: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_C_Sf_L(), outcome);
+    try testing.expectOk(c.send_C_Sf_L());
 }
 test "C_Sf_L: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_C_Sf_L(), .{ .v1 = 41, .v2 = .{}, .v3 = 23271 });
+    try testing.expectOk(zig_assert_C_Sf_L(c.ret_C_Sf_L()));
 }
 pub export fn zig_assert_C_Sf_L(lv: c.C_Sf_L) c_int {
     var err: c_int = 0;
     if (lv.v1 != 41) err = 1;
     if (lv.v3 != 23271) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_C_Sf_L() c.C_Sf_L {
@@ -664,30 +538,21 @@ test "C_Sf_S: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 2);
 }
 test "C_Sf_S: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_C_Sf_S(.{ .v1 = 106, .v2 = .{}, .v3 = 31129 }), outcome);
+    try testing.expectOk(c.assert_C_Sf_S(.{ .v1 = 106, .v2 = .{}, .v3 = 31129 }));
 }
 test "C_Sf_S: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_C_Sf_S());
 }
 test "C_Sf_S: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_C_Sf_S(), outcome);
+    try testing.expectOk(c.send_C_Sf_S());
 }
 test "C_Sf_S: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_C_Sf_S(), .{ .v1 = 106, .v2 = .{}, .v3 = 31129 });
+    try testing.expectOk(zig_assert_C_Sf_S(c.ret_C_Sf_S()));
 }
 pub export fn zig_assert_C_Sf_S(lv: c.C_Sf_S) c_int {
     var err: c_int = 0;
     if (lv.v1 != 106) err = 1;
     if (lv.v3 != 31129) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_C_Sf_S() c.C_Sf_S {
@@ -710,29 +575,20 @@ test "C_Sf_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 1);
 }
 test "C_Sf_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_C_Sf_Sf(.{ .v1 = 44, .v2 = .{}, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_C_Sf_Sf(.{ .v1 = 44, .v2 = .{}, .v3 = .{} }));
 }
 test "C_Sf_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_C_Sf_Sf());
 }
 test "C_Sf_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_C_Sf_Sf(), outcome);
+    try testing.expectOk(c.send_C_Sf_Sf());
 }
 test "C_Sf_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_C_Sf_Sf(), .{ .v1 = 44, .v2 = .{}, .v3 = .{} });
+    try testing.expectOk(zig_assert_C_Sf_Sf(c.ret_C_Sf_Sf()));
 }
 pub export fn zig_assert_C_Sf_Sf(lv: c.C_Sf_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 44) err = 1;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_C_Sf_Sf() c.C_Sf_Sf {
@@ -755,30 +611,21 @@ test "C_Sf_Uc: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 1);
 }
 test "C_Sf_Uc: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_C_Sf_Uc(.{ .v1 = 87, .v2 = .{}, .v3 = 33 }), outcome);
+    try testing.expectOk(c.assert_C_Sf_Uc(.{ .v1 = 87, .v2 = .{}, .v3 = 33 }));
 }
 test "C_Sf_Uc: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_C_Sf_Uc());
 }
 test "C_Sf_Uc: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_C_Sf_Uc(), outcome);
+    try testing.expectOk(c.send_C_Sf_Uc());
 }
 test "C_Sf_Uc: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_C_Sf_Uc(), .{ .v1 = 87, .v2 = .{}, .v3 = 33 });
+    try testing.expectOk(zig_assert_C_Sf_Uc(c.ret_C_Sf_Uc()));
 }
 pub export fn zig_assert_C_Sf_Uc(lv: c.C_Sf_Uc) c_int {
     var err: c_int = 0;
     if (lv.v1 != 87) err = 1;
     if (lv.v3 != 33) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_C_Sf_Uc() c.C_Sf_Uc {
@@ -801,30 +648,21 @@ test "C_Sf_Ui: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
 test "C_Sf_Ui: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_C_Sf_Ui(.{ .v1 = 100, .v2 = .{}, .v3 = 26951 }), outcome);
+    try testing.expectOk(c.assert_C_Sf_Ui(.{ .v1 = 100, .v2 = .{}, .v3 = 26951 }));
 }
 test "C_Sf_Ui: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_C_Sf_Ui());
 }
 test "C_Sf_Ui: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_C_Sf_Ui(), outcome);
+    try testing.expectOk(c.send_C_Sf_Ui());
 }
 test "C_Sf_Ui: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_C_Sf_Ui(), .{ .v1 = 100, .v2 = .{}, .v3 = 26951 });
+    try testing.expectOk(zig_assert_C_Sf_Ui(c.ret_C_Sf_Ui()));
 }
 pub export fn zig_assert_C_Sf_Ui(lv: c.C_Sf_Ui) c_int {
     var err: c_int = 0;
     if (lv.v1 != 100) err = 1;
     if (lv.v3 != 26951) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_C_Sf_Ui() c.C_Sf_Ui {
@@ -847,30 +685,21 @@ test "C_Sf_Ul: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
 test "C_Sf_Ul: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_C_Sf_Ul(.{ .v1 = 75, .v2 = .{}, .v3 = 13468 }), outcome);
+    try testing.expectOk(c.assert_C_Sf_Ul(.{ .v1 = 75, .v2 = .{}, .v3 = 13468 }));
 }
 test "C_Sf_Ul: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_C_Sf_Ul());
 }
 test "C_Sf_Ul: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_C_Sf_Ul(), outcome);
+    try testing.expectOk(c.send_C_Sf_Ul());
 }
 test "C_Sf_Ul: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_C_Sf_Ul(), .{ .v1 = 75, .v2 = .{}, .v3 = 13468 });
+    try testing.expectOk(zig_assert_C_Sf_Ul(c.ret_C_Sf_Ul()));
 }
 pub export fn zig_assert_C_Sf_Ul(lv: c.C_Sf_Ul) c_int {
     var err: c_int = 0;
     if (lv.v1 != 75) err = 1;
     if (lv.v3 != 13468) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_C_Sf_Ul() c.C_Sf_Ul {
@@ -893,30 +722,21 @@ test "C_Sf_Us: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 2);
 }
 test "C_Sf_Us: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_C_Sf_Us(.{ .v1 = 62, .v2 = .{}, .v3 = 19833 }), outcome);
+    try testing.expectOk(c.assert_C_Sf_Us(.{ .v1 = 62, .v2 = .{}, .v3 = 19833 }));
 }
 test "C_Sf_Us: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_C_Sf_Us());
 }
 test "C_Sf_Us: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_C_Sf_Us(), outcome);
+    try testing.expectOk(c.send_C_Sf_Us());
 }
 test "C_Sf_Us: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_C_Sf_Us(), .{ .v1 = 62, .v2 = .{}, .v3 = 19833 });
+    try testing.expectOk(zig_assert_C_Sf_Us(c.ret_C_Sf_Us()));
 }
 pub export fn zig_assert_C_Sf_Us(lv: c.C_Sf_Us) c_int {
     var err: c_int = 0;
     if (lv.v1 != 62) err = 1;
     if (lv.v3 != 19833) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_C_Sf_Us() c.C_Sf_Us {
@@ -939,30 +759,21 @@ test "C_Sf_Vp: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
 test "C_Sf_Vp: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_C_Sf_Vp(.{ .v1 = 43, .v2 = .{}, .v3 = null }), outcome);
+    try testing.expectOk(c.assert_C_Sf_Vp(.{ .v1 = 43, .v2 = .{}, .v3 = null }));
 }
 test "C_Sf_Vp: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_C_Sf_Vp());
 }
 test "C_Sf_Vp: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_C_Sf_Vp(), outcome);
+    try testing.expectOk(c.send_C_Sf_Vp());
 }
 test "C_Sf_Vp: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_C_Sf_Vp(), .{ .v1 = 43, .v2 = .{}, .v3 = null });
+    try testing.expectOk(zig_assert_C_Sf_Vp(c.ret_C_Sf_Vp()));
 }
 pub export fn zig_assert_C_Sf_Vp(lv: c.C_Sf_Vp) c_int {
     var err: c_int = 0;
     if (lv.v1 != 43) err = 1;
     if (lv.v3 != null) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_C_Sf_Vp() c.C_Sf_Vp {
@@ -985,30 +796,21 @@ test "C_Uc_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 2);
 }
 test "C_Uc_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_C_Uc_Sf(.{ .v1 = 75, .v2 = 105, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_C_Uc_Sf(.{ .v1 = 75, .v2 = 105, .v3 = .{} }));
 }
 test "C_Uc_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_C_Uc_Sf());
 }
 test "C_Uc_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_C_Uc_Sf(), outcome);
+    try testing.expectOk(c.send_C_Uc_Sf());
 }
 test "C_Uc_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_C_Uc_Sf(), .{ .v1 = 75, .v2 = 105, .v3 = .{} });
+    try testing.expectOk(zig_assert_C_Uc_Sf(c.ret_C_Uc_Sf()));
 }
 pub export fn zig_assert_C_Uc_Sf(lv: c.C_Uc_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 75) err = 1;
     if (lv.v2 != 105) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_C_Uc_Sf() c.C_Uc_Sf {
@@ -1031,30 +833,21 @@ test "C_Ui_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "C_Ui_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_C_Ui_Sf(.{ .v1 = 0, .v2 = 14996, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_C_Ui_Sf(.{ .v1 = 0, .v2 = 14996, .v3 = .{} }));
 }
 test "C_Ui_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_C_Ui_Sf());
 }
 test "C_Ui_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_C_Ui_Sf(), outcome);
+    try testing.expectOk(c.send_C_Ui_Sf());
 }
 test "C_Ui_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_C_Ui_Sf(), .{ .v1 = 0, .v2 = 14996, .v3 = .{} });
+    try testing.expectOk(zig_assert_C_Ui_Sf(c.ret_C_Ui_Sf()));
 }
 pub export fn zig_assert_C_Ui_Sf(lv: c.C_Ui_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 0) err = 1;
     if (lv.v2 != 14996) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_C_Ui_Sf() c.C_Ui_Sf {
@@ -1077,30 +870,21 @@ test "C_Ul_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 test "C_Ul_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_C_Ul_Sf(.{ .v1 = 96, .v2 = 13786, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_C_Ul_Sf(.{ .v1 = 96, .v2 = 13786, .v3 = .{} }));
 }
 test "C_Ul_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_C_Ul_Sf());
 }
 test "C_Ul_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_C_Ul_Sf(), outcome);
+    try testing.expectOk(c.send_C_Ul_Sf());
 }
 test "C_Ul_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_C_Ul_Sf(), .{ .v1 = 96, .v2 = 13786, .v3 = .{} });
+    try testing.expectOk(zig_assert_C_Ul_Sf(c.ret_C_Ul_Sf()));
 }
 pub export fn zig_assert_C_Ul_Sf(lv: c.C_Ul_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 96) err = 1;
     if (lv.v2 != 13786) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_C_Ul_Sf() c.C_Ul_Sf {
@@ -1123,30 +907,21 @@ test "C_Us_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
 test "C_Us_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_C_Us_Sf(.{ .v1 = 50, .v2 = 27235, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_C_Us_Sf(.{ .v1 = 50, .v2 = 27235, .v3 = .{} }));
 }
 test "C_Us_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_C_Us_Sf());
 }
 test "C_Us_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_C_Us_Sf(), outcome);
+    try testing.expectOk(c.send_C_Us_Sf());
 }
 test "C_Us_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_C_Us_Sf(), .{ .v1 = 50, .v2 = 27235, .v3 = .{} });
+    try testing.expectOk(zig_assert_C_Us_Sf(c.ret_C_Us_Sf()));
 }
 pub export fn zig_assert_C_Us_Sf(lv: c.C_Us_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 50) err = 1;
     if (lv.v2 != 27235) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_C_Us_Sf() c.C_Us_Sf {
@@ -1169,30 +944,21 @@ test "C_Vp_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 test "C_Vp_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_C_Vp_Sf(.{ .v1 = 61, .v2 = null, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_C_Vp_Sf(.{ .v1 = 61, .v2 = null, .v3 = .{} }));
 }
 test "C_Vp_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_C_Vp_Sf());
 }
 test "C_Vp_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_C_Vp_Sf(), outcome);
+    try testing.expectOk(c.send_C_Vp_Sf());
 }
 test "C_Vp_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_C_Vp_Sf(), .{ .v1 = 61, .v2 = null, .v3 = .{} });
+    try testing.expectOk(zig_assert_C_Vp_Sf(c.ret_C_Vp_Sf()));
 }
 pub export fn zig_assert_C_Vp_Sf(lv: c.C_Vp_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 61) err = 1;
     if (lv.v2 != null) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_C_Vp_Sf() c.C_Vp_Sf {
@@ -1215,30 +981,21 @@ test "D_C_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 9);
 }
 test "D_C_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_D_C_Sf(.{ .v1 = 0.875, .v2 = 18, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_D_C_Sf(.{ .v1 = 0.875, .v2 = 18, .v3 = .{} }));
 }
 test "D_C_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_D_C_Sf());
 }
 test "D_C_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_D_C_Sf(), outcome);
+    try testing.expectOk(c.send_D_C_Sf());
 }
 test "D_C_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_D_C_Sf(), .{ .v1 = 0.875, .v2 = 18, .v3 = .{} });
+    try testing.expectOk(zig_assert_D_C_Sf(c.ret_D_C_Sf()));
 }
 pub export fn zig_assert_D_C_Sf(lv: c.D_C_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 0.875) err = 1;
     if (lv.v2 != 18) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_D_C_Sf() c.D_C_Sf {
@@ -1261,30 +1018,21 @@ test "D_D_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
 test "D_D_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_D_D_Sf(.{ .v1 = -0.25, .v2 = 0.875, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_D_D_Sf(.{ .v1 = -0.25, .v2 = 0.875, .v3 = .{} }));
 }
 test "D_D_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_D_D_Sf());
 }
 test "D_D_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_D_D_Sf(), outcome);
+    try testing.expectOk(c.send_D_D_Sf());
 }
 test "D_D_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_D_D_Sf(), .{ .v1 = -0.25, .v2 = 0.875, .v3 = .{} });
+    try testing.expectOk(zig_assert_D_D_Sf(c.ret_D_D_Sf()));
 }
 pub export fn zig_assert_D_D_Sf(lv: c.D_D_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != -0.25) err = 1;
     if (lv.v2 != 0.875) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_D_D_Sf() c.D_D_Sf {
@@ -1307,30 +1055,21 @@ test "D_F_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
 test "D_F_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_D_F_Sf(.{ .v1 = -2.125, .v2 = 0.875, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_D_F_Sf(.{ .v1 = -2.125, .v2 = 0.875, .v3 = .{} }));
 }
 test "D_F_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_D_F_Sf());
 }
 test "D_F_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_D_F_Sf(), outcome);
+    try testing.expectOk(c.send_D_F_Sf());
 }
 test "D_F_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_D_F_Sf(), .{ .v1 = -2.125, .v2 = 0.875, .v3 = .{} });
+    try testing.expectOk(zig_assert_D_F_Sf(c.ret_D_F_Sf()));
 }
 pub export fn zig_assert_D_F_Sf(lv: c.D_F_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != -2.125) err = 1;
     if (lv.v2 != 0.875) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_D_F_Sf() c.D_F_Sf {
@@ -1353,30 +1092,21 @@ test "D_I_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
 test "D_I_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_D_I_Sf(.{ .v1 = 0.875, .v2 = 4925, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_D_I_Sf(.{ .v1 = 0.875, .v2 = 4925, .v3 = .{} }));
 }
 test "D_I_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_D_I_Sf());
 }
 test "D_I_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_D_I_Sf(), outcome);
+    try testing.expectOk(c.send_D_I_Sf());
 }
 test "D_I_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_D_I_Sf(), .{ .v1 = 0.875, .v2 = 4925, .v3 = .{} });
+    try testing.expectOk(zig_assert_D_I_Sf(c.ret_D_I_Sf()));
 }
 pub export fn zig_assert_D_I_Sf(lv: c.D_I_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 0.875) err = 1;
     if (lv.v2 != 4925) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_D_I_Sf() c.D_I_Sf {
@@ -1399,30 +1129,21 @@ test "D_Ip_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 test "D_Ip_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_D_Ip_Sf(.{ .v1 = 1.0, .v2 = null, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_D_Ip_Sf(.{ .v1 = 1.0, .v2 = null, .v3 = .{} }));
 }
 test "D_Ip_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_D_Ip_Sf());
 }
 test "D_Ip_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_D_Ip_Sf(), outcome);
+    try testing.expectOk(c.send_D_Ip_Sf());
 }
 test "D_Ip_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_D_Ip_Sf(), .{ .v1 = 1.0, .v2 = null, .v3 = .{} });
+    try testing.expectOk(zig_assert_D_Ip_Sf(c.ret_D_Ip_Sf()));
 }
 pub export fn zig_assert_D_Ip_Sf(lv: c.D_Ip_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 1.0) err = 1;
     if (lv.v2 != null) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_D_Ip_Sf() c.D_Ip_Sf {
@@ -1445,30 +1166,21 @@ test "D_L_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
 test "D_L_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_D_L_Sf(.{ .v1 = 7.0, .v2 = 17716, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_D_L_Sf(.{ .v1 = 7.0, .v2 = 17716, .v3 = .{} }));
 }
 test "D_L_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_D_L_Sf());
 }
 test "D_L_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_D_L_Sf(), outcome);
+    try testing.expectOk(c.send_D_L_Sf());
 }
 test "D_L_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_D_L_Sf(), .{ .v1 = 7.0, .v2 = 17716, .v3 = .{} });
+    try testing.expectOk(zig_assert_D_L_Sf(c.ret_D_L_Sf()));
 }
 pub export fn zig_assert_D_L_Sf(lv: c.D_L_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 7.0) err = 1;
     if (lv.v2 != 17716) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_D_L_Sf() c.D_L_Sf {
@@ -1491,30 +1203,21 @@ test "D_S_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 10);
 }
 test "D_S_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_D_S_Sf(.{ .v1 = -0.25, .v2 = 24740, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_D_S_Sf(.{ .v1 = -0.25, .v2 = 24740, .v3 = .{} }));
 }
 test "D_S_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_D_S_Sf());
 }
 test "D_S_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_D_S_Sf(), outcome);
+    try testing.expectOk(c.send_D_S_Sf());
 }
 test "D_S_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_D_S_Sf(), .{ .v1 = -0.25, .v2 = 24740, .v3 = .{} });
+    try testing.expectOk(zig_assert_D_S_Sf(c.ret_D_S_Sf()));
 }
 pub export fn zig_assert_D_S_Sf(lv: c.D_S_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != -0.25) err = 1;
     if (lv.v2 != 24740) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_D_S_Sf() c.D_S_Sf {
@@ -1535,29 +1238,20 @@ test "D_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
 }
 test "D_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_D_Sf(.{ .v1 = 0.875, .v2 = .{} }), outcome);
+    try testing.expectOk(c.assert_D_Sf(.{ .v1 = 0.875, .v2 = .{} }));
 }
 test "D_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_D_Sf());
 }
 test "D_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_D_Sf(), outcome);
+    try testing.expectOk(c.send_D_Sf());
 }
 test "D_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_D_Sf(), .{ .v1 = 0.875, .v2 = .{} });
+    try testing.expectOk(zig_assert_D_Sf(c.ret_D_Sf()));
 }
 pub export fn zig_assert_D_Sf(lv: c.D_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 0.875) err = 1;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_D_Sf() c.D_Sf {
@@ -1580,30 +1274,21 @@ test "D_Sf_C: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "D_Sf_C: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_D_Sf_C(.{ .v1 = -2.125, .v2 = .{}, .v3 = 92 }), outcome);
+    try testing.expectOk(c.assert_D_Sf_C(.{ .v1 = -2.125, .v2 = .{}, .v3 = 92 }));
 }
 test "D_Sf_C: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_D_Sf_C());
 }
 test "D_Sf_C: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_D_Sf_C(), outcome);
+    try testing.expectOk(c.send_D_Sf_C());
 }
 test "D_Sf_C: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_D_Sf_C(), .{ .v1 = -2.125, .v2 = .{}, .v3 = 92 });
+    try testing.expectOk(zig_assert_D_Sf_C(c.ret_D_Sf_C()));
 }
 pub export fn zig_assert_D_Sf_C(lv: c.D_Sf_C) c_int {
     var err: c_int = 0;
     if (lv.v1 != -2.125) err = 1;
     if (lv.v3 != 92) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_D_Sf_C() c.D_Sf_C {
@@ -1626,30 +1311,21 @@ test "D_Sf_D: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "D_Sf_D: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_D_Sf_D(.{ .v1 = -2.125, .v2 = .{}, .v3 = 0.875 }), outcome);
+    try testing.expectOk(c.assert_D_Sf_D(.{ .v1 = -2.125, .v2 = .{}, .v3 = 0.875 }));
 }
 test "D_Sf_D: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_D_Sf_D());
 }
 test "D_Sf_D: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_D_Sf_D(), outcome);
+    try testing.expectOk(c.send_D_Sf_D());
 }
 test "D_Sf_D: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_D_Sf_D(), .{ .v1 = -2.125, .v2 = .{}, .v3 = 0.875 });
+    try testing.expectOk(zig_assert_D_Sf_D(c.ret_D_Sf_D()));
 }
 pub export fn zig_assert_D_Sf_D(lv: c.D_Sf_D) c_int {
     var err: c_int = 0;
     if (lv.v1 != -2.125) err = 1;
     if (lv.v3 != 0.875) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_D_Sf_D() c.D_Sf_D {
@@ -1672,30 +1348,21 @@ test "D_Sf_F: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "D_Sf_F: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_D_Sf_F(.{ .v1 = 7.0, .v2 = .{}, .v3 = -2.125 }), outcome);
+    try testing.expectOk(c.assert_D_Sf_F(.{ .v1 = 7.0, .v2 = .{}, .v3 = -2.125 }));
 }
 test "D_Sf_F: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_D_Sf_F());
 }
 test "D_Sf_F: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_D_Sf_F(), outcome);
+    try testing.expectOk(c.send_D_Sf_F());
 }
 test "D_Sf_F: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_D_Sf_F(), .{ .v1 = 7.0, .v2 = .{}, .v3 = -2.125 });
+    try testing.expectOk(zig_assert_D_Sf_F(c.ret_D_Sf_F()));
 }
 pub export fn zig_assert_D_Sf_F(lv: c.D_Sf_F) c_int {
     var err: c_int = 0;
     if (lv.v1 != 7.0) err = 1;
     if (lv.v3 != -2.125) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_D_Sf_F() c.D_Sf_F {
@@ -1718,30 +1385,21 @@ test "D_Sf_I: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "D_Sf_I: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_D_Sf_I(.{ .v1 = -0.25, .v2 = .{}, .v3 = 23530 }), outcome);
+    try testing.expectOk(c.assert_D_Sf_I(.{ .v1 = -0.25, .v2 = .{}, .v3 = 23530 }));
 }
 test "D_Sf_I: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_D_Sf_I());
 }
 test "D_Sf_I: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_D_Sf_I(), outcome);
+    try testing.expectOk(c.send_D_Sf_I());
 }
 test "D_Sf_I: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_D_Sf_I(), .{ .v1 = -0.25, .v2 = .{}, .v3 = 23530 });
+    try testing.expectOk(zig_assert_D_Sf_I(c.ret_D_Sf_I()));
 }
 pub export fn zig_assert_D_Sf_I(lv: c.D_Sf_I) c_int {
     var err: c_int = 0;
     if (lv.v1 != -0.25) err = 1;
     if (lv.v3 != 23530) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_D_Sf_I() c.D_Sf_I {
@@ -1764,30 +1422,21 @@ test "D_Sf_Ip: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "D_Sf_Ip: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_D_Sf_Ip(.{ .v1 = 0.5, .v2 = .{}, .v3 = null }), outcome);
+    try testing.expectOk(c.assert_D_Sf_Ip(.{ .v1 = 0.5, .v2 = .{}, .v3 = null }));
 }
 test "D_Sf_Ip: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_D_Sf_Ip());
 }
 test "D_Sf_Ip: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_D_Sf_Ip(), outcome);
+    try testing.expectOk(c.send_D_Sf_Ip());
 }
 test "D_Sf_Ip: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_D_Sf_Ip(), .{ .v1 = 0.5, .v2 = .{}, .v3 = null });
+    try testing.expectOk(zig_assert_D_Sf_Ip(c.ret_D_Sf_Ip()));
 }
 pub export fn zig_assert_D_Sf_Ip(lv: c.D_Sf_Ip) c_int {
     var err: c_int = 0;
     if (lv.v1 != 0.5) err = 1;
     if (lv.v3 != null) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_D_Sf_Ip() c.D_Sf_Ip {
@@ -1810,30 +1459,21 @@ test "D_Sf_L: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "D_Sf_L: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_D_Sf_L(.{ .v1 = 0.875, .v2 = .{}, .v3 = 32736 }), outcome);
+    try testing.expectOk(c.assert_D_Sf_L(.{ .v1 = 0.875, .v2 = .{}, .v3 = 32736 }));
 }
 test "D_Sf_L: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_D_Sf_L());
 }
 test "D_Sf_L: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_D_Sf_L(), outcome);
+    try testing.expectOk(c.send_D_Sf_L());
 }
 test "D_Sf_L: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_D_Sf_L(), .{ .v1 = 0.875, .v2 = .{}, .v3 = 32736 });
+    try testing.expectOk(zig_assert_D_Sf_L(c.ret_D_Sf_L()));
 }
 pub export fn zig_assert_D_Sf_L(lv: c.D_Sf_L) c_int {
     var err: c_int = 0;
     if (lv.v1 != 0.875) err = 1;
     if (lv.v3 != 32736) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_D_Sf_L() c.D_Sf_L {
@@ -1856,30 +1496,21 @@ test "D_Sf_S: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "D_Sf_S: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_D_Sf_S(.{ .v1 = -0.25, .v2 = .{}, .v3 = 4916 }), outcome);
+    try testing.expectOk(c.assert_D_Sf_S(.{ .v1 = -0.25, .v2 = .{}, .v3 = 4916 }));
 }
 test "D_Sf_S: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_D_Sf_S());
 }
 test "D_Sf_S: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_D_Sf_S(), outcome);
+    try testing.expectOk(c.send_D_Sf_S());
 }
 test "D_Sf_S: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_D_Sf_S(), .{ .v1 = -0.25, .v2 = .{}, .v3 = 4916 });
+    try testing.expectOk(zig_assert_D_Sf_S(c.ret_D_Sf_S()));
 }
 pub export fn zig_assert_D_Sf_S(lv: c.D_Sf_S) c_int {
     var err: c_int = 0;
     if (lv.v1 != -0.25) err = 1;
     if (lv.v3 != 4916) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_D_Sf_S() c.D_Sf_S {
@@ -1902,29 +1533,20 @@ test "D_Sf_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "D_Sf_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_D_Sf_Sf(.{ .v1 = 4.5, .v2 = .{}, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_D_Sf_Sf(.{ .v1 = 4.5, .v2 = .{}, .v3 = .{} }));
 }
 test "D_Sf_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_D_Sf_Sf());
 }
 test "D_Sf_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_D_Sf_Sf(), outcome);
+    try testing.expectOk(c.send_D_Sf_Sf());
 }
 test "D_Sf_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_D_Sf_Sf(), .{ .v1 = 4.5, .v2 = .{}, .v3 = .{} });
+    try testing.expectOk(zig_assert_D_Sf_Sf(c.ret_D_Sf_Sf()));
 }
 pub export fn zig_assert_D_Sf_Sf(lv: c.D_Sf_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 4.5) err = 1;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_D_Sf_Sf() c.D_Sf_Sf {
@@ -1947,30 +1569,21 @@ test "D_Sf_Uc: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "D_Sf_Uc: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_D_Sf_Uc(.{ .v1 = 0.875, .v2 = .{}, .v3 = 8 }), outcome);
+    try testing.expectOk(c.assert_D_Sf_Uc(.{ .v1 = 0.875, .v2 = .{}, .v3 = 8 }));
 }
 test "D_Sf_Uc: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_D_Sf_Uc());
 }
 test "D_Sf_Uc: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_D_Sf_Uc(), outcome);
+    try testing.expectOk(c.send_D_Sf_Uc());
 }
 test "D_Sf_Uc: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_D_Sf_Uc(), .{ .v1 = 0.875, .v2 = .{}, .v3 = 8 });
+    try testing.expectOk(zig_assert_D_Sf_Uc(c.ret_D_Sf_Uc()));
 }
 pub export fn zig_assert_D_Sf_Uc(lv: c.D_Sf_Uc) c_int {
     var err: c_int = 0;
     if (lv.v1 != 0.875) err = 1;
     if (lv.v3 != 8) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_D_Sf_Uc() c.D_Sf_Uc {
@@ -1993,30 +1606,21 @@ test "D_Sf_Ui: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "D_Sf_Ui: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_D_Sf_Ui(.{ .v1 = 0.875, .v2 = .{}, .v3 = 8958 }), outcome);
+    try testing.expectOk(c.assert_D_Sf_Ui(.{ .v1 = 0.875, .v2 = .{}, .v3 = 8958 }));
 }
 test "D_Sf_Ui: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_D_Sf_Ui());
 }
 test "D_Sf_Ui: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_D_Sf_Ui(), outcome);
+    try testing.expectOk(c.send_D_Sf_Ui());
 }
 test "D_Sf_Ui: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_D_Sf_Ui(), .{ .v1 = 0.875, .v2 = .{}, .v3 = 8958 });
+    try testing.expectOk(zig_assert_D_Sf_Ui(c.ret_D_Sf_Ui()));
 }
 pub export fn zig_assert_D_Sf_Ui(lv: c.D_Sf_Ui) c_int {
     var err: c_int = 0;
     if (lv.v1 != 0.875) err = 1;
     if (lv.v3 != 8958) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_D_Sf_Ui() c.D_Sf_Ui {
@@ -2039,30 +1643,21 @@ test "D_Sf_Ul: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "D_Sf_Ul: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_D_Sf_Ul(.{ .v1 = 0.5, .v2 = .{}, .v3 = 13699 }), outcome);
+    try testing.expectOk(c.assert_D_Sf_Ul(.{ .v1 = 0.5, .v2 = .{}, .v3 = 13699 }));
 }
 test "D_Sf_Ul: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_D_Sf_Ul());
 }
 test "D_Sf_Ul: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_D_Sf_Ul(), outcome);
+    try testing.expectOk(c.send_D_Sf_Ul());
 }
 test "D_Sf_Ul: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_D_Sf_Ul(), .{ .v1 = 0.5, .v2 = .{}, .v3 = 13699 });
+    try testing.expectOk(zig_assert_D_Sf_Ul(c.ret_D_Sf_Ul()));
 }
 pub export fn zig_assert_D_Sf_Ul(lv: c.D_Sf_Ul) c_int {
     var err: c_int = 0;
     if (lv.v1 != 0.5) err = 1;
     if (lv.v3 != 13699) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_D_Sf_Ul() c.D_Sf_Ul {
@@ -2085,30 +1680,21 @@ test "D_Sf_Us: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "D_Sf_Us: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_D_Sf_Us(.{ .v1 = 4.5, .v2 = .{}, .v3 = 28590 }), outcome);
+    try testing.expectOk(c.assert_D_Sf_Us(.{ .v1 = 4.5, .v2 = .{}, .v3 = 28590 }));
 }
 test "D_Sf_Us: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_D_Sf_Us());
 }
 test "D_Sf_Us: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_D_Sf_Us(), outcome);
+    try testing.expectOk(c.send_D_Sf_Us());
 }
 test "D_Sf_Us: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_D_Sf_Us(), .{ .v1 = 4.5, .v2 = .{}, .v3 = 28590 });
+    try testing.expectOk(zig_assert_D_Sf_Us(c.ret_D_Sf_Us()));
 }
 pub export fn zig_assert_D_Sf_Us(lv: c.D_Sf_Us) c_int {
     var err: c_int = 0;
     if (lv.v1 != 4.5) err = 1;
     if (lv.v3 != 28590) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_D_Sf_Us() c.D_Sf_Us {
@@ -2131,30 +1717,21 @@ test "D_Sf_Vp: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "D_Sf_Vp: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_D_Sf_Vp(.{ .v1 = -2.125, .v2 = .{}, .v3 = null }), outcome);
+    try testing.expectOk(c.assert_D_Sf_Vp(.{ .v1 = -2.125, .v2 = .{}, .v3 = null }));
 }
 test "D_Sf_Vp: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_D_Sf_Vp());
 }
 test "D_Sf_Vp: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_D_Sf_Vp(), outcome);
+    try testing.expectOk(c.send_D_Sf_Vp());
 }
 test "D_Sf_Vp: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_D_Sf_Vp(), .{ .v1 = -2.125, .v2 = .{}, .v3 = null });
+    try testing.expectOk(zig_assert_D_Sf_Vp(c.ret_D_Sf_Vp()));
 }
 pub export fn zig_assert_D_Sf_Vp(lv: c.D_Sf_Vp) c_int {
     var err: c_int = 0;
     if (lv.v1 != -2.125) err = 1;
     if (lv.v3 != null) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_D_Sf_Vp() c.D_Sf_Vp {
@@ -2177,30 +1754,21 @@ test "D_Uc_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 9);
 }
 test "D_Uc_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_D_Uc_Sf(.{ .v1 = 1.0, .v2 = 126, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_D_Uc_Sf(.{ .v1 = 1.0, .v2 = 126, .v3 = .{} }));
 }
 test "D_Uc_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_D_Uc_Sf());
 }
 test "D_Uc_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_D_Uc_Sf(), outcome);
+    try testing.expectOk(c.send_D_Uc_Sf());
 }
 test "D_Uc_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_D_Uc_Sf(), .{ .v1 = 1.0, .v2 = 126, .v3 = .{} });
+    try testing.expectOk(zig_assert_D_Uc_Sf(c.ret_D_Uc_Sf()));
 }
 pub export fn zig_assert_D_Uc_Sf(lv: c.D_Uc_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 1.0) err = 1;
     if (lv.v2 != 126) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_D_Uc_Sf() c.D_Uc_Sf {
@@ -2223,30 +1791,21 @@ test "D_Ui_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
 test "D_Ui_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_D_Ui_Sf(.{ .v1 = -2.125, .v2 = 15083, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_D_Ui_Sf(.{ .v1 = -2.125, .v2 = 15083, .v3 = .{} }));
 }
 test "D_Ui_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_D_Ui_Sf());
 }
 test "D_Ui_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_D_Ui_Sf(), outcome);
+    try testing.expectOk(c.send_D_Ui_Sf());
 }
 test "D_Ui_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_D_Ui_Sf(), .{ .v1 = -2.125, .v2 = 15083, .v3 = .{} });
+    try testing.expectOk(zig_assert_D_Ui_Sf(c.ret_D_Ui_Sf()));
 }
 pub export fn zig_assert_D_Ui_Sf(lv: c.D_Ui_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != -2.125) err = 1;
     if (lv.v2 != 15083) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_D_Ui_Sf() c.D_Ui_Sf {
@@ -2269,30 +1828,21 @@ test "D_Ul_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
 test "D_Ul_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_D_Ul_Sf(.{ .v1 = 1.0, .v2 = 22362, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_D_Ul_Sf(.{ .v1 = 1.0, .v2 = 22362, .v3 = .{} }));
 }
 test "D_Ul_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_D_Ul_Sf());
 }
 test "D_Ul_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_D_Ul_Sf(), outcome);
+    try testing.expectOk(c.send_D_Ul_Sf());
 }
 test "D_Ul_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_D_Ul_Sf(), .{ .v1 = 1.0, .v2 = 22362, .v3 = .{} });
+    try testing.expectOk(zig_assert_D_Ul_Sf(c.ret_D_Ul_Sf()));
 }
 pub export fn zig_assert_D_Ul_Sf(lv: c.D_Ul_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 1.0) err = 1;
     if (lv.v2 != 22362) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_D_Ul_Sf() c.D_Ul_Sf {
@@ -2315,30 +1865,21 @@ test "D_Us_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 10);
 }
 test "D_Us_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_D_Us_Sf(.{ .v1 = 7.0, .v2 = 29846, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_D_Us_Sf(.{ .v1 = 7.0, .v2 = 29846, .v3 = .{} }));
 }
 test "D_Us_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_D_Us_Sf());
 }
 test "D_Us_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_D_Us_Sf(), outcome);
+    try testing.expectOk(c.send_D_Us_Sf());
 }
 test "D_Us_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_D_Us_Sf(), .{ .v1 = 7.0, .v2 = 29846, .v3 = .{} });
+    try testing.expectOk(zig_assert_D_Us_Sf(c.ret_D_Us_Sf()));
 }
 pub export fn zig_assert_D_Us_Sf(lv: c.D_Us_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 7.0) err = 1;
     if (lv.v2 != 29846) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_D_Us_Sf() c.D_Us_Sf {
@@ -2361,30 +1902,21 @@ test "D_Vp_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 test "D_Vp_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_D_Vp_Sf(.{ .v1 = 7.0, .v2 = null, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_D_Vp_Sf(.{ .v1 = 7.0, .v2 = null, .v3 = .{} }));
 }
 test "D_Vp_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_D_Vp_Sf());
 }
 test "D_Vp_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_D_Vp_Sf(), outcome);
+    try testing.expectOk(c.send_D_Vp_Sf());
 }
 test "D_Vp_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_D_Vp_Sf(), .{ .v1 = 7.0, .v2 = null, .v3 = .{} });
+    try testing.expectOk(zig_assert_D_Vp_Sf(c.ret_D_Vp_Sf()));
 }
 pub export fn zig_assert_D_Vp_Sf(lv: c.D_Vp_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 7.0) err = 1;
     if (lv.v2 != null) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_D_Vp_Sf() c.D_Vp_Sf {
@@ -2407,30 +1939,21 @@ test "F_C_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 5);
 }
 test "F_C_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_F_C_Sf(.{ .v1 = 0.5, .v2 = 36, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_F_C_Sf(.{ .v1 = 0.5, .v2 = 36, .v3 = .{} }));
 }
 test "F_C_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_F_C_Sf());
 }
 test "F_C_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_F_C_Sf(), outcome);
+    try testing.expectOk(c.send_F_C_Sf());
 }
 test "F_C_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_F_C_Sf(), .{ .v1 = 0.5, .v2 = 36, .v3 = .{} });
+    try testing.expectOk(zig_assert_F_C_Sf(c.ret_F_C_Sf()));
 }
 pub export fn zig_assert_F_C_Sf(lv: c.F_C_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 0.5) err = 1;
     if (lv.v2 != 36) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_F_C_Sf() c.F_C_Sf {
@@ -2453,30 +1976,21 @@ test "F_D_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 test "F_D_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_F_D_Sf(.{ .v1 = 1.0, .v2 = 4.5, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_F_D_Sf(.{ .v1 = 1.0, .v2 = 4.5, .v3 = .{} }));
 }
 test "F_D_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_F_D_Sf());
 }
 test "F_D_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_F_D_Sf(), outcome);
+    try testing.expectOk(c.send_F_D_Sf());
 }
 test "F_D_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_F_D_Sf(), .{ .v1 = 1.0, .v2 = 4.5, .v3 = .{} });
+    try testing.expectOk(zig_assert_F_D_Sf(c.ret_F_D_Sf()));
 }
 pub export fn zig_assert_F_D_Sf(lv: c.F_D_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 1.0) err = 1;
     if (lv.v2 != 4.5) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_F_D_Sf() c.F_D_Sf {
@@ -2499,30 +2013,21 @@ test "F_F_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "F_F_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_F_F_Sf(.{ .v1 = -0.25, .v2 = 0.875, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_F_F_Sf(.{ .v1 = -0.25, .v2 = 0.875, .v3 = .{} }));
 }
 test "F_F_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_F_F_Sf());
 }
 test "F_F_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_F_F_Sf(), outcome);
+    try testing.expectOk(c.send_F_F_Sf());
 }
 test "F_F_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_F_F_Sf(), .{ .v1 = -0.25, .v2 = 0.875, .v3 = .{} });
+    try testing.expectOk(zig_assert_F_F_Sf(c.ret_F_F_Sf()));
 }
 pub export fn zig_assert_F_F_Sf(lv: c.F_F_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != -0.25) err = 1;
     if (lv.v2 != 0.875) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_F_F_Sf() c.F_F_Sf {
@@ -2545,30 +2050,21 @@ test "F_I_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "F_I_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_F_I_Sf(.{ .v1 = 7.0, .v2 = 23929, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_F_I_Sf(.{ .v1 = 7.0, .v2 = 23929, .v3 = .{} }));
 }
 test "F_I_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_F_I_Sf());
 }
 test "F_I_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_F_I_Sf(), outcome);
+    try testing.expectOk(c.send_F_I_Sf());
 }
 test "F_I_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_F_I_Sf(), .{ .v1 = 7.0, .v2 = 23929, .v3 = .{} });
+    try testing.expectOk(zig_assert_F_I_Sf(c.ret_F_I_Sf()));
 }
 pub export fn zig_assert_F_I_Sf(lv: c.F_I_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 7.0) err = 1;
     if (lv.v2 != 23929) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_F_I_Sf() c.F_I_Sf {
@@ -2591,30 +2087,21 @@ test "F_Ip_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 test "F_Ip_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_F_Ip_Sf(.{ .v1 = -2.125, .v2 = null, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_F_Ip_Sf(.{ .v1 = -2.125, .v2 = null, .v3 = .{} }));
 }
 test "F_Ip_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_F_Ip_Sf());
 }
 test "F_Ip_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_F_Ip_Sf(), outcome);
+    try testing.expectOk(c.send_F_Ip_Sf());
 }
 test "F_Ip_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_F_Ip_Sf(), .{ .v1 = -2.125, .v2 = null, .v3 = .{} });
+    try testing.expectOk(zig_assert_F_Ip_Sf(c.ret_F_Ip_Sf()));
 }
 pub export fn zig_assert_F_Ip_Sf(lv: c.F_Ip_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != -2.125) err = 1;
     if (lv.v2 != null) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_F_Ip_Sf() c.F_Ip_Sf {
@@ -2637,30 +2124,21 @@ test "F_L_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 test "F_L_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_F_L_Sf(.{ .v1 = 0.5, .v2 = 32338, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_F_L_Sf(.{ .v1 = 0.5, .v2 = 32338, .v3 = .{} }));
 }
 test "F_L_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_F_L_Sf());
 }
 test "F_L_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_F_L_Sf(), outcome);
+    try testing.expectOk(c.send_F_L_Sf());
 }
 test "F_L_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_F_L_Sf(), .{ .v1 = 0.5, .v2 = 32338, .v3 = .{} });
+    try testing.expectOk(zig_assert_F_L_Sf(c.ret_F_L_Sf()));
 }
 pub export fn zig_assert_F_L_Sf(lv: c.F_L_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 0.5) err = 1;
     if (lv.v2 != 32338) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_F_L_Sf() c.F_L_Sf {
@@ -2683,30 +2161,21 @@ test "F_S_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 6);
 }
 test "F_S_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_F_S_Sf(.{ .v1 = 1.0, .v2 = 20788, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_F_S_Sf(.{ .v1 = 1.0, .v2 = 20788, .v3 = .{} }));
 }
 test "F_S_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_F_S_Sf());
 }
 test "F_S_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_F_S_Sf(), outcome);
+    try testing.expectOk(c.send_F_S_Sf());
 }
 test "F_S_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_F_S_Sf(), .{ .v1 = 1.0, .v2 = 20788, .v3 = .{} });
+    try testing.expectOk(zig_assert_F_S_Sf(c.ret_F_S_Sf()));
 }
 pub export fn zig_assert_F_S_Sf(lv: c.F_S_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 1.0) err = 1;
     if (lv.v2 != 20788) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_F_S_Sf() c.F_S_Sf {
@@ -2727,29 +2196,20 @@ test "F_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
 }
 test "F_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_F_Sf(.{ .v1 = -2.125, .v2 = .{} }), outcome);
+    try testing.expectOk(c.assert_F_Sf(.{ .v1 = -2.125, .v2 = .{} }));
 }
 test "F_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_F_Sf());
 }
 test "F_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_F_Sf(), outcome);
+    try testing.expectOk(c.send_F_Sf());
 }
 test "F_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_F_Sf(), .{ .v1 = -2.125, .v2 = .{} });
+    try testing.expectOk(zig_assert_F_Sf(c.ret_F_Sf()));
 }
 pub export fn zig_assert_F_Sf(lv: c.F_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != -2.125) err = 1;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_F_Sf() c.F_Sf {
@@ -2772,30 +2232,21 @@ test "F_Sf_C: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
 test "F_Sf_C: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_F_Sf_C(.{ .v1 = 4.5, .v2 = .{}, .v3 = 19 }), outcome);
+    try testing.expectOk(c.assert_F_Sf_C(.{ .v1 = 4.5, .v2 = .{}, .v3 = 19 }));
 }
 test "F_Sf_C: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_F_Sf_C());
 }
 test "F_Sf_C: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_F_Sf_C(), outcome);
+    try testing.expectOk(c.send_F_Sf_C());
 }
 test "F_Sf_C: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_F_Sf_C(), .{ .v1 = 4.5, .v2 = .{}, .v3 = 19 });
+    try testing.expectOk(zig_assert_F_Sf_C(c.ret_F_Sf_C()));
 }
 pub export fn zig_assert_F_Sf_C(lv: c.F_Sf_C) c_int {
     var err: c_int = 0;
     if (lv.v1 != 4.5) err = 1;
     if (lv.v3 != 19) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_F_Sf_C() c.F_Sf_C {
@@ -2818,30 +2269,21 @@ test "F_Sf_D: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
 test "F_Sf_D: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_F_Sf_D(.{ .v1 = 0.875, .v2 = .{}, .v3 = 0.5 }), outcome);
+    try testing.expectOk(c.assert_F_Sf_D(.{ .v1 = 0.875, .v2 = .{}, .v3 = 0.5 }));
 }
 test "F_Sf_D: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_F_Sf_D());
 }
 test "F_Sf_D: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_F_Sf_D(), outcome);
+    try testing.expectOk(c.send_F_Sf_D());
 }
 test "F_Sf_D: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_F_Sf_D(), .{ .v1 = 0.875, .v2 = .{}, .v3 = 0.5 });
+    try testing.expectOk(zig_assert_F_Sf_D(c.ret_F_Sf_D()));
 }
 pub export fn zig_assert_F_Sf_D(lv: c.F_Sf_D) c_int {
     var err: c_int = 0;
     if (lv.v1 != 0.875) err = 1;
     if (lv.v3 != 0.5) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_F_Sf_D() c.F_Sf_D {
@@ -2864,30 +2306,21 @@ test "F_Sf_F: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
 test "F_Sf_F: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_F_Sf_F(.{ .v1 = 1.0, .v2 = .{}, .v3 = 0.875 }), outcome);
+    try testing.expectOk(c.assert_F_Sf_F(.{ .v1 = 1.0, .v2 = .{}, .v3 = 0.875 }));
 }
 test "F_Sf_F: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_F_Sf_F());
 }
 test "F_Sf_F: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_F_Sf_F(), outcome);
+    try testing.expectOk(c.send_F_Sf_F());
 }
 test "F_Sf_F: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_F_Sf_F(), .{ .v1 = 1.0, .v2 = .{}, .v3 = 0.875 });
+    try testing.expectOk(zig_assert_F_Sf_F(c.ret_F_Sf_F()));
 }
 pub export fn zig_assert_F_Sf_F(lv: c.F_Sf_F) c_int {
     var err: c_int = 0;
     if (lv.v1 != 1.0) err = 1;
     if (lv.v3 != 0.875) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_F_Sf_F() c.F_Sf_F {
@@ -2910,30 +2343,21 @@ test "F_Sf_I: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
 test "F_Sf_I: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_F_Sf_I(.{ .v1 = 0.875, .v2 = .{}, .v3 = 26364 }), outcome);
+    try testing.expectOk(c.assert_F_Sf_I(.{ .v1 = 0.875, .v2 = .{}, .v3 = 26364 }));
 }
 test "F_Sf_I: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_F_Sf_I());
 }
 test "F_Sf_I: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_F_Sf_I(), outcome);
+    try testing.expectOk(c.send_F_Sf_I());
 }
 test "F_Sf_I: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_F_Sf_I(), .{ .v1 = 0.875, .v2 = .{}, .v3 = 26364 });
+    try testing.expectOk(zig_assert_F_Sf_I(c.ret_F_Sf_I()));
 }
 pub export fn zig_assert_F_Sf_I(lv: c.F_Sf_I) c_int {
     var err: c_int = 0;
     if (lv.v1 != 0.875) err = 1;
     if (lv.v3 != 26364) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_F_Sf_I() c.F_Sf_I {
@@ -2956,30 +2380,21 @@ test "F_Sf_Ip: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
 test "F_Sf_Ip: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_F_Sf_Ip(.{ .v1 = -0.25, .v2 = .{}, .v3 = null }), outcome);
+    try testing.expectOk(c.assert_F_Sf_Ip(.{ .v1 = -0.25, .v2 = .{}, .v3 = null }));
 }
 test "F_Sf_Ip: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_F_Sf_Ip());
 }
 test "F_Sf_Ip: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_F_Sf_Ip(), outcome);
+    try testing.expectOk(c.send_F_Sf_Ip());
 }
 test "F_Sf_Ip: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_F_Sf_Ip(), .{ .v1 = -0.25, .v2 = .{}, .v3 = null });
+    try testing.expectOk(zig_assert_F_Sf_Ip(c.ret_F_Sf_Ip()));
 }
 pub export fn zig_assert_F_Sf_Ip(lv: c.F_Sf_Ip) c_int {
     var err: c_int = 0;
     if (lv.v1 != -0.25) err = 1;
     if (lv.v3 != null) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_F_Sf_Ip() c.F_Sf_Ip {
@@ -3002,30 +2417,21 @@ test "F_Sf_L: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
 test "F_Sf_L: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_F_Sf_L(.{ .v1 = 7.0, .v2 = .{}, .v3 = 9072 }), outcome);
+    try testing.expectOk(c.assert_F_Sf_L(.{ .v1 = 7.0, .v2 = .{}, .v3 = 9072 }));
 }
 test "F_Sf_L: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_F_Sf_L());
 }
 test "F_Sf_L: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_F_Sf_L(), outcome);
+    try testing.expectOk(c.send_F_Sf_L());
 }
 test "F_Sf_L: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_F_Sf_L(), .{ .v1 = 7.0, .v2 = .{}, .v3 = 9072 });
+    try testing.expectOk(zig_assert_F_Sf_L(c.ret_F_Sf_L()));
 }
 pub export fn zig_assert_F_Sf_L(lv: c.F_Sf_L) c_int {
     var err: c_int = 0;
     if (lv.v1 != 7.0) err = 1;
     if (lv.v3 != 9072) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_F_Sf_L() c.F_Sf_L {
@@ -3048,30 +2454,21 @@ test "F_Sf_S: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
 test "F_Sf_S: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_F_Sf_S(.{ .v1 = 7.0, .v2 = .{}, .v3 = 23630 }), outcome);
+    try testing.expectOk(c.assert_F_Sf_S(.{ .v1 = 7.0, .v2 = .{}, .v3 = 23630 }));
 }
 test "F_Sf_S: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_F_Sf_S());
 }
 test "F_Sf_S: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_F_Sf_S(), outcome);
+    try testing.expectOk(c.send_F_Sf_S());
 }
 test "F_Sf_S: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_F_Sf_S(), .{ .v1 = 7.0, .v2 = .{}, .v3 = 23630 });
+    try testing.expectOk(zig_assert_F_Sf_S(c.ret_F_Sf_S()));
 }
 pub export fn zig_assert_F_Sf_S(lv: c.F_Sf_S) c_int {
     var err: c_int = 0;
     if (lv.v1 != 7.0) err = 1;
     if (lv.v3 != 23630) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_F_Sf_S() c.F_Sf_S {
@@ -3094,29 +2491,20 @@ test "F_Sf_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
 test "F_Sf_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_F_Sf_Sf(.{ .v1 = -2.125, .v2 = .{}, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_F_Sf_Sf(.{ .v1 = -2.125, .v2 = .{}, .v3 = .{} }));
 }
 test "F_Sf_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_F_Sf_Sf());
 }
 test "F_Sf_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_F_Sf_Sf(), outcome);
+    try testing.expectOk(c.send_F_Sf_Sf());
 }
 test "F_Sf_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_F_Sf_Sf(), .{ .v1 = -2.125, .v2 = .{}, .v3 = .{} });
+    try testing.expectOk(zig_assert_F_Sf_Sf(c.ret_F_Sf_Sf()));
 }
 pub export fn zig_assert_F_Sf_Sf(lv: c.F_Sf_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != -2.125) err = 1;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_F_Sf_Sf() c.F_Sf_Sf {
@@ -3139,30 +2527,21 @@ test "F_Sf_Uc: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
 test "F_Sf_Uc: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_F_Sf_Uc(.{ .v1 = 0.875, .v2 = .{}, .v3 = 30 }), outcome);
+    try testing.expectOk(c.assert_F_Sf_Uc(.{ .v1 = 0.875, .v2 = .{}, .v3 = 30 }));
 }
 test "F_Sf_Uc: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_F_Sf_Uc());
 }
 test "F_Sf_Uc: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_F_Sf_Uc(), outcome);
+    try testing.expectOk(c.send_F_Sf_Uc());
 }
 test "F_Sf_Uc: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_F_Sf_Uc(), .{ .v1 = 0.875, .v2 = .{}, .v3 = 30 });
+    try testing.expectOk(zig_assert_F_Sf_Uc(c.ret_F_Sf_Uc()));
 }
 pub export fn zig_assert_F_Sf_Uc(lv: c.F_Sf_Uc) c_int {
     var err: c_int = 0;
     if (lv.v1 != 0.875) err = 1;
     if (lv.v3 != 30) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_F_Sf_Uc() c.F_Sf_Uc {
@@ -3185,30 +2564,21 @@ test "F_Sf_Ui: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
 test "F_Sf_Ui: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_F_Sf_Ui(.{ .v1 = 4.5, .v2 = .{}, .v3 = 20433 }), outcome);
+    try testing.expectOk(c.assert_F_Sf_Ui(.{ .v1 = 4.5, .v2 = .{}, .v3 = 20433 }));
 }
 test "F_Sf_Ui: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_F_Sf_Ui());
 }
 test "F_Sf_Ui: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_F_Sf_Ui(), outcome);
+    try testing.expectOk(c.send_F_Sf_Ui());
 }
 test "F_Sf_Ui: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_F_Sf_Ui(), .{ .v1 = 4.5, .v2 = .{}, .v3 = 20433 });
+    try testing.expectOk(zig_assert_F_Sf_Ui(c.ret_F_Sf_Ui()));
 }
 pub export fn zig_assert_F_Sf_Ui(lv: c.F_Sf_Ui) c_int {
     var err: c_int = 0;
     if (lv.v1 != 4.5) err = 1;
     if (lv.v3 != 20433) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_F_Sf_Ui() c.F_Sf_Ui {
@@ -3231,30 +2601,21 @@ test "F_Sf_Ul: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
 test "F_Sf_Ul: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_F_Sf_Ul(.{ .v1 = 1.0, .v2 = .{}, .v3 = 30023 }), outcome);
+    try testing.expectOk(c.assert_F_Sf_Ul(.{ .v1 = 1.0, .v2 = .{}, .v3 = 30023 }));
 }
 test "F_Sf_Ul: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_F_Sf_Ul());
 }
 test "F_Sf_Ul: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_F_Sf_Ul(), outcome);
+    try testing.expectOk(c.send_F_Sf_Ul());
 }
 test "F_Sf_Ul: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_F_Sf_Ul(), .{ .v1 = 1.0, .v2 = .{}, .v3 = 30023 });
+    try testing.expectOk(zig_assert_F_Sf_Ul(c.ret_F_Sf_Ul()));
 }
 pub export fn zig_assert_F_Sf_Ul(lv: c.F_Sf_Ul) c_int {
     var err: c_int = 0;
     if (lv.v1 != 1.0) err = 1;
     if (lv.v3 != 30023) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_F_Sf_Ul() c.F_Sf_Ul {
@@ -3277,30 +2638,21 @@ test "F_Sf_Us: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
 test "F_Sf_Us: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_F_Sf_Us(.{ .v1 = 7.0, .v2 = .{}, .v3 = 31929 }), outcome);
+    try testing.expectOk(c.assert_F_Sf_Us(.{ .v1 = 7.0, .v2 = .{}, .v3 = 31929 }));
 }
 test "F_Sf_Us: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_F_Sf_Us());
 }
 test "F_Sf_Us: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_F_Sf_Us(), outcome);
+    try testing.expectOk(c.send_F_Sf_Us());
 }
 test "F_Sf_Us: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_F_Sf_Us(), .{ .v1 = 7.0, .v2 = .{}, .v3 = 31929 });
+    try testing.expectOk(zig_assert_F_Sf_Us(c.ret_F_Sf_Us()));
 }
 pub export fn zig_assert_F_Sf_Us(lv: c.F_Sf_Us) c_int {
     var err: c_int = 0;
     if (lv.v1 != 7.0) err = 1;
     if (lv.v3 != 31929) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_F_Sf_Us() c.F_Sf_Us {
@@ -3323,30 +2675,21 @@ test "F_Sf_Vp: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
 test "F_Sf_Vp: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_F_Sf_Vp(.{ .v1 = 4.5, .v2 = .{}, .v3 = null }), outcome);
+    try testing.expectOk(c.assert_F_Sf_Vp(.{ .v1 = 4.5, .v2 = .{}, .v3 = null }));
 }
 test "F_Sf_Vp: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_F_Sf_Vp());
 }
 test "F_Sf_Vp: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_F_Sf_Vp(), outcome);
+    try testing.expectOk(c.send_F_Sf_Vp());
 }
 test "F_Sf_Vp: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_F_Sf_Vp(), .{ .v1 = 4.5, .v2 = .{}, .v3 = null });
+    try testing.expectOk(zig_assert_F_Sf_Vp(c.ret_F_Sf_Vp()));
 }
 pub export fn zig_assert_F_Sf_Vp(lv: c.F_Sf_Vp) c_int {
     var err: c_int = 0;
     if (lv.v1 != 4.5) err = 1;
     if (lv.v3 != null) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_F_Sf_Vp() c.F_Sf_Vp {
@@ -3369,30 +2712,21 @@ test "F_Uc_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 5);
 }
 test "F_Uc_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_F_Uc_Sf(.{ .v1 = 4.5, .v2 = 46, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_F_Uc_Sf(.{ .v1 = 4.5, .v2 = 46, .v3 = .{} }));
 }
 test "F_Uc_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_F_Uc_Sf());
 }
 test "F_Uc_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_F_Uc_Sf(), outcome);
+    try testing.expectOk(c.send_F_Uc_Sf());
 }
 test "F_Uc_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_F_Uc_Sf(), .{ .v1 = 4.5, .v2 = 46, .v3 = .{} });
+    try testing.expectOk(zig_assert_F_Uc_Sf(c.ret_F_Uc_Sf()));
 }
 pub export fn zig_assert_F_Uc_Sf(lv: c.F_Uc_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 4.5) err = 1;
     if (lv.v2 != 46) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_F_Uc_Sf() c.F_Uc_Sf {
@@ -3415,30 +2749,21 @@ test "F_Ui_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "F_Ui_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_F_Ui_Sf(.{ .v1 = -2.125, .v2 = 19552, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_F_Ui_Sf(.{ .v1 = -2.125, .v2 = 19552, .v3 = .{} }));
 }
 test "F_Ui_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_F_Ui_Sf());
 }
 test "F_Ui_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_F_Ui_Sf(), outcome);
+    try testing.expectOk(c.send_F_Ui_Sf());
 }
 test "F_Ui_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_F_Ui_Sf(), .{ .v1 = -2.125, .v2 = 19552, .v3 = .{} });
+    try testing.expectOk(zig_assert_F_Ui_Sf(c.ret_F_Ui_Sf()));
 }
 pub export fn zig_assert_F_Ui_Sf(lv: c.F_Ui_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != -2.125) err = 1;
     if (lv.v2 != 19552) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_F_Ui_Sf() c.F_Ui_Sf {
@@ -3461,30 +2786,21 @@ test "F_Ul_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 test "F_Ul_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_F_Ul_Sf(.{ .v1 = 0.5, .v2 = 14212, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_F_Ul_Sf(.{ .v1 = 0.5, .v2 = 14212, .v3 = .{} }));
 }
 test "F_Ul_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_F_Ul_Sf());
 }
 test "F_Ul_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_F_Ul_Sf(), outcome);
+    try testing.expectOk(c.send_F_Ul_Sf());
 }
 test "F_Ul_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_F_Ul_Sf(), .{ .v1 = 0.5, .v2 = 14212, .v3 = .{} });
+    try testing.expectOk(zig_assert_F_Ul_Sf(c.ret_F_Ul_Sf()));
 }
 pub export fn zig_assert_F_Ul_Sf(lv: c.F_Ul_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 0.5) err = 1;
     if (lv.v2 != 14212) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_F_Ul_Sf() c.F_Ul_Sf {
@@ -3507,30 +2823,21 @@ test "F_Us_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 6);
 }
 test "F_Us_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_F_Us_Sf(.{ .v1 = -2.125, .v2 = 11194, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_F_Us_Sf(.{ .v1 = -2.125, .v2 = 11194, .v3 = .{} }));
 }
 test "F_Us_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_F_Us_Sf());
 }
 test "F_Us_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_F_Us_Sf(), outcome);
+    try testing.expectOk(c.send_F_Us_Sf());
 }
 test "F_Us_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_F_Us_Sf(), .{ .v1 = -2.125, .v2 = 11194, .v3 = .{} });
+    try testing.expectOk(zig_assert_F_Us_Sf(c.ret_F_Us_Sf()));
 }
 pub export fn zig_assert_F_Us_Sf(lv: c.F_Us_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != -2.125) err = 1;
     if (lv.v2 != 11194) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_F_Us_Sf() c.F_Us_Sf {
@@ -3553,30 +2860,21 @@ test "F_Vp_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 test "F_Vp_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_F_Vp_Sf(.{ .v1 = 0.5, .v2 = null, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_F_Vp_Sf(.{ .v1 = 0.5, .v2 = null, .v3 = .{} }));
 }
 test "F_Vp_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_F_Vp_Sf());
 }
 test "F_Vp_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_F_Vp_Sf(), outcome);
+    try testing.expectOk(c.send_F_Vp_Sf());
 }
 test "F_Vp_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_F_Vp_Sf(), .{ .v1 = 0.5, .v2 = null, .v3 = .{} });
+    try testing.expectOk(zig_assert_F_Vp_Sf(c.ret_F_Vp_Sf()));
 }
 pub export fn zig_assert_F_Vp_Sf(lv: c.F_Vp_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 0.5) err = 1;
     if (lv.v2 != null) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_F_Vp_Sf() c.F_Vp_Sf {
@@ -3599,30 +2897,21 @@ test "I_C_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 5);
 }
 test "I_C_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_I_C_Sf(.{ .v1 = 29090, .v2 = 104, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_I_C_Sf(.{ .v1 = 29090, .v2 = 104, .v3 = .{} }));
 }
 test "I_C_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_I_C_Sf());
 }
 test "I_C_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_I_C_Sf(), outcome);
+    try testing.expectOk(c.send_I_C_Sf());
 }
 test "I_C_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_I_C_Sf(), .{ .v1 = 29090, .v2 = 104, .v3 = .{} });
+    try testing.expectOk(zig_assert_I_C_Sf(c.ret_I_C_Sf()));
 }
 pub export fn zig_assert_I_C_Sf(lv: c.I_C_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 29090) err = 1;
     if (lv.v2 != 104) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_I_C_Sf() c.I_C_Sf {
@@ -3645,30 +2934,21 @@ test "I_D_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 test "I_D_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_I_D_Sf(.{ .v1 = 10469, .v2 = 0.875, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_I_D_Sf(.{ .v1 = 10469, .v2 = 0.875, .v3 = .{} }));
 }
 test "I_D_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_I_D_Sf());
 }
 test "I_D_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_I_D_Sf(), outcome);
+    try testing.expectOk(c.send_I_D_Sf());
 }
 test "I_D_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_I_D_Sf(), .{ .v1 = 10469, .v2 = 0.875, .v3 = .{} });
+    try testing.expectOk(zig_assert_I_D_Sf(c.ret_I_D_Sf()));
 }
 pub export fn zig_assert_I_D_Sf(lv: c.I_D_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 10469) err = 1;
     if (lv.v2 != 0.875) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_I_D_Sf() c.I_D_Sf {
@@ -3691,30 +2971,21 @@ test "I_F_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "I_F_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_I_F_Sf(.{ .v1 = 2480, .v2 = 1.0, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_I_F_Sf(.{ .v1 = 2480, .v2 = 1.0, .v3 = .{} }));
 }
 test "I_F_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_I_F_Sf());
 }
 test "I_F_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_I_F_Sf(), outcome);
+    try testing.expectOk(c.send_I_F_Sf());
 }
 test "I_F_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_I_F_Sf(), .{ .v1 = 2480, .v2 = 1.0, .v3 = .{} });
+    try testing.expectOk(zig_assert_I_F_Sf(c.ret_I_F_Sf()));
 }
 pub export fn zig_assert_I_F_Sf(lv: c.I_F_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 2480) err = 1;
     if (lv.v2 != 1.0) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_I_F_Sf() c.I_F_Sf {
@@ -3737,30 +3008,21 @@ test "I_I_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "I_I_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_I_I_Sf(.{ .v1 = 10439, .v2 = 25119, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_I_I_Sf(.{ .v1 = 10439, .v2 = 25119, .v3 = .{} }));
 }
 test "I_I_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_I_I_Sf());
 }
 test "I_I_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_I_I_Sf(), outcome);
+    try testing.expectOk(c.send_I_I_Sf());
 }
 test "I_I_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_I_I_Sf(), .{ .v1 = 10439, .v2 = 25119, .v3 = .{} });
+    try testing.expectOk(zig_assert_I_I_Sf(c.ret_I_I_Sf()));
 }
 pub export fn zig_assert_I_I_Sf(lv: c.I_I_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 10439) err = 1;
     if (lv.v2 != 25119) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_I_I_Sf() c.I_I_Sf {
@@ -3783,30 +3045,21 @@ test "I_Ip_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 test "I_Ip_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_I_Ip_Sf(.{ .v1 = 21252, .v2 = null, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_I_Ip_Sf(.{ .v1 = 21252, .v2 = null, .v3 = .{} }));
 }
 test "I_Ip_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_I_Ip_Sf());
 }
 test "I_Ip_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_I_Ip_Sf(), outcome);
+    try testing.expectOk(c.send_I_Ip_Sf());
 }
 test "I_Ip_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_I_Ip_Sf(), .{ .v1 = 21252, .v2 = null, .v3 = .{} });
+    try testing.expectOk(zig_assert_I_Ip_Sf(c.ret_I_Ip_Sf()));
 }
 pub export fn zig_assert_I_Ip_Sf(lv: c.I_Ip_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 21252) err = 1;
     if (lv.v2 != null) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_I_Ip_Sf() c.I_Ip_Sf {
@@ -3829,30 +3082,21 @@ test "I_L_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 test "I_L_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_I_L_Sf(.{ .v1 = 8675, .v2 = 13071, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_I_L_Sf(.{ .v1 = 8675, .v2 = 13071, .v3 = .{} }));
 }
 test "I_L_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_I_L_Sf());
 }
 test "I_L_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_I_L_Sf(), outcome);
+    try testing.expectOk(c.send_I_L_Sf());
 }
 test "I_L_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_I_L_Sf(), .{ .v1 = 8675, .v2 = 13071, .v3 = .{} });
+    try testing.expectOk(zig_assert_I_L_Sf(c.ret_I_L_Sf()));
 }
 pub export fn zig_assert_I_L_Sf(lv: c.I_L_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 8675) err = 1;
     if (lv.v2 != 13071) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_I_L_Sf() c.I_L_Sf {
@@ -3875,30 +3119,21 @@ test "I_S_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 6);
 }
 test "I_S_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_I_S_Sf(.{ .v1 = 22337, .v2 = 14437, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_I_S_Sf(.{ .v1 = 22337, .v2 = 14437, .v3 = .{} }));
 }
 test "I_S_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_I_S_Sf());
 }
 test "I_S_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_I_S_Sf(), outcome);
+    try testing.expectOk(c.send_I_S_Sf());
 }
 test "I_S_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_I_S_Sf(), .{ .v1 = 22337, .v2 = 14437, .v3 = .{} });
+    try testing.expectOk(zig_assert_I_S_Sf(c.ret_I_S_Sf()));
 }
 pub export fn zig_assert_I_S_Sf(lv: c.I_S_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 22337) err = 1;
     if (lv.v2 != 14437) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_I_S_Sf() c.I_S_Sf {
@@ -3919,29 +3154,20 @@ test "I_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 4);
 }
 test "I_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_I_Sf(.{ .v1 = 31933, .v2 = .{} }), outcome);
+    try testing.expectOk(c.assert_I_Sf(.{ .v1 = 31933, .v2 = .{} }));
 }
 test "I_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_I_Sf());
 }
 test "I_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_I_Sf(), outcome);
+    try testing.expectOk(c.send_I_Sf());
 }
 test "I_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_I_Sf(), .{ .v1 = 31933, .v2 = .{} });
+    try testing.expectOk(zig_assert_I_Sf(c.ret_I_Sf()));
 }
 pub export fn zig_assert_I_Sf(lv: c.I_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 31933) err = 1;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_I_Sf() c.I_Sf {
@@ -3964,30 +3190,21 @@ test "I_Sf_C: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
 test "I_Sf_C: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_I_Sf_C(.{ .v1 = 2630, .v2 = .{}, .v3 = 95 }), outcome);
+    try testing.expectOk(c.assert_I_Sf_C(.{ .v1 = 2630, .v2 = .{}, .v3 = 95 }));
 }
 test "I_Sf_C: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_I_Sf_C());
 }
 test "I_Sf_C: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_I_Sf_C(), outcome);
+    try testing.expectOk(c.send_I_Sf_C());
 }
 test "I_Sf_C: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_I_Sf_C(), .{ .v1 = 2630, .v2 = .{}, .v3 = 95 });
+    try testing.expectOk(zig_assert_I_Sf_C(c.ret_I_Sf_C()));
 }
 pub export fn zig_assert_I_Sf_C(lv: c.I_Sf_C) c_int {
     var err: c_int = 0;
     if (lv.v1 != 2630) err = 1;
     if (lv.v3 != 95) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_I_Sf_C() c.I_Sf_C {
@@ -4010,30 +3227,21 @@ test "I_Sf_D: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
 test "I_Sf_D: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_I_Sf_D(.{ .v1 = 1334, .v2 = .{}, .v3 = 0.5 }), outcome);
+    try testing.expectOk(c.assert_I_Sf_D(.{ .v1 = 1334, .v2 = .{}, .v3 = 0.5 }));
 }
 test "I_Sf_D: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_I_Sf_D());
 }
 test "I_Sf_D: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_I_Sf_D(), outcome);
+    try testing.expectOk(c.send_I_Sf_D());
 }
 test "I_Sf_D: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_I_Sf_D(), .{ .v1 = 1334, .v2 = .{}, .v3 = 0.5 });
+    try testing.expectOk(zig_assert_I_Sf_D(c.ret_I_Sf_D()));
 }
 pub export fn zig_assert_I_Sf_D(lv: c.I_Sf_D) c_int {
     var err: c_int = 0;
     if (lv.v1 != 1334) err = 1;
     if (lv.v3 != 0.5) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_I_Sf_D() c.I_Sf_D {
@@ -4056,30 +3264,21 @@ test "I_Sf_F: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
 test "I_Sf_F: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_I_Sf_F(.{ .v1 = 314, .v2 = .{}, .v3 = 1.0 }), outcome);
+    try testing.expectOk(c.assert_I_Sf_F(.{ .v1 = 314, .v2 = .{}, .v3 = 1.0 }));
 }
 test "I_Sf_F: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_I_Sf_F());
 }
 test "I_Sf_F: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_I_Sf_F(), outcome);
+    try testing.expectOk(c.send_I_Sf_F());
 }
 test "I_Sf_F: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_I_Sf_F(), .{ .v1 = 314, .v2 = .{}, .v3 = 1.0 });
+    try testing.expectOk(zig_assert_I_Sf_F(c.ret_I_Sf_F()));
 }
 pub export fn zig_assert_I_Sf_F(lv: c.I_Sf_F) c_int {
     var err: c_int = 0;
     if (lv.v1 != 314) err = 1;
     if (lv.v3 != 1.0) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_I_Sf_F() c.I_Sf_F {
@@ -4102,30 +3301,21 @@ test "I_Sf_I: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
 test "I_Sf_I: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_I_Sf_I(.{ .v1 = 808, .v2 = .{}, .v3 = 10326 }), outcome);
+    try testing.expectOk(c.assert_I_Sf_I(.{ .v1 = 808, .v2 = .{}, .v3 = 10326 }));
 }
 test "I_Sf_I: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_I_Sf_I());
 }
 test "I_Sf_I: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_I_Sf_I(), outcome);
+    try testing.expectOk(c.send_I_Sf_I());
 }
 test "I_Sf_I: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_I_Sf_I(), .{ .v1 = 808, .v2 = .{}, .v3 = 10326 });
+    try testing.expectOk(zig_assert_I_Sf_I(c.ret_I_Sf_I()));
 }
 pub export fn zig_assert_I_Sf_I(lv: c.I_Sf_I) c_int {
     var err: c_int = 0;
     if (lv.v1 != 808) err = 1;
     if (lv.v3 != 10326) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_I_Sf_I() c.I_Sf_I {
@@ -4148,30 +3338,21 @@ test "I_Sf_Ip: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
 test "I_Sf_Ip: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_I_Sf_Ip(.{ .v1 = 22309, .v2 = .{}, .v3 = null }), outcome);
+    try testing.expectOk(c.assert_I_Sf_Ip(.{ .v1 = 22309, .v2 = .{}, .v3 = null }));
 }
 test "I_Sf_Ip: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_I_Sf_Ip());
 }
 test "I_Sf_Ip: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_I_Sf_Ip(), outcome);
+    try testing.expectOk(c.send_I_Sf_Ip());
 }
 test "I_Sf_Ip: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_I_Sf_Ip(), .{ .v1 = 22309, .v2 = .{}, .v3 = null });
+    try testing.expectOk(zig_assert_I_Sf_Ip(c.ret_I_Sf_Ip()));
 }
 pub export fn zig_assert_I_Sf_Ip(lv: c.I_Sf_Ip) c_int {
     var err: c_int = 0;
     if (lv.v1 != 22309) err = 1;
     if (lv.v3 != null) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_I_Sf_Ip() c.I_Sf_Ip {
@@ -4194,30 +3375,21 @@ test "I_Sf_L: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
 test "I_Sf_L: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_I_Sf_L(.{ .v1 = 24772, .v2 = .{}, .v3 = 30102 }), outcome);
+    try testing.expectOk(c.assert_I_Sf_L(.{ .v1 = 24772, .v2 = .{}, .v3 = 30102 }));
 }
 test "I_Sf_L: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_I_Sf_L());
 }
 test "I_Sf_L: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_I_Sf_L(), outcome);
+    try testing.expectOk(c.send_I_Sf_L());
 }
 test "I_Sf_L: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_I_Sf_L(), .{ .v1 = 24772, .v2 = .{}, .v3 = 30102 });
+    try testing.expectOk(zig_assert_I_Sf_L(c.ret_I_Sf_L()));
 }
 pub export fn zig_assert_I_Sf_L(lv: c.I_Sf_L) c_int {
     var err: c_int = 0;
     if (lv.v1 != 24772) err = 1;
     if (lv.v3 != 30102) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_I_Sf_L() c.I_Sf_L {
@@ -4240,30 +3412,21 @@ test "I_Sf_S: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
 test "I_Sf_S: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_I_Sf_S(.{ .v1 = 1763, .v2 = .{}, .v3 = 2191 }), outcome);
+    try testing.expectOk(c.assert_I_Sf_S(.{ .v1 = 1763, .v2 = .{}, .v3 = 2191 }));
 }
 test "I_Sf_S: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_I_Sf_S());
 }
 test "I_Sf_S: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_I_Sf_S(), outcome);
+    try testing.expectOk(c.send_I_Sf_S());
 }
 test "I_Sf_S: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_I_Sf_S(), .{ .v1 = 1763, .v2 = .{}, .v3 = 2191 });
+    try testing.expectOk(zig_assert_I_Sf_S(c.ret_I_Sf_S()));
 }
 pub export fn zig_assert_I_Sf_S(lv: c.I_Sf_S) c_int {
     var err: c_int = 0;
     if (lv.v1 != 1763) err = 1;
     if (lv.v3 != 2191) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_I_Sf_S() c.I_Sf_S {
@@ -4286,29 +3449,20 @@ test "I_Sf_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
 test "I_Sf_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_I_Sf_Sf(.{ .v1 = 10536, .v2 = .{}, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_I_Sf_Sf(.{ .v1 = 10536, .v2 = .{}, .v3 = .{} }));
 }
 test "I_Sf_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_I_Sf_Sf());
 }
 test "I_Sf_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_I_Sf_Sf(), outcome);
+    try testing.expectOk(c.send_I_Sf_Sf());
 }
 test "I_Sf_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_I_Sf_Sf(), .{ .v1 = 10536, .v2 = .{}, .v3 = .{} });
+    try testing.expectOk(zig_assert_I_Sf_Sf(c.ret_I_Sf_Sf()));
 }
 pub export fn zig_assert_I_Sf_Sf(lv: c.I_Sf_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 10536) err = 1;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_I_Sf_Sf() c.I_Sf_Sf {
@@ -4331,30 +3485,21 @@ test "I_Sf_Uc: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
 test "I_Sf_Uc: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_I_Sf_Uc(.{ .v1 = 4160, .v2 = .{}, .v3 = 45 }), outcome);
+    try testing.expectOk(c.assert_I_Sf_Uc(.{ .v1 = 4160, .v2 = .{}, .v3 = 45 }));
 }
 test "I_Sf_Uc: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_I_Sf_Uc());
 }
 test "I_Sf_Uc: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_I_Sf_Uc(), outcome);
+    try testing.expectOk(c.send_I_Sf_Uc());
 }
 test "I_Sf_Uc: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_I_Sf_Uc(), .{ .v1 = 4160, .v2 = .{}, .v3 = 45 });
+    try testing.expectOk(zig_assert_I_Sf_Uc(c.ret_I_Sf_Uc()));
 }
 pub export fn zig_assert_I_Sf_Uc(lv: c.I_Sf_Uc) c_int {
     var err: c_int = 0;
     if (lv.v1 != 4160) err = 1;
     if (lv.v3 != 45) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_I_Sf_Uc() c.I_Sf_Uc {
@@ -4377,30 +3522,21 @@ test "I_Sf_Ui: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
 test "I_Sf_Ui: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_I_Sf_Ui(.{ .v1 = 25993, .v2 = .{}, .v3 = 25987 }), outcome);
+    try testing.expectOk(c.assert_I_Sf_Ui(.{ .v1 = 25993, .v2 = .{}, .v3 = 25987 }));
 }
 test "I_Sf_Ui: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_I_Sf_Ui());
 }
 test "I_Sf_Ui: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_I_Sf_Ui(), outcome);
+    try testing.expectOk(c.send_I_Sf_Ui());
 }
 test "I_Sf_Ui: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_I_Sf_Ui(), .{ .v1 = 25993, .v2 = .{}, .v3 = 25987 });
+    try testing.expectOk(zig_assert_I_Sf_Ui(c.ret_I_Sf_Ui()));
 }
 pub export fn zig_assert_I_Sf_Ui(lv: c.I_Sf_Ui) c_int {
     var err: c_int = 0;
     if (lv.v1 != 25993) err = 1;
     if (lv.v3 != 25987) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_I_Sf_Ui() c.I_Sf_Ui {
@@ -4423,30 +3559,21 @@ test "I_Sf_Ul: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
 test "I_Sf_Ul: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_I_Sf_Ul(.{ .v1 = 23895, .v2 = .{}, .v3 = 26777 }), outcome);
+    try testing.expectOk(c.assert_I_Sf_Ul(.{ .v1 = 23895, .v2 = .{}, .v3 = 26777 }));
 }
 test "I_Sf_Ul: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_I_Sf_Ul());
 }
 test "I_Sf_Ul: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_I_Sf_Ul(), outcome);
+    try testing.expectOk(c.send_I_Sf_Ul());
 }
 test "I_Sf_Ul: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_I_Sf_Ul(), .{ .v1 = 23895, .v2 = .{}, .v3 = 26777 });
+    try testing.expectOk(zig_assert_I_Sf_Ul(c.ret_I_Sf_Ul()));
 }
 pub export fn zig_assert_I_Sf_Ul(lv: c.I_Sf_Ul) c_int {
     var err: c_int = 0;
     if (lv.v1 != 23895) err = 1;
     if (lv.v3 != 26777) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_I_Sf_Ul() c.I_Sf_Ul {
@@ -4469,30 +3596,21 @@ test "I_Sf_Us: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
 test "I_Sf_Us: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_I_Sf_Us(.{ .v1 = 21715, .v2 = .{}, .v3 = 23581 }), outcome);
+    try testing.expectOk(c.assert_I_Sf_Us(.{ .v1 = 21715, .v2 = .{}, .v3 = 23581 }));
 }
 test "I_Sf_Us: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_I_Sf_Us());
 }
 test "I_Sf_Us: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_I_Sf_Us(), outcome);
+    try testing.expectOk(c.send_I_Sf_Us());
 }
 test "I_Sf_Us: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_I_Sf_Us(), .{ .v1 = 21715, .v2 = .{}, .v3 = 23581 });
+    try testing.expectOk(zig_assert_I_Sf_Us(c.ret_I_Sf_Us()));
 }
 pub export fn zig_assert_I_Sf_Us(lv: c.I_Sf_Us) c_int {
     var err: c_int = 0;
     if (lv.v1 != 21715) err = 1;
     if (lv.v3 != 23581) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_I_Sf_Us() c.I_Sf_Us {
@@ -4515,30 +3633,21 @@ test "I_Sf_Vp: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
 test "I_Sf_Vp: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_I_Sf_Vp(.{ .v1 = 10308, .v2 = .{}, .v3 = null }), outcome);
+    try testing.expectOk(c.assert_I_Sf_Vp(.{ .v1 = 10308, .v2 = .{}, .v3 = null }));
 }
 test "I_Sf_Vp: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_I_Sf_Vp());
 }
 test "I_Sf_Vp: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_I_Sf_Vp(), outcome);
+    try testing.expectOk(c.send_I_Sf_Vp());
 }
 test "I_Sf_Vp: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_I_Sf_Vp(), .{ .v1 = 10308, .v2 = .{}, .v3 = null });
+    try testing.expectOk(zig_assert_I_Sf_Vp(c.ret_I_Sf_Vp()));
 }
 pub export fn zig_assert_I_Sf_Vp(lv: c.I_Sf_Vp) c_int {
     var err: c_int = 0;
     if (lv.v1 != 10308) err = 1;
     if (lv.v3 != null) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_I_Sf_Vp() c.I_Sf_Vp {
@@ -4561,30 +3670,21 @@ test "I_Uc_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 5);
 }
 test "I_Uc_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_I_Uc_Sf(.{ .v1 = 1955, .v2 = 88, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_I_Uc_Sf(.{ .v1 = 1955, .v2 = 88, .v3 = .{} }));
 }
 test "I_Uc_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_I_Uc_Sf());
 }
 test "I_Uc_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_I_Uc_Sf(), outcome);
+    try testing.expectOk(c.send_I_Uc_Sf());
 }
 test "I_Uc_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_I_Uc_Sf(), .{ .v1 = 1955, .v2 = 88, .v3 = .{} });
+    try testing.expectOk(zig_assert_I_Uc_Sf(c.ret_I_Uc_Sf()));
 }
 pub export fn zig_assert_I_Uc_Sf(lv: c.I_Uc_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 1955) err = 1;
     if (lv.v2 != 88) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_I_Uc_Sf() c.I_Uc_Sf {
@@ -4607,30 +3707,21 @@ test "I_Ui_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "I_Ui_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_I_Ui_Sf(.{ .v1 = 18167, .v2 = 30153, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_I_Ui_Sf(.{ .v1 = 18167, .v2 = 30153, .v3 = .{} }));
 }
 test "I_Ui_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_I_Ui_Sf());
 }
 test "I_Ui_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_I_Ui_Sf(), outcome);
+    try testing.expectOk(c.send_I_Ui_Sf());
 }
 test "I_Ui_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_I_Ui_Sf(), .{ .v1 = 18167, .v2 = 30153, .v3 = .{} });
+    try testing.expectOk(zig_assert_I_Ui_Sf(c.ret_I_Ui_Sf()));
 }
 pub export fn zig_assert_I_Ui_Sf(lv: c.I_Ui_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 18167) err = 1;
     if (lv.v2 != 30153) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_I_Ui_Sf() c.I_Ui_Sf {
@@ -4653,30 +3744,21 @@ test "I_Ul_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 test "I_Ul_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_I_Ul_Sf(.{ .v1 = 30828, .v2 = 18699, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_I_Ul_Sf(.{ .v1 = 30828, .v2 = 18699, .v3 = .{} }));
 }
 test "I_Ul_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_I_Ul_Sf());
 }
 test "I_Ul_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_I_Ul_Sf(), outcome);
+    try testing.expectOk(c.send_I_Ul_Sf());
 }
 test "I_Ul_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_I_Ul_Sf(), .{ .v1 = 30828, .v2 = 18699, .v3 = .{} });
+    try testing.expectOk(zig_assert_I_Ul_Sf(c.ret_I_Ul_Sf()));
 }
 pub export fn zig_assert_I_Ul_Sf(lv: c.I_Ul_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 30828) err = 1;
     if (lv.v2 != 18699) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_I_Ul_Sf() c.I_Ul_Sf {
@@ -4699,30 +3781,21 @@ test "I_Us_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 6);
 }
 test "I_Us_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_I_Us_Sf(.{ .v1 = 9385, .v2 = 8777, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_I_Us_Sf(.{ .v1 = 9385, .v2 = 8777, .v3 = .{} }));
 }
 test "I_Us_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_I_Us_Sf());
 }
 test "I_Us_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_I_Us_Sf(), outcome);
+    try testing.expectOk(c.send_I_Us_Sf());
 }
 test "I_Us_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_I_Us_Sf(), .{ .v1 = 9385, .v2 = 8777, .v3 = .{} });
+    try testing.expectOk(zig_assert_I_Us_Sf(c.ret_I_Us_Sf()));
 }
 pub export fn zig_assert_I_Us_Sf(lv: c.I_Us_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 9385) err = 1;
     if (lv.v2 != 8777) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_I_Us_Sf() c.I_Us_Sf {
@@ -4745,30 +3818,21 @@ test "I_Vp_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 test "I_Vp_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_I_Vp_Sf(.{ .v1 = 26440, .v2 = null, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_I_Vp_Sf(.{ .v1 = 26440, .v2 = null, .v3 = .{} }));
 }
 test "I_Vp_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_I_Vp_Sf());
 }
 test "I_Vp_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_I_Vp_Sf(), outcome);
+    try testing.expectOk(c.send_I_Vp_Sf());
 }
 test "I_Vp_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_I_Vp_Sf(), .{ .v1 = 26440, .v2 = null, .v3 = .{} });
+    try testing.expectOk(zig_assert_I_Vp_Sf(c.ret_I_Vp_Sf()));
 }
 pub export fn zig_assert_I_Vp_Sf(lv: c.I_Vp_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 26440) err = 1;
     if (lv.v2 != null) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_I_Vp_Sf() c.I_Vp_Sf {
@@ -4791,30 +3855,21 @@ test "Ip_C_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(9, 5));
 }
 test "Ip_C_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_Ip_C_Sf(.{ .v1 = null, .v2 = 18, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_Ip_C_Sf(.{ .v1 = null, .v2 = 18, .v3 = .{} }));
 }
 test "Ip_C_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_Ip_C_Sf());
 }
 test "Ip_C_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_Ip_C_Sf(), outcome);
+    try testing.expectOk(c.send_Ip_C_Sf());
 }
 test "Ip_C_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_Ip_C_Sf(), .{ .v1 = null, .v2 = 18, .v3 = .{} });
+    try testing.expectOk(zig_assert_Ip_C_Sf(c.ret_Ip_C_Sf()));
 }
 pub export fn zig_assert_Ip_C_Sf(lv: c.Ip_C_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != null) err = 1;
     if (lv.v2 != 18) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_Ip_C_Sf() c.Ip_C_Sf {
@@ -4837,30 +3892,21 @@ test "Ip_D_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 test "Ip_D_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_Ip_D_Sf(.{ .v1 = null, .v2 = 1.0, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_Ip_D_Sf(.{ .v1 = null, .v2 = 1.0, .v3 = .{} }));
 }
 test "Ip_D_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_Ip_D_Sf());
 }
 test "Ip_D_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_Ip_D_Sf(), outcome);
+    try testing.expectOk(c.send_Ip_D_Sf());
 }
 test "Ip_D_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_Ip_D_Sf(), .{ .v1 = null, .v2 = 1.0, .v3 = .{} });
+    try testing.expectOk(zig_assert_Ip_D_Sf(c.ret_Ip_D_Sf()));
 }
 pub export fn zig_assert_Ip_D_Sf(lv: c.Ip_D_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != null) err = 1;
     if (lv.v2 != 1.0) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_Ip_D_Sf() c.Ip_D_Sf {
@@ -4883,30 +3929,21 @@ test "Ip_F_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
 }
 test "Ip_F_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_Ip_F_Sf(.{ .v1 = null, .v2 = 0.5, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_Ip_F_Sf(.{ .v1 = null, .v2 = 0.5, .v3 = .{} }));
 }
 test "Ip_F_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_Ip_F_Sf());
 }
 test "Ip_F_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_Ip_F_Sf(), outcome);
+    try testing.expectOk(c.send_Ip_F_Sf());
 }
 test "Ip_F_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_Ip_F_Sf(), .{ .v1 = null, .v2 = 0.5, .v3 = .{} });
+    try testing.expectOk(zig_assert_Ip_F_Sf(c.ret_Ip_F_Sf()));
 }
 pub export fn zig_assert_Ip_F_Sf(lv: c.Ip_F_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != null) err = 1;
     if (lv.v2 != 0.5) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_Ip_F_Sf() c.Ip_F_Sf {
@@ -4929,30 +3966,21 @@ test "Ip_I_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
 }
 test "Ip_I_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_Ip_I_Sf(.{ .v1 = null, .v2 = 30260, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_Ip_I_Sf(.{ .v1 = null, .v2 = 30260, .v3 = .{} }));
 }
 test "Ip_I_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_Ip_I_Sf());
 }
 test "Ip_I_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_Ip_I_Sf(), outcome);
+    try testing.expectOk(c.send_Ip_I_Sf());
 }
 test "Ip_I_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_Ip_I_Sf(), .{ .v1 = null, .v2 = 30260, .v3 = .{} });
+    try testing.expectOk(zig_assert_Ip_I_Sf(c.ret_Ip_I_Sf()));
 }
 pub export fn zig_assert_Ip_I_Sf(lv: c.Ip_I_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != null) err = 1;
     if (lv.v2 != 30260) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_Ip_I_Sf() c.Ip_I_Sf {
@@ -4975,30 +4003,21 @@ test "Ip_Ip_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 test "Ip_Ip_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_Ip_Ip_Sf(.{ .v1 = null, .v2 = null, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_Ip_Ip_Sf(.{ .v1 = null, .v2 = null, .v3 = .{} }));
 }
 test "Ip_Ip_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_Ip_Ip_Sf());
 }
 test "Ip_Ip_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_Ip_Ip_Sf(), outcome);
+    try testing.expectOk(c.send_Ip_Ip_Sf());
 }
 test "Ip_Ip_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_Ip_Ip_Sf(), .{ .v1 = null, .v2 = null, .v3 = .{} });
+    try testing.expectOk(zig_assert_Ip_Ip_Sf(c.ret_Ip_Ip_Sf()));
 }
 pub export fn zig_assert_Ip_Ip_Sf(lv: c.Ip_Ip_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != null) err = 1;
     if (lv.v2 != null) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_Ip_Ip_Sf() c.Ip_Ip_Sf {
@@ -5021,30 +4040,21 @@ test "Ip_L_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 test "Ip_L_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_Ip_L_Sf(.{ .v1 = null, .v2 = 29776, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_Ip_L_Sf(.{ .v1 = null, .v2 = 29776, .v3 = .{} }));
 }
 test "Ip_L_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_Ip_L_Sf());
 }
 test "Ip_L_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_Ip_L_Sf(), outcome);
+    try testing.expectOk(c.send_Ip_L_Sf());
 }
 test "Ip_L_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_Ip_L_Sf(), .{ .v1 = null, .v2 = 29776, .v3 = .{} });
+    try testing.expectOk(zig_assert_Ip_L_Sf(c.ret_Ip_L_Sf()));
 }
 pub export fn zig_assert_Ip_L_Sf(lv: c.Ip_L_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != null) err = 1;
     if (lv.v2 != 29776) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_Ip_L_Sf() c.Ip_L_Sf {
@@ -5067,30 +4077,21 @@ test "Ip_S_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(10, 6));
 }
 test "Ip_S_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_Ip_S_Sf(.{ .v1 = null, .v2 = 27826, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_Ip_S_Sf(.{ .v1 = null, .v2 = 27826, .v3 = .{} }));
 }
 test "Ip_S_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_Ip_S_Sf());
 }
 test "Ip_S_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_Ip_S_Sf(), outcome);
+    try testing.expectOk(c.send_Ip_S_Sf());
 }
 test "Ip_S_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_Ip_S_Sf(), .{ .v1 = null, .v2 = 27826, .v3 = .{} });
+    try testing.expectOk(zig_assert_Ip_S_Sf(c.ret_Ip_S_Sf()));
 }
 pub export fn zig_assert_Ip_S_Sf(lv: c.Ip_S_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != null) err = 1;
     if (lv.v2 != 27826) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_Ip_S_Sf() c.Ip_S_Sf {
@@ -5111,29 +4112,20 @@ test "Ip_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, ABISELECT(8, 4));
 }
 test "Ip_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_Ip_Sf(.{ .v1 = null, .v2 = .{} }), outcome);
+    try testing.expectOk(c.assert_Ip_Sf(.{ .v1 = null, .v2 = .{} }));
 }
 test "Ip_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_Ip_Sf());
 }
 test "Ip_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_Ip_Sf(), outcome);
+    try testing.expectOk(c.send_Ip_Sf());
 }
 test "Ip_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_Ip_Sf(), .{ .v1 = null, .v2 = .{} });
+    try testing.expectOk(zig_assert_Ip_Sf(c.ret_Ip_Sf()));
 }
 pub export fn zig_assert_Ip_Sf(lv: c.Ip_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != null) err = 1;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_Ip_Sf() c.Ip_Sf {
@@ -5156,30 +4148,21 @@ test "Ip_Sf_C: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
 test "Ip_Sf_C: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_Ip_Sf_C(.{ .v1 = null, .v2 = .{}, .v3 = 118 }), outcome);
+    try testing.expectOk(c.assert_Ip_Sf_C(.{ .v1 = null, .v2 = .{}, .v3 = 118 }));
 }
 test "Ip_Sf_C: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_Ip_Sf_C());
 }
 test "Ip_Sf_C: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_Ip_Sf_C(), outcome);
+    try testing.expectOk(c.send_Ip_Sf_C());
 }
 test "Ip_Sf_C: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_Ip_Sf_C(), .{ .v1 = null, .v2 = .{}, .v3 = 118 });
+    try testing.expectOk(zig_assert_Ip_Sf_C(c.ret_Ip_Sf_C()));
 }
 pub export fn zig_assert_Ip_Sf_C(lv: c.Ip_Sf_C) c_int {
     var err: c_int = 0;
     if (lv.v1 != null) err = 1;
     if (lv.v3 != 118) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_Ip_Sf_C() c.Ip_Sf_C {
@@ -5202,30 +4185,21 @@ test "Ip_Sf_D: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
 test "Ip_Sf_D: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_Ip_Sf_D(.{ .v1 = null, .v2 = .{}, .v3 = 7.0 }), outcome);
+    try testing.expectOk(c.assert_Ip_Sf_D(.{ .v1 = null, .v2 = .{}, .v3 = 7.0 }));
 }
 test "Ip_Sf_D: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_Ip_Sf_D());
 }
 test "Ip_Sf_D: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_Ip_Sf_D(), outcome);
+    try testing.expectOk(c.send_Ip_Sf_D());
 }
 test "Ip_Sf_D: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_Ip_Sf_D(), .{ .v1 = null, .v2 = .{}, .v3 = 7.0 });
+    try testing.expectOk(zig_assert_Ip_Sf_D(c.ret_Ip_Sf_D()));
 }
 pub export fn zig_assert_Ip_Sf_D(lv: c.Ip_Sf_D) c_int {
     var err: c_int = 0;
     if (lv.v1 != null) err = 1;
     if (lv.v3 != 7.0) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_Ip_Sf_D() c.Ip_Sf_D {
@@ -5248,30 +4222,21 @@ test "Ip_Sf_F: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
 test "Ip_Sf_F: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_Ip_Sf_F(.{ .v1 = null, .v2 = .{}, .v3 = -0.25 }), outcome);
+    try testing.expectOk(c.assert_Ip_Sf_F(.{ .v1 = null, .v2 = .{}, .v3 = -0.25 }));
 }
 test "Ip_Sf_F: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_Ip_Sf_F());
 }
 test "Ip_Sf_F: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_Ip_Sf_F(), outcome);
+    try testing.expectOk(c.send_Ip_Sf_F());
 }
 test "Ip_Sf_F: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_Ip_Sf_F(), .{ .v1 = null, .v2 = .{}, .v3 = -0.25 });
+    try testing.expectOk(zig_assert_Ip_Sf_F(c.ret_Ip_Sf_F()));
 }
 pub export fn zig_assert_Ip_Sf_F(lv: c.Ip_Sf_F) c_int {
     var err: c_int = 0;
     if (lv.v1 != null) err = 1;
     if (lv.v3 != -0.25) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_Ip_Sf_F() c.Ip_Sf_F {
@@ -5294,30 +4259,21 @@ test "Ip_Sf_I: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
 test "Ip_Sf_I: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_Ip_Sf_I(.{ .v1 = null, .v2 = .{}, .v3 = 30120 }), outcome);
+    try testing.expectOk(c.assert_Ip_Sf_I(.{ .v1 = null, .v2 = .{}, .v3 = 30120 }));
 }
 test "Ip_Sf_I: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_Ip_Sf_I());
 }
 test "Ip_Sf_I: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_Ip_Sf_I(), outcome);
+    try testing.expectOk(c.send_Ip_Sf_I());
 }
 test "Ip_Sf_I: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_Ip_Sf_I(), .{ .v1 = null, .v2 = .{}, .v3 = 30120 });
+    try testing.expectOk(zig_assert_Ip_Sf_I(c.ret_Ip_Sf_I()));
 }
 pub export fn zig_assert_Ip_Sf_I(lv: c.Ip_Sf_I) c_int {
     var err: c_int = 0;
     if (lv.v1 != null) err = 1;
     if (lv.v3 != 30120) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_Ip_Sf_I() c.Ip_Sf_I {
@@ -5340,30 +4296,21 @@ test "Ip_Sf_Ip: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
 test "Ip_Sf_Ip: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_Ip_Sf_Ip(.{ .v1 = null, .v2 = .{}, .v3 = null }), outcome);
+    try testing.expectOk(c.assert_Ip_Sf_Ip(.{ .v1 = null, .v2 = .{}, .v3 = null }));
 }
 test "Ip_Sf_Ip: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_Ip_Sf_Ip());
 }
 test "Ip_Sf_Ip: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_Ip_Sf_Ip(), outcome);
+    try testing.expectOk(c.send_Ip_Sf_Ip());
 }
 test "Ip_Sf_Ip: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_Ip_Sf_Ip(), .{ .v1 = null, .v2 = .{}, .v3 = null });
+    try testing.expectOk(zig_assert_Ip_Sf_Ip(c.ret_Ip_Sf_Ip()));
 }
 pub export fn zig_assert_Ip_Sf_Ip(lv: c.Ip_Sf_Ip) c_int {
     var err: c_int = 0;
     if (lv.v1 != null) err = 1;
     if (lv.v3 != null) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_Ip_Sf_Ip() c.Ip_Sf_Ip {
@@ -5386,30 +4333,21 @@ test "Ip_Sf_L: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
 test "Ip_Sf_L: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_Ip_Sf_L(.{ .v1 = null, .v2 = .{}, .v3 = 20716 }), outcome);
+    try testing.expectOk(c.assert_Ip_Sf_L(.{ .v1 = null, .v2 = .{}, .v3 = 20716 }));
 }
 test "Ip_Sf_L: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_Ip_Sf_L());
 }
 test "Ip_Sf_L: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_Ip_Sf_L(), outcome);
+    try testing.expectOk(c.send_Ip_Sf_L());
 }
 test "Ip_Sf_L: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_Ip_Sf_L(), .{ .v1 = null, .v2 = .{}, .v3 = 20716 });
+    try testing.expectOk(zig_assert_Ip_Sf_L(c.ret_Ip_Sf_L()));
 }
 pub export fn zig_assert_Ip_Sf_L(lv: c.Ip_Sf_L) c_int {
     var err: c_int = 0;
     if (lv.v1 != null) err = 1;
     if (lv.v3 != 20716) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_Ip_Sf_L() c.Ip_Sf_L {
@@ -5432,30 +4370,21 @@ test "Ip_Sf_S: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
 test "Ip_Sf_S: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_Ip_Sf_S(.{ .v1 = null, .v2 = .{}, .v3 = 8536 }), outcome);
+    try testing.expectOk(c.assert_Ip_Sf_S(.{ .v1 = null, .v2 = .{}, .v3 = 8536 }));
 }
 test "Ip_Sf_S: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_Ip_Sf_S());
 }
 test "Ip_Sf_S: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_Ip_Sf_S(), outcome);
+    try testing.expectOk(c.send_Ip_Sf_S());
 }
 test "Ip_Sf_S: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_Ip_Sf_S(), .{ .v1 = null, .v2 = .{}, .v3 = 8536 });
+    try testing.expectOk(zig_assert_Ip_Sf_S(c.ret_Ip_Sf_S()));
 }
 pub export fn zig_assert_Ip_Sf_S(lv: c.Ip_Sf_S) c_int {
     var err: c_int = 0;
     if (lv.v1 != null) err = 1;
     if (lv.v3 != 8536) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_Ip_Sf_S() c.Ip_Sf_S {
@@ -5478,29 +4407,20 @@ test "Ip_Sf_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
 test "Ip_Sf_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_Ip_Sf_Sf(.{ .v1 = null, .v2 = .{}, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_Ip_Sf_Sf(.{ .v1 = null, .v2 = .{}, .v3 = .{} }));
 }
 test "Ip_Sf_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_Ip_Sf_Sf());
 }
 test "Ip_Sf_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_Ip_Sf_Sf(), outcome);
+    try testing.expectOk(c.send_Ip_Sf_Sf());
 }
 test "Ip_Sf_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_Ip_Sf_Sf(), .{ .v1 = null, .v2 = .{}, .v3 = .{} });
+    try testing.expectOk(zig_assert_Ip_Sf_Sf(c.ret_Ip_Sf_Sf()));
 }
 pub export fn zig_assert_Ip_Sf_Sf(lv: c.Ip_Sf_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != null) err = 1;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_Ip_Sf_Sf() c.Ip_Sf_Sf {
@@ -5523,30 +4443,21 @@ test "Ip_Sf_Uc: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
 test "Ip_Sf_Uc: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_Ip_Sf_Uc(.{ .v1 = null, .v2 = .{}, .v3 = 63 }), outcome);
+    try testing.expectOk(c.assert_Ip_Sf_Uc(.{ .v1 = null, .v2 = .{}, .v3 = 63 }));
 }
 test "Ip_Sf_Uc: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_Ip_Sf_Uc());
 }
 test "Ip_Sf_Uc: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_Ip_Sf_Uc(), outcome);
+    try testing.expectOk(c.send_Ip_Sf_Uc());
 }
 test "Ip_Sf_Uc: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_Ip_Sf_Uc(), .{ .v1 = null, .v2 = .{}, .v3 = 63 });
+    try testing.expectOk(zig_assert_Ip_Sf_Uc(c.ret_Ip_Sf_Uc()));
 }
 pub export fn zig_assert_Ip_Sf_Uc(lv: c.Ip_Sf_Uc) c_int {
     var err: c_int = 0;
     if (lv.v1 != null) err = 1;
     if (lv.v3 != 63) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_Ip_Sf_Uc() c.Ip_Sf_Uc {
@@ -5569,30 +4480,21 @@ test "Ip_Sf_Ui: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
 test "Ip_Sf_Ui: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_Ip_Sf_Ui(.{ .v1 = null, .v2 = .{}, .v3 = 23923 }), outcome);
+    try testing.expectOk(c.assert_Ip_Sf_Ui(.{ .v1 = null, .v2 = .{}, .v3 = 23923 }));
 }
 test "Ip_Sf_Ui: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_Ip_Sf_Ui());
 }
 test "Ip_Sf_Ui: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_Ip_Sf_Ui(), outcome);
+    try testing.expectOk(c.send_Ip_Sf_Ui());
 }
 test "Ip_Sf_Ui: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_Ip_Sf_Ui(), .{ .v1 = null, .v2 = .{}, .v3 = 23923 });
+    try testing.expectOk(zig_assert_Ip_Sf_Ui(c.ret_Ip_Sf_Ui()));
 }
 pub export fn zig_assert_Ip_Sf_Ui(lv: c.Ip_Sf_Ui) c_int {
     var err: c_int = 0;
     if (lv.v1 != null) err = 1;
     if (lv.v3 != 23923) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_Ip_Sf_Ui() c.Ip_Sf_Ui {
@@ -5615,30 +4517,21 @@ test "Ip_Sf_Ul: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
 test "Ip_Sf_Ul: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_Ip_Sf_Ul(.{ .v1 = null, .v2 = .{}, .v3 = 8874 }), outcome);
+    try testing.expectOk(c.assert_Ip_Sf_Ul(.{ .v1 = null, .v2 = .{}, .v3 = 8874 }));
 }
 test "Ip_Sf_Ul: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_Ip_Sf_Ul());
 }
 test "Ip_Sf_Ul: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_Ip_Sf_Ul(), outcome);
+    try testing.expectOk(c.send_Ip_Sf_Ul());
 }
 test "Ip_Sf_Ul: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_Ip_Sf_Ul(), .{ .v1 = null, .v2 = .{}, .v3 = 8874 });
+    try testing.expectOk(zig_assert_Ip_Sf_Ul(c.ret_Ip_Sf_Ul()));
 }
 pub export fn zig_assert_Ip_Sf_Ul(lv: c.Ip_Sf_Ul) c_int {
     var err: c_int = 0;
     if (lv.v1 != null) err = 1;
     if (lv.v3 != 8874) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_Ip_Sf_Ul() c.Ip_Sf_Ul {
@@ -5661,30 +4554,21 @@ test "Ip_Sf_Us: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
 test "Ip_Sf_Us: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_Ip_Sf_Us(.{ .v1 = null, .v2 = .{}, .v3 = 9079 }), outcome);
+    try testing.expectOk(c.assert_Ip_Sf_Us(.{ .v1 = null, .v2 = .{}, .v3 = 9079 }));
 }
 test "Ip_Sf_Us: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_Ip_Sf_Us());
 }
 test "Ip_Sf_Us: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_Ip_Sf_Us(), outcome);
+    try testing.expectOk(c.send_Ip_Sf_Us());
 }
 test "Ip_Sf_Us: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_Ip_Sf_Us(), .{ .v1 = null, .v2 = .{}, .v3 = 9079 });
+    try testing.expectOk(zig_assert_Ip_Sf_Us(c.ret_Ip_Sf_Us()));
 }
 pub export fn zig_assert_Ip_Sf_Us(lv: c.Ip_Sf_Us) c_int {
     var err: c_int = 0;
     if (lv.v1 != null) err = 1;
     if (lv.v3 != 9079) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_Ip_Sf_Us() c.Ip_Sf_Us {
@@ -5707,30 +4591,21 @@ test "Ip_Sf_Vp: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
 test "Ip_Sf_Vp: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_Ip_Sf_Vp(.{ .v1 = null, .v2 = .{}, .v3 = null }), outcome);
+    try testing.expectOk(c.assert_Ip_Sf_Vp(.{ .v1 = null, .v2 = .{}, .v3 = null }));
 }
 test "Ip_Sf_Vp: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_Ip_Sf_Vp());
 }
 test "Ip_Sf_Vp: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_Ip_Sf_Vp(), outcome);
+    try testing.expectOk(c.send_Ip_Sf_Vp());
 }
 test "Ip_Sf_Vp: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_Ip_Sf_Vp(), .{ .v1 = null, .v2 = .{}, .v3 = null });
+    try testing.expectOk(zig_assert_Ip_Sf_Vp(c.ret_Ip_Sf_Vp()));
 }
 pub export fn zig_assert_Ip_Sf_Vp(lv: c.Ip_Sf_Vp) c_int {
     var err: c_int = 0;
     if (lv.v1 != null) err = 1;
     if (lv.v3 != null) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_Ip_Sf_Vp() c.Ip_Sf_Vp {
@@ -5753,30 +4628,21 @@ test "Ip_Uc_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(9, 5));
 }
 test "Ip_Uc_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_Ip_Uc_Sf(.{ .v1 = null, .v2 = 83, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_Ip_Uc_Sf(.{ .v1 = null, .v2 = 83, .v3 = .{} }));
 }
 test "Ip_Uc_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_Ip_Uc_Sf());
 }
 test "Ip_Uc_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_Ip_Uc_Sf(), outcome);
+    try testing.expectOk(c.send_Ip_Uc_Sf());
 }
 test "Ip_Uc_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_Ip_Uc_Sf(), .{ .v1 = null, .v2 = 83, .v3 = .{} });
+    try testing.expectOk(zig_assert_Ip_Uc_Sf(c.ret_Ip_Uc_Sf()));
 }
 pub export fn zig_assert_Ip_Uc_Sf(lv: c.Ip_Uc_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != null) err = 1;
     if (lv.v2 != 83) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_Ip_Uc_Sf() c.Ip_Uc_Sf {
@@ -5799,30 +4665,21 @@ test "Ip_Ui_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(12, 8));
 }
 test "Ip_Ui_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_Ip_Ui_Sf(.{ .v1 = null, .v2 = 20391, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_Ip_Ui_Sf(.{ .v1 = null, .v2 = 20391, .v3 = .{} }));
 }
 test "Ip_Ui_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_Ip_Ui_Sf());
 }
 test "Ip_Ui_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_Ip_Ui_Sf(), outcome);
+    try testing.expectOk(c.send_Ip_Ui_Sf());
 }
 test "Ip_Ui_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_Ip_Ui_Sf(), .{ .v1 = null, .v2 = 20391, .v3 = .{} });
+    try testing.expectOk(zig_assert_Ip_Ui_Sf(c.ret_Ip_Ui_Sf()));
 }
 pub export fn zig_assert_Ip_Ui_Sf(lv: c.Ip_Ui_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != null) err = 1;
     if (lv.v2 != 20391) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_Ip_Ui_Sf() c.Ip_Ui_Sf {
@@ -5845,30 +4702,21 @@ test "Ip_Ul_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 test "Ip_Ul_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_Ip_Ul_Sf(.{ .v1 = null, .v2 = 27381, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_Ip_Ul_Sf(.{ .v1 = null, .v2 = 27381, .v3 = .{} }));
 }
 test "Ip_Ul_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_Ip_Ul_Sf());
 }
 test "Ip_Ul_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_Ip_Ul_Sf(), outcome);
+    try testing.expectOk(c.send_Ip_Ul_Sf());
 }
 test "Ip_Ul_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_Ip_Ul_Sf(), .{ .v1 = null, .v2 = 27381, .v3 = .{} });
+    try testing.expectOk(zig_assert_Ip_Ul_Sf(c.ret_Ip_Ul_Sf()));
 }
 pub export fn zig_assert_Ip_Ul_Sf(lv: c.Ip_Ul_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != null) err = 1;
     if (lv.v2 != 27381) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_Ip_Ul_Sf() c.Ip_Ul_Sf {
@@ -5891,30 +4739,21 @@ test "Ip_Us_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(10, 6));
 }
 test "Ip_Us_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_Ip_Us_Sf(.{ .v1 = null, .v2 = 21215, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_Ip_Us_Sf(.{ .v1 = null, .v2 = 21215, .v3 = .{} }));
 }
 test "Ip_Us_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_Ip_Us_Sf());
 }
 test "Ip_Us_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_Ip_Us_Sf(), outcome);
+    try testing.expectOk(c.send_Ip_Us_Sf());
 }
 test "Ip_Us_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_Ip_Us_Sf(), .{ .v1 = null, .v2 = 21215, .v3 = .{} });
+    try testing.expectOk(zig_assert_Ip_Us_Sf(c.ret_Ip_Us_Sf()));
 }
 pub export fn zig_assert_Ip_Us_Sf(lv: c.Ip_Us_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != null) err = 1;
     if (lv.v2 != 21215) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_Ip_Us_Sf() c.Ip_Us_Sf {
@@ -5937,30 +4776,21 @@ test "Ip_Vp_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 test "Ip_Vp_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_Ip_Vp_Sf(.{ .v1 = null, .v2 = null, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_Ip_Vp_Sf(.{ .v1 = null, .v2 = null, .v3 = .{} }));
 }
 test "Ip_Vp_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_Ip_Vp_Sf());
 }
 test "Ip_Vp_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_Ip_Vp_Sf(), outcome);
+    try testing.expectOk(c.send_Ip_Vp_Sf());
 }
 test "Ip_Vp_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_Ip_Vp_Sf(), .{ .v1 = null, .v2 = null, .v3 = .{} });
+    try testing.expectOk(zig_assert_Ip_Vp_Sf(c.ret_Ip_Vp_Sf()));
 }
 pub export fn zig_assert_Ip_Vp_Sf(lv: c.Ip_Vp_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != null) err = 1;
     if (lv.v2 != null) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_Ip_Vp_Sf() c.Ip_Vp_Sf {
@@ -5983,30 +4813,21 @@ test "L_C_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 9);
 }
 test "L_C_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_L_C_Sf(.{ .v1 = 18919, .v2 = 41, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_L_C_Sf(.{ .v1 = 18919, .v2 = 41, .v3 = .{} }));
 }
 test "L_C_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_L_C_Sf());
 }
 test "L_C_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_L_C_Sf(), outcome);
+    try testing.expectOk(c.send_L_C_Sf());
 }
 test "L_C_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_L_C_Sf(), .{ .v1 = 18919, .v2 = 41, .v3 = .{} });
+    try testing.expectOk(zig_assert_L_C_Sf(c.ret_L_C_Sf()));
 }
 pub export fn zig_assert_L_C_Sf(lv: c.L_C_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 18919) err = 1;
     if (lv.v2 != 41) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_L_C_Sf() c.L_C_Sf {
@@ -6029,30 +4850,21 @@ test "L_D_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
 test "L_D_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_L_D_Sf(.{ .v1 = 802, .v2 = 1.0, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_L_D_Sf(.{ .v1 = 802, .v2 = 1.0, .v3 = .{} }));
 }
 test "L_D_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_L_D_Sf());
 }
 test "L_D_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_L_D_Sf(), outcome);
+    try testing.expectOk(c.send_L_D_Sf());
 }
 test "L_D_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_L_D_Sf(), .{ .v1 = 802, .v2 = 1.0, .v3 = .{} });
+    try testing.expectOk(zig_assert_L_D_Sf(c.ret_L_D_Sf()));
 }
 pub export fn zig_assert_L_D_Sf(lv: c.L_D_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 802) err = 1;
     if (lv.v2 != 1.0) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_L_D_Sf() c.L_D_Sf {
@@ -6075,30 +4887,21 @@ test "L_F_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
 test "L_F_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_L_F_Sf(.{ .v1 = 21753, .v2 = 4.5, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_L_F_Sf(.{ .v1 = 21753, .v2 = 4.5, .v3 = .{} }));
 }
 test "L_F_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_L_F_Sf());
 }
 test "L_F_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_L_F_Sf(), outcome);
+    try testing.expectOk(c.send_L_F_Sf());
 }
 test "L_F_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_L_F_Sf(), .{ .v1 = 21753, .v2 = 4.5, .v3 = .{} });
+    try testing.expectOk(zig_assert_L_F_Sf(c.ret_L_F_Sf()));
 }
 pub export fn zig_assert_L_F_Sf(lv: c.L_F_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 21753) err = 1;
     if (lv.v2 != 4.5) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_L_F_Sf() c.L_F_Sf {
@@ -6121,30 +4924,21 @@ test "L_I_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
 test "L_I_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_L_I_Sf(.{ .v1 = 2747, .v2 = 9211, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_L_I_Sf(.{ .v1 = 2747, .v2 = 9211, .v3 = .{} }));
 }
 test "L_I_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_L_I_Sf());
 }
 test "L_I_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_L_I_Sf(), outcome);
+    try testing.expectOk(c.send_L_I_Sf());
 }
 test "L_I_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_L_I_Sf(), .{ .v1 = 2747, .v2 = 9211, .v3 = .{} });
+    try testing.expectOk(zig_assert_L_I_Sf(c.ret_L_I_Sf()));
 }
 pub export fn zig_assert_L_I_Sf(lv: c.L_I_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 2747) err = 1;
     if (lv.v2 != 9211) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_L_I_Sf() c.L_I_Sf {
@@ -6167,30 +4961,21 @@ test "L_Ip_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 test "L_Ip_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_L_Ip_Sf(.{ .v1 = 16024, .v2 = null, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_L_Ip_Sf(.{ .v1 = 16024, .v2 = null, .v3 = .{} }));
 }
 test "L_Ip_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_L_Ip_Sf());
 }
 test "L_Ip_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_L_Ip_Sf(), outcome);
+    try testing.expectOk(c.send_L_Ip_Sf());
 }
 test "L_Ip_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_L_Ip_Sf(), .{ .v1 = 16024, .v2 = null, .v3 = .{} });
+    try testing.expectOk(zig_assert_L_Ip_Sf(c.ret_L_Ip_Sf()));
 }
 pub export fn zig_assert_L_Ip_Sf(lv: c.L_Ip_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 16024) err = 1;
     if (lv.v2 != null) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_L_Ip_Sf() c.L_Ip_Sf {
@@ -6213,30 +4998,21 @@ test "L_L_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
 test "L_L_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_L_L_Sf(.{ .v1 = 13014, .v2 = 744, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_L_L_Sf(.{ .v1 = 13014, .v2 = 744, .v3 = .{} }));
 }
 test "L_L_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_L_L_Sf());
 }
 test "L_L_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_L_L_Sf(), outcome);
+    try testing.expectOk(c.send_L_L_Sf());
 }
 test "L_L_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_L_L_Sf(), .{ .v1 = 13014, .v2 = 744, .v3 = .{} });
+    try testing.expectOk(zig_assert_L_L_Sf(c.ret_L_L_Sf()));
 }
 pub export fn zig_assert_L_L_Sf(lv: c.L_L_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 13014) err = 1;
     if (lv.v2 != 744) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_L_L_Sf() c.L_L_Sf {
@@ -6259,30 +5035,21 @@ test "L_S_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 10);
 }
 test "L_S_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_L_S_Sf(.{ .v1 = 19091, .v2 = 7391, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_L_S_Sf(.{ .v1 = 19091, .v2 = 7391, .v3 = .{} }));
 }
 test "L_S_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_L_S_Sf());
 }
 test "L_S_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_L_S_Sf(), outcome);
+    try testing.expectOk(c.send_L_S_Sf());
 }
 test "L_S_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_L_S_Sf(), .{ .v1 = 19091, .v2 = 7391, .v3 = .{} });
+    try testing.expectOk(zig_assert_L_S_Sf(c.ret_L_S_Sf()));
 }
 pub export fn zig_assert_L_S_Sf(lv: c.L_S_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 19091) err = 1;
     if (lv.v2 != 7391) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_L_S_Sf() c.L_S_Sf {
@@ -6303,29 +5070,20 @@ test "L_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 8);
 }
 test "L_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_L_Sf(.{ .v1 = 28899, .v2 = .{} }), outcome);
+    try testing.expectOk(c.assert_L_Sf(.{ .v1 = 28899, .v2 = .{} }));
 }
 test "L_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_L_Sf());
 }
 test "L_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_L_Sf(), outcome);
+    try testing.expectOk(c.send_L_Sf());
 }
 test "L_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_L_Sf(), .{ .v1 = 28899, .v2 = .{} });
+    try testing.expectOk(zig_assert_L_Sf(c.ret_L_Sf()));
 }
 pub export fn zig_assert_L_Sf(lv: c.L_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 28899) err = 1;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_L_Sf() c.L_Sf {
@@ -6348,30 +5106,21 @@ test "L_Sf_C: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "L_Sf_C: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_L_Sf_C(.{ .v1 = 31651, .v2 = .{}, .v3 = 0 }), outcome);
+    try testing.expectOk(c.assert_L_Sf_C(.{ .v1 = 31651, .v2 = .{}, .v3 = 0 }));
 }
 test "L_Sf_C: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_L_Sf_C());
 }
 test "L_Sf_C: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_L_Sf_C(), outcome);
+    try testing.expectOk(c.send_L_Sf_C());
 }
 test "L_Sf_C: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_L_Sf_C(), .{ .v1 = 31651, .v2 = .{}, .v3 = 0 });
+    try testing.expectOk(zig_assert_L_Sf_C(c.ret_L_Sf_C()));
 }
 pub export fn zig_assert_L_Sf_C(lv: c.L_Sf_C) c_int {
     var err: c_int = 0;
     if (lv.v1 != 31651) err = 1;
     if (lv.v3 != 0) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_L_Sf_C() c.L_Sf_C {
@@ -6394,30 +5143,21 @@ test "L_Sf_D: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "L_Sf_D: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_L_Sf_D(.{ .v1 = 21290, .v2 = .{}, .v3 = -2.125 }), outcome);
+    try testing.expectOk(c.assert_L_Sf_D(.{ .v1 = 21290, .v2 = .{}, .v3 = -2.125 }));
 }
 test "L_Sf_D: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_L_Sf_D());
 }
 test "L_Sf_D: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_L_Sf_D(), outcome);
+    try testing.expectOk(c.send_L_Sf_D());
 }
 test "L_Sf_D: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_L_Sf_D(), .{ .v1 = 21290, .v2 = .{}, .v3 = -2.125 });
+    try testing.expectOk(zig_assert_L_Sf_D(c.ret_L_Sf_D()));
 }
 pub export fn zig_assert_L_Sf_D(lv: c.L_Sf_D) c_int {
     var err: c_int = 0;
     if (lv.v1 != 21290) err = 1;
     if (lv.v3 != -2.125) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_L_Sf_D() c.L_Sf_D {
@@ -6440,30 +5180,21 @@ test "L_Sf_F: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "L_Sf_F: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_L_Sf_F(.{ .v1 = 32580, .v2 = .{}, .v3 = -2.125 }), outcome);
+    try testing.expectOk(c.assert_L_Sf_F(.{ .v1 = 32580, .v2 = .{}, .v3 = -2.125 }));
 }
 test "L_Sf_F: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_L_Sf_F());
 }
 test "L_Sf_F: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_L_Sf_F(), outcome);
+    try testing.expectOk(c.send_L_Sf_F());
 }
 test "L_Sf_F: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_L_Sf_F(), .{ .v1 = 32580, .v2 = .{}, .v3 = -2.125 });
+    try testing.expectOk(zig_assert_L_Sf_F(c.ret_L_Sf_F()));
 }
 pub export fn zig_assert_L_Sf_F(lv: c.L_Sf_F) c_int {
     var err: c_int = 0;
     if (lv.v1 != 32580) err = 1;
     if (lv.v3 != -2.125) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_L_Sf_F() c.L_Sf_F {
@@ -6486,30 +5217,21 @@ test "L_Sf_I: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "L_Sf_I: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_L_Sf_I(.{ .v1 = 12214, .v2 = .{}, .v3 = 24205 }), outcome);
+    try testing.expectOk(c.assert_L_Sf_I(.{ .v1 = 12214, .v2 = .{}, .v3 = 24205 }));
 }
 test "L_Sf_I: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_L_Sf_I());
 }
 test "L_Sf_I: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_L_Sf_I(), outcome);
+    try testing.expectOk(c.send_L_Sf_I());
 }
 test "L_Sf_I: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_L_Sf_I(), .{ .v1 = 12214, .v2 = .{}, .v3 = 24205 });
+    try testing.expectOk(zig_assert_L_Sf_I(c.ret_L_Sf_I()));
 }
 pub export fn zig_assert_L_Sf_I(lv: c.L_Sf_I) c_int {
     var err: c_int = 0;
     if (lv.v1 != 12214) err = 1;
     if (lv.v3 != 24205) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_L_Sf_I() c.L_Sf_I {
@@ -6532,30 +5254,21 @@ test "L_Sf_Ip: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "L_Sf_Ip: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_L_Sf_Ip(.{ .v1 = 24226, .v2 = .{}, .v3 = null }), outcome);
+    try testing.expectOk(c.assert_L_Sf_Ip(.{ .v1 = 24226, .v2 = .{}, .v3 = null }));
 }
 test "L_Sf_Ip: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_L_Sf_Ip());
 }
 test "L_Sf_Ip: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_L_Sf_Ip(), outcome);
+    try testing.expectOk(c.send_L_Sf_Ip());
 }
 test "L_Sf_Ip: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_L_Sf_Ip(), .{ .v1 = 24226, .v2 = .{}, .v3 = null });
+    try testing.expectOk(zig_assert_L_Sf_Ip(c.ret_L_Sf_Ip()));
 }
 pub export fn zig_assert_L_Sf_Ip(lv: c.L_Sf_Ip) c_int {
     var err: c_int = 0;
     if (lv.v1 != 24226) err = 1;
     if (lv.v3 != null) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_L_Sf_Ip() c.L_Sf_Ip {
@@ -6578,30 +5291,21 @@ test "L_Sf_L: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "L_Sf_L: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_L_Sf_L(.{ .v1 = 32652, .v2 = .{}, .v3 = 3015 }), outcome);
+    try testing.expectOk(c.assert_L_Sf_L(.{ .v1 = 32652, .v2 = .{}, .v3 = 3015 }));
 }
 test "L_Sf_L: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_L_Sf_L());
 }
 test "L_Sf_L: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_L_Sf_L(), outcome);
+    try testing.expectOk(c.send_L_Sf_L());
 }
 test "L_Sf_L: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_L_Sf_L(), .{ .v1 = 32652, .v2 = .{}, .v3 = 3015 });
+    try testing.expectOk(zig_assert_L_Sf_L(c.ret_L_Sf_L()));
 }
 pub export fn zig_assert_L_Sf_L(lv: c.L_Sf_L) c_int {
     var err: c_int = 0;
     if (lv.v1 != 32652) err = 1;
     if (lv.v3 != 3015) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_L_Sf_L() c.L_Sf_L {
@@ -6624,30 +5328,21 @@ test "L_Sf_S: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "L_Sf_S: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_L_Sf_S(.{ .v1 = 3737, .v2 = .{}, .v3 = 271 }), outcome);
+    try testing.expectOk(c.assert_L_Sf_S(.{ .v1 = 3737, .v2 = .{}, .v3 = 271 }));
 }
 test "L_Sf_S: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_L_Sf_S());
 }
 test "L_Sf_S: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_L_Sf_S(), outcome);
+    try testing.expectOk(c.send_L_Sf_S());
 }
 test "L_Sf_S: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_L_Sf_S(), .{ .v1 = 3737, .v2 = .{}, .v3 = 271 });
+    try testing.expectOk(zig_assert_L_Sf_S(c.ret_L_Sf_S()));
 }
 pub export fn zig_assert_L_Sf_S(lv: c.L_Sf_S) c_int {
     var err: c_int = 0;
     if (lv.v1 != 3737) err = 1;
     if (lv.v3 != 271) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_L_Sf_S() c.L_Sf_S {
@@ -6670,29 +5365,20 @@ test "L_Sf_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "L_Sf_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_L_Sf_Sf(.{ .v1 = 11079, .v2 = .{}, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_L_Sf_Sf(.{ .v1 = 11079, .v2 = .{}, .v3 = .{} }));
 }
 test "L_Sf_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_L_Sf_Sf());
 }
 test "L_Sf_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_L_Sf_Sf(), outcome);
+    try testing.expectOk(c.send_L_Sf_Sf());
 }
 test "L_Sf_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_L_Sf_Sf(), .{ .v1 = 11079, .v2 = .{}, .v3 = .{} });
+    try testing.expectOk(zig_assert_L_Sf_Sf(c.ret_L_Sf_Sf()));
 }
 pub export fn zig_assert_L_Sf_Sf(lv: c.L_Sf_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 11079) err = 1;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_L_Sf_Sf() c.L_Sf_Sf {
@@ -6715,30 +5401,21 @@ test "L_Sf_Uc: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "L_Sf_Uc: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_L_Sf_Uc(.{ .v1 = 2888, .v2 = .{}, .v3 = 87 }), outcome);
+    try testing.expectOk(c.assert_L_Sf_Uc(.{ .v1 = 2888, .v2 = .{}, .v3 = 87 }));
 }
 test "L_Sf_Uc: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_L_Sf_Uc());
 }
 test "L_Sf_Uc: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_L_Sf_Uc(), outcome);
+    try testing.expectOk(c.send_L_Sf_Uc());
 }
 test "L_Sf_Uc: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_L_Sf_Uc(), .{ .v1 = 2888, .v2 = .{}, .v3 = 87 });
+    try testing.expectOk(zig_assert_L_Sf_Uc(c.ret_L_Sf_Uc()));
 }
 pub export fn zig_assert_L_Sf_Uc(lv: c.L_Sf_Uc) c_int {
     var err: c_int = 0;
     if (lv.v1 != 2888) err = 1;
     if (lv.v3 != 87) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_L_Sf_Uc() c.L_Sf_Uc {
@@ -6761,30 +5438,21 @@ test "L_Sf_Ui: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "L_Sf_Ui: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_L_Sf_Ui(.{ .v1 = 9544, .v2 = .{}, .v3 = 13995 }), outcome);
+    try testing.expectOk(c.assert_L_Sf_Ui(.{ .v1 = 9544, .v2 = .{}, .v3 = 13995 }));
 }
 test "L_Sf_Ui: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_L_Sf_Ui());
 }
 test "L_Sf_Ui: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_L_Sf_Ui(), outcome);
+    try testing.expectOk(c.send_L_Sf_Ui());
 }
 test "L_Sf_Ui: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_L_Sf_Ui(), .{ .v1 = 9544, .v2 = .{}, .v3 = 13995 });
+    try testing.expectOk(zig_assert_L_Sf_Ui(c.ret_L_Sf_Ui()));
 }
 pub export fn zig_assert_L_Sf_Ui(lv: c.L_Sf_Ui) c_int {
     var err: c_int = 0;
     if (lv.v1 != 9544) err = 1;
     if (lv.v3 != 13995) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_L_Sf_Ui() c.L_Sf_Ui {
@@ -6807,30 +5475,21 @@ test "L_Sf_Ul: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "L_Sf_Ul: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_L_Sf_Ul(.{ .v1 = 15682, .v2 = .{}, .v3 = 27996 }), outcome);
+    try testing.expectOk(c.assert_L_Sf_Ul(.{ .v1 = 15682, .v2 = .{}, .v3 = 27996 }));
 }
 test "L_Sf_Ul: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_L_Sf_Ul());
 }
 test "L_Sf_Ul: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_L_Sf_Ul(), outcome);
+    try testing.expectOk(c.send_L_Sf_Ul());
 }
 test "L_Sf_Ul: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_L_Sf_Ul(), .{ .v1 = 15682, .v2 = .{}, .v3 = 27996 });
+    try testing.expectOk(zig_assert_L_Sf_Ul(c.ret_L_Sf_Ul()));
 }
 pub export fn zig_assert_L_Sf_Ul(lv: c.L_Sf_Ul) c_int {
     var err: c_int = 0;
     if (lv.v1 != 15682) err = 1;
     if (lv.v3 != 27996) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_L_Sf_Ul() c.L_Sf_Ul {
@@ -6853,30 +5512,21 @@ test "L_Sf_Us: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "L_Sf_Us: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_L_Sf_Us(.{ .v1 = 32055, .v2 = .{}, .v3 = 19892 }), outcome);
+    try testing.expectOk(c.assert_L_Sf_Us(.{ .v1 = 32055, .v2 = .{}, .v3 = 19892 }));
 }
 test "L_Sf_Us: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_L_Sf_Us());
 }
 test "L_Sf_Us: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_L_Sf_Us(), outcome);
+    try testing.expectOk(c.send_L_Sf_Us());
 }
 test "L_Sf_Us: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_L_Sf_Us(), .{ .v1 = 32055, .v2 = .{}, .v3 = 19892 });
+    try testing.expectOk(zig_assert_L_Sf_Us(c.ret_L_Sf_Us()));
 }
 pub export fn zig_assert_L_Sf_Us(lv: c.L_Sf_Us) c_int {
     var err: c_int = 0;
     if (lv.v1 != 32055) err = 1;
     if (lv.v3 != 19892) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_L_Sf_Us() c.L_Sf_Us {
@@ -6899,30 +5549,21 @@ test "L_Sf_Vp: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "L_Sf_Vp: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_L_Sf_Vp(.{ .v1 = 29020, .v2 = .{}, .v3 = null }), outcome);
+    try testing.expectOk(c.assert_L_Sf_Vp(.{ .v1 = 29020, .v2 = .{}, .v3 = null }));
 }
 test "L_Sf_Vp: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_L_Sf_Vp());
 }
 test "L_Sf_Vp: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_L_Sf_Vp(), outcome);
+    try testing.expectOk(c.send_L_Sf_Vp());
 }
 test "L_Sf_Vp: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_L_Sf_Vp(), .{ .v1 = 29020, .v2 = .{}, .v3 = null });
+    try testing.expectOk(zig_assert_L_Sf_Vp(c.ret_L_Sf_Vp()));
 }
 pub export fn zig_assert_L_Sf_Vp(lv: c.L_Sf_Vp) c_int {
     var err: c_int = 0;
     if (lv.v1 != 29020) err = 1;
     if (lv.v3 != null) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_L_Sf_Vp() c.L_Sf_Vp {
@@ -6945,30 +5586,21 @@ test "L_Uc_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 9);
 }
 test "L_Uc_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_L_Uc_Sf(.{ .v1 = 2120, .v2 = 80, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_L_Uc_Sf(.{ .v1 = 2120, .v2 = 80, .v3 = .{} }));
 }
 test "L_Uc_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_L_Uc_Sf());
 }
 test "L_Uc_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_L_Uc_Sf(), outcome);
+    try testing.expectOk(c.send_L_Uc_Sf());
 }
 test "L_Uc_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_L_Uc_Sf(), .{ .v1 = 2120, .v2 = 80, .v3 = .{} });
+    try testing.expectOk(zig_assert_L_Uc_Sf(c.ret_L_Uc_Sf()));
 }
 pub export fn zig_assert_L_Uc_Sf(lv: c.L_Uc_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 2120) err = 1;
     if (lv.v2 != 80) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_L_Uc_Sf() c.L_Uc_Sf {
@@ -6991,30 +5623,21 @@ test "L_Ui_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 12);
 }
 test "L_Ui_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_L_Ui_Sf(.{ .v1 = 10030, .v2 = 29018, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_L_Ui_Sf(.{ .v1 = 10030, .v2 = 29018, .v3 = .{} }));
 }
 test "L_Ui_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_L_Ui_Sf());
 }
 test "L_Ui_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_L_Ui_Sf(), outcome);
+    try testing.expectOk(c.send_L_Ui_Sf());
 }
 test "L_Ui_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_L_Ui_Sf(), .{ .v1 = 10030, .v2 = 29018, .v3 = .{} });
+    try testing.expectOk(zig_assert_L_Ui_Sf(c.ret_L_Ui_Sf()));
 }
 pub export fn zig_assert_L_Ui_Sf(lv: c.L_Ui_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 10030) err = 1;
     if (lv.v2 != 29018) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_L_Ui_Sf() c.L_Ui_Sf {
@@ -7037,30 +5660,21 @@ test "L_Ul_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 16);
 }
 test "L_Ul_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_L_Ul_Sf(.{ .v1 = 25686, .v2 = 21775, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_L_Ul_Sf(.{ .v1 = 25686, .v2 = 21775, .v3 = .{} }));
 }
 test "L_Ul_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_L_Ul_Sf());
 }
 test "L_Ul_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_L_Ul_Sf(), outcome);
+    try testing.expectOk(c.send_L_Ul_Sf());
 }
 test "L_Ul_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_L_Ul_Sf(), .{ .v1 = 25686, .v2 = 21775, .v3 = .{} });
+    try testing.expectOk(zig_assert_L_Ul_Sf(c.ret_L_Ul_Sf()));
 }
 pub export fn zig_assert_L_Ul_Sf(lv: c.L_Ul_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 25686) err = 1;
     if (lv.v2 != 21775) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_L_Ul_Sf() c.L_Ul_Sf {
@@ -7083,30 +5697,21 @@ test "L_Us_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 10);
 }
 test "L_Us_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_L_Us_Sf(.{ .v1 = 1781, .v2 = 32501, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_L_Us_Sf(.{ .v1 = 1781, .v2 = 32501, .v3 = .{} }));
 }
 test "L_Us_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_L_Us_Sf());
 }
 test "L_Us_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_L_Us_Sf(), outcome);
+    try testing.expectOk(c.send_L_Us_Sf());
 }
 test "L_Us_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_L_Us_Sf(), .{ .v1 = 1781, .v2 = 32501, .v3 = .{} });
+    try testing.expectOk(zig_assert_L_Us_Sf(c.ret_L_Us_Sf()));
 }
 pub export fn zig_assert_L_Us_Sf(lv: c.L_Us_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 1781) err = 1;
     if (lv.v2 != 32501) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_L_Us_Sf() c.L_Us_Sf {
@@ -7129,30 +5734,21 @@ test "L_Vp_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 test "L_Vp_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_L_Vp_Sf(.{ .v1 = 12990, .v2 = null, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_L_Vp_Sf(.{ .v1 = 12990, .v2 = null, .v3 = .{} }));
 }
 test "L_Vp_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_L_Vp_Sf());
 }
 test "L_Vp_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_L_Vp_Sf(), outcome);
+    try testing.expectOk(c.send_L_Vp_Sf());
 }
 test "L_Vp_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_L_Vp_Sf(), .{ .v1 = 12990, .v2 = null, .v3 = .{} });
+    try testing.expectOk(zig_assert_L_Vp_Sf(c.ret_L_Vp_Sf()));
 }
 pub export fn zig_assert_L_Vp_Sf(lv: c.L_Vp_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 12990) err = 1;
     if (lv.v2 != null) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_L_Vp_Sf() c.L_Vp_Sf {
@@ -7175,30 +5771,21 @@ test "S_C_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 3);
 }
 test "S_C_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_S_C_Sf(.{ .v1 = 32241, .v2 = 46, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_S_C_Sf(.{ .v1 = 32241, .v2 = 46, .v3 = .{} }));
 }
 test "S_C_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_S_C_Sf());
 }
 test "S_C_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_S_C_Sf(), outcome);
+    try testing.expectOk(c.send_S_C_Sf());
 }
 test "S_C_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_S_C_Sf(), .{ .v1 = 32241, .v2 = 46, .v3 = .{} });
+    try testing.expectOk(zig_assert_S_C_Sf(c.ret_S_C_Sf()));
 }
 pub export fn zig_assert_S_C_Sf(lv: c.S_C_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 32241) err = 1;
     if (lv.v2 != 46) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_S_C_Sf() c.S_C_Sf {
@@ -7221,30 +5808,21 @@ test "S_D_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 test "S_D_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_S_D_Sf(.{ .v1 = 3514, .v2 = -2.125, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_S_D_Sf(.{ .v1 = 3514, .v2 = -2.125, .v3 = .{} }));
 }
 test "S_D_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_S_D_Sf());
 }
 test "S_D_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_S_D_Sf(), outcome);
+    try testing.expectOk(c.send_S_D_Sf());
 }
 test "S_D_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_S_D_Sf(), .{ .v1 = 3514, .v2 = -2.125, .v3 = .{} });
+    try testing.expectOk(zig_assert_S_D_Sf(c.ret_S_D_Sf()));
 }
 pub export fn zig_assert_S_D_Sf(lv: c.S_D_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 3514) err = 1;
     if (lv.v2 != -2.125) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_S_D_Sf() c.S_D_Sf {
@@ -7267,30 +5845,21 @@ test "S_F_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "S_F_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_S_F_Sf(.{ .v1 = 2718, .v2 = 4.5, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_S_F_Sf(.{ .v1 = 2718, .v2 = 4.5, .v3 = .{} }));
 }
 test "S_F_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_S_F_Sf());
 }
 test "S_F_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_S_F_Sf(), outcome);
+    try testing.expectOk(c.send_S_F_Sf());
 }
 test "S_F_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_S_F_Sf(), .{ .v1 = 2718, .v2 = 4.5, .v3 = .{} });
+    try testing.expectOk(zig_assert_S_F_Sf(c.ret_S_F_Sf()));
 }
 pub export fn zig_assert_S_F_Sf(lv: c.S_F_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 2718) err = 1;
     if (lv.v2 != 4.5) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_S_F_Sf() c.S_F_Sf {
@@ -7313,30 +5882,21 @@ test "S_I_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "S_I_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_S_I_Sf(.{ .v1 = 27435, .v2 = 20889, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_S_I_Sf(.{ .v1 = 27435, .v2 = 20889, .v3 = .{} }));
 }
 test "S_I_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_S_I_Sf());
 }
 test "S_I_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_S_I_Sf(), outcome);
+    try testing.expectOk(c.send_S_I_Sf());
 }
 test "S_I_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_S_I_Sf(), .{ .v1 = 27435, .v2 = 20889, .v3 = .{} });
+    try testing.expectOk(zig_assert_S_I_Sf(c.ret_S_I_Sf()));
 }
 pub export fn zig_assert_S_I_Sf(lv: c.S_I_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 27435) err = 1;
     if (lv.v2 != 20889) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_S_I_Sf() c.S_I_Sf {
@@ -7359,30 +5919,21 @@ test "S_Ip_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 test "S_Ip_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_S_Ip_Sf(.{ .v1 = 19504, .v2 = null, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_S_Ip_Sf(.{ .v1 = 19504, .v2 = null, .v3 = .{} }));
 }
 test "S_Ip_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_S_Ip_Sf());
 }
 test "S_Ip_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_S_Ip_Sf(), outcome);
+    try testing.expectOk(c.send_S_Ip_Sf());
 }
 test "S_Ip_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_S_Ip_Sf(), .{ .v1 = 19504, .v2 = null, .v3 = .{} });
+    try testing.expectOk(zig_assert_S_Ip_Sf(c.ret_S_Ip_Sf()));
 }
 pub export fn zig_assert_S_Ip_Sf(lv: c.S_Ip_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 19504) err = 1;
     if (lv.v2 != null) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_S_Ip_Sf() c.S_Ip_Sf {
@@ -7405,30 +5956,21 @@ test "S_L_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 test "S_L_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_S_L_Sf(.{ .v1 = 4719, .v2 = 9687, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_S_L_Sf(.{ .v1 = 4719, .v2 = 9687, .v3 = .{} }));
 }
 test "S_L_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_S_L_Sf());
 }
 test "S_L_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_S_L_Sf(), outcome);
+    try testing.expectOk(c.send_S_L_Sf());
 }
 test "S_L_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_S_L_Sf(), .{ .v1 = 4719, .v2 = 9687, .v3 = .{} });
+    try testing.expectOk(zig_assert_S_L_Sf(c.ret_S_L_Sf()));
 }
 pub export fn zig_assert_S_L_Sf(lv: c.S_L_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 4719) err = 1;
     if (lv.v2 != 9687) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_S_L_Sf() c.S_L_Sf {
@@ -7451,30 +5993,21 @@ test "S_S_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
 test "S_S_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_S_S_Sf(.{ .v1 = 18705, .v2 = 28798, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_S_S_Sf(.{ .v1 = 18705, .v2 = 28798, .v3 = .{} }));
 }
 test "S_S_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_S_S_Sf());
 }
 test "S_S_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_S_S_Sf(), outcome);
+    try testing.expectOk(c.send_S_S_Sf());
 }
 test "S_S_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_S_S_Sf(), .{ .v1 = 18705, .v2 = 28798, .v3 = .{} });
+    try testing.expectOk(zig_assert_S_S_Sf(c.ret_S_S_Sf()));
 }
 pub export fn zig_assert_S_S_Sf(lv: c.S_S_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 18705) err = 1;
     if (lv.v2 != 28798) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_S_S_Sf() c.S_S_Sf {
@@ -7495,29 +6028,20 @@ test "S_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v2, 2);
 }
 test "S_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_S_Sf(.{ .v1 = 27824, .v2 = .{} }), outcome);
+    try testing.expectOk(c.assert_S_Sf(.{ .v1 = 27824, .v2 = .{} }));
 }
 test "S_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_S_Sf());
 }
 test "S_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_S_Sf(), outcome);
+    try testing.expectOk(c.send_S_Sf());
 }
 test "S_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_S_Sf(), .{ .v1 = 27824, .v2 = .{} });
+    try testing.expectOk(zig_assert_S_Sf(c.ret_S_Sf()));
 }
 pub export fn zig_assert_S_Sf(lv: c.S_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 27824) err = 1;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_S_Sf() c.S_Sf {
@@ -7540,30 +6064,21 @@ test "S_Sf_C: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 2);
 }
 test "S_Sf_C: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_S_Sf_C(.{ .v1 = 9398, .v2 = .{}, .v3 = 48 }), outcome);
+    try testing.expectOk(c.assert_S_Sf_C(.{ .v1 = 9398, .v2 = .{}, .v3 = 48 }));
 }
 test "S_Sf_C: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_S_Sf_C());
 }
 test "S_Sf_C: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_S_Sf_C(), outcome);
+    try testing.expectOk(c.send_S_Sf_C());
 }
 test "S_Sf_C: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_S_Sf_C(), .{ .v1 = 9398, .v2 = .{}, .v3 = 48 });
+    try testing.expectOk(zig_assert_S_Sf_C(c.ret_S_Sf_C()));
 }
 pub export fn zig_assert_S_Sf_C(lv: c.S_Sf_C) c_int {
     var err: c_int = 0;
     if (lv.v1 != 9398) err = 1;
     if (lv.v3 != 48) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_S_Sf_C() c.S_Sf_C {
@@ -7586,30 +6101,21 @@ test "S_Sf_D: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
 test "S_Sf_D: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_S_Sf_D(.{ .v1 = 21401, .v2 = .{}, .v3 = 0.875 }), outcome);
+    try testing.expectOk(c.assert_S_Sf_D(.{ .v1 = 21401, .v2 = .{}, .v3 = 0.875 }));
 }
 test "S_Sf_D: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_S_Sf_D());
 }
 test "S_Sf_D: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_S_Sf_D(), outcome);
+    try testing.expectOk(c.send_S_Sf_D());
 }
 test "S_Sf_D: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_S_Sf_D(), .{ .v1 = 21401, .v2 = .{}, .v3 = 0.875 });
+    try testing.expectOk(zig_assert_S_Sf_D(c.ret_S_Sf_D()));
 }
 pub export fn zig_assert_S_Sf_D(lv: c.S_Sf_D) c_int {
     var err: c_int = 0;
     if (lv.v1 != 21401) err = 1;
     if (lv.v3 != 0.875) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_S_Sf_D() c.S_Sf_D {
@@ -7632,30 +6138,21 @@ test "S_Sf_F: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
 test "S_Sf_F: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_S_Sf_F(.{ .v1 = 16218, .v2 = .{}, .v3 = -0.25 }), outcome);
+    try testing.expectOk(c.assert_S_Sf_F(.{ .v1 = 16218, .v2 = .{}, .v3 = -0.25 }));
 }
 test "S_Sf_F: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_S_Sf_F());
 }
 test "S_Sf_F: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_S_Sf_F(), outcome);
+    try testing.expectOk(c.send_S_Sf_F());
 }
 test "S_Sf_F: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_S_Sf_F(), .{ .v1 = 16218, .v2 = .{}, .v3 = -0.25 });
+    try testing.expectOk(zig_assert_S_Sf_F(c.ret_S_Sf_F()));
 }
 pub export fn zig_assert_S_Sf_F(lv: c.S_Sf_F) c_int {
     var err: c_int = 0;
     if (lv.v1 != 16218) err = 1;
     if (lv.v3 != -0.25) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_S_Sf_F() c.S_Sf_F {
@@ -7678,30 +6175,21 @@ test "S_Sf_I: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
 test "S_Sf_I: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_S_Sf_I(.{ .v1 = 29562, .v2 = .{}, .v3 = 11826 }), outcome);
+    try testing.expectOk(c.assert_S_Sf_I(.{ .v1 = 29562, .v2 = .{}, .v3 = 11826 }));
 }
 test "S_Sf_I: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_S_Sf_I());
 }
 test "S_Sf_I: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_S_Sf_I(), outcome);
+    try testing.expectOk(c.send_S_Sf_I());
 }
 test "S_Sf_I: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_S_Sf_I(), .{ .v1 = 29562, .v2 = .{}, .v3 = 11826 });
+    try testing.expectOk(zig_assert_S_Sf_I(c.ret_S_Sf_I()));
 }
 pub export fn zig_assert_S_Sf_I(lv: c.S_Sf_I) c_int {
     var err: c_int = 0;
     if (lv.v1 != 29562) err = 1;
     if (lv.v3 != 11826) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_S_Sf_I() c.S_Sf_I {
@@ -7724,30 +6212,21 @@ test "S_Sf_Ip: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
 test "S_Sf_Ip: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_S_Sf_Ip(.{ .v1 = 23539, .v2 = .{}, .v3 = null }), outcome);
+    try testing.expectOk(c.assert_S_Sf_Ip(.{ .v1 = 23539, .v2 = .{}, .v3 = null }));
 }
 test "S_Sf_Ip: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_S_Sf_Ip());
 }
 test "S_Sf_Ip: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_S_Sf_Ip(), outcome);
+    try testing.expectOk(c.send_S_Sf_Ip());
 }
 test "S_Sf_Ip: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_S_Sf_Ip(), .{ .v1 = 23539, .v2 = .{}, .v3 = null });
+    try testing.expectOk(zig_assert_S_Sf_Ip(c.ret_S_Sf_Ip()));
 }
 pub export fn zig_assert_S_Sf_Ip(lv: c.S_Sf_Ip) c_int {
     var err: c_int = 0;
     if (lv.v1 != 23539) err = 1;
     if (lv.v3 != null) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_S_Sf_Ip() c.S_Sf_Ip {
@@ -7770,30 +6249,21 @@ test "S_Sf_L: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
 test "S_Sf_L: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_S_Sf_L(.{ .v1 = 27926, .v2 = .{}, .v3 = 27509 }), outcome);
+    try testing.expectOk(c.assert_S_Sf_L(.{ .v1 = 27926, .v2 = .{}, .v3 = 27509 }));
 }
 test "S_Sf_L: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_S_Sf_L());
 }
 test "S_Sf_L: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_S_Sf_L(), outcome);
+    try testing.expectOk(c.send_S_Sf_L());
 }
 test "S_Sf_L: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_S_Sf_L(), .{ .v1 = 27926, .v2 = .{}, .v3 = 27509 });
+    try testing.expectOk(zig_assert_S_Sf_L(c.ret_S_Sf_L()));
 }
 pub export fn zig_assert_S_Sf_L(lv: c.S_Sf_L) c_int {
     var err: c_int = 0;
     if (lv.v1 != 27926) err = 1;
     if (lv.v3 != 27509) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_S_Sf_L() c.S_Sf_L {
@@ -7816,30 +6286,21 @@ test "S_Sf_S: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 2);
 }
 test "S_Sf_S: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_S_Sf_S(.{ .v1 = 11771, .v2 = .{}, .v3 = 4475 }), outcome);
+    try testing.expectOk(c.assert_S_Sf_S(.{ .v1 = 11771, .v2 = .{}, .v3 = 4475 }));
 }
 test "S_Sf_S: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_S_Sf_S());
 }
 test "S_Sf_S: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_S_Sf_S(), outcome);
+    try testing.expectOk(c.send_S_Sf_S());
 }
 test "S_Sf_S: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_S_Sf_S(), .{ .v1 = 11771, .v2 = .{}, .v3 = 4475 });
+    try testing.expectOk(zig_assert_S_Sf_S(c.ret_S_Sf_S()));
 }
 pub export fn zig_assert_S_Sf_S(lv: c.S_Sf_S) c_int {
     var err: c_int = 0;
     if (lv.v1 != 11771) err = 1;
     if (lv.v3 != 4475) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_S_Sf_S() c.S_Sf_S {
@@ -7862,29 +6323,20 @@ test "S_Sf_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 2);
 }
 test "S_Sf_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_S_Sf_Sf(.{ .v1 = 379, .v2 = .{}, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_S_Sf_Sf(.{ .v1 = 379, .v2 = .{}, .v3 = .{} }));
 }
 test "S_Sf_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_S_Sf_Sf());
 }
 test "S_Sf_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_S_Sf_Sf(), outcome);
+    try testing.expectOk(c.send_S_Sf_Sf());
 }
 test "S_Sf_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_S_Sf_Sf(), .{ .v1 = 379, .v2 = .{}, .v3 = .{} });
+    try testing.expectOk(zig_assert_S_Sf_Sf(c.ret_S_Sf_Sf()));
 }
 pub export fn zig_assert_S_Sf_Sf(lv: c.S_Sf_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 379) err = 1;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_S_Sf_Sf() c.S_Sf_Sf {
@@ -7907,30 +6359,21 @@ test "S_Sf_Uc: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 2);
 }
 test "S_Sf_Uc: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_S_Sf_Uc(.{ .v1 = 17717, .v2 = .{}, .v3 = 122 }), outcome);
+    try testing.expectOk(c.assert_S_Sf_Uc(.{ .v1 = 17717, .v2 = .{}, .v3 = 122 }));
 }
 test "S_Sf_Uc: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_S_Sf_Uc());
 }
 test "S_Sf_Uc: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_S_Sf_Uc(), outcome);
+    try testing.expectOk(c.send_S_Sf_Uc());
 }
 test "S_Sf_Uc: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_S_Sf_Uc(), .{ .v1 = 17717, .v2 = .{}, .v3 = 122 });
+    try testing.expectOk(zig_assert_S_Sf_Uc(c.ret_S_Sf_Uc()));
 }
 pub export fn zig_assert_S_Sf_Uc(lv: c.S_Sf_Uc) c_int {
     var err: c_int = 0;
     if (lv.v1 != 17717) err = 1;
     if (lv.v3 != 122) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_S_Sf_Uc() c.S_Sf_Uc {
@@ -7953,30 +6396,21 @@ test "S_Sf_Ui: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
 test "S_Sf_Ui: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_S_Sf_Ui(.{ .v1 = 7976, .v2 = .{}, .v3 = 22498 }), outcome);
+    try testing.expectOk(c.assert_S_Sf_Ui(.{ .v1 = 7976, .v2 = .{}, .v3 = 22498 }));
 }
 test "S_Sf_Ui: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_S_Sf_Ui());
 }
 test "S_Sf_Ui: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_S_Sf_Ui(), outcome);
+    try testing.expectOk(c.send_S_Sf_Ui());
 }
 test "S_Sf_Ui: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_S_Sf_Ui(), .{ .v1 = 7976, .v2 = .{}, .v3 = 22498 });
+    try testing.expectOk(zig_assert_S_Sf_Ui(c.ret_S_Sf_Ui()));
 }
 pub export fn zig_assert_S_Sf_Ui(lv: c.S_Sf_Ui) c_int {
     var err: c_int = 0;
     if (lv.v1 != 7976) err = 1;
     if (lv.v3 != 22498) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_S_Sf_Ui() c.S_Sf_Ui {
@@ -7999,30 +6433,21 @@ test "S_Sf_Ul: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
 test "S_Sf_Ul: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_S_Sf_Ul(.{ .v1 = 25701, .v2 = .{}, .v3 = 3715 }), outcome);
+    try testing.expectOk(c.assert_S_Sf_Ul(.{ .v1 = 25701, .v2 = .{}, .v3 = 3715 }));
 }
 test "S_Sf_Ul: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_S_Sf_Ul());
 }
 test "S_Sf_Ul: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_S_Sf_Ul(), outcome);
+    try testing.expectOk(c.send_S_Sf_Ul());
 }
 test "S_Sf_Ul: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_S_Sf_Ul(), .{ .v1 = 25701, .v2 = .{}, .v3 = 3715 });
+    try testing.expectOk(zig_assert_S_Sf_Ul(c.ret_S_Sf_Ul()));
 }
 pub export fn zig_assert_S_Sf_Ul(lv: c.S_Sf_Ul) c_int {
     var err: c_int = 0;
     if (lv.v1 != 25701) err = 1;
     if (lv.v3 != 3715) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_S_Sf_Ul() c.S_Sf_Ul {
@@ -8045,30 +6470,21 @@ test "S_Sf_Us: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 2);
 }
 test "S_Sf_Us: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_S_Sf_Us(.{ .v1 = 24018, .v2 = .{}, .v3 = 16059 }), outcome);
+    try testing.expectOk(c.assert_S_Sf_Us(.{ .v1 = 24018, .v2 = .{}, .v3 = 16059 }));
 }
 test "S_Sf_Us: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_S_Sf_Us());
 }
 test "S_Sf_Us: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_S_Sf_Us(), outcome);
+    try testing.expectOk(c.send_S_Sf_Us());
 }
 test "S_Sf_Us: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_S_Sf_Us(), .{ .v1 = 24018, .v2 = .{}, .v3 = 16059 });
+    try testing.expectOk(zig_assert_S_Sf_Us(c.ret_S_Sf_Us()));
 }
 pub export fn zig_assert_S_Sf_Us(lv: c.S_Sf_Us) c_int {
     var err: c_int = 0;
     if (lv.v1 != 24018) err = 1;
     if (lv.v3 != 16059) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_S_Sf_Us() c.S_Sf_Us {
@@ -8091,30 +6507,21 @@ test "S_Sf_Vp: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(8, 4));
 }
 test "S_Sf_Vp: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_S_Sf_Vp(.{ .v1 = 18536, .v2 = .{}, .v3 = null }), outcome);
+    try testing.expectOk(c.assert_S_Sf_Vp(.{ .v1 = 18536, .v2 = .{}, .v3 = null }));
 }
 test "S_Sf_Vp: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_S_Sf_Vp());
 }
 test "S_Sf_Vp: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_S_Sf_Vp(), outcome);
+    try testing.expectOk(c.send_S_Sf_Vp());
 }
 test "S_Sf_Vp: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_S_Sf_Vp(), .{ .v1 = 18536, .v2 = .{}, .v3 = null });
+    try testing.expectOk(zig_assert_S_Sf_Vp(c.ret_S_Sf_Vp()));
 }
 pub export fn zig_assert_S_Sf_Vp(lv: c.S_Sf_Vp) c_int {
     var err: c_int = 0;
     if (lv.v1 != 18536) err = 1;
     if (lv.v3 != null) err = 3;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_S_Sf_Vp() c.S_Sf_Vp {
@@ -8137,30 +6544,21 @@ test "S_Uc_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 3);
 }
 test "S_Uc_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_S_Uc_Sf(.{ .v1 = 21409, .v2 = 76, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_S_Uc_Sf(.{ .v1 = 21409, .v2 = 76, .v3 = .{} }));
 }
 test "S_Uc_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_S_Uc_Sf());
 }
 test "S_Uc_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_S_Uc_Sf(), outcome);
+    try testing.expectOk(c.send_S_Uc_Sf());
 }
 test "S_Uc_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_S_Uc_Sf(), .{ .v1 = 21409, .v2 = 76, .v3 = .{} });
+    try testing.expectOk(zig_assert_S_Uc_Sf(c.ret_S_Uc_Sf()));
 }
 pub export fn zig_assert_S_Uc_Sf(lv: c.S_Uc_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 21409) err = 1;
     if (lv.v2 != 76) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_S_Uc_Sf() c.S_Uc_Sf {
@@ -8183,30 +6581,21 @@ test "S_Ui_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 8);
 }
 test "S_Ui_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_S_Ui_Sf(.{ .v1 = 14752, .v2 = 12866, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_S_Ui_Sf(.{ .v1 = 14752, .v2 = 12866, .v3 = .{} }));
 }
 test "S_Ui_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_S_Ui_Sf());
 }
 test "S_Ui_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_S_Ui_Sf(), outcome);
+    try testing.expectOk(c.send_S_Ui_Sf());
 }
 test "S_Ui_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_S_Ui_Sf(), .{ .v1 = 14752, .v2 = 12866, .v3 = .{} });
+    try testing.expectOk(zig_assert_S_Ui_Sf(c.ret_S_Ui_Sf()));
 }
 pub export fn zig_assert_S_Ui_Sf(lv: c.S_Ui_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 14752) err = 1;
     if (lv.v2 != 12866) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_S_Ui_Sf() c.S_Ui_Sf {
@@ -8229,30 +6618,21 @@ test "S_Ul_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 12));
 }
 test "S_Ul_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_S_Ul_Sf(.{ .v1 = 408, .v2 = 2724, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_S_Ul_Sf(.{ .v1 = 408, .v2 = 2724, .v3 = .{} }));
 }
 test "S_Ul_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_S_Ul_Sf());
 }
 test "S_Ul_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_S_Ul_Sf(), outcome);
+    try testing.expectOk(c.send_S_Ul_Sf());
 }
 test "S_Ul_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_S_Ul_Sf(), .{ .v1 = 408, .v2 = 2724, .v3 = .{} });
+    try testing.expectOk(zig_assert_S_Ul_Sf(c.ret_S_Ul_Sf()));
 }
 pub export fn zig_assert_S_Ul_Sf(lv: c.S_Ul_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 408) err = 1;
     if (lv.v2 != 2724) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_S_Ul_Sf() c.S_Ul_Sf {
@@ -8275,30 +6655,21 @@ test "S_Us_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, 4);
 }
 test "S_Us_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_S_Us_Sf(.{ .v1 = 7348, .v2 = 12573, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_S_Us_Sf(.{ .v1 = 7348, .v2 = 12573, .v3 = .{} }));
 }
 test "S_Us_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_S_Us_Sf());
 }
 test "S_Us_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_S_Us_Sf(), outcome);
+    try testing.expectOk(c.send_S_Us_Sf());
 }
 test "S_Us_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_S_Us_Sf(), .{ .v1 = 7348, .v2 = 12573, .v3 = .{} });
+    try testing.expectOk(zig_assert_S_Us_Sf(c.ret_S_Us_Sf()));
 }
 pub export fn zig_assert_S_Us_Sf(lv: c.S_Us_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 7348) err = 1;
     if (lv.v2 != 12573) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_S_Us_Sf() c.S_Us_Sf {
@@ -8321,30 +6692,21 @@ test "S_Vp_Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v3, ABISELECT(16, 8));
 }
 test "S_Vp_Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_S_Vp_Sf(.{ .v1 = 14709, .v2 = null, .v3 = .{} }), outcome);
+    try testing.expectOk(c.assert_S_Vp_Sf(.{ .v1 = 14709, .v2 = null, .v3 = .{} }));
 }
 test "S_Vp_Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_S_Vp_Sf());
 }
 test "S_Vp_Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_S_Vp_Sf(), outcome);
+    try testing.expectOk(c.send_S_Vp_Sf());
 }
 test "S_Vp_Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_S_Vp_Sf(), .{ .v1 = 14709, .v2 = null, .v3 = .{} });
+    try testing.expectOk(zig_assert_S_Vp_Sf(c.ret_S_Vp_Sf()));
 }
 pub export fn zig_assert_S_Vp_Sf(lv: c.S_Vp_Sf) c_int {
     var err: c_int = 0;
     if (lv.v1 != 14709) err = 1;
     if (lv.v2 != null) err = 2;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_S_Vp_Sf() c.S_Vp_Sf {
@@ -8363,28 +6725,19 @@ test "Sf: layout" {
     try testing.expectFieldOffset(&lv, &lv.v1, 0);
 }
 test "Sf: Zig passes to C" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    var outcome = true;
-    try testing.expectOutcome(c.assert_Sf(.{ .v1 = .{} }), outcome);
+    try testing.expectOk(c.assert_Sf(.{ .v1 = .{} }));
 }
 test "Sf: Zig returns to C" {
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
     try testing.expectOk(c.assert_ret_Sf());
 }
 test "Sf: C passes to Zig" {
-    var outcome = true;
-
-    if (builtin.cpu.arch.isPPC()) outcome = false;
-    try testing.expectOutcome(c.send_Sf(), outcome);
+    try testing.expectOk(c.send_Sf());
 }
 test "Sf: C returns to Zig" {
-    if (comptime builtin.cpu.arch.isPPC()) return error.SkipZigTest;
-    if (builtin.cpu.arch == .x86) return error.SkipZigTest;
-    try testing.expectEqual(c.ret_Sf(), .{ .v1 = .{} });
+    try testing.expectOk(zig_assert_Sf(c.ret_Sf()));
 }
 pub export fn zig_assert_Sf(lv: c.Sf) c_int {
     var err: c_int = 0;
-    if (err != 0) std.debug.print("Received {}", .{lv});
     return err;
 }
 pub export fn zig_ret_Sf() c.Sf {
